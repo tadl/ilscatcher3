@@ -1,0 +1,18 @@
+<h1>Search</h1>
+<div class="row">
+    <div class="col-xs-3">
+        <h3>Facets</h3>
+        <% @facets.each do |facet| %>
+			<%= render 'facets', facet: facet %>
+		<% end %>
+    </div>
+    <div class="col-xs-9">
+    	<h2> Results </h2>
+        <% @search.each do |result| %>
+			<%= render 'search_card', result: result %>
+		<% end %>
+    </div>
+</div>
+
+
+

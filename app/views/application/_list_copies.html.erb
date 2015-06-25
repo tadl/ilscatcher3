@@ -1,0 +1,33 @@
+<div class="row">	    
+	<div class="col-xs-3">
+	   Library
+	</div>
+	<div class="col-xs-3">
+	   Location
+	</div>
+	<% if all == true %> 
+		<div class="col-xs-2">
+			Status
+		</div>
+	<% end %>
+</div>
+
+<% copies.each do |copy| %>
+	<div class="row">	    
+		<div class="col-xs-3">
+		   <%= copy.location %>
+		</div>
+		<div class="col-xs-3">
+		   <%= copy.call_number %> in <%= copy.shelving_location %>
+		</div>
+		<% if all == true %> 
+			<div class="col-xs-3">
+		   		<%if copy.status == 'Available' %>
+		   			<%= copy.status %>
+		   		<% else %>
+		   			<%= copy.status %> - Due On <%= copy.due_date %>
+		   		<% end %>
+		   	</div>
+		<% end %>
+	</div>
+<% end %>	

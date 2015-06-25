@@ -1,0 +1,6 @@
+<h2>Item Details</h2>
+<%= render 'item_details', item: @item %>
+<h2>Copies on Shelf</h2>
+<%= render 'list_copies', copies: @copies_on_shelf, all: false %>
+<h2>All Copies</h2>
+<%= render 'list_copies', copies: @copies_all, all: true %>
