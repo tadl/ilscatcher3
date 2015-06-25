@@ -16,3 +16,9 @@
 
 @import "bootstrap-sprockets"
 @import "bootstrap"
+
+
+.center_cropped {
+  background-position: center center;
+  background-repeat: no-repeat;
+}

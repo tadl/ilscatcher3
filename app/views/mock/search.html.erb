@@ -1,5 +1,3 @@
-<h1>Search</h1>
-<%= @url %>
 <div class="row">
     <div class="col-xs-3">
         <h3>Facets</h3>
@@ -8,11 +6,7 @@
 		<% end %>
     </div>
     <div class="col-xs-9">
-    	<h2> Results </h2>
-        <% @items.each do |item| %>
-			<%= render 'search_card', item: item %>
-		<% end %>
-    </div>
+        <%= render 'search_grid', items: @items %>
 </div>
 
 
