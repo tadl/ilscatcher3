@@ -9,8 +9,8 @@
     </div>
     <div class="col-xs-9">
     	<h2> Results </h2>
-        <% @search.each do |result| %>
-			<%= render 'search_card', result: result %>
+        <% @items.each do |item| %>
+			<%= render 'search_card', item: item %>
 		<% end %>
     </div>
 </div>

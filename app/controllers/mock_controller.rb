@@ -10,11 +10,10 @@ class MockController < ApplicationController
   end
 
   def search
-    search = Search.new params
-    results = search.results
-    @search = results[0]
+    @search = Search.new params
+    results = @search.results
+    @items = results[0]
     @facets = results[1]
-    @query = search.query
   end
 
   def details
