@@ -5,6 +5,7 @@ class ApplicationController < ActionController::Base
   require 'open-uri'
 
   def shared_mock_variables
+    @user_name = 'William Rockwood'
   end
 
 end
