@@ -15,3 +15,4 @@ gem 'spring', group: :development
 #added
 gem 'bootstrap-sass', '~> 3.3.5'
 gem 'dish', require: 'dish/ext'
+gem 'mechanize'

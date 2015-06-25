@@ -10,9 +10,11 @@ class MockController < ApplicationController
   end
 
   def search
-  	search_raw = JSON.parse(open('http://ilscatcher2.herokuapp.com/search/basic?query=smashing%20pumpkins').read)
-  	@search = Dish(search_raw['results'])
-  	@facets = Dish(search_raw['facets'])
+    search = Search.new params
+    results = search.results
+    @search = results[0]
+    @facets = results[1]
+    @query = search.query
   end
 
   def details
@@ -21,4 +23,5 @@ class MockController < ApplicationController
   	@copies_on_shelf = Dish(item_details_raw['copies_on_shelf'])
   	@copies_all = Dish(item_details_raw['copies'])
   end
+
 end
