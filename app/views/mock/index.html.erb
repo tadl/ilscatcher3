@@ -1,8 +1,15 @@
-<h2> Featured Movies </h2>
-<%= render 'featured_lists', list: @movie_list %>
+<div class="container">
+    <div class="col-xs-8">
+        <h2>Movies</h2>
+        <%= render 'featured_lists', list: @movie_list %>
 
-<h2> Featured Music </h2>
-<%= render 'featured_lists', list: @music_list %>
+        <h2>Music</h2>
+        <%= render 'featured_lists', list: @music_list %>
 
-<h2> Featured Books </h2>
-<%= render 'featured_lists', list: @book_list %>
+        <h2>Games</h2>
+        <%= render 'featured_lists', list: @book_list %>
+    </div>
+    <div class="col-xs-4">
+        clicky things go here maybe.
+    </div>
+</div>
