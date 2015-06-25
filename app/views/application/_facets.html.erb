@@ -1,5 +1,5 @@
-<h4><%= facet.facet %></h4>
-<% facet.sub_facets.each do |sub| %>
-	<%= sub.sub_facet %>
+<h4><%= facet.type %></h4>
+<% facet.subfacets.each do |sub| %>
+	<%= sub[:title] %>
 	</br>
 <% end %>
