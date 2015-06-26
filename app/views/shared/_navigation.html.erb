@@ -20,7 +20,19 @@
             </ul>
             <%= render 'shared/searchbox' %>
             <% if @user_name %>
-                <p class="navbar-text navbar-right">Signed in as <%= @user_name %></p>
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Signed in as <%= @user_name %> <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">Checked Out (4)</a></li>
+                            <li><a href="#">Holds (0)</a></li>
+                            <li><a href="#">Fines $2.00</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="#">Log out</a></li>
+                        </ul>
+                    </li>
+                </ul>
+
             <% else %>
                 <button type="button" class="btn btn-default navbar-btn navbar-right">Sign in</button>
             <% end %>
