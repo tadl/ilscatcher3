@@ -148,8 +148,7 @@ DEPENDENCIES
   mechanize
   owlcarousel-rails
   rails (= 4.1.8)
-  sass (~> 3.3.0)
-  sass-rails (>= 5.0.0)
+  sass-rails (>= 3.2)
   sdoc (~> 0.4.0)
   spring
   sqlite3
