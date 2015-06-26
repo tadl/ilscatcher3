@@ -15,8 +15,10 @@
         </div>
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-left">
-                <li class="active"><a href="/mock/index">Sight & Sound Home <span class="sr-only">(current)</span></a></li>
-                <li><a href="#">Another link</a></li>
+                <li class="active"><a href="/mock/index">All Formats<span class="sr-only">(current)</span></a></li>
+                <li><a href="#">Video</a></li>
+                <li><a href="#">Audio</a></li>
+                <li><a href="#">Games</a></li>
             </ul>
             <%= render 'shared/searchbox' %>
             <% if @user_name %>
@@ -24,9 +26,9 @@
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Signed in as <%= @user_name %> <span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li><a href="#">Checked Out (4)</a></li>
-                            <li><a href="#">Holds (0)</a></li>
-                            <li><a href="#">Fines $2.00</a></li>
+                            <li><a href="#">Checked Out <span class="pull-right label label-info">4</span></a></li>
+                            <li><a href="#">Holds <span class="pull-right label label-info">0</span></a></li>
+                            <li><a href="#">Fines <span class="pull-right label label-danger">$2.00</span></a></li>
                             <li role="separator" class="divider"></li>
                             <li><a href="#">Log out</a></li>
                         </ul>
