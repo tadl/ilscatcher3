@@ -6,9 +6,11 @@ class MockController < ApplicationController
         music_list_raw = JSON.parse(open('https://www.tadl.org/mobile/export/items/31/json').read)['nodes'].map {|i| i['node']}
         movie_list_raw = JSON.parse(open('https://www.tadl.org/mobile/export/items/32/json').read)['nodes'].map {|i| i['node']}
         book_list_raw = JSON.parse(open('https://www.tadl.org/mobile/export/items/68/json').read)['nodes'].map {|i| i['node']}
+        games_list_raw = JSON.parse(open('https://www.tadl.org/mobile/export/items/505/json').read)['nodes'].map {|i| i['node']}
         @movie_list = Dish(movie_list_raw)
         @music_list = Dish(music_list_raw)
         @book_list = Dish(book_list_raw)
+        @games_list = Dish(games_list_raw)
     end
 
     def search
