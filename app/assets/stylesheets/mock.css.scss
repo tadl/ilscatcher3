@@ -9,3 +9,10 @@ body.index {
     -o-background-size: cover;
     background-size: cover;
 }
+
+.input-group > .input-group-btn:first-child > .selectpicker {
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    border-right: 0;
+}
+
