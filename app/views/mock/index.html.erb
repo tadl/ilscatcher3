@@ -1,15 +1,53 @@
 <div class="container">
-    <div class="col-lg-9">
-        <h3>Movies</h3>
-        <%= render 'featured_lists', list: @movie_list %>
-
-        <h3>Music</h3>
-        <%= render 'featured_lists', list: @music_list %>
-
-        <h3>Games</h3>
-        <%= render 'featured_lists', list: @book_list %>
+    <div class="dropdown">
+        <button class="btn btn-default dropdown-toggle" type="button" id="exploreMovies" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Movies 
+            <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="exploreMovies">
+            <li><a href="#">Action</a></li>
+            <li><a href="#">Adventure</a></li>
+            <li><a href="#">Mystery</a></li>
+            <li><a href="#">Sci-fi</a></li>
+            <li><a href="#">Thriller</a></li>
+            <li><a href="#">ZOmbies</a></li>
+            <li><a href="#">Art House</a></li>
+        </ul>
     </div>
-    <div class="col-lg-3">
-        clicky things go here maybe.
+    <%= render 'featured_lists', list: @movie_list %>
+
+    <div class="dropdown">
+        <button class="btn btn-default dropdown-toggle" type="button" id="exploreMovies" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Music
+            <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="exploreMovies">
+            <li><a href="#">Blues</a></li>
+            <li><a href="#">Jazz</a></li>
+            <li><a href="#">Rock</a></li>
+            <li><a href="#">Popular</a></li>
+            <li><a href="#">House</a></li>
+            <li><a href="#">Electro</a></li>
+            <li><a href="#">Dubstep</a></li>
+        </ul>
     </div>
+    <%= render 'featured_lists', list: @music_list %>
+
+    <div class="dropdown">
+        <button class="btn btn-default dropdown-toggle" type="button" id="exploreMovies" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Games
+            <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="exploreMovies">
+            <li><a href="#">Puzzle</a></li>
+            <li><a href="#">Role Playing</a></li>
+            <li><a href="#">Arcade</a></li>
+            <li><a href="#">FPS</a></li>
+            <li><a href="#">XBox</a></li>
+            <li><a href="#">PS3</a></li>
+            <li><a href="#">PS4</a></li>
+            <li><a href="#">Wii-U</a></li>
+        </ul>
+    </div>
+    <%= render 'featured_lists', list: @book_list %>
 </div>

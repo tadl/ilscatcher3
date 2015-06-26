@@ -1,6 +1,13 @@
 var ready;
 ready = function() {
-    $(".owl-carousel").owlCarousel();
+    $(".tall-carousel").owlCarousel({
+        items : 9,
+        paginationNumbers : true,
+    });
+    $(".square-carousel").owlCarousel({
+        items : 7,
+        paginationNumbers : true,
+    });
 };
 
 $(document).ready(ready);

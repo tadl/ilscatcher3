@@ -1,11 +1,15 @@
 <div class="row">
-    <div class="owl-carousel">
-        <% list.each do |item| %>
-            <div>
-                <a href="#">
-                <img class="carousel-item" src="https://catalog.tadl.org/opac/extras/ac/jacket/medium/r/<%= item.item %>" />
-                </a>
-            </div>
-        <% end %>
-    </div>
+    <% if list.first.termid == '31' %>
+        <div class="square-carousel" id="carousel-<%= list.first.termid %>">
+    <% else %>
+        <div class="tall-carousel" id="carousel-<%= list.first.termid %>">
+    <% end %>
+            <% list.each do |item| %>
+                <div class="col-xs-6 col-md-3 col-lg-2">
+                    <a href="/mock/details">
+                    <img class="carousel-item" style="max-height:160px;" src="https://catalog.tadl.org/opac/extras/ac/jacket/medium/r/<%= item.item %>" />
+                    </a>
+                </div>
+            <% end %>
+        </div>
 </div>
