@@ -6,9 +6,11 @@
     <% end %>
             <% list.each do |item| %>
                 <div class="col-xs-6 col-md-3 col-lg-2">
-                    <a href="/mock/details">
-                    <img class="carousel-item" style="max-height:160px;" src="https://catalog.tadl.org/opac/extras/ac/jacket/medium/r/<%= item.item %>" />
-                    </a>
+                    <%= link_to mock_details_path(:id => item.item) do %>
+                        <%= content_tag :img, "", :class => "carousel-item", :style => "max-height:160px;", :src => "https://catalog.tadl.org/opac/extras/ac/jacket/medium/r/" + item.item + "/" %>
+                    <% end %>
+
+
                 </div>
             <% end %>
         </div>
