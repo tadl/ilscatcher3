@@ -1,11 +1,19 @@
 class Search
 	include ActiveModel::Model
-	attr_accessor :query, :sort, :qtype, :format, :loc, :page, :facet, :availability
+	attr_accessor :query, :sort, :qtype, :format, :loc, :page, :facet, :availability 
 
 	def initialize args
     	args.each do |k,v|
       		instance_variable_set("@#{k}", v) unless v.nil?
     	end
+  	end
+
+  	def availibilty_check
+  		if self.availability == "1"
+  			true
+  		else
+  			false
+  		end
   	end
 
   	def search_path
@@ -42,7 +50,7 @@ class Search
   			url += '&fi%3Aformat=' + self.format unless self.format.nil?
   		end
   		url += '&page=' + self.page unless self.page.nil?
-  		if self.availability == 1
+  		if self.availability == "1"
   			url += '&modifier=available'
   		end
   		facets_for_url = ''

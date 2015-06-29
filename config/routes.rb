@@ -3,6 +3,8 @@ Rails.application.routes.draw do
   match "mock/search" => "mock#search", via: [:get, :post]
   get 'mock/details'
 
+  root :to => "mock#index"
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

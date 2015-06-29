@@ -1,0 +1,23 @@
+<!-- app/views/shared/_searchbox.html.erb -->
+
+<form id="searchbox" class="navbar-form navbar-left" role="search">
+    <div class="form-group">
+        <div class="input-group">
+            <div class="input-group-btn">
+                <select id="format" class="selectpicker form-control" title="All Formats">
+                    <option value="all" selected>All Formats</option>
+                    <option value="movies">Movies</option>
+                    <option value="music">Music</option>
+                    <option value="television">Television</option>
+                    <option value="games">Games</option>
+                </select>
+            </div>
+            <div class="input-group-text">
+                <input type="text" class="form-control" placeholder="Search">
+            </div>
+            <div class="input-group-btn">
+                <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-search"></span></button>
+            </div>
+        </div>
+    </div>
+</form>
