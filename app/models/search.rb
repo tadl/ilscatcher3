@@ -8,6 +8,16 @@ class Search
     	end
   	end
 
+  	def search_path
+  		path = '?query=' + self.query unless self.query.nil?
+  		path += '&sort=' + self.sort unless self.sort.nil?
+  		path += '&qtype=' + self.qtype unless self.qtype.nil?
+  		path += '&format=' + self.format unless self.format.nil?
+  		path += '&loc=' + self.loc unless self.loc.nil?
+  		path += '&page=' + self.page unless self.page.nil?
+  		path += '&availability=' + self.availability unless self.availability.nil?
+  		return path
+  	end
 
   	def results
   		url = 'https://mr.tadl.org/eg/opac/results?'
@@ -16,8 +26,9 @@ class Search
   		else
   			url += 'query='
   		end
+  		url += '&qtype=' + self.qtype unless self.qtype.nil?
+  		url += '&limit=24'
   		url += '&sort=' + self.sort unless self.sort.nil?
-  		url += '&qtype' + self.qtype unless self.qtype.nil?
   		if self.loc
   			url += '&locg=' + self.loc
   		else
@@ -25,14 +36,20 @@ class Search
   		end
   		if self.format == 'video_games'
   			url += '&fi%3Aformat=mVG&facet=subject%7Cgenre%5Bgame%5D'
+  		elsif self.format == 'all'
+  			url += '&fi%3Aformat='
   		else
   			url += '&fi%3Aformat=' + self.format unless self.format.nil?
   		end
   		url += '&page=' + self.page unless self.page.nil?
-  		if self.availability == 'yes'
+  		if self.availability == 1
   			url += '&modifier=available'
   		end
-  		url += '&limit=24'
+  		facets_for_url = ''
+  		self.facet.each do |f|
+				facets_for_url += '&facet=' + f
+		end unless self.facet.nil?
+		url += facets_for_url
   		agent = Mechanize.new
   		page = agent.get(url)
   		results = Array.new
@@ -63,7 +80,8 @@ class Search
   			sub_facets = Array.new
   			facet.css("div.facet_template").each do |sub|
   				sub_raw = { :title => sub.at_css('.facet').text.strip.try(:squeeze, " "),
-  							:path => sub.css('a').attr('href').text.split('?')[1].split(';').drop(1).each {|i| i.gsub! 'facet=',''}
+  							:path => process_facets(sub.css('a').attr('href').text.split('?')[1].split(';')),
+  							:selected => check_selected(sub)
   				}
   				sub_facets = sub_facets.push(sub_raw)
   			end
@@ -101,6 +119,24 @@ class Search
 		year = format_year[1].strip.gsub(')', '')	rescue nil
 		result = [format, year]
 		return result		
+	end
+
+	def process_facets(facet)
+		facet.delete_if {|f| f !~ /facet=/} 
+		clean_facet = ''
+		facet.each do |f|
+			f.gsub!('facet=','&facet[]=')
+			clean_facet += f
+		end
+		return clean_facet
+	end
+
+	def check_selected(facet)
+		if facet['class'].include? 'facet_template_selected'
+			return true
+		else
+			return false
+		end
 	end
 
 end

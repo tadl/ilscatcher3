@@ -12,7 +12,12 @@ class MockController < ApplicationController
     end
 
   def search
-    @search = Search.new params
+    if Rails.cache.exist?(params.to_s)
+      @search = Rails.cache.read(params.to_s)
+    else
+      @search = Search.new params
+      Rails.cache.write(params.to_s, @search, :expires_in => 5.minutes)
+    end
     results = @search.results
     @items = results[0]
     @facets = results[1]
