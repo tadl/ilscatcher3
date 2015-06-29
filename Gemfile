@@ -16,4 +16,7 @@ gem 'spring', group: :development
 gem 'bootstrap-sass', '~> 3.3.5'
 gem 'dish', require: 'dish/ext'
 gem 'mechanize'
+gem 'bootstrap_form'
+gem 'rails-dev-boost', :git => 'git://github.com/thedarkone/rails-dev-boost.git', group: :development
 gem 'owlcarousel-rails'
+

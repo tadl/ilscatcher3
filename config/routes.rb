@@ -1,8 +1,6 @@
 Rails.application.routes.draw do
   get 'mock/index'
-
-  get 'mock/search'
-
+  match "mock/search" => "mock#search", via: [:get, :post]
   get 'mock/details'
 
   root :to => "mock#index"

@@ -1,3 +1,10 @@
+GIT
+  remote: git://github.com/thedarkone/rails-dev-boost.git
+  revision: 5e63d51f29426f06c96d7ff074beda56cf5f2369
+  specs:
+    rails-dev-boost (0.3.0)
+      railties (>= 3.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -31,9 +38,10 @@ GEM
     autoprefixer-rails (5.2.1)
       execjs
       json
-    bootstrap-sass (3.3.5)
+    bootstrap-sass (3.3.5.1)
       autoprefixer-rails (>= 5.0.0.1)
-      sass (>= 3.2.19)
+      sass (>= 3.3.0)
+    bootstrap_form (2.3.0)
     builder (3.2.2)
     coffee-rails (4.0.1)
       coffee-script (>= 2.2.0)
@@ -47,7 +55,6 @@ GEM
       unf (>= 0.0.5, < 1.0.0)
     erubis (2.7.0)
     execjs (2.5.2)
-    hike (1.2.3)
     http-cookie (1.0.2)
       domain_name (~> 0.5)
     i18n (0.7.0)
@@ -100,7 +107,7 @@ GEM
       thor (>= 0.18.1, < 2.0)
     rake (10.4.2)
     rdoc (4.2.0)
-    sass (3.3.14)
+    sass (3.4.15)
     sass-rails (5.0.3)
       railties (>= 4.0.0, < 5.0)
       sass (~> 3.1)
@@ -111,11 +118,8 @@ GEM
       json (~> 1.7, >= 1.7.7)
       rdoc (~> 4.0)
     spring (1.3.6)
-    sprockets (2.12.3)
-      hike (~> 1.2)
-      multi_json (~> 1.0)
+    sprockets (3.2.0)
       rack (~> 1.0)
-      tilt (~> 1.1, != 1.3.0)
     sprockets-rails (2.3.2)
       actionpack (>= 3.0)
       activesupport (>= 3.0)
@@ -141,6 +145,7 @@ PLATFORMS
 
 DEPENDENCIES
   bootstrap-sass (~> 3.3.5)
+  bootstrap_form
   coffee-rails (~> 4.0.0)
   dish
   jbuilder (~> 2.0)
@@ -148,6 +153,7 @@ DEPENDENCIES
   mechanize
   owlcarousel-rails
   rails (= 4.1.8)
+  rails-dev-boost!
   sass-rails (>= 3.2)
   sdoc (~> 0.4.0)
   spring
