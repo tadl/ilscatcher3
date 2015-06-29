@@ -28,7 +28,12 @@ class MockController < ApplicationController
 
 
     def details
-        item_details_raw = JSON.parse(open('http://ilscatcher2.herokuapp.com/items/details?record=30066551').read)
+        if params[:id]
+            @recordid = params[:id]
+        else
+            @recordid = nil # we should probably redirect to error or something here instead
+        end
+        item_details_raw = JSON.parse(open('http://ilscatcher2.herokuapp.com/items/details?record=' + @recordid).read)
         @item = Dish(item_details_raw['item_details'])
         @copies_on_shelf = Dish(item_details_raw['copies_on_shelf'])
         @copies_all = Dish(item_details_raw['copies'])
