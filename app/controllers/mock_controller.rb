@@ -24,6 +24,7 @@ class MockController < ApplicationController
     results = @search.results
     @items = results[0]
     @facets = results[1]
+    @more_results = results[2]
   end
 
 

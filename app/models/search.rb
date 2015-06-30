@@ -1,4 +1,5 @@
 class Search
+	require 'open-uri'
 	include ActiveModel::Model
 	attr_accessor :query, :sort, :qtype, :format, :loc, :page, :facet, :availability 
 
@@ -22,7 +23,6 @@ class Search
   		path += '&qtype=' + self.qtype unless self.qtype.nil?
   		path += '&format=' + self.format unless self.format.nil?
   		path += '&loc=' + self.loc unless self.loc.nil?
-  		path += '&page=' + self.page unless self.page.nil?
   		path += '&availability=' + self.availability unless self.availability.nil?
   		return path
   	end
@@ -60,13 +60,14 @@ class Search
 		url += facets_for_url
   		agent = Mechanize.new
   		page = agent.get(url)
+  		page = page.parser
   		results = Array.new
-  		page.parser.css('.result_table_row').each do |result|
+  		page.css('.result_table_row').each do |result|
   			item_raw ={:title => result.at_css(".record_title").text.strip,
 				:author => result.at_css('[@name="item_author"]').text.strip.try(:squeeze, " "),
-				:availability => result.css(".result_count").map {|i| i.try(:text).try(:strip)},
-				:copies_availabile => result.css(".result_count").map {|i| clean_availablity_counts(i.try(:text))[0]},
-				:copies_total => result.css(".result_count").map {|i| clean_availablity_counts(i.try(:text))[1]},
+				:availability => process_availability(result.css(".result_count").reverse.map {|i| i.try(:text).try(:strip)}),
+				:copies_availabile => process_availability(result.css(".result_count").reverse.map {|i| clean_availablity_counts(i.try(:text))[0]}),
+				:copies_total => process_availability(result.css(".result_count").reverse.map {|i| clean_availablity_counts(i.try(:text))[1]}),
 				:record_id => result.at_css(".record_title").attr('name').sub!(/record_/, ""),
             	:eresource => result.at_css('[@name="bib_uri_list"]').try(:css, 'td').try(:css, 'a').try(:attr, 'href').try(:text).try(:strip),
 				#hack for dev below
@@ -84,7 +85,7 @@ class Search
   		end
 
   		facets = Array.new
-  		page.parser.css(".facet_box_temp").map do |facet|
+  		page.css(".facet_box_temp").map do |facet|
   			sub_facets = Array.new
   			facet.css("div.facet_template").each do |sub|
   				sub_raw = { :title => sub.at_css('.facet').text.strip.try(:squeeze, " "),
@@ -100,7 +101,13 @@ class Search
 			facets = facets.push(facet_new)
 		end
 
-  		return results, facets
+		if page.css('.search_page_nav_link:contains(" Next ")').present?
+			more_results = true
+		else
+			more_results = false
+		end
+
+  		return results, facets, more_results
   	end
 
   	def clean_availablity_counts(text)
@@ -134,6 +141,7 @@ class Search
 		clean_facet = ''
 		facet.each do |f|
 			f.gsub!('facet=','&facet[]=')
+			f = URI::encode(f)
 			clean_facet += f
 		end
 		return clean_facet
@@ -145,6 +153,11 @@ class Search
 		else
 			return false
 		end
+	end
+
+	def process_availability(availability)
+		availability.pop
+		return availability
 	end
 
 end

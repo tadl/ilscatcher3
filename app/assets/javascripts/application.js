@@ -18,3 +18,4 @@
 //= require_tree .
 
 
+Turbolinks.pagesCached(0);
