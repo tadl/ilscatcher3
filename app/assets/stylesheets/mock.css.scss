@@ -10,7 +10,7 @@ body.index {
     background-size: cover;
 }
 
-.input-group > .input-group-btn:first-child > .selectpicker {
+.input-group > .input-group-btn:first-child > .form-group > .selectpicker {
     border-top-left-radius: 5px;
     border-bottom-left-radius: 5px;
     border-right: 0;
@@ -22,4 +22,7 @@ body.index {
 .closebutton {
     color: red;
     text-decoration: none;
+}
+.navbar-top label {
+    display: none;
 }
