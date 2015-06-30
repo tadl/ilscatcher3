@@ -9,8 +9,8 @@ class Search
     	end
   	end
 
-  	def availibilty_check
-  		if self.availability == "1"
+  	def availability_check
+  		if self.availability == "on"
   			true
   		else
   			false
@@ -68,7 +68,7 @@ class Search
   				url += '&fi%3Aformat=' + self.format unless self.format.nil?
   			end
   			url += '&page=' + self.page unless self.page.nil?
-  			if self.availability == "1"
+  			if self.availability == "on"
   				url += '&modifier=available'
   			end
   			facets_for_url = ''
