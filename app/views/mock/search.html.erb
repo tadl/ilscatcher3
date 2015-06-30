@@ -14,15 +14,16 @@
 </div>
 
 <script>
-document.addEventListener('page:change', function() {
-        document.getElementById('results').className += ' animated zoomIn';
-});
-document.addEventListener('page:fetch', function() {
-        document.getElementById('results').className += ' animated zoomOut';
-})
-$(document).on("submit", "form[data-turboform]", function(e) {
-    Turbolinks.visit(this.action+(this.action.indexOf('?') == -1 ? '?' : '&')+$(this).serialize());
-    return false;
-});
+    document.addEventListener('page:change', function() {
+            document.getElementById('results').className += ' animated zoomIn';
+    });
+    document.addEventListener('page:fetch', function() {
+            document.getElementById('results').className += ' animated zoomOut';
+    })
+    
+    $(document).on("submit", "form[data-turboform]", function(e) {
+        Turbolinks.visit(this.action+(this.action.indexOf('?') == -1 ? '?' : '&')+$(this).serialize());
+        return false;
+    });
 </script>
 
