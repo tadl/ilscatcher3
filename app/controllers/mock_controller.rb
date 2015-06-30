@@ -15,12 +15,7 @@ class MockController < ApplicationController
 
 
   def search
-    if Rails.cache.exist?(params.to_s)
-      @search = Rails.cache.read(params.to_s)
-    else
-      @search = Search.new params
-      Rails.cache.write(params.to_s, @search, :expires_in => 5.minutes)
-    end
+    @search = Search.new params
     results = @search.results
     @items = results[0]
     @facets = results[1]
@@ -28,16 +23,24 @@ class MockController < ApplicationController
   end
 
 
-    def details
-        if params[:id]
-            @recordid = params[:id]
-        else
-            @recordid = nil # we should probably redirect to error or something here instead
-        end
-        item_details_raw = JSON.parse(open('http://ilscatcher2.herokuapp.com/items/details?record=' + @recordid).read)
-        @item = Dish(item_details_raw['item_details'])
-        @copies_on_shelf = Dish(item_details_raw['copies_on_shelf'])
-        @copies_all = Dish(item_details_raw['copies'])
+  def details
+    if params[:id]
+      @recordid = params[:id]
+    else
+      @recordid = nil # we should probably redirect to error or something here instead
     end
+    item_details_raw = JSON.parse(open('http://ilscatcher2.herokuapp.com/items/details?record=' + @recordid).read)
+    @item = Dish(item_details_raw['item_details'])
+    @copies_on_shelf = Dish(item_details_raw['copies_on_shelf'])
+    @copies_all = Dish(item_details_raw['copies'])
+  end
+
+  # def more_results
+  #   if 
+  #   else
+  #     @search = Search.new params
+  #     Rails.cache.write(params.to_s, @search, :expires_in => 5.minutes)
+  #   end
+  # end
 
 end
