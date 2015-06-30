@@ -15,6 +15,7 @@ class MockController < ApplicationController
 
 
   def search
+    @format_options = [['All Formats', 'all'],['Movies', 'g'],['Music', 'j']]
     @search = Search.new params
     results = @search.results
     @items = results[0]

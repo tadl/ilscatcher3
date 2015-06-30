@@ -15,10 +15,10 @@
 
 <script>
     document.addEventListener('page:change', function() {
-            document.getElementById('results').className += ' animated zoomIn';
+            document.getElementById('results').className += ' animated fadeInUp';
     });
     document.addEventListener('page:fetch', function() {
-            document.getElementById('results').className += ' animated zoomOut';
+            document.getElementById('results').className += ' animated fadeOutDown';
     })
     
     $(document).on("submit", "form[data-turboform]", function(e) {
