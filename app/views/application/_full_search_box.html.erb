@@ -1,35 +1,33 @@
-	<%= bootstrap_form_tag url: 'search', :html => { :method => 'get' } do |f| %>
+<%= bootstrap_form_tag url: 'search', :html => { :method => 'get' } do |f| %>
     <div class="row">
-      <div class="col-xs-8">
-  		  <%= f.search_field :query, value: search.query, label: "Query:" %>
-      </div>
-      <div class="col-xs-2">  
-  		  <%= f.select :qtype,  options_for_select(@query_options, search.qtype), { label: "Search Type:" }, { class: "selectpicker" } %>
-      </div>
-      <div class="col-xs-2">  
-          <%= f.select :format,  options_for_select(@format_options, search.format), { label: "Select Format:" }, { class: "selectpicker" } %>  
-      </div>  
+        <div class="col-xs-8">
+            <%= f.search_field :query, value: search.query, label: "Query:" %>
+        </div>
+        <div class="col-xs-2">
+            <%= f.select :qtype,  options_for_select(@query_options, search.qtype), { label: "Search Type:" }, { class: "selectpicker" } %>
+        </div>
+        <div class="col-xs-2">
+            <%= f.select :format,  options_for_select(@format_options, search.format), { label: "Select Format:" }, { class: "selectpicker" } %>
+        </div>
     </div>
     <div class="row">
-    <%= f.form_group do %>
-      <div class="col-xs-2">
-        <%= f.select :sort, options_for_select(@sort_options, search.sort), { label: "Sort By:"}, { class: "selectpicker" } %>  
-      </div>
-      <% if @location_lock %>
-          <%= f.hidden_field :loc, :value => @location_lock %>
-      <% else %>
-        <div class="col-xs-2">
-          <%= f.select :loc,  options_for_select(@location_options, search.loc), { label: "Select Location:" }, { class: "selectpicker" } %>
-        </div>
-      <% end %> 
-      <div class="col-xs-3">
-        
-          <%= f.check_box :availability, {label: "Only Show Available Items", checked: search.availibilty_check } %>
-        
-      </div>
-      <div class="col-xs-2">
-        <%= f.submit "Go", class: "btn btn-success" %>
-      </div>
-    <% end %>  
-    </div>  	
-  <% end %>
+        <%= f.form_group do %>
+            <div class="col-xs-2">
+                <%= f.select :sort, options_for_select(@sort_options, search.sort), { label: "Sort By:"}, { class: "selectpicker" } %>
+            </div>
+            <% if @location_lock %>
+                <%= f.hidden_field :loc, :value => @location_lock %>
+            <% else %>
+                <div class="col-xs-2">
+                    <%= f.select :loc,  options_for_select(@location_options, search.loc), { label: "Select Location:" }, { class: "selectpicker" } %>
+                </div>
+            <% end %>
+            <div class="col-xs-3">
+                <%= f.check_box :availability, {label: "Only Show Available Items", checked: search.availibilty_check } %>
+            </div>
+            <div class="col-xs-2">
+                <%= f.submit "Go", class: "btn btn-success" %>
+            </div>
+        <% end %>
+    </div>
+<% end %>
