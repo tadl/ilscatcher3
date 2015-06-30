@@ -21,7 +21,9 @@
                 <li><a href="#">Music</a></li>
                 <li><a href="#">Games</a></li>
             </ul>
-            <%= render 'shared/searchbox' %>
+            <% if !current_page?(:action => 'search') %>
+                <%= render 'shared/searchbox' %>
+            <% end %>
             <% if @user_name %>
                 <ul class="nav navbar-nav navbar-right">
                     <li class="dropdown">
