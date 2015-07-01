@@ -3,9 +3,6 @@
 </div>
 <div class="row">
     <div id="facets" class="col-xs-12 col-sm-4 col-md-3 col-lg-3">
-        <div class="list-group padtop">
-            <h3 class="list-group-item list-group-item-heading active">Refine your search</h3>
-        </div>
         <%= @cached %>
         <% @facets.each do |facet| %>
 			<%= render 'facets', facet: facet %>

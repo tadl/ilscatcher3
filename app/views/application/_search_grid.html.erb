@@ -1,6 +1,3 @@
-<div style="width:100%; border: 1px solid red;">
-<%= items %>
-</div>
 <div id="grid" data-columns>
     <% items.each do |slice| %>
         <% if slice.copies_available[0].to_i > 0 %>
@@ -10,12 +7,12 @@
         <% end %>
             <div class="panel-heading"><%= slice.title %></div>
             <div class="panel-body">
-                <img src='https://catalog.tadl.org/opac/extras/ac/jacket/large/r/<%= slice.record_id %>' />
-                <h4><%= slice.author %></h4>
-            </div>
-        </div>
+                <img src='https://catalog.tadl.org/opac/extras/ac/jacket/large/r/<%= slice.record_id %>' 
+                    onerror="this.src='<%= asset_path("logo-clock-only.png") %>'" />
+            </div><!-- /.panel-body -->
+        </div><!-- /.panel -->
     <% end %>
-</div>
+</div><!-- /#grid -->
 <% if @more_results == true %>
     <div id="more_results" class="row">
         <h1 class="text-center">Load More</h1>
