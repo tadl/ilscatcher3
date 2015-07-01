@@ -18,6 +18,26 @@
     </div>    
 </div>
 
+<% if @layout == "grid" %>
+    <% if @more_results == true %>
+        <div id="more_results" class="row" data-offset="700">
+            <%= link_to "Load MOre", :params => @search.next_page_params, :method => :get, :format => :js, :id => 'more_link', :remote => true %>
+        </div>
+    <% end %>
+    
+    <script>
+        $('#more_results').bind('inview', function (event, visible, topOrBottomOrBoth) {
+          if (visible == true) {
+            // element is now visible in the viewport
+            if (topOrBottomOrBoth == 'top' || 'bottom') {
+                $('#more_results:first a')[0].click();
+            }
+          }
+        })
+    </script>
+<% end %>
+
+
 <script>
     document.addEventListener('page:change', function() {
             document.getElementById('results').className += ' animated fadeInUp';

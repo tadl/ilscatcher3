@@ -13,8 +13,3 @@
             </div><!-- /.panel -->
         <% end %>
 </div><!-- /#grid -->
-<% if @more_results == true %>
-    <div id="more_results" class="row">
-        <%= link_to "Load MOre", :params => @search.next_page_params, :method => :get, :format => :js, :remote => true %>
-    </div>
-<% end %>
