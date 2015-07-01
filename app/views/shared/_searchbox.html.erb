@@ -4,6 +4,7 @@
     <div class="form-group">
         <div class="input-group">
             <div class="input-group-btn">
+                <label class="sr-only" for="format">Format selector</label>
                 <select class="form-control selectpicker" id="_format" name="format">
                     <option value="all">All Formats</option>
                     <option value="g">Movies</option>
@@ -11,9 +12,15 @@
                 </select>
             </div>
             <div class="input-group-text">
+                <label class="sr-only" for="query">Query input</label>
                 <input class="form-control" id="query" name="query" placeholder="Search" type="search">
             </div>
+            <input type="hidden" name="qtype" value="keyword">
+            <input type="hidden" name="sort" value="relevance">
+            <input type="hidden" name="loc" value="22">
+            <input type="hidden" name="availability" value="0">
             <div class="input-group-btn">
+                <label class="sr-only" for="commit">Submit</label>
                 <button type="submit" name="commit" class="btn btn-primary"><span class="glyphicon glyphicon-search"></span></button>
             </div>
         </div>
