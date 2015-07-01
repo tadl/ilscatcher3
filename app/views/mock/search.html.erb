@@ -9,7 +9,12 @@
 		<% end %>
     </div>
     <div id="results" class="col-xs-12 col-sm-8 col-md-9 col-lg-9">
-        <%= render 'search_grid', items: @items %>
+        <% @layout = 'list' %>
+        <% if @layout == "grid" %>
+            <%= render 'search_grid', items: @items %>
+        <% else %>
+            <%= render 'search_list', items: @items %>
+        <% end %>
     </div>    
 </div>
 
