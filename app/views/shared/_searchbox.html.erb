@@ -4,10 +4,14 @@
     <div class="form-group">
         <div class="input-group">
             <div class="input-group-btn">
-                <%= f.select :format,  options_for_select(@format_options, "All Formats"), { title: "All Formats" }, { class: "selectpicker form-control" } %>
+                <select class="form-control selectpicker" id="_format" name="format">
+                    <option value="all">All Formats</option>
+                    <option value="g">Movies</option>
+                    <option value="j">Music</option>
+                </select>
             </div>
             <div class="input-group-text">
-                <%= f.search_field :query, placeholder: "Search" %>
+                <input class="form-control" id="query" name="query" placeholder="Search" type="search">
             </div>
             <div class="input-group-btn">
                 <button type="submit" name="commit" class="btn btn-primary"><span class="glyphicon glyphicon-search"></span></button>
