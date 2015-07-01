@@ -1,13 +1,13 @@
 class Search
 	require 'open-uri'
 	include ActiveModel::Model
-	attr_accessor :query, :sort, :qtype, :format, :loc, :page, :facet, :availability 
+	attr_accessor :query, :sort, :qtype, :fmt, :loc, :page, :facet, :availability 
 
 	def initialize args
     	args.each do |k,v|
       		instance_variable_set("@#{k}", v) unless v.nil?
     	end
-  	end
+  end
 
   	def availability_check
   		if self.availability == "on"
@@ -21,25 +21,41 @@ class Search
   		path = '?query=' + self.query unless self.query.nil?
   		path += '&sort=' + self.sort unless self.sort.nil?
   		path += '&qtype=' + self.qtype unless self.qtype.nil?
-  		path += '&format=' + self.format unless self.format.nil?
+  		path += '&fmt=' + self.fmt unless self.fmt.nil?
   		path += '&loc=' + self.loc unless self.loc.nil?
   		path += '&availability=' + self.availability unless self.availability.nil?
   		return path
   	end
 
   	def search_path_with_page_facet
-  		path = '?query=' + self.query unless self.query.nil?
-  		path += '&sort=' + self.sort unless self.sort.nil?
-  		path += '&qtype=' + self.qtype unless self.qtype.nil?
-  		path += '&format=' + self.format unless self.format.nil?
-  		path += '&loc=' + self.loc unless self.loc.nil?
+  	  path = self.search_path
   		path += '&page=' + self.page unless self.page.nil?
-  		path += '&availability=' + self.availability unless self.availability.nil?
   		self.facet.each do |f|
   			path += '&facet[]=' + f
   		end unless self.facet.nil?
   		return path
   	end
+
+    def next_page_params
+      if self.page.nil?
+        page = '1'
+      else
+        page = (self.page.to_i + 1).to_s
+      end
+      next_page = Hash.new
+      next_page['query'] = self.query unless self.query.nil?
+      next_page['sort'] = self.sort unless self.sort.nil?
+      next_page['qtype'] = self.qtype unless self.qtype.nil?
+      next_page['fmt'] = self.fmt unless self.fmt.nil?
+      next_page['page'] = page
+      next_page['loc'] = self.loc unless self.loc.nil?
+      next_page['availability'] = self.availability unless self.availability.nil?
+      next_page['facet'] = Array.new
+      self.facet.each do |f|
+        next_page['facet'] = next_page['facet'].push(f)
+      end unless self.facet.nil?
+      return next_page
+    end
 
 
   	def results  		
@@ -60,12 +76,12 @@ class Search
   			else
   				url += '&locg=22'
   			end
-  			if self.format == 'video_games'
+  			if self.fmt == 'video_games'
   				url += '&fi%3Aformat=mVG&facet=subject%7Cgenre%5Bgame%5D'
-  			elsif self.format == 'all'
+  			elsif self.fmt == 'all'
   				url += '&fi%3Aformat='
   			else
-  				url += '&fi%3Aformat=' + self.format unless self.format.nil?
+  				url += '&fi%3Aformat=' + self.fmt unless self.fmt.nil?
   			end
   			url += '&page=' + self.page unless self.page.nil?
   			if self.availability == "on"

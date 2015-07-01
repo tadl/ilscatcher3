@@ -1,6 +1,7 @@
 class MockController < ApplicationController
 
     before_filter :shared_mock_variables
+    respond_to :html, :json, :js
 
     def index
         music_list_raw = JSON.parse(open('https://www.tadl.org/mobile/export/items/31/json').read)['nodes'].map {|i| i['node']}
@@ -21,6 +22,10 @@ class MockController < ApplicationController
     @items = results[0]
     @facets = results[1]
     @more_results = results[2]
+   respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
 
@@ -35,13 +40,5 @@ class MockController < ApplicationController
     @copies_on_shelf = Dish(item_details_raw['copies_on_shelf'])
     @copies_all = Dish(item_details_raw['copies'])
   end
-
-  # def more_results
-  #   if 
-  #   else
-  #     @search = Search.new params
-  #     Rails.cache.write(params.to_s, @search, :expires_in => 5.minutes)
-  #   end
-  # end
 
 end

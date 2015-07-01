@@ -1,0 +1,16 @@
+
+var more_link =  '<%= escape_javascript(link_to "Load More", :params => @search.next_page_params, :method => :get, :format => :js, :remote => true) %>'
+
+
+
+<% @items.each do |i| %>
+var item = document.createElement('div');
+var grid = document.querySelector('#grid');
+salvattore['append_elements'](grid, [item]);
+item.outerHTML = "<%= escape_javascript(render partial: 'more_results', :locals => {:item => i}) %>";  
+<% end %>
+<%if @more_results != true %>
+	$('#more_results').remove();
+<% else %>
+	$('#more_results').html(more_link);
+<% end %> 

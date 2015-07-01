@@ -11,7 +11,7 @@
             </div>
         </div>
     </div>
-    <div class="collapse <% if search.qtype !~ /keyword/ or search.format !~ /all/ or search.sort !~ /relevance/ or search.loc !~ /22/ %>in<% end %>" id="searchOptions">
+    <div class="collapse <% if search.qtype !~ /keyword/ or search.fmt !~ /all/ or search.sort !~ /relevance/ or search.loc !~ /22/ %>in<% end %>" id="searchOptions">
         <div class="row form-inline padtop padbot">
             <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
                 <div class="input-group">
@@ -22,7 +22,7 @@
             <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
                 <div class="input-group">
                     <span class="input-group-addon">Format</span>
-                    <%= f.select :format,  options_for_select(@format_options, search.format), { hide_label: true }, { class: "selectpicker" } %>
+                    <%= f.select :fmt,  options_for_select(@format_options, search.fmt), { hide_label: true }, { class: "selectpicker" } %>
                 </div>
             </div>
             <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
