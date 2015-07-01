@@ -32,3 +32,23 @@ body.index {
 .padbot {
     padding-bottom: 15px;
 }
+
+// below this line is just testing
+#grid .panel img {
+    width: 100%;
+}
+@media screen and (min-width: 1px) and (max-width: 767px){
+    #grid[data-columns]::before {
+        content: '2 .col-xs-6';
+    }
+}
+@media screen and (min-width:768px) and (max-width: 991px){
+    #grid[data-columns]::before {
+        content: '3 .col-sm-4';
+    }
+}
+@media screen and (min-width:992px) and (max-width: 9999px){
+    #grid[data-columns]::before {
+        content: '4 .col-md-3';
+    }
+}

@@ -15,7 +15,6 @@
 //= require turbolinks
 //= require owl.carousel
 //= require bootstrap-sprockets
-//= require_tree .
 
 
 Turbolinks.pagesCached(0);

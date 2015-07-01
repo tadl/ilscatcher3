@@ -1,22 +1,23 @@
-<div id="search_grid">
-	<% items.each_slice(3) do |slice| %>
-		<div class="row">
-		 <% slice.each do |item|%>
-	   		<div class="col-xs-4">
-	    		<img src='https://catalog.tadl.org/opac/extras/ac/jacket/medium/r/<%= item.record_id %>'>
-	    		</br>
-	        	<%= item.title %>
-	        	</br>
-				<% item.availability.each do |a| %>
-					<p> <%= a  %></p>
-				<% end %>
-	    	</div>
-	    <% end %>	
-	    </div>
-	<% end %>
-</div>	
+<div style="width:100%; border: 1px solid red;">
+<%= items %>
+</div>
+<div id="grid" data-columns>
+    <% items.each do |slice| %>
+        <% if slice.copies_available[0].to_i > 0 %>
+            <div class="panel panel-primary">
+        <% else %>
+            <div class="panel panel-default">
+        <% end %>
+            <div class="panel-heading"><%= slice.title %></div>
+            <div class="panel-body">
+                <img src='https://catalog.tadl.org/opac/extras/ac/jacket/large/r/<%= slice.record_id %>' />
+                <h4><%= slice.author %></h4>
+            </div>
+        </div>
+    <% end %>
+</div>
 <% if @more_results == true %>
-	<div id="more_results" class="row">
-		<center><h1> Load More </h1></center> 
-	</div>
+    <div id="more_results" class="row">
+        <h1 class="text-center">Load More</h1>
+    </div>
 <% end %>

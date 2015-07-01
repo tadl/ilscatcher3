@@ -84,7 +84,7 @@ class Search
   				item_raw ={:title => result.at_css(".record_title").text.strip,
 					:author => result.at_css('[@name="item_author"]').text.strip.try(:squeeze, " "),
 					:availability => process_availability(result.css(".result_count").reverse.map {|i| i.try(:text).try(:strip)}),
-					:copies_availabile => process_availability(result.css(".result_count").reverse.map {|i| clean_availablity_counts(i.try(:text))[0]}),
+					:copies_available => process_availability(result.css(".result_count").reverse.map {|i| clean_availablity_counts(i.try(:text))[0]}),
 					:copies_total => process_availability(result.css(".result_count").reverse.map {|i| clean_availablity_counts(i.try(:text))[1]}),
 					:record_id => result.at_css(".record_title").attr('name').sub!(/record_/, ""),
         	    	:eresource => result.at_css('[@name="bib_uri_list"]').try(:css, 'td').try(:css, 'a').try(:attr, 'href').try(:text).try(:strip),
