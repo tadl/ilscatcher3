@@ -19,18 +19,17 @@
 
 <%= render 'more_results_link' %>
 
-<% if @search.grid_active == "active" %>  
-    <script>
-        $('#more_results').bind('inview', function (event, visible, topOrBottomOrBoth) {
-          if (visible == true) {
-            // element is now visible in the viewport
-            if (topOrBottomOrBoth == 'top' || 'bottom') {
-                $('#more_results:first a')[0].click();
-            }
-          }
-        })
-    </script>
-<% end %>
+
+<script>
+    $('#more_results').bind('inview', function (event, visible, topOrBottomOrBoth) {
+      if (visible == true) {
+        // element is now visible in the viewport
+        if (topOrBottomOrBoth == 'top') {
+            $('#more_results:first a')[0].click();
+        }
+      }
+    })
+</script>
 
 
 <script>

@@ -1,17 +1,14 @@
 <% if @search.grid_active == 'active' %>
+	var item = document.createElement('div');
+	var grid = document.querySelector('#grid');
 	<% @items.each do |i| %>
-		var item = document.createElement('div');
-		var grid = document.querySelector('#grid');
 		salvattore['append_elements'](grid, [item]);
 		item.outerHTML = "<%= escape_javascript(render partial: 'results_grid', :locals => {:item => i}) %>";  
 	<% end %>
 <% end %>
 <% if @search.list_active == 'active' %>
 	<% @items.each do |i| %>
-		var item = document.createElement('div');
-		var grid = document.querySelector('#grid');
-		salvattore['append_elements'](grid, [item]);
-		item.outerHTML = "<%= escape_javascript(render partial: 'more_results_grid', :locals => {:item => i}) %>";  
+		$('#list').append("<%= escape_javascript(render partial: 'results_list', :locals => {:item => i}) %>");
 	<% end %>
 <% end %>
 

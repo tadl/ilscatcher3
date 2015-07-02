@@ -98,6 +98,7 @@ class Search
       next_page['page'] = page
       next_page['loc'] = self.loc unless self.loc.nil?
       next_page['availability'] = self.availability unless self.availability.nil?
+      next_page['layout'] = self.layout unless self.layout.nil?
       next_page['facet'] = Array.new
       self.facet.each do |f|
         next_page['facet'] = next_page['facet'].push(f)
