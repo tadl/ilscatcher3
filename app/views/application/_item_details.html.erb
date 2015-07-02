@@ -15,19 +15,42 @@
             <div class="col-xs-12 col-lg-12"><p><%= item.author %></p></div>
         </div>
         <div class="row">
-            <div class="col-xs-12 col-lg-8"><p><%= item.summary %></p></div>
+            <div class="col-xs-12 col-lg-8">
+                <% if !item.summary.nil? %>
+                    <dl>
+                        <dt>Summary</dt>
+                        <dd><%= item.summary %></dd>
+                    </dl>
+                <% end %>
+                <% if !item.contents.nil? %>
+                    <dl>
+                        <dt>Contents</dt>
+                        <dd><%= item.contents %></dd>
+                    </dl>
+                <% end %>
+            </div>
             <div class="col-xs-12 col-lg-4">
                 <span class="pull-right"><% if item.eresource.nil? %><p><button class="btn btn-success">Place hold</button></p><% end %></span>
             </div>
         </div>
         <div class="row">
             <div class="col-xs-12 col-lg-6">
-                <p><strong>Description</strong> <%= item.physical_description %></p>
-                <p><strong>Publisher</strong> <%= item.publisher + ' ' + item.publication_place + ' ' + item.record_year %></p>
+                <% if !item.physical_description.nil? %>
+                    <dl>
+                        <dt>Description</dt>
+                        <dd><%= item.physical_description %></dd>
+                    </dl>
+                <% end %>
             </div>
             <div class="col-xs-12 col-lg-6">
+                <% if !item.publisher.nil? %>
+                    <dl>
+                        <dt>Publisher</dt>
+                        <dd><%= item.publisher + ' ' + item.publication_place + ' ' + item.record_year %></dd>
+                    </dl>
+                <% end %>
             </div>
         </div>
 	</div>
 </div>
-<div class="row clearfix" style="margin-bottom:15px;"></div>
+<div class="row clearfix padbot"></div>

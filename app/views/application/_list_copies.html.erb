@@ -13,7 +13,7 @@
                     <td><%= copy.location %></td>
                     <td><%= copy.call_number %> in <%= copy.shelving_location %></td>
                     <td>
-                        <%if copy.status == 'Available' %>
+                        <%if copy.status == 'Available' or copy.status == 'Reshelving' %>
                             <%= copy.status %>
                         <% else %>
                             <%= copy.status %> - Due On <%= copy.due_date %>

@@ -3,38 +3,45 @@
 <% else %>
     <div class="panel panel-default"><!-- not available -->
 <% end %>
-        <div class="panel-heading">
-            <div class="row">
-                <div class="col-lg-11 col-md-11 col-sm-11 col-xs-10">
+    <div class="panel-heading">
+        <div class="row">
+            <div class="col-lg-11 col-md-11 col-sm-11 col-xs-10">
+                <%= link_to mock_details_path(:id => item.record_id) do %>
                     <h4><%= item.title %></h4>
-                </div>
-                <div class="col-lg-1 col-md-1 col-sm-1 col-xs-2">
-                    <h4 class="pull-right">
-                        <span class="glyphicon <%= format_icon(item.format_type, @format_icons) %>" title="<%= item.format_type %>"></span>
-                    </h4>
-                </div>
+                <% end %>
+            </div>
+            <div class="col-lg-1 col-md-1 col-sm-1 col-xs-2">
+                <h4 class="pull-right">
+                    <span class="glyphicon <%= format_icon(item.format_type, @format_icons) %>" title="<%= item.format_type %>"></span>
+                </h4>
             </div>
         </div>
-            <div class="panel-body">
-                <div class="row">
-                    <div class="col-lg-3 col-sm-3 col-xs-12">
+    </div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-lg-3 col-sm-3 col-xs-12">
+                    <%= link_to mock_details_path(:id => item.record_id) do %>
                         <img src='https://catalog.tadl.org/opac/extras/ac/jacket/large/r/<%= item.record_id %>' 
                             onerror="this.src='<%= asset_path("logo-clock-only.png") %>'" />
-                    </div>
-                    <div class="col-lg-6 col-sm-5 col-xs-12">
-                        <% if !item.author.nil? %><h4><%= item.author %></h4><% end %>
-                        <% if !item.abstract.nil? %><p><%= item.abstract %></p><% end %>
-                        <% if !item.contents.nil? %><p><%= item.contents %></p><% end %>
-                    </div>
-                    <div class="col-lg-3 col-sm-4 col-xs-12">
-                        <% if item.eresource.nil? %><p><button class="btn btn-success">Place hold</button></p><% end %>
-                        <% if !item.call_number.nil? %><p class="label label-default"><%= item.call_number %></p><% end %>
-                        <% if !item.availability.nil? %>
-                            <% item.availability.each do |a| %>
-                                <p class="padtop"><%= a %></p>
-                            <% end %>
-                        <% end %>
-                    </div>
+                    <% end %>
                 </div>
-            </div><!-- /.panel-body -->
-    </div><!-- /.panel -->
+                <div class="col-lg-6 col-sm-5 col-xs-12">
+                    <% if !item.author.nil? %><h4><%= item.author %></h4><% end %>
+                    <% if !item.abstract.nil? %><p><%= item.abstract %></p><!-- abstract --><% end %>
+                    <% if !item.contents.nil? %><p><%= item.contents %></p><!-- contents --><% end %>
+                </div>
+                <div class="col-lg-3 col-sm-4 col-xs-12">
+                    <% if item.eresource.nil? %><p><button class="btn btn-success">Place hold</button></p><% end %>
+                    <% if !item.call_number.nil? %><p class="label label-default"><%= item.call_number %></p><% end %>
+                    <% if !item.availability.nil? %>
+                        <% item.availability.each do |a| %>
+                            <p class="padtop"><%= a %></p>
+                        <% end %>
+                    <% end %>
+                    <%= link_to mock_details_path(:id => item.record_id) do %>
+                        <p><button class="btn btn-default">More details</button></p>
+                    <% end %>
+                </div>
+            </div>
+        </div><!-- /.panel-body -->
+</div><!-- /.panel -->

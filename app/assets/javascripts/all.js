@@ -18,6 +18,7 @@ ready = function() {
         itemsTabletSmall: false,
         itemsMobile : [479,1],
     });
+    $('[data-toggle="tooltip"]').tooltip()
 };
 
 $(document).ready(ready);
