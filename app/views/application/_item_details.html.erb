@@ -3,9 +3,31 @@
 		<img style="width:100%;" src="https://catalog.tadl.org/opac/extras/ac/jacket/large/r/<%= item.record_id %>">
 	</div>	    	
 	<div class="col-xs-12 col-sm-6 col-md-8 col-lg-9">
-        <h2><%= item.title.split("/")[0] %></h2>
-		<p><%= item.author %></p>
-		<p><%= item.summary %></p>
+        <div class="row">
+            <div class="col-xs-10 col-lg-10">
+                <h2><%= item.title.split("/")[0] %></h2>
+            </div>
+            <div class="col-xs-2 col-lg-2">
+                <h2><span class="pull-right glyphicon <%= format_icon(item.format, @format_icons) %>" title="<%= item.format %>"></span></h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-lg-12"><p><%= item.author %></p></div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-lg-8"><p><%= item.summary %></p></div>
+            <div class="col-xs-12 col-lg-4">
+                <span class="pull-right"><% if item.eresource.nil? %><p><button class="btn btn-success">Place hold</button></p><% end %></span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-lg-6">
+                <p><strong>Description</strong> <%= item.physical_description %></p>
+                <p><strong>Publisher</strong> <%= item.publisher + ' ' + item.publication_place + ' ' + item.record_year %></p>
+            </div>
+            <div class="col-xs-12 col-lg-6">
+            </div>
+        </div>
 	</div>
 </div>
 <div class="row clearfix" style="margin-bottom:15px;"></div>
