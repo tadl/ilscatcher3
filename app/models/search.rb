@@ -47,6 +47,15 @@ class Search
   		return path
   	end
 
+    def search_path_minus_layout
+      path = self.search_path
+      path = path.split('&layout')[0]
+      self.facet.each do |f|
+        path += '&facet[]=' + f
+      end unless self.facet.nil?
+      return path
+    end
+
     def search_path_with_facet
       path = self.search_path
       self.facet.each do |f|
