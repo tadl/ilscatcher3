@@ -9,18 +9,17 @@
 		<% end %>
     </div>
     <div id="results" class="col-xs-12 col-sm-8 col-md-9 col-lg-9">
-        <% @layout = 'grid' %>
-        <% if @layout == "grid" %>
-            <%= render 'search_grid', items: @items %>
-        <% else %>
+        <% if @search.list_active == "active" %>
             <%= render 'search_list', items: @items %>
+        <% else %>
+            <%= render 'search_grid', items: @items %>
         <% end %>
     </div>    
 </div>
 
-<% if @layout == "grid" %>
+<% if @search.grid_active == "active" %>
     <% if @more_results == true %>
-        <div id="more_results" class="row" data-offset="700">
+        <div id="more_results" class="row" data-offset="900">
             <%= link_to "Load MOre", :params => @search.next_page_params, :method => :get, :format => :js, :id => 'more_link', :remote => true %>
         </div>
     <% end %>

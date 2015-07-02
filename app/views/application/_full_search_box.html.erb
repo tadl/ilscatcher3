@@ -59,8 +59,8 @@
         </div>
         <div class="col-lg-2 col-xs-6">
             <div class="pull-right padbot">
-                <a href="#"><button class="active btn btn-default btn-xs large glyphicon glyphicon-list"></button></a>
-                <a href="#"><button class="btn btn-default btn-xs large glyphicon glyphicon-th"></button></a>
+                <a href="search<%= @search.search_path_with_facet %>&layout=list"><button class="<%= @search.list_active %> btn btn-default btn-xs large glyphicon glyphicon-list"></button></a>
+                <a href="search<%= @search.search_path_with_facet %>&layout=grid"><button class="<%= @search.grid_active %> btn btn-default btn-xs large glyphicon glyphicon-th"></button></a>
             </div>
         </div>
     </div>

@@ -1,7 +1,7 @@
 class Search
 	require 'open-uri'
 	include ActiveModel::Model
-	attr_accessor :query, :sort, :qtype, :fmt, :loc, :page, :facet, :availability 
+	attr_accessor :query, :sort, :qtype, :fmt, :loc, :page, :facet, :availability, :layout 
 
 	def initialize args
     	args.each do |k,v|
@@ -17,6 +17,25 @@ class Search
   		end
   	end
 
+    def grid_active
+      if self.layout == 'grid'
+        active_check = 'active'
+      else
+        active_check = nil
+      end
+      return active_check
+    end
+
+    def list_active
+      if self.layout == 'list'
+        active_check = 'active'
+      else
+        active_check = nil
+      end
+      return active_check
+    end
+
+
   	def search_path
   		path = '?query=' + self.query unless self.query.nil?
   		path += '&sort=' + self.sort unless self.sort.nil?
@@ -24,8 +43,17 @@ class Search
   		path += '&fmt=' + self.fmt unless self.fmt.nil?
   		path += '&loc=' + self.loc unless self.loc.nil?
   		path += '&availability=' + self.availability unless self.availability.nil?
+      path += '&layout=' + self.layout unless self.layout.nil?
   		return path
   	end
+
+    def search_path_with_facet
+      path = self.search_path
+      self.facet.each do |f|
+        path += '&facet[]=' + f
+      end unless self.facet.nil?
+      return path
+    end
 
   	def search_path_with_page_facet
   	  path = self.search_path
