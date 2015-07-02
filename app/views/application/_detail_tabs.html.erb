@@ -1,19 +1,16 @@
-<div>
-<%= @copies_all %>
-</div>
 <ul class="nav nav-tabs" role="tablist">
-    <li role="presentation" class="active"><a href="#onShelf" aria-controls="onShelf" role="tab" data-toggle="tab">Copies on Shelf</a></li>
-    <li role="presentation"><a href="#allCopies" aria-controls="allCopies" role="tab" data-toggle="tab">All Copies</a></li>
+    <li role="presentation"<% if @copies_on_shelf.size >= 1 %> class="active"<% end %>><a href="#onShelf" aria-controls="onShelf" role="tab" data-toggle="tab">Copies on Shelf</a></li>
+    <li role="presentation"<% if @copies_on_shelf.size == 0 %> class="active"<% end %>><a href="#allCopies" aria-controls="allCopies" role="tab" data-toggle="tab">All Copies</a></li>
     <li role="presentation"><a href="#marcRecord" aria-controls="marcRecord" role="tab" data-toggle="tab">MARC Record</a></li>
 
 </ul>
 
 
 <div class="tab-content">
-    <div role="tabpanel" class="tab-pane active" id="onShelf">
+    <div role="tabpanel" class="tab-pane<% if @copies_on_shelf.size >= 1 %> active<% end %>" id="onShelf">
         <%= render 'list_copies', copies: @copies_on_shelf, all: false %>
     </div>
-    <div role="tabpanel" class="tab-pane" id="allCopies">
+    <div role="tabpanel" class="tab-pane<% if @copies_on_shelf.size == 0 %> active<% end %>" id="allCopies">
         <%= render 'list_copies', copies: @copies_all, all: true %>
     </div>
     <div role="tabpanel" class="tab-pane" id="marcRecord">
