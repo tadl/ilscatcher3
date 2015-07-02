@@ -7,6 +7,9 @@ class Search
     	args.each do |k,v|
       		instance_variable_set("@#{k}", v) unless v.nil?
     	end
+      if args['layout'].nil?
+        instance_variable_set("@layout",'grid')
+      end
   end
 
   	def availability_check
