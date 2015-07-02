@@ -61,6 +61,12 @@ class Search
       return path
     end
 
+    def search_path_minus_layout_with_page
+      path = self.search_path_minus_layout
+      path += '&page=' + self.page unless self.page.nil?
+      return path
+    end
+
     def search_path_with_facet
       path = self.search_path
       self.facet.each do |f|
@@ -101,8 +107,8 @@ class Search
 
 
   	def results  		
-  		if Rails.cache.exist?(self.search_path_with_page_facet)
-      		return Rails.cache.read(self.search_path_with_page_facet)
+  		if Rails.cache.exist?(self.search_path_minus_layout_with_page)
+      		return Rails.cache.read(self.search_path_minus_layout_with_page)
     	else
   			url = 'https://mr.tadl.org/eg/opac/results?'
   			if self.query
@@ -180,7 +186,7 @@ class Search
 			else
 				more_results = false
 			end
-			Rails.cache.write(self.search_path_with_page_facet, [results, facets, more_results] ,:expires_in => 5.minutes)
+			Rails.cache.write(self.search_path_minus_layout_with_page, [results, facets, more_results] ,:expires_in => 5.minutes)
   			return results, facets, more_results
   		end
   	end	
