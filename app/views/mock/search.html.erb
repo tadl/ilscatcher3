@@ -17,13 +17,9 @@
     </div>    
 </div>
 
-<% if @search.grid_active == "active" %>
-    <% if @more_results == true %>
-        <div id="more_results" class="row" data-offset="900">
-            <%= link_to "Load MOre", :params => @search.next_page_params, :method => :get, :format => :js, :id => 'more_link', :remote => true %>
-        </div>
-    <% end %>
-    
+<%= render 'more_results_link' %>
+
+<% if @search.grid_active == "active" %>  
     <script>
         $('#more_results').bind('inview', function (event, visible, topOrBottomOrBoth) {
           if (visible == true) {

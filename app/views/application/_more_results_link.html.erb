@@ -1,0 +1,14 @@
+<% if @more_results == true %>
+    <div id="more_results" class="row clearfix" data-offset="900">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <h1 class="text-center">
+                <% if @search.grid_active == "active" %>
+                      <%= link_to "Load More", :params => @search.next_page_params, :display => 'grid', :method => :get, :format => :js, :id => 'more_link', :remote => true %>
+                <% end %>
+                <% if @search.list_active == "active" %>
+                      <%= link_to "Load More", :params => @search.next_page_params, :display => 'list', :method => :get, :format => :js, :id => 'more_link', :remote => true %>
+                <% end %>
+            </h1>
+        </div>
+    </div>
+<% end %>
