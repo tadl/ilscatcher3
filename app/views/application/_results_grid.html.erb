@@ -1,7 +1,7 @@
 <% if item.copies_available[0].to_i > 0 %>
-        <div class="panel panel-default">
+        <div class="panel panel-default"><!-- items are available -->
 <% else %>
-        <div class="panel panel-warning">
+        <div class="panel panel-default"><!-- items are not available -->
 <% end %>
             <div class="panel-heading"><%= item.title %></div>
             <div class="panel-body">
