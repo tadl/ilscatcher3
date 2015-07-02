@@ -5,6 +5,7 @@
                 <span class="input-group-addon">Search Term(s)</span>
                 <label class="sr-only control-label" for="query">Query</label>
                 <input class="form-control" id="query" name="query" type="search" value="<%= search.query %>">
+                <input type="hidden" name="layout" value="<%= search.layout = search.layout || 'list' %>">
                 <span class="input-group-btn">
                     <button type="submit" name="commit" class="btn btn-success"><span class="glyphicon glyphicon-search"></span></button>
                 </span>

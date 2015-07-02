@@ -33,7 +33,10 @@ body.index {
     padding-bottom: 10px;
 }
 
-#list .panel img,
+#list .panel img {
+    max-width: 100%;
+    max-height: 180px;
+}
 #grid .panel img {
     width: 100%;
 }
