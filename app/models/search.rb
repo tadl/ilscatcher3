@@ -2,14 +2,13 @@ class Search
 	require 'open-uri'
 	include ActiveModel::Model
 	attr_accessor :query, :sort, :qtype, :fmt, :loc, :page, :facet, :availability, :layout 
+  
 
 	def initialize args
-    	args.each do |k,v|
-      		instance_variable_set("@#{k}", v) unless v.nil?
-    	end
-      if args['layout'].nil?
-        instance_variable_set("@layout",'grid')
+      args.each do |k,v|
+        instance_variable_set("@#{k}", v) unless v.nil?
       end
+      instance_variable_set("@layout", "grid") unless args["layout"]
   end
 
   	def availability_check
@@ -21,7 +20,7 @@ class Search
   	end
 
     def grid_active
-      if self.layout == 'grid'
+      if self.layout == 'grid' 
         active_check = 'active'
       else
         active_check = nil
@@ -40,19 +39,22 @@ class Search
 
 
   	def search_path
-  		path = '?query=' + self.query unless self.query.nil?
-  		path += '&sort=' + self.sort unless self.sort.nil?
-  		path += '&qtype=' + self.qtype unless self.qtype.nil?
-  		path += '&fmt=' + self.fmt unless self.fmt.nil?
-  		path += '&loc=' + self.loc unless self.loc.nil?
-  		path += '&availability=' + self.availability unless self.availability.nil?
-      path += '&layout=' + self.layout unless self.layout.nil?
-  		return path
+      path = ''
+      if self
+  		  path = '?query=' + self.query unless self.query.nil?
+  		  path += '&sort=' + self.sort unless self.sort.nil?
+  		  path += '&qtype=' + self.qtype unless self.qtype.nil?
+  		  path += '&fmt=' + self.fmt unless self.fmt.nil?
+  		  path += '&loc=' + self.loc unless self.loc.nil?
+  		  path += '&availability=' + self.availability unless self.availability.nil?
+        path += '&layout=' + self.layout unless self.layout.nil?
+  		end
+      return path
   	end
 
     def search_path_minus_layout
       path = self.search_path
-      path = path.split('&layout')[0]
+      path = path.split('&layout')[0] unless self.layout.nil?
       self.facet.each do |f|
         path += '&facet[]=' + f
       end unless self.facet.nil?
@@ -232,5 +234,5 @@ class Search
 		availability.pop
 		return availability
 	end
-
+ 
 end

@@ -22,7 +22,7 @@ class MockController < ApplicationController
     @items = results[0]
     @facets = results[1]
     @more_results = results[2]
-   respond_to do |format|
+    respond_to do |format|
       format.html
       format.js
     end
