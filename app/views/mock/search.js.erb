@@ -9,6 +9,8 @@ var grid = document.querySelector('#grid');
 salvattore['append_elements'](grid, [item]);
 item.outerHTML = "<%= escape_javascript(render partial: 'more_results', :locals => {:item => i}) %>";  
 <% end %>
+var grid = document.querySelector('#grid');
+salvattore['recreateColumns'](grid);
 <%if @more_results != true %>
 	$('#more_results').remove();
 <% else %>

@@ -1,5 +1,5 @@
 class MockController < ApplicationController
-
+    include ApplicationHelper
     before_filter :shared_mock_variables
     respond_to :html, :json, :js
 
