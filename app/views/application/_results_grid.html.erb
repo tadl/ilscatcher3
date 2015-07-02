@@ -1,0 +1,11 @@
+<% if item.copies_available[0].to_i > 0 %>
+        <div class="panel panel-default">
+<% else %>
+        <div class="panel panel-warning">
+<% end %>
+            <div class="panel-heading"><%= item.title %></div>
+            <div class="panel-body">
+                <img src='https://catalog.tadl.org/opac/extras/ac/jacket/large/r/<%= item.record_id %>' 
+                onerror="this.src='<%= asset_path("logo-clock-only.png") %>?id=<%= item.record_id %>'" />
+            </div><!-- /.panel-body -->
+        </div><!-- /.panel -->

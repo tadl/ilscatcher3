@@ -1,11 +1,19 @@
+<% if @search.grid_active == 'active' %>
+	<% @items.each do |i| %>
+		var item = document.createElement('div');
+		var grid = document.querySelector('#grid');
+		salvattore['append_elements'](grid, [item]);
+		item.outerHTML = "<%= escape_javascript(render partial: 'results_grid', :locals => {:item => i}) %>";  
+	<% end %>
+<% end %>
+<% if @search.list_active == 'active' %>
+	<% @items.each do |i| %>
+		var item = document.createElement('div');
+		var grid = document.querySelector('#grid');
+		salvattore['append_elements'](grid, [item]);
+		item.outerHTML = "<%= escape_javascript(render partial: 'more_results_grid', :locals => {:item => i}) %>";  
+	<% end %>
+<% end %>
 
 var more_link =  '<%= escape_javascript(render "more_results_link") %>'
-<% @items.each do |i| %>
-	var item = document.createElement('div');
-	var grid = document.querySelector('#grid');
-	salvattore['append_elements'](grid, [item]);
-	item.outerHTML = "<%= escape_javascript(render partial: 'more_results_grid', :locals => {:item => i}) %>";  
-<% end %>
-var grid = document.querySelector('#grid');
-salvattore['recreateColumns'](grid);
 $('#more_results').html(more_link);
