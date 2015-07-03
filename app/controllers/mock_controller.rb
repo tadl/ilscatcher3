@@ -39,6 +39,10 @@ class MockController < ApplicationController
     @item = Dish(item_details_raw['item_details'])
     @copies_on_shelf = Dish(item_details_raw['copies_on_shelf'])
     @copies_all = Dish(item_details_raw['copies'])
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
 end

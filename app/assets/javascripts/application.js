@@ -11,10 +11,12 @@
 // about supported directives.
 //
 //= require jquery
+//= require jquery.turbolinks
 //= require jquery_ujs
 //= require turbolinks
 //= require owl.carousel
 //= require bootstrap-sprockets
+//= require fancybox
 //= require_tree .
 
 

@@ -23,3 +23,15 @@ ready = function() {
 
 $(document).ready(ready);
 $(document).on('page:load', ready);
+
+function bind_more_results(){
+    $('#more_results').bind('inview', function (event, visible, topOrBottomOrBoth) {
+      if (visible == true) {
+        // element is now visible in the viewport
+        if (topOrBottomOrBoth == 'top' || 'bottom' || 'both') {
+            $('#more_results').unbind('inview');
+            $('#more_results:first a')[0].click();
+        }
+      }
+    })
+}

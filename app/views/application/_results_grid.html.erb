@@ -1,13 +1,12 @@
-<% if item.copies_available[0].to_i > 0 %>
-        <div class="panel panel-default"><!-- items are available -->
-<% else %>
-        <div class="panel panel-default"><!-- items are not available -->
-<% end %>
-            <div class="panel-heading"><%= item.title %></div>
-            <div class="panel-body">
-                <%= link_to mock_details_path(:id => item.record_id) do %>
-                    <img src='https://catalog.tadl.org/opac/extras/ac/jacket/large/r/<%= item.record_id %>' 
-                        onerror="this.src='<%= asset_path("logo-clock-only.png") %>?id=<%= item.record_id %>'" />
-                <% end %>
-            </div><!-- /.panel-body -->
-        </div><!-- /.panel -->
+    <div class="panel panel-default"><!-- items are available -->      
+        <div class="panel-heading">
+                 <%= link_to  item.title, 'details.js?id='+item.record_id, :remote => true %>
+        </div>
+        <div class="panel-body">
+
+             <%= link_to 'details.js?id='+item.record_id, :remote => true  do %> 
+                <img src='https://catalog.tadl.org/opac/extras/ac/jacket/large/r/<%= item.record_id %>' 
+                    onerror="this.src='<%= asset_path("logo-clock-only.png") %>?id=<%= item.record_id %>'" />
+             <% end %>       
+        </div><!-- /.panel-body -->
+    </div><!-- /.panel -->
