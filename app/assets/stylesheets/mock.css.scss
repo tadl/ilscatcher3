@@ -47,7 +47,7 @@ body.index {
 }
 @media screen and (min-width:768px) and (max-width: 991px){
     #grid[data-columns]::before {
-        content: '2 .col-sm-6';
+        content: '3 .col-sm-4';
     }
 }
 @media screen and (min-width:992px) and (max-width: 9999px){

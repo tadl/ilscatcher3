@@ -28,9 +28,10 @@ function bind_more_results(){
     $('#more_results').bind('inview', function (event, visible, topOrBottomOrBoth) {
       if (visible == true) {
         // element is now visible in the viewport
-        if (topOrBottomOrBoth == 'top' || 'bottom' || 'both') {
+        if (topOrBottomOrBoth == 'top') {
             $('#more_results').unbind('inview');
             $('#more_results:first a')[0].click();
+            $('#load_more_text').html("Loading More Results...")
         }
       }
     })

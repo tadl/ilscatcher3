@@ -1,6 +1,9 @@
     <div class="panel panel-default"><!-- items are available -->      
         <div class="panel-heading">
-                 <%= link_to  item.title, 'details.js?id='+item.record_id, :remote => true %>
+                <%= link_to 'details.js?id='+item.record_id, :remote => true do %>
+                    <span class="glyphicon <%= format_icon(item.format_type, @format_icons) %>" title="<%= item.format_type %>"></span>
+                    <%= item.title %>
+                <% end %>
         </div>
         <div class="panel-body">
 
