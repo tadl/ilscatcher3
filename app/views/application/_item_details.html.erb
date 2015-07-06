@@ -23,7 +23,7 @@
             <div class="col-xs-12 col-md-8 col-lg-8">
                 <% if !item.summary.nil? %>
                     <dl>
-                        <dt>Summary</dt>
+                        <dt>Summary <%= @future_item.check_trailer %></dt>
                         <dd><%= item.summary %></dd>
                     </dl>
                 <% end %>
