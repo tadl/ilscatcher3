@@ -56,6 +56,7 @@ class Search
       path = self.search_path
       path = path.split('&layout')[0] unless self.layout.nil?
       self.facet.each do |f|
+        f = URI::encode(f)
         path += '&facet[]=' + f
       end unless self.facet.nil?
       return path
@@ -70,6 +71,7 @@ class Search
     def search_path_with_facet
       path = self.search_path
       self.facet.each do |f|
+        f = URI::encode(f)
         path += '&facet[]=' + f
       end unless self.facet.nil?
       return path
@@ -79,8 +81,10 @@ class Search
   	  path = self.search_path
   		path += '&page=' + self.page unless self.page.nil?
   		self.facet.each do |f|
+        f = URI::encode(f)
   			path += '&facet[]=' + f
   		end unless self.facet.nil?
+      path = URI::encode(path)
   		return path
   	end
 
@@ -101,6 +105,7 @@ class Search
       next_page['layout'] = self.layout unless self.layout.nil?
       next_page['facet'] = Array.new
       self.facet.each do |f|
+        f = URI::encode(f)
         next_page['facet'] = next_page['facet'].push(f)
       end unless self.facet.nil?
       return next_page
