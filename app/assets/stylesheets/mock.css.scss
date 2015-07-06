@@ -10,6 +10,10 @@ body.index {
     background-size: cover;
 }
 
+body.wait *, body.wait {
+    cursor: progress !important;
+}
+
 .input-group > .input-group-btn:first-child > .selectpicker {
     border-top-left-radius: 5px;
     border-bottom-left-radius: 5px;

@@ -24,6 +24,13 @@ ready = function() {
 $(document).ready(ready);
 $(document).on('page:load', ready);
 
+/* add a class to the body when ajax is happening */
+$(document).ajaxStart(function () {
+    $('body').addClass('wait');
+}).ajaxComplete(function () {
+    $('body').removeClass('wait');
+});
+
 function bind_more_results(){
     $('#more_results').bind('inview', function (event, visible, topOrBottomOrBoth) {
       if (visible == true) {
@@ -36,7 +43,3 @@ function bind_more_results(){
       }
     })
 }
-
-
-
-
