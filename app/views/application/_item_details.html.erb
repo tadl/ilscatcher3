@@ -21,9 +21,14 @@
         </div>
         <div class="row">
             <div class="col-xs-12 col-md-8 col-lg-8">
+                <% if @future_item.check_trailer %>
+                    <div class="embed-responsive embed-responsive-16by9">
+                        <iframe src="https://www.youtube.com/embed/<%= @future_item.check_trailer %>"></iframe>
+                    </div>
+                <% end %>
                 <% if !item.summary.nil? %>
                     <dl>
-                        <dt>Summary <%= @future_item.check_trailer %></dt>
+                        <dt>Summary</dt>
                         <dd><%= item.summary %></dd>
                     </dl>
                 <% end %>
