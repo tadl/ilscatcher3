@@ -35,15 +35,18 @@ class MockController < ApplicationController
     else
       @recordid = nil # we should probably redirect to error or something here instead
     end
-    @future_item = Item.new params
-    details = @future_item.get_details
-    @item = Dish(details[0])
-    @copies_on_shelf = Dish(details[1])
-    @copies_all = Dish(details[2])
+    @future_item = nil
+    @item = Item.new params
+    @copies_on_shelf = nil
+    @copies_all = nil
     respond_to do |format|
       format.html
       format.js
     end
+  end
+
+  def test
+    @item = Item.new params
   end
 
 end

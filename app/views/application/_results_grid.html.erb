@@ -1,15 +1,15 @@
     <div class="panel panel-default"><!-- items are available -->      
         <div class="panel-heading">
-                <%= link_to 'details.js?id='+item.record_id, :remote => true do %>
+                <%= link_to 'details.js', data:{params: item.create_params}, :remote => true do %>
                     <span class="glyphicon <%= format_icon(item.format_type, @format_icons) %>" title="<%= item.format_type %>"></span>
                     <%= item.title %>
                 <% end %>
         </div>
         <div class="panel-body">
 
-             <%= link_to 'details.js?id='+item.record_id, :remote => true  do %> 
-                <img src='https://catalog.tadl.org/opac/extras/ac/jacket/large/r/<%= item.record_id %>' 
-                    onerror="this.src='<%= asset_path("logo-clock-only.png") %>?id=<%= item.record_id %>'" />
+             <%= link_to 'details.js?id='+item.id, :remote => true  do %> 
+                <img src='https://catalog.tadl.org/opac/extras/ac/jacket/large/r/<%= item.id %>' 
+                    onerror="this.src='<%= asset_path("logo-clock-only.png") %>?id=<%= item.id %>'" />
              <% end %>       
         </div><!-- /.panel-body -->
     </div><!-- /.panel -->

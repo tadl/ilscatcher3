@@ -5,7 +5,7 @@
 </div>
 <div class="row">
 	<div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
-		<img style="width:100%;" src="https://catalog.tadl.org/opac/extras/ac/jacket/large/r/<%= item.record_id %>">
+		<img style="width:100%;" src="https://catalog.tadl.org/opac/extras/ac/jacket/large/r/<%= item.id %>">
 	</div>	    	
 	<div class="col-xs-12 col-sm-6 col-md-8 col-lg-9">
         <div class="row">
@@ -21,10 +21,10 @@
         </div>
         <div class="row">
             <div class="col-xs-12 col-md-8 col-lg-8">
-                <% if !item.summary.nil? %>
+                <% if !item.abstract.nil? %>
                     <dl>
-                        <dt>Summary <%= @future_item.check_trailer %></dt>
-                        <dd><%= item.summary %></dd>
+                        <dt>Summary <%= item.check_trailer %></dt>
+                        <dd><%= item.abstract %></dd>
                     </dl>
                 <% end %>
                 <% if !item.contents.nil? %>

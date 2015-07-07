@@ -4,12 +4,12 @@ class Search
 	attr_accessor :query, :sort, :qtype, :fmt, :loc, :page, :facet, :availability, :layout 
   
 
-	def initialize args
+	  def initialize args
       args.each do |k,v|
         instance_variable_set("@#{k}", v) unless v.nil?
       end
       instance_variable_set("@layout", "grid") unless args["layout"]
-  end
+    end
 
   	def availability_check
   		if self.availability == "on"
@@ -156,8 +156,8 @@ class Search
 					:availability => process_availability(result.css(".result_count").reverse.map {|i| i.try(:text).try(:strip)}),
 					:copies_available => process_availability(result.css(".result_count").reverse.map {|i| clean_availablity_counts(i.try(:text))[0]}),
 					:copies_total => process_availability(result.css(".result_count").reverse.map {|i| clean_availablity_counts(i.try(:text))[1]}),
-					:record_id => result.at_css(".record_title").attr('name').sub!(/record_/, ""),
-        	    	:eresource => result.at_css('[@name="bib_uri_list"]').try(:css, 'td').try(:css, 'a').try(:attr, 'href').try(:text).try(:strip),
+					:id => result.at_css(".record_title").attr('name').sub!(/record_/, ""),
+        	:eresource => result.at_css('[@name="bib_uri_list"]').try(:css, 'td').try(:css, 'a').try(:attr, 'href').try(:text).try(:strip),
 					#hack for dev below
 					:image => 'http://catalog.tadl.org' + result.at_css(".result_table_pic").try(:attr, "src"),
 					:abstract => result.at_css('[@name="bib_summary"]').try(:text).try(:strip).try(:squeeze, " "),
