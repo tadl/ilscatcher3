@@ -160,14 +160,18 @@ class Search
         	:eresource => result.at_css('[@name="bib_uri_list"]').try(:css, 'td').try(:css, 'a').try(:attr, 'href').try(:text).try(:strip),
 					#hack for dev below
 					:image => 'http://catalog.tadl.org' + result.at_css(".result_table_pic").try(:attr, "src"),
-					:abstract => result.at_css('[@name="bib_summary"]').try(:text).try(:strip).try(:squeeze, " "),
-					:contents => result.at_css('[@name="bib_contents"]').try(:text).try(:strip).try(:squeeze, " "),
+					:abstract => result.at_css('[@name="bib_summary_full"]').try(:text).try(:strip).try(:squeeze, " "),
+					:contents => result.at_css('[@name="bib_contents_full"]').try(:text).try(:strip).try(:squeeze, " "),
 					#hack for dev below
 					:format_icon => 'http://catalog.tadl.org' + result.at_css(".result_table_title_cell img").try(:attr, "src"),
 					:format_type => scrape_format_year(result)[0],
-					:record_year => scrape_format_year(result)[1],
+					:record_year => result.at_css('[@name="bib_pubdate"]').try(:text).try(:strip),
 					:call_number => result.at_css('[@name="bib_cn_list"]').try(:css, 'td[2]').try(:text).try(:strip),
-          :loc => self.loc
+          :loc => self.loc,
+          :publisher => result.at_css('[@name="bib_publisher"]').try(:text).try(:strip),
+          :publication_place => result.at_css('[@name="bib_pubplace"]').try(:text).try(:strip),
+          :physical_description => result.at_css('[@name="bib_phys_desc"]').try(:text).try(:strip),
+          :isbn => result.at_css('[@name="bib_isbn"]').try(:text).try(:strip),
 				}
 				item = Result.new item_raw
 				results = results.push(item)
