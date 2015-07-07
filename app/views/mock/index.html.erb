@@ -1,4 +1,7 @@
 <div class="container">
+    <div class="row">
+        <%= render 'partial_search_box', search: @search %>
+    </div>
     <h2 class="pull-left">Movies</h2>
     <%= render 'shared/dropdown_explore_movies' %>
     <div class="clearfix"></div>

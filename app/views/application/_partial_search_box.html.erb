@@ -1,0 +1,15 @@
+<%= bootstrap_form_tag url: 'search', :html => { :method => 'get', :class => 'form' } do |f| %>
+    <div class="row">
+        <div class="col-lg-12 col-xs-12">
+            <div class="input-group input-group-lg">
+                <span class="input-group-addon">Search for</span>
+                <label class="sr-only control-label" for="query">Query</label>
+                <input class="form-control" id="query" name="query" type="search">
+                <input type="hidden" name="layout" value="grid">
+                <span class="input-group-btn">
+                    <button type="submit" name="commit" class="btn btn-primary"><span class="glyphicon glyphicon-search"></span></button>
+                </span>
+            </div>
+        </div>
+    </div>
+<% end %>
