@@ -30,23 +30,18 @@ class MockController < ApplicationController
 
 
   def details
-    if params[:id]
-      @recordid = params[:id]
-    else
-      @recordid = nil # we should probably redirect to error or something here instead
-    end
-    @future_item = nil
     @item = Item.new params
-    @copies_on_shelf = nil
-    @copies_all = nil
+    @copies_on_shelf = @item.copies_on_shelf
+    @copies_all = @item.copies
+
+    if params["fetching"] == 'true'
+      @fetching = true
+    end
     respond_to do |format|
       format.html
       format.js
+      format.json { render json: @item }
     end
-  end
-
-  def test
-    @item = Item.new params
   end
 
 end

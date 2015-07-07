@@ -1,31 +1,21 @@
 class Item
 	include ActiveModel::Model
 	require 'open-uri'
-	attr_accessor :id, :loc, :author, :title, :abstract, :contents, :record_id, :image, :format, :record_year, :publisher, :publication_place, :isbn, :physical_description, :eresource
+	attr_accessor :id, :loc, :author, :title, :abstract, :contents, :image, :format, :record_year, :publisher, :publication_place, :isbn, :physical_description, :eresource, :copies, :copies_on_shelf
 
 	def initialize args
 		if args['id']
 			if args['title']
+				args.delete_if { |k, v| v.blank? }
 				args.each do |k,v|
         			instance_variable_set("@#{k}", v) unless v.nil?
       			end
       		else
-    			details = all_details(args['id'], args['loc'])
-  				details.each do |k,v|
-        			instance_variable_set("@#{k}", v) unless v.nil?
-      			end
+    			details = get_details(args['id'], args['loc'])
       		end
       	else
       		return nil
       	end
-  	end
-
-  	def get_details
-  		details = JSON.parse(open('http://ilscatcher2.herokuapp.com/items/details?record=' + self.id).read)
-  		item = details['item_details']
-  		copies_on_shelf = details['copies_on_shelf']
-  		copies_all = details['copies']
-  		return item, copies_on_shelf, copies_all
   	end
 
   	def check_trailer
@@ -38,13 +28,13 @@ class Item
   		return trailer
   	end
 
-  	def all_details(record_id, loc)
+  	def get_details(id, loc)
   		if loc
   			loc_url = '?locg=' + loc
   		else
   			loc_url = '?locg=22'
   		end
-  		url = 'https://mr.tadl.org/eg/opac/record/' + record_id + loc_url
+  		url = 'https://mr.tadl.org/eg/opac/record/' + id + loc_url
   		agent = Mechanize.new
   		page = agent.get(url)
   		page = page.parser
@@ -55,7 +45,7 @@ class Item
 			:title => detail.at_css("#rdetail_title").text,
 			:abstract => detail.at('td:contains("Summary, etc.:")').try(:next_element).try(:text).try(:strip),
 			:contents => detail.at('td:contains("Formatted Contents Note:")').try(:next_element).try(:text).try(:strip),
-			:record_id => record_id,
+			:id => id,
 			:availability_scope => detail.css('meta[@property="seller"]').map {|i| i.attr('content')}, 
 			:copies_available => detail.css('meta[@property="offerCount"]').map {|i| i.attr('content')},
 			:copies_total => clean_totals_holds(detail.at('h2:contains("Current holds")').try(:next_element).try(:text))[1],
@@ -72,12 +62,51 @@ class Item
 			:related => detail.css('.rdetail_subject_value').to_s.split('<br>').reverse.drop(1).reverse.map { |i| clean_related(i)}.uniq,
   			}
   		end
+  		item_details.delete_if { |key, value| value.blank? }
   		item_details.each do |k,v|
         	instance_variable_set("@#{k}", v) unless v.nil?
       	end
+      	copy_details(id, loc, page)
   	end
 
-  	def copy_details
+  	def copy_details(id, loc, page)
+  		if !page
+  			if loc
+  				loc_url = '?locg=' + loc
+  			else
+  				loc_url = '?locg=22'
+  			end
+  			url = 'https://mr.tadl.org/eg/opac/record/' + id + loc_url
+  			agent = Mechanize.new
+  			page = agent.get(url)
+  			page = page.parser
+  		end
+
+  		copies = Array.new
+  		page.css('.copy_details_offers_row').each do |copy|
+  			copy = {
+  				:location => copy.search('td[@headers="copy_header_library"]').try(:text),
+  				:call_number => copy.search('td[@headers="copy_header_callnumber"]').try(:text),
+  				:shelving_location => copy.search('td[@headers="copy_header_shelfloc"]').try(:text),
+  				:status => copy.search('td[@headers="copy_header_status"]').try(:text),
+  				:due_date => copy.search('td[@headers="copy_header_due_date"]').try(:text),
+  			}
+  			copies.push(copy)
+  		end
+
+    	copies_on_shelf = Array.new
+    	copies.each do |copy|
+      		if copy[:status] == "Available"
+        		copies_on_shelf.push(copy)
+      		end
+      	
+      		if copy[:status] == "Reshelving"
+        		copy[:shelving_location] = copy[:shelving_location] + " (Reshelving)"
+        		copies_on_shelf.push(copy)
+      		end  
+    	end
+    	instance_variable_set("@copies", copies)
+    	instance_variable_set("@copies_on_shelf", copies_on_shelf)
   	end
 
   	def marc_record

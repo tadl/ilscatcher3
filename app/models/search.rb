@@ -166,7 +166,8 @@ class Search
 					:format_icon => 'http://catalog.tadl.org' + result.at_css(".result_table_title_cell img").try(:attr, "src"),
 					:format_type => scrape_format_year(result)[0],
 					:record_year => scrape_format_year(result)[1],
-					:call_number => result.at_css('[@name="bib_cn_list"]').try(:css, 'td[2]').try(:text).try(:strip)
+					:call_number => result.at_css('[@name="bib_cn_list"]').try(:css, 'td[2]').try(:text).try(:strip),
+          :loc => self.loc
 				}
 				item = Result.new item_raw
 				results = results.push(item)

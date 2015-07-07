@@ -23,8 +23,13 @@
             <div class="col-xs-12 col-md-8 col-lg-8">
                 <% if !item.abstract.nil? %>
                     <dl>
-                        <dt>Summary <%= item.check_trailer %></dt>
+                        <dt>Summary</dt>
                         <dd><%= item.abstract %></dd>
+                <% if item.check_trailer %>
+                    <div class="embed-responsive embed-responsive-16by9">
+                        <iframe src="https://www.youtube.com/embed/<%= item.check_trailer %>"></iframe>
+                    </div>
+                <% end %>
                     </dl>
                 <% end %>
                 <% if !item.contents.nil? %>

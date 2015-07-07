@@ -1,5 +1,31 @@
+<% if !@fetching %>
+	details();
+<% else %>
+	$('#copy_container').html("<%= escape_javascript(render 'detail_tabs', :locals => {:item => @item}) %>")
+<% end %>
+	
+	function details(){
+		var id = "<%= escape_javascript(@item.id) %>";
+		var content = "<div class='container' style='width: 95%; max-width: 960px;'>"
+		content += "<%= escape_javascript(render partial: 'item_details', :locals => {:item => @item}) %>"
+		<% if @item.copies %>
+			content += "<%= escape_javascript(render 'detail_tabs', :locals => {:item => @item}) %>"
+		<% else %>
+			content += "<div id='copy_container'>Loading Copy Details...</div>"
+			var url ='details.js?id=' + id + '&fetching=true'
+			$.get(url, function(data){})
+		<% end %>
+		content += '</div>'
+	
+		$.fancybox.open({ 
+	        'overlayOpacity': 0.1,
+	        'content' : content
+	    });
+	}
 
-$.fancybox.open({ 
-        'overlayOpacity': 0.1,
-        'content' : "<div class='container' style='width: 95%; max-width: 960px;'><%= escape_javascript(render partial: 'item_details', :locals => {:item => @item}) %></div>"
-    });
+
+
+
+
+
+
