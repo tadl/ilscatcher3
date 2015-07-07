@@ -2,6 +2,8 @@
 	details();
 <% else %>
 	$('#copy_container').html("<%= escape_javascript(render 'detail_tabs', :locals => {:item => @item}) %>")
+	$.fancybox.update()
+    $.fancybox.reposition()
 <% end %>
 	
 	function details(){
