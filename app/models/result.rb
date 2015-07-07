@@ -1,6 +1,6 @@
 class Result
 	include ActiveModel::Model
-	attr_accessor :title, :author, :availability, :copies_available, :copies_total, :id, :eresource, :image, :abstract, :contents, :format_icon, :format_type, :record_year, :call_number
+	attr_accessor :title, :author, :availability, :copies_available, :copies_total, :id, :eresource, :image, :abstract, :contents, :format_icon, :format_type, :record_year, :call_number, :publisher, :publication_place, :isbn, :physical_description
 
 	def initialize args
     	args.each do |k,v|
