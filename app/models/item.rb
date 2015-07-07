@@ -1,7 +1,7 @@
 class Item
 	include ActiveModel::Model
 	require 'open-uri'
-	attr_accessor :id, :loc, :author, :title, :abstract, :contents, :image, :format, :record_year, :publisher, :publication_place, :isbn, :physical_description, :eresource, :copies, :copies_on_shelf
+	attr_accessor :id, :loc, :author, :title, :abstract, :contents, :image, :format_type, :record_year, :publisher, :publication_place, :isbn, :physical_description, :eresource, :copies, :copies_on_shelf
 
 	def initialize args
 		if args['id']
@@ -52,7 +52,7 @@ class Item
 			:holds => clean_totals_holds(detail.at('h2:contains("Current holds")').try(:next_element).try(:text))[0],
 			:eresource => detail.at('p.rdetail_uri').try(:at, 'a').try(:attr, "href"),
 			:image => detail.at_css('#rdetail_image').try(:attr, "src").try(:gsub, /^\//, "https://catalog.tadl.org/").try(:gsub, /medium/, "large"),
-			:format => detail.at('div#rdetail_format_label').text.strip,
+			:format_type => detail.at('div#rdetail_format_label').text.strip,
 			:format_icon => detail.at('div#rdetail_format_label').at('img').try(:attr, "src"),
 			:record_year => detail.search('span[@property="datePublished"]').try(:text),
 			:publisher => detail.search('span[@property="publisher"]').search('span[@property="name"]').try(:text).try(:strip),
