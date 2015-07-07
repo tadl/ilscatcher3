@@ -16,17 +16,9 @@
         <div class="collapse navbar-collapse" id="opac-navbar">
             <ul class="nav navbar-nav navbar-left">
             </ul>
-            <% if @user_name %>
-                <div class="nav navbar-nav navbar-right">
-                    <p class="navbar-text">Signed in as <%= @user_name %></p>
-                    <button type="button" class="btn btn-default navbar-btn navbar-right">Sign out</button>
-                </div>
-            <% else %>
-                <div class="nav navbar-nav navbar-right">
-                    <button type="button" class="btn btn-default navbar-btn">Sign in</button>
-                </div>
-            <% end %>
-
+            <div class="nav navbar-nav navbar-right">
+                <button type="button" class="btn btn-default navbar-btn" data-toggle="menu">My Account or smth</button>
+            </div>
         </div>
     </div>
 </nav>
