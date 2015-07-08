@@ -82,6 +82,8 @@ function bind_login() {
     $('.holdbtn').on("click", function() {
         var recordid = $(this).attr("id").replace('record-', '');
         console.log('record ' + recordid);
+        var logged_in = sessionStorage.getItem('authed');
+        console.log('auth status is ' + logged_in);
         if (logged_in == null) {
             /* present the login form and eventually call a login function
              * which should be stored in all.js probably. Also place the hold
@@ -120,9 +122,9 @@ function bind_login() {
                         console.log('fail');
                     } else {
                         sessionStorage.setItem('token', data.token);
+                        sessionStorage.setItem('authed', "true");
                         logged_in = true;
                         console.log('you are logged in');
-                        /* Place the hold with the token */
                         place_hold(recordid);
                     }
                 }).fail(function() {

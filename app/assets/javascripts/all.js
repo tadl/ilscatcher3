@@ -66,6 +66,6 @@ function bind_more_results(){
 function place_hold(id) {
     var record = id;
     var token = sessionStorage.getItem('token');
-    console.log('token ' + token + ' id ' + record);
-    /* ajax */
+    console.log('placing hold with token ' + token + ' on record id ' + record);
+    /* #justajaxthings */
 }
