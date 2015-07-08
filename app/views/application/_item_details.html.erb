@@ -65,7 +65,7 @@
 </div>
 <div class="row clearfix padbot"></div>
 <div id="holdlogin" style="display: none">
-    <h4>You must log in to place a hold</h4>
+    <h4 id="loginmessage">You must log in to place a hold</h4>
     <label for="holdloginuser">Username or Library Card</label>
     <input type="text" id="holdloginuser" name="holdloginuser" class="form-control" />
     <label for="holdloginpass" class="padtop">Password</label>
@@ -81,14 +81,9 @@
 function bind_login() {
     $('.holdbtn').on("click", function() {
         var recordid = $(this).attr("id").replace('record-', '');
-        console.log('record ' + recordid);
         var logged_in = sessionStorage.getItem('authed');
-        console.log('auth status is ' + logged_in);
+        /* null matches null or undefined */
         if (logged_in == null) {
-            /* present the login form and eventually call a login function
-             * which should be stored in all.js probably. Also place the hold
-             * because otherwise you're just making things difficult.
-             */
             var contents = $('#holdlogin').html();
             var holdbutton = $(this).parents().eq(1).html();
             $('#holdlogin').empty();
@@ -96,16 +91,20 @@ function bind_login() {
             $("#holdloginsubmit").on("click", function() {
                 var username = $('#holdloginuser').val();
                 var password = $('#holdloginpass').val();
-                /* here is where we will actually log in, and then
-                 * place the hold.
+                $('#holdloginsubmit').text('Logging in...');
+                /*
+                 *  this whole section after here should probably be a function
+                 *  in all.js, but it's kind of customized for this specific
+                 *  purpose. (updating specific element ids with messages, etc)
+                 *
+                 *  baby steps.
+                 *
                  */
                 if (username != null) { 
-                    console.log('storing username: ' + username);
                     sessionStorage.setItem('username', username); 
                 }
                 if (password != null) {
                     var hash = $.md5(password);
-                    console.log('storing hash: ' + hash);
                     sessionStorage.setItem('hash', hash);
                 }
                 var login_params = {"username": username, "password": password};
@@ -118,17 +117,21 @@ function bind_login() {
                     timeout: 15000
                 }).done(function(data) {
                     if (data.message == 'login failed' || data.message == 'failed') {
-                        /* Notify the user somehow */
+                        $('#loginmessage').text('There was a problem with your username or password. Please try again.');
+                        $('#holdloginsubmit').text('Log in and place hold');
+                        $('#holdloginuser').val('')
+                        $('#holdloginpass').val('');
                         console.log('fail');
                     } else {
                         sessionStorage.setItem('token', data.token);
                         sessionStorage.setItem('authed', "true");
                         logged_in = true;
                         console.log('you are logged in');
+                        $('#holdloginsubmit').text('Placing hold...');
                         place_hold(recordid);
                     }
                 }).fail(function() {
-                    /* Notify the user an error unrelated to credentials occurred */
+                    $('#loginmessage').html('Sorry, something went wrong. Please try again.');
                 })
             });
             $("#holdlogincancel").on("click", function() {
@@ -137,7 +140,7 @@ function bind_login() {
                 bind_login();
             });
         } else {
-            /* Place the hold with the token */
+            $('#record-' + recordid).text('Placing hold...');
             place_hold(recordid);
         }
     });
