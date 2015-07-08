@@ -1,19 +1,17 @@
-<div class="container">
-    <div class="row">
-        <%= render 'partial_search_box', search: @search %>
-    </div>
-    <h2 class="pull-left">Movies</h2>
-    <%= render 'shared/dropdown_explore_movies' %>
-    <div class="clearfix"></div>
-    <%= render 'featured_lists', list: @movie_list %>
-
-    <h2 class="pull-left">Music</h2>
-    <%= render 'shared/dropdown_explore_music' %>
-    <div class="clearfix"></div>
-    <%= render 'featured_lists', list: @music_list %>
-
-    <h2 class="pull-left">Games</h2>
-    <%= render 'shared/dropdown_explore_games' %>
-    <div class="clearfix"></div>
-    <%= render 'featured_lists', list: @games_list %>
+<div class="row">
+    <%= render 'partial_search_box', search: @search %>
 </div>
+<h2 class="pull-left">Movies</h2>
+<%= render 'shared/dropdown_explore_movies' %>
+<div class="clearfix"></div>
+<%= render 'featured_lists', list: @movie_list %>
+
+<h2 class="pull-left">Music</h2>
+<%= render 'shared/dropdown_explore_music' %>
+<div class="clearfix"></div>
+<%= render 'featured_lists', list: @music_list %>
+
+<h2 class="pull-left">Games</h2>
+<%= render 'shared/dropdown_explore_games' %>
+<div class="clearfix"></div>
+<%= render 'featured_lists', list: @games_list %>

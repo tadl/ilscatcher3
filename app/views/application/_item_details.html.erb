@@ -40,7 +40,7 @@
                 <% end %>
             </div>
             <div class="col-xs-12 col-md-4 col-lg-4">
-                <span class="pull-right"><% if item.eresource.nil? %><p><button class="btn btn-success">Place hold</button></p><% end %></span>
+                <span class="pull-right"><% if item.eresource.nil? %><p><button class="btn btn-success holdbtn" id="record-<%= item.id %>">Place hold</button></p><% end %></span>
             </div>
         </div>
         <div class="row">
@@ -64,3 +64,48 @@
 	</div>
 </div>
 <div class="row clearfix padbot"></div>
+<div id="holdlogin" style="display: none">
+    <h4>You must log in to place a hold</h4>
+    <label for="holdloginuser">Username or Library Card</label>
+    <input type="text" id="holdloginuser" name="holdloginuser" class="form-control" />
+    <label for="holdloginpass" class="padtop">Password</label>
+    <input type="password" id="holdloginpass" name="holdloginpass" class="form-control" />
+    <div class="padtop">
+        <button type="button" class="btn btn-success loginsubmit" id="holdloginsubmit">Log in and Place Hold</button>
+    </div>
+    <div class="padtop">
+        <button type="button" class="btn btn-danger logincancel" id="holdlogincancel">Cancel</button>
+    </div>
+</div>
+<script>
+function bind_login() {
+    $('.holdbtn').on("click", function() {
+        var recordid = $(this).attr("id").replace('record-', '');
+        console.log('record ' + recordid);
+        if (logged_in == null) {
+            /* present the login form and eventually call a login function
+             * which should be stored in all.js probably. Also place the hold
+             * because otherwise you're just making things difficult.
+             */
+            var contents = $('#holdlogin').html();
+            var holdbutton = $(this).parents().eq(1).html();
+            $('#holdlogin').empty();
+            $(this).parent().html(contents);
+            $("#holdloginsubmit").on("click", function() {
+                var username = $('#holdloginuser').val();
+                var password = $('#holdloginpass').val();
+                console.log(username + ' ' + password);
+            });
+            $("#holdlogincancel").on("click", function() {
+                $(this).parents().eq(1).html(holdbutton);
+                $("#holdlogin").html(contents);
+                bind_login();
+            });
+        } else {
+            /* Just place the hold.
+             */
+        }
+    });
+}
+bind_login();
+</script>

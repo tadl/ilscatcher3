@@ -1,3 +1,4 @@
+var logged_in;
 var ready;
 ready = function() {
     $(".tall-carousel").owlCarousel({
