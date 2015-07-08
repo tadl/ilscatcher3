@@ -1,6 +1,6 @@
 <%= bootstrap_form_tag url: 'search', :html => { :method => 'get', :class => 'form' } do |f| %>
     <div class="row">
-        <div class="col-lg-12 col-xs-12">
+        <div class="col-lg-9 col-xs-8">
             <div class="input-group input-group-lg">
                 <span class="input-group-addon">Search Term(s)</span>
                 <label class="sr-only control-label" for="query">Query</label>
@@ -9,6 +9,14 @@
                 <span class="input-group-btn">
                     <button type="submit" name="commit" class="btn btn-success"><span class="glyphicon glyphicon-search"></span></button>
                 </span>
+            </div>
+        </div>
+        <div class="col-lg-3 col-xs-4">
+            <div class="input-group">
+                <span class="input-group-addon">
+                    <input type="checkbox" name="availability" <% if search.availability_check==true %>checked="checked"<% end %>>
+                </span>
+                <label for="availability" class="form-control">Limit to available</label>
             </div>
         </div>
     </div>
@@ -45,12 +53,6 @@
         </div>
         <div class="row form-inline padbot">
             <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
-                <div class="input-group">
-                    <span class="input-group-addon">
-                        <input type="checkbox" name="availability" <% if search.availability_check==true %>checked="checked"<% end %>>
-                    </span>
-                    <label for="availability" class="form-control">Limit to available</label>
-                </div>
             </div>
         </div>
     </div>
