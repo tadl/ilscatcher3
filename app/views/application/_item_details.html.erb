@@ -94,7 +94,40 @@ function bind_login() {
             $("#holdloginsubmit").on("click", function() {
                 var username = $('#holdloginuser').val();
                 var password = $('#holdloginpass').val();
-                console.log(username + ' ' + password);
+                /* here is where we will actually log in, and then
+                 * place the hold.
+                 */
+                if (username != null) { 
+                    console.log('storing username: ' + username);
+                    sessionStorage.setItem('username', username); 
+                }
+                if (password != null) {
+                    var hash = $.md5(password);
+                    console.log('storing hash: ' + hash);
+                    sessionStorage.setItem('hash', hash);
+                }
+                var login_params = {"username": username, "password": password};
+                var jqxhr = $.ajax({
+                    method: 'POST',
+                    url: 'https://apiv2.catalog.tadl.org/account/login',
+                    data: login_params,
+                    dataType: "json",
+                    contentType: "application/x-www-form-urlencoded, charset=UTF-8",
+                    timeout: 15000
+                }).done(function(data) {
+                    if (data.message == 'login failed' || data.message == 'failed') {
+                        /* Notify the user somehow */
+                        console.log('fail');
+                    } else {
+                        sessionStorage.setItem('token', data.token);
+                        logged_in = true;
+                        console.log('you are logged in');
+                        /* Place the hold with the token */
+                        place_hold(recordid);
+                    }
+                }).fail(function() {
+                    /* Notify the user an error unrelated to credentials occurred */
+                })
             });
             $("#holdlogincancel").on("click", function() {
                 $(this).parents().eq(1).html(holdbutton);
@@ -102,8 +135,8 @@ function bind_login() {
                 bind_login();
             });
         } else {
-            /* Just place the hold.
-             */
+            /* Place the hold with the token */
+            place_hold(recordid);
         }
     });
 }
