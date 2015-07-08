@@ -67,5 +67,13 @@ function place_hold(id) {
     var record = id;
     var token = sessionStorage.getItem('token');
     console.log('placing hold with token ' + token + ' on record id ' + record);
-    /* #justajaxthings */
+    /* #justajaxthings (ajax stuff goes here) */
+
+    /* just a placeholder // illusion */
+    setTimeout(function() {
+        $('#record-' + record).text('Hold placed.');
+        $('#holdloginsubmit').text('Hold placed.');
+        $('#record-' + record).addClass('disabled').removeAttr('id');
+        $('#holdloginsubmit').addClass('disabled').removeAttr('id');
+    }, 3000);
 }

@@ -95,19 +95,24 @@ function bind_login() {
                 /*
                  *  this whole section after here should probably be a function
                  *  in all.js, but it's kind of customized for this specific
-                 *  purpose. (updating specific element ids with messages, etc)
+                 *  purpose (updating specific element ids with messages, etc)
+                 *  so we'll need to figure that out.
                  *
                  *  baby steps.
                  *
                  */
-                if (username != null) { 
+                if (username != null || username != '') { 
                     sessionStorage.setItem('username', username); 
                 }
-                if (password != null) {
+                if (password != null || password != '') {
                     var hash = $.md5(password);
                     sessionStorage.setItem('hash', hash);
                 }
                 var login_params = {"username": username, "password": password};
+                /* not using the below because it doesn't work for some reason. 
+                 * (but it works fine in the app!)
+                 */
+                // var login_params = {"username": username, "pass_md5": hash};
                 var jqxhr = $.ajax({
                     method: 'POST',
                     url: 'https://apiv2.catalog.tadl.org/account/login',
@@ -131,7 +136,7 @@ function bind_login() {
                         place_hold(recordid);
                     }
                 }).fail(function() {
-                    $('#loginmessage').html('Sorry, something went wrong. Please try again.');
+                    $('#loginmessage').text('Sorry, something went wrong. Please try again.');
                 })
             });
             $("#holdlogincancel").on("click", function() {
