@@ -15,7 +15,7 @@
 		<% else %>
 			content += "<div id='copy_container'>Loading Copy Details...</div>"
 			var url ='details.js?id=' + id + '&fetching=true'
-			$.get(url, function(data){})
+			$.post(url, function(data){})
 		<% end %>
 		content += '</div>'
 	
