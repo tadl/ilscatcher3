@@ -56,7 +56,7 @@
                 <% if !item.publisher.nil? %>
                     <dl>
                         <dt>Publisher</dt>
-                        <dd><%= item.publisher + ' ' + item.publication_place + ' ' + item.record_year %></dd>
+                        <dd><%= item.publisher %>  <% item.publication_place %> <%= item.record_year %></dd>
                     </dl>
                 <% end %>
             </div>
