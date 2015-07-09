@@ -27,9 +27,9 @@
                 </div>
                 <div class="col-lg-6 col-sm-5 col-xs-12">
                     <% if !item.author.nil? %><h4><%= item.author %></h4><% end %>
-                    <% if !item.abstract.nil? %>
+                    <% if !item.abstract.blank?  %>
                         <p><%= truncate(item.abstract, length: 400, separator: ' ') %></p>
-                    <% elsif !item.contents.nil? %>
+                    <% elsif !item.contents.blank? %>
                         <p><%= truncate(item.contents, length: 400, separator: ' ') %></p>
                     <% end %>
                 </div>
