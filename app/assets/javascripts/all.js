@@ -64,7 +64,7 @@ function bind_more_results(){
 
 function place_hold(id) {
     var record = id;
-    var token = sessionStorage.getItem('token') + 'asdf';
+    var token = sessionStorage.getItem('token');
     console.log('placing hold with token ' + token + ' on record id ' + record);
     var hold_params = {"token": token, "record_id": record};
     var jqxhr = $.ajax({
@@ -91,3 +91,56 @@ function place_hold(id) {
     });
 }
 
+
+function holdbutton_click() {
+    $('.holdbtn').on("click", function() {
+        var recordid = $(this).attr("id").replace('record-', '');
+        var logged_in = sessionStorage.getItem('authed');
+        var buttondiv = $(this).parents().eq(1);
+        var buttonhtml = $(this).parents().eq(1).html();
+        if (logged_in == null) {
+            var contents = $('#holdlogin').html();
+            $('#holdlogin').empty();
+            $(this).parent().html(contents);
+            $("#holdloginsubmit").on("click", function() {
+                var username = $('#holdloginuser').val();
+                var password = $('#holdloginpass').val();
+                $('#holdloginsubmit').text('Logging in...');
+                if (username != null || username != '') { sessionStorage.setItem('username', username); }
+                var login_params = {"username": username, "password": password};
+                var jqxhr = $.ajax({
+                    method: 'POST',
+                    url: 'https://apiv2.catalog.tadl.org/account/login',
+                    data: login_params,
+                    dataType: "json",
+                    contentType: "application/x-www-form-urlencoded, charset=UTF-8",
+                    timeout: 15000
+                }).done(function(data) {
+                    if (data.message == 'login failed' || data.message == 'failed') {
+                        $('#loginmessage').parent().html('<div id="loginmessage" class="alert alert-danger"><i class="glyphicon glyphicon-exclamation-sign"></i> There was a problem with your username or password. Please try again.</div>');
+                        $('#holdloginsubmit').text('Log in and place hold');
+                        $('#holdloginuser').val('')
+                        $('#holdloginpass').val('');
+                    } else {
+                        sessionStorage.setItem('token', data.token);
+                        sessionStorage.setItem('authed', "true");
+                        logged_in = true;
+                        $(buttondiv).html(buttonhtml);
+                        $('#record-' + recordid).text('Placing hold...');
+                        place_hold(recordid);
+                    }
+                }).fail(function() {
+                    $('#loginmessage').text('Sorry, something went wrong. Please try again.');
+                })
+            });
+            $("#holdlogincancel").on("click", function() {
+                $(buttondiv).html(buttonhtml);
+                $("#holdlogin").html(contents);
+                holdbutton_click();
+            });
+        } else {
+            $('#record-' + recordid).text('Placing hold...');
+            place_hold(recordid);
+        }
+    });
+}
