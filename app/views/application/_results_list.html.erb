@@ -27,8 +27,11 @@
                 </div>
                 <div class="col-lg-6 col-sm-5 col-xs-12">
                     <% if !item.author.nil? %><h4><%= item.author %></h4><% end %>
-                    <% if !item.abstract.nil? %><p><%= item.abstract %></p><!-- abstract --><% end %>
-                    <% if !item.contents.nil? %><p><%= item.contents %></p><!-- contents --><% end %>
+                    <% if !item.abstract.nil? %>
+                        <p><%= truncate(item.abstract, length: 400, separator: ' ') %></p>
+                    <% elsif !item.contents.nil? %>
+                        <p><%= truncate(item.contents, length: 400, separator: ' ') %></p>
+                    <% end %>
                 </div>
                 <div class="col-lg-3 col-sm-4 col-xs-12">
                     <% if item.eresource.nil? %><p><button class="btn btn-success">Place hold</button></p><% end %>
