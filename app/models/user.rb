@@ -67,7 +67,8 @@ class User
 	end
 
 	def place_hold(record_id)
-		# to do: handle holds that require force
+		# TODO: handle holds that require force
+        # such as: "Placing this hold could result in longer wait times."
 		record_ids = record_id.split(',').reject(&:empty?).map(&:strip).map {|k| "&hold_target=#{k}" }.join
 		agent = create_agent_token(self.token)
 		agent.get('https://mr.tadl.org/eg/opac/place_hold?hold_type=T' + record_ids)

@@ -60,7 +60,7 @@
 </div>
 <div class="row clearfix padbot"></div>
 <div id="holdlogin" style="display: none">
-    <div id="loginmessage" class="alert alert-warning"><i class="glyphicon glyphicon-user"></i> Log in to place hold</div>
+    <div><div id="loginmessage" class="alert alert-info"><i class="glyphicon glyphicon-user"></i> Log in to place hold</div></div>
     <label for="holdloginuser">Username or Library Card</label>
     <input type="text" id="holdloginuser" name="holdloginuser" class="form-control" />
     <label for="holdloginpass" class="padtop">Password</label>
@@ -87,15 +87,6 @@ function bind_login() {
                 var username = $('#holdloginuser').val();
                 var password = $('#holdloginpass').val();
                 $('#holdloginsubmit').text('Logging in...');
-                /*
-                 *  this whole section after here should probably be a function
-                 *  in all.js, but it's kind of customized for this specific
-                 *  purpose (updating specific element ids with messages, etc)
-                 *  so we'll need to figure that out.
-                 *
-                 *  baby steps.
-                 *
-                 */
                 if (username != null || username != '') { sessionStorage.setItem('username', username); }
                 var login_params = {"username": username, "password": password};
                 var jqxhr = $.ajax({
@@ -107,18 +98,17 @@ function bind_login() {
                     timeout: 15000
                 }).done(function(data) {
                     if (data.message == 'login failed' || data.message == 'failed') {
-                        $('#loginmessage').text('There was a problem with your username or password. Please try again.');
+                        $('#loginmessage').parent().html('<div id="loginmessage" class="alert alert-danger"><i class="glyphicon glyphicon-exclamation-sign"></i> There was a problem with your username or password. Please try again.</div>');
                         $('#holdloginsubmit').text('Log in and place hold');
                         $('#holdloginuser').val('')
                         $('#holdloginpass').val('');
-                        console.log('fail');
                     } else {
                         sessionStorage.setItem('token', data.token);
                         sessionStorage.setItem('authed', "true");
                         logged_in = true;
-                        console.log('you are logged in');
-                        $('#holdloginsubmit').text('Placing hold...');
-                        place_hold(recordid, buttondiv, buttonhtml);
+                        $(buttondiv).html(buttonhtml);
+                        $('#record-' + recordid).text('Placing hold...');
+                        place_hold(recordid);
                     }
                 }).fail(function() {
                     $('#loginmessage').text('Sorry, something went wrong. Please try again.');

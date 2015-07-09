@@ -62,19 +62,32 @@ function bind_more_results(){
     })
 }
 
-
-function place_hold(id,buttondiv,html) {
+function place_hold(id) {
     var record = id;
-    var token = sessionStorage.getItem('token');
+    var token = sessionStorage.getItem('token') + 'asdf';
     console.log('placing hold with token ' + token + ' on record id ' + record);
-    /* #justajaxthings (ajax stuff goes here) */
-
-    /* just a placeholder // illusion */
-    setTimeout(function() {
-        $(buttondiv).html(html);
-        $('#record-' + record).text('Hold placed.');
-        $('#holdloginsubmit').text('Hold placed.');
-        $('#record-' + record).addClass('disabled').removeAttr('id');
-        $('#holdloginsubmit').addClass('disabled').removeAttr('id');
-    }, 3000);
+    var hold_params = {"token": token, "record_id": record};
+    var jqxhr = $.ajax({
+        method: 'GET',
+        url: '/mock/place_hold',
+        data: hold_params,
+        dataType: "json",
+        contentType: "application/x-www-form-urlencoded, charset=UTF-8",
+        timeout: 15000
+    }).done(function(data) {
+        if (data['user']['error'] == 'bad token' || data['hold_confirmation'] == 'bad login') {
+            /* somehow we failed. we should refresh_login probably */
+        } else if (data['hold_confirmation'][0]['message'] == 'Hold was not successfully placed Problem: User already has an open hold on the selected item') {
+            var message = "<div class='alert alert-warning'><i class='glyphicon glyphicon-exclamation-sign'></i> Oops! You already have a hold on this item.</div>";
+            $('#record-' + record).parent().html(message);
+        } else {
+            console.log(data['hold_confirmation'][0]['record_id'] + " " + data['hold_confirmation'][0]['message']);
+            var message = "<div class='alert alert-success'><i class='glyphicon glyphicon-ok-sign'></i> Your hold was successfully placed.</div>";
+            $('#record-' + record).parent().html(message);
+        }
+    }).fail(function() {
+        /* figure out where to write this message. probably an overlay div */
+        $('#loginmessage').text('Sorry, something went wrong. Please try again.');
+    });
 }
+
