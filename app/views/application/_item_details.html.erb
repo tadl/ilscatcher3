@@ -82,10 +82,10 @@ function bind_login() {
     $('.holdbtn').on("click", function() {
         var recordid = $(this).attr("id").replace('record-', '');
         var logged_in = sessionStorage.getItem('authed');
-        /* null matches null or undefined */
+        var buttondiv = $(this).parents().eq(1);
+        var buttonhtml = $(this).parents().eq(1).html();
         if (logged_in == null) {
             var contents = $('#holdlogin').html();
-            var holdbutton = $(this).parents().eq(1).html();
             $('#holdlogin').empty();
             $(this).parent().html(contents);
             $("#holdloginsubmit").on("click", function() {
@@ -101,18 +101,8 @@ function bind_login() {
                  *  baby steps.
                  *
                  */
-                if (username != null || username != '') { 
-                    sessionStorage.setItem('username', username); 
-                }
-                if (password != null || password != '') {
-                    var hash = $.md5(password);
-                    sessionStorage.setItem('hash', hash);
-                }
+                if (username != null || username != '') { sessionStorage.setItem('username', username); }
                 var login_params = {"username": username, "password": password};
-                /* not using the below because it doesn't work for some reason. 
-                 * (but it works fine in the app!)
-                 */
-                // var login_params = {"username": username, "pass_md5": hash};
                 var jqxhr = $.ajax({
                     method: 'POST',
                     url: 'https://apiv2.catalog.tadl.org/account/login',
@@ -133,14 +123,14 @@ function bind_login() {
                         logged_in = true;
                         console.log('you are logged in');
                         $('#holdloginsubmit').text('Placing hold...');
-                        place_hold(recordid);
+                        place_hold(recordid, buttondiv, buttonhtml);
                     }
                 }).fail(function() {
                     $('#loginmessage').text('Sorry, something went wrong. Please try again.');
                 })
             });
             $("#holdlogincancel").on("click", function() {
-                $(this).parents().eq(1).html(holdbutton);
+                $(buttondiv).html(buttonhtml);
                 $("#holdlogin").html(contents);
                 bind_login();
             });

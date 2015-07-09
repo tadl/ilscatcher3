@@ -63,7 +63,7 @@ function bind_more_results(){
 }
 
 
-function place_hold(id) {
+function place_hold(id,buttondiv,html) {
     var record = id;
     var token = sessionStorage.getItem('token');
     console.log('placing hold with token ' + token + ' on record id ' + record);
@@ -71,6 +71,7 @@ function place_hold(id) {
 
     /* just a placeholder // illusion */
     setTimeout(function() {
+        $(buttondiv).html(html);
         $('#record-' + record).text('Hold placed.');
         $('#holdloginsubmit').text('Hold placed.');
         $('#record-' + record).addClass('disabled').removeAttr('id');
