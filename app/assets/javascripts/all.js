@@ -68,7 +68,7 @@ function place_hold(id,button) {
     console.log('placing hold with token ' + token + ' on record id ' + record);
     var hold_params = {"token": token, "record_id": record};
     var jqxhr = $.ajax({
-        method: 'GET',
+        method: 'POST',
         url: '/mock/place_hold',
         data: hold_params,
         dataType: "json",
