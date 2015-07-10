@@ -95,9 +95,9 @@ function place_hold(id,button) {
 
 function holdbutton_click() {
     $('.holdbtn').on("click", function() {
+        var logged_in = sessionStorage.getItem('authed');
         var recordid = $(this).attr("id").split('-')[1];
         var thebutton = $(this);
-        var logged_in = sessionStorage.getItem('authed');
         var buttondiv = $(this).parents().eq(1);
         var buttonhtml = $(this).parents().eq(1).html();
         if (logged_in == null) {
@@ -112,7 +112,7 @@ function holdbutton_click() {
                 var login_params = {"username": username, "password": password};
                 var jqxhr = $.ajax({
                     method: 'POST',
-                    url: 'https://apiv2.catalog.tadl.org/account/login',
+                    url: '/mock/login',
                     data: login_params,
                     dataType: "json",
                     contentType: "application/x-www-form-urlencoded, charset=UTF-8",
@@ -121,18 +121,18 @@ function holdbutton_click() {
                     if (data.message == 'login failed' || data.message == 'failed') {
                         $('#loginmessage').parent().html('<div id="loginmessage" class="alert alert-danger"><i class="glyphicon glyphicon-exclamation-sign"></i> There was a problem with your username or password. Please try again.</div>');
                         $('#holdloginsubmit').text('Log in and place hold');
-                        $('#holdloginuser').val('')
+                        $('#holdloginuser').val('');
                         $('#holdloginpass').val('');
                     } else {
                         sessionStorage.setItem('token', data.token);
                         sessionStorage.setItem('authed', "true");
-                        logged_in = true;
-                        $(buttondiv).html(buttonhtml);
-                        $(thebutton).text('Placing hold...');
-                        place_hold(recordid,thebutton);
+                        var message = "<div class='alert alert-info'><i class='glyphicon glyphicon-sunglasses'></i> Placing hold...</div>";
+                        $(buttondiv).html(message);
+                        place_hold(recordid,buttondiv);
                     }
                 }).fail(function() {
-                    $('#loginmessage').text('Sorry, something went wrong. Please try again.');
+                    var message = "<div class='alert alert-danger'><i class='glyphicon glyphicon-exclamation-sign'></i> Sorry, something went horribly wrong. Please try again.</div>";
+                    $(thebutton).parent().html(message);
                 })
             });
             $("#holdlogincancel").on("click", function() {

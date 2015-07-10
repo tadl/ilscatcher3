@@ -23,40 +23,26 @@
 
 <%= render 'more_results_link' %>
 
+<%= render 'hidden_hold_login' %>
 
 <script>
-    bind_more_results()
+bind_more_results()
 </script>
-
 
 <script>
-    document.addEventListener('page:change', function() {
-            document.getElementById('results').className += ' animated fadeInUp';
-    });
-    document.addEventListener('page:fetch', function() {
-            document.getElementById('results').className += ' animated fadeOutDown';
-    })
-    
-    $(document).on("submit", "form[data-turboform]", function(e) {
-        Turbolinks.visit(this.action+(this.action.indexOf('?') == -1 ? '?' : '&')+$(this).serialize());
-        return false;
-    });
+document.addEventListener('page:change', function() {
+    document.getElementById('results').className += ' animated fadeInUp';
+});
+document.addEventListener('page:fetch', function() {
+    document.getElementById('results').className += ' animated fadeOutDown';
+})
+
+$(document).on("submit", "form[data-turboform]", function(e) {
+    Turbolinks.visit(this.action+(this.action.indexOf('?') == -1 ? '?' : '&')+$(this).serialize());
+    return false;
+});
 </script>
 
-<div id="holdlogin" style="display: none">
-<div><div id="loginmessage" class="alert alert-info"><i class="glyphicon glyphicon-user"></i> Log in to place hold</div></div>
-<label for="holdloginuser">Username or Library Card</label>
-<input type="text" id="holdloginuser" name="holdloginuser" class="form-control" />
-<label for="holdloginpass" class="padtop">Password</label>
-<input type="password" id="holdloginpass" name="holdloginpass" class="form-control" />
-<div class="padtop">
-<button type="button" class="btn btn-success loginsubmit" id="holdloginsubmit">Log in and Place Hold</button>
-</div>
-<div class="padtop">
-<button type="button" class="btn btn-danger logincancel" id="holdlogincancel">Cancel</button>
-</div>
-</div>
 <script>
 holdbutton_click();
 </script>
-
