@@ -62,7 +62,7 @@ function bind_more_results(){
     })
 }
 
-function place_hold(id) {
+function place_hold(id,button) {
     var record = id;
     var token = sessionStorage.getItem('token');
     console.log('placing hold with token ' + token + ' on record id ' + record);
@@ -79,22 +79,24 @@ function place_hold(id) {
             /* somehow we failed. we should refresh_login probably */
         } else if (data['hold_confirmation'][0]['message'] == 'Hold was not successfully placed Problem: User already has an open hold on the selected item') {
             var message = "<div class='alert alert-warning'><i class='glyphicon glyphicon-exclamation-sign'></i> Oops! You already have a hold on this item.</div>";
-            $('#record-' + record).parent().html(message);
+            $(button).parent().html(message);
         } else {
             console.log(data['hold_confirmation'][0]['record_id'] + " " + data['hold_confirmation'][0]['message']);
             var message = "<div class='alert alert-success'><i class='glyphicon glyphicon-ok-sign'></i> Your hold was successfully placed.</div>";
-            $('#record-' + record).parent().html(message);
+            $(button).parent().html(message);
         }
     }).fail(function() {
         /* figure out where to write this message. probably an overlay div */
-        $('#loginmessage').text('Sorry, something went wrong. Please try again.');
+        var message = "<div class='alert alert-danger'><i class='glyphicon glyphicon-exclamation-sign'></i> Sorry, something went horribly wrong. Please try again.</div>";
+        $(button).parent().html(message);
     });
 }
 
 
 function holdbutton_click() {
     $('.holdbtn').on("click", function() {
-        var recordid = $(this).attr("id").replace('record-', '');
+        var recordid = $(this).attr("id").split('-')[1];
+        var thebutton = $(this);
         var logged_in = sessionStorage.getItem('authed');
         var buttondiv = $(this).parents().eq(1);
         var buttonhtml = $(this).parents().eq(1).html();
@@ -126,8 +128,8 @@ function holdbutton_click() {
                         sessionStorage.setItem('authed', "true");
                         logged_in = true;
                         $(buttondiv).html(buttonhtml);
-                        $('#record-' + recordid).text('Placing hold...');
-                        place_hold(recordid);
+                        $(thebutton).text('Placing hold...');
+                        place_hold(recordid,thebutton);
                     }
                 }).fail(function() {
                     $('#loginmessage').text('Sorry, something went wrong. Please try again.');
@@ -139,8 +141,8 @@ function holdbutton_click() {
                 holdbutton_click();
             });
         } else {
-            $('#record-' + recordid).text('Placing hold...');
-            place_hold(recordid);
+            $(thebutton).text('Placing hold...');
+            place_hold(recordid,thebutton);
         }
     });
 }

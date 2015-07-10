@@ -35,7 +35,7 @@
             </div>
             <div class="col-lg-3 col-sm-4 col-xs-12">
                 <div>
-                    <% if item.eresource.nil? %><p><button class="btn btn-success holdbtn" id="record-<%= item.id %>">Place hold</button></p><% end %>
+                    <% if item.eresource.nil? %><p><button class="btn btn-success holdbtn" id="search-<%= item.id %>">Place hold</button></p><% end %>
                 </div>
                 <% if !item.call_number.nil? %><p class="label label-default"><%= item.call_number %></p><% end %>
                 <% if !item.availability.nil? %>
