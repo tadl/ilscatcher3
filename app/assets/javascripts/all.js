@@ -118,7 +118,7 @@ function holdbutton_click() {
                     contentType: "application/x-www-form-urlencoded, charset=UTF-8",
                     timeout: 15000
                 }).done(function(data) {
-                    if (data.message == 'login failed' || data.message == 'failed') {
+                    if (data.error == 'bad username or password') {
                         $('#loginmessage').parent().html('<div id="loginmessage" class="alert alert-danger"><i class="glyphicon glyphicon-exclamation-sign"></i> There was a problem with your username or password. Please try again.</div>');
                         $('#holdloginsubmit').text('Log in and place hold');
                         $('#holdloginuser').val('');
