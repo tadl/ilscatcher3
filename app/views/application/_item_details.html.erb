@@ -15,7 +15,7 @@
             <div class="col-xs-12 col-lg-12"><p><%= item.author %></p></div>
         </div>
         <div class="row">
-            <div class="col-xs-12 col-md-8 col-lg-8">
+            <div class="col-xs-12 col-md-8 col-lg-9">
                 <% if !item.abstract.nil? %>
                     <dl>
                         <dt>Summary</dt>
@@ -34,7 +34,7 @@
                     </dl>
                 <% end %>
             </div>
-            <div class="col-xs-12 col-md-4 col-lg-4">
+            <div class="col-xs-12 col-md-4 col-lg-3">
                 <span class="pull-right"><% if item.eresource.nil? %><p><button class="btn btn-success holdbtn" id="record-<%= item.id %>">Place hold</button></p><% end %></span>
             </div>
         </div>
