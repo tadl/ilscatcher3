@@ -79,6 +79,7 @@ body.wait *, body.wait {
     font-size: 50px;
 }
 
+/* spinning and rotated glyphicon classes */
 .gly-spin {
     -webkit-animation: spin 2s infinite linear;
     -moz-animation: spin 2s infinite linear;
@@ -159,3 +160,4 @@ body.wait *, body.wait {
     -o-transform: scale(1, -1);
     transform: scale(1, -1);
 }
+
