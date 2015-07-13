@@ -37,8 +37,17 @@ ready = function() {
 
 };
 
+function showLoading() {
+    $('#statusMessage').modal('show');
+}
+function hideLoading() {
+    $('#statusMessage').modal('hide');
+}
+
 $(document).ready(ready);
 $(document).on('page:load', ready);
+$(document).on('page:fetch', showLoading);
+$(document).on('page:receive', hideLoading);
 
 /* add a class to the body when ajax is happening */
 /* unfortunately this is/was triggered by endless scroll functionality as
