@@ -48,9 +48,11 @@ class MockController < ApplicationController
   end
 
   def login
+    @update = params["update"]
     @user = User.new params
     respond_to do |format|
       format.json {render json: @user}
+      format.js
     end
   end
 

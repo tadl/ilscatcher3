@@ -84,10 +84,12 @@ function place_hold(id,button) {
         } else if (data['hold_confirmation'][0]['message'] == 'Hold was not successfully placed Problem: User already has an open hold on the selected item') {
             var message = "<div class='alert alert-warning'><i class='glyphicon glyphicon-exclamation-sign'></i> Oops! You already have a hold on this item.</div>";
             $(button).parent().html(message);
+            $.get( "login.js", { "token": token, "update": "true" } );
         } else {
             console.log(data['hold_confirmation'][0]['record_id'] + " " + data['hold_confirmation'][0]['message']);
             var message = "<div class='alert alert-success'><i class='glyphicon glyphicon-ok-sign'></i> Your hold was successfully placed.</div>";
             $(button).parent().html(message);
+            $.get( "login.js", { "token": token, "update": "true" } );
         }
     }).fail(function() {
         /* figure out where to write this message. probably an overlay div */
@@ -149,4 +151,29 @@ function holdbutton_click() {
             place_hold(recordid,thebutton);
         }
     });
+}
+
+function update_login(){
+    var full_name = sessionStorage.getItem('full_name');
+    var holds = sessionStorage.getItem('holds');
+    var holds_ready = sessionStorage.getItem('holds_ready');
+    var checkouts = sessionStorage.getItem('checkouts');
+    var fine = sessionStorage.getItem('fine');
+    $('#full_name').html(full_name)
+    $('#holds').append(holds)
+    $('#holds_ready').append(holds_ready)
+    $('#checkouts').append(checkouts)
+    $('#fine').append(fine)
+}
+
+function login(){
+    var username = $('#username').val();
+    var password = $('#password').val();
+    $.post( "login.js", { "username": username, "password": password, "update": "true" } );
+}
+
+function logout(){
+   sessionStorage.clear();
+   $.get( "login.js", { "update": "true" } );
+   location.reload();
 }
