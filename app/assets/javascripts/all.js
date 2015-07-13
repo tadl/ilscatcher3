@@ -68,7 +68,7 @@ function bind_more_results(){
         if (topOrBottomOrBoth == 'top') {
             $('#more_results').unbind('inview');
             $('#more_results:first a')[0].click();
-            var message = '<div class="alert alert-info"><i class="glyphicon glyphicon-search gly-spin"></i> Loading more results...</div>';
+            var message = '<div class="alert alert-info"><div class="center-text">Loading more results...</div><div class="progress"><div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="100" aria-valuemin="100" aria-valuemax="100" style="width:100%"></div></div></div>';
             $('#load_more_text').html(message)
         }
       }
