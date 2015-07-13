@@ -45,11 +45,17 @@
         </div>
         <div class="row form-inline padbot">
             <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
-                <div class="input-group">
-                    <span class="input-group-addon">
-                        <input type="checkbox" name="availability" <% if search.availability_check==true %>checked="checked"<% end %>>
-                    </span>
-                    <label for="availability" class="form-control">Limit to available</label>
+                <div class="form-group">
+                    <input type="checkbox" name="availability" id="availability" <% if search.availability_check==true %>checked="checked"<% end %>>
+                    <div class="btn-group">
+                        <label for="availability" class="btn btn-default">
+                            <span class="glyphicon glyphicon-ok"></span>
+                            <span></span>
+                        </label>
+                        <label for="availability" class="btn btn-default">
+                            Limit to available
+                        </label>
+                    </div>
                 </div>
             </div>
         </div>
