@@ -13,13 +13,14 @@
     </div>
     <div class="modal fade" id="statusMessage" role="dialog" tabindex="-1" aria-labelledby="statusMessageModal">
         <div class="modal-dialog modal-sm">
-            <div class="modal-content row">
-                <h4 class="col-xs-12 text-center padtop padbot">
-                    <i class="glyphicon glyphicon-cd gly-spin"></i> 
-                    <span id="statusMessageText">
-                        Loading, please wait...
-                    </span>
-                </h4>
+            <div class="modal-content">
+                <h3 class="text-center" id="statusMessageText">Loading, please wait...</h3>
+                <div class="modal-body">
+                    <div class="progress">
+                        <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="100" aria-valuemin="100" aria-valuemax="100" style="width:100%"> 
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
