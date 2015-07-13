@@ -11,6 +11,18 @@
     <div id="main-container" class="container">
         <%= yield %>
     </div>
+    <div class="modal fade" id="statusMessage" role="dialog" tabindex="-1" aria-labelledby="statusMessageModal">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content row">
+                <h4 class="col-xs-12 text-center padtop padbot">
+                    <i class="glyphicon glyphicon-cd gly-spin"></i> 
+                    <span id="statusMessageText">
+                        Loading, please wait...
+                    </span>
+                </h4>
+            </div>
+        </div>
+    </div>
     <a href="#" class="back-to-top">
         <i class="glyphicon glyphicon-menu-up" title="back to top"></i>
     </a>

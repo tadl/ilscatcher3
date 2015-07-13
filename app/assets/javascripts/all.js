@@ -20,8 +20,6 @@ ready = function() {
         itemsMobile : [479,1],
     });
 
-    $('[data-toggle="tooltip"]').tooltip()
-
     var offset = 450;
     var duration = 300;
     $(window).scroll(function() {
@@ -43,11 +41,16 @@ $(document).ready(ready);
 $(document).on('page:load', ready);
 
 /* add a class to the body when ajax is happening */
+/* unfortunately this is/was triggered by endless scroll functionality as
+ * well, so this is not going to work out either.
+ *
 $(document).ajaxStart(function () {
-    $('body').addClass('wait');
+    $('#statusMessageText').text('One moment...');
+    $('#statusMessage').modal('show');
 }).ajaxComplete(function () {
-    $('body').removeClass('wait');
+    $('#statusMessage').modal('hide');
 });
+ */
 
 function bind_more_results(){
     $('#more_results').bind('inview', function (event, visible, topOrBottomOrBoth) {
