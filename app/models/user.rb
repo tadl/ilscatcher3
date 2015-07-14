@@ -4,7 +4,7 @@ class User
 	attr_accessor :full_name, :checkouts, :holds, :holds_ready, :fine, :token, :card, :error
 
 	def initialize args
-		if args['token']
+		if args['token'] 
 			agent = create_agent_token(args['token'])
 			basic_info = basic_info(agent)
 		elsif args['username'] && args['password'] 

@@ -49,10 +49,27 @@ class MockController < ApplicationController
 
   def login
     @update = params["update"]
-    @user = User.new params
+    if cookies[:login]
+      args = Hash.new
+      args['token'] = cookies[:login]
+      @user = User.new args
+    else
+      @user = User.new params
+    end
+    if @user.token
+      cookies[:login] = { :value => @user.token, :expires => 1.hour.from_now }
+    end
     respond_to do |format|
       format.json {render json: @user}
       format.js
+    end
+  end
+
+  def logout
+    cookies.delete :login
+    @message = "logged out"
+    respond_to do |format|
+      format.json {render json: @message}
     end
   end
 
