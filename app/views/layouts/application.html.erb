@@ -9,18 +9,13 @@
 <body class="<%= controller_name %> <%= action_name %>">
     <%= render 'navigation' %>
     <div id="main-container" class="container">
-    <!--
-        <div class="row">
-            <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
-                <%= render 'logo_box' %>
-            </div>
-            <div id="account_box" class="col-xs-12 col-sm-4 col-sm-offset-4 col-md-4 col-md-offset-4 col-lg-4 col-lg-offset-4">
-                <%= render 'account_box' %>
-            </div>
+    <div class="row">
+        <div class="col-xs-12 col-md-12 col-lg-6 col-lg-offset-3" id="alert_target">
         </div>
-    -->
+    </div>
         <%= yield %>
     </div>
+
     <div class="modal fade" id="statusMessage" role="dialog" tabindex="-1" aria-labelledby="statusMessageModal">
         <div class="modal-dialog modal-sm">
             <div class="modal-content">
@@ -34,9 +29,11 @@
             </div>
         </div>
     </div>
+
     <a href="#" class="back-to-top">
         <i class="glyphicon glyphicon-menu-up" title="back to top"></i>
     </a>
+
     <script type="text/javascript" src="/assets/salvattore.min.js"></script>
 </body>
 </html>

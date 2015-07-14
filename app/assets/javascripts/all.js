@@ -192,3 +192,22 @@ function logout() {
     sessionStorage.clear();
     $.get("login.js", {"update": "true"});
 }
+
+
+function alert_message(type, message, timeout) {
+    if (!type.match(/success|info|warning|danger/)) { return; }
+    var iconmap = {success:"ok-sign", info:"info-sign", warning:"question-sign", danger:"remove-sign"};
+    if (message == undefined) { return; }
+    if (timeout == undefined) { var timeout = 5000; }
+    var contents = '<div class="alert alert-' + type + ' alert-dismissible fade in" role="alert" id="alertmessage">';
+        contents += '<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>';
+        contents += '<h4 class="padtop">';
+        contents += '<span class="glyphicon glyphicon-' + iconmap[type] + '"></span> ';
+        contents += '<span id="alert_message">' + message + '</span>';
+        contents += '</h4>';
+    contents += '</div>';
+    $('#alert_target').html(contents);
+    window.setTimeout(function() {
+        $('#alertmessage').alert('close');
+    }, timeout);
+}
