@@ -3,14 +3,14 @@
 </h2>
 
 <script>
- 	if(sessionStorage.getItem('full_name') !== null){
- 		$('#account_info_box').html("<%= escape_javascript(render partial: 'account_basics') %>")
- 		update_login()	
- 	}else if(sessionStorage.getItem('token') !== null){
- 		var token = sessionStorage.getItem('token')
- 		$('#account_info_box').html("<%= escape_javascript(render partial: 'account_basics') %>")
- 		$.get( "login.js", { "token": token, "update": 'true' } )	
- 	}else{
- 		$('#account_info_box').html("<%= escape_javascript(render partial: 'login_form') %>")
- 	}
+    if (sessionStorage.getItem('full_name') != undefined) {
+        $('#account_info_box').html("<%= escape_javascript(render partial: 'account_basics') %>");
+        update_login();
+    } else if (sessionStorage.getItem('token') != undefined) {
+        var token = sessionStorage.getItem('token');
+        $('#account_info_box').html("<%= escape_javascript(render partial: 'account_basics') %>");
+        $.get("login.js", {"token": token, "update": 'true'});
+    } else {
+        $('#account_info_box').html("<%= escape_javascript(render partial: 'login_form') %>")
+    }
 </script>

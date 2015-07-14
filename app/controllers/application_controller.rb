@@ -3,7 +3,6 @@ class ApplicationController < ActionController::Base
     require 'open-uri'
 
     def shared_mock_variables
-        @user_name = 'William Rockwood'
         @logo = 'http://www.tadl.org/sites/all/themes/converge_custom/logo.png'
         @query_options = [['Keyword', 'keyword'], ['Author', 'author'],['Title', 'title'],['Subject', 'subject']]
     	@format_options = [['All Formats', 'all'], ['Books', 'a'],['Movies', 'g'],['Music', 'j']]

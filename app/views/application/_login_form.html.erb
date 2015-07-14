@@ -1,11 +1,26 @@
-<form id="signin" role="form">
-    <div class="input-group">
-        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-        <input id="username" type="text" class="form-control" name="username" value="" placeholder="Username or Card #">
-    </div>
-    <div class="input-group">
-        <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-        <input id="password" type="password" class="form-control" name="password" value="" placeholder="Password">
-    </div>
-    <a class="btn btn-primary" onclick="login()">Login</a>
-</form>
+<ul class="nav navbar-nav navbar-right">
+    <li class="dropdown">
+        <a href="#" class="navbar-nav dropdown-toggle" data-toggle="dropdown">Sign in <b class="caret"></b></a>
+        <ul class="dropdown-menu" style="padding: 20px; min-width: 300px;">
+            <li>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group input-group">
+                            <label class="sr-only" for="username">Username or Card Number</label>
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                            <input type="text" class="form-control" id="username" name="username" placeholder="Username or Card #" required>
+                        </div>
+                        <div class="form-group input-group">
+                            <label class="sr-only" for="password">Password</label>
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                            <input type="password" class="form-control" id="password" name="password" placeholder="Password" required>
+                        </div>
+                        <div class="form-group">
+                            <button onclick="login()" class="btn btn-primary btn-block">Sign in</button>
+                        </div>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </li>
+</ul>

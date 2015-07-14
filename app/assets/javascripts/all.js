@@ -88,6 +88,7 @@ function place_hold(id,button) {
         contentType: "application/x-www-form-urlencoded, charset=UTF-8",
         timeout: 15000
     }).done(function(data) {
+        $('#statusMessage').modal('hide');
         if (data['user']['error'] == 'bad token' || data['hold_confirmation'] == 'bad login') {
             /* somehow we failed. we should refresh_login probably */
         } else if (data['hold_confirmation'][0]['message'] == 'Hold was not successfully placed Problem: User already has an open hold on the selected item') {
@@ -101,6 +102,7 @@ function place_hold(id,button) {
             $.get( "login.js", { "token": token, "update": "true" } );
         }
     }).fail(function() {
+        $('#statusMessage').modal('hide');
         /* figure out where to write this message. probably an overlay div */
         var message = "<div class='alert alert-danger'><i class='glyphicon glyphicon-exclamation-sign'></i> Sorry, something went horribly wrong. Please try again.</div>";
         $(button).parent().html(message);
@@ -120,6 +122,7 @@ function holdbutton_click() {
             $('#holdlogin').empty();
             $(this).parent().html(contents);
             $("#holdloginsubmit").on("click", function() {
+                $('#statusMessage').modal('show');
                 var username = $('#holdloginuser').val();
                 var password = $('#holdloginpass').val();
                 $('#holdloginsubmit').text('Logging in...');
@@ -134,6 +137,7 @@ function holdbutton_click() {
                     timeout: 15000
                 }).done(function(data) {
                     if (data.error == 'bad username or password') {
+                        $('#statusMessage').modal('hide');
                         $('#loginmessage').parent().html('<div id="loginmessage" class="alert alert-danger"><i class="glyphicon glyphicon-exclamation-sign"></i> There was a problem with your username or password. Please try again.</div>');
                         $('#holdloginsubmit').text('Log in and place hold');
                         $('#holdloginuser').val('');
@@ -146,6 +150,7 @@ function holdbutton_click() {
                         place_hold(recordid,buttondiv);
                     }
                 }).fail(function() {
+                    $('#statusMessage').modal('hide');
                     var message = "<div class='alert alert-danger'><i class='glyphicon glyphicon-exclamation-sign'></i> Sorry, something went horribly wrong. Please try again.</div>";
                     $(thebutton).parent().html(message);
                 })
@@ -156,6 +161,7 @@ function holdbutton_click() {
                 holdbutton_click();
             });
         } else {
+            $('#statusMessage').modal('show');
             $(thebutton).text('Placing hold...');
             place_hold(recordid,thebutton);
         }
@@ -168,21 +174,21 @@ function update_login(){
     var holds_ready = sessionStorage.getItem('holds_ready');
     var checkouts = sessionStorage.getItem('checkouts');
     var fine = sessionStorage.getItem('fine');
-    $('#full_name').html(full_name)
-    $('#holds').append(holds)
-    $('#holds_ready').append(holds_ready)
-    $('#checkouts').append(checkouts)
-    $('#fine').append(fine)
+    $('#full_name').text(full_name)
+    $('#holds').text(holds)
+    $('#holds_ready').text(holds_ready)
+    $('#checkouts').text(checkouts)
+    $('#fine').text(fine)
 }
 
-function login(){
+function login() {
+    $('#statusMessage').modal('show');
     var username = $('#username').val();
     var password = $('#password').val();
-    $.post( "login.js", { "username": username, "password": password, "update": "true" } );
+    $.post("login.js", {"username": username, "password": password, "update": "true"});
 }
 
-function logout(){
-   sessionStorage.clear();
-   $.get( "login.js", { "update": "true" } );
-   location.reload();
+function logout() {
+    sessionStorage.clear();
+    $.get("login.js", {"update": "true"});
 }
