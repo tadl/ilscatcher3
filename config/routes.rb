@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   get 'mock/index'
   match "mock/search" => "mock#search", via: [:get, :post], defaults: { format: 'html' }
   match "mock/login" => "mock#login", via: [:get, :post], defaults: { format: 'json' }
+  match "mock/logout" => "mock#logout", via: [:get, :post], defaults: { format: 'json' }
   match "mock/place_hold" => "mock#place_hold", via: [:get, :post], defaults: { format: 'json' }
   match "mock/list_holds" => "mock#list_holds", via: [:get, :post], defaults: { format: 'json' }
   match "mock/details" => "mock#details", via: [:get, :post], defaults: { format: 'html' }

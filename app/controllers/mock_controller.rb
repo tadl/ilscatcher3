@@ -49,15 +49,26 @@ class MockController < ApplicationController
 
   def login
     @update = params["update"]
-    @user = User.new params
+    @user = generate_user()
+    if @user.token
+      cookies[:login] = { :value => @user.token, :expires => 1.hour.from_now }
+    end
     respond_to do |format|
       format.json {render json: @user}
       format.js
     end
   end
 
+  def logout
+    cookies.delete :login
+    @message = "logged out"
+    respond_to do |format|
+      format.json {render json: @message}
+    end
+  end
+
   def place_hold
-    @check_user = User.new params
+    @check_user = generate_user()
     if !@check_user.error
       if params[:record_id] || !params[:record_id].blank?
         @hold_confirmation = @check_user.place_hold(params['record_id'])
@@ -67,7 +78,7 @@ class MockController < ApplicationController
     else
       @hold_confirmation = 'bad login'
     end
-    @user = User.new params
+    @user = generate_user()
     respond_to do |format|
       format.json {render :json => {:user => @user, 
         :hold_confirmation => @hold_confirmation}}
@@ -75,7 +86,7 @@ class MockController < ApplicationController
   end
 
   def list_holds
-    @user = User.new params
+    @user = generate_user()
     if !@user.error
       @holds = @user.list_holds
     else
@@ -87,5 +98,14 @@ class MockController < ApplicationController
     end
   end
 
-
+  def generate_user()
+    if cookies[:login]
+      args = Hash.new
+      args['token'] = cookies[:login]
+      user = User.new args
+    else
+      user = User.new params
+    end
+    return user
+  end
 end
