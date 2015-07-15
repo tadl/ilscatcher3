@@ -174,23 +174,28 @@ function update_login(){
     var holds_ready = sessionStorage.getItem('holds_ready');
     var checkouts = sessionStorage.getItem('checkouts');
     var fine = sessionStorage.getItem('fine');
-    $('#full_name').text(full_name)
-    $('#holds').text(holds)
-    $('#holds_ready').text(holds_ready)
-    $('#checkouts').text(checkouts)
-    $('#fine').text(fine)
+    $('#full_name').text(full_name);
+    $('#holds').text(holds);
+    $('#holds_ready').text(holds_ready);
+    $('#checkouts').text(checkouts);
+    $('#fine').text(fine);
 }
 
 function login() {
     $('#statusMessage').modal('show');
     var username = $('#username').val();
     var password = $('#password').val();
-    $.post("login.js", {"username": username, "password": password, "update": "true"});
+    $.post("login.js", {username: username, password: password, update: "true"});
 }
 
 function logout() {
     sessionStorage.clear();
-    $.get("login.js", {"update": "true"});
+    delete_cookie('login');
+    $.get("login.js", {update: "true"});
+}
+
+function delete_cookie(name) {
+    document.cookie = name + '=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
 }
 
 
