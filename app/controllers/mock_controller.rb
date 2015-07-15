@@ -1,6 +1,6 @@
 class MockController < ApplicationController
     include ApplicationHelper
-    before_filter :shared_mock_variables
+    before_filter :shared_mock_variables, :generate_user
     respond_to :html, :json, :js
 
   def index
@@ -96,16 +96,4 @@ class MockController < ApplicationController
     end
   end
 
-  private
-
-  def generate_user()
-    if cookies[:login]
-      args = Hash.new
-      args['token'] = cookies[:login]
-      user = User.new args
-    else
-      user = User.new params
-    end
-    return user
-  end
 end
