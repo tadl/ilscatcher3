@@ -1,6 +1,7 @@
 var logged_in;
 var ready;
 ready = function() {
+    /* for front page carousels */
     $(".tall-carousel").owlCarousel({
         items : 9,
         paginationNumbers : true,
@@ -20,6 +21,7 @@ ready = function() {
         itemsMobile : [479,1],
     });
 
+    /* scroll to top button */
     var offset = 450;
     var duration = 300;
     $(window).scroll(function() {
@@ -49,36 +51,23 @@ $(document).on('page:load', ready);
 $(document).on('page:fetch', showLoading);
 $(document).on('page:receive', hideLoading);
 
-/* add a class to the body when ajax is happening */
-/* unfortunately this is/was triggered by endless scroll functionality as
- * well, so this is not going to work out either.
- *
-$(document).ajaxStart(function () {
-    $('#statusMessageText').text('One moment...');
-    $('#statusMessage').modal('show');
-}).ajaxComplete(function () {
-    $('#statusMessage').modal('hide');
-});
- */
-
-function bind_more_results(){
+function bind_more_results() {
     $('#more_results').bind('inview', function (event, visible, topOrBottomOrBoth) {
-      if (visible == true) {
-        // element is now visible in the viewport
-        if (topOrBottomOrBoth == 'top') {
-            $('#more_results').unbind('inview');
-            $('#more_results:first a')[0].click();
-            var message = '<div class="alert alert-info"><div class="center-text">Loading more results...</div><div class="progress"><div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="100" aria-valuemin="100" aria-valuemax="100" style="width:100%"></div></div></div>';
-            $('#load_more_text').html(message)
+        if (visible == true) {
+            // element is now visible in the viewport
+            if (topOrBottomOrBoth == 'top') {
+                $('#more_results').unbind('inview');
+                $('#more_results:first a')[0].click();
+                var message = '<div class="alert alert-info"><div class="center-text">Loading more results...</div><div class="progress"><div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="100" aria-valuemin="100" aria-valuemax="100" style="width:100%"></div></div></div>';
+                $('#load_more_text').html(message)
+            }
         }
-      }
-    })
+    });
 }
 
 function place_hold(id,button) {
     var record = id;
     var token = sessionStorage.getItem('token');
-    console.log('placing hold with token ' + token + ' on record id ' + record);
     var hold_params = {"token": token, "record_id": record};
     var jqxhr = $.ajax({
         method: 'POST',
@@ -90,25 +79,22 @@ function place_hold(id,button) {
     }).done(function(data) {
         $('#statusMessage').modal('hide');
         if (data['user']['error'] == 'bad token' || data['hold_confirmation'] == 'bad login') {
-            /* somehow we failed. we should refresh_login probably */
+            $.get("login.js", {update: "true"});
         } else if (data['hold_confirmation'][0]['message'] == 'Hold was not successfully placed Problem: User already has an open hold on the selected item') {
             var message = "<div class='alert alert-warning'><i class='glyphicon glyphicon-exclamation-sign'></i> Oops! You already have a hold on this item.</div>";
             $(button).parent().html(message);
             $.get( "login.js", { "token": token, "update": "true" } );
         } else {
-            console.log(data['hold_confirmation'][0]['record_id'] + " " + data['hold_confirmation'][0]['message']);
             var message = "<div class='alert alert-success'><i class='glyphicon glyphicon-ok-sign'></i> Your hold was successfully placed.</div>";
             $(button).parent().html(message);
             $.get( "login.js", { "token": token, "update": "true" } );
         }
     }).fail(function() {
         $('#statusMessage').modal('hide');
-        /* figure out where to write this message. probably an overlay div */
         var message = "<div class='alert alert-danger'><i class='glyphicon glyphicon-exclamation-sign'></i> Sorry, something went horribly wrong. Please try again.</div>";
         $(button).parent().html(message);
     });
 }
-
 
 function holdbutton_click() {
     $('.holdbtn').on("click", function() {
@@ -197,7 +183,6 @@ function logout() {
 function delete_cookie(name) {
     document.cookie = name + '=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
 }
-
 
 function alert_message(type, message, timeout) {
     if (!type.match(/success|info|warning|danger/)) { return; }
