@@ -1,9 +1,7 @@
 class MockController < ApplicationController
     include ApplicationHelper
-    before_filter :shared_mock_variables
+    before_filter :shared_mock_variables, :generate_user
     respond_to :html, :json, :js
-
-
 
   def index
       music_list_raw = JSON.parse(open('https://www.tadl.org/mobile/export/items/31/json').read)['nodes'].map {|i| i['node']}
@@ -36,7 +34,6 @@ class MockController < ApplicationController
     @item = Item.new params
     @copies_on_shelf = @item.copies_on_shelf
     @copies_all = @item.copies
-
     if params["fetching"] == 'true'
       @fetching = true
     end
@@ -93,19 +90,10 @@ class MockController < ApplicationController
       @holds = 'bad login'
     end
     respond_to do |format|
+      format.html
       format.json {render :json => {:user => @user, 
         :holds => @holds}}
     end
   end
 
-  def generate_user()
-    if cookies[:login]
-      args = Hash.new
-      args['token'] = cookies[:login]
-      user = User.new args
-    else
-      user = User.new params
-    end
-    return user
-  end
 end

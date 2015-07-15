@@ -86,7 +86,7 @@ class User
 	def list_holds
 		agent = create_agent_token(self.token)
 		page = agent.get('https://mr.tadl.org/eg/opac/myopac/holds?limit=41')
-		holds = page.parser.css('tr#acct_holds_temp').map do |h|
+		holds_raw = page.parser.css('tr#acct_holds_temp').map do |h|
 			{
         	:title =>  h.css('td[2]').css('a').text,
         	:author => h.css('td[3]').css('a').text,
@@ -98,14 +98,19 @@ class User
         	:pickup_location => h.css('td[5]').text.strip,
       		}
       	end
-      	sorted_by_hold_id = holds.sort_by {|k| k[:hold_id]}.reverse!
+      	sorted_by_hold_id = holds_raw.sort_by {|k| k[:hold_id]}.reverse!
     	sorted_by_hold_id.each do |h|
       		if h[:queue_status] =~ /Available/
         		sorted_by_hold_id.delete(h)
         		sorted_by_hold_id.unshift(h) 
       		end
     	end
-    	return sorted_by_hold_id
+    	holds = Array.new
+    	sorted_by_hold_id.each do |h|
+    		hold = Hold.new h
+    		holds = holds.push(hold)
+    	end
+    	return holds
 	end
 
 	def clean_record(string)

@@ -1,0 +1,7 @@
+<% if @user.error %>
+	<h2> You must be logged in to view holds</h2>
+<% else %>
+	<% @holds.each do |hold| %>
+		<%= render 'hold_list', :hold => hold %>
+	<% end %>
+<% end %>
