@@ -1,0 +1,7 @@
+<% if @user.error %>
+	<h2> You must be logged in to view checkouts</h2>
+<% else %>
+<div id="checkout_list">
+	<%= render 'checkout_list', :checkouts => @checkouts %>
+</div>
+<% end %>

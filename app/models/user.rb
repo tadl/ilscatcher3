@@ -121,6 +121,29 @@ class User
 		return holds, updated_details
 	end
 
+	def list_checkouts
+		agent = create_agent_token(self.token)
+		page = agent.get('https://mr.tadl.org/eg/opac/myopac/circs')
+		checkouts_raw = page.parser.css('table#acct_checked_main_header').css('tr').drop(1).reject{|r| r.search('span[@class="failure-text"]').present?}.map do |c|
+			{
+        	:title => c.search('td[@name="author"]').css('a')[0].try(:text),
+        	:author => c.search('td[@name="author"]').css('a')[1].try(:text),
+        	:record_id => clean_record(c.search('td[@name="author"]').css('a')[0].try(:attr, "href")),
+        	:checkout_id => c.search('input[@name="circ"]').try(:attr, "value").to_s,
+        	:renew_attempts => c.search('td[@name="renewals"]').text.to_s.try(:gsub!, /\n/," ").try(:squeeze, " ").try(:strip),
+        	:due_date => c.search('td[@name="due_date"]').text.to_s.try(:gsub!, /\n/," ").try(:squeeze, " ").try(:strip),
+       		:iso_due_date => Date.strptime(c.search('td[@name="due_date"]').text.to_s.try(:gsub!, /\n/," ").try(:squeeze, " ").try(:strip),'%m/%d/%Y').to_s,
+        	:barcode => c.search('td[@name="barcode"]').text.to_s.try(:gsub!, /\n/," ").try(:squeeze, " ").try(:strip),
+      		}
+      	end
+    	checkouts = Array.new
+    	checkouts_raw.each do |c|
+    		checkout = Checkout.new c
+    		checkouts = checkouts.push(checkout)
+    	end
+    	return checkouts
+	end
+
 	def clean_record(string)
   		record_id = string.split('?') rescue nil
   		record_id = record_id[0].gsub('/eg/opac/record/','') rescue nil
