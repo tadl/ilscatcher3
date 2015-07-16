@@ -1,24 +1,55 @@
-<h2>Title: <%= hold.title %></h2>
-Author: <%= hold.author %> </br>
-Record ID: <%= hold.record_id %> </br>
-Hold ID (this is what we need to manage holds):<%= hold.hold_id %> </br>
-Hold Status: <%= hold.hold_status %> </br>
-You are number <%= hold.queue_state[0] %> out of <%= hold.queue_state[1] %> </br>
-Queue Status: <%= hold.queue_status %>
-Pickup Location: <%= hold.pickup_location %> </br>
-
-<% if hold.hold_status == 'Active' && !hold.ready %>
-	<%= link_to 'manage_hold.js', data:{params: hold.create_params('suspend')}, remote: true do %>
-		Suspend
-	<% end %>
-<% end %>
-<% if hold.hold_status == 'Suspended' %>
-	<%= link_to 'manage_hold.js', data:{params: hold.create_params('activate')}, remote: true do %>
-		Activate
-	<% end %>
-<% end %>	
-</br>
-<%= link_to 'manage_hold.js', data:{params: hold.create_params('cancel')}, remote: true do %>
-	Cancel
-<% end %>
-<hr>
+<div class="col-xs-12">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <div class="row">
+                <div class="col-lg-11 col-md-11 col-sm-11 col-xs-10">
+                    <%= link_to 'details.js?id='+hold.record_id, :remote => true  do %>
+                        <h4 class="panel-title"><%= hold.title %></h4>
+                    <% end %>
+                </div>
+                <div class="col-lg-1 col-md-1 col-sm-1 col-xs-2">
+                    <h4 class="pull-right panel-title">type</h4><!-- TODO -->
+                </div>
+            </div>
+        </div><!-- /.panel-heading -->
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-lg-2 col-sm-2 col-xs-3"><!-- image -->
+                    <%= link_to 'details.js?id='+hold.record_id, :remote => true  do %>
+                        <img src='https://catalog.tadl.org/opac/extras/ac/jacket/large/r/<%= hold.record_id %>' style="width:100%;"
+                            onerror="this.src='<%= asset_path("logo-clock-only.png") %>?id=<%= hold.record_id %>'" />
+                    <% end %>
+                </div>
+                <div class="col-lg-8 col-sm-7 col-xs-9"><!-- details about item -->
+                    <% if !hold.author.nil? %><h4><%= hold.author %></h4><% end %>
+                    <dl class="dl-horizontal">
+                    <dt>Queue Position</dt>
+                    <dd><%= hold.queue_state[0] %> out of <%= hold.queue_state[1] %></dd>
+                    <dt>Hold Status</dt>
+                    <dd><%= hold.hold_status %></dd>
+                    <dt>Pickup Location</dt>
+                    <dd><%= hold.pickup_location %></dd>
+                    </dl>
+                </div>
+                <div class="col-lg-2 col-sm-3 col-xs-12"><!-- suspend/activate/cancel buttons -->
+                    <div class="btn-group-vertical">
+                        <% if hold.hold_status == 'Active' && !hold.ready %>
+                            <%= link_to 'manage_hold.js', data:{params: hold.create_params('suspend')}, remote: true do %>
+                                Suspend
+                            <% end %>
+                        <% end %>
+                        <% if hold.hold_status == 'Suspended' %>
+                            <%= link_to 'manage_hold.js', data:{params: hold.create_params('activate')}, remote: true do %>
+                                Activate
+                            <% end %>
+                        <% end %>
+                        </br>
+                        <%= link_to 'manage_hold.js', data:{params: hold.create_params('cancel')}, remote: true do %>
+                            Cancel
+                        <% end %>
+                    </div>
+                </div>
+            </div>
+        </div><!-- /.panel-body -->
+    </div><!-- /.panel -->
+</div><!-- /.col -->
