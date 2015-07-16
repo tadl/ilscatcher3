@@ -1,7 +1,9 @@
 <% if @user.error %>
 	<h2> You must be logged in to view holds</h2>
 <% else %>
-<div id="holds_list">
-	<%= render 'hold_list', :holds => @holds %>
+<div class="row">
+    <div class="col-xs-12" id="holds_list">
+        <%= render 'hold_list', :holds => @holds %>
+    </div>
 </div>
 <% end %>

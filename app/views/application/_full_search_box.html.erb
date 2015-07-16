@@ -2,7 +2,7 @@
     <div class="row">
         <div class="col-lg-12 col-xs-12">
             <div class="input-group input-group-lg">
-                <span class="input-group-addon">Search Term(s)</span>
+                <span class="input-group-addon">Search</span>
                 <label class="sr-only control-label" for="query">Query</label>
                 <input class="form-control" id="query" name="query" type="search" value="<%= search.query %>">
                 <input type="hidden" name="layout" value="<%= search.layout = search.layout || 'list' %>">
@@ -16,7 +16,7 @@
         <div class="row form-inline padtop padbot">
             <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
                 <div class="input-group">
-                    <span class="input-group-addon">Search Type</span>
+                    <span class="input-group-addon">Type</span>
                     <%= f.select :qtype,  options_for_select(@query_options, search.qtype), { hide_label: true }, { class: "selectpicker" } %>
                 </div>
             </div>
@@ -28,7 +28,7 @@
             </div>
             <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
                 <div class="input-group">
-                    <span class="input-group-addon">Sort by</span>
+                    <span class="input-group-addon">Sort</span>
                     <%= f.select :sort, options_for_select(@sort_options, search.sort), { hide_label: true }, { class: "selectpicker" } %>
                 </div>
             </div>
