@@ -115,4 +115,18 @@ class MockController < ApplicationController
     end
   end
 
+  def list_checkouts
+    @user = generate_user()
+    if !@user.error
+      @checkouts = @user.list_checkouts
+    else
+      @checkouts = 'bad login'
+    end
+    respond_to do |format|
+      format.html
+      format.json {render :json => {:user => @user, 
+        :checkouts => @checkouts}}
+    end
+  end
+
 end
