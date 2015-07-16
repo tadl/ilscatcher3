@@ -1,11 +1,14 @@
 <ul class="nav navbar-nav">
-    <li><button class="btn btn-default navbar-btn" onclick="event.preventDefault();">Items Out <span class="badge"><span id="checkouts"></span></span></button></li>
+    <li>
+        <p class="navbar-btn">
+            <a class="btn btn-default" href="/mock/checkouts">Items Out <span class="badge"><span id="checkouts"></span></span></a>
+        </p>
+    </li>
     <li>
         <p class="navbar-btn">
             <a class="btn btn-default" style="margin-left:10px;" href="/mock/holds">Holds <span class="badge"><span id="holds"></span></span></a>
         </p>
     </li>
-    <!--<li><button class="btn btn-default navbar-btn" style="margin-left:10px;" onclick="event.preventDefault();">Holds Ready for Pickup <span class="badge"><span id="holds_ready"></span></span></button></li>-->
     <li><button class="btn btn-default navbar-btn" style="margin-left:10px;" onclick="event.preventDefault();">Fines <span class="badge">$<span id="fine"></span></span></button></li>
     <li><button class="btn btn-default navbar-btn" style="margin-left:10px;" onclick="logout()">Log out</button></li>
 </ul>
