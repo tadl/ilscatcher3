@@ -96,6 +96,7 @@ class User
         	:queue_status => h.css('/td[9]/div/div[1]').text.strip.gsub(/AvailableExpires/, 'Available, Expires'),
         	:queue_state => h.css('/td[9]/div/div[2]').text.scan(/\d+/).map { |n| n.to_i },
         	:pickup_location => h.css('td[5]').text.strip,
+        	:format => h.css('.format_icon').css('img').try(:attr, "title").text,
       		}
       	end
       	sorted_by_hold_id = holds_raw.sort_by {|k| k[:hold_id]}.reverse!

@@ -1,6 +1,6 @@
 class Hold
 	include ActiveModel::Model
-	attr_accessor :title, :author, :record_id, :hold_id, :hold_status, :queue_status, :queue_state, :pickup_location, :task
+	attr_accessor :title, :author, :record_id, :hold_id, :hold_status, :queue_status, :queue_state, :pickup_location, :format, :task
 
 	def initialize args
     	args.each do |k,v|
