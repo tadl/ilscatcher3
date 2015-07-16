@@ -34,9 +34,9 @@
                 <div class="col-lg-2 col-sm-3 col-xs-12"><!-- suspend/activate/cancel buttons -->
                     <div>
                         <% if hold.hold_status == 'Active' && !hold.ready %>
-                            <%= link_to 'manage_hold.js', :method => :post, data: {params: hold.create_params('suspend')}, remote: true, :id => 'hold-manage-suspend-'+hold.record_id, :type => 'button', :class => 'btn btn-block btn-warning' do %>Suspend<% end %>
+                            <%= link_to 'manage_hold.js', :method => :post, data: {params: hold.create_params('suspend')}, remote: true, :id => 'hold-manage-suspend-'+hold.record_id, :type => 'button', :class => 'hold-suspend btn btn-block btn-warning' do %>Suspend<% end %>
                         <% elsif hold.hold_status == 'Suspended' %>
-                            <%= link_to 'manage_hold.js', :method => :post, data: {params: hold.create_params('activate')}, remote: true, :id => 'hold-manage-activate-'+hold.record_id, :type => 'button', :class => 'btn btn-block btn-success' do %>Activate<% end %>
+                            <%= link_to 'manage_hold.js', :method => :post, data: {params: hold.create_params('activate')}, remote: true, :id => 'hold-manage-activate-'+hold.record_id, :type => 'button', :class => 'hold-activate btn btn-block btn-success' do %>Activate<% end %>
                         <% end %>
                         <%= link_to 'manage_hold.js', data: {params: hold.create_params('cancel')}, remote: true, :id => 'hold-manage-cancel-'+hold.record_id, :type => 'button', :class => 'hold-manage btn btn-block padtop btn-primary' do %>Cancel<% end %>
                     </div>

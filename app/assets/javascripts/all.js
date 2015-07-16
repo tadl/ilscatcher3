@@ -207,6 +207,7 @@ function alert_message(type, message, timeout) {
 
 /* hold management watchers */
 function hold_management_binds() {
+    var spinner = '<span class="glyphicon glyphicon-cd"></span> ';
     $('.hold-manage').click(function(event) {
         event.preventDefault();
         $(this).removeClass('hold-manage btn-primary').addClass('hold-cancel btn-danger').text('Confirm Cancel').unbind('click');
@@ -214,6 +215,12 @@ function hold_management_binds() {
         return false;
     });
     $('.hold-cancel').click(function(event) {
-        $('#statusMessage').modal('show');
+        $(this).text('Canceling').prepend(spinner);
+    });
+    $('.hold-suspend').click(function(event) {
+        $(this).text('Suspending').prepend(spinner);
+    });
+    $('.hold-activate').click(function(event) {
+        $(this).text('Activating').prepend(spinner);
     });
 }
