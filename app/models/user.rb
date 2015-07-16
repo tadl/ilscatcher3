@@ -113,6 +113,14 @@ class User
     	return holds
 	end
 
+	def manage_hold(hold)
+		agent = create_agent_token(self.token)
+		agent.post('https://mr.tadl.org/eg/opac/myopac/holds?limit=41',[["action", hold.task],["hold_id", hold.hold_id]])
+		holds = self.list_holds
+		updated_details = self.basic_info(agent)
+		return holds, updated_details
+	end
+
 	def clean_record(string)
   		record_id = string.split('?') rescue nil
   		record_id = record_id[0].gsub('/eg/opac/record/','') rescue nil

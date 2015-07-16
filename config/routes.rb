@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   match "mock/place_hold" => "mock#place_hold", via: [:get, :post], defaults: { format: 'json' }
   match "mock/list_holds" => "mock#list_holds", via: [:get, :post], defaults: { format: 'html' }
   match "mock/details" => "mock#details", via: [:get, :post], defaults: { format: 'html' }
+  match "mock/manage_hold" => "mock#manage_hold", via: [:get, :post], defaults: { format: 'js' }
   root :to => "mock#index"
 
   # The priority is based upon order of creation: first created -> highest priority.

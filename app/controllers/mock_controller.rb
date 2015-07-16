@@ -67,7 +67,7 @@ class MockController < ApplicationController
   def place_hold
     @check_user = generate_user()
     if !@check_user.error
-      if params[:record_id] || !params[:record_id].blank?
+      if params[:record_id] && !params[:record_id].blank?
         @hold_confirmation = @check_user.place_hold(params['record_id'])
       else
         @hold_confirmation = 'no records submitted for holds'
@@ -80,6 +80,25 @@ class MockController < ApplicationController
       format.json {render :json => {:user => @user, 
         :hold_confirmation => @hold_confirmation}}
     end
+  end
+
+  def manage_hold
+    @check_user = generate_user()
+    if !@check_user.error
+      if (params[:hold_id] && !params[:hold_id].blank?) || (params[:task] && !params[:task].blank?)
+        @hold = Hold.new params
+        @confirmation = @check_user.manage_hold(@hold)
+        @updated_details = @confirmation[1]
+        @holds = @confirmation[0]
+      else
+        @confirmation = 'bad parameters'
+      end
+    else
+      @confirmation = 'bad login'
+    end
+    respond_to do |format|
+      format.js
+    end 
   end
 
   def list_holds

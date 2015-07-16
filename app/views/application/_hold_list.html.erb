@@ -1,8 +1,3 @@
-<h2>Title: <%= hold.title %></h2>
-Author: <%= hold.author %> </br>
-Record ID: <%= hold.record_id %> </br>
-Hold ID (this is what we need to manage holds):<%= hold.hold_id %> </br>
-Status: <%= hold.hold_status %> </br>
-You are number <%= hold.queue_state[0] %> out of <%= hold.queue_state[1] %> </br>
-Pickup Location: <%= hold.pickup_location %> </br>
-<hr>
+	<% @holds.each do |hold| %>
+		<%= render 'hold', :hold => hold %>
+	<% end %>
