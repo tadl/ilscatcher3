@@ -129,4 +129,32 @@ class MockController < ApplicationController
     end
   end
 
+  def renew_checkouts
+    @check_user = generate_user()
+    if !@check_user.error
+      if (params[:checkout_ids])
+        checkouts_raw = params[:checkout_ids].split(',')
+        checkouts = Array.new
+        if checkouts_raw.is_a?(String)
+          checkouts = checkouts.push(checkouts_raw)
+        else
+          checkouts_raw.each do |c|
+            checkouts = checkouts.push(c)
+          end
+        end
+        @confirmation = @check_user.renew_checkouts(checkouts)
+        @message = @confirmation[0]
+        @errors = @confirmation[1]
+        @checkouts = @confirmation[2]
+      else
+        @confirmation = 'bad parameters'
+      end
+    else
+      @confirmation = 'bad login'
+    end
+    respond_to do |format|
+      format.js
+    end 
+  end
+
 end

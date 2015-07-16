@@ -124,7 +124,43 @@ class User
 	def list_checkouts
 		agent = create_agent_token(self.token)
 		page = agent.get('https://mr.tadl.org/eg/opac/myopac/circs')
-		checkouts_raw = page.parser.css('table#acct_checked_main_header').css('tr').drop(1).reject{|r| r.search('span[@class="failure-text"]').present?}.map do |c|
+		checkouts = scrape_checkouts(page)
+    	return checkouts
+	end
+
+	def renew_checkouts(checkouts)
+		url = 'https://mr.tadl.org/eg/opac/myopac/circs?action=renew'
+		checkouts.each do |c|
+			url += '&circ=' + c
+		end
+		agent = create_agent_token(self.token)
+		page = agent.get(url)
+		message = page.parser.at_css('div.renew-summary').try(:text).try(:strip)
+		errors = page.parser.css('table#acct_checked_main_header').css('tr').drop(1).reject{|r| r.search('span[@class="failure-text"]').present? == false}.map do |checkout| 
+  			{
+  			:message => checkout.css('span.failure-text').text.strip.try(:gsub, /^Copy /, ''),
+  			:checkout_id => checkout.previous.previous.search('input[@name="circ"]').try(:attr, "value").to_s,
+        	:title => circ_to_title(page, checkout.previous.previous.search('input[@name="circ"]').try(:attr, "value").to_s).try(:gsub, /:.*/, '').try(:strip),
+  			}
+  		end
+  		checkouts = scrape_checkouts(page)
+  		return message, errors, checkouts
+  	end	
+
+  	  def circ_to_title(page, checkout_id)
+    	look_for = 'input[@value="'+ checkout_id +'"]'
+    	title = page.at(look_for).try(:parent).try(:next).try(:next).try(:css, 'a')[0].try(:text)
+    	return title  
+  	end 
+
+	def clean_record(string)
+  		record_id = string.split('?') rescue nil
+  		record_id = record_id[0].gsub('/eg/opac/record/','') rescue nil
+  		return record_id
+  	end
+
+  	def scrape_checkouts(page)
+  		checkouts_raw = page.parser.css('table#acct_checked_main_header').css('tr').drop(1).reject{|r| r.search('span[@class="failure-text"]').present?}.map do |c|
 			{
         	:title => c.search('td[@name="author"]').css('a')[0].try(:text),
         	:author => c.search('td[@name="author"]').css('a')[1].try(:text),
@@ -136,17 +172,13 @@ class User
         	:barcode => c.search('td[@name="barcode"]').text.to_s.try(:gsub!, /\n/," ").try(:squeeze, " ").try(:strip),
       		}
       	end
-    	checkouts = Array.new
+      	checkouts = Array.new
     	checkouts_raw.each do |c|
     		checkout = Checkout.new c
     		checkouts = checkouts.push(checkout)
     	end
+    	# list changes order based on due dates and then remaing renewals. If we want to keep the list the same between request, we can sort by title as one option
+    	# checkouts.sort_by!{ |c| c.title }
     	return checkouts
-	end
-
-	def clean_record(string)
-  		record_id = string.split('?') rescue nil
-  		record_id = record_id[0].gsub('/eg/opac/record/','') rescue nil
-  		return record_id
   	end
 end
