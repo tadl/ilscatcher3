@@ -14,4 +14,8 @@ class Hold
       hash['task'] = task
   		return hash
   	end
+
+    def ready
+      self.queue_status.start_with?("Available")
+    end
 end

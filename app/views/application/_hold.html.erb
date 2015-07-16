@@ -2,21 +2,23 @@
 Author: <%= hold.author %> </br>
 Record ID: <%= hold.record_id %> </br>
 Hold ID (this is what we need to manage holds):<%= hold.hold_id %> </br>
-Status: <%= hold.hold_status %> </br>
+Hold Status: <%= hold.hold_status %> </br>
 You are number <%= hold.queue_state[0] %> out of <%= hold.queue_state[1] %> </br>
+Queue Status: <%= hold.queue_status %>
 Pickup Location: <%= hold.pickup_location %> </br>
 
-<% if hold.hold_status == 'Active' %>
+<% if hold.hold_status == 'Active' && !hold.ready %>
 	<%= link_to 'manage_hold.js', data:{params: hold.create_params('suspend')}, remote: true do %>
 		Suspend
 	<% end %>
-<% else %>
+<% end %>
+<% if hold.hold_status == 'Suspended' %>
 	<%= link_to 'manage_hold.js', data:{params: hold.create_params('activate')}, remote: true do %>
 		Activate
 	<% end %>
-<% end %>
+<% end %>	
 </br>
-	<%= link_to 'manage_hold.js', data:{params: hold.create_params('cancel')}, remote: true do %>
-		Cancel
-	<% end %>
+<%= link_to 'manage_hold.js', data:{params: hold.create_params('cancel')}, remote: true do %>
+	Cancel
+<% end %>
 <hr>
