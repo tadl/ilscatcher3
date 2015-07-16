@@ -5,3 +5,11 @@ Checkout ID (this is what we need to renew):<%= checkout.checkout_id %> </br>
 Renew Attempts Remaining: <%= checkout.renew_attempts %> </br>
 Due Date: <%= checkout.due_date %> </br>
 Due Date ISO Format: <%= checkout.iso_due_date %> </br>
+
+<% if checkout.renew_attempts.to_i > 0 %>
+	<%= link_to 'renew_checkouts.js?checkout_ids='+checkout.checkout_id, remote: true do %>
+		Attempt Renewal
+	<% end %>
+<% else %>
+	No Remaing Renewals
+<% end %>	

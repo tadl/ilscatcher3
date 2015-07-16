@@ -8,7 +8,14 @@ Rails.application.routes.draw do
   match "mock/checkouts" => "mock#list_checkouts", via: [:get, :post], defaults: { format: 'html' }
   match "mock/details" => "mock#details", via: [:get, :post], defaults: { format: 'html' }
   match "mock/manage_hold" => "mock#manage_hold", via: [:get, :post], defaults: { format: 'js' }
+  match "mock/renew_checkouts" => "mock#renew_checkouts", via: [:get, :post], defaults: { format: 'js' }
   root :to => "mock#index"
+
+
+
+
+
+
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

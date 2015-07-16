@@ -1,0 +1,10 @@
+<% if @message %>
+	alert('<%= escape_javascript(@message) %>');
+<% end %>
+<% if @errors %>
+	<% @errors.each do |e| %>
+		alert("<%= escape_javascript(e[:title]) %> <%= escape_javascript(e[:message]) %>")
+	<% end %>
+<% end %>
+
+$('#checkout_list').html("<%= escape_javascript(render partial: 'checkout_list', :locals => {:checkouts => @checkouts}) %>");
