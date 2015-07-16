@@ -1,5 +1,6 @@
 var logged_in;
 var ready;
+
 ready = function() {
     /* for front page carousels */
     $(".tall-carousel").owlCarousel({
@@ -36,8 +37,12 @@ ready = function() {
         $('html, body').animate({scrollTop: 0}, duration);
         return false;
     });
-
 };
+
+$(document).ready(ready);
+$(document).on('page:load', ready);
+$(document).on('page:fetch', showLoading);
+$(document).on('page:receive', hideLoading);
 
 function showLoading() {
     $('#statusMessage').modal('show');
@@ -45,11 +50,6 @@ function showLoading() {
 function hideLoading() {
     $('#statusMessage').modal('hide');
 }
-
-$(document).ready(ready);
-$(document).on('page:load', ready);
-$(document).on('page:fetch', showLoading);
-$(document).on('page:receive', hideLoading);
 
 function bind_more_results() {
     $('#more_results').bind('inview', function (event, visible, topOrBottomOrBoth) {
@@ -201,3 +201,4 @@ function alert_message(type, message, timeout) {
         $('#alertmessage').alert('close');
     }, timeout);
 }
+
