@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   match "mock/manage_hold" => "mock#manage_hold", via: [:get, :post], defaults: { format: 'js' }
   match "mock/renew_checkouts" => "mock#renew_checkouts", via: [:get, :post], defaults: { format: 'js' }
   match "mock/marc" => "mock#marc", via: [:get, :post], defaults: { format: 'js' }
+  match "mock/fines" => "mock#fines", via: [:get, :post], defaults: { format: 'json' }
   root :to => "mock#index"
 
 

@@ -165,4 +165,17 @@ class MockController < ApplicationController
     end 
   end
 
+  def fines
+    @check_user = generate_user()
+    if !@check_user.error
+      @fines = @check_user.fines
+    else
+      @fines = 'bad login'
+    end
+    respond_to do |format|
+      format.json {render :json => {:user => @check_user, 
+        :fines => @fines}}
+    end
+  end
+
 end
