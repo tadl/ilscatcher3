@@ -39,6 +39,7 @@
                             <%= link_to 'manage_hold.js', :method => :post, data: {params: hold.create_params('activate')}, remote: true, :id => 'hold-manage-activate-'+hold.record_id, :type => 'button', :class => 'hold-activate btn btn-block btn-success' do %>Activate<% end %>
                         <% end %>
                         <%= link_to 'manage_hold.js', data: {params: hold.create_params('cancel')}, remote: true, :id => 'hold-manage-cancel-'+hold.record_id, :type => 'button', :class => 'hold-manage btn btn-block padtop btn-primary' do %>Cancel<% end %>
+                        <%= link_to 'details.js?id='+hold.record_id, :remote => true, :type => 'button', :class => 'btn btn-block btn-info' do %>Details<% end %>
                     </div>
                 </div>
             </div>

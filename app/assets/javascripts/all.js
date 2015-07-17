@@ -207,7 +207,7 @@ function alert_message(type, message, timeout) {
 
 /* hold management watchers */
 function hold_management_binds() {
-    var spinner = '<span class="glyphicon glyphicon-cd"></span> ';
+    var spinner = '<span class="glyphicon glyphicon-cd gly-spin"></span> ';
     $('.hold-manage').click(function(event) {
         event.preventDefault();
         $(this).removeClass('hold-manage btn-primary').addClass('hold-cancel btn-danger').text('Confirm Cancel').unbind('click');
