@@ -131,4 +131,19 @@ class Item
   		return total_holds, total_copies
   	end
 
+    def marc
+      url = 'https://mr.tadl.org/eg/opac/record/' + self.id + '?expand=marchtml#marchtml'
+      agent = Mechanize.new
+      page = agent.get(url)
+      marc_record = page.parser.at_css('.marc_table').to_s.gsub(/\n/,'').gsub(/\t/,'')
+      return marc_record
+    end
+
+
+    def create_params
+      hash = Hash.new
+      self.instance_variables.each {|v| hash[v.to_s.delete("@")] = self.instance_variable_get(v)}
+      return hash
+    end
+
 end
