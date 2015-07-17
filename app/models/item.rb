@@ -8,15 +8,15 @@ class Item
 			if args['title']
 				args.delete_if { |k, v| v.blank? }
 				args.each do |k,v|
-        			instance_variable_set("@#{k}", v) unless v.nil?
-      			end
-      		else
-    			details = get_details(args['id'], args['loc'])
-      		end
-      	else
-      		return nil
+        	instance_variable_set("@#{k}", v) unless v.nil?
       	end
-  	end
+      else
+    		details = get_details(args['id'], args['loc'])
+      end
+    else
+      return nil
+    end
+  end
 
   	def check_trailer
   		fetch_trailer = JSON.parse(open('https://trailer-tank.herokuapp.com/main/get_trailer.json?id=' + self.id, {:read_timeout => 1}).read) rescue nil
@@ -110,6 +110,7 @@ class Item
   	end
 
   	def marc_record
+
   	end
 
   	def goodread_review

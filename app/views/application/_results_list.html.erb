@@ -6,7 +6,7 @@
     <div class="panel-heading">
         <div class="row">
             <div class="col-lg-11 col-md-11 col-sm-11 col-xs-10">
-                <%= link_to 'details.js?id='+item.id, :remote => true  do %> 
+                <%= link_to 'details.js', data:{params: item.create_params}, :method=> :post, :remote => true do %>
                     <h4><%= item.title %></h4>
                 <% end %>
             </div>
@@ -43,7 +43,7 @@
                         <p class="padtop"><%= a %></p>
                     <% end %>
                 <% end %>
-                <%= link_to 'details.js?id='+item.id, :remote => true  do %> 
+                <%= link_to 'details.js', data:{params: item.create_params}, :method=> :post, :remote => true do %>
                     <p><button class="btn btn-default">More details</button></p>
                 <% end %>
             </div>
