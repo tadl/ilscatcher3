@@ -1,0 +1,14 @@
+<%= render 'item_details', item: @item %>
+<% if @item.copies %>
+	<%= render 'detail_tabs', item: @item %>
+<% else %>
+	<div id="copy_container">Loading Copy Details...</div>
+	<script>
+		function get_copies(){
+			var id = "<%= escape_javascript(@item.id) %>";
+			var url ='details.js?id=' + id + '&fetching=true'
+			$.get(url, function(data){})
+		}
+		get_copies()
+	</script>
+<% end %>

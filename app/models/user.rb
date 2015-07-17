@@ -148,7 +148,7 @@ class User
   		return message, errors, checkouts
   	end	
 
-  	  def circ_to_title(page, checkout_id)
+  	def circ_to_title(page, checkout_id)
     	look_for = 'input[@value="'+ checkout_id +'"]'
     	title = page.at(look_for).try(:parent).try(:next).try(:next).try(:css, 'a')[0].try(:text)
     	return title  
