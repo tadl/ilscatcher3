@@ -1,15 +1,46 @@
-<h2>Title: <%= checkout.title %></h2>
-Author: <%= checkout.author %> </br>
-Record ID: <%= checkout.record_id %> </br>
-Checkout ID (this is what we need to renew):<%= checkout.checkout_id %> </br>
-Renew Attempts Remaining: <%= checkout.renew_attempts %> </br>
-Due Date: <%= checkout.due_date %> </br>
-Due Date ISO Format: <%= checkout.iso_due_date %> </br>
-
-<% if checkout.renew_attempts.to_i > 0 %>
-	<%= link_to 'renew_checkouts.js?checkout_ids='+checkout.checkout_id, remote: true do %>
-		Attempt Renewal
-	<% end %>
-<% else %>
-	No Remaing Renewals
-<% end %>	
+<div class="col-xs-12" id="checkout-record-<%= checkout.record_id %>">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <div class="row">
+                <div class="col-lg-11 col-md-11 col-sm-11 col-xs-10">
+                    <%= link_to 'details.js?id='+checkout.record_id, :remote => true  do %>
+                        <h4 class="panel-title"><%= checkout.title %></h4>
+                    <% end %>
+                </div>
+                <div class="col-lg-1 col-md-1 col-sm-1 col-xs-2">
+                    <% blah ||= 'Musical sound recording' #TODO %>
+                    <h4 class="pull-right panel-title"><span class="glyphicon <%= format_icon(blah, @format_icons) %>"></span></h4>
+                </div>
+            </div>
+        </div><!-- /.panel-heading -->
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-lg-1 col-sm-2 col-xs-5"><!-- image -->
+                    <%= link_to 'details.js?id='+checkout.record_id, :remote => true  do %>
+                        <img src='https://catalog.tadl.org/opac/extras/ac/jacket/large/r/<%= checkout.record_id %>' style="width:100%;"
+                            onerror="this.src='<%= asset_path("logo-clock-only.png") %>?id=<%= checkout.record_id %>'" />
+                    <% end %>
+                </div>
+                <div class="col-lg-9 col-sm-7 col-xs-7"><!-- details about item -->
+                    <% if !checkout.author.nil? %><h4><%= checkout.author %></h4><% end %>
+                    <dl class="dl-horizontal">
+                    <dt>Renewals remaining</dt>
+                    <dd><%= checkout.renew_attempts %></dd>
+                    <dt>Due Date</dt>
+                    <dd><%= checkout.due_date %></dd>
+                    </dl>
+                </div>
+                <div class="col-lg-2 col-sm-3 col-xs-12">
+                    <div>
+                        <% if checkout.renew_attempts.to_i > 0 %>
+                            <%= link_to 'renew_checkouts.js?checkout_ids='+checkout.checkout_id, remote: true, :id => 'checkout-renew-'+checkout.record_id, :type => 'button', :class => 'checkout-renew btn btn-block btn-success' do %>Renew<% end %>
+                        <% else %>
+                            <button type="button" class="btn btn-block btn-warn disabled">Renew</button>
+                        <% end %>
+                        <%= link_to 'details.js?id='+checkout.record_id, :remote => true, :type => 'button', :class => 'btn btn-block btn-info' do %>Details<% end %>
+                    </div>
+                </div>
+            </div>
+        </div><!-- /.panel-body -->
+    </div><!-- /.panel -->
+</div><!-- /.col -->
