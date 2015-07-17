@@ -7,12 +7,12 @@
                 <input class="form-control" id="query" name="query" type="search" value="<%= search.query %>">
                 <input type="hidden" name="layout" value="<%= search.layout = search.layout || 'list' %>">
                 <span class="input-group-btn">
-                    <button type="submit" name="commit" class="btn btn-success"><span class="glyphicon glyphicon-search"></span></button>
+                    <button type="submit" name="commit" class="btn btn-success" id="search-button"><span class="glyphicon glyphicon-search"></span></button>
                 </span>
             </div>
         </div>
     </div>
-    <div class="collapse <% if search.qtype !~ /keyword/ or search.fmt !~ /all/ or search.sort !~ /relevance/ or search.loc !~ /22/ %>in<% end %>" id="searchOptions">
+    <div class="collapse <% if search.qtype !~ /keyword/ or search.fmt !~ /all/ or search.sort !~ /relevance/ or search.loc !~ /22/ or search.availability_check==true %>in<% end %>" id="searchOptions">
         <div class="row form-inline padtop padbot">
             <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
                 <div class="input-group">
@@ -43,7 +43,7 @@
                 </div>
             <% end %>
         </div>
-        <div class="row form-inline padbot">
+        <div class="row form-inline">
             <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
                 <div class="form-group">
                     <input type="checkbox" name="availability" id="availability" <% if search.availability_check==true %>checked="checked"<% end %>>
