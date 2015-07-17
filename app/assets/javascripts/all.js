@@ -39,6 +39,7 @@ ready = function() {
     });
 
     hold_management_binds();
+    checkout_management_binds();
 
 };
 
@@ -207,7 +208,7 @@ function alert_message(type, message, timeout) {
 
 /* hold management watchers */
 function hold_management_binds() {
-    var spinner = '<span class="glyphicon glyphicon-cd"></span> ';
+    var spinner = '<span class="glyphicon glyphicon-cd gly-spin"></span> ';
     $('.hold-manage').click(function(event) {
         event.preventDefault();
         $(this).removeClass('hold-manage btn-primary').addClass('hold-cancel btn-danger').text('Confirm Cancel').unbind('click');
@@ -222,5 +223,13 @@ function hold_management_binds() {
     });
     $('.hold-activate').click(function(event) {
         $(this).text('Activating').prepend(spinner);
+    });
+}
+
+/* checkout management watchers */
+function checkout_management_binds() {
+    var spinner = '<span class="glyphicon glyphicon-cd gly-spin"></span> ';
+    $('.checkout-renew').click(function(event) {
+        $(this).text('Renewing').prepend(spinner);
     });
 }

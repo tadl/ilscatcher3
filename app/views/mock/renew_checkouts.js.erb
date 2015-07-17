@@ -1,10 +1,13 @@
 <% if @message %>
-	alert('<%= escape_javascript(@message) %>');
+    alert_message('success', '<%= escape_javascript(@message) %>', 5000);
 <% end %>
 <% if @errors %>
-	<% @errors.each do |e| %>
-		alert("<%= escape_javascript(e[:title]) %> <%= escape_javascript(e[:message]) %>")
-	<% end %>
+    var message;
+    <% @errors.each do |e| %>
+        message += '<%= escape_javascript(e[:title]) %> <%= escape_javascript(e[:message]) %>';
+    <% end %>
+    alert_message('warning', message, 10000);
 <% end %>
 
 $('#checkout_list').html("<%= escape_javascript(render partial: 'checkout_list', :locals => {:checkouts => @checkouts}) %>");
+checkout_management_binds();

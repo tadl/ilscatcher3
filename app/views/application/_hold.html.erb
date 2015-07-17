@@ -8,19 +8,19 @@
                     <% end %>
                 </div>
                 <div class="col-lg-1 col-md-1 col-sm-1 col-xs-2">
-                    <h4 class="pull-right panel-title">type</h4><!-- TODO -->
+                    <h4 class="pull-right panel-title"><span class="glyphicon <%= format_icon(hold.format, @format_icons) %>"></span></h4>
                 </div>
             </div>
         </div><!-- /.panel-heading -->
         <div class="panel-body">
             <div class="row">
-                <div class="col-lg-1 col-sm-2 col-xs-3"><!-- image -->
+                <div class="col-lg-1 col-sm-2 col-xs-5"><!-- image -->
                     <%= link_to 'details.js?id='+hold.record_id, :remote => true  do %>
                         <img src='https://catalog.tadl.org/opac/extras/ac/jacket/large/r/<%= hold.record_id %>' style="width:100%;"
                             onerror="this.src='<%= asset_path("logo-clock-only.png") %>?id=<%= hold.record_id %>'" />
                     <% end %>
                 </div>
-                <div class="col-lg-9 col-sm-7 col-xs-9"><!-- details about item -->
+                <div class="col-lg-9 col-sm-7 col-xs-7"><!-- details about item -->
                     <% if !hold.author.nil? %><h4><%= hold.author %></h4><% end %>
                     <dl class="dl-horizontal">
                     <dt>Queue Position</dt>
@@ -39,6 +39,7 @@
                             <%= link_to 'manage_hold.js', :method => :post, data: {params: hold.create_params('activate')}, remote: true, :id => 'hold-manage-activate-'+hold.record_id, :type => 'button', :class => 'hold-activate btn btn-block btn-success' do %>Activate<% end %>
                         <% end %>
                         <%= link_to 'manage_hold.js', data: {params: hold.create_params('cancel')}, remote: true, :id => 'hold-manage-cancel-'+hold.record_id, :type => 'button', :class => 'hold-manage btn btn-block padtop btn-primary' do %>Cancel<% end %>
+                        <%= link_to 'details.js?id='+hold.record_id, :remote => true, :type => 'button', :class => 'btn btn-block btn-info' do %>Details<% end %>
                     </div>
                 </div>
             </div>
