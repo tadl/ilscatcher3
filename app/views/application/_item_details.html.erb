@@ -41,6 +41,13 @@
                     <% else %>
                         <p><a class="btn btn-success" href=" <%= item.eresource %>" target="blank">View Online</a></p>
                     <% end %>
+                        <p id="marc_button">
+                            <%= link_to 'marc', data:{params: item.create_params}, :method=> :post,  :remote => true do %>
+                                <button class="btn btn-success">
+                                    MARC Record
+                                </button>
+                            <% end %>
+                        </p>
                 </span>
             </div>
         </div>

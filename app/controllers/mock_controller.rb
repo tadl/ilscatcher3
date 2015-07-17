@@ -157,4 +157,12 @@ class MockController < ApplicationController
     end 
   end
 
+  def marc
+    @item = Item.new params
+    @marc = @item.marc
+    respond_to do |format|
+      format.js 
+    end 
+  end
+
 end
