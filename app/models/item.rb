@@ -5,7 +5,7 @@ class Item
 
 	def initialize args
 		if args['id']
-			if args['title']
+			if args['title'] && !args['copies']
 				args.delete_if { |k, v| v.blank? }
 				args.each do |k,v|
         	instance_variable_set("@#{k}", v) unless v.nil?
