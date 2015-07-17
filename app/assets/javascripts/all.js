@@ -41,6 +41,10 @@ ready = function() {
     hold_management_binds();
     checkout_management_binds();
 
+    $('#search-button').click(function(event) {
+        $(this).children().addClass('gly-spin');
+    });
+
 };
 
 $(document).ready(ready);
