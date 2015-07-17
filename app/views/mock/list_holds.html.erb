@@ -1,6 +1,6 @@
 <% if @user.error %>
 	<h2> You must be logged in to view holds</h2>
-    <script>logout()</script>
+    <script>logout();location.assign('/mock/index');</script>
 <% else %>
 <div class="row">
     <div class="col-xs-12" id="holds_list">

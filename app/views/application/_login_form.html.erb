@@ -4,7 +4,7 @@
         <ul class="dropdown-menu" style="padding: 20px; min-width: 300px;">
             <li>
                 <div class="row">
-                    <div class="col-md-12">
+                    <div class="col-md-12" id="the-login-form">
                         <div class="form-group input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
                             <label class="sr-only" for="username">Username or Card Number</label>
@@ -24,3 +24,6 @@
         </ul>
     </li>
 </ul>
+<script>$('#the-login-form').keydown(function(event) {
+    if (event.keyCode == 13) { login(); }
+});</script>
