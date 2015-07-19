@@ -1,14 +1,6 @@
 <ul class="nav navbar-nav">
-    <li>
-        <p class="navbar-btn">
-            <a class="btn btn-default" href="/mock/checkouts">Items Out <span class="badge"><span id="checkouts"></span></span></a>
-        </p>
-    </li>
-    <li>
-        <p class="navbar-btn">
-            <a class="btn btn-default" style="margin-left:10px;" href="/mock/holds">Holds <span class="badge"><span id="holds"></span></span></a>
-        </p>
-    </li>
-    <li><button class="btn btn-default navbar-btn" style="margin-left:10px;" onclick="event.preventDefault();">Fines <span class="badge">$<span id="fine"></span></span></button></li>
+    <li<% if request.path == mock_checkouts_path %> class="active"<% end %>><a href="<%= mock_checkouts_path %>">Checkouts <span class="badge"><span id="checkouts"></span></span></a></li>
+    <li<% if request.path == mock_holds_path %> class="active"<% end %>><a href="<%= mock_holds_path %>">Holds <span class="badge"><span id="holds"></span></span></a></li>
+    <li<% if request.path == '/mock/fines' %> class="active"<% end %>><a onclick="event.preventDefault();">Fines <span class="badge">$<span id="fine"></span></span></a></li>
     <li><button class="btn btn-default navbar-btn" style="margin-left:10px;" onclick="logout()">Log out</button></li>
 </ul>

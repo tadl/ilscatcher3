@@ -1,6 +1,6 @@
 <ul class="nav nav-tabs" role="tablist">
     <li role="presentation" class="<% if @copies_on_shelf && @copies_on_shelf.size >= 1 %>active<% else %>disabled<% end %>"><a href="#onShelf" aria-controls="onShelf" role="tab" data-toggle="tab">Copies on Shelf</a></li>
-    <li role="presentation" class="<% if @copies_on_shelf && @copies_on_shelf.size == 0 %>active<% end %>"><a href="#allCopies" aria-controls="allCopies" role="tab" data-toggle="tab">All Copies</a></li>
+    <li role="presentation" class="<% if @copies_on_shelf && @copies_on_shelf.size == 0 %>active<% end %>"><a href="#allCopies" aria-controls="allCopies" role="tab" data-toggle="tab">All Copies <span class="badge"><%= @copies_all.size %></span></a></li>
 </ul>
 
 

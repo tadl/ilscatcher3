@@ -1,29 +1,55 @@
-<ul class="nav navbar-nav navbar-right">
-    <li class="dropdown">
-        <a href="#" class="navbar-nav dropdown-toggle" data-toggle="dropdown">Sign in <b class="caret"></b></a>
-        <ul class="dropdown-menu" style="padding: 20px; min-width: 300px;">
-            <li>
+<li class="dropdown">
+    <a href="#" class="navbar-nav dropdown-toggle" data-toggle="dropdown">Sign in <b class="caret"></b></a>
+    <ul class="dropdown-menu" style="padding: 20px; min-width: 300px;">
+        <li>
+            <div class="row">
+                <div class="col-md-12" id="the-login-form">
+                    <div class="form-group input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                        <label class="sr-only" for="username">Username or Card Number</label>
+                        <input type="text" class="form-control" id="username" name="username" placeholder="Username or Card #" required>
+                    </div>
+                    <div class="form-group input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                        <label class="sr-only" for="password">Password</label>
+                        <input type="password" class="form-control" id="password" name="password" placeholder="Password" required>
+                    </div>
+                    <div class="form-group">
+                        <button type="button" class="btn btn-primary btn-block" onclick="login()">Sign in</button>
+                        <a href="#" class="pull-right" id="reset_password_link" data-toggle="modal" data-target="#passReset">Forgot password?</a>
+                    </div>
+                </div>
+            </div>
+        </li>
+    </ul>
+</li>
+<script>$('#the-login-form').keydown(function(event) { if (event.keyCode == 13) { login(); } });</script>
+<div class="modal fade" id="passReset" tabindex="-1" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Password Reset</h4>
+            </div>
+            <div class="modal-body" id="pass-reset-form">
                 <div class="row">
-                    <div class="col-md-12" id="the-login-form">
+                    <div class="col-xs-12 col-sm-7">
+                        Tell us your username or library card number and we'll send you an e-mail with instructions for setting a new password.
+                    </div>
+                    <div class="col-xs-12 col-sm-5">
                         <div class="form-group input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                            <label class="sr-only" for="username">Username or Card Number</label>
-                            <input type="text" class="form-control" id="username" name="username" placeholder="Username or Card #" required>
-                        </div>
-                        <div class="form-group input-group">
-                            <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-                            <label class="sr-only" for="password">Password</label>
-                            <input type="password" class="form-control" id="password" name="password" placeholder="Password" required>
-                        </div>
-                        <div class="form-group">
-                            <button onclick="login()" class="btn btn-primary btn-block">Sign in</button>
+                            <label class="sr-only" for="passuser">Username or Card Number</label>
+                            <input type="text" class="form-control" id="passuser" name="passuser" placeholder="Username or Card #" required>
                         </div>
                     </div>
                 </div>
-            </li>
-        </ul>
-    </li>
-</ul>
-<script>$('#the-login-form').keydown(function(event) {
-    if (event.keyCode == 13) { login(); }
-});</script>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-primary" onclick="passwordReset();">Submit</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script>$('#pass-reset-form').keydown(function(event) { if (event.keyCode == 13) { passwordReset(); } });</script>
