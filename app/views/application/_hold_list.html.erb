@@ -1,5 +1,5 @@
 <% @holds.each do |hold| %>
-    <div class="row">
+    <div class="row" id="hold-record-<%= hold.hold_id %>">
         <%= render 'hold', :hold => hold %>
     </div>
 <% end %>
