@@ -142,6 +142,7 @@ class MockController < ApplicationController
             checkouts = checkouts.push(c)
           end
         end
+        @targeted_records = params[:record_ids]
         @confirmation = @check_user.renew_checkouts(checkouts)
         @message = @confirmation[0]
         @errors = @confirmation[1]
@@ -154,6 +155,11 @@ class MockController < ApplicationController
     end
     respond_to do |format|
       format.js
+      format.json {render :json => {:user => @check_user, 
+        :message => @message,
+        :errors => @errors,
+        :targeted_records => @targeted_records,
+        :checkouts => @checkouts}}
     end 
   end
 

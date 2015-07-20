@@ -141,7 +141,7 @@ class User
   			{
   			:message => checkout.css('span.failure-text').text.strip.try(:gsub, /^Copy /, ''),
   			:checkout_id => checkout.previous.previous.search('input[@name="circ"]').try(:attr, "value").to_s,
-        	:title => circ_to_title(page, checkout.previous.previous.search('input[@name="circ"]').try(:attr, "value").to_s).try(:gsub, /:.*/, '').try(:strip),
+        :title => circ_to_title(page, checkout.previous.previous.search('input[@name="circ"]').try(:attr, "value").to_s).try(:gsub, /:.*/, '').try(:strip),
   			}
   		end
   		checkouts = scrape_checkouts(page)
