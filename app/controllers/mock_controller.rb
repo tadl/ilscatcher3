@@ -68,7 +68,11 @@ class MockController < ApplicationController
     @check_user = generate_user()
     if !@check_user.error
       if params[:record_id] && !params[:record_id].blank?
-        @hold_confirmation = @check_user.place_hold(params['record_id'])
+        if !params[:force]
+          @hold_confirmation = @check_user.place_hold(params['record_id'])[0]
+        else
+          @hold_confirmation = @check_user.force_hold(params['record_id'])[0]
+        end
       else
         @hold_confirmation = 'no records submitted for holds'
       end
@@ -185,5 +189,4 @@ class MockController < ApplicationController
         :fines => @fines}}
     end
   end
-
 end

@@ -67,21 +67,41 @@ class User
 	end
 
 	def place_hold(record_id)
-		# TODO: handle holds that require force
-        # such as: "Placing this hold could result in longer wait times."
 		record_ids = record_id.split(',').reject(&:empty?).map(&:strip).map {|k| "&hold_target=#{k}" }.join
 		agent = create_agent_token(self.token)
 		agent.get('https://mr.tadl.org/eg/opac/place_hold?hold_type=T' + record_ids)
 		hold_form = agent.page.forms[1]
 		agent.submit(hold_form)
-		confirmation_messages = agent.page.parser.css('//table#hold-items-list//tr').map do |m|
-  			{
-  				:record_id => m.at_css("td[1]//input").try(:attr, "value"),
-  			   	:message => m.at_css("td[2]").try(:text).try(:gsub!, /\n/," ").try(:squeeze, " ").try(:strip).try(:split, ". ").try(:last),
-  			}
-  		end
-  		return confirmation_messages
+    page = agent.page
+		confirmation_messages = process_hold_confirmations(page)
+    return confirmation_messages, agent
 	end
+
+  def force_hold(record_id)
+    agent = self.place_hold(record_id)[1]
+    hold_form = agent.page.forms[1]
+    submit_forced_hold = agent.submit(hold_form)
+    confirmation_messages = process_hold_confirmations(submit_forced_hold)
+    return confirmation_messages
+  end
+
+  def process_hold_confirmations(page)
+    confirmation_messages = page.parser.css('//table#hold-items-list//tr').map do |m|
+      {
+        :record_id => m.at_css("td[1]//input").try(:attr, "value"),
+        :message => m.at_css("td[2]").try(:text).try(:gsub!, /\n/," ").try(:squeeze, " ").try(:strip).try(:split, ". ").try(:last),
+      }
+    end
+    confirmation_messages.each do |c|
+      if c[:message] != "Hold was successfully placed"
+        c[:error] = true
+        if c[:message] == "Placing this hold could result in longer wait times." 
+          c[:need_to_force] = true
+        end
+      end
+    end
+    return confirmation_messages
+  end
 
 	def list_holds
 		agent = create_agent_token(self.token)
@@ -178,24 +198,22 @@ class User
 
   	def scrape_checkouts(page)
   		checkouts_raw = page.parser.css('table#acct_checked_main_header').css('tr').drop(1).reject{|r| r.search('span[@class="failure-text"]').present?}.map do |c|
-			{
-        	:title => c.search('td[@name="author"]').css('a')[0].try(:text),
-        	:author => c.search('td[@name="author"]').css('a')[1].try(:text),
-        	:record_id => clean_record(c.search('td[@name="author"]').css('a')[0].try(:attr, "href")),
-        	:checkout_id => c.search('input[@name="circ"]').try(:attr, "value").to_s,
-        	:renew_attempts => c.search('td[@name="renewals"]').text.to_s.try(:gsub!, /\n/," ").try(:squeeze, " ").try(:strip),
-        	:due_date => c.search('td[@name="due_date"]').text.to_s.try(:gsub!, /\n/," ").try(:squeeze, " ").try(:strip),
-       		:iso_due_date => Date.strptime(c.search('td[@name="due_date"]').text.to_s.try(:gsub!, /\n/," ").try(:squeeze, " ").try(:strip),'%m/%d/%Y').to_s,
-        	:barcode => c.search('td[@name="barcode"]').text.to_s.try(:gsub!, /\n/," ").try(:squeeze, " ").try(:strip),
-      		}
-      	end
-      	checkouts = Array.new
+			  {
+        :title => c.search('td[@name="author"]').css('a')[0].try(:text),
+        :author => c.search('td[@name="author"]').css('a')[1].try(:text),
+        :record_id => clean_record(c.search('td[@name="author"]').css('a')[0].try(:attr, "href")),
+        :checkout_id => c.search('input[@name="circ"]').try(:attr, "value").to_s,
+        :renew_attempts => c.search('td[@name="renewals"]').text.to_s.try(:gsub!, /\n/," ").try(:squeeze, " ").try(:strip),
+        :due_date => c.search('td[@name="due_date"]').text.to_s.try(:gsub!, /\n/," ").try(:squeeze, " ").try(:strip),
+       	:iso_due_date => Date.strptime(c.search('td[@name="due_date"]').text.to_s.try(:gsub!, /\n/," ").try(:squeeze, " ").try(:strip),'%m/%d/%Y').to_s,
+        :barcode => c.search('td[@name="barcode"]').text.to_s.try(:gsub!, /\n/," ").try(:squeeze, " ").try(:strip),
+      	}
+      end
+      checkouts = Array.new
     	checkouts_raw.each do |c|
     		checkout = Checkout.new c
     		checkouts = checkouts.push(checkout)
     	end
-    	# list changes order based on due dates and then remaing renewals. If we want to keep the list the same between request, we can sort by title as one option
-    	# checkouts.sort_by!{ |c| c.title }
     	return checkouts
   	end
 end
