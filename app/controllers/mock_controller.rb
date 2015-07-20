@@ -84,6 +84,8 @@ class MockController < ApplicationController
 
   def manage_hold
     @check_user = generate_user()
+    @hold_id = params[:hold_id]
+    @task = params[:task]
     if !@check_user.error
       if (params[:hold_id] && !params[:hold_id].blank?) || (params[:task] && !params[:task].blank?)
         @hold = Hold.new params

@@ -1,4 +1,10 @@
-$('#holds_list').html("<%= escape_javascript(render partial: 'hold_list', :locals => {:holds => @holds}) %>");
+<% target_div = '#hold-record-' + @hold_id %>
+<% if @task == 'cancel' %>
+	$('<%= escape_javascript(target_div)%>').remove();
+<% else %>
+	<% hold = @holds.find {|h| h.hold_id == @hold_id} %>
+	$('<%= escape_javascript(target_div)%>').html("<%= escape_javascript(render partial: 'hold', :locals => {:hold => hold}) %>");
+<% end %>
 sessionStorage.setItem('holds', "<%= escape_javascript(@updated_details['holds']) %>");
 sessionStorage.setItem('holds_ready', "<%= escape_javascript(@updated_details['holds_ready']) %>");
 update_login();
