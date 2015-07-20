@@ -16,6 +16,7 @@
         </div>
         <div class="row">
             <div class="col-xs-12 col-md-8 col-lg-9">
+                <%= goodreads_review(item.goodreads) %>
                 <% if !item.abstract.nil? %>
                     <dl>
                         <dt>Summary</dt>

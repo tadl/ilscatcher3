@@ -29,11 +29,11 @@ class User
 		agent.get('https://mr.tadl.org/eg/opac/myopac/prefs')
 		login_form = agent.page.forms[1]
 		login_form.field_with(:name => "username").value = username
-        login_form.field_with(:name => "password").value = password
-        login_form.checkbox_with(:name => "persist").check
-        agent.submit(login_form)
-        page = agent.page
-        return agent, page
+    login_form.field_with(:name => "password").value = password
+    login_form.checkbox_with(:name => "persist").check
+    agent.submit(login_form)
+    page = agent.page
+    return agent, page
 	end
 
 
@@ -56,11 +56,11 @@ class User
 			if !basic_info['full_name'].nil?
 				basic_info['token'] = token.try(:value)
 				basic_info.each do |k,v|
-        			instance_variable_set("@#{k}", v) unless v.nil?
-      			end
-      		else
-      			instance_variable_set("@error", "bad token") 
-      		end
+        	instance_variable_set("@#{k}", v) unless v.nil?
+      	end
+      else
+      	instance_variable_set("@error", "bad token") 
+      end
 		else
 			instance_variable_set("@error", "bad username or password") 
 		end	

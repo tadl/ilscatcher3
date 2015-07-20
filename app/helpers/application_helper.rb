@@ -6,4 +6,15 @@ module ApplicationHelper
             end
         end
     end
+
+    def goodreads_review(review_data)
+    	if  !review_data || !review_data["gr_id"]
+    		return nil 
+    	else
+    		review = '<a href="' + review_data["gr_link"] +'">'
+    		review += review_data["stars_html"] + ' on GoodReads.com'
+    		review += '</a>'
+    		return review.html_safe
+    	end
+    end
 end

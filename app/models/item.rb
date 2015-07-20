@@ -109,12 +109,11 @@ class Item
     	instance_variable_set("@copies_on_shelf", copies_on_shelf)
   	end
 
-  	def marc_record
-
-  	end
-
-  	def goodread_review
-
+  	def goodreads
+      if self.format_type == 'Language material' || 'Manuscript language material' || 'Nonmusical sound recording'
+        fetch_review = JSON.parse(open('https://reviewcatcher.herokuapp.com/?isbn=' + self.isbn, {:read_timeout => 1}).read) rescue nil
+        return fetch_review
+      end
   	end
 
   	def clean_related(subject)
