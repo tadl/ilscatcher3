@@ -52,6 +52,12 @@ class Search
       return path
   	end
 
+    def melcat_link
+      query = self.query
+      link = 'http://elibrary.mel.org/search/a?searchtype=X&searcharg='+ query +'&SORT=D'
+      return link
+    end
+
     def search_path_minus_layout
       path = self.search_path
       path = path.split('&layout')[0] unless self.layout.nil?
