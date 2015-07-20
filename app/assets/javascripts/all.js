@@ -243,12 +243,15 @@ function checkout_management_binds() {
 function passwordReset() {
     var username = $('#passuser').val();
     var icurl = 'https://apiv2.catalog.tadl.org/account/password_reset';
+    $('#passReset').modal('hide');
+    showLoading();
     $.get(icurl + '?username=' + username)
         .done(function(data) {
+            hideLoading();
             if (data.message == 'complete') {
-                alert_message('success', 'Password reset for '+ username +' initiated. Please check your e-mail for further instructions.', 60000);
+                alert_message('success', 'Password reset request was received.<br/>Please check your e-mail for further instructions.', 60000);
             } else {
-                alert_message('danger', 'Sorry, something went wrong. Please try that again. Ask a library staff member for assistance if the problem persists. Thank you.', 60000);
+                alert_message('danger', 'Sorry, something went wrong. Please try that again.<br/>Ask a library staff member for assistance if the problem persists. Thank you.', 60000);
             }
         });
 }
