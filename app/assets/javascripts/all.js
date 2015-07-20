@@ -238,3 +238,18 @@ function checkout_management_binds() {
         $(this).text('Renewing').prepend(spinner);
     });
 }
+
+/* password reset function */
+function passwordReset() {
+    var username = $('#passuser').val();
+    var icurl = 'https://apiv2.catalog.tadl.org/account/password_reset';
+    $.get(icurl + '?username=' + username)
+        .done(function(data) {
+            if (data.message == 'complete') {
+                alert_message('success', 'Password reset for '+ username +' initiated. Please check your e-mail for further instructions.', 60000);
+            } else {
+                alert_message('danger', 'Sorry, something went wrong. Please try that again. Ask a library staff member for assistance if the problem persists. Thank you.', 60000);
+            }
+        });
+}
+
