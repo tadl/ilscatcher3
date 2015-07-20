@@ -26,15 +26,15 @@
 <%= render 'hidden_hold_login' %>
 
 <script>
-bind_more_results()
+bind_more_results();
 </script>
 
 <script>
 document.addEventListener('page:change', function() {
-    document.getElementById('results').className += ' animated fadeInUp';
+    $('#results').addClass('animated fadeInUp');
 });
 document.addEventListener('page:fetch', function() {
-    document.getElementById('results').className += ' animated fadeOutDown';
+    $('results').addClass('animated fadeOutDown');
 })
 
 $(document).on("submit", "form[data-turboform]", function(e) {
