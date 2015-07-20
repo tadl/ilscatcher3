@@ -1,3 +1,5 @@
 <% @checkouts.each do |checkout| %>
-	<%= render 'checkout', :checkout => checkout %>
+    <div class="row" id="checkout-record-<%= checkout.record_id %>">
+        <%= render 'checkout', :checkout => checkout %>
+    </div>
 <% end %>
