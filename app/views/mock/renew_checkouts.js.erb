@@ -8,6 +8,9 @@
     <% end %>
     alert_message('warning', message, 10000);
 <% end %>
-
-$('#checkout_list').html("<%= escape_javascript(render partial: 'checkout_list', :locals => {:checkouts => @checkouts}) %>");
+<% [*@targeted_records].each do |r| %>
+	<% checkout = @checkouts.find {|c| c.record_id == r} %>
+	<% target_div = '#checkout-record-' + checkout.record_id %>
+	$('<%= escape_javascript(target_div) %>').html("<%= escape_javascript(render partial: 'checkout', :locals => {:checkout => checkout}) %>");
+<% end %>
 checkout_management_binds();
