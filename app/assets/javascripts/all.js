@@ -63,7 +63,7 @@ function bind_more_results() {
     $('#more_results').bind('inview', function (event, visible, topOrBottomOrBoth) {
         if (visible == true) {
             // element is now visible in the viewport
-            if (topOrBottomOrBoth == 'top') {
+            if (topOrBottomOrBoth == '') {
                 $('#more_results').unbind('inview');
                 $('#more_results:first a')[0].click();
                 var message = '<div class="alert alert-info"><div class="center-text">Loading more results...</div><div class="progress"><div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="100" aria-valuemin="100" aria-valuemax="100" style="width:100%"></div></div></div>';
