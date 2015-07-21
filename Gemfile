@@ -20,5 +20,5 @@ gem 'bootstrap_form'
 gem 'owlcarousel-rails'
 gem 'fancybox2-rails', '~> 0.2.8'
 gem 'jquery-turbolinks'
-
+gem 'rails_12factor', group: :production
 
