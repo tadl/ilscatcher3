@@ -69,7 +69,8 @@ class Search
     end
 
     def search_path_minus_layout_with_page
-      path = self.search_path_minus_layout
+      path = 'search_'
+      path += self.search_path_minus_layout
       path += '&page=' + self.page unless self.page.nil?
       return path
     end

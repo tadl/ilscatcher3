@@ -18,18 +18,10 @@ class MockController < ApplicationController
   def search
     @format_options = [['All Formats', 'all'],['Movies', 'g'],['Music', 'j']]
     @search = Search.new params
-    if params
-      results = @search.results
-      @items = results[0]
-      @facets = results[1]
-      @more_results = results[2]
-      @got_it = 'yes'
-    else
-      @items = nil
-      @facets = nil
-      @more_results = nil
-      @got_it = 'no'
-    end
+    results = @search.results
+    @items = results[0]
+    @facets = results[1]
+    @more_results = results[2]
     respond_to do |format|
       format.html
       format.js
