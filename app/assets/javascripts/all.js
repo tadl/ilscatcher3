@@ -43,7 +43,7 @@ ready = function() {
     checkout_management_binds();
 
     $('#search-button').click(function(event) {
-        $(this).children().addClass('gly-spin').html(spinner);
+        $(this).html(spinner);
     });
 
 };
