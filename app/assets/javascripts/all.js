@@ -1,3 +1,4 @@
+var spinner = '<span class="glyphicon glyphicon-cd gly-spin"></span> ';
 var logged_in;
 var ready;
 
@@ -42,7 +43,7 @@ ready = function() {
     checkout_management_binds();
 
     $('#search-button').click(function(event) {
-        $(this).children().addClass('gly-spin');
+        $(this).html(spinner);
     });
 
 };
@@ -73,8 +74,9 @@ function bind_more_results() {
     });
 }
 
-function place_hold(id,button) {
+function place_hold(id,button,force) {
     var record = id;
+    force = typeof force !== 'undefined' ? force : false;
     var token = sessionStorage.getItem('token');
     var hold_params = {"token": token, "record_id": record};
     var jqxhr = $.ajax({
@@ -88,10 +90,20 @@ function place_hold(id,button) {
         $('#statusMessage').modal('hide');
         if (data['user']['error'] == 'bad token' || data['hold_confirmation'] == 'bad login') {
             $.get("login.js", {update: "true"});
-        } else if (data['hold_confirmation'][0]['message'] == 'Hold was not successfully placed Problem: User already has an open hold on the selected item') {
-            var message = "<div class='alert alert-warning'><i class='glyphicon glyphicon-exclamation-sign'></i> Oops! You already have a hold on this item.</div>";
-            $(button).parent().html(message);
-            $.get( "login.js", { "token": token, "update": "true" } );
+        } else if (data['hold_confirmation'][0]['error'] == true) {
+            if (data['hold_confirmation'][0]['message'] == 'Hold was not successfully placed Problem: User already has an open hold on the selected item') {
+                var message = "<div class='alert alert-warning'><i class='glyphicon glyphicon-exclamation-sign'></i> Oops! You already have a hold on this item.</div>";
+                $(button).parent().html(message);
+                $.get( "login.js", { "token": token, "update": "true" } );
+            } else if (data['hold_confirmation'][0]['message'] == 'Hold was not successfully placed Problem: The item you have attempted to place on hold is already checked out to the requestor.') {
+                var message = "<div class='alert alert-warning'><i class='glyphicon glyphicon-exclamation-sign'></i> Oops! You already have this item checked out. Please return the item before placing a hold on it again.</div>";
+                $(button).parent().html(message);
+                $.get( "login.js", { "token": token, "update": "true" } );
+            } else if (data['hold_confirmation'][0]['message'] == 'long wait time') {
+                // complicated things
+                // and this is why we should do this with a template:
+                $('#hold-confirm-force').modal('show');
+            }
         } else {
             var message = "<div class='alert alert-success'><i class='glyphicon glyphicon-ok-sign'></i> Your hold was successfully placed.</div>";
             $(button).parent().html(message);
@@ -213,7 +225,6 @@ function alert_message(type, message, timeout) {
 
 /* hold management watchers */
 function hold_management_binds() {
-    var spinner = '<span class="glyphicon glyphicon-cd gly-spin"></span> ';
     $('.hold-manage').click(function(event) {
         event.preventDefault();
         $(this).removeClass('hold-manage btn-primary').addClass('hold-cancel btn-danger').text('Confirm Cancel').unbind('click');
@@ -233,9 +244,15 @@ function hold_management_binds() {
 
 /* checkout management watchers */
 function checkout_management_binds() {
-    var spinner = '<span class="glyphicon glyphicon-cd gly-spin"></span> ';
     $('.checkout-renew').click(function(event) {
         $(this).text('Renewing').prepend(spinner);
+    });
+}
+
+/* details button watcher */
+function detect_details_click() {
+    $('.details-button').click(function(event) {
+        $(this).html(spinner+'Loading Details');
     });
 }
 
