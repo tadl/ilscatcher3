@@ -119,11 +119,13 @@ class Search
     end
 
 
-  	def results  		
-  		if Rails.cache.exist?(self.search_path_minus_layout_with_page)
+  	def results
+      testing = true
+      if testing == false  		
+  		# if Rails.cache.exist?(self.search_path_minus_layout_with_page)
       		return Rails.cache.read(self.search_path_minus_layout_with_page)
     	else
-  			url = 'https://mr.tadl.org/eg/opac/results?'
+  			url = 'https://mr-v2.catalog.tadl.org/eg/opac/results?'
   			if self.query
   				url += 'query=' + self.query
   			else
@@ -158,20 +160,19 @@ class Search
   			page = page.parser
   			results = Array.new
   			page.css('.result_table_row').each do |result|
-  				item_raw ={:title => result.at_css(".record_title").text.strip,
-					:author => result.at_css('[@name="item_author"]').text.strip.try(:squeeze, " "),
+  				item_raw ={:title => result.at_css(".search_link").text.strip,
+					:author => result.at_css('.record_author').text.strip.try(:squeeze, " "),
 					:availability => process_availability(result.css(".result_count").reverse.map {|i| i.try(:text).try(:strip)}),
 					:copies_available => process_availability(result.css(".result_count").reverse.map {|i| clean_availablity_counts(i.try(:text))[0]}),
 					:copies_total => process_availability(result.css(".result_count").reverse.map {|i| clean_availablity_counts(i.try(:text))[1]}),
 					:id => result.at_css(".record_title").attr('name').sub!(/record_/, ""),
         	:eresource => result.at_css('[@name="bib_uri_list"]').try(:css, 'td').try(:css, 'a').try(:attr, 'href').try(:text).try(:strip),
-					#hack for dev below
+					# #hack for dev below
 					:image => 'http://catalog.tadl.org' + result.at_css(".result_table_pic").try(:attr, "src"),
-					:abstract => result.at_css('[@name="bib_summary_full"]').try(:text).try(:strip).try(:squeeze, " "),
+					:abstract => result.at_css('tr[@name="bib_summary_full"]').try(:text).try(:strip).try(:squeeze, " "),
 					:contents => result.at_css('[@name="bib_contents_full"]').try(:text).try(:strip).try(:squeeze, " "),
-					#hack for dev below
-					:format_icon => 'http://catalog.tadl.org' + result.at_css(".result_table_title_cell img").try(:attr, "src"),
-					:format_type => scrape_format_year(result)[0],
+					# #hack for dev below
+					:format_type => result.at_css('.result_table_title_cell').css('img').attr('title').try(:text),
 					:record_year => result.at_css('[@name="bib_pubdate"]').try(:text).try(:strip),
 					:call_number => result.at_css('[@name="bib_cn_list"]').try(:css, 'td[2]').try(:text).try(:strip),
           :loc => self.loc,
