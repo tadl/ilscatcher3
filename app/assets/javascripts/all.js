@@ -74,8 +74,9 @@ function bind_more_results() {
     });
 }
 
-function place_hold(id,button) {
+function place_hold(id,button,force) {
     var record = id;
+    force = typeof force !== 'undefined' ? force : false;
     var token = sessionStorage.getItem('token');
     var hold_params = {"token": token, "record_id": record};
     var jqxhr = $.ajax({
@@ -100,6 +101,8 @@ function place_hold(id,button) {
                 $.get( "login.js", { "token": token, "update": "true" } );
             } else if (data['hold_confirmation'][0]['message'] == 'long wait time') {
                 // complicated things
+                // and this is why we should do this with a template:
+                $('#hold-confirm-force').modal('show');
             }
         } else {
             var message = "<div class='alert alert-success'><i class='glyphicon glyphicon-ok-sign'></i> Your hold was successfully placed.</div>";
