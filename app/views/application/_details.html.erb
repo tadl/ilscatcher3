@@ -6,9 +6,9 @@
 	<div id="copy_container">Loading Copy Details...</div>
 	<script>
 		function get_copies(){
-			var id = "<%= escape_javascript(@item.id) %>";
-			var url ='details.js?id=' + id + '&fetching=true'
-			$.get(url, function(data){})
+    		var id = "<%= escape_javascript(@item.id) %>";
+    		var url ='details.js?id=' + id + '&fetching=true'
+    		$.get(url, function(data){})
 		}
 		get_copies()
 	</script>

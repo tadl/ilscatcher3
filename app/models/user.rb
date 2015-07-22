@@ -18,7 +18,7 @@ class User
 	def create_agent_token(token)
 		agent = Mechanize.new
 		cookie = Mechanize::Cookie.new('ses', token)
-		cookie.domain = 'mr.tadl.org'
+		cookie.domain = 'mr-v2.catalog.tadl.org'
 		cookie.path = '/'
 		agent.cookie_jar.add!(cookie)
 		return agent
@@ -26,7 +26,7 @@ class User
 
 	def create_agent_username_password(username, password)
 		agent = Mechanize.new
-		agent.get('https://mr.tadl.org/eg/opac/myopac/prefs')
+		agent.get('https://mr-v2.catalog.tadl.org/eg/opac/myopac/prefs')
 		login_form = agent.page.forms[1]
 		login_form.field_with(:name => "username").value = username
     login_form.field_with(:name => "password").value = password
@@ -41,12 +41,12 @@ class User
 		token = agent.cookies.detect {|c| c.name == 'ses'}
 		if !token.nil?
 			if page.nil?
-				page = agent.get('https://mr.tadl.org/eg/opac/myopac/prefs')
+				page = agent.get('https://mr-v2.catalog.tadl.org/eg/opac/myopac/prefs')
 			end
 			basic_info = Hash.new
 			page.parser.css('body').each do |p|
 				basic_info['full_name'] = p.css('span#dash_user').try(:text).strip rescue nil
-				basic_info['checkouts'] =  p.css('span#dash_checked').try(:text).strip rescue nil
+				basic_info['checkouts'] =  p.css('#dash_checked').try(:text).strip rescue nil
 				basic_info['holds'] =  p.css('span#dash_holds').try(:text).strip rescue nil
 				basic_info['holds_ready'] = p.css('span#dash_pickup').try(:text).strip rescue nil
 				basic_info['fine'] = p.css('span#dash_fines').try(:text).strip.gsub(/\$/, '') rescue nil
@@ -69,7 +69,7 @@ class User
 	def place_hold(record_id)
 		record_ids = record_id.split(',').reject(&:empty?).map(&:strip).map {|k| "&hold_target=#{k}" }.join
 		agent = create_agent_token(self.token)
-		agent.get('https://mr.tadl.org/eg/opac/place_hold?hold_type=T' + record_ids)
+		agent.get('https://mr-v2.catalog.tadl.org/eg/opac/place_hold?hold_type=T' + record_ids)
 		hold_form = agent.page.forms[1]
 		agent.submit(hold_form)
     page = agent.page
@@ -105,8 +105,8 @@ class User
 
 	def list_holds
 		agent = create_agent_token(self.token)
-		page = agent.get('https://mr.tadl.org/eg/opac/myopac/holds?limit=41')
-		holds_raw = page.parser.css('tr#acct_holds_temp').map do |h|
+		page = agent.get('https://mr-v2.catalog.tadl.org/eg/opac/myopac/holds?limit=41')
+		holds_raw = page.parser.css('tr.acct_holds_temp').map do |h|
 			{
         	:title =>  h.css('td[2]').css('a').text,
         	:author => h.css('td[3]').css('a').text,
@@ -136,7 +136,7 @@ class User
 
 	def manage_hold(hold)
 		agent = create_agent_token(self.token)
-		agent.post('https://mr.tadl.org/eg/opac/myopac/holds?limit=41',[["action", hold.task],["hold_id", hold.hold_id]])
+		agent.post('https://mr-v2.catalog.tadl.org/eg/opac/myopac/holds?limit=41',[["action", hold.task],["hold_id", hold.hold_id]])
 		holds = self.list_holds
 		updated_details = self.basic_info(agent)
 		return holds, updated_details
@@ -144,13 +144,13 @@ class User
 
 	def list_checkouts
 		agent = create_agent_token(self.token)
-		page = agent.get('https://mr.tadl.org/eg/opac/myopac/circs')
+		page = agent.get('https://mr-v2.catalog.tadl.org/eg/opac/myopac/circs')
 		checkouts = scrape_checkouts(page)
     	return checkouts
 	end
 
 	def renew_checkouts(checkouts)
-		url = 'https://mr.tadl.org/eg/opac/myopac/circs?action=renew'
+		url = 'https://mr-v2.catalog.tadl.org/eg/opac/myopac/circs?action=renew'
 		checkouts.each do |c|
 			url += '&circ=' + c
 		end
@@ -170,7 +170,7 @@ class User
 
   	def fines
   		agent = create_agent_token(self.token)
-  		page = agent.get('https://mr.tadl.org/eg/opac/myopac/main?limit=100')
+  		page = agent.get('https://mr-v2.catalog.tadl.org/eg/opac/myopac/main?limit=100')
   		fines_list = page.parser.css('#myopac_trans_div/table/tbody/tr').map do |c|
             {
                 :transaction_start_date => c.css('td[1]').text.try(:strip),

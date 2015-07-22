@@ -34,7 +34,7 @@ class Item
   		else
   			loc_url = '?locg=22'
   		end
-  		url = 'https://mr.tadl.org/eg/opac/record/' + id + loc_url
+  		url = 'https://mr-v2.catalog.tadl.org/eg/opac/record/' + id + loc_url
   		agent = Mechanize.new
   		page = agent.get(url)
   		page = page.parser
@@ -52,8 +52,8 @@ class Item
 			:holds => clean_totals_holds(detail.at('h2:contains("Current holds")').try(:next_element).try(:text))[0],
 			:eresource => detail.at('p.rdetail_uri').try(:at, 'a').try(:attr, "href"),
 			:image => detail.at_css('#rdetail_image').try(:attr, "src").try(:gsub, /^\//, "https://catalog.tadl.org/").try(:gsub, /medium/, "large"),
-			:format_type => detail.at('div#rdetail_format_label').text.strip,
-			:format_icon => detail.at('div#rdetail_format_label').at('img').try(:attr, "src"),
+			:format_type => detail.at('div#rdetail_format_label').try(:text).try(:strip),
+			:format_icon => detail.at('div#rdetail_format_label').try(:at, 'img').try(:attr, "src"),
 			:record_year => detail.search('span[@property="datePublished"]').try(:text),
 			:publisher => detail.search('span[@property="publisher"]').search('span[@property="name"]').try(:text).try(:strip),
 			:publication_place => detail.search('span[@property="publisher"]').search('span[@property="location"]').try(:text).gsub(':','').try(:strip),
@@ -76,7 +76,7 @@ class Item
   			else
   				loc_url = '?locg=22'
   			end
-  			url = 'https://mr.tadl.org/eg/opac/record/' + id + loc_url
+  			url = 'https://mr-v2.catalog.tadl.org/eg/opac/record/' + id + loc_url
   			agent = Mechanize.new
   			page = agent.get(url)
   			page = page.parser
@@ -85,11 +85,11 @@ class Item
   		copies = Array.new
   		page.css('.copy_details_offers_row').each do |copy|
   			copy = {
-  				:location => copy.search('td[@headers="copy_header_library"]').try(:text),
-  				:call_number => copy.search('td[@headers="copy_header_callnumber"]').try(:text),
-  				:shelving_location => copy.search('td[@headers="copy_header_shelfloc"]').try(:text),
-  				:status => copy.search('td[@headers="copy_header_status"]').try(:text),
-  				:due_date => copy.search('td[@headers="copy_header_due_date"]').try(:text),
+  				:location => copy.css('span[@property="name"]').try(:text),
+  				:call_number => copy.css('span[@property="sku"]').try(:text),
+  				:shelving_location => copy.css('td[@property="availableAtOrFrom"]').try(:text),
+  				:status => copy.at_css('td[@property="availableAtOrFrom"]').next.next.try(:text),
+  				:due_date => copy.at_css('td[@property="availableAtOrFrom"]').next.next.next.next.try(:text),
   			}
   			copies.push(copy)
   		end
@@ -131,7 +131,7 @@ class Item
   	end
 
     def marc
-      url = 'https://mr.tadl.org/eg/opac/record/' + self.id + '?expand=marchtml#marchtml'
+      url = 'https://mr-v2.catalog.tadl.org/eg/opac/record/' + self.id + '?expand=marchtml#marchtml'
       agent = Mechanize.new
       page = agent.get(url)
       marc_record = page.parser.at_css('.marc_table').to_s.gsub(/\n/,'').gsub(/\t/,'')
