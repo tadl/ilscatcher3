@@ -99,9 +99,10 @@ function place_hold(id,button,force) {
                 var message = "<div class='alert alert-warning'><i class='glyphicon glyphicon-exclamation-sign'></i> Oops! You already have this item checked out. Please return the item before placing a hold on it again.</div>";
                 $(button).parent().html(message);
                 $.get( "login.js", { "token": token, "update": "true" } );
-            } else if (data['hold_confirmation'][0]['message'] == 'long wait time') {
+            } else if (data['hold_confirmation'][0]['message'] == 'Placing this hold could result in longer wait times.') {
                 // complicated things
                 // and this is why we should do this with a template:
+                $(button).parent().empty();
                 $('#hold-confirm-force').modal('show');
             }
         } else {
