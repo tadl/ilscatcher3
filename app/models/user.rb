@@ -4,15 +4,21 @@ class User
 	attr_accessor :full_name, :checkouts, :holds, :holds_ready, :fine, :token, :card, :error
 
 	def initialize args
-		if args['token'] 
-			agent = create_agent_token(args['token'])
-			basic_info = basic_info(agent)
-		elsif args['username'] && args['password'] 
-			agent_page = create_agent_username_password(args['username'], args['password'])
-			basic_info = basic_info(agent_page[0], agent_page[1])
-		else
-			instance_variable_set("@error", "did not pass token or username & password") 
-		end
+    if args['full_name']
+      args.each do |k,v|
+        instance_variable_set("@#{k}", v) unless v.nil?
+      end
+    else  
+		  if args['token'] 
+			  agent = create_agent_token(args['token'])
+			  basic_info = basic_info(agent)
+		  elsif args['username'] && args['password'] 
+			  agent_page = create_agent_username_password(args['username'], args['password'])
+			  basic_info = basic_info(agent_page[0], agent_page[1])
+		  else
+			  instance_variable_set("@error", "did not pass token or username & password") 
+		  end
+    end
 	end
 
 	def create_agent_token(token)
@@ -139,7 +145,8 @@ class User
 		agent.post('https://mr-v2.catalog.tadl.org/eg/opac/myopac/holds?limit=41',[["action", hold.task],["hold_id", hold.hold_id]])
 		holds = self.list_holds
 		updated_details = self.basic_info(agent)
-		return holds, updated_details
+    user = User.new updated_details
+		return holds, user
 	end
 
 	def list_checkouts
@@ -229,4 +236,5 @@ class User
   	end
   	return checkouts
   end
+
 end

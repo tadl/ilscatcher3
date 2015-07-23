@@ -37,4 +37,11 @@ class ApplicationController < ActionController::Base
         end
         return user
     end
+
+    def set_cookies(user)
+      cookies[:login] = { :value => user.token, :expires => 2.hours.from_now }
+      cookies[:user] = {:value => user.to_json, :expires => 2.hours.from_now }
+    end
+
+
 end

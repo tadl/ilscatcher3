@@ -5,7 +5,7 @@
 	<% hold = @holds.find {|h| h.hold_id == @hold_id} %>
 	$('<%= escape_javascript(target_div)%>').html("<%= escape_javascript(render partial: 'hold', :locals => {:hold => hold}) %>");
 <% end %>
-sessionStorage.setItem('holds', "<%= escape_javascript(@updated_details['holds']) %>");
-sessionStorage.setItem('holds_ready', "<%= escape_javascript(@updated_details['holds_ready']) %>");
+sessionStorage.setItem('holds', "<%= escape_javascript(@user.holds) %>");
+sessionStorage.setItem('holds_ready', "<%= escape_javascript(@user.holds_ready) %>");
 update_login();
 hold_management_binds();

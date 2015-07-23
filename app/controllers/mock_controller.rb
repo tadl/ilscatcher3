@@ -48,7 +48,7 @@ class MockController < ApplicationController
     @update = params["update"]
     @user = generate_user()
     if @user.token
-      cookies[:login] = { :value => @user.token, :expires => 1.hour.from_now }
+      set_cookies(@user)
     end
     respond_to do |format|
       format.json {render json: @user}
@@ -58,6 +58,7 @@ class MockController < ApplicationController
 
   def logout
     cookies.delete :login
+    cookies.delete :user
     @message = "logged out"
     respond_to do |format|
       format.json {render json: @message}
@@ -80,6 +81,7 @@ class MockController < ApplicationController
       @hold_confirmation = 'bad login'
     end
     @user = generate_user()
+    set_cookies(@user)
     respond_to do |format|
       format.json {render :json => {:user => @user, 
         :hold_confirmation => @hold_confirmation}}
@@ -94,7 +96,8 @@ class MockController < ApplicationController
       if (params[:hold_id] && !params[:hold_id].blank?) || (params[:task] && !params[:task].blank?)
         @hold = Hold.new params
         @confirmation = @check_user.manage_hold(@hold)
-        @updated_details = @confirmation[1]
+        @user = @confirmation[1]
+        set_cookies(@user)
         @holds = @confirmation[0]
       else
         @confirmation = 'bad parameters'
@@ -104,6 +107,8 @@ class MockController < ApplicationController
     end
     respond_to do |format|
       format.js
+      format.json {render :json => {:user => @user, 
+        :checkouts => @checkouts}}
     end 
   end
 
@@ -111,6 +116,7 @@ class MockController < ApplicationController
     @user = generate_user()
     if !@user.error
       @holds = @user.list_holds
+      set_cookies(@user)
     else
       @holds = 'bad login'
     end
@@ -125,6 +131,7 @@ class MockController < ApplicationController
     @user = generate_user()
     if !@user.error
       @checkouts = @user.list_checkouts
+      set_cookies(@user)
     else
       @checkouts = 'bad login'
     end
@@ -138,6 +145,7 @@ class MockController < ApplicationController
   def renew_checkouts
     @check_user = generate_user()
     if !@check_user.error
+      set_cookies(@check_user)
       if (params[:checkout_ids])
         checkouts_raw = params[:checkout_ids].split(',')
         checkouts = Array.new
@@ -178,29 +186,33 @@ class MockController < ApplicationController
   end
 
   def fines
-    @check_user = generate_user()
+    @user = generate_user()
     if !@check_user.error
+      set_cookies(@user)
       @fines = @check_user.fines
     else
       @fines = 'bad login'
     end
     respond_to do |format|
-      format.json {render :json => {:user => @check_user, 
+      format.json {render :json => {:user => @user, 
         :fines => @fines}}
     end
   end
 
   def payments
-    @check_user = generate_user()
-    if !@check_user.error
+    @user = generate_user()
+    if !@user.error
+      set_cookies(@user)
       @payments = @check_user.payments
     else
       @payments = 'bad login'
     end
     respond_to do |format|
-      format.json {render :json => {:user => @check_user, 
+      format.json {render :json => {:user => @user, 
         :payments => @payments}}
     end
   end
+
+
 
 end

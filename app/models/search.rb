@@ -123,7 +123,7 @@ class Search
       # testing = true
       # if testing == false  		
   		if Rails.cache.exist?(self.search_path_minus_layout_with_page)
-      		return Rails.cache.read(self.search_path_minus_layout_with_page)
+      	return Rails.cache.read(self.search_path_minus_layout_with_page)
     	else
   			url = 'https://mr-v2.catalog.tadl.org/eg/opac/results?'
   			if self.query
