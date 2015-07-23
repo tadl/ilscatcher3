@@ -158,62 +158,75 @@ class User
 		page = agent.get(url)
 		message = page.parser.at_css('div.renew-summary').try(:text).try(:strip)
 		errors = page.parser.css('table#acct_checked_main_header').css('tr').drop(1).reject{|r| r.search('span[@class="failure-text"]').present? == false}.map do |checkout| 
-  			{
+  		{
   			:message => checkout.css('span.failure-text').text.strip.try(:gsub, /^Copy /, ''),
   			:checkout_id => checkout.previous.previous.search('input[@name="circ"]').try(:attr, "value").to_s,
         :title => circ_to_title(page, checkout.previous.previous.search('input[@name="circ"]').try(:attr, "value").to_s).try(:gsub, /:.*/, '').try(:strip),
-  			}
-  		end
-  		checkouts = scrape_checkouts(page)
-  		return message, errors, checkouts
+  		}
   	end
+  	checkouts = scrape_checkouts(page)
+  	return message, errors, checkouts
+  end
 
-  	def fines
-  		agent = create_agent_token(self.token)
-  		page = agent.get('https://mr-v2.catalog.tadl.org/eg/opac/myopac/main?limit=100')
-  		fines_list = page.parser.css('#myopac_trans_div/table/tbody/tr').map do |c|
-            {
-                :transaction_start_date => c.css('td[1]').text.try(:strip),
-                :last_pmt_date => c.css('td[2]').text.try(:strip),
-                :initial_amt_owed => c.css('td[3]').text.try(:strip),
-                :total_amt_paid => c.css('td[4]').text.try(:strip),
-                :balance_owed => c.css('td[5]').text.try(:strip),
-                :billing_type => c.css('td[6]').text.try(:strip),
-            }
-        end
-        return fines_list
-  	end	
+  def fines
+  	agent = create_agent_token(self.token)
+  	page = agent.get('https://mr-v2.catalog.tadl.org/eg/opac/myopac/main?limit=100')
+  	fines_list = page.parser.css('#myopac_trans_div/table/tbody/tr').map do |c|
+          {
+            :transaction_start_date => c.css('td[1]').text.try(:strip),
+            :last_pmt_date => c.css('td[2]').text.try(:strip),
+            :initial_amt_owed => c.css('td[3]').text.try(:strip),
+            :total_amt_paid => c.css('td[4]').text.try(:strip),
+            :balance_owed => c.css('td[5]').text.try(:strip),
+            :billing_type => c.css('td[6]').text.try(:strip),
+          }
+    end
+    return fines_list
+  end
 
-  	def circ_to_title(page, checkout_id)
-    	look_for = 'input[@value="'+ checkout_id +'"]'
-    	title = page.at(look_for).try(:parent).try(:next).try(:next).try(:css, 'a')[0].try(:text)
-    	return title  
-  	end 
+  def payments
+    agent = create_agent_token(self.token)
+    page = agent.get('https://mr-v2.catalog.tadl.org/eg/opac/myopac/main_payments?limit=100')
+    payment_list = page.parser.css('table[@title="Payments"]/tbody/tr').map do |c|
+          {
+            :payment_date => c.css('td[1]').text.try(:strip),
+            :payment_for => c.css('td[2]').text.try(:strip),
+            :amount => c.css('td[3]').text.try(:strip),
+          }
+    end
+    return payment_list
+  end
+
+  def circ_to_title(page, checkout_id)
+  	look_for = 'input[@value="'+ checkout_id +'"]'
+  	title = page.at(look_for).try(:parent).try(:next).try(:next).try(:css, 'a')[0].try(:text)
+  	return title  
+  end 
 
 	def clean_record(string)
-  		record_id = string.split('?') rescue nil
-  		record_id = record_id[0].gsub('/eg/opac/record/','') rescue nil
-  		return record_id
-  	end
+  	record_id = string.split('?') rescue nil
+  	record_id = record_id[0].gsub('/eg/opac/record/','') rescue nil
+  	return record_id
+  end
 
-  	def scrape_checkouts(page)
-  		checkouts_raw = page.parser.css('table#acct_checked_main_header').css('tr').drop(1).reject{|r| r.search('span[@class="failure-text"]').present?}.map do |c|
-			  {
-        :title => c.search('td[@name="author"]').css('a')[0].try(:text),
-        :author => c.search('td[@name="author"]').css('a')[1].try(:text),
-        :record_id => clean_record(c.search('td[@name="author"]').css('a')[0].try(:attr, "href")),
-        :checkout_id => c.search('input[@name="circ"]').try(:attr, "value").to_s,
-        :renew_attempts => c.search('td[@name="renewals"]').text.to_s.try(:gsub!, /\n/," ").try(:squeeze, " ").try(:strip),
-        :due_date => c.search('td[@name="due_date"]').text.to_s.try(:gsub!, /\n/," ").try(:squeeze, " ").try(:strip),
-       	:iso_due_date => Date.strptime(c.search('td[@name="due_date"]').text.to_s.try(:gsub!, /\n/," ").try(:squeeze, " ").try(:strip),'%m/%d/%Y').to_s,
-        :barcode => c.search('td[@name="barcode"]').text.to_s.try(:gsub!, /\n/," ").try(:squeeze, " ").try(:strip),
-      	}
-      end
-      checkouts = Array.new
-    	checkouts_raw.each do |c|
-    		checkout = Checkout.new c
-    		checkouts = checkouts.push(checkout)
-    	end
-    	return checkouts
+  def scrape_checkouts(page)
+  	checkouts_raw = page.parser.css('table#acct_checked_main_header').css('tr').drop(1).reject{|r| r.search('span[@class="failure-text"]').present?}.map do |c|
+		  {
+      :title => c.search('td[@name="author"]').css('a')[0].try(:text),
+      :author => c.search('td[@name="author"]').css('a')[1].try(:text),
+      :record_id => clean_record(c.search('td[@name="author"]').css('a')[0].try(:attr, "href")),
+      :checkout_id => c.search('input[@name="circ"]').try(:attr, "value").to_s,
+      :renew_attempts => c.search('td[@name="renewals"]').text.to_s.try(:gsub!, /\n/," ").try(:squeeze, " ").try(:strip),
+      :due_date => c.search('td[@name="due_date"]').text.to_s.try(:gsub!, /\n/," ").try(:squeeze, " ").try(:strip),
+     	:iso_due_date => Date.strptime(c.search('td[@name="due_date"]').text.to_s.try(:gsub!, /\n/," ").try(:squeeze, " ").try(:strip),'%m/%d/%Y').to_s,
+      :barcode => c.search('td[@name="barcode"]').text.to_s.try(:gsub!, /\n/," ").try(:squeeze, " ").try(:strip),
+    	}
+    end
+    checkouts = Array.new
+  	checkouts_raw.each do |c|
+  		checkout = Checkout.new c
+  		checkouts = checkouts.push(checkout)
   	end
+  	return checkouts
+  end
 end

@@ -189,4 +189,18 @@ class MockController < ApplicationController
         :fines => @fines}}
     end
   end
+
+  def payments
+    @check_user = generate_user()
+    if !@check_user.error
+      @payments = @check_user.payments
+    else
+      @payments = 'bad login'
+    end
+    respond_to do |format|
+      format.json {render :json => {:user => @check_user, 
+        :payments => @payments}}
+    end
+  end
+
 end
