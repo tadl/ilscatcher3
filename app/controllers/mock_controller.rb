@@ -195,6 +195,7 @@ class MockController < ApplicationController
       @fines = 'bad login'
     end
     respond_to do |format|
+      format.html
       format.json {render :json => {:user => @user, 
         :fines => @fines}}
     end
@@ -209,8 +210,26 @@ class MockController < ApplicationController
       @payments = 'bad login'
     end
     respond_to do |format|
+      format.html
       format.json {render :json => {:user => @user, 
         :payments => @payments}}
+    end
+  end
+
+  def account
+    @user = generate_user()
+    if !@user.error
+        set_cookies(@user)
+        @page = params[:page]
+        @fines = @user.fines
+        @payments = @user.payments
+        @checkouts = @user.list_checkouts
+        @holds = @user.list_holds
+    else
+        @account = 'bad login'
+    end
+    respond_to do |format|
+      format.html
     end
   end
 

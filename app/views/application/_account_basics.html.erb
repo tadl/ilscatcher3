@@ -10,11 +10,11 @@
     		Holds <span class="badge"><span id="holds"><%= info['holds']%></span></span>
     	</a>
     </li>
-    <li<% if request.path == '/mock/fines' %> class="active"<% end %>>
-    	<a onclick="event.preventDefault();">
-    		Fines <span class="badge">$<span id="fine"><%= info['fine']%></span></span>
-    	</a>
-    </li>
+        <li<% if request.path == mock_fines_path %> class="active"<% end %>>
+            <a href="<%= mock_fines_path %>">
+                Fines <span class="badge">$<span id="fine"><%= info['fine']%></span></span>
+            </a>
+        </li>
     <li>
     	<%= link_to 'logout.js', :remote => true, :type => 'button', :class => 'btn btn-default navbar-btn', :style => 'margin-left:10px;' do %>
     		Log out
