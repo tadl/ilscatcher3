@@ -1,16 +1,9 @@
 <ul class="nav navbar-nav navbar-right" id="account_info_box">
-
+    <% if cookies[:user] %>
+        <%= render partial: 'account_basics' %>
+    <% else %>
+        <%= render partial: 'login_form' %>
+    <% end %>
 </ul>
 
-<script>
-    if (sessionStorage.getItem('full_name') != undefined) {
-        $('#account_info_box').html("<%= escape_javascript(render partial: 'account_basics') %>");
-        update_login();
-    } else if (sessionStorage.getItem('token') != undefined) {
-        var token = sessionStorage.getItem('token');
-        $('#account_info_box').html("<%= escape_javascript(render partial: 'account_basics') %>");
-        $.get("login.js", {"token": token, "update": 'true'});
-    } else {
-        $('#account_info_box').html("<%= escape_javascript(render partial: 'login_form') %>")
-    }
-</script>
+

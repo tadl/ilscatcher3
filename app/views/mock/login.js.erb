@@ -1,19 +1,9 @@
-<% if @update == 'true' %>
-	<% if @user.full_name %>
-		sessionStorage.setItem('full_name', "<%= escape_javascript(@user.full_name) %>");
-		sessionStorage.setItem('holds', "<%= escape_javascript(@user.holds) %>");
-		sessionStorage.setItem('holds_ready', "<%= escape_javascript(@user.holds_ready) %>");
-		sessionStorage.setItem('checkouts', "<%= escape_javascript(@user.checkouts) %>");
-		sessionStorage.setItem('fine', "<%= escape_javascript(@user.fine) %>");
-		sessionStorage.setItem('token', "<%= escape_javascript(@user.token) %>");
-		sessionStorage.setItem('authed', "true");
-		$('#account_info_box').html("<%= escape_javascript(render partial: 'account_basics') %>")
-		update_login()
-        $('#statusMessage').modal('hide');
-	<% else %>
-		$('#account_info_box').html("<%= escape_javascript(render partial: 'login_form') %>")
-	<% end %>
-<% else %>
+<% if !@user.error %>
+	sessionStorage.setItem('token', "<%= escape_javascript(@user.token) %>");
+	sessionStorage.setItem('authed', "true");
+	$('#account_info_box').html("<%= escape_javascript(render partial: 'account_basics') %>")
+	$('#statusMessage').modal('hide');
 	update_login()
+<% else %>
+	$('#account_info_box').html("<%= escape_javascript(render partial: 'login_form') %>")
 <% end %>
-

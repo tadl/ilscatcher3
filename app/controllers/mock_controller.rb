@@ -45,7 +45,6 @@ class MockController < ApplicationController
   end
 
   def login
-    @update = params["update"]
     @user = generate_user()
     if @user.token
       set_cookies(@user)
@@ -62,6 +61,7 @@ class MockController < ApplicationController
     @message = "logged out"
     respond_to do |format|
       format.json {render json: @message}
+      format.js
     end
   end
 
@@ -83,6 +83,7 @@ class MockController < ApplicationController
     @user = generate_user()
     set_cookies(@user)
     respond_to do |format|
+      format.js
       format.json {render :json => {:user => @user, 
         :hold_confirmation => @hold_confirmation}}
     end

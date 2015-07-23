@@ -1,6 +1,23 @@
+<% info = ActiveSupport::JSON.decode(cookies[:user]) %>
 <ul class="nav navbar-nav">
-    <li<% if request.path == mock_checkouts_path %> class="active"<% end %>><a href="<%= mock_checkouts_path %>">Checkouts <span class="badge"><span id="checkouts"></span></span></a></li>
-    <li<% if request.path == mock_holds_path %> class="active"<% end %>><a href="<%= mock_holds_path %>">Holds <span class="badge"><span id="holds"></span></span></a></li>
-    <li<% if request.path == '/mock/fines' %> class="active"<% end %>><a onclick="event.preventDefault();">Fines <span class="badge">$<span id="fine"></span></span></a></li>
-    <li><button class="btn btn-default navbar-btn" style="margin-left:10px;" onclick="logout()">Log out</button></li>
+    <li <% if request.path == mock_checkouts_path %> class="active"<% end %>>
+    	<a href="<%= mock_checkouts_path %>">
+    		Checkouts <span class="badge"><span id="checkouts"><%= info['checkouts']%></span></span>
+    	</a>
+    </li>
+    <li<% if request.path == mock_holds_path %> class="active"<% end %>>
+    	<a href="<%= mock_holds_path %>">
+    		Holds <span class="badge"><span id="holds"><%= info['holds']%></span></span>
+    	</a>
+    </li>
+    <li<% if request.path == '/mock/fines' %> class="active"<% end %>>
+    	<a onclick="event.preventDefault();">
+    		Fines <span class="badge">$<span id="fine"><%= info['fine']%></span></span>
+    	</a>
+    </li>
+    <li>
+    	<%= link_to 'logout.js', :remote => true, :type => 'button', :class => 'btn btn-default navbar-btn', :style => 'margin-left:10px;' do %>
+    		Log out
+    	<% end %>
+    </li>
 </ul>

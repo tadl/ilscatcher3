@@ -74,157 +74,71 @@ function bind_more_results() {
     });
 }
 
-function place_hold(id,button,force) {
-    var record = id;
-    force = typeof force !== 'undefined' ? force : false;
-    var token = sessionStorage.getItem('token');
-    if (force == false) {
-        var hold_params = {"token": token, "record_id": record};
-    } else if (force == true) {
-        var hold_params = {"token": token, "record_id": record, "force": "yes"};
-    }
-    $('#force-hold').unbind('click');
-    var jqxhr = $.ajax({
-        method: 'POST',
-        url: '/mock/place_hold',
-        data: hold_params,
-        dataType: "json",
-        contentType: "application/x-www-form-urlencoded, charset=UTF-8",
-        timeout: 15000
-    }).done(function(data) {
-        $('#statusMessage').modal('hide');
-        if ((data['hold_confirmation'] instanceof Array) && (data['hold_confirmation'][0]['error'] == true)) {
-            if (data['hold_confirmation'][0]['message'] == 'Hold was not successfully placed Problem: User already has an open hold on the selected item') {
-                var message = "<div class='alert alert-warning'><i class='glyphicon glyphicon-exclamation-sign'></i> Oops! You already have a hold on this item.</div>";
-                $('#record-'+record).parent().html(message);
-                $('#search-'+record).parent().html(message);
-                //$(button).parent().html(message); // not necessary if we target divs by name
-                $.get( "login.js", { "token": token, "update": "true" } );
-            } else if (data['hold_confirmation'][0]['message'] == 'Hold was not successfully placed Problem: The item you have attempted to place on hold is already checked out to the requestor.') {
-                var message = "<div class='alert alert-warning'><i class='glyphicon glyphicon-exclamation-sign'></i> Oops! You already have this item checked out. Please return the item before placing a hold on it again.</div>";
-                $('#record-'+record).parent().html(message);
-                $('#search-'+record).parent().html(message);
-                //$(button).parent().html(message); // not necessary if we target divs by name
-                $.get( "login.js", { "token": token, "update": "true" } );
-            } else if (data['hold_confirmation'][0]['message'] == 'Placing this hold could result in longer wait times.') {
-                // and this is why we should do this with a template:
-                // (because we can bind the click AND not have to pass the record ID to the function
-                // because we can render the modal as a template with variables containing the id)
-                $('#hold-confirm-force').modal('show');
-                force_hold_click(record);
-            }
-        } else {
-            var message = "<div class='alert alert-success'><i class='glyphicon glyphicon-ok-sign'></i> Your hold was successfully placed.</div>";
-            $('#record-'+record).parent().html(message);
-            $('#search-'+record).parent().html(message);
-            $.get( "login.js", { "token": token, "update": "true" } );
-        }
-    }).fail(function() {
-        $('#statusMessage').modal('hide');
-        var message = "<div class='alert alert-danger'><i class='glyphicon glyphicon-exclamation-sign'></i> Sorry, something went horribly wrong. Please try again.</div>";
-        $('#record-'+record).parent().html(message);
-        $('#search-'+record).parent().html(message);
-        //$(button).parent().html(message); // not necessary if we target divs by name
-    });
-}
-
-function holdbutton_click() {
-    $('.holdbtn').on("click", function() {
-        var logged_in = sessionStorage.getItem('authed');
-        var recordid = $(this).attr("id").split('-')[1];
-        var thebutton = $(this);
-        var buttondiv = $(this).parents().eq(1);
-        var buttonhtml = $(this).parents().eq(1).html();
-        if (logged_in == null) {
-            var contents = $('#holdlogin').html();
-            $('#holdlogin').empty();
-            $(this).parent().html(contents);
-            $("#holdloginsubmit").on("click", function() {
-                $('#statusMessage').modal('show');
-                var username = $('#holdloginuser').val();
-                var password = $('#holdloginpass').val();
-                $('#holdloginsubmit').text('Logging in...');
-                if (username != null || username != '') { sessionStorage.setItem('username', username); }
-                var login_params = {"username": username, "password": password};
-                var jqxhr = $.ajax({
-                    method: 'POST',
-                    url: '/mock/login',
-                    data: login_params,
-                    dataType: "json",
-                    contentType: "application/x-www-form-urlencoded, charset=UTF-8",
-                    timeout: 15000
-                }).done(function(data) {
-                    if (data.error == 'bad username or password') {
-                        $('#statusMessage').modal('hide');
-                        $('#loginmessage').parent().html('<div id="loginmessage" class="alert alert-danger"><i class="glyphicon glyphicon-exclamation-sign"></i> There was a problem with your username or password. Please try again.</div>');
-                        $('#holdloginsubmit').text('Log in and place hold');
-                        $('#holdloginuser').val('');
-                        $('#holdloginpass').val('');
-                    } else {
-                        sessionStorage.setItem('token', data.token);
-                        sessionStorage.setItem('authed', "true");
-                        var message = "<div class='alert alert-info'><i class='glyphicon glyphicon-sunglasses'></i> Placing hold...</div>";
-                        $(buttondiv).html(message);
-                        place_hold(recordid,buttondiv);
-                    }
-                }).fail(function() {
-                    $('#statusMessage').modal('hide');
-                    var message = "<div class='alert alert-danger'><i class='glyphicon glyphicon-exclamation-sign'></i> Sorry, something went horribly wrong. Please try again.</div>";
-                    $(thebutton).parent().html(message);
-                })
-            });
-            $("#holdlogincancel").on("click", function() {
-                $(buttondiv).html(buttonhtml);
-                $("#holdlogin").html(contents);
-                holdbutton_click();
-            });
-        } else {
-            $('#statusMessage').modal('show');
-            $(thebutton).text('Placing hold...');
-            place_hold(recordid,thebutton);
-        }
-    });
+function place_hold(id) {
+    var logged_in = Cookies.get('login');
+    target_button = '#record-' + id
+    target_div = '#hold_status_' + id
+    if(logged_in == null){
+        $('#holdlogin').show()
+        $(target_button).hide()
+    }else{
+        $(target_button).hide()
+        $(target_div).html('placing your hold')
+        $.get("place_hold.js", {record_id: id})
+    }     
 }
 
 function update_login(){
-    var full_name = sessionStorage.getItem('full_name');
-    var holds = sessionStorage.getItem('holds');
-    var holds_ready = sessionStorage.getItem('holds_ready');
-    var checkouts = sessionStorage.getItem('checkouts');
-    var fine = sessionStorage.getItem('fine');
-    $('#full_name').text(full_name);
-    $('#holds').text(holds);
-    $('#holds_ready').text(holds_ready);
-    $('#checkouts').text(checkouts);
-    $('#fine').text(fine);
-}
-
-function login() {
-    $('#statusMessage').modal('show');
-    var username = $('#username').val();
-    var password = $('#password').val();
-    $.post("login.js", {username: username, password: password, update: "true"});
-}
-
-function logout() {
-    sessionStorage.clear();
-    delete_cookie('login');
-    $.get("login.js", {update: "true"});
-}
-
-function delete_cookie(name) {
-    document.cookie = name + '=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
-}
-
-//Example of how to interact with cookie data
-function test_cookie() {
     var cookie_data = JSON.parse(Cookies.get('user'))
-    var user = cookie_data.full_name.replace('+',' ')
+    var full_name = cookie_data.full_name.replace('+',' ')
     var holds = cookie_data.holds
     var holds_ready = cookie_data.holds_ready
     var checkouts = cookie_data.checkouts
-    alert(user + ' has ' + checkouts +  ' checkouts')
+    var fine = cookie_data.fine
+    $('#full_name').text(full_name)
+    $('#holds').text(holds)
+    $('#holds_ready').text(holds_ready)
+    $('#checkouts').text(checkouts)
+    $('#fine').text(fine)
 }
+
+function login_for_hold(id) {
+    $('#statusMessage').modal('show');
+    var username = $('#holdloginuser').val()
+    var password = $('#holdloginpass').val()
+    $.get("login.js", {username: username, password: password}).done(function(data){
+        if (data.error == 'bad username or password') {
+            $('#statusMessage').modal('hide')
+            $('#holdloginuser').val('')           
+            $('#holdloginpass').val('')
+            alert('bad login')
+        } else {
+            $('#statusMessage').modal('hide')
+            $('#holdlogin').hide()
+            target = '#hold_status_' + id
+            $(target).html('getting your hold')
+            $.get("place_hold.js", {record_id: id})
+        }
+    })
+}
+
+function login(){
+    $('#statusMessage').modal('show')
+    var username = $('#username').val()
+    var password = $('#password').val()
+    $.get("login.js", {username: username, password: password}).done(function(data){
+        if (data.error == 'bad username or password') {
+            $('#statusMessage').modal('hide')
+            $('#username').val('')            
+            $('#password').val('')
+             $('#statusMessage').modal('hide')
+            alert('bad login')
+        } else {
+            $('#statusMessage').modal('hide')
+        }
+    });
+}
+
 
 function alert_message(type, message, timeout) {
     if (!type.match(/success|info|warning|danger/)) { return; }
