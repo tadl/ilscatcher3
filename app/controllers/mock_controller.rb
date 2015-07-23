@@ -187,9 +187,9 @@ class MockController < ApplicationController
 
   def fines
     @user = generate_user()
-    if !@check_user.error
+    if !@user.error
       set_cookies(@user)
-      @fines = @check_user.fines
+      @fines = @user.fines
     else
       @fines = 'bad login'
     end
@@ -203,7 +203,7 @@ class MockController < ApplicationController
     @user = generate_user()
     if !@user.error
       set_cookies(@user)
-      @payments = @check_user.payments
+      @payments = @user.payments
     else
       @payments = 'bad login'
     end
