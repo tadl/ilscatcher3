@@ -1,0 +1,12 @@
+<table class="table table-striped table-responsive">
+    <thead>
+        <tr>
+            <th>Payment Date</th>
+            <th>Description</th>
+            <th>Amount</th>
+        </tr>
+    </thead>
+    <tbody><% @payments.each do |payment| %>
+        <%= render 'payment', :payment => payment %>
+    <% end %></tbody>
+</table>

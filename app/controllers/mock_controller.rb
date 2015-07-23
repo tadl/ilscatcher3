@@ -194,6 +194,7 @@ class MockController < ApplicationController
       @fines = 'bad login'
     end
     respond_to do |format|
+      format.html
       format.json {render :json => {:user => @user, 
         :fines => @fines}}
     end
@@ -208,6 +209,7 @@ class MockController < ApplicationController
       @payments = 'bad login'
     end
     respond_to do |format|
+      format.html
       format.json {render :json => {:user => @user, 
         :payments => @payments}}
     end
