@@ -78,7 +78,12 @@ function place_hold(id,button,force) {
     var record = id;
     force = typeof force !== 'undefined' ? force : false;
     var token = sessionStorage.getItem('token');
-    var hold_params = {"token": token, "record_id": record};
+    if (force == false) {
+        var hold_params = {"token": token, "record_id": record};
+    } else if (force == true) {
+        var hold_params = {"token": token, "record_id": record, "force": "yes"};
+    }
+    $('#force-hold').unbind('click');
     var jqxhr = $.ajax({
         method: 'POST',
         url: '/mock/place_hold',
@@ -88,32 +93,38 @@ function place_hold(id,button,force) {
         timeout: 15000
     }).done(function(data) {
         $('#statusMessage').modal('hide');
-        if (data['user']['error'] == 'bad token' || data['hold_confirmation'] == 'bad login') {
-            $.get("login.js", {update: "true"});
-        } else if (data['hold_confirmation'][0]['error'] == true) {
+        if ((data['hold_confirmation'] instanceof Array) && (data['hold_confirmation'][0]['error'] == true)) {
             if (data['hold_confirmation'][0]['message'] == 'Hold was not successfully placed Problem: User already has an open hold on the selected item') {
                 var message = "<div class='alert alert-warning'><i class='glyphicon glyphicon-exclamation-sign'></i> Oops! You already have a hold on this item.</div>";
-                $(button).parent().html(message);
+                $('#record-'+record).parent().html(message);
+                $('#search-'+record).parent().html(message);
+                //$(button).parent().html(message); // not necessary if we target divs by name
                 $.get( "login.js", { "token": token, "update": "true" } );
             } else if (data['hold_confirmation'][0]['message'] == 'Hold was not successfully placed Problem: The item you have attempted to place on hold is already checked out to the requestor.') {
                 var message = "<div class='alert alert-warning'><i class='glyphicon glyphicon-exclamation-sign'></i> Oops! You already have this item checked out. Please return the item before placing a hold on it again.</div>";
-                $(button).parent().html(message);
+                $('#record-'+record).parent().html(message);
+                $('#search-'+record).parent().html(message);
+                //$(button).parent().html(message); // not necessary if we target divs by name
                 $.get( "login.js", { "token": token, "update": "true" } );
             } else if (data['hold_confirmation'][0]['message'] == 'Placing this hold could result in longer wait times.') {
-                // complicated things
                 // and this is why we should do this with a template:
-                $(button).parent().empty();
+                // (because we can bind the click AND not have to pass the record ID to the function
+                // because we can render the modal as a template with variables containing the id)
                 $('#hold-confirm-force').modal('show');
+                force_hold_click(record);
             }
         } else {
             var message = "<div class='alert alert-success'><i class='glyphicon glyphicon-ok-sign'></i> Your hold was successfully placed.</div>";
-            $(button).parent().html(message);
+            $('#record-'+record).parent().html(message);
+            $('#search-'+record).parent().html(message);
             $.get( "login.js", { "token": token, "update": "true" } );
         }
     }).fail(function() {
         $('#statusMessage').modal('hide');
         var message = "<div class='alert alert-danger'><i class='glyphicon glyphicon-exclamation-sign'></i> Sorry, something went horribly wrong. Please try again.</div>";
-        $(button).parent().html(message);
+        $('#record-'+record).parent().html(message);
+        $('#search-'+record).parent().html(message);
+        //$(button).parent().html(message); // not necessary if we target divs by name
     });
 }
 
@@ -254,6 +265,15 @@ function checkout_management_binds() {
 function detect_details_click() {
     $('.details-button').click(function(event) {
         $(this).html(spinner+'Loading Details');
+    });
+}
+
+/* force hold button watcher */
+function force_hold_click(id) {
+    $('#force-hold').click(function(event) {
+        $('#hold-confirm-force').modal('hide');
+        $('#statusMessage').modal('show');
+        place_hold(id,null,true);
     });
 }
 
