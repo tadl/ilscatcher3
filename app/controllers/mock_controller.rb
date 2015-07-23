@@ -215,6 +215,23 @@ class MockController < ApplicationController
     end
   end
 
+  def account
+    @user = generate_user()
+    if !@user.error
+        set_cookies(@user)
+        @page = params[:page]
+        @fines = @user.fines
+        @payments = @user.payments
+        @checkouts = @user.list_checkouts
+        @holds = @user.list_holds
+    else
+        @account = 'bad login'
+    end
+    respond_to do |format|
+      format.html
+    end
+  end
+
 
 
 end
