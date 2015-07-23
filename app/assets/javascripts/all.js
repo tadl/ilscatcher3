@@ -216,6 +216,16 @@ function delete_cookie(name) {
     document.cookie = name + '=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
 }
 
+//Example of how to interact with cookie data
+function test_cookie() {
+    var cookie_data = JSON.parse(Cookies.get('user'))
+    var user = cookie_data.full_name.replace('+',' ')
+    var holds = cookie_data.holds
+    var holds_ready = cookie_data.holds_ready
+    var checkouts = cookie_data.checkouts
+    alert(user + ' has ' + checkouts +  ' checkouts')
+}
+
 function alert_message(type, message, timeout) {
     if (!type.match(/success|info|warning|danger/)) { return; }
     var timestamp = Date.now();
