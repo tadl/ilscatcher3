@@ -23,6 +23,6 @@ gem 'jquery-turbolinks'
 gem 'rails_12factor', group: :production
 gem 'dalli', group: :production
 gem 'unicorn'
-gem 'sidekiq'
-gem 'sidetiq'
-gem 'redis'
+gem 'sidekiq', group: :production
+gem 'sidetiq', group: :production
+gem 'redis', group: :production
