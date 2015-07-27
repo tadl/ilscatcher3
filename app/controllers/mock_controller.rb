@@ -4,14 +4,38 @@ class MockController < ApplicationController
     respond_to :html, :json, :js
 
   def index
+      
+    if Rails.cache.exist?('music_list')
+      @music_list = Rails.cache.read('music_list')
+    else
       music_list_raw = JSON.parse(open('https://www.tadl.org/mobile/export/items/31/json').read)['nodes'].map {|i| i['node']}
-      movie_list_raw = JSON.parse(open('https://www.tadl.org/mobile/export/items/32/json').read)['nodes'].map {|i| i['node']}
-      book_list_raw = JSON.parse(open('https://www.tadl.org/mobile/export/items/68/json').read)['nodes'].map {|i| i['node']}
-      games_list_raw = JSON.parse(open('https://www.tadl.org/mobile/export/items/505/json').read)['nodes'].map {|i| i['node']}
-      @movie_list = Dish(movie_list_raw)
       @music_list = Dish(music_list_raw)
+      Rails.cache.write('music_list', @music_list, expires_in: 10.minutes)
+    end
+      
+    if Rails.cache.exist?('movie_list')
+      @movie_list = Rails.cache.read('movie_list')
+    else
+      movie_list_raw = JSON.parse(open('https://www.tadl.org/mobile/export/items/32/json').read)['nodes'].map {|i| i['node']}
+      @movie_list = Dish(movie_list_raw)
+      Rails.cache.write('movie_list', @movie_list, expires_in: 10.minutes)
+    end
+
+    if Rails.cache.exist?('book_list')
+      @book_list = Rails.cache.read('book_list')
+    else
+      book_list_raw = JSON.parse(open('https://www.tadl.org/mobile/export/items/68/json').read)['nodes'].map {|i| i['node']}
       @book_list = Dish(book_list_raw)
-      @games_list = Dish(games_list_raw)
+      Rails.cache.write('book_list', @book_list, expires_in: 10.minutes)
+    end
+
+    if Rails.cache.exist?('game_list')
+      @games_list = Rails.cache.read('game_list')
+    else
+      game_list_raw = JSON.parse(open('https://www.tadl.org/mobile/export/items/505/json').read)['nodes'].map {|i| i['node']}
+      @games_list = Dish(game_list_raw)
+      Rails.cache.write('game_list', @games_list, expires_in: 10.minutes)
+    end
   end
 
 
