@@ -84,7 +84,7 @@ function place_hold(id) {
         $(target_button).hide();
     } else {
         $(target_button).hide();
-        $(target_div).html('placing your hold');
+        $(target_div).html('<div class="alert alert-info">'+spinner+'Placing hold</div>');
         $.get("place_hold.js", {record_id: id});
     }
 }
