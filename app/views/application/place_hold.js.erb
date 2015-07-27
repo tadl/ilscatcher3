@@ -1,15 +1,16 @@
-var messageopen = '<div class="alert alert-info" role="alert">';
+var messageinfo    = '<div class="alert alert-info" role="alert">';
+var messagesuccess = '<div class="alert alert-success" role="alert">';
 var messageclose = '</div>';
 <% @hold_confirmation.each do |c| %>
     var target = '.hold-status-<%= escape_javascript(c[:record_id]) %>';
     <% if !c[:error] %>
-        var message = messageopen+'Hold placed successfully'+messageclose;
+        var message = messagesuccess+'Hold placed successfully'+messageclose;
         $(target).html(message);
     <% elsif c[:need_to_force] %>
-        var message = messageopen+'This item is not currently available at your pickup location'+messageclose;
+        var message = messageinfo+'This item is not currently available at your pickup location'+messageclose;
         $(target).html(message);
     <% else %>
-        var message = messageopen+'<%= escape_javascript(c[:message]) %>'+messageclose;
+        var message = messageinfo+'<%= escape_javascript(c[:message]) %>'+messageclose;
         $(target).html(message);
     <% end %>
 <% end %> 
