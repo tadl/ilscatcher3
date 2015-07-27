@@ -26,13 +26,9 @@
 
 <%= render 'more_results_link' %>
 
-<%= render 'hidden_hold_login' %>
-
 <script>
 bind_more_results();
-</script>
 
-<script>
 document.addEventListener('page:change', function() {
     $('#results').addClass('animated fadeInUp');
 });
@@ -44,8 +40,4 @@ $(document).on("submit", "form[data-turboform]", function(e) {
     Turbolinks.visit(this.action+(this.action.indexOf('?') == -1 ? '?' : '&')+$(this).serialize());
     return false;
 });
-</script>
-
-<script>
-holdbutton_click();
 </script>

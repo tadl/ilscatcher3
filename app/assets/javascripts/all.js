@@ -77,10 +77,11 @@ function bind_more_results() {
 function place_hold(id) {
     // #TODO force holds
     var logged_in = Cookies.get('login');
-    target_button = '.record-' + id;
+    target_button = '.hold-' + id;
     target_div = '.hold-status-' + id;
+    login_div = '.holdlogin-' + id;
     if (logged_in == null) {
-        $('#holdlogin').show();
+        $(login_div).show();
         $(target_button).hide();
     } else {
         $(target_button).hide();
@@ -107,8 +108,8 @@ function login(id) {
     if (typeof id !== 'undefined') { var do_hold = id; } else { var do_hold = 0; }
     $('#statusMessage').modal('show');
     if (do_hold != 0) {
-        var username = $('#holdloginuser').val()
-        var password = $('#holdloginpass').val()
+        var username = $('#holdloginuser-'+id).val()
+        var password = $('#holdloginpass-'+id).val()
     } else {
         var username = $('#username').val();
         var password = $('#password').val();
@@ -119,13 +120,13 @@ function login(id) {
         if (data.error == 'bad username or password') {
             $('#username').val('');
             $('#password').val('');
-            $('#holdloginuser').val('')           
-            $('#holdloginpass').val('')
+            $('#holdloginuser-'+id).val('');
+            $('#holdloginpass-'+id).val('');
             $('#statusMessage').modal('hide');
             alert_message('danger', 'There was a problem with your username or password. #TODO');
         } else {
             if (do_hold != 0) {
-                $('#holdlogin').hide();
+                $('.holdlogin-'+id).hide();
                 target = '.hold-status-' + id;
                 message = '<div class="alert alert-info">'+spinner+'Placing hold</div>';
                 $(target).html(message)
@@ -137,8 +138,8 @@ function login(id) {
 
 function login_cancel(id) {
     if (typeof id !== 'undefined') { var id = id; } else { var id = 0; }
-    $('#holdlogin').hide();
-    $('.record-'+id).show();
+    $('.holdlogin-'+id).hide();
+    $('.hold-'+id).show();
 }
 
 function alert_message(type, message, timeout) {
@@ -163,6 +164,11 @@ function alert_message(type, message, timeout) {
 /* hold management watchers */
 // #TODO all of the .click(function())s should be .on('click', function()...)s
 function hold_management_binds() {
+    $('.hold-manage').unbind('click');
+    $('.hold-cancel').unbind('click');
+    $('.hold-suspend').unbind('click');
+    $('.hold-activate').unbind('click');
+
     $('.hold-manage').click(function(event) {
         event.preventDefault();
         $(this).removeClass('hold-manage btn-primary').addClass('hold-cancel btn-danger').text('Confirm Cancel').unbind('click');
@@ -182,6 +188,7 @@ function hold_management_binds() {
 
 /* checkout management watchers */
 function checkout_management_binds() {
+    $('.checkout-renew').unbind('click');
     $('.checkout-renew').click(function(event) {
         $(this).text('Renewing').prepend(spinner);
     });
@@ -189,6 +196,7 @@ function checkout_management_binds() {
 
 /* details button watcher */
 function detect_details_click() {
+    $('.details-button').unbind('click');
     $('.details-button').click(function(event) {
         $(this).html(spinner+'Loading Details');
     });

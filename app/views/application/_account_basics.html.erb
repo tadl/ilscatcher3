@@ -16,6 +16,11 @@
             </a>
         </li>
     <li><p class="navbar-btn">
+        <%= link_to mock_account_path, :type => 'button', :class => 'btn btn-primary', :style => 'margin-left:10px;' do %>
+            My Account
+        <% end %></p>
+    </li>
+    <li><p class="navbar-btn">
     	<%= link_to 'logout.js', :remote => true, :type => 'button', :class => 'btn btn-default', :style => 'margin-left:10px;' do %>
     		Log out
     	<% end %></p>
