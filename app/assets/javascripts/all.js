@@ -108,8 +108,8 @@ function login(id) {
     if (typeof id !== 'undefined') { var do_hold = id; } else { var do_hold = 0; }
     $('#statusMessage').modal('show');
     if (do_hold != 0) {
-        var username = $('#holdloginuser-'+id).val()
-        var password = $('#holdloginpass-'+id).val()
+        var username = $('.holdloginuser-'+id).val()
+        var password = $('.holdloginpass-'+id).val()
     } else {
         var username = $('#username').val();
         var password = $('#password').val();
@@ -120,8 +120,8 @@ function login(id) {
         if (data.error == 'bad username or password') {
             $('#username').val('');
             $('#password').val('');
-            $('#holdloginuser-'+id).val('');
-            $('#holdloginpass-'+id).val('');
+            $('.holdloginuser-'+id).val('');
+            $('.holdloginpass-'+id).val('');
             $('#statusMessage').modal('hide');
             alert_message('danger', 'There was a problem with your username or password. #TODO');
         } else {
