@@ -7,11 +7,11 @@
         <div class="row">
             <div class="col-lg-11 col-md-11 col-sm-11 col-xs-10">
                 <%= link_to 'details.js', data:{params: item.create_params}, :method=> :post, :remote => true do %>
-                    <h4><%= item.title %></h4>
+                    <h4 class="panel-title"><%= item.title %></h4>
                 <% end %>
             </div>
             <div class="col-lg-1 col-md-1 col-sm-1 col-xs-2">
-                <h4 class="pull-right">
+                <h4 class="pull-right panel-title">
                     <span class="glyphicon <%= format_icon(item.format_type, @format_icons) %>" title="<%= item.format_type %>"></span>
                 </h4>
             </div>
