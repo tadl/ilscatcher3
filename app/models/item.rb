@@ -52,8 +52,8 @@ class Item
 			:holds => clean_totals_holds(detail.at('h2:contains("Current holds")').try(:next_element).try(:text))[0],
 			:eresource => detail.at('p.rdetail_uri').try(:at, 'a').try(:attr, "href"),
 			:image => detail.at_css('#rdetail_image').try(:attr, "src").try(:gsub, /^\//, "https://catalog.tadl.org/").try(:gsub, /medium/, "large"),
-			:format_type => detail.at('div#rdetail_format_label').try(:text).try(:strip),
-			:format_icon => detail.at('div#rdetail_format_label').try(:at, 'img').try(:attr, "src"),
+			:format_type => detail.css('#format_actions').try(:at, 'img').try(:attr, "alt"),
+			:format_icon => detail.css('#format_actions').try(:at, 'img').try(:attr, "src"),
 			:record_year => detail.search('span[@property="datePublished"]').try(:text),
 			:publisher => detail.search('span[@property="publisher"]').search('span[@property="name"]').try(:text).try(:strip),
 			:publication_place => detail.search('span[@property="publisher"]').search('span[@property="location"]').try(:text).gsub(':','').try(:strip),
@@ -118,7 +118,7 @@ class Item
         end rescue nil
         fetch_review = JSON.parse(open('https://reviewcatcher.herokuapp.com/?isbn=' + request, {:read_timeout => 1}).read) rescue nil
         return fetch_review
-      end
+      end rescue nil
   	end
 
   	def clean_related(subject)
