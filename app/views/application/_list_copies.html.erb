@@ -13,10 +13,10 @@
                     <td><%= copy[:location] %></td>
                     <td><%= copy[:call_number] %> in <%= copy[:shelving_location] %></td>
                     <td>
-                        <%if copy[:status] == 'Available' or copy[:status] == 'Reshelving' %>
-                            <%= copy[:status] %>
-                        <% else %>
+                        <% if copy[:status] == 'Checked Out' %>
                             <%= copy[:status] %> - Due On <%= copy[:due_date] %>
+                        <% else %>
+                            <%= copy[:status] %>
                         <% end %>
                     </td>
                 </tr>
