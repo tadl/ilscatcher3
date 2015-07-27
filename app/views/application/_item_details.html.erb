@@ -52,23 +52,23 @@
                             <label for="holdloginpass" class="padtop">Password</label>
                             <input type="password" id="holdloginpass" name="holdloginpass" class="form-control" />
                             <div class="padtop">
-                                <button type="button" class="btn btn-success loginsubmit" id="holdloginsubmit" onclick='login(<%= item.id %>)'>
+                                <button type="button" class="btn btn-success loginsubmit" id="holdloginsubmit" onclick="login(<%= item.id %>)">
                                     Log in and Place Hold
                                 </button>
                             </div>
                             <div class="padtop">
-                                <button type="button" class="btn btn-danger logincancel" id="holdlogincancel">
+                                <button type="button" class="btn btn-danger logincancel" id="holdlogincancel" onclick="login_cancel(<%= item.id %>)">
                                     Cancel
                                 </button>
                             </div>
                         </div>
                         <p>
-                            <button class="btn btn-success holdbtn" id="record-<%= item.id %>" onclick='place_hold("<%= item.id %>")'>     
+                            <button class="btn btn-success holdbtn record-<%= item.id %>" onclick="place_hold(<%= item.id %>)">
                                 Place hold
                             </button>
                         </p>
                     <% else %>
-                        <p><a class="btn btn-success" href="<%= item.eresource %>" target="blank">View Online</a></p>
+                        <p><a class="btn btn-success" href="<%= item.eresource %>" target="_blank">View Online</a></p>
                     <% end %>
                 </span>
             </div>

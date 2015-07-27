@@ -75,20 +75,21 @@ function bind_more_results() {
 }
 
 function place_hold(id) {
+    // #TODO force holds
     var logged_in = Cookies.get('login');
-    target_button = '#record-' + id
-    target_div = '.hold-status-' + id
-    if(logged_in == null){
-        $('#holdlogin').show()
-        $(target_button).hide()
-    }else{
-        $(target_button).hide()
-        $(target_div).html('placing your hold')
-        $.get("place_hold.js", {record_id: id})
-    }     
+    target_button = '.record-' + id;
+    target_div = '.hold-status-' + id;
+    if (logged_in == null) {
+        $('#holdlogin').show();
+        $(target_button).hide();
+    } else {
+        $(target_button).hide();
+        $(target_div).html('placing your hold');
+        $.get("place_hold.js", {record_id: id});
+    }
 }
 
-function update_login(){
+function update_login() {
     var cookie_data = JSON.parse(Cookies.get('user'))
     var full_name = cookie_data.full_name.replace('+',' ')
     var holds = cookie_data.holds
@@ -102,7 +103,7 @@ function update_login(){
     $('#fine').text(fine)
 }
 
-function login_for_hold(id) {
+function login_for_hold(id) { // #TODO remove this because it's unused
     $('#statusMessage').modal('show');
     var username = $('#holdloginuser').val()
     var password = $('#holdloginpass').val()
@@ -132,7 +133,7 @@ function login(id) {
         var username = $('#username').val();
         var password = $('#password').val();
     }
-    $.get("login.js", {username: username, password: password})
+    $.post("login.js", {username: username, password: password})
     .done(function(data) {
         $('#statusMessage').modal('hide')
         if (data.error == 'bad username or password') {
@@ -144,15 +145,20 @@ function login(id) {
             alert_message('danger', 'There was a problem with your username or password. #TODO');
         } else {
             if (do_hold != 0) {
-                $('#holdlogin').hide()
-                target = '.hold-status-' + id
-                $(target).html('getting your hold')
-                $.get("place_hold.js", {record_id: id})
+                $('#holdlogin').hide();
+                target = '.hold-status-' + id;
+                $(target).html('getting your hold');
+                $.get("place_hold.js", {record_id: id});
             }
         }
     });
 }
 
+function login_cancel(id) {
+    if (typeof id !== 'undefined') { var id = id; } else { var id = 0; }
+    $('#holdlogin').hide();
+    $('.record-'+id).show();
+}
 
 function alert_message(type, message, timeout) {
     if (!type.match(/success|info|warning|danger/)) { return; }
@@ -174,6 +180,7 @@ function alert_message(type, message, timeout) {
 }
 
 /* hold management watchers */
+// #TODO all of the .click(function())s should be .on('click', function()...)s
 function hold_management_binds() {
     $('.hold-manage').click(function(event) {
         event.preventDefault();
