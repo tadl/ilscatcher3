@@ -77,7 +77,7 @@ function bind_more_results() {
 function place_hold(id) {
     var logged_in = Cookies.get('login');
     target_button = '#record-' + id
-    target_div = '#hold_status_' + id
+    target_div = '.hold-status-' + id
     if(logged_in == null){
         $('#holdlogin').show()
         $(target_button).hide()
@@ -115,26 +115,40 @@ function login_for_hold(id) {
         } else {
             $('#statusMessage').modal('hide')
             $('#holdlogin').hide()
-            target = '#hold_status_' + id
+            target = '.hold-status-' + id
             $(target).html('getting your hold')
             $.get("place_hold.js", {record_id: id})
         }
     })
 }
 
-function login(){
-    $('#statusMessage').modal('show')
-    var username = $('#username').val()
-    var password = $('#password').val()
-    $.get("login.js", {username: username, password: password}).done(function(data){
+function login(id) {
+    if (typeof id !== 'undefined') { var do_hold = id; } else { var do_hold = 0; }
+    $('#statusMessage').modal('show');
+    if (do_hold != 0) {
+        var username = $('#holdloginuser').val()
+        var password = $('#holdloginpass').val()
+    } else {
+        var username = $('#username').val();
+        var password = $('#password').val();
+    }
+    $.get("login.js", {username: username, password: password})
+    .done(function(data) {
+        $('#statusMessage').modal('hide')
         if (data.error == 'bad username or password') {
-            $('#statusMessage').modal('hide')
-            $('#username').val('')            
-            $('#password').val('')
-             $('#statusMessage').modal('hide')
-            alert('bad login')
+            $('#username').val('');
+            $('#password').val('');
+            $('#holdloginuser').val('')           
+            $('#holdloginpass').val('')
+            $('#statusMessage').modal('hide');
+            alert_message('danger', 'There was a problem with your username or password. #TODO');
         } else {
-            $('#statusMessage').modal('hide')
+            if (do_hold != 0) {
+                $('#holdlogin').hide()
+                target = '.hold-status-' + id
+                $(target).html('getting your hold')
+                $.get("place_hold.js", {record_id: id})
+            }
         }
     });
 }

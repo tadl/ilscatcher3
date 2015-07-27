@@ -23,11 +23,11 @@
                         <dt>Summary</dt>
                         <dd><%= item.abstract %></dd>
                     </dl>
-                    <% if item.check_trailer %>
-                        <div class="embed-responsive embed-responsive-16by9">
-                            <iframe src="https://www.youtube.com/embed/<%= item.check_trailer %>?iv_load_policy=3&amp;modestbranding=1&amp;rel=0"></iframe>
-                        </div>
-                    <% end %>
+                <% end %>
+                <% if item.check_trailer %>
+                    <div class="embed-responsive embed-responsive-16by9">
+                        <iframe src="https://www.youtube.com/embed/<%= item.check_trailer %>?iv_load_policy=3&amp;modestbranding=1&amp;rel=0"></iframe>
+                    </div>
                 <% end %>
                 <% if !item.contents.nil? %>
                     <dl>
@@ -39,7 +39,7 @@
             <div class="col-xs-12 col-md-4 col-lg-3">
                 <span class="pull-right">
                     <% if item.eresource.nil? %>
-                        <div id='hold_status_<%= item.id %>'>
+                        <div class='hold-status-<%= item.id %>'>
                         </div>
                         <div id="holdlogin" style="display: none">
                             <div>
@@ -52,7 +52,7 @@
                             <label for="holdloginpass" class="padtop">Password</label>
                             <input type="password" id="holdloginpass" name="holdloginpass" class="form-control" />
                             <div class="padtop">
-                                <button type="button" class="btn btn-success loginsubmit" id="holdloginsubmit" onclick='login_for_hold("<%= item.id %>")'>
+                                <button type="button" class="btn btn-success loginsubmit" id="holdloginsubmit" onclick='login(<%= item.id %>)'>
                                     Log in and Place Hold
                                 </button>
                             </div>
@@ -104,5 +104,4 @@
 	</div>
 </div>
 <div class="row clearfix padbot"></div>
-
 

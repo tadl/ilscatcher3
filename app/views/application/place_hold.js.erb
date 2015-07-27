@@ -1,11 +1,11 @@
 <% @hold_confirmation.each do |c| %>
-	var target = '#hold_status_' + '<%= escape_javascript(c[:record_id]) %>'
-	<% if !c[:error] %>
-		$(target).html('hold captured!')	
-	<% elsif c[:need_to_force] %>
-		$(target).html('This hold might take awhile and I can say anything or put a button')
-	<% else %>
-		$(target).html('<%= escape_javascript(c[:message]) %>')
-	<% end %>
+    var target = '.hold-status-<%= escape_javascript(c[:record_id]) %>';
+    <% if !c[:error] %>
+        $(target).html('hold captured!');
+    <% elsif c[:need_to_force] %>
+        $(target).html('This hold might take awhile and I can say anything or put a button');
+    <% else %>
+        $(target).html('<%= escape_javascript(c[:message]) %>');
+    <% end %>
 <% end %> 
-	update_login()
+update_login();
