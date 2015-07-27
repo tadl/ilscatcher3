@@ -103,26 +103,6 @@ function update_login() {
     $('#fine').text(fine)
 }
 
-function login_for_hold(id) { // #TODO remove this because it's unused
-    $('#statusMessage').modal('show');
-    var username = $('#holdloginuser').val()
-    var password = $('#holdloginpass').val()
-    $.get("login.js", {username: username, password: password}).done(function(data){
-        if (data.error == 'bad username or password') {
-            $('#statusMessage').modal('hide')
-            $('#holdloginuser').val('')           
-            $('#holdloginpass').val('')
-            alert('bad login')
-        } else {
-            $('#statusMessage').modal('hide')
-            $('#holdlogin').hide()
-            target = '.hold-status-' + id
-            $(target).html('getting your hold')
-            $.get("place_hold.js", {record_id: id})
-        }
-    })
-}
-
 function login(id) {
     if (typeof id !== 'undefined') { var do_hold = id; } else { var do_hold = 0; }
     $('#statusMessage').modal('show');
@@ -147,7 +127,8 @@ function login(id) {
             if (do_hold != 0) {
                 $('#holdlogin').hide();
                 target = '.hold-status-' + id;
-                $(target).html('getting your hold');
+                message = '<div class="alert alert-info">'+spinner+'Placing hold</div>';
+                $(target).html(message)
                 $.get("place_hold.js", {record_id: id});
             }
         }
