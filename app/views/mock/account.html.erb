@@ -6,16 +6,9 @@
         <div id="account-menu" class="col-xs-12 col-sm-4 col-md-3 col-lg-3">
             <%= render 'account_menu' %>
         </div>
-        <% if !@page.nil? %>
-            <div id="<%= @page %>-summary" class="col-xs-12 col-sm-8 col-md-9 col-lg-9">
-                <%= render @page+'_list', fines: @fines, payments: @payments, checkouts: @checkouts, holds: @holds %>
-            </div>
-        <% else %>
-            <div id="default-summary" class="col-xs-12 col-sm-8 col-md-9 col-lg-9">
-                Default account summary page. Other current options are "hold" "checkout" "fines" or "payments"
-            </div>
-        <% end %>
+        <div id="default-summary" class="col-xs-12 col-sm-8 col-md-9 col-lg-9">
+            Default account summary page. Other current options are "hold" "checkout" "fines" or "payments"
+        </div>
     </div>
 <% end %>
-
 
