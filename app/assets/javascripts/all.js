@@ -41,6 +41,7 @@ ready = function() {
 
     hold_management_binds();
     checkout_management_binds();
+    slider_image_binds();
 
     $('#search-button').click(function(event) {
         $(this).html(spinner);
@@ -58,6 +59,12 @@ function showLoading() {
 }
 function hideLoading() {
     $('#statusMessage').modal('hide');
+}
+
+function slider_image_binds() {
+    $('.carousel-item').click(function(event) {
+        $(this).addClass('gly-spin');
+    });
 }
 
 function bind_more_results() {
@@ -85,7 +92,7 @@ function place_hold(id) {
         $(target_button).hide();
     } else {
         $(target_button).hide();
-        $(target_div).html('<div class="alert alert-info">'+spinner+'Placing hold</div>');
+        $(target_div).html('<div class="alert alert-info">'+spinner+'Placing hold...</div>');
         $.get("place_hold.js", {record_id: id});
     }
 }
@@ -128,7 +135,7 @@ function login(id) {
             if (do_hold != 0) {
                 $('.holdlogin-'+id).hide();
                 target = '.hold-status-' + id;
-                message = '<div class="alert alert-info">'+spinner+'Placing hold</div>';
+                message = '<div class="alert alert-info">'+spinner+'Logged in, placing hold now...</div>';
                 $(target).html(message)
                 $.get("place_hold.js", {record_id: id});
             }
