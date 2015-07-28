@@ -5,6 +5,7 @@
 html,
 body {
     overflow-x: hidden;
+    padding-bottom: 200px;
 }
 
 body.index {
@@ -13,10 +14,6 @@ body.index {
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
-}
-
-body.search {
-    padding-bottom: 200px;
 }
 
 .input-group > .input-group-btn:first-child > .selectpicker {

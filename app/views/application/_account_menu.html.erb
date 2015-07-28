@@ -7,3 +7,21 @@
     <%= link_to mock_fines_path, :class => "list-group-item #{'active' if request.path == mock_fines_path}" do %>Fines<% end %>
     <%= link_to mock_payments_path, :class => "list-group-item #{'active' if request.path == mock_payments_path}" do %>Payments<% end %>
 </div>
+<div class="clearfix padtop"></div>
+<% if (request.path == mock_holds_path && @holds.count > 0) || (request.path == mock_checkouts_path && @checkouts.count > 0) %>
+    <div class="btn-group">
+        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Bulk Actions <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu">
+            <% if request.path == mock_checkouts_path %>
+                <li><a href="#">Renew All</a></li>
+            <% elsif request.path == mock_holds_path %>
+                <li><a href="#">Suspend All</a></li>
+                <li><a href="#">Activate All</a></li>
+                <li role="separator" class="divider"></li>
+                <li><a href="#">Cancel All</a></li>
+            <% end %>
+        </ul>
+    </div>
+<% end %>
