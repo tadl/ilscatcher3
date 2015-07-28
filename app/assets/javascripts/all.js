@@ -41,6 +41,7 @@ ready = function() {
 
     hold_management_binds();
     checkout_management_binds();
+    slider_image_binds();
 
     $('#search-button').click(function(event) {
         $(this).html(spinner);
@@ -58,6 +59,12 @@ function showLoading() {
 }
 function hideLoading() {
     $('#statusMessage').modal('hide');
+}
+
+function slider_image_binds() {
+    $('.carousel-item').click(function(event) {
+        $(this).addClass('gly-spin');
+    });
 }
 
 function bind_more_results() {
