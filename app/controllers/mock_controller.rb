@@ -257,6 +257,18 @@ class MockController < ApplicationController
     end
   end
 
-
-
+  def preferences
+    @user = generate_user()
+    if !@user.error
+      set_cookies(@user)
+      @preferences = @user.preferences
+    else
+      @preferences = 'bad login'
+    end
+    respond_to do |format|
+      format.html
+      format.json {render :json => {:user => @user, 
+        :preferences => @preferences}}
+    end
+  end
 end

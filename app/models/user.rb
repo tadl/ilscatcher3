@@ -175,6 +175,30 @@ class User
   	return message, errors, checkouts
   end
 
+  def preferences
+    url = 'https://mr-v2.catalog.tadl.org/eg/opac/myopac/prefs_notify'
+    agent = create_agent_token(self.token)
+    agent.get(url)
+    page = agent.page.parser
+    prefs = Hash.new
+    prefs["username"] = page.at('td:contains("Username")').next.next.text rescue nil
+    prefs["hold_shelf_alias"] = page.at('td:contains("Holdshelf Alias")').next.next.text rescue nil
+    prefs["day_phone"] = page.at('td:contains("Day Phone")').next.next.text rescue nil
+    prefs["evening_phone"] = page.at('td:contains("Evening Phone")').next.next.text rescue nil 
+    prefs["other_phone"] = page.at('td:contains("Other Phone")').next.next.text rescue nil
+    prefs["email"] = page.at('td:contains("Email Address")').next.next.text rescue nil
+    prefs["melcat_id"] = page.at('td:contains("MeLCat ID")').next.next.text rescue nil
+    prefs["pickup_library"] = page.css('select[@name="opac.default_pickup_location"] option[@selected="selected"]').attr('value').text rescue nil
+    prefs["keep_circ_history"] = to_bool(page.at('span:contains("circ_history")').next.next.text) rescue nil
+    prefs["keep_hold_history"] = to_bool(page.at('span:contains("hold_history")').next.next.text) rescue nil
+    prefs["email_nofity"] = to_bool(page.css('input[@name="opac.hold_notify.email"]').attr('checked').try(:text)) rescue nil
+    prefs["phone_notify"] = to_bool(page.css('input[@name="opac.hold_notify.phone"]').attr('checked').try(:text)) rescue nil
+    prefs["text_notify"] = to_bool(page.css('input[@name="opac.hold_notify.sms"]').attr('checked').try(:text)) rescue nil
+    prefs["phone_notify_number"] =  page.css('input[@name="opac.default_phone"]').attr('value').try(:text) rescue nil
+    prefs["text_notify_number"] =  page.css('input[@name="opac.default_sms_notify"]').attr('value').try(:text) rescue nil
+    return prefs
+  end
+
   def fines
   	agent = create_agent_token(self.token)
   	page = agent.get('https://mr-v2.catalog.tadl.org/eg/opac/myopac/main?limit=100')
@@ -236,5 +260,14 @@ class User
   	end
   	return checkouts
   end
+
+
+    def to_bool(string)
+        if string == "TRUE" || string == "checked"
+            return true
+        else
+            return false
+        end
+    end
 
 end

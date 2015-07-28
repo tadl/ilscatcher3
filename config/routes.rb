@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   match "mock/fines" => "mock#fines", via: [:get, :post], defaults: { format: 'html' }
   match "mock/payments" => "mock#payments", via: [:get, :post], defaults: { format: 'html' }
   match "mock/account" => "mock#account", via: [:get, :post], defaults: { format: 'html' }
+  match "mock/preferences" => "mock#preferences", via: [:get, :post], defaults: { format: 'json' }
   root :to => "mock#index"
 
 
