@@ -271,4 +271,19 @@ class MockController < ApplicationController
         :preferences => @preferences}}
     end
   end
+
+  def update_notifications
+    @user = generate_user()
+    if !@user.error
+      @preferences = @user.update_notify_preferences(params)
+    else
+      @preferences = 'bad login'
+    end
+    respond_to do |format|
+      format.html
+      format.json {render :json => {:user => @user, 
+        :preferences => @preferences}}
+    end
+  end
+
 end

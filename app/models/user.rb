@@ -199,6 +199,26 @@ class User
     return prefs
   end
 
+  def update_notify_preferences(args)
+    #make sure all the required params are passed or evergreen will process the missing as null
+    if args['email_notify'] && args['phone_notify'] && args['text_notify'] && args['phone_notify_number'] && args['text_notify_number']
+      agent = create_agent_token(self.token)
+      url = 'https://mr-v2.catalog.tadl.org/eg/opac/myopac/prefs_notify'
+      post_params = [
+                      ["opac.hold_notify.email", args['email_notify']],
+                      ["opac.hold_notify.phone", args['phone_notify']],
+                      ["opac.hold_notify.sms", args['text_notify']],
+                      ["opac.default_phone", args['phone_notify_number']],
+                      ["opac.default_sms_notify", args['text_notify_number']]
+                    ]
+      agent.post(url , post_params)
+      prefs = self.preferences
+    else
+      prefs = 'missing required parameters'
+    end
+      return prefs
+  end
+
   def fines
   	agent = create_agent_token(self.token)
   	page = agent.get('https://mr-v2.catalog.tadl.org/eg/opac/myopac/main?limit=100')
@@ -262,12 +282,12 @@ class User
   end
 
 
-    def to_bool(string)
-        if string == "TRUE" || string == "checked"
-            return true
-        else
-            return false
-        end
-    end
+  def to_bool(string)
+      if string == "TRUE" || string == "checked"
+          return true
+      else
+          return false
+      end
+  end
 
 end
