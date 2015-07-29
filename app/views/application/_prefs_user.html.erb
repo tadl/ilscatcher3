@@ -1,0 +1,20 @@
+<div class="panel panel-primary" id="panel-user-prefs">
+    <div class="panel-heading clearfix">
+        <h3 class="panel-title pull-left" style="padding-top:3px;">User Prefs</h3>
+        <div class="btn-group pull-right">
+            <a href="#" class="btn btn-default btn-xs edit-user-prefs">Edit</a>
+        </div>
+    </div>
+    <div class="panel-body table-responsive">
+        <table class="table table-striped">
+            <thead>
+                <tr><th>Setting</th><th>Current Value</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>Username</td><td id="username-value"><%= @preferences['username'] %></td></tr>
+                <tr><td>Holdshelf Alias</td><td id="hold_shelf_alias-value"><%= @preferences['hold_shelf_alias'] %></td></tr>
+                <tr><td>Email Address</td><td id="email-value"><%= @preferences['email'] %></td></tr>
+            </tbody>
+        </table>
+    </div>
+</div>
