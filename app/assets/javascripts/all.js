@@ -239,6 +239,7 @@ function passwordReset() {
 function account_prefs_binds() {
     $('.edit-circulation-prefs').click(function(event) {
         event.preventDefault();
+        var circpanel = $('#panel-circulation-prefs').html();
         console.log('circ edit button clicked');
         var plv = $('#pickup_library-value').text();
         console.log(plv);
@@ -269,6 +270,11 @@ function account_prefs_binds() {
         var savecancelbuttons = '<a href="#" class="btn btn-danger btn-xs cancel-circulation-prefs">Cancel</a>';
         savecancelbuttons += '<a href="#" class="btn btn-success btn-xs save-circulation-prefs">Save</a>';
         $('#circ-prefs-buttons').html(savecancelbuttons);
+        $('.cancel-circulation-prefs').click(function(e) {
+            e.preventDefault();
+            $('#panel-circulation-prefs').html(circpanel);
+            account_prefs_binds();
+        });
     });
 
     $('.edit-user-prefs').click(function(event) {
