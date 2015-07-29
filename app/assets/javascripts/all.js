@@ -235,3 +235,49 @@ function passwordReset() {
         });
 }
 
+/* account preferences watchers */
+function account_prefs_binds() {
+    $('.edit-circulation-prefs').click(function(event) {
+        event.preventDefault();
+        console.log('circ edit button clicked');
+        var plv = $('#pickup_library-value').text();
+        console.log(plv);
+        var plvhtml = '<select name="pickup_library">';
+        plvhtml += '<option value="23"' + (plv == 'Woodmere' ? ' selected' : '') + '>Woodmere</option>';
+        plvhtml += '<option value="24"' + (plv == 'Interlochen' ? ' selected' : '') + '>Interlochen</option>';
+        plvhtml += '<option value="25"' + (plv == 'Kingsley' ? ' selected' : '') + '>Kingsley</option>';
+        plvhtml += '<option value="26"' + (plv == 'Peninsula' ? ' selected' : '') + '>Peninsula</option>';
+        plvhtml += '<option value="27"' + (plv == 'Fife Lake' ? ' selected' : '') + '>Fife Lake</option>';
+        plvhtml += '<option value="28"' + (plv == 'East Bay' ? ' selected' : '') + '>East Bay</option>';
+        plvhtml += '</select>';
+        $('#pickup_library-value').html(plvhtml);
+
+        var chv = $('#keep_circ_history-value').text();
+        console.log(chv);
+        var chvhtml = '<input name="circulation_history" type="checkbox"' + (chv == 'true' ? ' checked' : '') + '>';
+        $('#keep_circ_history-value').html(chvhtml);
+
+        var hhv = $('#keep_hold_history-value').text();
+        console.log(hhv);
+        var hhvhtml = '<input name="hold_history" type="checkbox"' + (hhv == 'true' ? ' checked' : '') + '>';
+        $('#keep_hold_history-value').html(hhvhtml);
+
+        var dsv = $('#default_search-value').text();
+        console.log(dsv);
+
+        var editbutton = $('#circ-prefs-buttons').html();
+        var savecancelbuttons = '<a href="#" class="btn btn-danger btn-xs cancel-circulation-prefs">Cancel</a>';
+        savecancelbuttons += '<a href="#" class="btn btn-success btn-xs save-circulation-prefs">Save</a>';
+        $('#circ-prefs-buttons').html(savecancelbuttons);
+    });
+
+    $('.edit-user-prefs').click(function(event) {
+        event.preventDefault();
+        console.log('user edit button clicked');
+    });
+    $('.edit-notification-prefs').click(function(event) {
+        event.preventDefault();
+        console.log('notification edit button clicked');
+    });
+}
+
