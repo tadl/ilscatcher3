@@ -47,7 +47,7 @@ class User
 		token = agent.cookies.detect {|c| c.name == 'ses'}
 		if !token.nil?
 			if page.nil?
-				page = agent.get('https://mr-v2.catalog.tadl.org/eg/opac/myopac/prefs')
+				page = agent.get('https://mr-v2.catalog.tadl.org/eg/opac/myopac/prefs_notify')
 			end
 			basic_info = Hash.new
 			page.parser.css('body').each do |p|
@@ -57,7 +57,9 @@ class User
 				basic_info['holds_ready'] = p.css('span#dash_pickup').try(:text).strip rescue nil
 				basic_info['fine'] = p.css('span#dash_fines').try(:text).strip.gsub(/\$/, '') rescue nil
 				basic_info['card'] = p.at('td:contains("Active Barcode")').try(:next_element).try(:text) rescue nil
-			end
+			  basic_info['default_search'] = p.css('select[@name="opac.default_search_location"] option[@selected="selected"]').attr('value').text rescue nil
+        basic_info['pickup_library'] = p.css('select[@name="opac.default_pickup_location"] option[@selected="selected"]').attr('value').text rescue nil
+      end
 			basic_info.delete_if { |key, value| value.blank? }
 			if !basic_info['full_name'].nil?
 				basic_info['token'] = token.try(:value)
@@ -189,6 +191,7 @@ class User
     prefs["email"] = page.at('td:contains("Email Address")').next.next.text rescue nil
     prefs["melcat_id"] = page.at('td:contains("MeLCat ID")').next.next.text rescue nil
     prefs["pickup_library"] = page.css('select[@name="opac.default_pickup_location"] option[@selected="selected"]').attr('value').text rescue nil
+    prefs["default_search"] = page.css('select[@name="opac.default_search_location"] option[@selected="selected"]').attr('value').text rescue nil
     prefs["keep_circ_history"] = to_bool(page.at('span:contains("circ_history")').next.next.text) rescue nil
     prefs["keep_hold_history"] = to_bool(page.at('span:contains("hold_history")').next.next.text) rescue nil
     prefs["email_nofity"] = to_bool(page.css('input[@name="opac.hold_notify.email"]').attr('checked').try(:text)) rescue nil
