@@ -13,10 +13,10 @@
                         <tr><th>Setting</th><th>Current Value</th></tr>
                     </thead>
                     <tbody>
-                        <tr><td>Pickup Library</td><td id="pickup_library-value"><%= @preferences['pickup_library'] %></td></tr>
+                        <tr><td>Pickup Library</td><td id="pickup_library-value"><%= location(@preferences['pickup_library'], @location_options) %></td></tr>
                         <tr><td>Keep Circulation History</td><td id="keep_circ_history-value"><%= @preferences['keep_circ_history'] %></td></tr>
                         <tr><td>Keep Hold History</td><td id="keep_hold_history-value"><%= @preferences['keep_hold_history'] %></td></tr>
-                        <tr><td>Search Library</td><td id="search_library-value">#TODO</td></tr>
+                        <tr><td>Default Search Location</td><td id="default_search-value"><%= location(@preferences['default_search'], @location_options) %></td></tr>
                     </tbody>
                 </table>
             </div>
