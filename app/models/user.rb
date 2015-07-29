@@ -1,7 +1,7 @@
 class User
 	include ActiveModel::Model
 	require 'open-uri'
-	attr_accessor :full_name, :checkouts, :holds, :holds_ready, :fine, :token, :card, :error
+	attr_accessor :full_name, :checkouts, :holds, :holds_ready, :fine, :token, :card, :error, :default_search, :pickup_library
 
 	def initialize args
     if args['full_name']
@@ -47,7 +47,7 @@ class User
 		token = agent.cookies.detect {|c| c.name == 'ses'}
 		if !token.nil?
 			if page.nil?
-				page = agent.get('https://mr-v2.catalog.tadl.org/eg/opac/myopac/prefs')
+				page = agent.get('https://mr-v2.catalog.tadl.org/eg/opac/myopac/prefs_notify')
 			end
 			basic_info = Hash.new
 			page.parser.css('body').each do |p|
@@ -57,7 +57,9 @@ class User
 				basic_info['holds_ready'] = p.css('span#dash_pickup').try(:text).strip rescue nil
 				basic_info['fine'] = p.css('span#dash_fines').try(:text).strip.gsub(/\$/, '') rescue nil
 				basic_info['card'] = p.at('td:contains("Active Barcode")').try(:next_element).try(:text) rescue nil
-			end
+			  basic_info['default_search'] = p.css('select[@name="opac.default_search_location"] option[@selected="selected"]').attr('value').text rescue nil
+        basic_info['pickup_library'] = p.css('select[@name="opac.default_pickup_location"] option[@selected="selected"]').attr('value').text rescue nil
+      end
 			basic_info.delete_if { |key, value| value.blank? }
 			if !basic_info['full_name'].nil?
 				basic_info['token'] = token.try(:value)
@@ -189,6 +191,7 @@ class User
     prefs["email"] = page.at('td:contains("Email Address")').next.next.text rescue nil
     prefs["melcat_id"] = page.at('td:contains("MeLCat ID")').next.next.text rescue nil
     prefs["pickup_library"] = page.css('select[@name="opac.default_pickup_location"] option[@selected="selected"]').attr('value').text rescue nil
+    prefs["default_search"] = page.css('select[@name="opac.default_search_location"] option[@selected="selected"]').attr('value').text rescue nil
     prefs["keep_circ_history"] = to_bool(page.at('span:contains("circ_history")').next.next.text) rescue nil
     prefs["keep_hold_history"] = to_bool(page.at('span:contains("hold_history")').next.next.text) rescue nil
     prefs["email_nofity"] = to_bool(page.css('input[@name="opac.hold_notify.email"]').attr('checked').try(:text)) rescue nil
@@ -213,6 +216,28 @@ class User
                     ]
       agent.post(url , post_params)
       prefs = self.preferences
+      self
+    else
+      prefs = 'missing required parameters'
+    end
+      return prefs
+  end
+
+  def update_search_history_preferences(args)
+    if args['keep_hold_history'] && args['keep_circ_history'] && args['pickup_library'] && args['default_search']
+      agent = create_agent_token(self.token)
+      url = 'https://mr-v2.catalog.tadl.org/eg/opac/myopac/prefs_settings'
+      post_params = [
+                      ["opac.default_search_location", args['default_search']],
+                      ["opac.default_pickup_location", args['pickup_library']],
+                      ["history.circ.retention_start", args['keep_circ_history']],
+                      ["history.hold.retention_start", args['keep_hold_history']],
+                      ["opac.hits_per_page", '10']
+                    ]
+      agent.post(url, post_params)
+      prefs = self.preferences
+      self.default_search = args['default_search']
+      self.pickup_library = args['pickup_library']
     else
       prefs = 'missing required parameters'
     end
@@ -280,7 +305,6 @@ class User
   	end
   	return checkouts
   end
-
 
   def to_bool(string)
       if string == "TRUE" || string == "checked"
