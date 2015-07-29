@@ -63,7 +63,7 @@ function hideLoading() {
 
 function slider_image_binds() {
     $('.carousel-item').click(function(event) {
-        $(this).addClass('gly-spin');
+        $(this).addClass('zoom');
     });
 }
 

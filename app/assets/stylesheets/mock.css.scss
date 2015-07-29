@@ -158,3 +158,17 @@ body.index {
 span.goodreads-stars a {
     font-size: 18px;
 }
+
+/* just testing (or am I?) */
+.zoom {
+    -webkit-transform:scale(.5); /* Safari and Chrome */
+    -moz-transform:scale(.5); /* Firefox */
+    -ms-transform:scale(.5); /* IE 9 */
+    -o-transform:scale(.5); /* Opera */
+    transform:scale(.5);
+    -webkit-transition: all 5s ease-out;
+    -moz-transition: all 5s ease-out;
+    -ms-transition: all 5s ease-out;
+    -o-transition: all 5s ease-out;
+    transition: all 5s ease-out;
+}

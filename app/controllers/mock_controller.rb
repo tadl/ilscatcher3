@@ -144,6 +144,8 @@ class MockController < ApplicationController
       set_cookies(@user)
     else
       @holds = 'bad login'
+      redirect_to mock_index_path
+      return
     end
     respond_to do |format|
       format.html
@@ -159,6 +161,8 @@ class MockController < ApplicationController
       set_cookies(@user)
     else
       @checkouts = 'bad login'
+      redirect_to mock_index_path
+      return
     end
     respond_to do |format|
       format.html
@@ -217,6 +221,8 @@ class MockController < ApplicationController
       @fines = @user.fines
     else
       @fines = 'bad login'
+      redirect_to mock_index_path
+      return
     end
     respond_to do |format|
       format.html
@@ -232,28 +238,13 @@ class MockController < ApplicationController
       @payments = @user.payments
     else
       @payments = 'bad login'
+      redirect_to mock_index_path
+      return
     end
     respond_to do |format|
       format.html
       format.json {render :json => {:user => @user, 
         :payments => @payments}}
-    end
-  end
-
-  def account
-    @user = generate_user()
-    if !@user.error
-        set_cookies(@user)
-        @page = params[:page]
-        @fines = @user.fines
-        @payments = @user.payments
-        @checkouts = @user.list_checkouts
-        @holds = @user.list_holds
-    else
-        @account = 'bad login'
-    end
-    respond_to do |format|
-      format.html
     end
   end
 
@@ -264,6 +255,8 @@ class MockController < ApplicationController
       @preferences = @user.preferences
     else
       @preferences = 'bad login'
+      redirect_to mock_index_path
+      return
     end
     respond_to do |format|
       format.html
