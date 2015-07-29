@@ -1,7 +1,7 @@
 class User
 	include ActiveModel::Model
 	require 'open-uri'
-	attr_accessor :full_name, :checkouts, :holds, :holds_ready, :fine, :token, :card, :error, :default_search, :pickup_library
+	attr_accessor :full_name, :checkouts, :holds, :holds_ready, :fine, :token, :card, :error, :default_search, :pickup_library, :username
 
 	def initialize args
     if args['full_name']
@@ -32,7 +32,7 @@ class User
 
 	def create_agent_username_password(username, password)
 		agent = Mechanize.new
-		agent.get('https://mr-v2.catalog.tadl.org/eg/opac/myopac/prefs')
+		agent.get('https://mr-v2.catalog.tadl.org/eg/opac/myopac/prefs_notify')
 		login_form = agent.page.forms[1]
 		login_form.field_with(:name => "username").value = username
     login_form.field_with(:name => "password").value = password
@@ -59,6 +59,7 @@ class User
 				basic_info['card'] = p.at('td:contains("Active Barcode")').try(:next_element).try(:text) rescue nil
 			  basic_info['default_search'] = p.css('select[@name="opac.default_search_location"] option[@selected="selected"]').attr('value').text rescue nil
         basic_info['pickup_library'] = p.css('select[@name="opac.default_pickup_location"] option[@selected="selected"]').attr('value').text rescue nil
+        basic_info["username"] = p.at('td:contains("Username")').next.next.text rescue nil
       end
 			basic_info.delete_if { |key, value| value.blank? }
 			if !basic_info['full_name'].nil?
@@ -200,6 +201,72 @@ class User
     prefs["phone_notify_number"] =  page.css('input[@name="opac.default_phone"]').attr('value').try(:text) rescue nil
     prefs["text_notify_number"] =  page.css('input[@name="opac.default_sms_notify"]').attr('value').try(:text) rescue nil
     return prefs
+  end
+
+  def update_user_info(args)
+    if args['username']
+      url = 'https://mr-v2.catalog.tadl.org/eg/opac/myopac/update_username'
+      post_params = [["current_pw", args['password']], ["username", args['username']]]
+    elsif args['new_password']
+      url = 'https://mr-v2.catalog.tadl.org/eg/opac/myopac/update_password'
+      post_params = [["current_pw", args['password']], ["new_pw", args['new_password']], ["new_pw2", args['new_password']]]
+    elsif args['email']
+      url = 'https://mr-v2.catalog.tadl.org/eg/opac/myopac/update_email'
+      post_params = [["current_pw", args['password']], ["email", args['email']]]
+    elsif args['hold_shelf_alias']
+      url = 'https://mr-v2.catalog.tadl.org/eg/opac/myopac/update_alias'
+      post_params = [["current_pw", args['password']], ["alias", args['hold_shelf_alias']]]
+    else
+      prefs = 'missing required parameters'
+      message = 'missing required parameters'
+      return prefs = 'missing required parameters'
+    end
+    agent = create_agent_token(self.token)
+    agent.post(url, post_params)
+    page = agent.page.parser
+    test_for_bad_password =  page.at_css('div:contains("Your current password was not correct.")').text rescue nil
+    test_for_in_use = page.at_css('div:contains("Please try a different username")').text rescue nil
+    test_for_invalid_password = page.at_css('div:contains("New password is invalid")').text rescue nil
+    test_for_invalid_email = page.at_css('div:contains("Please try a different email address")').text rescue nil
+    test_for_alias_in_use = page.at_css('div:contains("Please try a different alias")').text rescue nil
+    if test_for_bad_password != nil  
+      message = "bad password"
+      prefs = "bad password"
+      user = self
+    elsif test_for_in_use != nil
+      message = "username is already taken"
+      prefs = self.preferences
+      user = self
+    elsif test_for_invalid_password != nil
+      message = "password does not meet requirements"
+      prefs = self.preferences
+      user = self
+    elsif test_for_invalid_email != nil
+      message = "invalid email address"
+      prefs = self.preferences
+      user = self
+    elsif test_for_alias_in_use
+      message = "alias in use"
+      prefs = self.preferences
+      user = self
+    else
+      message = "success"
+      prefs = self.preferences
+      if args['username'] 
+        params = Hash.new
+        params['username'] = args['username']
+        params['password'] = args['password']
+        user = User.new params
+      elsif args['hold_shelf_alias']
+        params = Hash.new
+        params['username'] = self.username
+        params['password'] = args['password']
+        user = User.new params
+      else
+        user = self
+      end 
+    end
+    return message, prefs, user
   end
 
   def update_notify_preferences(args)

@@ -293,4 +293,32 @@ class MockController < ApplicationController
     end
   end
 
+  def update_user_info
+    if params['password']
+      @check_user = generate_user()
+      if !@check_user.error
+        confirmation = @check_user.update_user_info(params)
+        @message = confirmation[0]
+        @preferences = confirmation[1]
+        @user = confirmation[2]
+        set_cookies(@user) 
+      else
+        @preferences = 'bad login'
+        @message = 'bad login'
+        @user = @check_user
+      end
+      respond_to do |format|
+        format.json {render :json => {:message => @message, :user => @user, 
+          :preferences => @preferences}}
+      end
+    else
+       @message = 'password required'
+       respond_to do |format|
+        format.json {render :json => { 
+          :message => @message}}
+        end
+    end
+  end 
+
+
 end
