@@ -279,4 +279,18 @@ class MockController < ApplicationController
     end
   end
 
+  def update_search_history
+    @user = generate_user()
+    if !@user.error
+      @preferences = @user.update_search_history_preferences(params)
+      set_cookies(@user)
+    else
+      @preferences = 'bad login'
+    end
+    respond_to do |format|
+      format.json {render :json => {:user => @user, 
+        :preferences => @preferences}}
+    end
+  end
+
 end

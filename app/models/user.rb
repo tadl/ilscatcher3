@@ -1,7 +1,7 @@
 class User
 	include ActiveModel::Model
 	require 'open-uri'
-	attr_accessor :full_name, :checkouts, :holds, :holds_ready, :fine, :token, :card, :error
+	attr_accessor :full_name, :checkouts, :holds, :holds_ready, :fine, :token, :card, :error, :default_search, :pickup_library
 
 	def initialize args
     if args['full_name']
@@ -216,6 +216,28 @@ class User
                     ]
       agent.post(url , post_params)
       prefs = self.preferences
+      self
+    else
+      prefs = 'missing required parameters'
+    end
+      return prefs
+  end
+
+  def update_search_history_preferences(args)
+    if args['keep_hold_history'] && args['keep_circ_history'] && args['pickup_library'] && args['default_search']
+      agent = create_agent_token(self.token)
+      url = 'https://mr-v2.catalog.tadl.org/eg/opac/myopac/prefs_settings'
+      post_params = [
+                      ["opac.default_search_location", args['default_search']],
+                      ["opac.default_pickup_location", args['pickup_library']],
+                      ["history.circ.retention_start", args['keep_circ_history']],
+                      ["history.hold.retention_start", args['keep_hold_history']],
+                      ["opac.hits_per_page", '10']
+                    ]
+      agent.post(url, post_params)
+      prefs = self.preferences
+      self.default_search = args['default_search']
+      self.pickup_library = args['pickup_library']
     else
       prefs = 'missing required parameters'
     end
@@ -283,7 +305,6 @@ class User
   	end
   	return checkouts
   end
-
 
   def to_bool(string)
       if string == "TRUE" || string == "checked"
