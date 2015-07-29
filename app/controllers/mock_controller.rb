@@ -259,6 +259,7 @@ class MockController < ApplicationController
       return
     end
     respond_to do |format|
+      format.js
       format.html
       format.json {render :json => {:user => @user, 
         :preferences => @preferences}}

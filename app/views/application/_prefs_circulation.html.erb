@@ -2,7 +2,7 @@
     <div class="panel-heading clearfix">
         <h3 class="panel-title pull-left" style="padding-top:3px;">Circulation Prefs</h3>
         <div class="btn-group pull-right">
-            <a href="#" class="btn btn-default btn-xs edit-circulation-prefs">Edit</a>
+            <%= link_to 'preferences.js', :method => 'POST', :remote => true, :class => 'btn btn-default btn-xs edit-circulation-prefs' do %>Edit<% end %>
         </div>
     </div>
     <div class="panel-body table-responsive">
