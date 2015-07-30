@@ -297,12 +297,44 @@ function account_prefs_binds() {
     });
 
 
-
-
     $('.edit-user-prefs').unbind('click');
     $('.edit-user-prefs').click(function(event) {
         event.preventDefault();
-        console.log('user edit button clicked');
+        var userpanel = $('#panel-user-prefs').html();
+
+        var uv = $('#username-value').text();
+        var uvhtml = '<input id="uv" name="up-username" class="form-control" type="text" value="'+uv+'">';
+        $('#username-value').html(uvhtml);
+
+        var hsav = $('#hold_shelf_alias-value').text();
+        var hsavhtml = '<input id="hsav" name="up-hold_shelf_alias" class="form-control" type="text" value="'+hsav+'">';
+        $('#hold_shelf_alias-value').html(hsavhtml);
+
+        var ev = $('#email-value').text();
+        var evhtml = '<input id="ev" name="up-email" class="form-control" type="text" value="'+ev+'">';
+        $('#email-value').html(evhtml);
+
+        var editbutton = $('#user-prefs-buttons').html();
+        var savecancelbuttons = '<a href="#" class="btn btn-danger btn-xs cancel-user-prefs">Cancel</a>';
+        savecancelbuttons += '<a href="#" class="btn btn-success btn-xs save-user-prefs">Save</a>';
+        $('#user-prefs-buttons').html(savecancelbuttons);
+
+        $('.cancel-user-prefs').click(function(e) {
+            e.preventDefault();
+            $('#panel-user-prefs').html(userpanel);
+            account_prefs_binds();
+        });
+
+        $('.save-user-prefs').click(function(e) {
+            e.preventDefault();
+            var uv = $('#uv').val();
+            var hsav = $('#hsav').val();
+            var ev = $('#ev').val();
+            console.log(uv + '|' + hsav + '|' + ev);
+        });
+
+
+
     });
 
     $('.edit-notification-prefs').unbind('click');
