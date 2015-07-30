@@ -7,7 +7,7 @@ module ApplicationHelper
         end
     end
 
-    def location(value, option_array)
+    def location_map(value, option_array)
         option_array.each do |option|
             if value.to_s == option[1].to_s
                 return option[0]
