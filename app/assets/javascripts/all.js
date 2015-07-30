@@ -253,11 +253,11 @@ function account_prefs_binds() {
         $('#pickup_library-value').html(plvhtml);
 
         var chv = $('#keep_circ_history-value').text();
-        var chvhtml = '<input id="chv" name="circulation_history" type="checkbox"' + (chv == 'true' ? ' checked' : '') + '>';
+        var chvhtml = '<input id="chv" name="circulation_history" class="form-control" type="checkbox"' + (chv == 'true' ? ' checked' : '') + '>';
         $('#keep_circ_history-value').html(chvhtml);
 
         var hhv = $('#keep_hold_history-value').text();
-        var hhvhtml = '<input id="hhv" name="hold_history" type="checkbox"' + (hhv == 'true' ? ' checked' : '') + '>';
+        var hhvhtml = '<input id="hhv" name="hold_history" class="form-control" type="checkbox"' + (hhv == 'true' ? ' checked' : '') + '>';
         $('#keep_hold_history-value').html(hhvhtml);
 
         var dsv = $('#default_search-value').text();
