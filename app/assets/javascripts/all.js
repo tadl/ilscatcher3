@@ -237,13 +237,12 @@ function passwordReset() {
 
 /* account preferences watchers */
 function account_prefs_binds() {
+    $('.edit-circulation-prefs').unbind('click');
     $('.edit-circulation-prefs').click(function(event) {
         event.preventDefault();
         var circpanel = $('#panel-circulation-prefs').html();
-        console.log('circ edit button clicked');
         var plv = $('#pickup_library-value').text();
-        console.log(plv);
-        var plvhtml = '<select name="pickup_library">';
+        var plvhtml = '<select id="plv" name="pickup_library" class="form-control">';
         plvhtml += '<option value="23"' + (plv == 'Woodmere' ? ' selected' : '') + '>Woodmere</option>';
         plvhtml += '<option value="24"' + (plv == 'Interlochen' ? ' selected' : '') + '>Interlochen</option>';
         plvhtml += '<option value="25"' + (plv == 'Kingsley' ? ' selected' : '') + '>Kingsley</option>';
@@ -254,33 +253,59 @@ function account_prefs_binds() {
         $('#pickup_library-value').html(plvhtml);
 
         var chv = $('#keep_circ_history-value').text();
-        console.log(chv);
-        var chvhtml = '<input name="circulation_history" type="checkbox"' + (chv == 'true' ? ' checked' : '') + '>';
+        var chvhtml = '<input id="chv" name="circulation_history" type="checkbox"' + (chv == 'true' ? ' checked' : '') + '>';
         $('#keep_circ_history-value').html(chvhtml);
 
         var hhv = $('#keep_hold_history-value').text();
-        console.log(hhv);
-        var hhvhtml = '<input name="hold_history" type="checkbox"' + (hhv == 'true' ? ' checked' : '') + '>';
+        var hhvhtml = '<input id="hhv" name="hold_history" type="checkbox"' + (hhv == 'true' ? ' checked' : '') + '>';
         $('#keep_hold_history-value').html(hhvhtml);
 
         var dsv = $('#default_search-value').text();
-        console.log(dsv);
+        var dsvhtml = '<select id="dsv" name="default_search" class="form-control">';
+        dsvhtml += '<option value="22"' + (dsv == 'All Locations' ? 'selected' : '') + '>All Locations</option>';
+        dsvhtml += '<option value="23"' + (dsv == 'Woodmere' ? 'selected' : '') + '>Woodmere</option>';
+        dsvhtml += '<option value="24"' + (dsv == 'Interlochen' ? 'selected' : '') + '>Interlochen</option>';
+        dsvhtml += '<option value="25"' + (dsv == 'Kingsley' ? 'selected' : '') + '>Kingsley</option>';
+        dsvhtml += '<option value="26"' + (dsv == 'Peninsula' ? 'selected' : '') + '>Peninsula</option>';
+        dsvhtml += '<option value="27"' + (dsv == 'Fife Lake' ? 'selected' : '') + '>Fife Lake</option>';
+        dsvhtml += '<option value="28"' + (dsv == 'East Bay' ? 'selected' : '') + '>East Bay</option>';
+        dsvhtml += '</select>';
+        $('#default_search-value').html(dsvhtml);
 
         var editbutton = $('#circ-prefs-buttons').html();
         var savecancelbuttons = '<a href="#" class="btn btn-danger btn-xs cancel-circulation-prefs">Cancel</a>';
         savecancelbuttons += '<a href="#" class="btn btn-success btn-xs save-circulation-prefs">Save</a>';
+
         $('#circ-prefs-buttons').html(savecancelbuttons);
+
+        /* cancel button replaces the panel div with original content and rebinds edit button */
         $('.cancel-circulation-prefs').click(function(e) {
             e.preventDefault();
             $('#panel-circulation-prefs').html(circpanel);
             account_prefs_binds();
         });
+
+        $('.save-circulation-prefs').click(function(e) {
+            e.preventDefault();
+            var plv = $('#plv').val();
+            var chv = $('#chv').prop('checked');
+            var hhv = $('#hhv').prop('checked');
+            var dsv = $('#dsv').val();
+            console.log(plv + '|' + chv + '|' + hhv + '|' + dsv);
+        });
+
     });
 
+
+
+
+    $('.edit-user-prefs').unbind('click');
     $('.edit-user-prefs').click(function(event) {
         event.preventDefault();
         console.log('user edit button clicked');
     });
+
+    $('.edit-notification-prefs').unbind('click');
     $('.edit-notification-prefs').click(function(event) {
         event.preventDefault();
         console.log('notification edit button clicked');
