@@ -265,6 +265,7 @@ class MockController < ApplicationController
     end
   end
 
+# notification preferences
   def update_notifications
     @user = generate_user()
     if !@user.error
@@ -279,6 +280,7 @@ class MockController < ApplicationController
     end
   end
 
+# search preferences and checkout/hold history preferences
   def update_search_history
     @user = generate_user()
     if !@user.error
@@ -293,6 +295,7 @@ class MockController < ApplicationController
     end
   end
 
+#user preferences
   def update_user_info
     if params['password']
       @check_user = generate_user()

@@ -272,11 +272,8 @@ function account_prefs_binds() {
         dsvhtml += '</select>';
         $('#default_search-value').html(dsvhtml);
 
-        var editbutton = $('#circ-prefs-buttons').html();
-        var savecancelbuttons = '<a href="#" class="btn btn-danger btn-xs cancel-circulation-prefs">Cancel</a>';
-        savecancelbuttons += '<a href="#" class="btn btn-success btn-xs save-circulation-prefs">Save</a>';
-
-        $('#circ-prefs-buttons').html(savecancelbuttons);
+        $('#circ-prefs-buttons').empty();
+        $('#circ-prefs-footer').show();
 
         /* cancel button replaces the panel div with original content and rebinds edit button */
         $('.cancel-circulation-prefs').click(function(e) {
@@ -293,7 +290,6 @@ function account_prefs_binds() {
             var dsv = $('#dsv').val();
             console.log(plv + '|' + chv + '|' + hhv + '|' + dsv);
         });
-
     });
 
 
@@ -314,10 +310,9 @@ function account_prefs_binds() {
         var evhtml = '<input id="ev" name="up-email" class="form-control" type="text" value="'+ev+'">';
         $('#email-value').html(evhtml);
 
-        var editbutton = $('#user-prefs-buttons').html();
-        var savecancelbuttons = '<a href="#" class="btn btn-danger btn-xs cancel-user-prefs">Cancel</a>';
-        savecancelbuttons += '<a href="#" class="btn btn-success btn-xs save-user-prefs">Save</a>';
-        $('#user-prefs-buttons').html(savecancelbuttons);
+        $('#user-prefs-password').show();
+        $('#user-prefs-buttons').empty();
+        $('#user-prefs-footer').show();
 
         $('.cancel-user-prefs').click(function(e) {
             e.preventDefault();
@@ -330,11 +325,9 @@ function account_prefs_binds() {
             var uv = $('#uv').val();
             var hsav = $('#hsav').val();
             var ev = $('#ev').val();
-            console.log(uv + '|' + hsav + '|' + ev);
+            var up = $('#up-password').val();
+            console.log(uv + '|' + hsav + '|' + ev + '|' + up);
         });
-
-
-
     });
 
     $('.edit-notification-prefs').unbind('click');
@@ -362,17 +355,15 @@ function account_prefs_binds() {
         var tnvhtml = '<input id="tnv" name="text_notify" class="form-control" type="checkbox"' + (tnv == 'true' ? ' checked' : '') + '>';
         $('#text_notify-value').html(tnvhtml);
 
-
-        var editbutton = $('#notification-prefs-buttons');
-        var savecancelbuttons = '<a href="#" class="btn btn-danger btn-xs cancel-notification-prefs">Cancel</a>';
-        savecancelbuttons += '<a href="#" class="btn btn-success btn-xs save-notification-prefs">Save</a>';
-        $('#notification-prefs-buttons').html(savecancelbuttons);
+        $('#notification-prefs-buttons').empty();
+        $('#notification-prefs-footer').show();
 
         $('.cancel-notification-prefs').click(function(e) {
             e.preventDefault();
             $('#panel-notification-prefs').html(notificationpanel);
             account_prefs_binds();
         });
+
         $('.save-notification-prefs').click(function(e) {
             e.preventDefault();
             var pnnv = $('#pnnv').val();
@@ -381,8 +372,8 @@ function account_prefs_binds() {
             var pnv = $('#pnv').prop('checked');
             var tnv = $('#tnv').prop('checked');
             console.log(pnnv + '|' + tnnv + '|' + env + '|' + pnv + '|' + tnv);
+            alert_message('success','Notification preferences saved',10000);
         });
-
     });
 }
 
