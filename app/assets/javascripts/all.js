@@ -340,7 +340,49 @@ function account_prefs_binds() {
     $('.edit-notification-prefs').unbind('click');
     $('.edit-notification-prefs').click(function(event) {
         event.preventDefault();
-        console.log('notification edit button clicked');
+        var notificationpanel = $('#panel-notification-prefs').html();
+
+        var pnnv = $('#phone_notify_number-value').text();
+        var pnnvhtml = '<input id="pnnv" name="np-phone_notify_number" class="form-control" type="text" value="'+pnnv+'">';
+        $('#phone_notify_number-value').html(pnnvhtml);
+
+        var tnnv = $('#text_notify_number-value').text();
+        var tnnvhtml = '<input id="tnnv" name="np-text_notify_number" class="form-control" type="text" value="'+tnnv+'">';
+        $('#text_notify_number-value').html(tnnvhtml);
+
+        var env = $('#email_notify-value').text();
+        var envhtml = '<input id="env" name="email_notify" class="form-control" type="checkbox"' + (env == 'true' ? ' checked' : '') + '>';
+        $('#email_notify-value').html(envhtml);
+
+        var pnv = $('#phone_notify-value').text();
+        var pnvhtml = '<input id="pnv" name="phone_notify" class="form-control" type="checkbox"' + (pnv == 'true' ? ' checked' : '') + '>';
+        $('#phone_notify-value').html(pnvhtml);
+
+        var tnv = $('#text_notify-value').text();
+        var tnvhtml = '<input id="tnv" name="text_notify" class="form-control" type="checkbox"' + (tnv == 'true' ? ' checked' : '') + '>';
+        $('#text_notify-value').html(tnvhtml);
+
+
+        var editbutton = $('#notification-prefs-buttons');
+        var savecancelbuttons = '<a href="#" class="btn btn-danger btn-xs cancel-notification-prefs">Cancel</a>';
+        savecancelbuttons += '<a href="#" class="btn btn-success btn-xs save-notification-prefs">Save</a>';
+        $('#notification-prefs-buttons').html(savecancelbuttons);
+
+        $('.cancel-notification-prefs').click(function(e) {
+            e.preventDefault();
+            $('#panel-notification-prefs').html(notificationpanel);
+            account_prefs_binds();
+        });
+        $('.save-notification-prefs').click(function(e) {
+            e.preventDefault();
+            var pnnv = $('#pnnv').val();
+            var tnnv = $('#tnnv').val();
+            var env = $('#env').prop('checked');
+            var pnv = $('#pnv').prop('checked');
+            var tnv = $('#tnv').prop('checked');
+            console.log(pnnv + '|' + tnnv + '|' + env + '|' + pnv + '|' + tnv);
+        });
+
     });
 }
 

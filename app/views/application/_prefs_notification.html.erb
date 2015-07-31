@@ -18,8 +18,8 @@
                 <% if @preferences['other_phone'] != '' %>
                     <tr><td>Other Phone</td><td id="other_phone-value"><%= @preferences['other_phone'] %></td></tr>
                 <% end %>
-                <tr><td>Phone Notify Number</td><td id="phone_notify_number-value"><%= @preferences['phone_notify_number'] || 'none' %></td></tr>
-                <tr><td>Text Notify Number</td><td id="text_notify_number-value"><%= @preferences['text_notify_number'] || 'none' %></td></tr>
+                <tr><td>Phone Notify Number</td><td id="phone_notify_number-value"><%= @preferences['phone_notify_number'] || '' %></td></tr>
+                <tr><td>Text Notify Number</td><td id="text_notify_number-value"><%= @preferences['text_notify_number'] || '' %></td></tr>
                 <tr><td>Email Notify</td><td id="email_notify-value"><%= @preferences['email_notify'] %></td></tr>
                 <tr><td>Phone Notify</td><td id="phone_notify-value"><%= @preferences['phone_notify'] %></td></tr>
                 <tr><td>Text Notify</td><td id="text_notify-value"><%= @preferences['text_notify'] %></td></tr>
