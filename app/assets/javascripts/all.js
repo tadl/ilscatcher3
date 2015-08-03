@@ -289,6 +289,7 @@ function account_prefs_binds() {
             var hhv = $('#hhv').prop('checked');
             var dsv = $('#dsv').val();
             console.log(plv + '|' + chv + '|' + hhv + '|' + dsv);
+            $('.save-circulation-prefs').html(spinner+' Saving...');
         });
     });
 
@@ -322,11 +323,27 @@ function account_prefs_binds() {
 
         $('.save-user-prefs').click(function(e) {
             e.preventDefault();
-            var uv = $('#uv').val();
-            var hsav = $('#hsav').val();
-            var ev = $('#ev').val();
+            var newuv = $('#uv').val();
+            var newhsav = $('#hsav').val();
+            var newev = $('#ev').val();
             var up = $('#up-password').val();
-            console.log(uv + '|' + hsav + '|' + ev + '|' + up);
+            console.log(newuv + '|' + newhsav + '|' + newev + '|' + up);
+            if (newuv != uv) {
+                console.log('update username value');
+            } else {
+                console.log('username value unchanged');
+            }
+            if (newhsav != hsav) {
+                console.log('update hold shelf alias value');
+            } else {
+                console.log('hold shelf alias value unchanged');
+            }
+            if (newev != ev) {
+                console.log('update email value');
+            } else {
+                console.log('email value unchanged');
+            }
+            $('.save-user-prefs').html(spinner+' Saving...');
         });
     });
 
