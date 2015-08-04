@@ -1,4 +1,4 @@
-var spinner = '<span class="glyphicon glyphicon-cd gly-spin"></span> ';
+var spinner = '<span class="glyphicon glyphicon-asterisk gly-spin"></span> ';
 var logged_in;
 var ready;
 
@@ -284,12 +284,17 @@ function account_prefs_binds() {
 
         $('.save-circulation-prefs').click(function(e) {
             e.preventDefault();
-            var plv = $('#plv').val();
-            var chv = $('#chv').prop('checked');
-            var hhv = $('#hhv').prop('checked');
-            var dsv = $('#dsv').val();
-            console.log(plv + '|' + chv + '|' + hhv + '|' + dsv);
-            $('.save-circulation-prefs').html(spinner+' Saving...');
+            var newplv = $('#plv').val();
+            var newchv = $('#chv').prop('checked');
+            var newhhv = $('#hhv').prop('checked');
+            var newdsv = $('#dsv').val();
+            $('.save-circulation-prefs').html(spinner + ' Saving...');
+            $.post("/mock/update_search_history", {default_search: newdsv, pickup_library: newplv, keep_circ_history: on_off(newchv), keep_hold_history: on_off(newhhv)})
+                .done(function(data) {
+                    alert_message('success', 'Settings updated', 20000);
+                    $('.save-circulation-prefs').text('Saved!');
+                    location.reload();
+            });
         });
     });
 
@@ -330,16 +335,55 @@ function account_prefs_binds() {
             console.log(newuv + '|' + newhsav + '|' + newev + '|' + up);
             if (newuv != uv) {
                 console.log('update username value');
+                $.post("/mock/update_user_info", {username: newuv, password: up})
+                    .done(function(data) {
+                        if (data.message == 'bad password') {
+                            alert_message('danger', 'Sorry, there was a problem with your password. Please try again.', 10000);
+                            $('.cancel-user-prefs').click();
+                        } else if (data.message == 'username is already taken') {
+                            alert_message('danger', 'Sorry, that username is already taken. Please try another.', 10000);
+                            $('.cancel-user-prefs').click();
+                        } else {
+                            alert_message('info', data.message, 5000);
+                        }
+                    }
+                );
             } else {
                 console.log('username value unchanged');
             }
             if (newhsav != hsav) {
                 console.log('update hold shelf alias value');
+                $.post("/mock/update_user_info", {hold_shelf_alias: newhsav, password: up})
+                    .done(function(data) {
+                        if (data.message == 'bad password') {
+                            alert_message('danger', 'Sorry, there was a problem with your password. Please try again.', 10000);
+                            $('.cancel-user-prefs').click();
+                        } else if (data.message == 'alias in use') {
+                            alert_message('danger', 'Sorry, that alias is already taken. Please try another.', 10000);
+                            $('.cancel-user-prefs').click();
+                        } else {
+                            alert_message('info', data.message, 5000);
+                        }
+                    }
+                );
             } else {
                 console.log('hold shelf alias value unchanged');
             }
             if (newev != ev) {
                 console.log('update email value');
+                $.post("/mock/update_user_info", {email: newev, password: up})
+                    .done(function(data) {
+                        if (data.message == 'bad password') {
+                            alert_message('danger', 'Sorry, there was a problem with your password. Please try again.', 10000);
+                            $('.cancel-user-prefs').click();
+                        } else if (data.message == 'invalid email address') {
+                            alert_message('danger', 'Sorry, that is not a valid email address. Please try entering it again.', 10000);
+                            $('.cancel-user-prefs').click();
+                        } else {
+                            alert_message('info', data.message, 5000);
+                        }
+                    }
+                );
             } else {
                 console.log('email value unchanged');
             }
@@ -385,12 +429,29 @@ function account_prefs_binds() {
             e.preventDefault();
             var pnnv = $('#pnnv').val();
             var tnnv = $('#tnnv').val();
-            var env = $('#env').prop('checked');
-            var pnv = $('#pnv').prop('checked');
-            var tnv = $('#tnv').prop('checked');
+            var env = on_off($('#env').prop('checked'));
+            var pnv = on_off($('#pnv').prop('checked'));
+            var tnv = on_off($('#tnv').prop('checked'));
             console.log(pnnv + '|' + tnnv + '|' + env + '|' + pnv + '|' + tnv);
             alert_message('success','Notification preferences saved',10000);
         });
     });
 }
 
+/* helper functions for account prefs binds */
+function on_off (val) {
+    return val == true ? 'on' : 'off';
+}
+
+function location_map (name) {
+    var locations = {
+        "All Locations": 22,
+        "Woodmere": 23,
+        "Interlochen": 24,
+        "Kingsley": 25,
+        "Peninsula": 26,
+        "Fife Lake": 27,
+        "East Bay": 28
+    };
+    return locations[name];
+}
