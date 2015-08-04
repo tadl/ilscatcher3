@@ -114,26 +114,27 @@ class MockController < ApplicationController
   end
 
   def manage_hold
-    @check_user = generate_user()
-    @hold_id = params[:hold_id]
-    @task = params[:task]
-    if !@check_user.error
+    check_user = generate_user()
+    @target_holds = params[:hold_id].split(',')
+    task = params[:task]
+    if !check_user.error
       if (params[:hold_id] && !params[:hold_id].blank?) || (params[:task] && !params[:task].blank?)
-        @hold = Hold.new params
-        @confirmation = @check_user.manage_hold(@hold)
+        @confirmation = check_user.manage_hold(@target_holds, task)
         @user = @confirmation[1]
         set_cookies(@user)
         @holds = @confirmation[0]
       else
-        @confirmation = 'bad parameters'
+        @holds = 'bad parameters'
+        @user = check_user
       end
     else
-      @confirmation = 'bad login'
+      @user = check_user.error
+      @holds = 'bad login'
     end
     respond_to do |format|
       format.js
       format.json {render :json => {:user => @user, 
-        :checkouts => @checkouts}}
+        :holds => @holds, :target_holds => @target_holds}}
     end 
   end
 

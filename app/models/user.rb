@@ -143,9 +143,18 @@ class User
     	return holds
 	end
 
-	def manage_hold(hold)
+	def manage_hold(holds, action)
+    post_params = Array.new
+    if holds.is_a?(String)
+      post_params = post_params.push(["hold_id", holds])
+    else
+      holds.each do |h|
+        post_params = post_params.push(["hold_id", h])
+      end
+    end
+    post_params = post_params.push(["action", action]) 
 		agent = create_agent_token(self.token)
-		agent.post('https://mr-v2.catalog.tadl.org/eg/opac/myopac/holds?limit=41',[["action", hold.task],["hold_id", hold.hold_id]])
+		agent.post('https://mr-v2.catalog.tadl.org/eg/opac/myopac/holds?limit=41', post_params)
 		holds = self.list_holds
 		updated_details = self.basic_info(agent)
     user = User.new updated_details

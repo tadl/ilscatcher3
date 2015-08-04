@@ -1,9 +1,21 @@
-<% target_div = '#hold-record-' + @hold_id %>
-<% if @task == 'cancel' %>
-	$('<%= escape_javascript(target_div)%>').remove();
+<%if @target_holds.is_a?(String) %>
+	<% target_div = '#hold-record-' + @target_holds %>
+	<% if @task == 'cancel' %>
+		$('<%= escape_javascript(target_div)%>').remove();
+	<% else %>
+		<% hold = @holds.find {|h| h.hold_id == @target_holds} %>
+		$('<%= escape_javascript(target_div)%>').html("<%= escape_javascript(render partial: 'hold', :locals => {:hold => hold}) %>");
+	<% end %>
 <% else %>
-	<% hold = @holds.find {|h| h.hold_id == @hold_id} %>
-	$('<%= escape_javascript(target_div)%>').html("<%= escape_javascript(render partial: 'hold', :locals => {:hold => hold}) %>");
+	<% @target_holds.each do |t| %>
+		<% target_div = '#hold-record-' + t %>
+		<% if @task == 'cancel' %>
+			$('<%= escape_javascript(target_div)%>').remove();
+		<% else %>
+			<% hold = @holds.find {|h| h.hold_id == t} %>
+			$('<%= escape_javascript(target_div)%>').html("<%= escape_javascript(render partial: 'hold', :locals => {:hold => hold}) %>");
+		<% end %>
+	<% end %>
 <% end %>
 update_login();
 hold_management_binds();
