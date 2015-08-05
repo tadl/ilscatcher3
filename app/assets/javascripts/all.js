@@ -298,6 +298,25 @@ function account_prefs_binds() {
         });
     });
 
+    $('.edit-user-name').unbind('click');
+    $('.edit-user-name').click(function(event) {
+        event.preventDefault();
+    });
+
+    $('.edit-user-alias').unbind('click');
+    $('.edit-user-alias').click(function(event) {
+        event.preventDefault();
+    });
+
+    $('.edit-user-email').unbind('click');
+    $('.edit-user-email').click(function(event) {
+        event.preventDefault();
+    });
+
+    $('.edit-user-password').unbind('click');
+    $('.edit-user-password').click(function(event) {
+        event.preventDefault();
+    });
 
     $('.edit-user-prefs').unbind('click');
     $('.edit-user-prefs').click(function(event) {
