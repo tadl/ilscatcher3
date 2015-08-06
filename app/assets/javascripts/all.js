@@ -298,28 +298,8 @@ function account_prefs_binds() {
         });
     });
 
-    $('.edit-user-name').unbind('click');
-    $('.edit-user-name').click(function(event) {
-        event.preventDefault();
-    });
-
-    $('.edit-user-alias').unbind('click');
-    $('.edit-user-alias').click(function(event) {
-        event.preventDefault();
-    });
-
-    $('.edit-user-email').unbind('click');
-    $('.edit-user-email').click(function(event) {
-        event.preventDefault();
-    });
-
-    $('.edit-user-password').unbind('click');
-    $('.edit-user-password').click(function(event) {
-        event.preventDefault();
-    });
-
-    $('.edit-user-prefs').unbind('click');
-    $('.edit-user-prefs').click(function(event) {
+    $('.edit-user-user').unbind('click');
+    $('.edit-user-user').click(function(event) {
         event.preventDefault();
         var userpanel = $('#panel-user-prefs').html();
 
@@ -327,88 +307,58 @@ function account_prefs_binds() {
         var uvhtml = '<input id="uv" name="up-username" class="form-control" type="text" value="'+uv+'">';
         $('#username-value').html(uvhtml);
 
+        $('#user-prefs-password').show();
+        $('#user-prefs-footer').show();
+        $('.edit-user-user').hide();
+
+        user_prefs_cancel_bind(userpanel);
+        user_username_save_bind();
+
+
+    });
+
+    $('.edit-user-alias').unbind('click');
+    $('.edit-user-alias').click(function(event) {
+        event.preventDefault();
+        var userpanel = $('#panel-user-prefs').html();
+
         var hsav = $('#hold_shelf_alias-value').text();
         var hsavhtml = '<input id="hsav" name="up-hold_shelf_alias" class="form-control" type="text" value="'+hsav+'">';
         $('#hold_shelf_alias-value').html(hsavhtml);
+
+        $('#user-prefs-password').show();
+        $('#user-prefs-footer').show();
+        $('.edit-user-alias').hide();
+
+        user_prefs_cancel_bind(userpanel);
+        user_alias_save_bind();
+
+    });
+
+    $('.edit-user-email').unbind('click');
+    $('.edit-user-email').click(function(event) {
+        event.preventDefault();
+        var userpanel = $('#panel-user-prefs').html();
 
         var ev = $('#email-value').text();
         var evhtml = '<input id="ev" name="up-email" class="form-control" type="text" value="'+ev+'">';
         $('#email-value').html(evhtml);
 
         $('#user-prefs-password').show();
-        $('#user-prefs-buttons').empty();
         $('#user-prefs-footer').show();
+        $('.edit-user-email').hide();
 
-        $('.cancel-user-prefs').click(function(e) {
-            e.preventDefault();
-            $('#panel-user-prefs').html(userpanel);
-            account_prefs_binds();
-        });
+        user_prefs_cancel_bind(userpanel);
+        user_email_save_bind();
 
-        $('.save-user-prefs').click(function(e) {
-            e.preventDefault();
-            var newuv = $('#uv').val();
-            var newhsav = $('#hsav').val();
-            var newev = $('#ev').val();
-            var up = $('#up-password').val();
-            console.log(newuv + '|' + newhsav + '|' + newev + '|' + up);
-            if (newuv != uv) {
-                console.log('update username value');
-                $.post("/mock/update_user_info", {username: newuv, password: up})
-                    .done(function(data) {
-                        if (data.message == 'bad password') {
-                            alert_message('danger', 'Sorry, there was a problem with your password. Please try again.', 10000);
-                            $('.cancel-user-prefs').click();
-                        } else if (data.message == 'username is already taken') {
-                            alert_message('danger', 'Sorry, that username is already taken. Please try another.', 10000);
-                            $('.cancel-user-prefs').click();
-                        } else {
-                            alert_message('info', data.message, 5000);
-                        }
-                    }
-                );
-            } else {
-                console.log('username value unchanged');
-            }
-            if (newhsav != hsav) {
-                console.log('update hold shelf alias value');
-                $.post("/mock/update_user_info", {hold_shelf_alias: newhsav, password: up})
-                    .done(function(data) {
-                        if (data.message == 'bad password') {
-                            alert_message('danger', 'Sorry, there was a problem with your password. Please try again.', 10000);
-                            $('.cancel-user-prefs').click();
-                        } else if (data.message == 'alias in use') {
-                            alert_message('danger', 'Sorry, that alias is already taken. Please try another.', 10000);
-                            $('.cancel-user-prefs').click();
-                        } else {
-                            alert_message('info', data.message, 5000);
-                        }
-                    }
-                );
-            } else {
-                console.log('hold shelf alias value unchanged');
-            }
-            if (newev != ev) {
-                console.log('update email value');
-                $.post("/mock/update_user_info", {email: newev, password: up})
-                    .done(function(data) {
-                        if (data.message == 'bad password') {
-                            alert_message('danger', 'Sorry, there was a problem with your password. Please try again.', 10000);
-                            $('.cancel-user-prefs').click();
-                        } else if (data.message == 'invalid email address') {
-                            alert_message('danger', 'Sorry, that is not a valid email address. Please try entering it again.', 10000);
-                            $('.cancel-user-prefs').click();
-                        } else {
-                            alert_message('info', data.message, 5000);
-                        }
-                    }
-                );
-            } else {
-                console.log('email value unchanged');
-            }
-            $('.save-user-prefs').html(spinner+' Saving...');
-        });
     });
+/* later
+    $('.edit-user-password').unbind('click');
+    $('.edit-user-password').click(function(event) {
+        event.preventDefault();
+        var userpanel = $('#panel-user-prefs').html();
+        user_prefs_cancel_bind(userpanel);
+    }); */
 
     $('.edit-notification-prefs').unbind('click');
     $('.edit-notification-prefs').click(function(event) {
@@ -453,6 +403,7 @@ function account_prefs_binds() {
             var tnv = on_off($('#tnv').prop('checked'));
             console.log(pnnv + '|' + tnnv + '|' + env + '|' + pnv + '|' + tnv);
             alert_message('success','Notification preferences saved',10000);
+            location.reload();
         });
     });
 }
@@ -474,3 +425,101 @@ function location_map (name) {
     };
     return locations[name];
 }
+
+function user_prefs_cancel_bind(panelhtml) {
+
+    $('.cancel-user-prefs').unbind('click');
+    $('.cancel-user-prefs').click(function(e) {
+        e.preventDefault();
+        $('#panel-user-prefs').html(panelhtml);
+        account_prefs_binds();
+    });
+}
+
+
+
+function user_username_save_bind() {
+    $('.save-user-prefs').unbind('click');
+    $('.save-user-prefs').click(function(e) {
+        e.preventDefault();
+        $('.save-user-prefs').html(spinner+' Saving...');
+        var newusername = $('#uv').val();
+        var up = $('#up-password').val();
+        console.log('update username value');
+        $.post("/mock/update_user_info", {username: newusername, password: up})
+        .done(function(data) {
+            if (data.message == 'bad password') {
+                alert_message('danger', 'Sorry, there was a problem with your password. Please try again.', 10000);
+            } else if (data.message == 'password required') {
+                alert_message('danger', 'You must enter your password to make this change. Please try again.', 10000);
+            } else if (data.message == 'username is already taken') {
+                alert_message('danger', 'Sorry, that username is already taken. Please try another.', 10000);
+            } else if (data.message == 'success') {
+                alert_message('success', 'Username successfully changed.', 10000);
+                location.reload();
+            } else {
+                alert_message('info', data.message, 10000);
+            }
+            $('.cancel-user-prefs').click();
+        });
+    });
+}
+
+
+
+function user_alias_save_bind() {
+    $('.save-user-prefs').unbind('click');
+    $('.save-user-prefs').click(function(e) {
+        e.preventDefault();
+        $('.save-user-prefs').html(spinner+' Saving...');
+        var up = $('#up-password').val();
+        var newalias = $('#hsav').val();
+        console.log('update hold shelf alias value');
+        $.post("/mock/update_user_info", {hold_shelf_alias: newalias, password: up})
+        .done(function(data) {
+            if (data.message == 'bad password') {
+                alert_message('danger', 'Sorry, there was a problem with your password. Please try again.', 10000);
+            } else if (data.message == 'password required') {
+                alert_message('danger', 'You must enter your password to make this change. Please try again.', 10000);
+            } else if (data.message == 'alias in use') {
+                alert_message('danger', 'Sorry, that alias is already taken. Please try another.', 10000);
+            } else if (data.message == 'success') {
+                alert_message('success', 'Alias successfully changed.', 10000);
+                location.reload();
+            } else {
+                alert_message('info', data.message, 10000);
+            }
+            $('.cancel-user-prefs').click();
+        });
+    });
+}
+
+
+
+function user_email_save_bind() {
+    $('.save-user-prefs').unbind('click');
+    $('.save-user-prefs').click(function(e) {
+        e.preventDefault();
+        $('.save-user-prefs').html(spinner+' Saving...');
+        var up = $('#up-password').val();
+        var newemail = $('#ev').val();
+        console.log('update email value');
+        $.post("/mock/update_user_info", {email: newemail, password: up})
+        .done(function(data) {
+            if (data.message == 'bad password') {
+                alert_message('danger', 'Sorry, there was a problem with your password. Please try again.', 10000);
+            } else if (data.message == 'password required') {
+                alert_message('danger', 'You must enter your password to make this change. Please try again.', 10000);
+            } else if (data.message == 'invalid email address') {
+                alert_message('danger', 'Sorry, that is not a valid email address. Please try entering it again.', 10000);
+            } else if (data.message == 'success') {
+                alert_message('success', 'Email address successfully changed.', 10000);
+                location.reload();
+            } else {
+                alert_message('info', data.message, 10000);
+            }
+            $('.cancel-user-prefs').click();
+        });
+    });
+}
+

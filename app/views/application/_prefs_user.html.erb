@@ -1,20 +1,17 @@
 <div class="panel panel-primary" id="panel-user-prefs">
     <div class="panel-heading clearfix">
         <h3 class="panel-title pull-left" style="padding-top:3px;">User Prefs</h3>
-        <div class="btn-group pull-right" id="user-prefs-buttons">
-            <a href="#" class="btn btn-default btn-xs edit-user-prefs">Edit</a>
-        </div>
     </div>
     <div class="panel-body table-responsive">
         <table class="table table-striped">
             <thead>
-                <tr><th>Setting</th><th>Current Value</th></tr>
+                <tr><th>Setting</th><th>Current Value</th><th></th></tr>
             </thead>
             <tbody>
-                <tr><td>Username</td><td id="username-value"><%= @preferences['username'] %></td></tr>
-                <tr><td>Holdshelf Alias</td><td id="hold_shelf_alias-value"><%= @preferences['hold_shelf_alias'] %></td></tr>
-                <tr><td>Email Address</td><td id="email-value"><%= @preferences['email'] %></td></tr>
-                <tr id="user-prefs-password" style="display:none;"><td>Enter Password to Confirm Changes (required)</td><td id="password-value"><input id="up-password" name="up-password" class="form-control" type="text" required></td></tr>
+                <tr><td>Username</td><td id="username-value"><%= @preferences['username'] %></td><td><div class="btn-group pull-right" id="user-user-prefs-buttons"><a href="#" class="btn btn-primary btn-xs edit-user-user">Edit</a></div></td></tr>
+                <tr><td>Holdshelf Alias</td><td id="hold_shelf_alias-value"><%= @preferences['hold_shelf_alias'] %></td><td><div class="btn-group pull-right" id="user-alias-prefs-buttons"><a href="#" class="btn btn-primary btn-xs edit-user-alias">Edit</a></div></td></tr>
+                <tr><td>Email Address</td><td id="email-value"><%= @preferences['email'] %></td><td><div class="btn-group pull-right" id="user-email-prefs-buttons"><a href="#" class="btn btn-primary btn-xs edit-user-email">Edit</a></div></td></tr>
+                <tr id="user-prefs-password" style="display:none;"><td><strong>Enter Password to Confirm Changes (required)</strong></td><td id="password-value" colspan="2"><input id="up-password" name="up-password" class="form-control" type="password" required></td></tr>
             </tbody>
         </table>
     </div>
