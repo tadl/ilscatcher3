@@ -1,5 +1,5 @@
+/* global variables */
 var spinner = '<span class="glyphicon glyphicon-asterisk gly-spin"></span> ';
-var logged_in;
 var ready;
 
 ready = function() {
@@ -291,7 +291,7 @@ function account_prefs_binds() {
             $('.save-circulation-prefs').html(spinner + ' Saving...');
             $.post("/mock/update_search_history", {default_search: newdsv, pickup_library: newplv, keep_circ_history: on_off(newchv), keep_hold_history: on_off(newhhv)})
                 .done(function(data) {
-                    alert_message('success', 'Settings updated', 20000);
+                    alert_message('success', 'Settings updated.', 20000);
                     $('.save-circulation-prefs').text('Saved!');
                     location.reload();
             });
@@ -396,14 +396,18 @@ function account_prefs_binds() {
 
         $('.save-notification-prefs').click(function(e) {
             e.preventDefault();
+            $('.save-notification-prefs').html(spinner+' Saving...');
             var pnnv = $('#pnnv').val();
             var tnnv = $('#tnnv').val();
             var env = on_off($('#env').prop('checked'));
             var pnv = on_off($('#pnv').prop('checked'));
             var tnv = on_off($('#tnv').prop('checked'));
-            console.log(pnnv + '|' + tnnv + '|' + env + '|' + pnv + '|' + tnv);
-            alert_message('success','Notification preferences saved',10000);
-            location.reload();
+            $.post("/mock/update_notifications", {email_notify: env, phone_notify: pnv, text_notify: tnv, phone_notify_number: pnnv, text_notify_number: tnnv})
+            .done(function(data) {
+                alert_message('success','Notification preferences saved.',10000);
+                $('.cancel-notification-prefs').click();
+                location.reload();
+            });
         });
     });
 }
@@ -436,8 +440,6 @@ function user_prefs_cancel_bind(panelhtml) {
     });
 }
 
-
-
 function user_username_save_bind() {
     $('.save-user-prefs').unbind('click');
     $('.save-user-prefs').click(function(e) {
@@ -465,8 +467,6 @@ function user_username_save_bind() {
     });
 }
 
-
-
 function user_alias_save_bind() {
     $('.save-user-prefs').unbind('click');
     $('.save-user-prefs').click(function(e) {
@@ -493,8 +493,6 @@ function user_alias_save_bind() {
         });
     });
 }
-
-
 
 function user_email_save_bind() {
     $('.save-user-prefs').unbind('click');
