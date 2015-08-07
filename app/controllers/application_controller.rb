@@ -1,6 +1,8 @@
 class ApplicationController < ActionController::Base
     protect_from_forgery with: :exception
     require 'open-uri'
+    rescue_from Mechanize::Error, with: :scrape_error
+    rescue_from SocketError, with: :scrape_error
 
     def shared_mock_variables
         @logo = 'http://www.tadl.org/sites/all/themes/converge_custom/logo.png'
@@ -41,6 +43,13 @@ class ApplicationController < ActionController::Base
     def set_cookies(user)
       cookies[:login] = { :value => user.token, :expires => 2.hours.from_now }
       cookies[:user] = {:value => user.to_json, :expires => 2.hours.from_now }
+    end
+
+    def scrape_error
+        respond_to do |format|
+            format.js  {render :js => "alert_message('danger', 'An error occured. Please try again later.', 10000);" }
+            format.html {redirect_to "http://huwshimi.com/404/"}
+        end
     end
 
 

@@ -42,10 +42,16 @@ class MockController < ApplicationController
   def search
     @format_options = [['All Formats', 'all'],['Movies', 'g'],['Music', 'j']]
     @search = Search.new params
-    results = @search.results
-    @items = results[0]
-    @facets = results[1]
-    @more_results = results[2]
+    if @search.query || @search.fmt
+      results = @search.results
+      @items = results[0]
+      @facets = results[1]
+      @more_results = results[2]
+    else
+      @items = Array.new
+      @facets = Array.new
+      @more_results = nil
+    end
     respond_to do |format|
       format.html
       format.js
@@ -116,10 +122,10 @@ class MockController < ApplicationController
   def manage_hold
     check_user = generate_user()
     @target_holds = params[:hold_id].split(',')
-    task = params[:task]
+    @task = params[:task]
     if !check_user.error
       if (params[:hold_id] && !params[:hold_id].blank?) || (params[:task] && !params[:task].blank?)
-        @confirmation = check_user.manage_hold(@target_holds, task)
+        @confirmation = check_user.manage_hold(@target_holds, @task)
         @user = @confirmation[1]
         set_cookies(@user)
         @holds = @confirmation[0]
