@@ -254,11 +254,11 @@ function account_prefs_binds() {
 
         var chv = $('#keep_circ_history-value').text();
         var chvhtml = '<input id="chv" name="circulation_history" class="form-control" type="checkbox"' + (chv == 'true' ? ' checked' : '') + '>';
-        $('#keep_circ_history-value').html(chvhtml);
+        $('#keep_circ_history-value').parent().html(chvhtml);
 
         var hhv = $('#keep_hold_history-value').text();
         var hhvhtml = '<input id="hhv" name="hold_history" class="form-control" type="checkbox"' + (hhv == 'true' ? ' checked' : '') + '>';
-        $('#keep_hold_history-value').html(hhvhtml);
+        $('#keep_hold_history-value').parent().html(hhvhtml);
 
         var dsv = $('#default_search-value').text();
         var dsvhtml = '<select id="dsv" name="default_search" class="form-control">';
@@ -375,15 +375,15 @@ function account_prefs_binds() {
 
         var env = $('#email_notify-value').text();
         var envhtml = '<input id="env" name="email_notify" class="form-control" type="checkbox"' + (env == 'true' ? ' checked' : '') + '>';
-        $('#email_notify-value').html(envhtml);
+        $('#email_notify-value').parent().html(envhtml);
 
         var pnv = $('#phone_notify-value').text();
         var pnvhtml = '<input id="pnv" name="phone_notify" class="form-control" type="checkbox"' + (pnv == 'true' ? ' checked' : '') + '>';
-        $('#phone_notify-value').html(pnvhtml);
+        $('#phone_notify-value').parent().html(pnvhtml);
 
         var tnv = $('#text_notify-value').text();
         var tnvhtml = '<input id="tnv" name="text_notify" class="form-control" type="checkbox"' + (tnv == 'true' ? ' checked' : '') + '>';
-        $('#text_notify-value').html(tnvhtml);
+        $('#text_notify-value').parent().html(tnvhtml);
 
         $('#notification-prefs-buttons').empty();
         $('#notification-prefs-footer').show();
