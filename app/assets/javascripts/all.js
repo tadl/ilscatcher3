@@ -521,3 +521,42 @@ function user_email_save_bind() {
     });
 }
 
+function item_select(id) {
+    event.preventDefault();
+    if (typeof ids !== 'object') ids = [];
+    var index = $.inArray(id, ids);
+    var element = $('.select-'+id);
+    var selectedText = '<span class="glyphicon glyphicon-ok"></span> Selected';
+    var deselectedText = 'Select';
+    if (index == -1) {
+        ids.push(id);
+        $(element).removeClass('btn-default').addClass('btn-success').html(selectedText);
+    } else {
+        ids.splice(index, 1);
+        $(element).removeClass('btn-success').addClass('btn-default').html(deselectedText);
+    }
+    console.log(ids);
+
+}
+
+function hold_bulk_action_binds() {
+    $('#hold-bulk-suspend').unbind('click');
+    $('#hold-bulk-suspend').click(function(e) {
+        e.preventDefault();
+        $.post('/mock/manage_hold.js', {hold_id: ids, task: 'suspend'})
+        .done(function() {
+            alert_message('info', data.message);
+        });
+    });
+
+    $('#hold-bulk-activate').unbind('click');
+    $('#hold-bulk-activate').click(function(e) {
+        e.preventDefault();
+    });
+
+    $('#hold-bulk-cancel').unbind('click');
+    $('#hold-bulk-cancel').click(function(e) {
+        e.preventDefault();
+    });
+}
+

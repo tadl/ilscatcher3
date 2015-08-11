@@ -16,10 +16,12 @@
             <% if request.path == mock_checkouts_path %>
                 <li><a href="#">Renew All</a></li>
             <% elsif request.path == mock_holds_path %>
-                <li><a href="#">Suspend All</a></li>
-                <li><a href="#">Activate All</a></li>
+                <li>
+                    <a href="#" id="hold-bulk-suspend">Suspend All</a>
+                </li>
+                <li><a href="#" id="hold-bulk-activate">Activate All</a></li>
                 <li role="separator" class="divider"></li>
-                <li><a href="#">Cancel All</a></li>
+                <li><a href="#" id="hold-bulk-cancel">Cancel All</a></li>
             <% end %>
         </ul>
     </div>
