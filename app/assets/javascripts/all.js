@@ -543,7 +543,7 @@ function hold_bulk_action_binds() {
     $('#hold-bulk-suspend').unbind('click');
     $('#hold-bulk-suspend').click(function(e) {
         e.preventDefault();
-        $.post('/mock/manage_hold.js', {hold_id: ids, task: 'suspend'})
+        $.post('/mock/manage_hold.js', {hold_id: ids.toString(), task: 'suspend'})
         .done(function() {
             alert_message('info', data.message);
         });
