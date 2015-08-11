@@ -543,20 +543,31 @@ function hold_bulk_action_binds() {
     $('#hold-bulk-suspend').unbind('click');
     $('#hold-bulk-suspend').click(function(e) {
         e.preventDefault();
+        showLoading();
         $.post('/mock/manage_hold.js', {hold_id: ids.toString(), task: 'suspend'})
         .done(function() {
-            alert_message('info', data.message);
+            hideLoading();
         });
     });
 
     $('#hold-bulk-activate').unbind('click');
     $('#hold-bulk-activate').click(function(e) {
         e.preventDefault();
+        showLoading();
+        $.post('/mock/manage_hold.js', {hold_id: ids.toString(), task: 'activate'})
+        .done(function() {
+            hideLoading();
+        });
     });
 
     $('#hold-bulk-cancel').unbind('click');
     $('#hold-bulk-cancel').click(function(e) {
         e.preventDefault();
+        showLoading();
+        $.post('/mock/manage_hold.js', {hold_id: ids.toString(), task: 'cancel'})
+        .done(function() {
+            hideLoading();
+        });
     });
 }
 
