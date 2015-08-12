@@ -192,7 +192,7 @@ class MockController < ApplicationController
             checkouts = checkouts.push(c)
           end
         end
-        @targeted_records = params[:record_ids]
+        @targeted_records = params[:record_ids].split(',')
         @confirmation = @check_user.renew_checkouts(checkouts)
         @message = @confirmation[0]
         @errors = @confirmation[1]

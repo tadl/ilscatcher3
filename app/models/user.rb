@@ -356,8 +356,8 @@ class User
   end 
 
 	def clean_record(string)
-  	record_id = string.split('?') rescue nil
-  	record_id = record_id[0].gsub('/eg/opac/record/','') rescue nil
+  	record_id = string.split('?') 
+  	record_id = record_id[0].gsub('/eg/opac/record/','') 
   	return record_id
   end
 
