@@ -40,7 +40,7 @@
                         <% end %>
                         <%= link_to 'manage_hold.js', data: {params: hold.create_params('cancel')}, remote: true, :id => 'hold-manage-cancel-'+hold.record_id, :type => 'button', :class => 'hold-manage btn btn-block padtop btn-primary' do %>Cancel<% end %>
                         <%= link_to 'details.js?id='+hold.record_id, :remote => true, :type => 'button', :class => 'btn btn-block btn-info details-button' do %>Details<% end %>
-                        <a href="#" class="btn btn-default btn-block select-<%= hold.hold_id %>" onclick="item_select(<%= hold.hold_id %>)">Select</a>
+                        <button type="button" class="btn btn-default btn-block select-btn select-<%= hold.hold_id %>" onclick="item_select(<%= hold.hold_id %>)">Select</button>
                     </div>
                 </div>
             </div>

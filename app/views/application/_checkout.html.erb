@@ -38,6 +38,7 @@
                             <button type="button" class="btn btn-block btn-warn disabled">Renew</button>
                         <% end %>
                         <%= link_to 'details.js?id='+checkout.record_id, :remote => true, :type => 'button', :class => 'btn btn-block btn-info details-button' do %>Details<% end %>
+                        <button type="button" class="btn btn-default btn-block select-btn select-<%= checkout.record_id %>" onclick="checkout_select(<%= checkout.checkout_id %>,<%= checkout.record_id %>)">Select</button>
                     </div>
                 </div>
             </div>

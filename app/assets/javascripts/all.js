@@ -522,7 +522,6 @@ function user_email_save_bind() {
 }
 
 function item_select(id) {
-    event.preventDefault();
     if (typeof ids !== 'object') ids = [];
     var index = $.inArray(id, ids);
     var element = $('.select-'+id);
@@ -530,16 +529,35 @@ function item_select(id) {
     var deselectedText = 'Select';
     if (index == -1) {
         ids.push(id);
-        $(element).removeClass('btn-default').addClass('btn-success').html(selectedText);
+        $(element).removeClass('btn-default').addClass('select-btn selected btn-success').html(selectedText);
     } else {
         ids.splice(index, 1);
-        $(element).removeClass('btn-success').addClass('btn-default').html(deselectedText);
+        $(element).removeClass('btn-success selected select-btn').addClass('btn-default').html(deselectedText);
     }
-    console.log(ids);
-
 }
 
-function hold_bulk_action_binds() {
+function checkout_select(cid,rid) {
+    if (typeof cids !== 'object') cids = [];
+    if (typeof rids !== 'object') rids = [];
+    var cindex = $.inArray(cid, cids);
+    var rindex = $.inArray(rid, rids);
+    var element = $('.select-'+rid);
+    var selectedText = '<span class="glyphicon glyphicon-ok"></span> Selected';
+    var deselectedText = 'Select';
+    if ((cindex == -1) && (rindex == -1)) {
+        cids.push(cid);
+        rids.push(rid);
+        $(element).removeClass('btn-default').addClass('selected btn-success').html(selectedText);
+    } else {
+        cids.splice(cindex, 1);
+        rids.splice(rindex, 1);
+        $(element).removeClass('btn-success selected').addClass('btn-default').html(deselectedText);
+    }
+    console.log(rids);
+    console.log(cids);
+}
+
+function bulk_action_binds() {
     $('#hold-bulk-suspend').unbind('click');
     $('#hold-bulk-suspend').click(function(e) {
         e.preventDefault();
@@ -577,6 +595,30 @@ function hold_bulk_action_binds() {
                 ids = [];
             });
         }
+    });
+
+    $('#checkout-bulk-renew').unbind('click');
+    $('#checkout-bulk-renew').click(function(e) {
+        e.preventDefault();
+        if ((typeof rids !== 'undefined') && (typeof cids !== 'undefined')) {
+            showLoading();
+            $.post('/mock/renew_checkouts.js', {checkout_ids: cids.toString(), record_ids: rids.toString()})
+            .done(function() {
+                hideLoading();
+                cids = [];
+                rids = [];
+            });
+        }
+    });
+    
+    $('#select-all').unbind('click');
+    $('#select-all').click(function(e) {
+        $('.select-btn').click();
+    });
+
+    $('#select-none').unbind('click');
+    $('#select-none').click(function(e) {
+        $('.select-btn.selected').click();
     });
 }
 
