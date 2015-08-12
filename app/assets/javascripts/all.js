@@ -543,31 +543,40 @@ function hold_bulk_action_binds() {
     $('#hold-bulk-suspend').unbind('click');
     $('#hold-bulk-suspend').click(function(e) {
         e.preventDefault();
-        showLoading();
-        $.post('/mock/manage_hold.js', {hold_id: ids.toString(), task: 'suspend'})
-        .done(function() {
-            hideLoading();
-        });
+        if (typeof ids !== 'undefined') {
+            showLoading();
+            $.post('/mock/manage_hold.js', {hold_id: ids.toString(), task: 'suspend'})
+            .done(function() {
+                hideLoading();
+                ids = [];
+            });
+        }
     });
 
     $('#hold-bulk-activate').unbind('click');
     $('#hold-bulk-activate').click(function(e) {
         e.preventDefault();
-        showLoading();
-        $.post('/mock/manage_hold.js', {hold_id: ids.toString(), task: 'activate'})
-        .done(function() {
-            hideLoading();
-        });
+        if (typeof ids !== 'undefined') {
+            showLoading();
+            $.post('/mock/manage_hold.js', {hold_id: ids.toString(), task: 'activate'})
+            .done(function() {
+                hideLoading();
+                ids = [];
+            });
+        }
     });
 
     $('#hold-bulk-cancel').unbind('click');
     $('#hold-bulk-cancel').click(function(e) {
         e.preventDefault();
-        showLoading();
-        $.post('/mock/manage_hold.js', {hold_id: ids.toString(), task: 'cancel'})
-        .done(function() {
-            hideLoading();
-        });
+        if (typeof ids !== 'undefined') {
+            showLoading();
+            $.post('/mock/manage_hold.js', {hold_id: ids.toString(), task: 'cancel'})
+            .done(function() {
+                hideLoading();
+                ids = [];
+            });
+        }
     });
 }
 
