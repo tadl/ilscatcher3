@@ -529,10 +529,13 @@ function item_select(id) {
     var deselectedText = 'Select';
     if (index == -1) {
         ids.push(id);
-        $(element).removeClass('btn-default').addClass('select-btn selected btn-success').html(selectedText);
+        $(element).removeClass('btn-default select-btn').addClass('selected-btn btn-success').html(selectedText);
     } else {
         ids.splice(index, 1);
-        $(element).removeClass('btn-success selected select-btn').addClass('btn-default').html(deselectedText);
+        $(element).removeClass('btn-success selected-btn').addClass('btn-default select-btn').html(deselectedText);
+    }
+    if ($.isEmptyObject(ids) === true) {
+        delete window.ids;
     }
 }
 
@@ -547,11 +550,11 @@ function checkout_select(cid,rid) {
     if ((cindex == -1) && (rindex == -1)) {
         cids.push(cid);
         rids.push(rid);
-        $(element).removeClass('btn-default').addClass('selected btn-success').html(selectedText);
+        $(element).removeClass('btn-default select-btn').addClass('selected-btn btn-success').html(selectedText);
     } else {
         cids.splice(cindex, 1);
         rids.splice(rindex, 1);
-        $(element).removeClass('btn-success selected').addClass('btn-default').html(deselectedText);
+        $(element).removeClass('btn-success selected-btn').addClass('btn-default select-btn').html(deselectedText);
     }
     console.log(rids);
     console.log(cids);
@@ -566,8 +569,10 @@ function bulk_action_binds() {
             $.post('/mock/manage_hold.js', {hold_id: ids.toString(), task: 'suspend'})
             .done(function() {
                 hideLoading();
-                ids = [];
+                delete window.ids;
             });
+        } else {
+            alert_message('warning', 'Error: You must select at least one item before performing bulk operations.', 15000);
         }
     });
 
@@ -579,8 +584,10 @@ function bulk_action_binds() {
             $.post('/mock/manage_hold.js', {hold_id: ids.toString(), task: 'activate'})
             .done(function() {
                 hideLoading();
-                ids = [];
+                delete window.ids;
             });
+        } else {
+            alert_message('warning', 'Error: You must select at least one item before performing bulk operations.', 15000);
         }
     });
 
@@ -592,8 +599,10 @@ function bulk_action_binds() {
             $.post('/mock/manage_hold.js', {hold_id: ids.toString(), task: 'cancel'})
             .done(function() {
                 hideLoading();
-                ids = [];
+                delete window.ids;
             });
+        } else {
+            alert_message('warning', 'Error: You must select at least one item before performing bulk operations.', 15000);
         }
     });
 
@@ -605,9 +614,11 @@ function bulk_action_binds() {
             $.post('/mock/renew_checkouts.js', {checkout_ids: cids.toString(), record_ids: rids.toString()})
             .done(function() {
                 hideLoading();
-                cids = [];
-                rids = [];
+                delete window.cids;
+                delete window.rids;
             });
+        } else {
+            alert_message('warning', 'Error: You must select at least one item before performing bulk operations.', 15000);
         }
     });
     
@@ -618,7 +629,7 @@ function bulk_action_binds() {
 
     $('#select-none').unbind('click');
     $('#select-none').click(function(e) {
-        $('.select-btn.selected').click();
+        $('.selected-btn').click();
     });
 }
 
