@@ -63,8 +63,18 @@ function hideLoading() {
 
 function slider_image_binds() {
     $('.carousel-item').click(function(event) {
-        $(this).addClass('zoom');
+        elementBounce($(this));
     });
+}
+
+function elementBounce(element) {
+    var speed = 500; // higher is slower (it's actually duration)
+    element.animate({width: '-=20px', height: '-=20px', "margin-left": '+=10px', "margin-top": '+=10px'}, speed);
+    element.animate({width: '+=20px', height: '+=20px', "margin-left": '-=10px', "margin-top": '-=10px'}, speed);
+    element.animate({width: '-=20px', height: '-=20px', "margin-left": '+=10px', "margin-top": '+=10px'}, speed);
+    element.animate({width: '+=20px', height: '+=20px', "margin-left": '-=10px', "margin-top": '-=10px'}, speed);
+    element.animate({width: '-=20px', height: '-=20px', "margin-left": '+=10px', "margin-top": '+=10px'}, speed);
+    element.animate({width: '+=20px', height: '+=20px', "margin-left": '-=10px', "margin-top": '-=10px'}, speed);
 }
 
 function bind_more_results() {
