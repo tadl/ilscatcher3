@@ -1,13 +1,14 @@
 var messageinfo    = '<div class="alert alert-info" role="alert">';
 var messagesuccess = '<div class="alert alert-success" role="alert">';
 var messageclose = '</div>';
+var pickuplocation = '<%= escape_javascript(location_map(@user.pickup_library, @location_options)) %>';
 <% @hold_confirmation.each do |c| %>
     var target = '.hold-status-<%= escape_javascript(c[:record_id]) %>';
     <% if !c[:error] %>
-        var message = messagesuccess+'Hold placed successfully'+messageclose;
+        var message = messagesuccess+'Hold placed successfully for pickup at '+pickuplocation+messageclose;
         $(target).html(message);
     <% elsif c[:need_to_force] %>
-        var message = messageinfo+'This item is not currently available at your pickup location'+messageclose;
+        var message = messageinfo+'This item is not currently available at your pickup location ('+pickuplocation+')'+messageclose;
         $(target).html(message);
     <% else %>
         var message = messageinfo+'<%= escape_javascript(c[:message]) %>'+messageclose;
