@@ -11,7 +11,7 @@ class Item
         	instance_variable_set("@#{k}", v) unless v.nil?
       	end
       else
-    		details = get_details(args['id'], args['loc'])
+    		details = get_details(args['id'], args['loc'], args['isbn'])
       end
     else
       return nil
@@ -28,7 +28,7 @@ class Item
   		return trailer
   	end
 
-  	def get_details(id, loc)
+  	def get_details(id, loc, isbn)
   		if loc
   			loc_url = '?locg=' + loc
   		else
@@ -57,7 +57,7 @@ class Item
 			:record_year => detail.search('span[@property="datePublished"]').try(:text),
 			:publisher => detail.search('span[@property="publisher"]').search('span[@property="name"]').try(:text).try(:strip),
 			:publication_place => detail.search('span[@property="publisher"]').search('span[@property="location"]').try(:text).gsub(':','').try(:strip),
-			:isbn => detail.css('span[@property="isbn"]').map {|i| i.text},
+			:isbn => isbn,
 			:physical_description => detail.at('li#rdetail_phys_desc').try(:at, 'span.rdetail_value').try(:text),
 			:related => detail.css('.rdetail_subject_value').to_s.split('<br>').reverse.drop(1).reverse.map { |i| clean_related(i)}.uniq,
   			}

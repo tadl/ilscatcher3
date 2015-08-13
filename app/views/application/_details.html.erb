@@ -7,7 +7,8 @@
 	<script>
 		function get_copies(){
     		var id = "<%= escape_javascript(@item.id) %>";
-    		var url ='details.js?id=' + id + '&fetching=true'
+    		var isbn = "<%= escape_javascript(@item.isbn) %>";
+    		var url ='details.js?id=' + id + '&isbn=' + isbn + '&fetching=true'
     		$.get(url, function(data){})
 		}
 		get_copies()

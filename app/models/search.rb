@@ -190,7 +190,7 @@ class Search
           :publisher => result.at_css('[@name="bib_publisher"]').try(:text).try(:strip),
           :publication_place => result.at_css('[@name="bib_pubplace"]').try(:text).try(:strip),
           :physical_description => result.at_css('[@name="bib_phys_desc"]').try(:text).try(:strip),
-          :isbn => result.at_css('[@name="bib_isbn"]').try(:text).try(:strip),
+          :isbn => result.at_css('[@name="bib_isbn"]').try(:text).try(:strip).try(:squeeze, " "),
 				}
 				item = Result.new item_raw
 				results = results.push(item)
@@ -270,5 +270,9 @@ class Search
 		availability.pop
 		return availability
 	end
+
+  def clean_isbn(isbn)
+    clean = isbn.strip
+  end
  
 end
