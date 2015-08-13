@@ -98,11 +98,11 @@ class User
     confirmation_messages = page.parser.css('//table#hold-items-list//tr').map do |m|
       {
         :record_id => m.at_css("td[1]//input").try(:attr, "value"),
-        :message => m.at_css("td[2]").try(:text).try(:gsub!, /\n/," ").try(:squeeze, " ").try(:strip).try(:split, ". ").try(:last),
+        :message => m.at_css("td[2]").try(:text).try(:gsub!, /\n/," ").try(:squeeze, " ").try(:strip),
       }
     end
     confirmation_messages.each do |c|
-      if c[:message] != "Hold was successfully placed"
+      if !c[:message]["Hold was successfully placed"]
         c[:error] = true
         if c[:message] == "Placing this hold could result in longer wait times." 
           c[:need_to_force] = true
