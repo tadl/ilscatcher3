@@ -1,7 +1,7 @@
 class Search
 	require 'open-uri'
 	include ActiveModel::Model
-	attr_accessor :query, :sort, :qtype, :fmt, :loc, :page, :facet, :availability, :layout 
+	attr_accessor :query, :sort, :qtype, :fmt, :loc, :page, :facet, :availability, :layout, :shelving_location 
   
 
 	  def initialize args
@@ -41,12 +41,17 @@ class Search
   	def search_path
       path = ''
       if self
-  		  path = '?query=' + self.query unless self.query.nil?
+        if !self.query.nil?
+  		    path = '?query=' + self.query 
+        else
+          path = '?query='
+        end
   		  path += '&sort=' + self.sort unless self.sort.nil?
   		  path += '&qtype=' + self.qtype unless self.qtype.nil?
   		  path += '&fmt=' + self.fmt unless self.fmt.nil?
   		  path += '&loc=' + self.loc unless self.loc.nil?
   		  path += '&availability=' + self.availability unless self.availability.nil?
+        path += '&shelving_location=' + self.shelving_location unless self.shelving_location.nil?
         path += '&layout=' + self.layout unless self.layout.nil?
   		end
       return path
@@ -110,6 +115,7 @@ class Search
       next_page['loc'] = self.loc unless self.loc.nil?
       next_page['availability'] = self.availability unless self.availability.nil?
       next_page['layout'] = self.layout unless self.layout.nil?
+      next_page['shelving_location'] = self.shelving_location unless self.shelving_location.nil?
       next_page['facet'] = Array.new
       self.facet.each do |f|
         f = URI::encode(f)
@@ -131,13 +137,10 @@ class Search
   			else
   				url += 'query='
   			end
-  			url += '&qtype=' + self.qtype unless self.qtype.nil?
-  			url += '&limit=24'
-  			url += '&sort=' + self.sort unless self.sort.nil?
-  			if self.loc
-  				url += '&locg=' + self.loc
-  			else
-  				url += '&locg=22'
+        if self.qtype.nil?
+  			 url += '&qtype=keyword'
+        else
+          url += '&qtype=' + self.qtype unless self.qtype.nil?
   			end
   			if self.fmt == 'video_games'
   				url += '&fi%3Aformat=mVG&facet=subject%7Cgenre%5Bgame%5D'
@@ -146,7 +149,14 @@ class Search
   			else
   				url += '&fi%3Aformat=' + self.fmt unless self.fmt.nil?
   			end
-  			url += '&page=' + self.page unless self.page.nil?
+        url += '&fi%3Alocations=' + self.shelving_location unless self.shelving_location.nil?
+        if self.loc
+          url += '&locg=' + self.loc
+        else
+          url += '&locg=22'
+        end
+  			url += '&sort=' + self.sort unless self.sort.nil?
+        url += '&page=' + self.page unless self.page.nil?
   			if self.availability == "on"
   				url += '&modifier=available'
   			end
@@ -155,6 +165,7 @@ class Search
 					facets_for_url += '&facet=' + f
 			end unless self.facet.nil?
 			url += facets_for_url
+      url += '&limit=24'
   			agent = Mechanize.new
   			page = agent.get(url)
   			page = page.parser

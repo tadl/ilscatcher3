@@ -7,6 +7,8 @@
     $('.carousel-item').finish();
 <% else %>
 	$('#copy_container').html("<%= escape_javascript(render 'detail_tabs', :locals => {:item => @item}) %>")
+	alert('<%= @item.to_s %>')
+	$('#goodreads_review').html("<%= escape_javascript(goodreads_review(@item.goodreads)) %>")
 	$.fancybox.update()
     $.fancybox.reposition()
     $('.details-button').text('Details');
