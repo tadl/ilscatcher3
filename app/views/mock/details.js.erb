@@ -4,11 +4,11 @@
 	    'content' : "<div class='container' style='width: 95%; max-width: 960px;'><%= escape_javascript(render 'details', :locals => {:item => @item}) %></div>"
 	});
     $('.details-button').text('Details');
-    $('.carousel-item').removeClass('zoom');
+    $('.carousel-item').finish();
 <% else %>
 	$('#copy_container').html("<%= escape_javascript(render 'detail_tabs', :locals => {:item => @item}) %>")
 	$.fancybox.update()
     $.fancybox.reposition()
     $('.details-button').text('Details');
-    $('.carousel-item').removeClass('zoom');
+    $('.carousel-item').finish();
 <% end %>
