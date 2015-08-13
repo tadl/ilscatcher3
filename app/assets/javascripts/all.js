@@ -75,6 +75,8 @@ function elementBounce(element) {
     element.animate({width: '+=20px', height: '+=20px', "margin-left": '-=10px', "margin-top": '-=10px'}, speed);
     element.animate({width: '-=20px', height: '-=20px', "margin-left": '+=10px', "margin-top": '+=10px'}, speed);
     element.animate({width: '+=20px', height: '+=20px', "margin-left": '-=10px', "margin-top": '-=10px'}, speed);
+    element.animate({width: '-=20px', height: '-=20px', "margin-left": '+=10px', "margin-top": '+=10px'}, speed);
+    element.animate({width: '+=20px', height: '+=20px', "margin-left": '-=10px', "margin-top": '-=10px'}, speed);
 }
 
 function bind_more_results() {
