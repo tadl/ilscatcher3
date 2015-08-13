@@ -44,7 +44,7 @@ ready = function() {
     slider_image_binds();
 
     $('#search-button').click(function(event) {
-        $(this).html(spinner);
+        showLoading();
     });
 
 };
