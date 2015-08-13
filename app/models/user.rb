@@ -104,7 +104,7 @@ class User
     confirmation_messages.each do |c|
       if !c[:message]["Hold was successfully placed"]
         c[:error] = true
-        if c[:message] == "Placing this hold could result in longer wait times." 
+        if c[:message]["Placing this hold could result in longer wait times."] 
           c[:need_to_force] = true
         end
       end
