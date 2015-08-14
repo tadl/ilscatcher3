@@ -69,14 +69,14 @@ function slider_image_binds() {
 
 function elementBounce(element) {
     var speed = 500; // higher is slower (it's actually duration)
-    element.animate({width: '-=20px', height: '-=20px', "margin-left": '+=10px', "margin-top": '+=10px'}, speed);
-    element.animate({width: '+=20px', height: '+=20px', "margin-left": '-=10px', "margin-top": '-=10px'}, speed);
-    element.animate({width: '-=20px', height: '-=20px', "margin-left": '+=10px', "margin-top": '+=10px'}, speed);
-    element.animate({width: '+=20px', height: '+=20px', "margin-left": '-=10px', "margin-top": '-=10px'}, speed);
-    element.animate({width: '-=20px', height: '-=20px', "margin-left": '+=10px', "margin-top": '+=10px'}, speed);
-    element.animate({width: '+=20px', height: '+=20px', "margin-left": '-=10px', "margin-top": '-=10px'}, speed);
-    element.animate({width: '-=20px', height: '-=20px', "margin-left": '+=10px', "margin-top": '+=10px'}, speed);
-    element.animate({width: '+=20px', height: '+=20px', "margin-left": '-=10px', "margin-top": '-=10px'}, speed);
+    element.animate({width: '-=6px', height: '-=6px', "margin-left": '+=3px', "margin-top": '+=3px'}, speed);
+    element.animate({width: '+=6px', height: '+=6px', "margin-left": '-=3px', "margin-top": '-=3px'}, speed);
+    element.animate({width: '-=6px', height: '-=6px', "margin-left": '+=3px', "margin-top": '+=3px'}, speed);
+    element.animate({width: '+=6px', height: '+=6px', "margin-left": '-=3px', "margin-top": '-=3px'}, speed);
+    element.animate({width: '-=6px', height: '-=6px', "margin-left": '+=3px', "margin-top": '+=3px'}, speed);
+    element.animate({width: '+=6px', height: '+=6px', "margin-left": '-=3px', "margin-top": '-=3px'}, speed);
+    element.animate({width: '-=6px', height: '-=6px', "margin-left": '+=3px', "margin-top": '+=3px'}, speed);
+    element.animate({width: '+=6px', height: '+=6px', "margin-left": '-=3px', "margin-top": '-=3px'}, speed);
 }
 
 function bind_more_results() {
