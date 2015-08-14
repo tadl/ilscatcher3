@@ -93,8 +93,9 @@ function bind_more_results() {
     });
 }
 
-function place_hold(id) {
+function place_hold(id,force) {
     // #TODO force holds
+    if (typeof force !== 'undefined') { var force_hold = force; } else { var force_hold = false; }
     var logged_in = Cookies.get('login');
     target_button = '.hold-' + id;
     target_div = '.hold-status-' + id;
@@ -105,7 +106,11 @@ function place_hold(id) {
     } else {
         $(target_button).hide();
         $(target_div).html('<div class="alert alert-info">'+spinner+'Placing hold...</div>');
-        $.get("place_hold.js", {record_id: id});
+        if (force_hold == true) {
+            $.get("place_hold.js", {record_id: id, force: "true"});
+        } else {
+            $.get("place_hold.js", {record_id: id});
+        }
     }
 }
 
@@ -226,7 +231,7 @@ function force_hold_click(id) {
     $('#force-hold').click(function(event) {
         $('#hold-confirm-force').modal('hide');
         $('#statusMessage').modal('show');
-        place_hold(id,null,true);
+        place_hold(id,true);
     });
 }
 
