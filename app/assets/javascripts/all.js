@@ -369,13 +369,14 @@ function account_prefs_binds() {
         user_email_save_bind();
 
     });
-/* later
+
     $('.edit-user-password').unbind('click');
     $('.edit-user-password').click(function(event) {
         event.preventDefault();
         var userpanel = $('#panel-user-prefs').html();
         user_prefs_cancel_bind(userpanel);
-    }); */
+        user_password_save_bind();
+    });
 
     $('.edit-notification-prefs').unbind('click');
     $('.edit-notification-prefs').click(function(event) {
@@ -535,6 +536,22 @@ function user_email_save_bind() {
             }
             $('.cancel-user-prefs').click();
         });
+    });
+}
+
+function user_password_save_bind() {
+    $('.save-user-prefs').unbind('click');
+    $('.save-user-prefs').click(function(e) {
+        e.preventDefault();
+        $('.save-user-prefs').html(spinner+' Saving...');
+        var up = $('#up-password').val();
+        var newpass1 = $('#np1').val();
+        var newpass2 = $('#np2').val();
+        if (newpass1 == newpass2) {
+            // do stuff
+        } else {
+            alert_message('danger', 'Your new password must be the same in both new password fields', 15000);
+        }
     });
 }
 
