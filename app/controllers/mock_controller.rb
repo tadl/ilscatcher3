@@ -125,7 +125,7 @@ class MockController < ApplicationController
     @task = params[:task]
     if !check_user.error
       if (params[:hold_id] && !params[:hold_id].blank?) || (params[:task] && !params[:task].blank?)
-        @confirmation = check_user.manage_hold(@target_holds, @task)
+        @confirmation = check_user.manage_hold(@target_holds, @task, @new_pickup)
         @user = @confirmation[1]
         set_cookies(@user)
         @holds = @confirmation[0]
@@ -141,6 +141,21 @@ class MockController < ApplicationController
       format.js
       format.json {render :json => {:user => @user, 
         :holds => @holds, :target_holds => @target_holds}}
+    end 
+  end
+
+  def edit_hold_pickup
+    check_user = generate_user()
+    @hold = params[:hold_id]
+    @new_pickup = params[:new_pickup]
+    if !check_user.error
+      @hold = check_user.edit_hold(@hold, @new_pickup)
+    else
+      @hold = 'bad login'
+    end
+    respond_to do |format|
+      format.js
+      format.json {render :json => @hold}
     end 
   end
 
