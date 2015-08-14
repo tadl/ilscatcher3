@@ -94,7 +94,6 @@ function bind_more_results() {
 }
 
 function place_hold(id,force) {
-    // #TODO force holds
     if (typeof force !== 'undefined') { var force_hold = force; } else { var force_hold = false; }
     var logged_in = Cookies.get('login');
     target_button = '.hold-' + id;
@@ -232,6 +231,12 @@ function force_hold_click(id) {
         $('#hold-confirm-force').modal('hide');
         $('#statusMessage').modal('show');
         place_hold(id,true);
+    });
+    $('#cancel-force-hold').click(function(event) {
+        var statusdiv = '.hold-status-'+id;
+        var holdbtn = '.hold-'+id;
+        $(statusdiv).empty();
+        $(holdbtn).show();
     });
 }
 
