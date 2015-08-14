@@ -17,6 +17,7 @@ Rails.application.routes.draw do
   match "mock/update_notifications" => "mock#update_notifications", via: [:get, :post], defaults: { format: 'json' }
   match "mock/update_search_history" => "mock#update_search_history", via: [:get, :post], defaults: {format: 'json'}
   match "mock/update_user_info" => "mock#update_user_info", via: [:get, :post], defaults: {format: 'json'}
+  match "mock/edit_hold_pickup" => "mock#edit_hold_pickup", via: [:get, :post], defaults: {format: 'json'}
   root :to => "mock#index"
 
 
