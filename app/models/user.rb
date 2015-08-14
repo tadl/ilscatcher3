@@ -89,9 +89,10 @@ class User
   def force_hold(record_id)
     agent = self.place_hold(record_id)[1]
     hold_form = agent.page.forms[1]
-    submit_forced_hold = agent.submit(hold_form)
-    confirmation_messages = process_hold_confirmations(submit_forced_hold)
-    return confirmation_messages
+    agent.submit(hold_form)
+    page = agent.page
+    confirmation_messages = process_hold_confirmations(page)
+    return confirmation_messages, agent
   end
 
   def process_hold_confirmations(page)
