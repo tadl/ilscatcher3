@@ -379,6 +379,12 @@ function account_prefs_binds() {
     $('.edit-user-password').click(function(event) {
         event.preventDefault();
         var userpanel = $('#panel-user-prefs').html();
+
+        var upv = '(hidden)';
+        var upvhtml = '<input id="password1" name="password1" class="form-control" type="password" placeholder="Enter new password">';
+            upvhtml += '<input id="password2" name="password2" class="form-control" type="password" placeholder="Enter again">';
+
+
         user_prefs_cancel_bind(userpanel);
         user_password_save_bind();
     });
@@ -550,12 +556,21 @@ function user_password_save_bind() {
         e.preventDefault();
         $('.save-user-prefs').html(spinner+' Saving...');
         var up = $('#up-password').val();
-        var newpass1 = $('#np1').val();
-        var newpass2 = $('#np2').val();
+        var newpass1 = $('#password1').val();
+        var newpass2 = $('#password2').val();
         if (newpass1 == newpass2) {
-            // do stuff
+            console.log('passwords match');
+            var rule = new RegExp('(?=.*\d+.*)(?=.*[A-Za-z]+.*).{7,}');
+            if (rule.test(newpass1)) {
+                console.log('password meets complexity requirements');
+            } else {
+                console.log('password does not meet complexity requirements');
+            }
         } else {
-            alert_message('danger', 'Your new password must be the same in both new password fields', 15000);
+            // blank out values if passwords are not the same
+            console.log('passwords do not match')
+            $('#password1').val('');
+            $('#password2').val('');
         }
     });
 }
