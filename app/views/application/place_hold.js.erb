@@ -7,12 +7,14 @@ var pickuplocation = '<%= escape_javascript(location_map(@user.pickup_library, @
     <% if !c[:error] %>
         var message = messagesuccess+'Hold placed successfully for pickup at '+pickuplocation+messageclose;
         $(target).html(message);
+        hideLoading();
     <% elsif c[:need_to_force] %>
         $('#hold-confirm-force').modal('show');
         force_hold_click(<%= escape_javascript(c[:record_id]) %>);
     <% else %>
         var message = messageinfo+'<%= escape_javascript(c[:message]) %>'+messageclose;
         $(target).html(message);
+        hideLoading();
     <% end %>
 <% end %> 
 update_login();
