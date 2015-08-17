@@ -381,9 +381,14 @@ function account_prefs_binds() {
         var userpanel = $('#panel-user-prefs').html();
 
         var upv = '(hidden)';
-        var upvhtml = '<input id="password1" name="password1" class="form-control" type="password" placeholder="Enter new password">';
-            upvhtml += '<input id="password2" name="password2" class="form-control" type="password" placeholder="Enter again">';
+        var upvhtml = '<div><input id="password1" name="password1" class="form-control" type="password" placeholder="Enter New Password"></div>';
+            upvhtml += '<div class="padtop"><input id="password2" name="password2" class="form-control" type="password" placeholder="Enter Again"></div>';
+            upvhtml += '<span class="small text-muted">Passwords must be at least 7 characters in length and contain at least one number and one letter.</span>';
+        $('#current-password-value').html(upvhtml);
 
+        $('#user-prefs-password').show();
+        $('#user-prefs-footer').show();
+        $('.edit-user-password').hide();
 
         user_prefs_cancel_bind(userpanel);
         user_password_save_bind();
@@ -476,7 +481,6 @@ function user_username_save_bind() {
         $('.save-user-prefs').html(spinner+' Saving...');
         var newusername = $('#uv').val();
         var up = $('#up-password').val();
-        console.log('update username value');
         $.post("/mock/update_user_info", {username: newusername, password: up})
         .done(function(data) {
             if (data.message == 'bad password') {
@@ -503,7 +507,6 @@ function user_alias_save_bind() {
         $('.save-user-prefs').html(spinner+' Saving...');
         var up = $('#up-password').val();
         var newalias = $('#hsav').val();
-        console.log('update hold shelf alias value');
         $.post("/mock/update_user_info", {hold_shelf_alias: newalias, password: up})
         .done(function(data) {
             if (data.message == 'bad password') {
@@ -530,7 +533,6 @@ function user_email_save_bind() {
         $('.save-user-prefs').html(spinner+' Saving...');
         var up = $('#up-password').val();
         var newemail = $('#ev').val();
-        console.log('update email value');
         $.post("/mock/update_user_info", {email: newemail, password: up})
         .done(function(data) {
             if (data.message == 'bad password') {
@@ -554,21 +556,36 @@ function user_password_save_bind() {
     $('.save-user-prefs').unbind('click');
     $('.save-user-prefs').click(function(e) {
         e.preventDefault();
-        $('.save-user-prefs').html(spinner+' Saving...');
         var up = $('#up-password').val();
         var newpass1 = $('#password1').val();
         var newpass2 = $('#password2').val();
+        if (up == '') {
+            alert_message('danger', 'You must enter your current password in order to change your password.', 10000);
+            return;
+        }
         if (newpass1 == newpass2) {
-            console.log('passwords match');
-            var rule = new RegExp('(?=.*\d+.*)(?=.*[A-Za-z]+.*).{7,}');
+            var rule = /(?=.*\d)(?=.*[a-zA-Z]).{7,}/;
             if (rule.test(newpass1)) {
-                console.log('password meets complexity requirements');
+                $('.save-user-prefs').html(spinner+' Saving...');
+                $.post("/mock/update_user_info", {password: up, new_password: newpass1})
+                .done(function(data) {
+                    if (data.message == 'bad password') {
+                        alert_message('danger', 'Sorry, the Current Password was incorrect. Please try again.', 10000);
+                    } else if (data.message == 'password does not meet requirements') {
+                        alert_message('danger', 'Somehow, this message appeared (password does not meet requirements even though we validate this)');
+                    } else if (data.message == 'success') {
+                        alert_message('success', 'Password has been changed.', 10000);
+                    } else {
+                        alert_message('info', data.message, 10000);
+                    }
+                    $('.cancel-user-prefs').click();
+                });
             } else {
-                console.log('password does not meet complexity requirements');
+                alert_message('danger', 'Password does not meet the complexity requirements. Passwords must be at least 7 characters in length, with at least one number and one letter', 15000);
             }
         } else {
             // blank out values if passwords are not the same
-            console.log('passwords do not match')
+            alert_message('danger', 'Sorry, new passwords do not match. You must enter the same value in both fields.', 10000);
             $('#password1').val('');
             $('#password2').val('');
         }
@@ -610,8 +627,6 @@ function checkout_select(cid,rid) {
         rids.splice(rindex, 1);
         $(element).removeClass('btn-success selected-btn').addClass('btn-default select-btn').html(deselectedText);
     }
-    console.log(rids);
-    console.log(cids);
 }
 
 function bulk_action_binds() {
