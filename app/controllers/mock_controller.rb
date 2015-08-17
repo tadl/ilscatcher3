@@ -125,7 +125,7 @@ class MockController < ApplicationController
     @task = params[:task]
     if !check_user.error
       if (params[:hold_id] && !params[:hold_id].blank?) || (params[:task] && !params[:task].blank?)
-        @confirmation = check_user.manage_hold(@target_holds, @task, @new_pickup)
+        @confirmation = check_user.manage_hold(@target_holds, @task)
         @user = @confirmation[1]
         set_cookies(@user)
         @holds = @confirmation[0]
