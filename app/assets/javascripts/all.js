@@ -451,19 +451,6 @@ function on_off (val) {
     return val == true ? 'on' : 'off';
 }
 
-function location_map (name) {
-    var locations = {
-        "All Locations": 22,
-        "Woodmere": 23,
-        "Interlochen": 24,
-        "Kingsley": 25,
-        "Peninsula": 26,
-        "Fife Lake": 27,
-        "East Bay": 28
-    };
-    return locations[name];
-}
-
 function user_prefs_cancel_bind(panelhtml) {
 
     $('.cancel-user-prefs').unbind('click');
@@ -700,5 +687,57 @@ function bulk_action_binds() {
     $('#select-none').click(function(e) {
         $('.selected-btn').click();
     });
+}
+
+
+function edit_pickup_loc(hid,rid) {
+    event.preventDefault();
+    var originalhtml = $('.pickup-dd-'+hid).html();
+    var oldloc = location_map($('.pickup-'+hid).text())
+
+    var locopts = '<select class="form-control form-'+hid+'" name="location-switcher">';
+        locopts += '<option value="23"'+ selected_helper(oldloc,23) +'>Woodmere (Main) Branch</option>';
+        locopts += '<option value="24"'+ selected_helper(oldloc,24) +'>Interlochen Public Library</option>';
+        locopts += '<option value="25"'+ selected_helper(oldloc,25) +'>Kingsley Branch Library</option>';
+        locopts += '<option value="26"'+ selected_helper(oldloc,26) +'>Peninsula Community Library</option>';
+        locopts += '<option value="27"'+ selected_helper(oldloc,27) +'>Fife Lake Public Library</option>';
+        locopts += '<option value="28"'+ selected_helper(oldloc,28) +'>East Bay Branch Library</option>';
+        locopts += '</select>'
+        locopts += '<a href="#" class="text-muted small cancel-loc-switch-'+hid+'">Cancel</a>';
+
+    $('.pickup-dd-'+hid).html(locopts);
+
+    $('.cancel-loc-switch-'+hid).unbind('click');
+    $('.cancel-loc-switch-'+hid).click(function(e) {
+        e.preventDefault();
+        $('.pickup-dd-'+hid).html(originalhtml);
+    });
+
+    $('.form-'+hid).change(function() {
+        console.log("selected " + $(this).val());
+        // do the thing
+    });
+    
+
+}
+
+function selected_helper(oid,id) {
+    if (oid == id) {
+        return ' selected';
+    } else {
+        return '';
+    }
+}
+
+function location_map (name) {
+    var locations = {
+        "Woodmere (Main) Branch": 23,
+        "Interlochen Public Library": 24,
+        "Kingsley Branch Library": 25,
+        "Peninsula Community Library": 26,
+        "Fife Lake Public Library": 27,
+        "East Bay Branch Library": 28
+    };
+    return locations[name];
 }
 

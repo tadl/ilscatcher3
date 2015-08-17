@@ -26,7 +26,10 @@
                     <dt>Queue Position</dt>
                     <dd><%= hold.queue_state[0] %> out of <%= hold.queue_state[1] %></dd>
                     <dt>Pickup Location</dt>
-                    <dd><%= hold.pickup_location %></dd>
+                    <dd class="pickup-dd-<%= hold.hold_id %>">
+                        <span class="pickup-<%= hold.hold_id %>"><%= hold.pickup_location %></span>
+                        <button type="button" class="small text-subdued btn btn-xs btn-default change-pickup-<%= hold.hold_id %>" onclick="edit_pickup_loc(<%= hold.hold_id %>,<%= hold.record_id %>)">change</button>
+                    </dd>
                     <dt>Hold Status</dt>
                     <dd><%= hold.hold_status %></dd>
                     </dl>
