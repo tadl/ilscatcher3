@@ -690,10 +690,13 @@ function bulk_action_binds() {
 }
 
 
-function edit_pickup_loc(hid,rid) {
+function edit_pickup_loc(hid,rid,state) {
     event.preventDefault();
-    var originalhtml = $('.pickup-dd-'+hid).html();
+    var container = '.pickup-dd-'+hid;
+    var originalhtml = $(container).html();
     var oldloc = location_map($('.pickup-'+hid).text())
+    var holdstate = state_helper(state);
+    console.log(holdstate);
 
     var locopts = '<select class="form-control form-'+hid+'" name="location-switcher">';
         locopts += '<option value="23"'+ selected_helper(oldloc,23) +'>Woodmere (Main) Branch</option>';
@@ -705,20 +708,26 @@ function edit_pickup_loc(hid,rid) {
         locopts += '</select>'
         locopts += '<a href="#" class="text-muted small cancel-loc-switch-'+hid+'">Cancel</a>';
 
-    $('.pickup-dd-'+hid).html(locopts);
+    $(container).html(locopts);
 
     $('.cancel-loc-switch-'+hid).unbind('click');
     $('.cancel-loc-switch-'+hid).click(function(e) {
         e.preventDefault();
-        $('.pickup-dd-'+hid).html(originalhtml);
+        $(container).html(originalhtml);
     });
 
     $('.form-'+hid).change(function() {
-        console.log("selected " + $(this).val());
-        // do the thing
+        var newval = $(this).val();
+        console.log("selected " + newval);
+        var message = spinner+' updating...';
+        $(container).html(message);
+        $.post('/mock/edit_hold_pickup.json', {hold_id: hid, new_pickup: newval, hold_state: holdstate})
+        .done(function(data) {
+            var newhtml = '<span class="pickup-'+data.hold_id+'">'+data.pickup_location+'</span> ';
+                newhtml += '<button type="button" class="small text-subdued btn btn-xs btn-default change-pickup-'+data.hold_id+'" onclick="edit_pickup_loc('+data.hold_id+','+data.record_id+',\''+data.hold_status+'\')">change</button>';
+            $(container).html(newhtml);
+        });
     });
-    
-
 }
 
 function selected_helper(oid,id) {
@@ -727,6 +736,14 @@ function selected_helper(oid,id) {
     } else {
         return '';
     }
+}
+
+function state_helper(val) {
+    var state = {
+        "Suspended": "t",
+        "Active": "f"
+    }
+    return state[val];
 }
 
 function location_map (name) {

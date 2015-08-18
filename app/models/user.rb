@@ -163,14 +163,14 @@ class User
 		return holds, user
 	end
 
-  def edit_hold(hold, new_value)
+  def edit_hold(hold, new_value, hold_state)
     agent = create_agent_token(self.token)
     post_params = Array.new
     post_params = post_params.push(["hold_id", hold])
     post_params = post_params.push(["action", "edit"])
     post_params = post_params.push(["pickup_lib", new_value])
     post_params = post_params.push(["expire_time", ""])
-    post_params = post_params.push(["frozen", "f"])
+    post_params = post_params.push(["frozen", hold_state])
     post_params = post_params.push(["thaw_date", ""])
     url = 'https://mr-v2.catalog.tadl.org/eg/opac/myopac/holds/edit?id=' + hold
     agent.post(url, post_params)

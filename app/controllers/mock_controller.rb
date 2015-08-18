@@ -148,8 +148,9 @@ class MockController < ApplicationController
     check_user = generate_user()
     @hold = params[:hold_id]
     @new_pickup = params[:new_pickup]
+    @hold_state = params[:hold_state]
     if !check_user.error
-      @hold = check_user.edit_hold(@hold, @new_pickup)
+      @hold = check_user.edit_hold(@hold, @new_pickup, @hold_state)
     else
       @hold = 'bad login'
     end

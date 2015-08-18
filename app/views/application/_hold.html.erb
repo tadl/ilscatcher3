@@ -28,7 +28,7 @@
                     <dt>Pickup Location</dt>
                     <dd class="pickup-dd-<%= hold.hold_id %>">
                         <span class="pickup-<%= hold.hold_id %>"><%= hold.pickup_location %></span>
-                        <button type="button" class="small text-subdued btn btn-xs btn-default change-pickup-<%= hold.hold_id %>" onclick="edit_pickup_loc(<%= hold.hold_id %>,<%= hold.record_id %>)">change</button>
+                        <button type="button" class="small text-subdued btn btn-xs btn-default change-pickup-<%= hold.hold_id %>" onclick="edit_pickup_loc(<%= hold.hold_id %>,<%= hold.record_id %>,'<%= hold.hold_status %>')">change</button>
                     </dd>
                     <dt>Hold Status</dt>
                     <dd><%= hold.hold_status %></dd>
