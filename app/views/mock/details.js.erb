@@ -5,6 +5,7 @@
 	});
     $('.details-button').text('Details');
     $('.carousel-item').finish();
+    $('.grid-item').finish();
 <% else %>
 	$('#copy_container').html("<%= escape_javascript(render 'detail_tabs', :locals => {:item => @item}) %>")
 	$('#goodreads_review').html("<%= escape_javascript(goodreads_review(@item.goodreads)) %>")
@@ -12,4 +13,5 @@
     $.fancybox.reposition()
     $('.details-button').text('Details');
     $('.carousel-item').finish();
+    $('.grid-item').finish();
 <% end %>

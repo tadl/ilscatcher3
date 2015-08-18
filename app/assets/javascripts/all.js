@@ -65,6 +65,9 @@ function slider_image_binds() {
     $('.carousel-item').click(function(event) {
         elementBounce($(this));
     });
+    $('.grid-item').click(function(event) {
+        elementBounce($(this));
+    });
 }
 
 function elementBounce(element) {
