@@ -112,10 +112,10 @@ class Item
 
   	def goodreads
       if (self.format_type.include? ("book")) || (self.format_type.include? ("Book"))
-        isbns = self.isbn.gsub(/\D/, '').split('') rescue nil
+        isbns = self.isbn.split(' ')
         request = String.new
         isbns.each do |i|
-          request += i + ','
+          request += i.gsub(/\D/, '') + ','
         end rescue nil
         fetch_review = JSON.parse(open('https://reviewcatcher.herokuapp.com/?isbn=' + request, {:read_timeout => 1}).read) rescue nil
         return fetch_review
