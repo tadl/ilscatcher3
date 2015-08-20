@@ -140,7 +140,7 @@ function login(id) {
         var username = $('#username').val();
         var password = $('#password').val();
     }
-    $.post("login.js", {username: username, password: password})
+    $.post("login.json", {username: username, password: password})
     .done(function(data) {
         $('#statusMessage').modal('hide')
         if (data.error == 'bad username or password') {
@@ -151,6 +151,7 @@ function login(id) {
             $('#statusMessage').modal('hide');
             alert_message('danger', 'There was a problem with your username or password. #TODO');
         } else {
+            $.post("login.js", {username: username, password: password});
             if (do_hold != 0) {
                 $('.holdlogin-'+id).hide();
                 target = '.hold-status-' + id;
