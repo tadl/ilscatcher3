@@ -59,7 +59,8 @@ class Item
 			:publication_place => detail.search('span[@property="publisher"]').search('span[@property="location"]').try(:text).gsub(':','').try(:strip),
 			:isbn => isbn,
 			:physical_description => detail.at('li#rdetail_phys_desc').try(:at, 'span.rdetail_value').try(:text),
-			:related => detail.css('.rdetail_subject_value').to_s.split('<br>').reverse.drop(1).reverse.map { |i| clean_related(i)}.uniq,
+			# :related => detail.css('.rdetail_subject_value').to_s.split('<br>').reverse.drop(1).reverse.map { |i| clean_related(i)}.uniq,
+      :related => process_related(detail.css('.rdetail_subject'))
   			}
   		end
   		item_details.delete_if { |key, value| value.blank? }
@@ -124,9 +125,26 @@ class Item
   	def clean_related(subject)
  		subject.gsub!(/\n/, "")
   		subject.gsub!(/<[^<>]*>/, "")
+      subject.gsub!('.','')
   		subject.to_s
   		subject.split('&gt;')
   	end
+
+    def process_related(related)
+      clean = Array.new
+      related.each do |r|
+        subject_hash = Hash.new
+        subject_hash['heading'] = r.css('.rdetail_subject_type').try(:text)
+        subject_array = Array.new
+        r.css('.rdetail_subject_value').to_s.split('<br>').reverse.drop(1).reverse.each do |a|
+          subject_array = subject_array.push(clean_related(a))
+        end
+        subject_hash['items'] = subject_array
+        clean = clean.push(subject_hash)
+      end
+      return clean
+    end
+
 
   	def clean_totals_holds(text)
   		totals = text.split('with') rescue nil
