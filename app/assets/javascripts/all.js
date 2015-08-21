@@ -149,7 +149,7 @@ function login(id) {
             $('.holdloginuser-'+id).val('');
             $('.holdloginpass-'+id).val('');
             $('#statusMessage').modal('hide');
-            alert_message('danger', 'There was a problem with your username or password. #TODO');
+            alert_message('danger', 'Login failed. The username or password provided was not valid. Passwords are case-sensitive. Check your Caps-Lock key and try again or contact your local library.');
         } else {
             $.post("login.js", {username: username, password: password});
             if (do_hold != 0) {
@@ -189,7 +189,6 @@ function alert_message(type, message, timeout) {
 }
 
 /* hold management watchers */
-// #TODO all of the .click(function())s should be .on('click', function()...)s
 function hold_management_binds() {
     $('.hold-manage').unbind('click');
     $('.hold-cancel').unbind('click');
