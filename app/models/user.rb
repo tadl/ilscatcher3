@@ -126,8 +126,7 @@ class User
         	:queue_status => h.css('/td[9]/div/div[1]').text.strip.gsub(/AvailableExpires/, 'Available, Expires'),
         	:queue_state => h.css('/td[9]/div/div[2]').text.scan(/\d+/).map { |n| n.to_i },
         	:pickup_location => h.css('td[5]').text.strip,
-            #:format => h.css('.format_icon').css('img').try(:attr, "title").text,
-            # TODO FIX THIS
+          :format => h.css('.marc_record_type').try(:text),
       		}
       	end
       	sorted_by_hold_id = holds_raw.sort_by {|k| k[:hold_id]}.reverse!
@@ -389,6 +388,7 @@ class User
 		  {
       :title => c.search('td[@name="author"]').css('a')[0].try(:text),
       :author => c.search('td[@name="author"]').css('a')[1].try(:text),
+      :format => c.css('.marc_record_type').try(:text),
       :record_id => clean_record(c.search('td[@name="author"]').css('a')[0].try(:attr, "href")),
       :checkout_id => c.search('input[@name="circ"]').try(:attr, "value").to_s,
       :renew_attempts => c.search('td[@name="renewals"]').text.to_s.try(:gsub!, /\n/," ").try(:squeeze, " ").try(:strip),

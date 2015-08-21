@@ -183,7 +183,7 @@ class Search
 					:abstract => result.at_css('tr[@name="bib_summary_full"]').try(:text).try(:strip).try(:squeeze, " "),
 					:contents => result.at_css('[@name="bib_contents_full"]').try(:text).try(:strip).try(:squeeze, " "),
 					# #hack for dev below
-					:format_type => result.at_css('.result_table_title_cell').css('img').attr('title').try(:text),
+					:format_type => result.css('.marc_record_type').try(:text),
 					:record_year => result.at_css('[@name="bib_pubdate"]').try(:text).try(:strip),
 					:call_number => result.at_css('[@name="bib_cn_list"]').try(:css, 'td[2]').try(:text).try(:strip),
           :loc => self.loc,

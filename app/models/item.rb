@@ -52,8 +52,7 @@ class Item
 			:holds => clean_totals_holds(detail.at('h2:contains("Current holds")').try(:next_element).try(:text))[0],
 			:eresource => detail.at('p.rdetail_uri').try(:at, 'a').try(:attr, "href"),
 			:image => detail.at_css('#rdetail_image').try(:attr, "src").try(:gsub, /^\//, "https://catalog.tadl.org/").try(:gsub, /medium/, "large"),
-			:format_type => detail.css('#format_actions').try(:at, 'img').try(:attr, "alt"),
-			:format_icon => detail.css('#format_actions').try(:at, 'img').try(:attr, "src"),
+			:format_type => detail.css('.marc_record_type').try(:text),
 			:record_year => detail.search('span[@property="datePublished"]').try(:text),
 			:publisher => detail.search('span[@property="publisher"]').search('span[@property="name"]').try(:text).try(:strip),
 			:publication_place => detail.search('span[@property="publisher"]').search('span[@property="location"]').try(:text).gsub(':','').try(:strip),
@@ -111,7 +110,7 @@ class Item
   	end
 
   	def goodreads
-      if (self.format_type.include? ("book")) || (self.format_type.include? ("Book"))
+      if (self.format_type.include? ("a")) || (self.format_type.include? ("t"))
         isbns = self.isbn.split(' ')
         request = String.new
         isbns.each do |i|
