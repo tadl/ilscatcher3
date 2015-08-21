@@ -6,5 +6,4 @@
 	update_login()
 <% else %>
 	$('#account_info_box').html("<%= escape_javascript(render partial: 'login_form') %>")
-    alert_message('danger', 'Username or Password incorrect. Please check your caps lock key and try again.', 20000);
 <% end %>
