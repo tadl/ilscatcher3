@@ -1,6 +1,6 @@
 class Checkout
 	include ActiveModel::Model
-	attr_accessor :title, :author, :record_id, :checkout_id, :renew_attempts, :due_date, :iso_due_date, :barcode, :renew
+	attr_accessor :title, :author, :record_id, :checkout_id, :renew_attempts, :due_date, :iso_due_date, :barcode, :renew, :format
 
 	def initialize args
     	args.each do |k,v|
