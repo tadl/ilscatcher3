@@ -8,8 +8,7 @@
                     <% end %>
                 </div>
                 <div class="col-lg-1 col-md-1 col-sm-1 col-xs-2">
-                    <% blah ||= 'Musical sound recording' #TODO %>
-                    <h4 class="pull-right panel-title"><span class="glyphicon <%= format_icon(blah, @format_icons) %>"></span></h4>
+                    <h4 class="pull-right panel-title"><span class="glyphicon <%= format_icon(checkout.format, @format_icons) %>"></span></h4>
                 </div>
             </div>
         </div><!-- /.panel-heading -->
