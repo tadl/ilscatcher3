@@ -1,6 +1,4 @@
 <% if !@user.error %>
-	sessionStorage.setItem('token', "<%= escape_javascript(@user.token) %>");
-	sessionStorage.setItem('authed', "true");
 	$('#account_info_box').html("<%= escape_javascript(render partial: 'account_basics') %>");
     hideLoading();
 	update_login();
