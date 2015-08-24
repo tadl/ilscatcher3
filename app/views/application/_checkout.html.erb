@@ -3,7 +3,7 @@
         <div class="panel-heading">
             <div class="row">
                 <div class="col-lg-11 col-md-11 col-sm-11 col-xs-10">
-                    <%= link_to 'details.js?id='+checkout.record_id, :remote => true  do %>
+                    <%= link_to 'details.js?id='+checkout.record_id, :remote => true, :class => 'item-link'  do %>
                         <h4 class="panel-title"><%= checkout.title %></h4>
                     <% end %>
                 </div>
@@ -15,7 +15,7 @@
         <div class="panel-body">
             <div class="row">
                 <div class="col-lg-2 col-sm-2 col-xs-5"><!-- image -->
-                    <%= link_to 'details.js?id='+checkout.record_id, :remote => true  do %>
+                    <%= link_to 'details.js?id='+checkout.record_id, :remote => true, :class => 'item-link'  do %>
                         <img src='https://catalog.tadl.org/opac/extras/ac/jacket/large/r/<%= checkout.record_id %>' style="width:100%;"
                             onerror="this.src='<%= asset_path("logo-clock-only.png") %>?id=<%= checkout.record_id %>'" />
                     <% end %>

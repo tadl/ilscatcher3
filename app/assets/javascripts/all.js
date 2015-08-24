@@ -41,7 +41,7 @@ ready = function() {
 
     hold_management_binds();
     checkout_management_binds();
-    slider_image_binds();
+    item_loading_binds();
 
     $('#search-button').click(function(event) {
         showLoading();
@@ -61,25 +61,16 @@ function hideLoading() {
     $('#statusMessage').modal('hide');
 }
 
-function slider_image_binds() {
+function item_loading_binds() {
     $('.carousel-item').click(function(event) {
-        elementBounce($(this));
+        showLoading();
     });
     $('.grid-item').click(function(event) {
-        elementBounce($(this));
+        showLoading();
     });
-}
-
-function elementBounce(element) {
-    var speed = 500; // higher is slower (it's actually duration)
-    element.animate({width: '-=6px', height: '-=6px', "margin-left": '+=3px', "margin-top": '+=3px'}, speed);
-    element.animate({width: '+=6px', height: '+=6px', "margin-left": '-=3px', "margin-top": '-=3px'}, speed);
-    element.animate({width: '-=6px', height: '-=6px', "margin-left": '+=3px', "margin-top": '+=3px'}, speed);
-    element.animate({width: '+=6px', height: '+=6px', "margin-left": '-=3px', "margin-top": '-=3px'}, speed);
-    element.animate({width: '-=6px', height: '-=6px', "margin-left": '+=3px', "margin-top": '+=3px'}, speed);
-    element.animate({width: '+=6px', height: '+=6px', "margin-left": '-=3px', "margin-top": '-=3px'}, speed);
-    element.animate({width: '-=6px', height: '-=6px', "margin-left": '+=3px', "margin-top": '+=3px'}, speed);
-    element.animate({width: '+=6px', height: '+=6px', "margin-left": '-=3px', "margin-top": '-=3px'}, speed);
+    $('.item-link').click(function(event) {
+        showLoading();
+    });
 }
 
 function bind_more_results() {

@@ -30,3 +30,8 @@
         </ul>
     </div>
 <% end %>
+<% if (request.path == mock_fines_path && @fines.count > 0) %>
+    <div class="btn-group">
+        <a type="button" class="btn btn-default" href="https://www.tadl.org/pay/pay.cgi" target="_blank">Pay Fines</a>
+    </div>
+<% end %>
