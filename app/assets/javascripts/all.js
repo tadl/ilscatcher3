@@ -608,6 +608,12 @@ function checkout_select(cid,rid) {
         rids.splice(rindex, 1);
         $(element).removeClass('btn-success selected-btn').addClass('btn-default select-btn').html(deselectedText);
     }
+    if ($.isEmptyObject(cids) === true) {
+        delete window.cids;
+    }
+    if ($.isEmptyObject(rids) === true) {
+        delete window.rids;
+    }
 }
 
 function bulk_action_binds() {
@@ -659,7 +665,7 @@ function bulk_action_binds() {
     $('#checkout-bulk-renew').unbind('click');
     $('#checkout-bulk-renew').click(function(e) {
         e.preventDefault();
-        if ((typeof rids !== 'undefined') && (typeof cids !== 'undefined')) {
+        if ((typeof rids !== 'undefined') || (typeof cids !== 'undefined')) {
             showLoading();
             $.post('/mock/renew_checkouts.js', {checkout_ids: cids.toString(), record_ids: rids.toString()})
             .done(function() {
