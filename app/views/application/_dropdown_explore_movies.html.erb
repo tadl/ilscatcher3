@@ -5,12 +5,15 @@
     </small>
     <ul class="dropdown-menu" aria-labelledby="exploreMovies">
     <% #these can probably be automatically generated %>
-        <li><a href="#">Action</a></li>
-        <li><a href="#">Adventure</a></li>
-        <li><a href="#">Mystery</a></li>
-        <li><a href="#">Sci-fi</a></li>
-        <li><a href="#">Thriller</a></li>
-        <li><a href="#">ZOmbies</a></li>
-        <li><a href="#">Art House</a></li>
+        <li>
+            <%= link_to '/mock/search?query=&sort=create_date.descending&fmt=g&loc=22&shelving_location=682&layout=grid', :remote => false, :class => 'item-link' do %>
+                HOT DVDs
+            <% end %>
+        </li>
+        <li>
+            <%= link_to '/mock/search?query=&sort=create_date.descending&fmt=g&loc=22&shelving_location=778,687&layout=grid', :remote => false, :class => 'item-link' do %>
+                TC Film Festival
+            <% end %>
+        </li>
     </ul>
 </div>

@@ -1,15 +1,5 @@
 <div class="row clearfix">
-    <% if list.first.termid == '31' %>
-        <div class="square-carousel" id="carousel-<%= list.first.termid %>">
-    <% else %>
-        <div class="tall-carousel" id="carousel-<%= list.first.termid %>">
-    <% end %>
+<%= list %>
             <% list.each do |item| %>
-                <div class="col-xs-6 col-md-3 col-lg-2">
-                    <%= link_to mock_details_path(:format => :js, :id => item.item), :remote => true do %>
-                        <%= content_tag :img, "", :class => "carousel-item", :style => "max-height:160px;", :src => "https://catalog.tadl.org/opac/extras/ac/jacket/medium/r/" + item.item  %>
-                    <% end %>
-                </div>
             <% end %>
-        </div>
 </div>
