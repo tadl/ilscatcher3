@@ -32,6 +32,9 @@
 <% end %>
 <% if (request.path == mock_fines_path && @fines.count > 0) %>
     <div class="btn-group">
-        <a type="button" class="btn btn-default" href="https://www.tadl.org/pay/pay.cgi" target="_blank">Pay Fines</a>
+        <form method="POST" action="https://www.tadl.org/pay/pay.cgi">
+            <input type="hidden" name="ses" value="<%= @user.token %>">
+            <input type="submit" class="btn btn-default form-control" value="Pay fines">
+        </form>
     </div>
 <% end %>
