@@ -1,3 +1,4 @@
+<% image_asset = "logo-clock-only.png" %>
 <div class="row clearfix">
     <% if list.first.format_type == 'g' %>
         <div class="tall-carousel">
@@ -7,10 +8,9 @@
         <% list.each do |item| %>
             <div class="col-xs-6 col-md-3 col-lg-2">
                 <%= link_to mock_details_path(:format => :js, :id => item.id), :remote => true do %>
-                    <%= content_tag :img, "", :class => "carousel-item", :style => "max-height:160px;", :src => "https://catalog.tadl.org/opac/extras/ac/jacket/medium/r/"+item.id.to_s %>
+                    <%= content_tag :img, "", :class => "carousel-item", :style => "max-height:160px;", :src => "https://catalog.tadl.org/opac/extras/ac/jacket/large/r/"+item.id.to_s, :onerror => "$(this).src='"+asset_path(image_asset)+"?id="+item.id+"';$(this).onerror='';" %>
                 <% end %>
             </div>
-
         <% end %>
     </div>
 </div>

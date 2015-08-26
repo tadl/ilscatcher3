@@ -179,7 +179,7 @@ class Search
 					:id => result.at_css(".record_title").attr('name').sub!(/record_/, ""),
         	:eresource => result.at_css('[@name="bib_uri_list"]').try(:css, 'td').try(:css, 'a').try(:attr, 'href').try(:text).try(:strip),
 					# #hack for dev below
-					:image => 'http://catalog.tadl.org' + result.at_css(".result_table_pic").try(:attr, "src"),
+					:image => 'https://catalog.tadl.org' + result.at_css(".result_table_pic").try(:attr, "src"),
 					:abstract => result.at_css('tr[@name="bib_summary_full"]').try(:text).try(:strip).try(:squeeze, " "),
 					:contents => result.at_css('[@name="bib_contents_full"]').try(:text).try(:strip).try(:squeeze, " "),
 					# #hack for dev below
