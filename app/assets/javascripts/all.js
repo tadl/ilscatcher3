@@ -221,11 +221,13 @@ function detect_details_click() {
 
 /* force hold button watcher */
 function force_hold_click(id) {
+    $('#force-hold').unbind('click');
     $('#force-hold').click(function(event) {
         $('#hold-confirm-force').modal('hide');
         $('#statusMessage').modal('show');
         place_hold(id,true);
     });
+    $('#cancel-force-hold').unbind('click');
     $('#cancel-force-hold').click(function(event) {
         var statusdiv = '.hold-status-'+id;
         var holdbtn = '.hold-'+id;
