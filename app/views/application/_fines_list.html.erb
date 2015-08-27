@@ -9,7 +9,9 @@
             <th>Billing Type</th>
         </tr>
     </thead>
-    <tbody><% @fines.each do |fine| %>
-        <%= render 'fine', :fine => fine %>
-    <% end %></tbody>
+    <tbody>
+        <% @fines.each do |fine| %>
+            <%= render 'fine', :fine => fine %>
+        <% end %>
+    </tbody>
 </table>

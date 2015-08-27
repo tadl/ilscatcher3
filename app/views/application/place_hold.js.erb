@@ -1,6 +1,6 @@
 var messageinfo    = '<div class="alert alert-info" role="alert">';
 var messagesuccess = '<div class="alert alert-success" role="alert">';
-var messageclose = '</div>';
+var messageclose   = '</div>';
 var pickuplocation = '<%= escape_javascript(location_map(@user.pickup_library, @location_options)) %>';
 <% @hold_confirmation.each do |c| %>
     var target = '.hold-status-<%= escape_javascript(c[:record_id]) %>';
@@ -18,4 +18,3 @@ var pickuplocation = '<%= escape_javascript(location_map(@user.pickup_library, @
     <% end %>
 <% end %> 
 update_login();
-

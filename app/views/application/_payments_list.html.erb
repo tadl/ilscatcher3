@@ -6,7 +6,9 @@
             <th>Amount</th>
         </tr>
     </thead>
-    <tbody><% @payments.each do |payment| %>
-        <%= render 'payment', :payment => payment %>
-    <% end %></tbody>
+    <tbody>
+        <% @payments.each do |payment| %>
+            <%= render 'payment', :payment => payment %>
+        <% end %>
+    </tbody>
 </table>
