@@ -3,13 +3,11 @@
 	    'overlayOpacity': 0.1,
 	    'content' : "<div class='container' style='width: 95%; max-width: 960px;'><%= escape_javascript(render 'details', :locals => {:item => @item}) %></div>"
 	});
-    $('.details-button').text('Details');
-    hideLoading();
 <% else %>
 	$('#copy_container').html("<%= escape_javascript(render 'detail_tabs', :locals => {:item => @item}) %>")
 	$('#goodreads_review').html("<%= escape_javascript(goodreads_review(@item.goodreads)) %>")
 	$.fancybox.update()
     $.fancybox.reposition()
-    $('.details-button').text('Details');
-    hideLoading();
 <% end %>
+$('.details-button').text('Details');
+hideLoading();
