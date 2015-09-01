@@ -3,8 +3,8 @@ Rails.application.routes.draw do
 
 #  get 'errors/internal_server_error'
 
-  get "/404" => "errors#not_found"
-  get "/500" => "errors#internal_server_error"
+  get "/404" => "errors#not_found", as: :not_found
+  get "/500" => "errors#internal_server_error", as: :internal_server_error
 
   root :to => "mock#index"
   get 'mock/index'

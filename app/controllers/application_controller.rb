@@ -67,7 +67,7 @@ class ApplicationController < ActionController::Base
     def scrape_error
         respond_to do |format|
             format.js  {render :js => "alert_message('danger', 'An error occured. Please try again later.', 10000);" }
-            format.html {redirect_to mock_index_path}
+            format.html {redirect_to internal_server_error_path}
         end
     end
 
