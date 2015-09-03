@@ -6,6 +6,15 @@
     <%= link_to mock_fines_path, :class => "list-group-item #{'active' if request.path == mock_fines_path}" do %>Current Fines<% end %>
     <%= link_to mock_payments_path, :class => "list-group-item #{'active' if request.path == mock_payments_path}" do %>Past Payments<% end %>
 </div>
+<% if (request.path == mock_preferences_path) %>
+    <div class="clearfix padtop"></div>
+    <div class="panel panel-primary">
+        <div class="panel-heading">Your MeLCat ID</div>
+        <div class="panel-body">
+            <%= @preferences['melcat_id'] %>
+        </div>
+    </div>
+<% end %>
 <div class="clearfix padtop"></div>
 <% if (request.path == mock_holds_path && @holds.count > 0) || (request.path == mock_checkouts_path && @checkouts.count > 0) %>
     <div class="btn-group">
