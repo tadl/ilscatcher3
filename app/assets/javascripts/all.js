@@ -401,7 +401,9 @@ function account_prefs_binds() {
 
         var tnnv = $('#text_notify_number-value').text();
         var tnnvhtml = '<input id="tnnv" name="np-text_notify_number" class="form-control" type="text" value="'+tnnv+'">';
+            tnnvhtml += '<span id="sms_check_result"></span>';
         $('#text_notify_number-value').html(tnnvhtml);
+        validate_sms_bind();
 
         var env = $('#email_notify-value').text();
         var envhtml = '<input id="env" name="email_notify" class="form-control" type="checkbox"' + (env == 'true' ? ' checked' : '') + '>';
@@ -748,7 +750,7 @@ function state_helper(val) {
     return state[val];
 }
 
-function location_map (name) {
+function location_map(name) {
     var locations = {
         "Woodmere (Main) Branch": 23,
         "Interlochen Public Library": 24,
@@ -758,5 +760,40 @@ function location_map (name) {
         "East Bay Branch Library": 28
     };
     return locations[name];
+}
+
+function validate_sms_bind() {
+    var TADL_LAST_NUMBER;
+    var digits_trimmed;
+    $('#tnnv').on('keyup', function(event) {
+        if (event.which !== 0) {
+            var original = this.value;
+            var digits = this.value.replace(/\D/g, '');
+            digits_trimmed = digits.replace(/^1/, '');
+            if (digits_trimmed.length == 10) {
+                if (TADL_LAST_NUMBER !== digits_trimmed) {
+                    TADL_LAST_NUMBER = digits_trimmed;
+                    $.ajax({
+                        url: 'https://util-ext.catalog.tadl.org/api/v1/lookup/' + digits_trimmed,
+                        success: function(data) {
+                            if (data.result) {
+                                $('#sms_check_result').text("<span class='glyphicon glyphicon-flag text-danger'> We can't determine if this number is capable of receiving text messages.");
+                            } else {
+                                if (data.carrier.type === 'mobile') {
+                                    $('#sms_check_result').text("<span class='glyphicon glyphicon-ok text-success'></span> This number appears capable of receiving text messages.");
+                                } else {
+                                    $('#sms_check_result').text("<span class='glyphicon glyphicon-remove text-danger'></span> This number might not be able to receive text messages.");
+                                }
+                            }
+                        },
+                        dataType: 'json',
+                        xhrFields: {
+                            withCredentials: true,
+                        }
+                    });
+                }
+            }
+        }
+    });
 }
 
