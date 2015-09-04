@@ -371,6 +371,44 @@ class User
     return payment_list
   end
 
+  def get_lists
+    agent = create_agent_token(self.token)
+    page = agent.get('https://mr-v2.catalog.tadl.org/eg/opac/myopac/lists')
+    list_list = page.parser.css('.bookbag-controls-holder').map do |l|
+      {
+        :title=> l.css('.bookbag-name').try(:text) ,
+        :description => l.css('.bookbag-description').try(:text),
+        :list_id => l.search('input[@name="list"]')[0].try(:attr, "value").to_s,
+        :shared => check_for_shared_list(l.css('.bookbag-share')),
+        :default_list => check_for_default_list(l.search('input[@value="remove_default"]'))
+      }
+    end
+    lists = Array.new
+      list_list.each do |l|
+        list = List.new l
+        lists = lists.push(list)
+      end
+    return lists
+  end
+
+  def check_for_shared_list(share_div)
+    hidden = share_div.search('input[@name="action"]').try(:attr, "value").to_s
+    if hidden != 'hide'
+      return false
+    else
+      return true
+    end
+  end
+
+  def check_for_default_list(default_value)
+      if default_value.to_s != '' 
+        return true
+      else
+        return false
+      end
+  end
+
+
   def circ_to_title(page, checkout_id)
   	look_for = 'input[@value="'+ checkout_id +'"]'
   	title = page.at(look_for).try(:parent).try(:next).try(:next).try(:css, 'a')[0].try(:text)

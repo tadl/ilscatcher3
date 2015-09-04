@@ -1,7 +1,7 @@
 class Search
 	require 'open-uri'
 	include ActiveModel::Model
-	attr_accessor :query, :sort, :qtype, :fmt, :loc, :page, :facet, :availability, :layout, :shelving_location 
+	attr_accessor :query, :sort, :qtype, :fmt, :loc, :page, :facet, :availability, :layout, :shelving_location, :list_id
   
 
 	  def initialize args
@@ -52,6 +52,7 @@ class Search
   		  path += '&loc=' + self.loc unless self.loc.nil?
   		  path += '&availability=' + self.availability unless self.availability.nil?
         path += '&shelving_location=' + self.shelving_location unless self.shelving_location.nil?
+        path += '&list_id=' + self.list_id unless self.list_id.nil?
         path += '&layout=' + self.layout unless self.layout.nil?
   		end
       return path
@@ -116,6 +117,7 @@ class Search
       next_page['availability'] = self.availability unless self.availability.nil?
       next_page['layout'] = self.layout unless self.layout.nil?
       next_page['shelving_location'] = self.shelving_location unless self.shelving_location.nil?
+      next_page['list_id'] = self.list_id unless self.list_id.nil?
       next_page['facet'] = Array.new
       self.facet.each do |f|
         f = URI::encode(f)
@@ -137,6 +139,9 @@ class Search
   			else
   				url += 'query='
   			end
+        if self.list_id
+          url += '&bookbag=' + self.list_id
+        end
         if self.qtype.nil?
   			 url += '&qtype=keyword'
         else

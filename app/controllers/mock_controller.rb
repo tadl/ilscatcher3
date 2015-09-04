@@ -40,7 +40,7 @@ class MockController < ApplicationController
   def search
     @format_options = [['All Formats', 'all'],['Movies', 'g'],['Music', 'j']]
     @search = Search.new params
-    if @search.query || @search.fmt || @search.shelving_location
+    if @search.query || @search.fmt || @search.shelving_location || @search.list_id
       results = @search.results
       @items = results[0]
       @facets = results[1]
@@ -266,6 +266,22 @@ class MockController < ApplicationController
       format.html
       format.json {render :json => {:user => @user, 
         :payments => @payments}}
+    end
+  end
+
+  def user_lists
+    @user = generate_user()
+    if !@user.error
+      set_cookies(@user)
+      @lists = @user.get_lists
+    else
+      @lists = 'bad login'
+      redirect_to mock_index_path
+      return
+    end
+    respond_to do |format|
+      format.json {render :json => {:user => @user, 
+        :lists => @lists}}
     end
   end
 
