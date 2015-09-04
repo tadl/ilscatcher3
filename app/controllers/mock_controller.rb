@@ -8,7 +8,7 @@ class MockController < ApplicationController
     if Rails.cache.exist?('music_list')
         @music_list = Rails.cache.read('music_list')
     else
-        musicquery = {"query": "", "sort": "create_date.descending", "fmt": "j", "loc": "23", "shelving_location": "686", "availability": "on"}
+        musicquery = {"query" => "", "sort" => "create_date.descending", "fmt" => "j", "loc" => "23", "shelving_location" => "686", "availability" => "on"}
         @musiclist = Search.new musicquery
         results = @musiclist.results
         @music_list = results[0]
