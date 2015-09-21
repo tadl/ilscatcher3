@@ -1,8 +1,13 @@
 class ApplicationController < ActionController::Base
     protect_from_forgery with: :exception
     require 'open-uri'
+    before_filter :set_headers
     rescue_from Mechanize::Error, with: :scrape_error
     rescue_from SocketError, with: :scrape_error
+
+    def set_headers
+        headers['Access-Control-Allow-Origin'] = '*'      
+    end  
 
     def shared_mock_variables
         @logo = 'http://www.tadl.org/sites/all/themes/converge_custom/logo.png'
