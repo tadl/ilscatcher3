@@ -26,3 +26,4 @@ gem 'unicorn'
 gem 'sidekiq', group: :production
 gem 'sidetiq', group: :production
 gem 'redis', group: :production
+

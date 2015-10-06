@@ -1,4 +1,4 @@
-class Search
+class Search_Legacy
 	require 'open-uri'
 	include ActiveModel::Model
 	attr_accessor :query, :sort, :qtype, :fmt, :loc, :page, :facet, :availability, :layout, :shelving_location, :list_id
@@ -128,35 +128,102 @@ class Search
 
 
   	def results
-      request = JSON.parse(open('https://elastic-evergreen.herokuapp.com/main/index.json?query=' + self.query, {:read_timeout => 1}).read) rescue nil
-  		results = Array.new
-      request.each do |r|
-        item_raw ={
-          :title => r["title"],
-          :author => r["author"],
-          :availability => process_availability(r["holdings"])[0],
-          :copies_available => process_availability(r["holdings"])[1],
-          :copies_total =>process_availability(r["holdings"])[2],
-          :id => r["id"],
-          :eresource => r["link"],
-          :abstract => r["abstract"],
-          :contents => r["contents"],
-          # #hack for dev below
-          :format_type => r["type_of_resource"],
-          :record_year => r["record_year"],
-          :call_number => 'c343',
+      testing = true
+      # if testing == false  		
+  		if Rails.cache.exist?(self.search_path_minus_layout_with_page) && testing != true
+      	return Rails.cache.read(self.search_path_minus_layout_with_page)
+    	else
+  			url = 'https://mr-v2.catalog.tadl.org/eg/opac/results?'
+  			if self.query
+  				url += 'query=' + self.query
+  			else
+  				url += 'query='
+  			end
+        if self.list_id
+          url += '&bookbag=' + self.list_id
+        end
+        if self.qtype.nil?
+  			 url += '&qtype=keyword'
+        else
+          url += '&qtype=' + self.qtype unless self.qtype.nil?
+  			end
+  			if self.fmt == 'video_games'
+  				url += '&fi%3Aformat=mVG&facet=subject%7Cgenre%5Bgame%5D'
+  			elsif self.fmt == 'all'
+  				url += '&fi%3Aformat='
+  			else
+  				url += '&fi%3Aformat=' + self.fmt unless self.fmt.nil?
+  			end
+        url += '&fi%3Alocations=' + self.shelving_location unless self.shelving_location.nil?
+        if self.loc
+          url += '&locg=' + self.loc
+        else
+          url += '&locg=22'
+        end
+  			url += '&sort=' + self.sort unless self.sort.nil?
+        url += '&page=' + self.page unless self.page.nil?
+  			if self.availability == "on"
+  				url += '&modifier=available'
+  			end
+  			facets_for_url = ''
+  			self.facet.each do |f|
+					facets_for_url += '&facet=' + f
+			end unless self.facet.nil?
+			url += facets_for_url
+      url += '&limit=24'
+  			agent = Mechanize.new
+  			page = agent.get(url)
+  			page = page.parser
+  			results = Array.new
+  			page.css('.result_table_row').each do |result|
+  				item_raw ={:title => result.at_css(".search_link").text.strip,
+					:author => result.at_css('.record_author').text.strip.try(:squeeze, " "),
+					:availability => process_availability(result.css(".result_count").reverse.map {|i| i.try(:text).try(:strip)}),
+					:copies_available => process_availability(result.css(".result_count").reverse.map {|i| clean_availablity_counts(i.try(:text))[0]}),
+					:copies_total => process_availability(result.css(".result_count").reverse.map {|i| clean_availablity_counts(i.try(:text))[1]}),
+					:id => result.at_css(".record_title").attr('name').sub!(/record_/, ""),
+        	:eresource => result.at_css('[@name="bib_uri_list"]').try(:css, 'td').try(:css, 'a').try(:attr, 'href').try(:text).try(:strip),
+					# #hack for dev below
+					:image => 'https://catalog.tadl.org' + result.at_css(".result_table_pic").try(:attr, "src"),
+					:abstract => result.at_css('tr[@name="bib_summary_full"]').try(:text).try(:strip).try(:squeeze, " "),
+					:contents => result.at_css('[@name="bib_contents_full"]').try(:text).try(:strip).try(:squeeze, " "),
+					# #hack for dev below
+					:format_type => result.css('.marc_record_type').try(:text),
+					:record_year => result.at_css('[@name="bib_pubdate"]').try(:text).try(:strip),
+					:call_number => result.at_css('[@name="bib_cn_list"]').try(:css, 'td[2]').try(:text).try(:strip),
           :loc => self.loc,
-          :publisher => r["publisher"],
-          :publication_place => r["publication_location"],
-          :physical_description => r["physical_description"],
-          :isbn => r["isbn"][0],
-        }
-        item = Result.new item_raw
-        results = results.push(item)
-        genre_raw = r["genres"]
-        subjets_raw = r["subjects"]
-      end
-      return results
+          :publisher => result.at_css('[@name="bib_publisher"]').try(:text).try(:strip),
+          :publication_place => result.at_css('[@name="bib_pubplace"]').try(:text).try(:strip),
+          :physical_description => result.at_css('[@name="bib_phys_desc"]').try(:text).try(:strip),
+          :isbn => result.at_css('[@name="bib_isbn"]').try(:text).try(:strip).try(:squeeze, " "),
+				}
+				item = Result.new item_raw
+				results = results.push(item)
+  			end
+  			facets = Array.new
+  			page.css(".facet_box_temp").map do |facet|
+  				sub_facets = Array.new
+  				facet.css("div.facet_template").each do |sub|
+  					sub_raw = { :title => sub.at_css('.facet').text.strip.try(:squeeze, " "),
+  								:path => process_facets(sub.css('a').attr('href').text.split('?')[1].split(';')),
+  								:selected => check_selected(sub)
+  					}
+  					sub_facets = sub_facets.push(sub_raw)
+  				end
+				facet_raw = { :type => facet.at_css('.header/.title').text.strip.try(:squeeze, " "),
+							  :subfacets => sub_facets
+				}
+				facet_new = Facet.new facet_raw
+				facets = facets.push(facet_new)
+			end
+			if page.css('.search_page_nav_link:contains(" Next ")').present?
+				more_results = true
+			else
+				more_results = false
+			end
+			Rails.cache.write(self.search_path_minus_layout_with_page, [results, facets, more_results] ,:expires_in => 5.minutes)
+  			return results, facets, more_results
+  		end
   	end	
 	
   	def clean_availablity_counts(text)
