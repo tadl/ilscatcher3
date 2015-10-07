@@ -1,4 +1,5 @@
 source 'https://rubygems.org'
+ruby "2.2.0"
 
 #defaults
 gem 'rails', '4.1.8'
