@@ -45,6 +45,10 @@ class MockController < ApplicationController
       @items = results[0]
       @facets = results[1]
       @more_results = results[2]
+    else
+      @items = nil
+      @facets = nil
+      @more_results = nil
     end
     respond_to do |format|
       format.html
