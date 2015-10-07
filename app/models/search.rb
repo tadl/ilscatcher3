@@ -174,12 +174,12 @@ class Search
       genre_facets = process_facets('genres', genres_raw)
       series_facets = process_facets('series', series_raw)
       facets = [subject_facets, series_facets, genre_facets]
-      if results.size > 60
+      if results.size > 48
         more_resulsts = true
       else
         more_resulsts = false
       end
-      return results.first(60), facets, more_resulsts
+      return results.first(48), facets, more_resulsts
   	end	
 	
 
