@@ -1,16 +1,6 @@
 <div class="list-group">
     <h4 class="list-group-item list-group-item-info active"><%= facet.type %></h4>
     <% facet.subfacets.each do |sub| %>
-        <% if !sub[:selected] %>
-            <a class="list-group-item" href="search<%= @search.search_path %><%= sub[:path] %>">
-        <% else %>
-            <a class="list-group-item" href="search<%= @search.search_path %><%= sub[:path] %>">
-        <% end %>
-        <%= sub[:title] %>
-        <% if !sub[:selected] %>
-            </a>
-        <% else %>
-            <span class="closebutton glyphicon glyphicon-remove"></span></a>
-        <% end %>
+         <a class="list-group-item" href="#"><%= sub %></a>
     <% end %>
 </div>

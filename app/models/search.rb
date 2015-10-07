@@ -128,8 +128,13 @@ class Search
 
 
   	def results
-      request = JSON.parse(open('https://elastic-evergreen.herokuapp.com/main/index.json?query=' + self.query, {:read_timeout => 1}).read) rescue nil
+      url = 'https://elastic-evergreen.herokuapp.com/main/index.json?query=' + self.query
+      url = url + '&page=' + self.page unless self.page.nil?
+      request = JSON.parse(open(url).read) rescue nil
   		results = Array.new
+      genres_raw = Array.new
+      subjects_raw = Array.new
+      series_raw = Array.new
       request.each do |r|
         item_raw ={
           :title => r["title"],
@@ -153,56 +158,53 @@ class Search
         }
         item = Result.new item_raw
         results = results.push(item)
-        genre_raw = r["genres"]
-        subjets_raw = r["subjects"]
+        r["genres"].each do |g|
+          genres_raw = genres_raw.push(g)
+        end
+        r["subjects"].each do |s|
+          if !s.nil? && s != ''
+            subjects_raw = subjects_raw.push(s)
+          end
+        end
+        r["series"].each do |s|
+          series_raw = series_raw.push(s)
+        end rescue nil 
       end
-      return results
+      subject_facets = process_facets('subects', subjects_raw)
+      genre_facets = process_facets('genres', genres_raw)
+      series_facets = process_facets('series', series_raw)
+      facets = [subject_facets, series_facets, genre_facets]
+      if results.size > 60
+        more_resulsts = true
+      else
+        more_resulsts = false
+      end
+      return results.first(60), facets, more_resulsts
   	end	
 	
-  	def clean_availablity_counts(text)
-		availability_array = text.strip.split('of')
-		total_availabe = availability_array[0].strip
-		total_copies_scope_arrary = availability_array[1].split('at', 2)
-		total_copies = total_copies_scope_arrary[0].gsub('copy', '').gsub('copies', '').gsub('available','').strip 
-		availability_scope = total_copies_scope_arrary[1]
-		return total_availabe, total_copies, availability_scope
+
+
+	def process_facets(facet_name, facet_group)
+    facets = Array.new
+    compact_subjects = facet_group.compact
+    filtered_subjects = Hash.new
+    compact_subjects.each do |s|
+      filtered_subjects[s] = 0
+      facet_group.each do |sub|
+        if sub == s 
+          filtered_subjects[s] += 1
+        end
+      end
+    end
+    facet_raw = {
+      :type => facet_name,
+      :subfacets => filtered_subjects.sort_by {|_key, value| value}.reverse.to_h.keys.first(10)
+    }
+    facet = Facet.new facet_raw
+    return facet
 	end
 
-	def check_e_resource(item)
-		if item.at_css('span.result_place_hold')
-			e_resource = false 
-		else
-			e_resource = true 
-		end
-		return e_resource
-	end
 
-	def scrape_format_year(item)
-		format_year = item.css('div#bib_format').try(:text).try(:split, '(')
-		format = format_year[0].strip rescue nil
-		year = format_year[1].strip.gsub(')', '')	rescue nil
-		result = [format, year]
-		return result		
-	end
-
-	def process_facets(facet)
-		facet.delete_if {|f| f !~ /facet=/} 
-		clean_facet = ''
-		facet.each do |f|
-			f.gsub!('facet=','&facet[]=')
-			f = URI::encode(f)
-			clean_facet += f
-		end
-		return clean_facet
-	end
-
-	def check_selected(facet)
-		if facet['class'].include? 'facet_template_selected'
-			return true
-		else
-			return false
-		end
-	end
 
 	def process_availability(availability)
 		availability.pop

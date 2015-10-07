@@ -42,12 +42,14 @@ class MockController < ApplicationController
     @search = Search.new params
     if @search.query || @search.fmt || @search.shelving_location || @search.list_id
       results = @search.results
-      @items = results
+      @items = results[0]
+      @facets = results[1]
+      @more_results = results[2]
     end
     respond_to do |format|
       format.html
       format.js
-      format.json {render json: @items}
+      format.json {render :json => {:items => @items.first(60), :facets => @facets, :more_results => @more_results}}
     end
   end
 
