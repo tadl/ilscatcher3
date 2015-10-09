@@ -128,8 +128,12 @@ class Search
 
 
   	def results
-      url = 'https://elastic-evergreen.herokuapp.com/main/index.json?query=' + self.query
+      url = 'http://cal.lib.tadl.org:4000/main/index.json?query=' + self.query
       url = url + '&page=' + self.page unless self.page.nil?
+      url = url + '&search_type=' + self.qtype unless self.qtype.nil?
+      if self.availability_check
+        url = url + '&available=true'
+      end
       request = JSON.parse(open(url).read) rescue nil
   		results = Array.new
       genres_raw = Array.new
@@ -146,7 +150,7 @@ class Search
           :eresource => r["link"],
           :abstract => r["abstract"],
           :contents => r["contents"],
-          # #hack for dev below
+          :eresource => r["links"][0],
           :format_type => r["type_of_resource"],
           :record_year => r["record_year"],
           :call_number => 'c343',

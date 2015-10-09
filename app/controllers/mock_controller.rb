@@ -46,8 +46,8 @@ class MockController < ApplicationController
       @facets = results[1]
       @more_results = results[2]
     else
-      @items = nil
-      @facets = nil
+      @items = Array.new
+      @facets = Array.new
       @more_results = nil
     end
     respond_to do |format|

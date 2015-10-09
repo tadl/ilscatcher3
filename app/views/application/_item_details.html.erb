@@ -39,7 +39,7 @@
             </div>
             <div class="col-xs-12 col-md-4 col-lg-3">
                 <span class="pull-right">
-                    <% if item.eresource.nil? %>
+                    <% if item.eresource.nil? || item.eresource == '' %>
                         <div class='hold-status-<%= item.id %>'>
                         </div>
                         <div class="holdlogin-<%= item.id %>" style="display: none">
@@ -69,7 +69,7 @@
                             </button>
                         </p>
                     <% else %>
-                        <p><a class="btn btn-success" href="<%= item.eresource %>" target="_blank">View Online</a></p>
+                        <p><a class="btn btn-success" href="<%= item.eresource %>">View Online</a></p>
                     <% end %>
                 </span>
             </div>
