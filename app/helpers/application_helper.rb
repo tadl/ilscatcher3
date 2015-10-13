@@ -34,6 +34,4 @@ module ApplicationHelper
             return review.html_safe
         end
     end
-
-
 end

@@ -1,7 +1,7 @@
 class Search
 	require 'open-uri'
 	include ActiveModel::Model
-	attr_accessor :query, :sort, :qtype, :fmt, :loc, :page, :facet, :availability, :layout, :shelving_location, :list_id
+	attr_accessor :query, :sort, :qtype, :fmt, :loc, :page, :facet, :availability, :layout, :shelving_location, :list_id, :subjects, :series, :authors, :genres
   
 
 	  def initialize args
@@ -46,17 +46,65 @@ class Search
         else
           path = '?query='
         end
-  		  path += '&sort=' + self.sort unless self.sort.nil?
   		  path += '&qtype=' + self.qtype unless self.qtype.nil?
-  		  path += '&fmt=' + self.fmt unless self.fmt.nil?
   		  path += '&loc=' + self.loc unless self.loc.nil?
   		  path += '&availability=' + self.availability unless self.availability.nil?
-        path += '&shelving_location=' + self.shelving_location unless self.shelving_location.nil?
-        path += '&list_id=' + self.list_id unless self.list_id.nil?
         path += '&layout=' + self.layout unless self.layout.nil?
   		end
       return path
   	end
+
+    def search_path_with_facets
+      path = self.search_path
+      self.subjects.each do |f|
+        f = URI::encode(f)
+        path += '&subjects[]=' + f
+      end unless self.subjects.nil?
+      self.genres.each do |f|
+        f = URI::encode(f)
+        path += '&genres[]=' + f
+      end unless self.genres.nil?
+      self.series.each do |f|
+        f = URI::encode(f)
+        path += '&series[]=' + f
+      end unless self.series.nil?
+      self.authors.each do |f|
+        f = URI::encode(f)
+        path += '&authors[]=' + f
+      end unless self.authors.nil?
+      return path
+    end
+
+    def search_path_with_new_facet(facet_type, facet)
+      path = self.search_path_with_facets
+      if facet_type == 'subjects'
+        path = path + '&subjects[]=' +  URI::encode(facet)
+      elsif facet_type == 'genres'
+        path = path + '&genres[]=' +  URI::encode(facet)
+      elsif facet_type == 'series'
+        path = path + '&series[]=' +  URI::encode(facet)
+      elsif facet_type == 'authors'
+        path = path + '&authors[]=' +  URI::encode(facet)
+      end
+      return path 
+    end
+
+    def search_path_minus_selected_facet(facet_type, facet)
+      path = self.search_path
+      self.subjects.each do |f|
+        path = path + '&subjects[]=' +  URI::encode(f) unless f == facet and facet_type == 'subjects'
+      end unless self.subjects.nil?
+      self.genres.each do |f|
+        path = path + '&genres[]=' +  URI::encode(f) unless f == facet and facet_type == 'genres'
+      end unless self.genres.nil?
+      self.series.each do |f|
+        path = path + '&series[]=' +  URI::encode(f) unless f == facet and facet_type == 'series'
+      end unless self.series.nil?
+      self.authors.each do |f|
+        path = path + '&authors[]=' +  URI::encode(f) unless f == facet and facet_type == 'authors'
+      end unless self.authors.nil?
+      return path
+    end
 
     def melcat_link
       query = self.query
@@ -78,15 +126,6 @@ class Search
       path = 'search_'
       path += self.search_path_minus_layout
       path += '&page=' + self.page unless self.page.nil?
-      return path
-    end
-
-    def search_path_with_facet
-      path = self.search_path
-      self.facet.each do |f|
-        f = URI::encode(f)
-        path += '&facet[]=' + f
-      end unless self.facet.nil?
       return path
     end
 
@@ -118,27 +157,48 @@ class Search
       next_page['layout'] = self.layout unless self.layout.nil?
       next_page['shelving_location'] = self.shelving_location unless self.shelving_location.nil?
       next_page['list_id'] = self.list_id unless self.list_id.nil?
-      next_page['facet'] = Array.new
-      self.facet.each do |f|
+      next_page['subjects'] = Array.new
+      self.subjects.each do |f|
         f = URI::encode(f)
-        next_page['facet'] = next_page['facet'].push(f)
-      end unless self.facet.nil?
+        next_page['subjects'] = next_page['subjects'].push(f)
+      end unless self.subjects.nil?
       return next_page
     end
 
 
   	def results
-      url = 'http://cal.lib.tadl.org:4000/main/index.json?query=' + self.query
+      url = 'http://elastic-evergreen.herokuapp.com/main/index.json?query=' + self.query
       url = url + '&page=' + self.page unless self.page.nil?
       url = url + '&search_type=' + self.qtype unless self.qtype.nil?
       if self.availability_check
         url = url + '&available=true'
+      end
+      if self.subjects
+        self.subjects.each do |s|
+          url = url + '&subjects[]=' +  URI::encode(s)
+        end
+      end
+      if self.genres
+        self.genres.each do |s|
+          url = url + '&genres[]=' +  URI::encode(s)
+        end
+      end
+      if self.series
+        self.series.each do |s|
+          url = url + '&series[]=' +  URI::encode(s)
+        end
+      end
+      if self.authors
+        self.authors.each do |s|
+          url = url + '&authors[]=' +  URI::encode(s)
+        end
       end
       request = JSON.parse(open(url).read) rescue nil
   		results = Array.new
       genres_raw = Array.new
       subjects_raw = Array.new
       series_raw = Array.new
+      author_raw = Array.new
       request.each do |r|
         item_raw ={
           :title => r["title"],
@@ -147,7 +207,6 @@ class Search
           :copies_available => process_availability(r["holdings"])[1],
           :copies_total =>process_availability(r["holdings"])[2],
           :id => r["id"],
-          :eresource => r["link"],
           :abstract => r["abstract"],
           :contents => r["contents"],
           :eresource => r["links"][0],
@@ -172,12 +231,14 @@ class Search
         end
         r["series"].each do |s|
           series_raw = series_raw.push(s)
-        end rescue nil 
+        end rescue nil
+        author_raw = author_raw.push(r["author"])
       end
-      subject_facets = process_facets('subects', subjects_raw)
+      subject_facets = process_facets('subjects', subjects_raw)
       genre_facets = process_facets('genres', genres_raw)
       series_facets = process_facets('series', series_raw)
-      facets = [subject_facets, series_facets, genre_facets]
+      author_facets = process_facets('authors', author_raw)
+      facets = [subject_facets, series_facets, genre_facets, author_facets]
       if results.size > 48
         more_resulsts = true
       else
@@ -201,12 +262,21 @@ class Search
       end
     end
     facet_raw = {
-      :type => facet_name,
+      :type => facet_name.capitalize,
+      :type_raw => facet_name,
       :subfacets => filtered_subjects.sort_by {|_key, value| value}.reverse.to_h.keys.first(10)
     }
     facet = Facet.new facet_raw
     return facet
 	end
+
+  def active_facet(type, facet)
+    if self.send(type.to_sym).include?(facet)
+      return true
+    else
+      return false
+    end rescue false
+  end
 
 
 

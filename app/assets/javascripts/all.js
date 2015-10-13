@@ -43,16 +43,11 @@ ready = function() {
     checkout_management_binds();
     item_loading_binds();
 
-    $('#search-button').click(function(event) {
-        showLoading();
-    });
-
 };
 
 $(document).ready(ready);
 $(document).on('page:load', ready);
-$(document).on('page:fetch', showLoading);
-$(document).on('page:receive', hideLoading);
+
 
 function showLoading() {
     $('#statusMessage').modal('show');

@@ -1,6 +1,10 @@
 <div class="list-group">
     <h4 class="list-group-item list-group-item-info active"><%= facet.type %></h4>
     <% facet.subfacets.each do |sub| %>
-         <a class="list-group-item" href="#"><%= sub %></a>
+    	<% if @search.active_facet(facet.type_raw, sub) %>
+           <a class="list-group-item" href="<%= @search.search_path_minus_selected_facet(facet.type_raw, sub)%>"><%= sub %> X</a>
+         <% else %>
+         	<a class="list-group-item" href="<%= @search.search_path_with_new_facet(facet.type_raw, sub)%>"><%= sub %></a>
+         <% end %>
     <% end %>
 </div>
