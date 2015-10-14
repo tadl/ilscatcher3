@@ -12,7 +12,7 @@ class ApplicationController < ActionController::Base
     def shared_mock_variables
         @logo = 'http://www.tadl.org/sites/all/themes/converge_custom/logo.png'
         @query_options = [['Keyword', 'keyword'], ['Author', 'author'],['Title', 'title'],['Subject', 'subject']]
-    	@format_options = [['All Formats', 'all'], ['Books', 'a'],['Movies', 'g'],['Music', 'j']]
+    	@format_options = [['All Formats', 'all'], ['Books', 'a'],['Movies / TV', 'g'],['Music', 'j']]
     	@sort_options = [['Relevance', 'relevance'], ['Newest to Oldest', 'pubdate.descending'],['Oldest to Newest', 'pubdate'],['A to Z', 'titlesort'], ['Z to A', 'titlesort.descending']]
     	@location_options = [['All Locations', '22'], ['Woodmere', '23'],['Interlochen', '24'],['Kingsley', '25'], ['Peninsula', '26'], ['East Bay', '28'], ['Fife Lake', '27']]
         @pickup_locations = [['Woodmere (Main) Branch', '23'],
@@ -22,19 +22,20 @@ class ApplicationController < ActionController::Base
                             ['Fife Lake Public Library', '27'],
                             ['East Bay Branch Library', '28']]
         @truefalseicons = [['glyphicon glyphicon-ok text-success', true], ['glyphicon glyphicon-remove text-danger', false]]
-    	@format_icons = [['a','glyphicon-book'], 
-                        ['c','glyphicon-music'], 
-                        ['d','glyphicon-music'], 
-                        ['e','glyphicon-globe'], 
-                        ['f','glyphicon-globe'], 
-                        ['g','glyphicon-film'], 
-                        ['i','glyphicon-cd'], 
-                        ['j','glyphicon-cd'], 
-                        ['k','glyphicon-picture'], 
-                        ['m','glyphicon-file'], 
-                        ['o','glyphicon-briefcase'], 
-                        ['p','glyphicon-briefcase'], 
-                        ['r','glyphicon-inbox'], 
+    	@format_icons = [['a','glyphicon-book','text'], 
+                        ['c','glyphicon-music','notated music'], 
+                        ['d','glyphicon-music','notated music'], 
+                        ['e','glyphicon-globe','cartographic'], 
+                        ['f','glyphicon-globe','cartographic'], 
+                        ['g','glyphicon-film','moving image'], 
+                        ['i','glyphicon-cd','sound recording-nonmusical'], 
+                        ['j','glyphicon-cd','sound recording-musical'], 
+                        ['k','glyphicon-picture','still image'], 
+                        ['m','glyphicon-file','software, multimedia'], 
+                        ['o','glyphicon-briefcase','kit'], 
+                        ['p','glyphicon-briefcase','mixed-material'], 
+                        ['r','glyphicon-inbox','three dimensional object'],
+                        ['t','glyphicon-book','text']
                     ]
         @format_names = [['Language material','a'], 
                         ['Notated music','c'], 

@@ -48,6 +48,7 @@ class Search
         end
   		  path += '&qtype=' + self.qtype unless self.qtype.nil?
   		  path += '&loc=' + self.loc unless self.loc.nil?
+        path += '&fmt=' + self.fmt unless self.fmt.nil?
   		  path += '&availability=' + self.availability unless self.availability.nil?
         path += '&layout=' + self.layout unless self.layout.nil?
   		end
@@ -157,11 +158,31 @@ class Search
       next_page['layout'] = self.layout unless self.layout.nil?
       next_page['shelving_location'] = self.shelving_location unless self.shelving_location.nil?
       next_page['list_id'] = self.list_id unless self.list_id.nil?
+      
       next_page['subjects'] = Array.new
       self.subjects.each do |f|
         f = URI::encode(f)
         next_page['subjects'] = next_page['subjects'].push(f)
       end unless self.subjects.nil?
+      
+      next_page['genres'] = Array.new
+      self.genres.each do |f|
+        f = URI::encode(f)
+        next_page['genres'] = next_page['genres'].push(f)
+      end unless self.genres.nil?
+      
+      next_page['series'] = Array.new
+      self.series.each do |f|
+          f = URI::encode(f)
+        next_page['series'] = next_page['series'].push(f)
+      end unless self.series.nil?
+      
+      next_page['authors'] = Array.new
+      self.authors.each do |f|
+        f = URI::encode(f)
+        next_page['authors'] = next_page['authors'].push(f)
+      end unless self.authors.nil?
+
       return next_page
     end
 
@@ -170,6 +191,7 @@ class Search
       url = 'http://elastic-evergreen.herokuapp.com/main/index.json?query=' + self.query
       url = url + '&page=' + self.page unless self.page.nil?
       url = url + '&search_type=' + self.qtype unless self.qtype.nil?
+      url = url + '&format_type=' + self.fmt unless self.fmt.nil?
       if self.availability_check
         url = url + '&available=true'
       end

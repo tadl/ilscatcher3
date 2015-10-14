@@ -38,7 +38,6 @@ class MockController < ApplicationController
 
 
   def search
-    @format_options = [['All Formats', 'all'],['Movies', 'g'],['Music', 'j']]
     @search = Search.new params
     if @search.query || @search.fmt || @search.shelving_location || @search.list_id
       results = @search.results
