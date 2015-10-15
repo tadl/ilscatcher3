@@ -188,10 +188,11 @@ class Search
 
 
   	def results
-      url = 'http://elastic-evergreen.herokuapp.com/main/index.json?query=' + self.query
+      url = 'http://cal.lib.tadl.org:3000/main/index.json?query=' + self.query
       url = url + '&page=' + self.page unless self.page.nil?
       url = url + '&search_type=' + self.qtype unless self.qtype.nil?
       url = url + '&format_type=' + self.fmt unless self.fmt.nil?
+      url = url + '&location_code=' + self.loc unless  self.loc.nil?
       if self.availability_check
         url = url + '&available=true'
       end
@@ -222,19 +223,23 @@ class Search
       series_raw = Array.new
       author_raw = Array.new
       request.each do |r|
+        location = self.loc rescue ''
+        holdings = process_availability(r['holdings'], location)
         item_raw ={
           :title => r["title"],
           :author => r["author"],
-          :availability => process_availability(r["holdings"])[0],
-          :copies_available => process_availability(r["holdings"])[1],
-          :copies_total =>process_availability(r["holdings"])[2],
+          :holdings => r['holdings'],
+          :all_copies_available => holdings[1],
+          :all_copies_total => holdings[2],
+          :loc_copies_available => holdings[3],
+          :loc_copies_total => holdings[4],
           :id => r["id"],
           :abstract => r["abstract"],
           :contents => r["contents"],
           :eresource => r["links"][0],
           :format_type => r["type_of_resource"],
           :record_year => r["record_year"],
-          :call_number => 'c343',
+          :call_number => holdings[0],
           :loc => self.loc,
           :publisher => r["publisher"],
           :publication_place => r["publication_location"],
@@ -245,12 +250,12 @@ class Search
         results = results.push(item)
         r["genres"].each do |g|
           genres_raw = genres_raw.push(g)
-        end
+        end rescue nil
         r["subjects"].each do |s|
           if !s.nil? && s != ''
             subjects_raw = subjects_raw.push(s)
           end
-        end
+        end rescue nil
         r["series"].each do |s|
           series_raw = series_raw.push(s)
         end rescue nil
@@ -302,13 +307,64 @@ class Search
 
 
 
-	def process_availability(availability)
-		availability.pop
-		return availability
+	def process_availability(availability, location)
+    location_code = code_to_location(location)
+   if availability != nil or availability != ''
+      all_available = 0
+      all_total = 0
+      location_available = 0
+      location_total = 0
+      availability.each do |a|
+        if a["status"] == "Available" || a["status"] == "Reshelving"
+          all_available = all_available + 1
+        end
+        if location_code != ''
+          if (a["status"] == "Available" || a["status"] == "Reshelving") && a["circ_lib"] == location_code
+            location_available = location_available + 1
+          end
+          if a["circ_lib"] == location_code
+            location_total = location_total + 1
+          end
+        else
+          location_total = nil
+          location_available = nil
+        end
+          all_total = all_total + 1
+      end
+      call_number = availability[0]["call_number"]
+    else
+      call_number = nil
+      location_available = nil 
+      location_total = nil
+      all_available = nil
+      all_total = nil
+    end
+    return call_number, all_available, all_total, location_available, location_total
 	end
 
   def clean_isbn(isbn)
     clean = isbn.strip
   end
+
+  def code_to_location(location_code)
+    location = ''
+    if location_code == '22' || location = nil
+      location = ''
+    elsif location_code == '23'
+      location = 'TADL-WOOD'
+    elsif location_code == '24'
+      location = 'TADL-IPL'
+    elsif location_code == '25'
+      location = 'TADL=KBL'
+    elsif location_code == '26'
+      location = 'TADL-PCL'
+    elsif location_code == '27'
+      location = 'TADL-FLPL'
+    elsif location_code == '28'
+      location = 'TADL-EBB'
+    end
+    return location 
+  end
+
  
 end

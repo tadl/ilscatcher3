@@ -1,10 +1,12 @@
 <% if @search.grid_active == 'active' %>
 	var item = document.createElement('div');
 	var grid = document.querySelector('#grid');
+	$('#gride').hide()
 	<% @items.each do |i| %>
 		salvattore['append_elements'](grid, [item]);
 		item.outerHTML = "<%= escape_javascript(render partial: 'results_grid', :locals => {:item => i}) %>";  
 	<% end %>
+	$('#gride').show()
 <% end %>
 <% if @search.list_active == 'active' %>
 	<% @items.each do |i| %>

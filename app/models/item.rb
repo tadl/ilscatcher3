@@ -40,8 +40,8 @@ class Item
   		page = page.parser
   		item_details = ''
   		page.css('#main-content').each do |detail|
-  			item_details = {
-  			:author => detail.at_css(".rdetail_authors_div").try(:text).try(:gsub, /\n/, "").try(:strip),
+  		item_details = {
+  		:author => detail.at_css(".rdetail_authors_div").try(:text).try(:gsub, /\n/, "").try(:strip),
 			:title => detail.at_css("#rdetail_title").text,
 			:abstract => detail.at('td:contains("Summary, etc.:")').try(:next_element).try(:text).try(:strip),
 			:contents => detail.at('td:contains("Formatted Contents Note:")').try(:next_element).try(:text).try(:strip),
@@ -159,7 +159,6 @@ class Item
       marc_record = page.parser.at_css('.marc_table').to_s.gsub(/\n/,'').gsub(/\t/,'')
       return marc_record
     end
-
 
     def create_params
       hash = Hash.new
