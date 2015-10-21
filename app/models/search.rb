@@ -331,7 +331,7 @@ class Search
         end
           all_total = all_total + 1
       end
-      call_number = availability[0]["call_number"]
+      call_number = availability[0]["call_number"] rescue nil
     else
       call_number = nil
       location_available = nil 
