@@ -4,7 +4,7 @@ class MockController < ApplicationController
     respond_to :html, :json, :js
 
   def index
-      
+
     if Rails.cache.exist?('music_list')
         @music_list = Rails.cache.read('music_list')
     else
@@ -38,7 +38,11 @@ class MockController < ApplicationController
 
 
   def search
-    @search = Search.new params
+    if params["legacy"] == 'true'
+      @search = Search_Legacy.new params
+    else
+      @search = Search.new params
+    end
     if @search.query || @search.fmt || @search.shelving_location || @search.list_id
       results = @search.results
       @items = results[0]
@@ -111,7 +115,7 @@ class MockController < ApplicationController
     set_cookies(@user)
     respond_to do |format|
       format.js
-      format.json {render :json => {:user => @user, 
+      format.json {render :json => {:user => @user,
         :hold_confirmation => @hold_confirmation}}
     end
   end
@@ -136,9 +140,9 @@ class MockController < ApplicationController
     end
     respond_to do |format|
       format.js
-      format.json {render :json => {:user => @user, 
+      format.json {render :json => {:user => @user,
         :holds => @holds, :target_holds => @target_holds}}
-    end 
+    end
   end
 
   def edit_hold_pickup
@@ -154,7 +158,7 @@ class MockController < ApplicationController
     respond_to do |format|
       format.js
       format.json {render :json => @hold}
-    end 
+    end
   end
 
   def list_holds
@@ -169,7 +173,7 @@ class MockController < ApplicationController
     end
     respond_to do |format|
       format.html
-      format.json {render :json => {:user => @user, 
+      format.json {render :json => {:user => @user,
         :holds => @holds}}
     end
   end
@@ -186,7 +190,7 @@ class MockController < ApplicationController
     end
     respond_to do |format|
       format.html
-      format.json {render :json => {:user => @user, 
+      format.json {render :json => {:user => @user,
         :checkouts => @checkouts}}
     end
   end
@@ -218,20 +222,20 @@ class MockController < ApplicationController
     end
     respond_to do |format|
       format.js
-      format.json {render :json => {:user => @check_user, 
+      format.json {render :json => {:user => @check_user,
         :message => @message,
         :errors => @errors,
         :targeted_records => @targeted_records,
         :checkouts => @checkouts}}
-    end 
+    end
   end
 
   def marc
     @item = Item.new params
     @marc = @item.marc
     respond_to do |format|
-      format.js 
-    end 
+      format.js
+    end
   end
 
   def fines
@@ -246,7 +250,7 @@ class MockController < ApplicationController
     end
     respond_to do |format|
       format.html
-      format.json {render :json => {:user => @user, 
+      format.json {render :json => {:user => @user,
         :fines => @fines}}
     end
   end
@@ -263,7 +267,7 @@ class MockController < ApplicationController
     end
     respond_to do |format|
       format.html
-      format.json {render :json => {:user => @user, 
+      format.json {render :json => {:user => @user,
         :payments => @payments}}
     end
   end
@@ -279,7 +283,7 @@ class MockController < ApplicationController
       return
     end
     respond_to do |format|
-      format.json {render :json => {:user => @user, 
+      format.json {render :json => {:user => @user,
         :lists => @lists}}
     end
   end
@@ -296,7 +300,7 @@ class MockController < ApplicationController
     end
     respond_to do |format|
       format.html
-      format.json {render :json => {:user => @user, 
+      format.json {render :json => {:user => @user,
         :preferences => @preferences}}
     end
   end
@@ -311,7 +315,7 @@ class MockController < ApplicationController
     end
     respond_to do |format|
       format.html
-      format.json {render :json => {:user => @user, 
+      format.json {render :json => {:user => @user,
         :preferences => @preferences}}
     end
   end
@@ -326,7 +330,7 @@ class MockController < ApplicationController
       @preferences = 'bad login'
     end
     respond_to do |format|
-      format.json {render :json => {:user => @user, 
+      format.json {render :json => {:user => @user,
         :preferences => @preferences}}
     end
   end
@@ -340,24 +344,24 @@ class MockController < ApplicationController
         @message = confirmation[0]
         @preferences = confirmation[1]
         @user = confirmation[2]
-        set_cookies(@user) 
+        set_cookies(@user)
       else
         @preferences = 'bad login'
         @message = 'bad login'
         @user = @check_user
       end
       respond_to do |format|
-        format.json {render :json => {:message => @message, :user => @user, 
+        format.json {render :json => {:message => @message, :user => @user,
           :preferences => @preferences}}
       end
     else
        @message = 'password required'
        respond_to do |format|
-        format.json {render :json => { 
+        format.json {render :json => {
           :message => @message}}
         end
     end
-  end 
+  end
 
 
 end

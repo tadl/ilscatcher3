@@ -1,8 +1,9 @@
 class Search
 	require 'open-uri'
 	include ActiveModel::Model
-	attr_accessor :query, :sort, :qtype, :fmt, :loc, :page, :facet, :availability, :layout, :shelving_location, :list_id, :subjects, :series, :authors, :genres
-  
+	attr_accessor :query, :sort, :qtype, :fmt, :loc, :page, :facet, :availability,
+								:layout, :shelving_location, :list_id, :subjects, :series,
+								:authors, :genres
 
 	  def initialize args
       args.each do |k,v|
@@ -20,7 +21,7 @@ class Search
   	end
 
     def grid_active
-      if self.layout == 'grid' 
+      if self.layout == 'grid'
         active_check = 'active'
       else
         active_check = nil
@@ -42,7 +43,7 @@ class Search
       path = ''
       if self
         if !self.query.nil?
-  		    path = '?query=' + self.query 
+  		    path = '?query=' + self.query
         else
           path = '?query='
         end
@@ -87,7 +88,7 @@ class Search
       elsif facet_type == 'authors'
         path = path + '&authors[]=' +  URI::encode(facet)
       end
-      return path 
+      return path
     end
 
     def search_path_minus_selected_facet(facet_type, facet)
@@ -158,25 +159,25 @@ class Search
       next_page['layout'] = self.layout unless self.layout.nil?
       next_page['shelving_location'] = self.shelving_location unless self.shelving_location.nil?
       next_page['list_id'] = self.list_id unless self.list_id.nil?
-      
+
       next_page['subjects'] = Array.new
       self.subjects.each do |f|
         f = URI::encode(f)
         next_page['subjects'] = next_page['subjects'].push(f)
       end unless self.subjects.nil?
-      
+
       next_page['genres'] = Array.new
       self.genres.each do |f|
         f = URI::encode(f)
         next_page['genres'] = next_page['genres'].push(f)
       end unless self.genres.nil?
-      
+
       next_page['series'] = Array.new
       self.series.each do |f|
           f = URI::encode(f)
         next_page['series'] = next_page['series'].push(f)
       end unless self.series.nil?
-      
+
       next_page['authors'] = Array.new
       self.authors.each do |f|
         f = URI::encode(f)
@@ -188,7 +189,7 @@ class Search
 
 
   	def results
-      url = 'http://elastic-evergreen.herokuapp.com/main/index.json?query=' + self.query
+      url = 'https://elastic-evergreen.herokuapp.com/main/index.json?query=' + self.query
       url = url + '&page=' + self.page unless self.page.nil?
       url = url + '&search_type=' + self.qtype unless self.qtype.nil?
       url = url + '&format_type=' + self.fmt unless self.fmt.nil?
@@ -266,14 +267,14 @@ class Search
       series_facets = process_facets('series', series_raw)
       author_facets = process_facets('authors', author_raw)
       facets = [subject_facets, series_facets, genre_facets, author_facets]
-      if results.size > 48
+      if results.size > 24
         more_resulsts = true
       else
         more_resulsts = false
       end
-      return results.first(48), facets, more_resulsts
-  	end	
-	
+      return results.first(24), facets, more_resulsts
+  	end
+
 
 
 	def process_facets(facet_name, facet_group)
@@ -283,7 +284,7 @@ class Search
     compact_subjects.each do |s|
       filtered_subjects[s] = 0
       facet_group.each do |sub|
-        if sub == s 
+        if sub == s
           filtered_subjects[s] += 1
         end
       end
@@ -315,6 +316,7 @@ class Search
       location_available = 0
       location_total = 0
       availability.each do |a|
+				all_total = all_total + 1
         if a["status"] == "Available" || a["status"] == "Reshelving"
           all_available = all_available + 1
         end
@@ -326,15 +328,15 @@ class Search
             location_total = location_total + 1
           end
         else
-          location_total = nil
-          location_available = nil
+          location_total = all_total
+          location_available = all_available
         end
-          all_total = all_total + 1
+
       end
       call_number = availability[0]["call_number"] rescue nil
     else
       call_number = nil
-      location_available = nil 
+      location_available = nil
       location_total = nil
       all_available = nil
       all_total = nil
@@ -348,7 +350,7 @@ class Search
 
   def code_to_location(location_code)
     location = ''
-    if location_code == '22' || location = nil
+    if location_code == '22' || location == nil
       location = ''
     elsif location_code == '23'
       location = 'TADL-WOOD'
@@ -363,8 +365,8 @@ class Search
     elsif location_code == '28'
       location = 'TADL-EBB'
     end
-    return location 
+    return location
   end
 
- 
+
 end

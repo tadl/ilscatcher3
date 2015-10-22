@@ -1,7 +1,11 @@
 class Item
 	include ActiveModel::Model
 	require 'open-uri'
-	attr_accessor :id, :loc, :author, :title, :abstract, :contents, :image, :format_type, :record_year, :publisher, :publication_place, :isbn, :physical_description, :eresource, :copies, :copies_on_shelf
+	attr_accessor :id, :loc, :author, :title, :abstract, :contents, :image,
+								:format_type, :record_year, :publisher, :publication_place,
+								:isbn, :physical_description, :eresource, :copies,
+								:copies_on_shelf, :all_copies_available, :all_copies_total,
+								:loc_copies_total, :loc_copies_available
 
 	def initialize args
 		if args['id']
@@ -46,7 +50,7 @@ class Item
 			:abstract => detail.at('td:contains("Summary, etc.:")').try(:next_element).try(:text).try(:strip),
 			:contents => detail.at('td:contains("Formatted Contents Note:")').try(:next_element).try(:text).try(:strip),
 			:id => id,
-			:availability_scope => detail.css('meta[@property="seller"]').map {|i| i.attr('content')}, 
+			:availability_scope => detail.css('meta[@property="seller"]').map {|i| i.attr('content')},
 			:copies_available => detail.css('meta[@property="offerCount"]').map {|i| i.attr('content')},
 			:copies_total => clean_totals_holds(detail.at('h2:contains("Current holds")').try(:next_element).try(:text))[1],
 			:holds => clean_totals_holds(detail.at('h2:contains("Current holds")').try(:next_element).try(:text))[0],
@@ -99,11 +103,11 @@ class Item
       		if copy[:status] == "Available"
         		copies_on_shelf.push(copy)
       		end
-      	
+
       		if copy[:status] == "Reshelving"
         		copy[:shelving_location] = copy[:shelving_location] + " (Reshelving)"
         		copies_on_shelf.push(copy)
-      		end  
+      		end
     	end
     	instance_variable_set("@copies", copies)
     	instance_variable_set("@copies_on_shelf", copies_on_shelf)
