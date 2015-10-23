@@ -1,3 +1,4 @@
+<% unless facet.subfacets.count == 0%>
 <div class="list-group">
     <h4 class="list-group-item list-group-item-info active"><%= facet.type %></h4>
     <% facet.subfacets.each do |sub| %>
@@ -8,3 +9,4 @@
          <% end %>
     <% end %>
 </div>
+<% end %>

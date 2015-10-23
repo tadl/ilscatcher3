@@ -67,9 +67,9 @@
         </div>
         <div class="col-lg-2 col-xs-6">
             <div class="pull-right padbot">
-                <% if @search.search_path_minus_layout != '' %>
-                    <a href="search<%= @search.search_path_minus_layout %>&layout=list"><button class="<%= @search.list_active %> btn btn-default btn-xs large glyphicon glyphicon-list"></button></a>
-                    <a href="search<%= @search.search_path_minus_layout %>&layout=grid"><button class="<%= @search.grid_active %> btn btn-default btn-xs large glyphicon glyphicon-th"></button></a>
+                <% if @search.search_path != '' %>
+                    <a href="search<%= @search.search_path_with_facets %>&layout=list"><button class="<%= @search.list_active %> btn btn-default btn-xs large glyphicon glyphicon-list"></button></a>
+                    <a href="search<%= @search.search_path_with_facets %>&layout=grid"><button class="<%= @search.grid_active %> btn btn-default btn-xs large glyphicon glyphicon-th"></button></a>
                 <% end %>
             </div>
         </div>

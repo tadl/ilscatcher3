@@ -51,7 +51,6 @@ class Search
   		  path += '&loc=' + self.loc unless self.loc.nil?
         path += '&fmt=' + self.fmt unless self.fmt.nil?
   		  path += '&availability=' + self.availability unless self.availability.nil?
-        path += '&layout=' + self.layout unless self.layout.nil?
   		end
       return path
   	end
@@ -59,34 +58,35 @@ class Search
     def search_path_with_facets
       path = self.search_path
       self.subjects.each do |f|
-        f = URI::encode(f)
+        f = URI::encode(f, Regexp.new("[^#{URI::PATTERN::UNRESERVED}]"))
         path += '&subjects[]=' + f
       end unless self.subjects.nil?
       self.genres.each do |f|
-        f = URI::encode(f)
+        f = URI::encode(f, Regexp.new("[^#{URI::PATTERN::UNRESERVED}]"))
         path += '&genres[]=' + f
       end unless self.genres.nil?
       self.series.each do |f|
-        f = URI::encode(f)
+        f = URI::encode(f, Regexp.new("[^#{URI::PATTERN::UNRESERVED}]"))
         path += '&series[]=' + f
       end unless self.series.nil?
       self.authors.each do |f|
-        f = URI::encode(f)
+        f = URI::encode(f, Regexp.new("[^#{URI::PATTERN::UNRESERVED}]"))
         path += '&authors[]=' + f
       end unless self.authors.nil?
       return path
     end
 
     def search_path_with_new_facet(facet_type, facet)
+			facet = URI.encode(facet, Regexp.new("[^#{URI::PATTERN::UNRESERVED}]"))
       path = self.search_path_with_facets
       if facet_type == 'subjects'
-        path = path + '&subjects[]=' +  URI::encode(facet)
+        path = path + '&subjects[]=' +  facet
       elsif facet_type == 'genres'
-        path = path + '&genres[]=' +  URI::encode(facet)
+        path = path + '&genres[]=' +  facet
       elsif facet_type == 'series'
-        path = path + '&series[]=' +  URI::encode(facet)
+        path = path + '&series[]=' +  facet
       elsif facet_type == 'authors'
-        path = path + '&authors[]=' +  URI::encode(facet)
+        path = path + '&authors[]=' +  facet
       end
       return path
     end
@@ -94,16 +94,16 @@ class Search
     def search_path_minus_selected_facet(facet_type, facet)
       path = self.search_path
       self.subjects.each do |f|
-        path = path + '&subjects[]=' +  URI::encode(f) unless f == facet and facet_type == 'subjects'
+        path = path + '&subjects[]=' +  URI::encode(f, Regexp.new("[^#{URI::PATTERN::UNRESERVED}]")) unless f == facet and facet_type == 'subjects'
       end unless self.subjects.nil?
       self.genres.each do |f|
-        path = path + '&genres[]=' +  URI::encode(f) unless f == facet and facet_type == 'genres'
+        path = path + '&genres[]=' +  URI::encode(f, Regexp.new("[^#{URI::PATTERN::UNRESERVED}]")) unless f == facet and facet_type == 'genres'
       end unless self.genres.nil?
       self.series.each do |f|
-        path = path + '&series[]=' +  URI::encode(f) unless f == facet and facet_type == 'series'
+        path = path + '&series[]=' +  URI::encode(f, Regexp.new("[^#{URI::PATTERN::UNRESERVED}]")) unless f == facet and facet_type == 'series'
       end unless self.series.nil?
       self.authors.each do |f|
-        path = path + '&authors[]=' +  URI::encode(f) unless f == facet and facet_type == 'authors'
+        path = path + '&authors[]=' +  URI::encode(f, Regexp.new("[^#{URI::PATTERN::UNRESERVED}]")) unless f == facet and facet_type == 'authors'
       end unless self.authors.nil?
       return path
     end
@@ -114,33 +114,12 @@ class Search
       return link
     end
 
-    def search_path_minus_layout
-      path = self.search_path
-      path = path.split('&layout')[0] unless self.layout.nil?
-      self.facet.each do |f|
-        f = URI::encode(f)
-        path += '&facet[]=' + f
-      end unless self.facet.nil?
+    def search_path_with_layout
+      path = search_path_with_facets
+      path += '&layout=' + self.layout unless self.layout.nil?
       return path
     end
 
-    def search_path_minus_layout_with_page
-      path = 'search_'
-      path += self.search_path_minus_layout
-      path += '&page=' + self.page unless self.page.nil?
-      return path
-    end
-
-  	def search_path_with_page_facet
-  	  path = self.search_path
-  		path += '&page=' + self.page unless self.page.nil?
-  		self.facet.each do |f|
-        f = URI::encode(f)
-  			path += '&facet[]=' + f
-  		end unless self.facet.nil?
-      path = URI::encode(path)
-  		return path
-  	end
 
     def next_page_params
       if self.page.nil?
@@ -162,25 +141,25 @@ class Search
 
       next_page['subjects'] = Array.new
       self.subjects.each do |f|
-        f = URI::encode(f)
+        f = URI::encode(f, Regexp.new("[^#{URI::PATTERN::UNRESERVED}]"))
         next_page['subjects'] = next_page['subjects'].push(f)
       end unless self.subjects.nil?
 
       next_page['genres'] = Array.new
       self.genres.each do |f|
-        f = URI::encode(f)
+        f = URI::encode(f, Regexp.new("[^#{URI::PATTERN::UNRESERVED}]"))
         next_page['genres'] = next_page['genres'].push(f)
       end unless self.genres.nil?
 
       next_page['series'] = Array.new
       self.series.each do |f|
-          f = URI::encode(f)
+          f = URI::encode(f, Regexp.new("[^#{URI::PATTERN::UNRESERVED}]"))
         next_page['series'] = next_page['series'].push(f)
       end unless self.series.nil?
 
       next_page['authors'] = Array.new
       self.authors.each do |f|
-        f = URI::encode(f)
+        f = URI::encode(f, Regexp.new("[^#{URI::PATTERN::UNRESERVED}]"))
         next_page['authors'] = next_page['authors'].push(f)
       end unless self.authors.nil?
 
@@ -189,7 +168,8 @@ class Search
 
 
   	def results
-      url = 'https://elastic-evergreen.herokuapp.com/main/index.json?query=' + self.query
+			url = 'https://elastic-evergreen.herokuapp.com/main/index.json?query=' + self.query
+      # url = 'http://cal.lib.tadl.org:4000/main/index.json?query=' + self.query
       url = url + '&page=' + self.page unless self.page.nil?
       url = url + '&search_type=' + self.qtype unless self.qtype.nil?
       url = url + '&format_type=' + self.fmt unless self.fmt.nil?
@@ -199,22 +179,22 @@ class Search
       end
       if self.subjects
         self.subjects.each do |s|
-          url = url + '&subjects[]=' +  URI::encode(s)
+          url = url + '&subjects[]=' + URI.encode(s, Regexp.new("[^#{URI::PATTERN::UNRESERVED}]"))
         end
       end
       if self.genres
         self.genres.each do |s|
-          url = url + '&genres[]=' +  URI::encode(s)
+          url = url + '&genres[]=' +  URI.encode(s, Regexp.new("[^#{URI::PATTERN::UNRESERVED}]"))
         end
       end
       if self.series
         self.series.each do |s|
-          url = url + '&series[]=' +  URI::encode(s)
+          url = url + '&series[]=' +  URI.encode(s, Regexp.new("[^#{URI::PATTERN::UNRESERVED}]"))
         end
       end
       if self.authors
         self.authors.each do |s|
-          url = url + '&authors[]=' +  URI::encode(s)
+          url = url + '&authors[]=' +  URI.encode(s, Regexp.new("[^#{URI::PATTERN::UNRESERVED}]"))
         end
       end
       request = JSON.parse(open(url).read) rescue nil
@@ -279,7 +259,7 @@ class Search
 
 	def process_facets(facet_name, facet_group)
     facets = Array.new
-    compact_subjects = facet_group.compact
+    compact_subjects = facet_group.compact.reject { |c| c.empty? }
     filtered_subjects = Hash.new
     compact_subjects.each do |s|
       filtered_subjects[s] = 0
