@@ -141,25 +141,21 @@ class Search
 
       next_page['subjects'] = Array.new
       self.subjects.each do |f|
-        f = URI::encode(f, Regexp.new("[^#{URI::PATTERN::UNRESERVED}]"))
         next_page['subjects'] = next_page['subjects'].push(f)
       end unless self.subjects.nil?
 
       next_page['genres'] = Array.new
       self.genres.each do |f|
-        f = URI::encode(f, Regexp.new("[^#{URI::PATTERN::UNRESERVED}]"))
         next_page['genres'] = next_page['genres'].push(f)
       end unless self.genres.nil?
 
       next_page['series'] = Array.new
       self.series.each do |f|
-          f = URI::encode(f, Regexp.new("[^#{URI::PATTERN::UNRESERVED}]"))
         next_page['series'] = next_page['series'].push(f)
       end unless self.series.nil?
 
       next_page['authors'] = Array.new
       self.authors.each do |f|
-        f = URI::encode(f, Regexp.new("[^#{URI::PATTERN::UNRESERVED}]"))
         next_page['authors'] = next_page['authors'].push(f)
       end unless self.authors.nil?
 
@@ -168,8 +164,8 @@ class Search
 
 
   	def results
-			url = 'https://elastic-evergreen.herokuapp.com/main/index.json?query=' + self.query
-      # url = 'http://cal.lib.tadl.org:4000/main/index.json?query=' + self.query
+			# url = 'https://elastic-evergreen.herokuapp.com/main/index.json?query=' + self.query
+      url = 'http://cal.lib.tadl.org:4000/main/index.json?query=' + self.query
       url = url + '&page=' + self.page unless self.page.nil?
       url = url + '&search_type=' + self.qtype unless self.qtype.nil?
       url = url + '&format_type=' + self.fmt unless self.fmt.nil?
