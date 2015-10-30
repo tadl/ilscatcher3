@@ -4,6 +4,7 @@ var ready;
 
 ready = function() {
     /* for front page carousels */
+    $.getScript('/assets/salvattore.min.js');
     $(".tall-carousel").owlCarousel({
         items : 9,
         paginationNumbers : true,
@@ -42,11 +43,10 @@ ready = function() {
     hold_management_binds();
     checkout_management_binds();
     item_loading_binds();
-
 };
 
 $(document).ready(ready);
-$(document).on('page:load', ready);
+
 
 
 function showLoading() {
