@@ -268,7 +268,7 @@ class Search
     facet_raw = {
       :type => facet_name.capitalize,
       :type_raw => facet_name,
-      :subfacets => filtered_subjects.sort_by {|_key, value| value}.reverse.to_h.keys.first(10)
+      :subfacets => filtered_subjects.sort_by {|_key, value| value}.reverse.to_h.keys.first(10).sort_by { |k| k.downcase }
     }
     facet = Facet.new facet_raw
     return facet
