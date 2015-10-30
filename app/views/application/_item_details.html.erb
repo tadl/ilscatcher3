@@ -13,7 +13,13 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-xs-12 col-lg-12"><p><%= item.author %></p></div>
+            <div class="col-xs-12 col-lg-12">
+                <% if !item.author.nil? %>
+                    <p>
+                        <a href="<%= author_search_link(item.author, @search) %>"> <%= item.author %> </a>
+                    </p>
+                <% end %>    
+            </div>
         </div>
         <div class="row">
             <div class="col-xs-12 col-md-8 col-lg-9">

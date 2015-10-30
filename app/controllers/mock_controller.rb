@@ -63,6 +63,7 @@ class MockController < ApplicationController
 
   def details
     @item = Item.new params
+    @search = Search.new params
     @copies_on_shelf = @item.copies_on_shelf
     @copies_all = @item.copies
     if params["fetching"] == 'true'

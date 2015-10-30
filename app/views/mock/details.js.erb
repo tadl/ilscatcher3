@@ -1,10 +1,10 @@
 <% if !@fetching %>
 	$.fancybox.open({ 
 	    'overlayOpacity': 0.1,
-	    'content' : "<div class='container' style='width: 95%; max-width: 960px;'><%= escape_javascript(render 'details', :locals => {:item => @item}) %></div>"
+	    'content' : "<div class='container' style='width: 95%; max-width: 960px;'><%= escape_javascript(render 'details', :locals => {:item => @item, :search => @search}) %></div>"
 	});
 <% else %>
-	$('#copy_container').html("<%= escape_javascript(render 'detail_tabs', :locals => {:item => @item}) %>")
+	$('#copy_container').html("<%= escape_javascript(render 'detail_tabs', :locals => {:item => @item, :search => @search}) %>")
 	$('#goodreads_review').html("<%= escape_javascript(goodreads_review(@item.goodreads)) %>")
 	$.fancybox.update()
     $.fancybox.reposition()

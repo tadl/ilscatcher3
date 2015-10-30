@@ -34,4 +34,16 @@ module ApplicationHelper
             return review.html_safe
         end
     end
+
+    def author_search_link(author, search)
+        if author && author != ''
+            path = request.protocol + request.host_with_port + '/search?query=' + author
+            path += '&qtype=author'
+            path += '&loc=' + search.loc unless search.loc.nil?
+            return path
+        else
+            return nil
+        end 
+    end
+
 end
