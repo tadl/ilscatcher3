@@ -51,6 +51,10 @@ class Search
   		  path += '&loc=' + self.loc unless self.loc.nil?
         path += '&fmt=' + self.fmt unless self.fmt.nil?
   		  path += '&availability=' + self.availability unless self.availability.nil?
+        path += '&sort=' + self.sort unless self.sort.nil?
+        self.shelving_location.each do |s|
+          path += 'shelving_location[]' + s
+        end unless  self.shelving_location.nil?
   		end
       return path
   	end
@@ -138,6 +142,7 @@ class Search
       next_page['layout'] = self.layout unless self.layout.nil?
       next_page['shelving_location'] = self.shelving_location unless self.shelving_location.nil?
       next_page['list_id'] = self.list_id unless self.list_id.nil?
+      next_page['sort'] = self.sort unless self.sort.nil?
 
       next_page['subjects'] = Array.new
       self.subjects.each do |f|
@@ -159,17 +164,24 @@ class Search
         next_page['authors'] = next_page['authors'].push(f)
       end unless self.authors.nil?
 
+      next_page['shelving_location'] = Array.new
+      self.shelving_location.each do |f|
+        next_page['shelving_location'] = next_page['shelving_location'].push(f)
+      end unless self.shelving_location.nil?
+
       return next_page
     end
 
 
   	def results
-			url = 'https://elastic-evergreen.herokuapp.com/main/index.json?query=' + self.query
-      # url = 'http://cal.lib.tadl.org:4000/main/index.json?query=' + self.query
+			# url = 'https://elastic-evergreen.herokuapp.com/main/index.json?query=' + self.query
+      url = 'http://cal.lib.tadl.org:4000/main/index.json?query=' + self.query
       url = url + '&page=' + self.page unless self.page.nil?
       url = url + '&search_type=' + self.qtype unless self.qtype.nil?
       url = url + '&format_type=' + self.fmt unless self.fmt.nil?
       url = url + '&location_code=' + self.loc unless  self.loc.nil?
+      url = url + '&sort=' + self.sort unless self.sort.nil?
+
       if self.availability_check
         url = url + '&available=true'
       end
@@ -193,6 +205,11 @@ class Search
           url = url + '&authors[]=' +  URI.encode(s, Regexp.new("[^#{URI::PATTERN::UNRESERVED}]"))
         end
       end
+      if self.shelving_location
+        self.shelving_location.each do |s|
+          url = url + '&shelving_location[]=' +  s
+        end
+      end
       request = JSON.parse(open(url).read) rescue nil
   		results = Array.new
       genres_raw = Array.new
@@ -203,8 +220,9 @@ class Search
         location = self.loc rescue ''
         holdings = process_availability(r['holdings'], location)
         item_raw ={
-          :title => r["title"],
+          :title => r["title_display"],
           :author => r["author"],
+          :author_other => r["author_other"],
           :holdings => r['holdings'],
           :all_copies_available => holdings[1],
           :all_copies_total => holdings[2],
@@ -222,6 +240,9 @@ class Search
           :publication_place => r["publication_location"],
           :physical_description => r["physical_description"],
           :isbn => r["isbn"][0],
+          :subjects => r["subjects"],
+          :genres => r["genres"],
+          :series => r["series"],
         }
         item = Result.new item_raw
         results = results.push(item)
