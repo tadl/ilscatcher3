@@ -174,8 +174,8 @@ class Search
 
 
   	def results
-			# url = 'https://elastic-evergreen.herokuapp.com/main/index.json?query=' + self.query
-      url = 'http://cal.lib.tadl.org:4000/main/index.json?query=' + self.query
+			url = 'https://elastic-evergreen.herokuapp.com/main/index.json?query=' + self.query
+      # url = 'http://cal.lib.tadl.org:4000/main/index.json?query=' + self.query
       url = url + '&page=' + self.page unless self.page.nil?
       url = url + '&search_type=' + self.qtype unless self.qtype.nil?
       url = url + '&format_type=' + self.fmt unless self.fmt.nil?
