@@ -4,36 +4,24 @@ class MockController < ApplicationController
     respond_to :html, :json, :js
 
   def index
-
-    if Rails.cache.exist?('music_list')
-        @music_list = Rails.cache.read('music_list')
-    else
-        musicquery = {"query" => "", "sort" => "createDESC",  "loc" => "23", "shelving_location" => ['686'], "availability" => "on"}
+        musicquery = {"sort" => "createDESC",  "loc" => "23", "qtype" => "shelf", "shelving_location" => ['686'], "availability" => "on"}
         @musiclist = Search.new musicquery
         results = @musiclist.results
         @music_list = results[0]
-        Rails.cache.write('music_list', @music_list, expires_in: 10.minutes)
-    end
 
-    if Rails.cache.exist?('movie_list')
-        @movie_list = Rails.cache.read('movie_list')
-    else
-        moviequery = {"query" => "", "sort" => "createDESC", "loc" => "23", "shelving_location" => ['682'], "availability" => "on"}
+
+
+        moviequery = {"sort" => "createDESC",  "loc" => "23", "qtype" => "shelf", "shelving_location" => ['682'], "availability" => "on"}
         @movielist = Search.new moviequery
         results = @movielist.results
         @movie_list = results[0]
-        Rails.cache.write('movie_list', @movie_list, expires_in: 10.minutes)
-    end
 
-    if Rails.cache.exist?('game_list')
-        @games_list = Rails.cache.read('game_list')
-    else
-        gamesquery = {"query" => "", "sort" => "createDESC", "loc" => "23", "shelving_location" => ['777'], "availability" => "on"}
+
+        gamesquery = {"sort" => "createDESC",  "loc" => "23", "qtype" => "shelf", "shelving_location" => ['777'], "availability" => "on"}
         @gameslist = Search.new gamesquery
         results = @gameslist.results
         @games_list = results[0]
-        Rails.cache.write('game_list', @games_list, expires_in: 10.minutes)
-    end
+
   end
 
 
