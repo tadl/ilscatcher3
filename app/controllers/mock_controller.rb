@@ -4,24 +4,9 @@ class MockController < ApplicationController
     respond_to :html, :json, :js
 
   def index
-        musicquery = {"sort" => "createDESC",  "loc" => "23", "qtype" => "shelf", "shelving_location" => ['686'], "availability" => "on"}
-        @musiclist = Search.new musicquery
-        results = @musiclist.results
-        @music_list = results[0]
-
-
-
-        moviequery = {"sort" => "createDESC",  "loc" => "23", "qtype" => "shelf", "shelving_location" => ['682'], "availability" => "on"}
-        @movielist = Search.new moviequery
-        results = @movielist.results
-        @movie_list = results[0]
-
-
-        gamesquery = {"sort" => "createDESC",  "loc" => "23", "qtype" => "shelf", "shelving_location" => ['777'], "availability" => "on"}
-        @gameslist = Search.new gamesquery
-        results = @gameslist.results
-        @games_list = results[0]
-
+    @music_list = Rails.cache.read("music_list")
+    @movie_list = Rails.cache.read('movie_list')
+    @games_list = Rails.cache.read('game_list')
   end
 
 
