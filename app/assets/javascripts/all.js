@@ -15,7 +15,7 @@ ready = function() {
         itemsScaleUp : false,
     });
     $(".square-carousel").owlCarousel({
-        items : 7,
+        items : 6,
         paginationNumbers : true,
         itemsDesktop : [1199,5],
         itemsDesktopSmall : [980,3],
