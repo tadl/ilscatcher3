@@ -60,12 +60,12 @@ body.list_checkouts {
 }
 @media screen and (min-width:768px) and (max-width: 991px){
     #grid[data-columns]::before {
-        content: '3 .col-sm-4';
+        content: '4 .col-sm-3';
     }
 }
 @media screen and (min-width:992px) and (max-width: 9999px){
     #grid[data-columns]::before {
-        content: '4 .col-md-3';
+        content: '6 .col-md-2';
     }
 }
 

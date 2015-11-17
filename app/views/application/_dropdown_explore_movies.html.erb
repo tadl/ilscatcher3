@@ -5,14 +5,10 @@
     <ul class="dropdown-menu" aria-labelledby="exploreMovies">
     <% #these can probably be automatically generated %>
         <li>
-            <%= link_to '/mock/search?query=&sort=create_date.descending&fmt=g&loc=22&shelving_location=682&layout=grid', :remote => false, :class => 'item-link' do %>
-                HOT DVDs
-            <% end %>
+            <%= link_to '/mock/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=682&layout=grid', :remote => false, :class => 'item-link' do %> HOT DVDs <% end %>
         </li>
         <li>
-            <%= link_to '/mock/search?query=&sort=create_date.descending&fmt=g&loc=22&shelving_location=778,687&layout=grid', :remote => false, :class => 'item-link' do %>
-                TC Film Festival
-            <% end %>
+            <%= link_to '/mock/search?query=&sort=create_date.descending&fmt=g&loc=22&shelving_location=778,687&layout=grid', :remote => false, :class => 'item-link' do %> TC Film Festival <% end %>
         </li>
     </ul>
 </div>

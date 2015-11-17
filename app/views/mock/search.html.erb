@@ -3,19 +3,14 @@
     <%= @got_it %>
 </div>
 <div class="row">
-    <div id="facets" class="col-xs-12 col-sm-4 col-md-3 col-lg-3">
-        <% if @search.query && @search.query != '' %>
-            <div id="melcat_link">
-                <a href='<%= @search.melcat_link %>'>
-                    <img src="<%= asset_path('button-search-melcat.png') %>" style="width: 100%" />
-                </a>
-            </div>
-        <% end %>
+    <div class="collapse" id="facets">
         <% @facets.each do |facet| %>
             <%= render 'facets', facet: facet %>
         <% end %>
     </div>
-    <div id="results" class="col-xs-12 col-sm-8 col-md-9 col-lg-9">
+</div>
+<div class="row">
+    <div id="results" class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
         <% if @search.list_active == "active" %>
             <%= render 'search_list', items: @items %>
         <% else %>
