@@ -40,6 +40,13 @@ ready = function() {
         return false;
     });
 
+    $('.selectpicker').on('change', function() {
+        this.form.submit();
+    })
+    $('#availability').on('change', function() {
+        this.form.submit();
+    })
+
     hold_management_binds();
     checkout_management_binds();
     item_loading_binds();
