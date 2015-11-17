@@ -219,12 +219,14 @@ class Search
       author_raw = Array.new
       request.each do |r|
         location = self.loc rescue ''
-        holdings = process_availability(r['holdings'], location)
+        holdings = process_holdings(r['holdings'], location)
+        availability_details = process_availability(r['holdings'], location)
         item_raw ={
           :title => r["title_display"],
           :author => r["author"],
           :author_other => r["author_other"],
           :holdings => r['holdings'],
+          :availability => availability_details,
           :all_copies_available => holdings[1],
           :all_copies_total => holdings[2],
           :loc_copies_available => holdings[3],
@@ -306,7 +308,7 @@ class Search
 
 
 
-	def process_availability(availability, location)
+	def process_holdings(availability, location)
     location_code = code_to_location(location)
    if availability != nil or availability != ''
       all_available = 0
@@ -342,6 +344,58 @@ class Search
     return call_number, all_available, all_total, location_available, location_total
 	end
 
+  def process_availability(availability, location)
+    
+    
+    #only look at available holdints
+    holdings = Array.new
+    only_available = availability.reject {|k| k['status'] != "Available" && k['status'] != "Reshelving"}
+    #create array of loactions with available copies
+    locations = Array.new
+    only_available.each do |l|
+      locations.push(l['circ_lib'])
+    end
+    # go through each unique location that has available copy
+    locations.uniq.each do |l|
+      #create hash that contains per location data
+      location_holdings = Hash.new
+      location_holdings['library'] = l
+      location_holdings['code'] = loaction_to_code(l)
+      #create array that contains available copies per each unique location
+      copies_per_location = Array.new
+      only_available.each do |i|
+        if i['circ_lib'] == l
+          copies_per_location.push(i)
+        end
+      end
+      #create array of each un
+      unique_shelves = Array.new
+      copies_per_location.each do |c|
+        unique_shelves.push(c['location'])
+      end
+      #go through each unique shelving location get count and call numbers
+      process_shelves = Array.new
+      unique_shelves.uniq.each do |s|
+        location_copies = Hash.new
+        call_numbers = Array.new
+        copy_count = 0
+        copies_per_location.each do |c|
+          if c['location'] == s
+            copy_count += 1  
+            call_numbers.push(c['call_number'])
+          end
+        end
+        location_copies['count'] = copy_count  
+        location_copies['shelf_location'] = s
+        location_copies['call_numbers'] = call_numbers.uniq
+        process_shelves.push(location_copies)
+      end
+      location_holdings['copies'] = process_shelves
+      holdings.push(location_holdings)
+    end
+    return holdings
+  end
+
   def clean_isbn(isbn)
     clean = isbn.strip
   end
@@ -364,6 +418,26 @@ class Search
       location = 'TADL-EBB'
     end
     return location
+  end
+
+  def loaction_to_code(location)
+    code = ''
+    if location == 'All' || location == nil
+      code = 22
+    elsif location == 'TADL-WOOD'
+      code = 23
+    elsif location == 'TADL-IPL'
+      code = 24
+    elsif location == 'TADL-KBL'
+      code = 25
+    elsif location == 'TADL-PCL'
+      code = 26
+    elsif location == 'TADL-FLPL'
+      code = 27
+    elsif location == 'TADL-EBB'
+      code = 28
+    end
+    return code
   end
 
 
