@@ -4,11 +4,18 @@
     </small>
     <ul class="dropdown-menu" aria-labelledby="exploreMovies">
     <% #these can probably be automatically generated %>
-        <li>
-            <%= link_to '/mock/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=682&layout=grid', :remote => false, :class => 'item-link' do %> HOT DVDs <% end %>
-        </li>
-        <li>
-            <%= link_to '/mock/search?query=&sort=create_date.descending&fmt=g&loc=22&shelving_location=778,687&layout=grid', :remote => false, :class => 'item-link' do %> TC Film Festival <% end %>
-        </li>
+        <li><%= link_to '/mock/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=682&layout=grid', :remote => false, :class => 'item-link' do %> HOT DVDs <% end %></li>
+        <li><%= link_to '/mock/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=687&layout=grid', :remote => false, :class => 'item-link' do %> New DVDs <% end %></li>
+        <li><%= link_to '/mock/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=778&layout=grid', :remote => false, :class => 'item-link' do %> TC Film Festival <% end %></li>
+        <li><%= link_to '/mock/search?query=&qtype=genre&sort=pubdateDESC&loc=23&fmt=g&genres[]=Family&layout=grid', :remote => false, :class => 'item-link' do %> Family <% end %></li>
+        <li><%= link_to '/mock/search?query=&qtype=genre&sort=pubdateDESC&loc=23&fmt=g&genres[]=Comedy&layout=grid', :remote => false, :class => 'item-link' do %> Comedy <% end %></li>
+        <li><%= link_to '/mock/search?query=&qtype=genre&sort=pubdateDESC&loc=23&fmt=g&genres[]=Documentary&layout=grid', :remote => false, :class => 'item-link' do %> Documentary <% end %></li>
+        <li><%= link_to '/mock/search?query=&qtype=genre&sort=pubdateDESC&loc=23&fmt=g&genres[]=Horror&layout=grid', :remote => false, :class => 'item-link' do %> Horror <% end %></li>
+        <li><%= link_to '/mock/search?query=&qtype=genre&sort=pubdateDESC&loc=23&fmt=g&genres[]=Music&layout=grid', :remote => false, :class => 'item-link' do %> Music <% end %></li>
+        <li><%= link_to '/mock/search?query=&qtype=genre&sort=pubdateDESC&loc=23&fmt=g&genres[]=Musical&layout=grid', :remote => false, :class => 'item-link' do %> Musical <% end %></li>
+        <li><%= link_to '/mock/search?query=&qtype=genre&sort=pubdateDESC&loc=23&fmt=g&genres[]=Romance&layout=grid', :remote => false, :class => 'item-link' do %> Romance <% end %></li>
+        <li><%= link_to '/mock/search?query=&qtype=genre&sort=pubdateDESC&loc=23&fmt=g&genres[]=Science%20Fiction&layout=grid', :remote => false, :class => 'item-link' do %> Science Fiction<% end %></li>
+        <li><%= link_to '/mock/search?query=&qtype=genre&sort=pubdateDESC&loc=23&fmt=g&genres[]=Television&layout=grid', :remote => false, :class => 'item-link' do %> Television <% end %></li>
+        <li><%= link_to '/mock/search?query=&qtype=genre&sort=pubdateDESC&loc=23&fmt=g&genres[]=Western&layout=grid', :remote => false, :class => 'item-link' do %> Western <% end %></li>
     </ul>
 </div>
