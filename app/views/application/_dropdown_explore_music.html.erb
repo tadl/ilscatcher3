@@ -3,12 +3,9 @@
         Explore <span class="caret"></span>
     </button>
     <ul class="dropdown-menu" aria-labelledby="exploreMusic">
-        <li><a href="#">Blues</a></li>
-        <li><a href="#">Jazz</a></li>
-        <li><a href="#">Rock</a></li>
-        <li><a href="#">Popular</a></li>
-        <li><a href="#">House</a></li>
-        <li><a href="#">Electro</a></li>
-        <li><a href="#">Dubstep</a></li>
+        <li><%= link_to '/mock/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=684&layout=grid', :remote => false, :class => 'item-link' do %> HOT Music <% end %></li>
+        <li><%= link_to '/mock/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=686&layout=grid', :remote => false, :class => 'item-link' do %> New Music <% end %></li>
     </ul>
 </div>
+
+
