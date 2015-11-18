@@ -350,7 +350,7 @@ class Search
     #only look at available holdints
     holdings = Array.new
     only_available = availability.reject {|k| k['status'] != "Available" && k['status'] != "Reshelving"}
-    #create array of loactions with available copies
+    #create array of locations with available copies
     locations = Array.new
     only_available.each do |l|
       locations.push(l['circ_lib'])
@@ -360,7 +360,7 @@ class Search
       #create hash that contains per location data
       location_holdings = Hash.new
       location_holdings['library'] = l
-      location_holdings['code'] = loaction_to_code(l)
+      location_holdings['code'] = location_to_code(l)
       #create array that contains available copies per each unique location
       copies_per_location = Array.new
       only_available.each do |i|
@@ -420,7 +420,7 @@ class Search
     return location
   end
 
-  def loaction_to_code(location)
+  def location_to_code(location)
     code = ''
     if location == 'All' || location == nil
       code = 22
