@@ -17,12 +17,26 @@ module ApplicationHelper
 
 
     def location_map(value, option_array)
+        response = nil
         option_array.each do |option|
             if value.to_s == option[1].to_s
-                return option[0]
+                response = option[0]
             end
         end
+        if !response.nil?
+            return response
+        else
+            return "probably KCL"
+        end
     end
+
+    # def reverse_location_map(value, option_array)
+    #     option_array.each do |option|
+    #         if value.to_s == option[0].to_s
+    #             return option[1]
+    #         end
+    #     end
+    # end
 
     def goodreads_review(review_data)
         if  !review_data || !review_data["gr_id"]

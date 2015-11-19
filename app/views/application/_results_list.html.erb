@@ -38,6 +38,18 @@
                 <% elsif !item.contents.blank? %>
                     <p><%= truncate(item.contents, length: 400, separator: ' ') %></p>
                 <% end %>
+                    <% if !item.eresource && item.loc_copies_available >= 1 %>
+                        <p><%= render 'list_holdings', holdings: item.availability, location: @search.loc %></p>
+                    <% else %>
+                        <% if item.all_copies_available >= 1 %>
+                            <h4>Sorry No Copies Available at <%= location_map(@search.loc, @location_options) %></h4> 
+                            Be have <%= item.all_copies_total %> available elsewhere in the district. Place a hold or see all copies. 
+                        <% end %>
+                        <% if item.all_copies_available < 1 && !item.eresource %>
+                            <h4>Sorry No Copies Available</h4> 
+                            Place a hold or check back later.
+                        <% end %>
+                    <% end %>
             </div>
             <div class="col-lg-3 col-sm-4 col-xs-12">
                 <div>
@@ -72,8 +84,14 @@
                     <% end %>
                 </div>
                 <% if !item.call_number.nil? %><p class="bg-primary" style="padding-left:5px;"><%= item.call_number %></p><% end %>
-                <% if !item.loc_copies_available.nil? %>
-                  <%= item.loc_copies_available %> Available at <%= location_map(@search.loc, @location_options) %>
+                <% if item.eresource.nil? %>
+                    <%= item.loc_copies_available %> Currently available at <%= location_map(@search.loc, @location_options) %>
+                <% else %>
+                    <a href="<%= item.eresource %>" target="_blank">
+                        <button class="btn btn-success">
+                            View Online / Download
+                        </button>
+                    </a>
                 <% end %>
                 <%= link_to 'details.js', data:{params: item.create_params}, :method=> :post, :remote => true do %>
                     <p><button class="btn btn-info details-button">Details</button></p>

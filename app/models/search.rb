@@ -234,7 +234,7 @@ class Search
           :id => r["id"],
           :abstract => r["abstract"],
           :contents => r["contents"],
-          :eresource => r["links"][0],
+          :eresource => process_eresource(r["links"][0]),
           :format_type => r["type_of_resource"],
           :record_year => r["record_year"],
           :call_number => holdings[0],
@@ -306,6 +306,13 @@ class Search
     end rescue false
   end
 
+  def process_eresource(url)
+    if url.nil? || (!url.include? 'http://via.tadl.org')
+      return nil
+    else
+      return url
+    end
+  end
 
 
 	def process_holdings(availability, location)
