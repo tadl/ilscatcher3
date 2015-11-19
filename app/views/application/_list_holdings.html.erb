@@ -1,6 +1,6 @@
 <% if location == '22' || location == nil || location == '' %>
 	<% holdings.each do |h| %>
-		<h4>Copies Availble at <%= location_map(h['code'], @location_options)  %></h4>
+		<h4>Copies Available at <%= location_map(h['code'], @location_options)  %></h4>
 		<% h['copies'].each do |c| %>
 			<%= c['count'] %> availble in <%= c['shelf_location'] %> with call number(s): 
 			<% c['call_numbers'].each do |n| %>
@@ -12,7 +12,7 @@
 <% else %>
 	<% holdings.each do |h| %>
 		<% if h['code'].to_s == location %>
-			<h4>Copies Availble at <%= location_map(h['code'], @location_options)  %></h4>
+			<h4>Copies Available at <%= location_map(h['code'], @location_options)  %></h4>
 			<% h['copies'].each do |c| %>
 				<%= c['count'] %> availble in <%= c['shelf_location'] %> with call number(s): 
 				<% c['call_numbers'].each do |n| %>
