@@ -53,7 +53,7 @@ class Search
   		  path += '&availability=' + self.availability unless self.availability.nil?
         path += '&sort=' + self.sort unless self.sort.nil?
         self.shelving_location.each do |s|
-          path += 'shelving_location[]' + s
+          path += '&shelving_location[]=' + s
         end unless  self.shelving_location.nil?
   		end
       return path
