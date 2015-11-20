@@ -48,14 +48,15 @@ class Search
           path = '?query='
         end
   		  path += '&qtype=' + self.qtype unless self.qtype.nil?
+          path += '&layout=' + self.layout unless self.layout.nil?
   		  path += '&loc=' + self.loc unless self.loc.nil?
-        path += '&fmt=' + self.fmt unless self.fmt.nil?
+          path += '&fmt=' + self.fmt unless self.fmt.nil?
   		  path += '&availability=' + self.availability unless self.availability.nil?
-        path += '&sort=' + self.sort unless self.sort.nil?
-        self.shelving_location.each do |s|
+          path += '&sort=' + self.sort unless self.sort.nil?
+          self.shelving_location.each do |s|
           path += '&shelving_location[]=' + s
         end unless  self.shelving_location.nil?
-  		end
+      end
       return path
   	end
 
@@ -91,6 +92,8 @@ class Search
         path = path + '&series[]=' +  facet
       elsif facet_type == 'authors'
         path = path + '&authors[]=' +  facet
+      elsif facet_type == 'layout'
+        path = path + '&layout=' + facet
       end
       return path
     end
