@@ -239,7 +239,7 @@ class Search
           :contents => r["contents"],
           :eresource => process_eresource(r["links"][0]),
           :format_type => r["type_of_resource"],
-          :record_year => r["record_year"],
+          :record_year => r["sort_year"],
           :call_number => holdings[0],
           :loc => self.loc,
           :publisher => r["publisher"],
