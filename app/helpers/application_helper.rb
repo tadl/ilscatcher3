@@ -23,11 +23,7 @@ module ApplicationHelper
                 response = option[0]
             end
         end
-        if !response.nil?
-            return response
-        else
-            return "probably KCL"
-        end
+        return response
     end
 
     # def reverse_location_map(value, option_array)
