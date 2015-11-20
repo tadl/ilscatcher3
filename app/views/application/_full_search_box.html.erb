@@ -14,12 +14,12 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-xs-12">
+        <div class="col-xs-12 padtop">
             <% @facets.each do |facet| %>
                 <% unless facet.subfacets.count == 0 %>
                         <% facet.subfacets.each do |sub| %>
                             <% if @search.active_facet(facet.type_raw, sub) %>
-                                <a class="label label-primary" href="<%= @search.search_path_minus_selected_facet(facet.type_raw, sub)%>"><%= sub %> <span class="removefacet glyphicon glyphicon-remove"></span></a>
+                                <a class="btn btn-primary btn-xs" href="<%= @search.search_path_minus_selected_facet(facet.type_raw, sub)%>"><%= sub %> <span class="badge"><span class="glyphicon glyphicon-remove removefacet"></span></span></a>
                             <% end %>
                         <% end %>
                 <% end %>
