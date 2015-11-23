@@ -52,7 +52,7 @@
                     <% end %>
             </div>
             <div class="col-lg-3 col-sm-4 col-xs-12">
-                <div>
+                <div class="padbot">
                     <% if item.eresource.nil? %>
                         <div class='hold-status-<%= item.id %>'></div>
                         <div class="holdlogin-<%= item.id %>" style="display: none">
@@ -76,25 +76,15 @@
                                 </button>
                             </div>
                         </div>
-                        <p>
-                            <button class="btn btn-success holdbtn hold-<%= item.id %>" onclick="place_hold(<%= item.id %>)">
-                                Place hold
-                            </button>
-                        </p>
+                        <button class="btn btn-success holdbtn hold-<%= item.id %>" onclick="place_hold(<%= item.id %>)">
+                            Place hold
+                        </button>
+                    <% else %>
+                        <a href="<%= item.eresource %>" target="_blank" class="btn btn-success">View Online / Download</a>
                     <% end %>
                 </div>
-                <% if !item.call_number.nil? %><p class="bg-primary" style="padding-left:5px;"><%= item.call_number %></p><% end %>
-                <% if item.eresource.nil? %>
-                    <%= item.loc_copies_available %> Currently available at <%= location_map(@search.loc, @location_options) %>
-                <% else %>
-                    <a href="<%= item.eresource %>" target="_blank">
-                        <button class="btn btn-success">
-                            View Online / Download
-                        </button>
-                    </a>
-                <% end %>
-                <%= link_to 'details.js', data:{params: item.create_params}, :method=> :post, :remote => true do %>
-                    <p><button class="btn btn-info details-button">Details</button></p>
+                <%= link_to 'details.js', data:{params: item.create_params}, :method=> :post, :remote => true, :class => 'padtop btn btn-info details-button' do %>
+                    Details
                 <% end %>
             </div>
         </div>
