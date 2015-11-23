@@ -1,25 +1,29 @@
 class Item
 	include ActiveModel::Model
 	require 'open-uri'
-	attr_accessor :id, :loc, :author, :title, :abstract, :contents, :image,
-								:format_type, :record_year, :publisher, :publication_place,
-								:isbn, :physical_description, :eresource, :copies,
-								:copies_on_shelf, :all_copies_available, :all_copies_total,
-								:loc_copies_total, :loc_copies_available
+	attr_accessor :title, :author, :availability, :copies_available, :copies_total,
+                :id, :eresource, :image, :abstract, :contents, :format_icon,
+                :format_type, :record_year, :call_number, :publisher,
+                :publication_place, :isbn, :physical_description,
+                :all_copies_available, :all_copies_total, :loc_copies_total,
+                :loc_copies_available, :author_other, :subjects, :genres, :series, :holdings,
+                :search_layout, :loc
 
-	def initialize args
-		if args['id']
-			if args['title'] && !args['copies']
-				args.delete_if { |k, v| v.blank? }
-				args.each do |k,v|
-        	instance_variable_set("@#{k}", v) unless v.nil?
-      	end
-      else
-    		details = get_details(args['id'], args['loc'], args['isbn'])
-      end
-    else
-      return nil
+  def initialize args
+    args.each do |k,v|
+        instance_variable_set("@#{k}", v)
     end
+  end
+
+  def clean_holdings
+    holdings = Array.new
+    self.holdings.each do |h|
+      if h[0].is_a? String
+        h.shift
+      end
+      holdings.push(h)
+    end
+    return holdings.flatten 
   end
 
   	def check_trailer
@@ -30,87 +34,6 @@ class Item
   			trailer = fetch_trailer['message']
   		end
   		return trailer
-  	end
-
-  	def get_details(id, loc, isbn)
-  		if loc
-  			loc_url = '?locg=' + loc
-  		else
-  			loc_url = '?locg=22'
-  		end
-  		url = 'https://mr-v2.catalog.tadl.org/eg/opac/record/' + id + loc_url
-  		agent = Mechanize.new
-  		page = agent.get(url)
-  		page = page.parser
-  		item_details = ''
-  		page.css('#main-content').each do |detail|
-  		item_details = {
-  		:author => detail.at_css(".rdetail_authors_div").try(:text).try(:gsub, /\n/, "").try(:strip),
-			:title => detail.at_css("#rdetail_title").text,
-			:abstract => detail.at('td:contains("Summary, etc.:")').try(:next_element).try(:text).try(:strip),
-			:contents => detail.at('td:contains("Formatted Contents Note:")').try(:next_element).try(:text).try(:strip),
-			:id => id,
-			:availability_scope => detail.css('meta[@property="seller"]').map {|i| i.attr('content')},
-			:copies_available => detail.css('meta[@property="offerCount"]').map {|i| i.attr('content')},
-			:copies_total => clean_totals_holds(detail.at('h2:contains("Current holds")').try(:next_element).try(:text))[1],
-			:holds => clean_totals_holds(detail.at('h2:contains("Current holds")').try(:next_element).try(:text))[0],
-			:eresource => detail.at('p.rdetail_uri').try(:at, 'a').try(:attr, "href"),
-			:image => detail.at_css('#rdetail_image').try(:attr, "src").try(:gsub, /^\//, "https://catalog.tadl.org/").try(:gsub, /medium/, "large"),
-			:format_type => detail.css('.marc_record_type').try(:text),
-			:record_year => detail.search('span[@property="datePublished"]').try(:text),
-			:publisher => detail.search('span[@property="publisher"]').search('span[@property="name"]').try(:text).try(:strip),
-			:publication_place => detail.search('span[@property="publisher"]').search('span[@property="location"]').try(:text).gsub(':','').try(:strip),
-			:isbn => isbn,
-			:physical_description => detail.at('li#rdetail_phys_desc').try(:at, 'span.rdetail_value').try(:text),
-			# :related => detail.css('.rdetail_subject_value').to_s.split('<br>').reverse.drop(1).reverse.map { |i| clean_related(i)}.uniq,
-      :related => process_related(detail.css('.rdetail_subject'))
-  			}
-  		end
-  		item_details.delete_if { |key, value| value.blank? }
-  		item_details.each do |k,v|
-        	instance_variable_set("@#{k}", v) unless v.nil?
-      	end
-      	copy_details(id, loc, page)
-  	end
-
-  	def copy_details(id, loc, page)
-  		if !page
-  			if loc
-  				loc_url = '?locg=' + loc
-  			else
-  				loc_url = '?locg=22'
-  			end
-  			url = 'https://mr-v2.catalog.tadl.org/eg/opac/record/' + id + loc_url
-  			agent = Mechanize.new
-  			page = agent.get(url)
-  			page = page.parser
-  		end
-
-  		copies = Array.new
-  		page.css('.copy_details_offers_row').each do |copy|
-  			copy = {
-  				:location => copy.css('span[@property="name"]').try(:text),
-  				:call_number => copy.css('span[@property="sku"]').try(:text),
-  				:shelving_location => copy.css('td[@property="availableAtOrFrom"]').try(:text),
-  				:status => copy.at_css('td[@property="availableAtOrFrom"]').next.next.try(:text),
-  				:due_date => copy.at_css('td[@property="availableAtOrFrom"]').next.next.next.next.try(:text),
-  			}
-  			copies.push(copy)
-  		end
-
-    	copies_on_shelf = Array.new
-    	copies.each do |copy|
-      		if copy[:status] == "Available"
-        		copies_on_shelf.push(copy)
-      		end
-
-      		if copy[:status] == "Reshelving"
-        		copy[:shelving_location] = copy[:shelving_location] + " (Reshelving)"
-        		copies_on_shelf.push(copy)
-      		end
-    	end
-    	instance_variable_set("@copies", copies)
-    	instance_variable_set("@copies_on_shelf", copies_on_shelf)
   	end
 
   	def goodreads

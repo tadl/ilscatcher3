@@ -35,13 +35,12 @@ class MockController < ApplicationController
 
 
   def details
-    @item = Item.new params
-    @search = Search.new params
-    @copies_on_shelf = @item.copies_on_shelf
-    @copies_all = @item.copies
-    if params["fetching"] == 'true'
-      @fetching = true
-    end
+    if params['title']
+      @item = Item.new params
+    elsif params['id']
+      @item_search = Search.new :qtype => 'record_id', :query => params['id']
+      @item = @item_search.results[0][0]
+    end 
     respond_to do |format|
       format.html
       format.js

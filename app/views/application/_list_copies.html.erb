@@ -8,18 +8,26 @@
             </tr>
         </thead>
         <tbody>
-            <% copies.each do |copy| %>
-                <tr>
-                    <td><%= copy[:location] %></td>
-                    <td><%= copy[:call_number] %> in <%= copy[:shelving_location] %></td>
-                    <td>
-                        <% if copy[:status] == 'Checked Out' %>
-                            <%= copy[:status] %> - Due On <%= copy[:due_date] %>
-                        <% else %>
-                            <%= copy[:status] %>
-                        <% end %>
-                    </td>
-                </tr>
+            <% item.clean_holdings.each do |h| %>
+                <% if all == true %>
+                    <% if h['status'] == 'Reshelving' || h['status'] == 'Available' %>
+                        <tr>
+                            <td><%= h['circ_lib'] %></td>
+                            <td><%= h['call_number'] %> in <%= h['shelf_location'] %></td>
+                            <td>
+                            <%= h['status'] %>
+                            </td>
+                        </tr>
+                    <% end %>
+                <% else %>
+                    <tr>
+                        <td><%= h['circ_lib'] %></td>
+                        <td><%= h['call_number'] %> in <%= h['shelf_location'] %></td>
+                        <td>
+                        <%= h['status'] %>
+                        </td>
+                    </tr>
+                <% end %>
             <% end %>    
         </tbody>
     </table>

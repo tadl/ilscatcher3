@@ -3,13 +3,19 @@ class Search
 	include ActiveModel::Model
 	attr_accessor :query, :sort, :qtype, :fmt, :loc, :page, :facet, :availability,
 								:layout, :shelving_location, :list_id, :subjects, :series,
-								:authors, :genres
+								:authors, :genres, :canned, :search_title
 
 	  def initialize args
       args.each do |k,v|
         instance_variable_set("@#{k}", v) unless v.nil?
       end
-        instance_variable_set("@layout", "grid") unless args["layout"]
+      instance_variable_set("@layout", "grid") unless args["layout"]
+      if args["search_title"] && args["qtype"] == 'shelf' || args["search_title"] && args["qtype"] == 'genre' 
+        if valid_canned_search(args["search_title"])
+          instance_variable_set("@canned", true)
+          instance_variable_set("@search_title", args["search_title"])
+        end
+      end
     end
 
   	def availability_check
@@ -19,6 +25,16 @@ class Search
   			false
   		end
   	end
+
+    def valid_canned_search(search_title)
+      valid_canned_searches = ["Hot DVDs", "New DVDs", "TC Film Festival", "Family", "Comedy"]
+      if valid_canned_searches.include?(search_title)
+        return true
+      else
+        return false
+      end
+      return true
+    end
 
     def grid_active
       if self.layout == 'grid'
@@ -48,14 +64,15 @@ class Search
           path = '?query='
         end
   		  path += '&qtype=' + self.qtype unless self.qtype.nil?
-          path += '&layout=' + self.layout unless self.layout.nil?
+        path += '&layout=' + self.layout unless self.layout.nil?
   		  path += '&loc=' + self.loc unless self.loc.nil?
-          path += '&fmt=' + self.fmt unless self.fmt.nil?
+        path += '&fmt=' + self.fmt unless self.fmt.nil?
   		  path += '&availability=' + self.availability unless self.availability.nil?
-          path += '&sort=' + self.sort unless self.sort.nil?
-          self.shelving_location.each do |s|
+        path += '&sort=' + self.sort unless self.sort.nil?
+        self.shelving_location.each do |s|
           path += '&shelving_location[]=' + s
         end unless  self.shelving_location.nil?
+        path += '&search_title=' + self.search_title unless self.search_title.nil?
       end
       return path
   	end
@@ -127,7 +144,6 @@ class Search
       return path
     end
 
-
     def next_page_params
       if self.page.nil?
         page = '1'
@@ -174,7 +190,6 @@ class Search
 
       return next_page
     end
-
 
   	def results
 			url = 'https://elastic-evergreen.herokuapp.com/main/index.json?query='
@@ -249,8 +264,9 @@ class Search
           :subjects => r["subjects"],
           :genres => r["genres"],
           :series => r["series"],
+          :search_layout => self.layout
         }
-        item = Result.new item_raw
+        item = Item.new item_raw
         results = results.push(item)
         r["genres"].each do |g|
           genres_raw = genres_raw.push(g)

@@ -1,6 +1,9 @@
 <div class="row">
-    <%= render 'full_search_box', search: @search %>
-    <%= @got_it %>
+    <% unless @search.canned == true %>
+        <%= render 'full_search_box', search: @search %>
+    <% else %>
+        <%= render 'canned_header', search: @search %>
+    <% end %>
 </div>
 <div class="row">
     <div class="collapse" id="facets">
