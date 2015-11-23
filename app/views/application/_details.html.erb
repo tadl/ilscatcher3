@@ -1,17 +1,2 @@
-<%= render 'item_details', item: @item %>
-<% if @item.copies %>
-    <%= render 'detail_tabs', item: @item %>
-<% else %>
-    <% if !@item.eresource %>
-        <div id="copy_container">Loading Copy Details...</div>
-        <script>
-            function get_copies() {
-                var id = "<%= escape_javascript(@item.id) %>";
-                var isbn = "<%= escape_javascript(@item.isbn) %>";
-                var url ='details.js?id=' + id + '&isbn=' + isbn + '&fetching=true'
-                $.get(url, function(data) {})
-            }
-            get_copies()
-        </script>
-    <% end %>
-<% end %>
+<%= render 'item_details', item: @item, search: @search %>
+<%= render 'detail_tabs', item: @item %>
