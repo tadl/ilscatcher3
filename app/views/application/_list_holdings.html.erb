@@ -5,9 +5,10 @@
                 <h4 class="list-group-item-heading"><%= location_map(h['code'], @location_options)  %></h4>
                 <% h['copies'].each do |c| %>
                     <div class="list-group-item-text">
-                    <%= c['count'] %> available in <%= c['shelf_location'] %></div><% c['call_numbers'].each do |n| %>
-                        <span class="label label-primary"><%= n %></span>
-                    <% end %>
+                        <%= c['count'] %> available in <%= c['shelf_location'] %><% c['call_numbers'].each do |n| %>
+                            <span class="label label-primary"><%= n %></span>
+                        <% end %>
+                    </div>
                 <% end%>
             </div>
         <% end %>
