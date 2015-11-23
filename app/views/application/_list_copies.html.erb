@@ -13,7 +13,7 @@
                     <% if h['status'] == 'Reshelving' || h['status'] == 'Available' %>
                         <tr>
                             <td><%= h['circ_lib'] %></td>
-                            <td><%= h['call_number'] %> in <%= h['shelf_location'] %></td>
+                            <td><%= h['call_number'] %> in <%= h['location'] %></td>
                             <td>
                             <%= h['status'] %>
                             </td>
@@ -22,7 +22,7 @@
                 <% else %>
                     <tr>
                         <td><%= h['circ_lib'] %></td>
-                        <td><%= h['call_number'] %> in <%= h['shelf_location'] %></td>
+                        <td><%= h['call_number'] %> in <%= h['location'] %></td>
                         <td>
                         <%= h['status'] %>
                         </td>
