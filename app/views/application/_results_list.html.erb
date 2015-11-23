@@ -42,12 +42,12 @@
                         <p><%= render 'list_holdings', holdings: item.availability, location: @search.loc %></p>
                     <% else %>
                         <% if item.all_copies_available >= 1 %>
-                            <h4>Sorry No Copies Available at <%= location_map(@search.loc, @location_options) %></h4> 
-                            Be have <%= item.all_copies_total %> available elsewhere in the district. Place a hold or see all copies. 
+                            <h4>Sorry, no copies available at <%= location_map(@search.loc, @location_options) %></h4> 
+                            We have <%= item.all_copies_total %> available elsewhere in the district. <a href="#" onclick="event.preventDefault();place_hold(<%= item.id %>)">Place a hold</a> to request one.
                         <% end %>
                         <% if item.all_copies_available < 1 && !item.eresource %>
-                            <h4>Sorry No Copies Available</h4> 
-                            Place a hold or check back later.
+                            <h4>Sorry, no copies available</h4> 
+                            Why not <a href="#" onclick="event.preventDefault();place_hold(<%= item.id %>)">place a hold</a>?
                         <% end %>
                     <% end %>
             </div>
