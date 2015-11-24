@@ -28,3 +28,4 @@ gem 'sidekiq', group: :production
 gem 'sidetiq', group: :production
 gem 'redis', group: :production
 gem 'mini_magick'
+gem 'dotenv-rails', :groups => [:development, :test]
