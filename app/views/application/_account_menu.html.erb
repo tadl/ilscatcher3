@@ -1,10 +1,10 @@
 <div class="list-group">
     <div class="list-group-item active"><h4>My Account</h4></div>
-    <%= link_to mock_preferences_path, :class => "list-group-item #{'active' if request.path == mock_preferences_path}" do %>Account Preferences<% end %>
-    <%= link_to mock_checkouts_path, :class => "list-group-item #{'active' if request.path == mock_checkouts_path}" do %>Checked Out Items<% end %>
-    <%= link_to mock_holds_path, :class => "list-group-item #{'active' if request.path == mock_holds_path}" do %>Items on Hold<% end %>
-    <%= link_to mock_fines_path, :class => "list-group-item #{'active' if request.path == mock_fines_path}" do %>Current Fines<% end %>
-    <%= link_to mock_payments_path, :class => "list-group-item #{'active' if request.path == mock_payments_path}" do %>Past Payments<% end %>
+    <%= link_to mock_preferences_path, :class => "navi list-group-item #{'active' if request.path == mock_preferences_path}" do %>Account Preferences<% end %>
+    <%= link_to mock_checkouts_path, :class => "navi list-group-item #{'active' if request.path == mock_checkouts_path}" do %>Checked Out Items<% end %>
+    <%= link_to mock_holds_path, :class => "navi list-group-item #{'active' if request.path == mock_holds_path}" do %>Items on Hold<% end %>
+    <%= link_to mock_fines_path, :class => "navi list-group-item #{'active' if request.path == mock_fines_path}" do %>Current Fines<% end %>
+    <%= link_to mock_payments_path, :class => "navi list-group-item #{'active' if request.path == mock_payments_path}" do %>Past Payments<% end %>
 </div>
 <% if (request.path == mock_preferences_path) %>
     <div class="clearfix padtop"></div>

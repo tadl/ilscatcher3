@@ -73,6 +73,9 @@ function item_loading_binds() {
     $('.item-link').click(function(event) {
         showLoading();
     });
+    $('a.navi').on('click', function() {
+        showLoading();
+    });
 }
 
 function bind_more_results() {
