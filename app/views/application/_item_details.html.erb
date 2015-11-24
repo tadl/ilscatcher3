@@ -111,4 +111,6 @@
 	</div>
 </div>
 <div class="row clearfix padbot"></div>
-
+<script>
+    $('#goodreads_review').html("<%= escape_javascript(goodreads_review(item.goodreads)) %>")
+</script>

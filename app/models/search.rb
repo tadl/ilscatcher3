@@ -294,8 +294,6 @@ class Search
       return results.first(24), facets, more_resulsts
   	end
 
-
-
 	def process_facets(facet_name, facet_group)
     facets = Array.new
     compact_subjects = facet_group.compact.reject { |c| c.empty? }
@@ -332,7 +330,6 @@ class Search
       return url
     end
   end
-
 
 	def process_holdings(availability, location)
     location_code = code_to_location(location)
@@ -371,9 +368,7 @@ class Search
 	end
 
   def process_availability(availability, location)
-    
-    
-    #only look at available holdints
+    #only look at available holdings
     holdings = Array.new
     only_available = availability.reject {|k| k['status'] != "Available" && k['status'] != "Reshelving"}
     #create array of locations with available copies
@@ -394,7 +389,7 @@ class Search
           copies_per_location.push(i)
         end
       end
-      #create array of each un
+      #create array of each unique shelving location
       unique_shelves = Array.new
       copies_per_location.each do |c|
         unique_shelves.push(c['location'])
