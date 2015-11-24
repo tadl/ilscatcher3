@@ -1,24 +1,24 @@
 <% info = ActiveSupport::JSON.decode(cookies[:user]) %>
 <ul class="nav navbar-nav">
     <li <% if request.path == mock_checkouts_path %> class="active"<% end %>>
-    	<a href="<%= mock_checkouts_path %>">
+    	<a href="<%= mock_checkouts_path %>" class="navi">
     		Checkouts <span class="badge"><span id="checkouts"><%= info['checkouts']%></span></span>
     	</a>
     </li>
     <li<% if request.path == mock_holds_path %> class="active"<% end %>>
-    	<a href="<%= mock_holds_path %>">
+    	<a href="<%= mock_holds_path %>" class="navi">
     		Holds <span class="badge"><span id="holds"><%= info['holds']%></span></span>
     	</a>
     </li>
     <% if info['fine'].to_f > 0 %>
         <li<% if request.path == mock_fines_path %> class="active"<% end %>>
-            <a href="<%= mock_fines_path %>">
+            <a href="<%= mock_fines_path %>" class="navi">
                 Fines <span class="badge">$<span id="fine"><%= info['fine']%></span></span>
             </a>
         </li>
     <% end %>
     <li><p class="navbar-btn">
-        <%= link_to mock_preferences_path, :type => 'button', :class => 'btn btn-primary', :style => 'margin-left:10px;' do %>
+        <%= link_to mock_preferences_path, :type => 'button', :class => 'btn btn-primary navi', :style => 'margin-left:10px;' do %>
             My Account
         <% end %></p>
     </li>
