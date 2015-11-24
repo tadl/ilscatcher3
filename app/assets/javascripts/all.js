@@ -64,15 +64,6 @@ function hideLoading() {
 }
 
 function item_loading_binds() {
-    $('.carousel-item').click(function(event) {
-        showLoading();
-    });
-    $('.grid-item').click(function(event) {
-        showLoading();
-    });
-    $('.item-link').click(function(event) {
-        showLoading();
-    });
     $('a.navi').on('click', function() {
         showLoading();
     });
