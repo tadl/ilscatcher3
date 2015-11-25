@@ -1,5 +1,5 @@
 <% if @more_results == true %>
-    <div id="more_results" class="row clearfix" data-offset="1200">
+    <div id="more_results" class="row clearfix" data-offset="500">
         <div class="col-xs-12">
             <div id="load_more_text" class="text-center">
                 <%= link_to 'search.js', remote: true, data: {params: @search.next_page_params}, :method => :get, :type => 'button', :class => 'btn btn-block btn-success' do %>

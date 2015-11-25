@@ -3,7 +3,7 @@ class Search
 	include ActiveModel::Model
 	attr_accessor :query, :sort, :qtype, :fmt, :loc, :page, :facet, :availability,
 								:layout, :shelving_location, :list_id, :subjects, :series,
-								:authors, :genres, :canned, :search_title, :shelf_lock
+								:authors, :genres, :canned, :search_title, :shelf_lock, :genre_lock
 
 	  def initialize args
       args.each do |k,v|
@@ -74,6 +74,7 @@ class Search
         end unless  self.shelving_location.nil?
         path += '&shelf_lock=' + self.shelf_lock unless self.shelf_lock.nil?
         path += '&search_title=' + self.search_title unless self.search_title.nil?
+        path += '&genre_lock=' + self.genre_lock unless self.genre_lock.nil?
       end
       return path
   	end
