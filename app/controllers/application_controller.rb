@@ -14,7 +14,7 @@ class ApplicationController < ActionController::Base
         @query_options = [['Keyword', 'keyword'], ['Author', 'author'],['Title', 'title'],['Subject', 'subject']]
     	@format_options = [['All Formats', 'all'], ['Books', 'a'],['Movies / TV', 'g'],['Music', 'j']]
     	@sort_options = [['Relevance', 'relevancy'], ['Newest to Oldest', 'pubdateDESC'],['Oldest to Newest', 'pubdateASC'],['Title A to Z', 'titleAZ'], ['Title Z to A', 'titleZA']]
-    	@location_options = [['All Locations', '22'], ['Woodmere', '23'],['Interlochen', '24'],['Kingsley', '25'], ['Peninsula', '26'], ['East Bay', '28'], ['Fife Lake', '27']]
+    	@location_options = [['Woodmere', '23'],['All Locations', '22'],['Interlochen', '24'],['Kingsley', '25'], ['Peninsula', '26'], ['East Bay', '28'], ['Fife Lake', '27']]
         @pickup_locations = [['Woodmere (Main) Branch', '23'],
                             ['Interlochen Public Library', '24'],
                             ['Kingsley Branch Library', '25'],

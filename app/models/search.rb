@@ -3,7 +3,7 @@ class Search
 	include ActiveModel::Model
 	attr_accessor :query, :sort, :qtype, :fmt, :loc, :page, :facet, :availability,
 								:layout, :shelving_location, :list_id, :subjects, :series,
-								:authors, :genres, :canned, :search_title
+								:authors, :genres, :canned, :search_title, :shelf_lock
 
 	  def initialize args
       args.each do |k,v|
@@ -72,6 +72,7 @@ class Search
         self.shelving_location.each do |s|
           path += '&shelving_location[]=' + s
         end unless  self.shelving_location.nil?
+        path += '&shelf_lock=' + self.shelf_lock unless self.shelf_lock.nil?
         path += '&search_title=' + self.search_title unless self.search_title.nil?
       end
       return path
@@ -162,6 +163,7 @@ class Search
       next_page['shelving_location'] = self.shelving_location unless self.shelving_location.nil?
       next_page['list_id'] = self.list_id unless self.list_id.nil?
       next_page['sort'] = self.sort unless self.sort.nil?
+      next_page['shelf_lock'] = self.shelf_lock unless self.shelf_lock.nil?
 
       next_page['subjects'] = Array.new
       self.subjects.each do |f|
@@ -226,6 +228,11 @@ class Search
       end
       if self.shelving_location
         self.shelving_location.each do |s|
+          url = url + '&shelving_location[]=' +  s
+        end
+      elsif self.shelf_lock == 'on'
+        shelf_locks = ENV['SHELF_LOCK'].split(',')
+        shelf_locks.each do |s|
           url = url + '&shelving_location[]=' +  s
         end
       end
