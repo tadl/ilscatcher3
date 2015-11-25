@@ -11,11 +11,7 @@ class MockController < ApplicationController
 
 
   def search
-    if params["legacy"] == 'true'
-      @search = Search_Legacy.new params
-    else
-      @search = Search.new params
-    end
+    @search = Search.new params
     if @search.query || @search.fmt || @search.shelving_location || @search.list_id
       results = @search.results
       @items = results[0]
@@ -25,6 +21,7 @@ class MockController < ApplicationController
       @items = Array.new
       @facets = Array.new
       @more_results = nil
+      @blank_search = true
     end
     respond_to do |format|
       format.html
