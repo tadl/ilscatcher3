@@ -46,6 +46,9 @@ ready = function() {
     $('#availability').on('change', function() {
         this.form.submit();
     })
+    $('#shelf_lock').on('change', function() {
+        this.form.submit();
+    })
 
     hold_management_binds();
     checkout_management_binds();
