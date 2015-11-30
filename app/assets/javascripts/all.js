@@ -46,7 +46,7 @@ ready = function() {
     $('#availability').on('change', function() {
         this.form.submit();
     })
-    $('#shelf_lock').on('change', function() {
+    $('.autoload').on('change', function() {
         this.form.submit();
     })
 

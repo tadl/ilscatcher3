@@ -77,9 +77,9 @@
             <div class="col-lg-4 col-md-5 col-sm-6 col-xs-12">
                 <div class="form-group">
                 <% if search.shelf_lock == 'on' || !search.shelf_lock.nil? || @blank_search == true %>
-                    <input type="checkbox" name="shelf_lock" id="shelf_lock" checked="checked">                 
+                    <input type="checkbox" <% if !search.query.blank? %>class="autoload" <% end %>name="shelf_lock" id="shelf_lock" checked="checked">                 
                 <% else %>
-                     <input type="checkbox" name="shelf_lock" id="shelf_lock" > 
+                     <input type="checkbox" <% if !search.query.blank? %>class="autoload" <% end %>name="shelf_lock" id="shelf_lock" > 
                 <% end %>
                 <div class="btn-group">
                     <label for="shelf_lock" class="btn btn-default">
@@ -87,7 +87,7 @@
                         <span></span>
                     </label>
                     <label for="shelf_lock" class="btn btn-default">
-                        Limit to Sight & Sound at Woodmere
+                        Limit to Sight &amp; Sound at Woodmere
                     </label>
                 </div>
             </div>
