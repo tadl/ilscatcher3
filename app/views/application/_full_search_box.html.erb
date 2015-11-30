@@ -33,19 +33,19 @@
             <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
                 <div class="input-group">
                     <span class="input-group-addon">Type</span>
-                    <%= f.select :qtype,  options_for_select(@query_options, search.qtype), { hide_label: true }, { class: "selectpicker" } %>
+                    <%= f.select :qtype,  options_for_select(@query_options, search.qtype), { hide_label: true }, { class: search.query.blank? ? "selectpicker" : "selectpicker autoload" } %>
                 </div>
             </div>
             <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
                 <div class="input-group">
                     <span class="input-group-addon">Format</span>
-                    <%= f.select :fmt,  options_for_select(@format_options, search.fmt), { hide_label: true }, { class: "selectpicker" } %>
+                    <%= f.select :fmt,  options_for_select(@format_options, search.fmt), { hide_label: true }, { class: search.query.blank? ? "selectpicker" : "selectpicker autoload" } %>
                 </div>
             </div>
             <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
                 <div class="input-group">
                     <span class="input-group-addon">Sort</span>
-                    <%= f.select :sort, options_for_select(@sort_options, search.sort), { hide_label: true }, { class: "selectpicker" } %>
+                    <%= f.select :sort, options_for_select(@sort_options, search.sort), { hide_label: true }, { class: search.query.blank? ? "selectpicker" : "selectpicker autoload" } %>
                 </div>
             </div>
             <% if @location_lock %>
@@ -54,7 +54,7 @@
                 <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
                     <div class="input-group">
                         <span class="input-group-addon">Location</span>
-                        <%= f.select :loc,  options_for_select(@location_options, search.loc), { hide_label: true }, { class: "selectpicker" } %>
+                        <%= f.select :loc,  options_for_select(@location_options, search.loc), { hide_label: true }, { class: search.query.blank? ? "selectpicker" : "selectpicker autoload" } %>
                     </div>
                 </div>
             <% end %>
@@ -62,7 +62,7 @@
         <div class="row form-inline">
             <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
                 <div class="form-group">
-                    <input type="checkbox" name="availability" id="availability" <% if search.availability_check==true %>checked="checked"<% end %>>
+                    <input type="checkbox" <% if !search.query.blank? %>class="autoload" <% end %>name="availability" id="availability" <% if search.availability_check==true %>checked="checked"<% end %>>
                     <div class="btn-group">
                         <label for="availability" class="btn btn-default">
                             <span class="glyphicon glyphicon-ok"></span>

@@ -40,12 +40,6 @@ ready = function() {
         return false;
     });
 
-    $('.selectpicker').on('change', function() {
-        this.form.submit();
-    })
-    $('#availability').on('change', function() {
-        this.form.submit();
-    })
     $('.autoload').on('change', function() {
         this.form.submit();
     })
