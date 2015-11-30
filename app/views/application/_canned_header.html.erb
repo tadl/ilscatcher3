@@ -10,14 +10,14 @@
         <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
             <div class="input-group">
                 <span class="input-group-addon">Sort</span>
-                <%= f.select :sort, options_for_select(@sort_options, search.sort), { hide_label: true }, { class: "selectpicker" } %>
+                <%= f.select :sort, options_for_select(@sort_options, search.sort), { hide_label: true }, { class: "selectpicker autoload" } %>
             </div>
         </div>
     </div>
     <div class="row form-inline">
         <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
             <div class="form-group">
-                <input type="checkbox" name="availability" id="availability" <% if search.availability_check==true %>checked="checked"<% end %>>
+                <input type="checkbox" class="autoload" name="availability" id="availability" <% if search.availability_check==true %>checked="checked"<% end %>>
                 <div class="btn-group">
                     <label for="availability" class="btn btn-default">
                         <span class="glyphicon glyphicon-ok"></span>
