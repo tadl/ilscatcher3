@@ -5,50 +5,50 @@
 	<% end %>
 </h3>
 <%= bootstrap_form_tag url: 'search', :html => { :method => 'get', :class => 'form' } do |f| %>
-    <div class="row">
-        <div class="col-xs-12 padtop">
-            <% @facets.each do |facet| %>
-                <% unless facet.subfacets.count == 0 %>
-                        <% facet.subfacets.each do |sub| %>
-                            <% unless @search.genre_lock == sub %>
-                                <% if @search.active_facet(facet.type_raw, sub) %>
-                                    <a class="btn btn-primary btn-xs" href="<%= @search.search_path_minus_selected_facet(facet.type_raw, sub)%>"><%= sub %> <span class="badge"><span class="glyphicon glyphicon-remove removefacet"></span></span></a>
-                                <% end %>
-                            <% end %>
-                        <% end %>
-                <% end %>
-            <% end %>
-        </div>
-    </div>
     <div id="searchOptions">
-            <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
-                <div class="input-group">
-                    <span class="input-group-addon">Sort</span>
-                    <%= f.select :sort, options_for_select(@sort_options, search.sort), { hide_label: true }, { class: "selectpicker" } %>
-                </div>
+        <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+            <div class="input-group">
+                <span class="input-group-addon">Sort</span>
+                <%= f.select :sort, options_for_select(@sort_options, search.sort), { hide_label: true }, { class: "selectpicker" } %>
             </div>
         </div>
-        <div class="row form-inline">
-            <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
-                <div class="form-group">
-                    <input type="checkbox" name="availability" id="availability" <% if search.availability_check==true %>checked="checked"<% end %>>
-                    <div class="btn-group">
-                        <label for="availability" class="btn btn-default">
-                            <span class="glyphicon glyphicon-ok"></span>
-                            <span></span>
-                        </label>
-                        <label for="availability" class="btn btn-default">
-                            Limit to available
-                        </label>
-                        <div class="pull-right padbot">
-                		  <% if @search.search_path != '' %>
-                    		<a href="search<%= @search.search_path_with_facets %>&layout=list"><button class="<%= @search.list_active %> btn btn-default btn-xs large glyphicon glyphicon-list"></button></a>
-                    		<a href="search<%= @search.search_path_with_facets %>&layout=grid"><button class="<%= @search.grid_active %> btn btn-default btn-xs large glyphicon glyphicon-th"></button></a>
-                		  <% end %>
-            		    </div>
-                    </div>
+    </div>
+    <div class="row form-inline">
+        <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+            <div class="form-group">
+                <input type="checkbox" name="availability" id="availability" <% if search.availability_check==true %>checked="checked"<% end %>>
+                <div class="btn-group">
+                    <label for="availability" class="btn btn-default">
+                        <span class="glyphicon glyphicon-ok"></span>
+                        <span></span>
+                    </label>
+                    <label for="availability" class="btn btn-default">
+                        Limit to available
+                    </label>
                 </div>
-                <a class="btn btn-default" role="button" data-toggle="collapse" href="#facets" aria-expanded="false" aria-controls="facets">Filters <span class="caret"></span></a
+            </div>
+            <a class="btn btn-default" role="button" data-toggle="collapse" href="#facets" aria-expanded="false" aria-controls="facets">Filters <span class="caret"></span></a>
+        </div>
+        <div class="pull-right padbot" style="margin-right:20px;">
+          <% if @search.search_path != '' %>
+            <a href="search<%= @search.search_path_with_facets %>&layout=list"><button class="<%= @search.list_active %> btn btn-default btn-xs large glyphicon glyphicon-list"></button></a>
+            <a href="search<%= @search.search_path_with_facets %>&layout=grid"><button class="<%= @search.grid_active %> btn btn-default btn-xs large glyphicon glyphicon-th"></button></a>
+          <% end %>
+        </div>
+    </div>
+        <div class="row">
+            <div class="col-xs-12 padtop">
+                <% @facets.each do |facet| %>
+                    <% unless facet.subfacets.count == 0 %>
+                            <% facet.subfacets.each do |sub| %>
+                                <% unless @search.genre_lock == sub %>
+                                    <% if @search.active_facet(facet.type_raw, sub) %>
+                                        <a class="btn btn-primary btn-xs" href="<%= @search.search_path_minus_selected_facet(facet.type_raw, sub)%>"><%= sub %> <span class="badge"><span class="glyphicon glyphicon-remove removefacet"></span></span></a>
+                                    <% end %>
+                                <% end %>
+                            <% end %>
+                    <% end %>
+                <% end %>
             </div>
         </div>
         <input type="hidden" name="qtype" value="<%= search.qtype %>">
@@ -69,7 +69,4 @@
         <% end %>
     </div>
     <div class="row padtop">
-        <div class="col-lg-2 col-xs-6">
-
-        </div>
 <% end %>
