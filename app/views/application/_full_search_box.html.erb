@@ -50,6 +50,7 @@
             </div>
             <% if @location_lock %>
                 <%= f.hidden_field :loc, :value => @location_lock %>
+            <% elsif search.shelf_lock == 'on' %>
             <% else %>
                 <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
                     <div class="input-group">
@@ -87,7 +88,7 @@
                         <span></span>
                     </label>
                     <label for="shelf_lock" class="btn btn-default">
-                        Limit to Sight &amp; Sound at Woodmere
+                        Limit to Sight &amp; Sound items
                     </label>
                 </div>
             </div>
