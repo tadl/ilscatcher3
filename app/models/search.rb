@@ -27,7 +27,7 @@ class Search
   	end
 
     def valid_canned_search(search_title)
-      valid_canned_searches = ["Hot DVDs", "New DVDs", "TC Film Festival", "Family", "Comedy", "Documentary", "Horror", "Music", "Musical", "Romance", "Science Fiction", "TV", "Western"]
+      valid_canned_searches = ["Hot DVDs", "New DVDs", "TC Film Festival", "Family", "Comedy", "Documentary", "Horror", "Music", "Musical", "Romance", "Science Fiction", "TV", "Western", "New Music", "Hot Tunes"]
       if valid_canned_searches.include?(search_title)
         return true
       else
