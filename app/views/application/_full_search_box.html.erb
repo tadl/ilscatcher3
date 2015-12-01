@@ -51,6 +51,13 @@
             <% if @location_lock %>
                 <%= f.hidden_field :loc, :value => @location_lock %>
             <% elsif search.shelf_lock == 'on' %>
+            <% elsif search.query.blank? %>
+                <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 toggleme" style="display:none;">
+                    <div class="input-group">
+                        <span class="input-group-addon">Location</span>
+                        <%= f.select :loc,  options_for_select(@location_options, search.loc), { hide_label: true }, { class: search.query.blank? ? "selectpicker" : "selectpicker autoload" } %>
+                    </div>
+                </div>
             <% else %>
                 <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
                     <div class="input-group">

@@ -44,6 +44,10 @@ ready = function() {
         this.form.submit();
     })
 
+    $('#shelf_lock').on('click', function() {
+        $('.toggleme').toggle();
+    })
+
     hold_management_binds();
     checkout_management_binds();
     item_loading_binds();
