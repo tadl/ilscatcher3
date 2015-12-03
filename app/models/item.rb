@@ -87,6 +87,31 @@ class Item
       return marc_record
     end
 
+    def grid_available_pannel
+        if self.loc_copies_available > 0
+            return "panel-success"
+        elsif self.eresource != nil
+            return "panel-sucess"
+        else
+            return "panel-default"
+        end
+    end
+
+    def grid_available_text
+        if self.loc_copies_available > 0
+            if self.loc == "22" or self.loc == ''
+              location_text = 'in district'
+            else
+              location_text = "at your location"
+            end
+            return "<span class='text-success'><strong>" + self.loc_copies_available.to_s + " Available " + location_text  + "</strong></span>"
+        elsif self.eresource != nil
+            return "<span class='text-success'><strong>On Demand E-Resource</strong></span>"
+        else
+            return ""
+        end
+    end
+
     def create_params
       hash = Hash.new
       self.instance_variables.each {|v| hash[v.to_s.delete("@")] = self.instance_variable_get(v)}
