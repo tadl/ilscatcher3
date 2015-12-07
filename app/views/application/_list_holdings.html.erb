@@ -15,13 +15,16 @@
     <% else %>
         <% holdings.each do |h| %>
             <% if h['code'].to_s == location %>
-                <h4>Copies Available at <%= location_map(h['code'], @location_options)  %></h4>
+                <div class="list-group-item">
+                <h4 class="list-group-item-heading"><%= location_map(h['code'], @location_options)  %></h4>
                 <% h['copies'].each do |c| %>
-                    <%= c['count'] %> available in <%= c['shelf_location'] %> with call number(s): <% c['call_numbers'].each do |n| %>
-                        <%= n %>
-                    <% end %>
-                    </br>
+                    <div class="list-group-item-text">
+                        <%= c['count'] %> available in <%= c['shelf_location'] %><% c['call_numbers'].each do |n| %>
+                            <span class="label label-primary"><%= n %></span>
+                        <% end %>
+                    </div>
                 <% end%>
+                </div>
             <% end %>
         <% end %>
     <% end %>
