@@ -91,7 +91,7 @@ class Item
         if self.loc_copies_available > 0
             return "panel-success"
         elsif self.eresource != nil
-            return "panel-sucess"
+            return "panel-success"
         else
             return "panel-default"
         end
@@ -104,7 +104,7 @@ class Item
             else
               location_text = "at your location"
             end
-            return "<span class='text-success'><strong>" + self.loc_copies_available.to_s + " Available " + location_text  + "</strong></span>"
+            return "<span class='text-success'><strong>" + self.loc_copies_available.to_s + " " + location_text  + "</strong></span>"
         elsif self.eresource != nil
             return "<span class='text-success'><strong>On Demand E-Resource</strong></span>"
         else
