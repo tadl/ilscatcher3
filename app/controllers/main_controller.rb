@@ -1,6 +1,6 @@
-class MockController < ApplicationController
+class MainController < ApplicationController
     include ApplicationHelper
-    before_filter :shared_mock_variables, :generate_user
+    before_filter :shared_main_variables, :generate_user
     respond_to :html, :json, :js
 
   def index
@@ -138,7 +138,7 @@ class MockController < ApplicationController
       set_cookies(@user)
     else
       @holds = 'bad login'
-      redirect_to mock_index_path
+      redirect_to main_index_path
       return
     end
     respond_to do |format|
@@ -155,7 +155,7 @@ class MockController < ApplicationController
       set_cookies(@user)
     else
       @checkouts = 'bad login'
-      redirect_to mock_index_path
+      redirect_to main_index_path
       return
     end
     respond_to do |format|
@@ -215,7 +215,7 @@ class MockController < ApplicationController
       @fines = @user.fines
     else
       @fines = 'bad login'
-      redirect_to mock_index_path
+      redirect_to main_index_path
       return
     end
     respond_to do |format|
@@ -232,7 +232,7 @@ class MockController < ApplicationController
       @payments = @user.payments
     else
       @payments = 'bad login'
-      redirect_to mock_index_path
+      redirect_to main_index_path
       return
     end
     respond_to do |format|
@@ -249,7 +249,7 @@ class MockController < ApplicationController
       @lists = @user.get_lists
     else
       @lists = 'bad login'
-      redirect_to mock_index_path
+      redirect_to main_index_path
       return
     end
     respond_to do |format|
@@ -265,7 +265,7 @@ class MockController < ApplicationController
       @preferences = @user.preferences
     else
       @preferences = 'bad login'
-      redirect_to mock_index_path
+      redirect_to main_index_path
       return
     end
     respond_to do |format|

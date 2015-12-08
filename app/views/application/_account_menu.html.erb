@@ -1,12 +1,12 @@
 <div class="list-group">
     <div class="list-group-item active"><h4>My Account</h4></div>
-    <%= link_to mock_preferences_path, :class => "navi list-group-item #{'active' if request.path == mock_preferences_path}" do %>Account Preferences<% end %>
-    <%= link_to mock_checkouts_path, :class => "navi list-group-item #{'active' if request.path == mock_checkouts_path}" do %>Checked Out Items<% end %>
-    <%= link_to mock_holds_path, :class => "navi list-group-item #{'active' if request.path == mock_holds_path}" do %>Items on Hold<% end %>
-    <%= link_to mock_fines_path, :class => "navi list-group-item #{'active' if request.path == mock_fines_path}" do %>Current Fines<% end %>
-    <%= link_to mock_payments_path, :class => "navi list-group-item #{'active' if request.path == mock_payments_path}" do %>Past Payments<% end %>
+    <%= link_to main_preferences_path, :class => "navi list-group-item #{'active' if request.path == main_preferences_path}" do %>Account Preferences<% end %>
+    <%= link_to main_checkouts_path, :class => "navi list-group-item #{'active' if request.path == main_checkouts_path}" do %>Checked Out Items<% end %>
+    <%= link_to main_holds_path, :class => "navi list-group-item #{'active' if request.path == main_holds_path}" do %>Items on Hold<% end %>
+    <%= link_to main_fines_path, :class => "navi list-group-item #{'active' if request.path == main_fines_path}" do %>Current Fines<% end %>
+    <%= link_to main_payments_path, :class => "navi list-group-item #{'active' if request.path == main_payments_path}" do %>Past Payments<% end %>
 </div>
-<% if (request.path == mock_preferences_path) %>
+<% if (request.path == main_preferences_path) %>
     <div class="clearfix padtop"></div>
     <div class="panel panel-primary">
         <div class="panel-heading">Your MeLCat ID</div>
@@ -16,7 +16,7 @@
     </div>
 <% end %>
 <div class="clearfix padtop"></div>
-<% if (request.path == mock_holds_path && @holds.count > 0) || (request.path == mock_checkouts_path && @checkouts.count > 0) %>
+<% if (request.path == main_holds_path && @holds.count > 0) || (request.path == main_checkouts_path && @checkouts.count > 0) %>
     <div class="btn-group">
         <button type="button" class="btn btn-default" id="select-all">Select All Items</button>
         <button type="button" class="btn btn-default" id="select-none">Clear Selection</button>
@@ -26,9 +26,9 @@
             Bulk Actions <span class="caret"></span>
         </button>
         <ul class="dropdown-menu">
-            <% if request.path == mock_checkouts_path %>
+            <% if request.path == main_checkouts_path %>
                 <li><a href="#" id="checkout-bulk-renew">Renew</a></li>
-            <% elsif request.path == mock_holds_path %>
+            <% elsif request.path == main_holds_path %>
                 <li>
                     <a href="#" id="hold-bulk-suspend">Suspend</a>
                 </li>
@@ -39,7 +39,7 @@
         </ul>
     </div>
 <% end %>
-<% if (request.path == mock_fines_path && @fines.count > 0) %>
+<% if (request.path == main_fines_path && @fines.count > 0) %>
     <div class="btn-group">
         <form method="POST" action="https://www.tadl.org/pay/pay.cgi">
             <input type="hidden" name="ses" value="<%= @user.token %>">

@@ -7,7 +7,7 @@
     <% end %>
         <% list.shuffle.each do |item| %>
             <div class="col-xs-6 col-md-3 col-lg-2">
-                <%= link_to mock_details_path(:format => :js, :id => item.id), :remote => true do %>
+                <%= link_to main_details_path(:format => :js, :id => item.id), :remote => true do %>
                     <%= content_tag :img, "", :class => "carousel-item", :style => "max-height:160px;", :src => "https://catalog.tadl.org/opac/extras/ac/jacket/large/r/"+item.id.to_s, :onerror => "this.src='"+asset_path(image_asset)+"?id="+item.id.to_s+"';this.onerror='';" %>
                 <% end %>
             </div>
