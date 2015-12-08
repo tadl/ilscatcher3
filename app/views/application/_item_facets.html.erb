@@ -1,0 +1,8 @@
+<% if facets && facets.size > 0 %>
+	<% facets.each do |f| %>
+		<a href="<%= related_search_link(f, item, type) %>" data-no-turbolink="true"> 
+			<%= f %>
+		</a>
+		<br>
+	<% end %>
+<% end %>

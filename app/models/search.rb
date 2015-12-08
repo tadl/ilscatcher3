@@ -197,11 +197,10 @@ class Search
   	def results
 			url = 'https://elastic-evergreen.herokuapp.com/main/index.json?query='
       # url = 'http://cal.lib.tadl.org:4000/main/index.json?query=' 
-      url = url + self.query unless self.query.nil?
+      url = url + URI.encode(self.query, Regexp.new("[^#{URI::PATTERN::UNRESERVED}]")) unless self.query.nil?
       url = url + '&page=' + self.page unless self.page.nil?
       url = url + '&search_type=' + self.qtype unless self.qtype.nil?
       url = url + '&format_type=' + self.fmt unless self.fmt.nil?
-      url = url + '&location_code=' + self.loc unless  self.loc.nil?
       url = url + '&sort=' + self.sort unless self.sort.nil?
 
       if self.availability_check
@@ -236,7 +235,9 @@ class Search
         shelf_locks.each do |s|
           url = url + '&shelving_location[]=' +  s
         end
+        self.loc = ENV['SHELF_LOCK_LOC']
       end
+      url = url + '&location_code=' + self.loc unless  self.loc.nil?
       request = JSON.parse(open(url).read) rescue nil
   		results = Array.new
       genres_raw = Array.new

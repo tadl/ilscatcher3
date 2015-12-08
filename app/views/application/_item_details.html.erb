@@ -16,7 +16,7 @@
             <div class="col-xs-12 col-lg-12">
                 <% if !item.author.nil? %>
                     <p>
-                        <a href="<%= author_search_link(item) %>" data-no-turbolink="true"> <%= item.author %> </a>
+                        <a href="<%= related_search_link(item.author, item, 'author') %>" data-no-turbolink="true"> <%= item.author %> </a>
                     </p>
                 <% end %>    
             </div>

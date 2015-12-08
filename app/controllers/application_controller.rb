@@ -11,7 +11,7 @@ class ApplicationController < ActionController::Base
 
     def shared_mock_variables
         @logo = 'http://www.tadl.org/sites/all/themes/converge_custom/logo.png'
-        @query_options = [['Keyword', 'keyword'], ['Author / Group / Actor', 'author'],['Title', 'title'],['Subject', 'subject']]
+        @query_options = [['Keyword', 'keyword'], ['Author / Group / Actor', 'author'],['Title', 'title'],['Subject', 'subject'], ['Series', 'series']]
     	@format_options = [['All Formats', 'all'], ['Books', 'a'],['Movies / TV', 'g'],['Music', 'j']]
     	@sort_options = [['Relevance', 'relevancy'], ['Newest to Oldest', 'pubdateDESC'],['Oldest to Newest', 'pubdateASC'],['Title A to Z', 'titleAZ'], ['Title Z to A', 'titleZA']]
     	@location_options = [['Woodmere', '23'],['All Locations', '22'],['Interlochen', '24'],['Kingsley', '25'], ['Peninsula', '26'], ['East Bay', '28'], ['Fife Lake', '27']]

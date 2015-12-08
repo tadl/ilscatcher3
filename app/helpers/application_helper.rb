@@ -45,10 +45,10 @@ module ApplicationHelper
         end
     end
 
-    def author_search_link(item)
-        if item.author && item.author != ''
-            path = request.protocol + request.host_with_port + '/search?query=' + item.author
-            path += '&qtype=author'
+    def related_search_link(query, item, type)
+        if query && query != ''
+            path = request.protocol + request.host_with_port + '/search?query=' + URI.encode(query, Regexp.new("[^#{URI::PATTERN::UNRESERVED}]"))
+            path += '&qtype=' + type 
             path += '&loc=' + item.loc unless item.loc.nil?
             path += '&layout=' + item.search_layout unless item.search_layout.nil?
             return path

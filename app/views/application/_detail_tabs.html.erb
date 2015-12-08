@@ -1,6 +1,15 @@
 <ul class="nav nav-tabs" role="tablist">
     <li role="presentation" class="<% if item.all_copies_available.to_i  >= 1 %>active<% else %>disabled<% end %>"><a href="#onShelf" aria-controls="onShelf" role="tab" data-toggle="tab">Copies on Shelf</a></li>
     <li role="presentation" class="<% if item.all_copies_available.to_i == 0 %>active<% end %>"><a href="#allCopies" aria-controls="allCopies" role="tab" data-toggle="tab">All Copies <span class="badge"><%= item.all_copies_total %></span></a></li>
+    <% if item.genres && item.genres.size > 0  %>
+    	<li role="presentation" class=""><a href="#item_genres" aria-controls="item_genres" role="tab" data-toggle="tab">Genres</a></li>
+    <% end %>
+    <% if item.subjects.size > 0 %>
+    	<li role="presentation" class=""><a href="#item_subjects" aria-controls="item_subjects" role="tab" data-toggle="tab">Subjects</a></li>
+    <% end %>
+    <% if item.series.size > 0 %>
+    	<li role="presentation" class=""><a href="#item_series" aria-controls="item_series" role="tab" data-toggle="tab">Series</a></li>
+    <% end %>
 </ul>
 
 
@@ -10,5 +19,14 @@
     </div>
     <div role="tabpanel" class="tab-pane<% if item.all_copies_available.to_i  == 0 %> active<% end %>" id="allCopies">
        <%= render 'list_copies', item: item, all: false %>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="item_genres">
+       <%= render 'item_facets', item: item, facets: item.genres, type: 'genre' %>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="item_subjects">
+       <%= render 'item_facets', item: item, facets: item.subjects, type: 'subject' %>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="item_series">
+       <%= render 'item_facets', item: item, facets: item.series, type: 'series' %>
     </div>
 </div>
