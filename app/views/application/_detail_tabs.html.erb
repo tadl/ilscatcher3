@@ -21,7 +21,7 @@
        <%= render 'list_copies', item: item, all: false %>
     </div>
     <div role="tabpanel" class="tab-pane" id="item_genres">
-       <%= render 'item_facets', item: item, facets: item.genres, type: 'genre' %>
+       <%= render 'item_facets', item: item, facets: item.genres, type: 'single_genre' %>
     </div>
     <div role="tabpanel" class="tab-pane" id="item_subjects">
        <%= render 'item_facets', item: item, facets: item.subjects, type: 'subject' %>
