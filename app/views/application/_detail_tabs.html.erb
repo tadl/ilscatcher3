@@ -4,10 +4,10 @@
     <% if item.genres && item.genres.size > 0  %>
     	<li role="presentation" class=""><a href="#item_genres" aria-controls="item_genres" role="tab" data-toggle="tab">Genres</a></li>
     <% end %>
-    <% if item.subjects.size > 0 %>
+    <% if item.subjects && item.subjects.size > 0 %>
     	<li role="presentation" class=""><a href="#item_subjects" aria-controls="item_subjects" role="tab" data-toggle="tab">Subjects</a></li>
     <% end %>
-    <% if item.series.size > 0 %>
+    <% if item.series && item.series.size > 0 %>
     	<li role="presentation" class=""><a href="#item_series" aria-controls="item_series" role="tab" data-toggle="tab">Series</a></li>
     <% end %>
 </ul>
