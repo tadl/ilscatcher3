@@ -27,7 +27,7 @@ class Search
   	end
 
     def valid_canned_search(search_title)
-      valid_canned_searches = ["Hot DVDs", "New DVDs", "TC Film Festival", "Family", "Comedy", "Documentary", "Horror", "Music", "Musical", "Romance", "Science Fiction", "TV", "Western", "New Music", "Hot Tunes", "Avant-garde", "Blues", "Classical", "Comedy/Spoken", "Country", "Easy Listening", "Electronic", "Folk", "International", "Jazz", "Latin", "Local", "New Age", "Opera", "Pop/Rock", "Rap", "Reggae", "Religious", "Rhythm and Blues", "Vocal", "Nintendo Wii", "Nintendo Wii U", "Xbox", "Xbox 360", "PlayStation 2", "PlayStation 3", "PlayStation 4"]
+      valid_canned_searches = ["Hot DVDs", "New DVDs", "TC Film Festival", "Animation", "Family", "Comedy", "Documentary", "Horror", "Music", "Musical", "Romance", "Science Fiction", "TV", "Western", "New Music", "Hot Tunes", "Avant-garde", "Blues", "Classical", "Comedy/Spoken", "Country", "Easy Listening", "Electronic", "Folk", "International", "Jazz", "Latin", "Local", "New Age", "Opera", "Pop/Rock", "Rap", "Reggae", "Religious", "Rhythm and Blues", "Vocal", "Nintendo Wii", "Nintendo Wii U", "Xbox", "Xbox 360", "PlayStation 2", "PlayStation 3", "PlayStation 4"]
       if valid_canned_searches.include?(search_title)
         return true
       else
