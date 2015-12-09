@@ -99,20 +99,13 @@
                     </label>
                 </div>
             </div>
-        </div>
-    </div>
-    <div class="row padtop">
-        <div class="col-lg-10 col-xs-6">
-            <a class="btn btn-default" role="button" data-toggle="collapse" href="#searchOptions" aria-expanded="false" aria-controls="searchOptions">Search Options <span class="caret"></span></a>
             <a class="btn btn-default" role="button" data-toggle="collapse" href="#facets" aria-expanded="false" aria-controls="facets">Filters <span class="caret"></span></a>
         </div>
-        <div class="col-lg-2 col-xs-6">
-            <div class="pull-right padbot">
-                <% if @search.search_path != '' %>
-                    <a href="search<%= @search.search_path_with_facets %>&layout=list"><button class="<%= @search.list_active %> btn btn-default btn-xs large glyphicon glyphicon-list"></button></a>
-                    <a href="search<%= @search.search_path_with_facets %>&layout=grid"><button class="<%= @search.grid_active %> btn btn-default btn-xs large glyphicon glyphicon-th"></button></a>
-                <% end %>
-            </div>
+        <div class="pull-right padbot" style="margin-right:20px;">
+            <% if @search.search_path != '' %>
+                <a href="search<%= @search.search_path_with_facets %>&layout=list"><button class="<%= @search.list_active %> btn btn-default btn-xs large glyphicon glyphicon-list"></button></a>
+                <a href="search<%= @search.search_path_with_facets %>&layout=grid"><button class="<%= @search.grid_active %> btn btn-default btn-xs large glyphicon glyphicon-th"></button></a>
+            <% end %>
         </div>
     </div>
 <% end %>
