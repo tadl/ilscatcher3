@@ -47,7 +47,7 @@
                         <% end %>
                         <% if item.all_copies_available < 1 && !item.eresource %>
                             <h4>Sorry, no copies available</h4> 
-                            <a href="#" onclick="event.preventDefault();place_hold(<%= item.id %>)">place a hold</a> to request this item.
+                            <a href="#" onclick="event.preventDefault();place_hold(<%= item.id %>)">Place a hold</a> to request this item.
                         <% end %>
                     <% end %>
             </div>

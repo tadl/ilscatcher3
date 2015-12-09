@@ -102,7 +102,7 @@
             <a class="btn btn-default" role="button" data-toggle="collapse" href="#facets" aria-expanded="false" aria-controls="facets">Filters <span class="caret"></span></a>
         </div>
         <div class="pull-right padbot" style="margin-right:20px;">
-            <% if @search.search_path != '' %>
+            <% if @search.search_path != '' && !search.query.blank? %>
                 <a href="search<%= @search.search_path_with_facets %>&layout=list"><button class="<%= @search.list_active %> btn btn-default btn-xs large glyphicon glyphicon-list"></button></a>
                 <a href="search<%= @search.search_path_with_facets %>&layout=grid"><button class="<%= @search.grid_active %> btn btn-default btn-xs large glyphicon glyphicon-th"></button></a>
             <% end %>
