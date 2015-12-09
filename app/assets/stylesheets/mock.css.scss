@@ -176,4 +176,9 @@ span.goodreads-stars a {
     font-size: 18px;
 }
 
-
+/* dropdown menu issue fix */
+.smartdrop {
+    height: auto;
+    max-height: 300px;
+    overflow-x: hidden;
+}

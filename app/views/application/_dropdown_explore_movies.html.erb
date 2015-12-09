@@ -2,7 +2,7 @@
     <small class="btn btn-default dropdown-toggle" type="button" id="exploreMovies" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         Explore <span class="caret"></span>
     </small>
-    <ul class="dropdown-menu" aria-labelledby="exploreMovies">
+    <ul class="dropdown-menu smartdrop" aria-labelledby="exploreMovies">
     <% #these can probably be automatically generated %>
         <li><%= link_to '/mock/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=682&layout=grid&search_title=Hot DVDs', :remote => false, :class => 'item-link' do %>HOT DVDs<% end %></li>
         <li><%= link_to '/mock/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=687&layout=grid', :remote => false, :class => 'item-link' do %>New DVDs<% end %></li>

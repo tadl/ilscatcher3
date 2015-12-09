@@ -2,7 +2,7 @@
     <button class="btn btn-default dropdown-toggle" type="button" id="exploreMusic" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         Explore <span class="caret"></span>
     </button>
-    <ul class="dropdown-menu" aria-labelledby="exploreMusic">
+    <ul class="dropdown-menu smartdrop" aria-labelledby="exploreMusic">
         <li><%= link_to '/mock/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=684&layout=grid&search_title=Hot%20Tunes', :remote => false, :class => 'item-link' do %>HOT Tunes<% end %></li>
         <li><%= link_to '/mock/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=686&layout=grid&search_title=New%20Music', :remote => false, :class => 'item-link' do %>New Music<% end %></li>
         <li><%= link_to '/mock/search?query=&qtype=genre&sort=pubdateDESC&loc=23&fmt=j&genres[]=Avant-garde&layout=grid&search_title=Avant-garde&genre_lock=Avant-garde', :remote => false, :class => 'item-link' do %>Avant-garde<% end %></li>
