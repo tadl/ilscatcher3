@@ -16,6 +16,9 @@ class Search
           instance_variable_set("@search_title", args["search_title"])
         end
       end
+      if !args["loc"]
+        instance_variable_set("@loc", ENV['SHELF_LOCK_LOC'])
+      end
     end
 
   	def availability_check
