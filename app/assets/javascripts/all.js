@@ -48,6 +48,7 @@ ready = function() {
         $('.toggleme').toggle();
         // this will need to be adjusted for non-woodmere locations
         $('#_loc').val('23');
+        $('#_loc option[value=23]').prop('selected', true);
     })
 
     hold_management_binds();
