@@ -99,7 +99,9 @@
                     </label>
                 </div>
             </div>
-            <a class="btn btn-default" role="button" data-toggle="collapse" href="#facets" aria-expanded="false" aria-controls="facets">Filters <span class="caret"></span></a>
+            <% if !search.query.blank? %>
+                <a class="btn btn-default" role="button" data-toggle="collapse" href="#facets" aria-expanded="false" aria-controls="facets">Filters <span class="caret"></span></a>
+            <% end %>
         </div>
         <div class="pull-right padbot" style="margin-right:20px;">
             <% if @search.search_path != '' && !search.query.blank? %>
