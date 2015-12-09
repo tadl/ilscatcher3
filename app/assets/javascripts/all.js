@@ -46,6 +46,8 @@ ready = function() {
 
     $('#shelf_lock').on('click', function() {
         $('.toggleme').toggle();
+        // this will need to be adjusted for non-woodmere locations
+        $('#_loc').val('23');
     })
 
     hold_management_binds();
