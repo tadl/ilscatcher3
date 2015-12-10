@@ -276,7 +276,8 @@ class Search
           :subjects => r["subjects"],
           :genres => r["genres"],
           :series => r["series"],
-          :search_layout => self.layout
+          :search_layout => self.layout,
+          :score => r["score"]
         }
         item = Item.new item_raw
         results = results.push(item)
