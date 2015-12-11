@@ -6,28 +6,28 @@ Rails.application.routes.draw do
   get "/404" => "errors#not_found", as: :not_found
   get "/500" => "errors#internal_server_error", as: :internal_server_error
 
-  root :to => "mock#index"
-  get 'mock/index'
-  match "mock/search" => "mock#search", via: [:get, :post], defaults: { format: 'html' }
-  match "mock/login" => "mock#login", via: [:get, :post], defaults: { format: 'json' }
-  match "mock/logout" => "mock#logout", via: [:get, :post], defaults: { format: 'json' }
-  match "mock/place_hold" => "mock#place_hold", via: [:get, :post], defaults: { format: 'json' }
-  match "mock/holds" => "mock#list_holds", via: [:get, :post], defaults: { format: 'html' }
-  match "mock/checkouts" => "mock#list_checkouts", via: [:get, :post], defaults: { format: 'html' }
-  match "mock/details" => "mock#details", via: [:get, :post], defaults: { format: 'html' }
-  match "mock/manage_hold" => "mock#manage_hold", via: [:get, :post], defaults: { format: 'js' }
-  match "mock/renew_checkouts" => "mock#renew_checkouts", via: [:get, :post], defaults: { format: 'js' }
-  match "mock/marc" => "mock#marc", via: [:get, :post], defaults: { format: 'js' }
-  match "mock/fines" => "mock#fines", via: [:get, :post], defaults: { format: 'html' }
-  match "mock/payments" => "mock#payments", via: [:get, :post], defaults: { format: 'html' }
-  match "mock/account" => "mock#account", via: [:get, :post], defaults: { format: 'html' }
-  match "mock/preferences" => "mock#preferences", via: [:get, :post], defaults: { format: 'html' }
-  match "mock/user_lists" => "mock#user_lists", via: [:get, :post], defaults: { format: 'json' }
-  match "mock/update_notifications" => "mock#update_notifications", via: [:get, :post], defaults: { format: 'json' }
-  match "mock/update_search_history" => "mock#update_search_history", via: [:get, :post], defaults: {format: 'json'}
-  match "mock/update_user_info" => "mock#update_user_info", via: [:get, :post], defaults: {format: 'json'}
-  match "mock/edit_hold_pickup" => "mock#edit_hold_pickup", via: [:get, :post], defaults: {format: 'json'}
-  match '/:action', :controller => 'mock', via: [:get, :post]
+  root :to => "main#index"
+  get 'main/index'
+  match "main/search" => "main#search", via: [:get, :post], defaults: { format: 'html' }
+  match "main/login" => "main#login", via: [:get, :post], defaults: { format: 'json' }
+  match "main/logout" => "main#logout", via: [:get, :post], defaults: { format: 'json' }
+  match "main/place_hold" => "main#place_hold", via: [:get, :post], defaults: { format: 'json' }
+  match "main/holds" => "main#list_holds", via: [:get, :post], defaults: { format: 'html' }
+  match "main/checkouts" => "main#list_checkouts", via: [:get, :post], defaults: { format: 'html' }
+  match "main/details" => "main#details", via: [:get, :post], defaults: { format: 'html' }
+  match "main/manage_hold" => "main#manage_hold", via: [:get, :post], defaults: { format: 'js' }
+  match "main/renew_checkouts" => "main#renew_checkouts", via: [:get, :post], defaults: { format: 'js' }
+  match "main/marc" => "main#marc", via: [:get, :post], defaults: { format: 'js' }
+  match "main/fines" => "main#fines", via: [:get, :post], defaults: { format: 'html' }
+  match "main/payments" => "main#payments", via: [:get, :post], defaults: { format: 'html' }
+  match "main/account" => "main#account", via: [:get, :post], defaults: { format: 'html' }
+  match "main/preferences" => "main#preferences", via: [:get, :post], defaults: { format: 'html' }
+  match "main/user_lists" => "main#user_lists", via: [:get, :post], defaults: { format: 'json' }
+  match "main/update_notifications" => "main#update_notifications", via: [:get, :post], defaults: { format: 'json' }
+  match "main/update_search_history" => "main#update_search_history", via: [:get, :post], defaults: {format: 'json'}
+  match "main/update_user_info" => "main#update_user_info", via: [:get, :post], defaults: {format: 'json'}
+  match "main/edit_hold_pickup" => "main#edit_hold_pickup", via: [:get, :post], defaults: {format: 'json'}
+  match '/:action', :controller => 'main', via: [:get, :post]
 
 
 

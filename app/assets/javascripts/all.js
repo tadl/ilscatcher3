@@ -307,7 +307,7 @@ function account_prefs_binds() {
             var newhhv = $('#hhv').prop('checked');
             var newdsv = $('#dsv').val();
             $('.save-circulation-prefs').html(spinner + ' Saving...');
-            $.post("/mock/update_search_history", {default_search: newdsv, pickup_library: newplv, keep_circ_history: on_off(newchv), keep_hold_history: on_off(newhhv)})
+            $.post("/main/update_search_history", {default_search: newdsv, pickup_library: newplv, keep_circ_history: on_off(newchv), keep_hold_history: on_off(newhhv)})
                 .done(function(data) {
                     alert_message('success', 'Settings updated.', 20000);
                     $('.save-circulation-prefs').text('Saved!');
@@ -434,7 +434,7 @@ function account_prefs_binds() {
             var env = on_off($('#env').prop('checked'));
             var pnv = on_off($('#pnv').prop('checked'));
             var tnv = on_off($('#tnv').prop('checked'));
-            $.post("/mock/update_notifications", {email_notify: env, phone_notify: pnv, text_notify: tnv, phone_notify_number: pnnv, text_notify_number: tnnv})
+            $.post("/main/update_notifications", {email_notify: env, phone_notify: pnv, text_notify: tnv, phone_notify_number: pnnv, text_notify_number: tnnv})
             .done(function(data) {
                 alert_message('success','Notification preferences saved.',10000);
                 $('.cancel-notification-prefs').click();
@@ -466,7 +466,7 @@ function user_username_save_bind() {
         $('.save-user-prefs').html(spinner+' Saving...');
         var newusername = $('#uv').val();
         var up = $('#up-password').val();
-        $.post("/mock/update_user_info", {username: newusername, password: up})
+        $.post("/main/update_user_info", {username: newusername, password: up})
         .done(function(data) {
             if (data.message == 'bad password') {
                 alert_message('danger', 'Sorry, there was a problem with your password. Please try again.', 10000);
@@ -492,7 +492,7 @@ function user_alias_save_bind() {
         $('.save-user-prefs').html(spinner+' Saving...');
         var up = $('#up-password').val();
         var newalias = $('#hsav').val();
-        $.post("/mock/update_user_info", {hold_shelf_alias: newalias, password: up})
+        $.post("/main/update_user_info", {hold_shelf_alias: newalias, password: up})
         .done(function(data) {
             if (data.message == 'bad password') {
                 alert_message('danger', 'Sorry, there was a problem with your password. Please try again.', 10000);
@@ -518,7 +518,7 @@ function user_email_save_bind() {
         $('.save-user-prefs').html(spinner+' Saving...');
         var up = $('#up-password').val();
         var newemail = $('#ev').val();
-        $.post("/mock/update_user_info", {email: newemail, password: up})
+        $.post("/main/update_user_info", {email: newemail, password: up})
         .done(function(data) {
             if (data.message == 'bad password') {
                 alert_message('danger', 'Sorry, there was a problem with your password. Please try again.', 10000);
@@ -552,7 +552,7 @@ function user_password_save_bind() {
             var rule = /(?=.*\d)(?=.*[a-zA-Z]).{7,}/;
             if (rule.test(newpass1)) {
                 $('.save-user-prefs').html(spinner+' Saving...');
-                $.post("/mock/update_user_info", {password: up, new_password: newpass1})
+                $.post("/main/update_user_info", {password: up, new_password: newpass1})
                 .done(function(data) {
                     if (data.message == 'bad password') {
                         alert_message('danger', 'Sorry, the Current Password was incorrect. Please try again.', 10000);
@@ -626,7 +626,7 @@ function bulk_action_binds() {
         e.preventDefault();
         if (typeof ids !== 'undefined') {
             showLoading();
-            $.post('/mock/manage_hold.js', {hold_id: ids.toString(), task: 'suspend'})
+            $.post('/main/manage_hold.js', {hold_id: ids.toString(), task: 'suspend'})
             .done(function() {
                 hideLoading();
                 delete window.ids;
@@ -641,7 +641,7 @@ function bulk_action_binds() {
         e.preventDefault();
         if (typeof ids !== 'undefined') {
             showLoading();
-            $.post('/mock/manage_hold.js', {hold_id: ids.toString(), task: 'activate'})
+            $.post('/main/manage_hold.js', {hold_id: ids.toString(), task: 'activate'})
             .done(function() {
                 hideLoading();
                 delete window.ids;
@@ -656,7 +656,7 @@ function bulk_action_binds() {
         e.preventDefault();
         if (typeof ids !== 'undefined') {
             showLoading();
-            $.post('/mock/manage_hold.js', {hold_id: ids.toString(), task: 'cancel'})
+            $.post('/main/manage_hold.js', {hold_id: ids.toString(), task: 'cancel'})
             .done(function() {
                 hideLoading();
                 delete window.ids;
@@ -671,7 +671,7 @@ function bulk_action_binds() {
         e.preventDefault();
         if ((typeof rids !== 'undefined') || (typeof cids !== 'undefined')) {
             showLoading();
-            $.post('/mock/renew_checkouts.js', {checkout_ids: cids.toString(), record_ids: rids.toString()})
+            $.post('/main/renew_checkouts.js', {checkout_ids: cids.toString(), record_ids: rids.toString()})
             .done(function() {
                 hideLoading();
                 delete window.cids;
@@ -725,7 +725,7 @@ function edit_pickup_loc(hid,rid,state) {
         console.log("selected " + newval);
         var message = spinner+' updating...';
         $(container).html(message);
-        $.post('/mock/edit_hold_pickup.json', {hold_id: hid, new_pickup: newval, hold_state: holdstate})
+        $.post('/main/edit_hold_pickup.json', {hold_id: hid, new_pickup: newval, hold_state: holdstate})
         .done(function(data) {
             var newhtml = '<span class="pickup-'+data.hold_id+'">'+data.pickup_location+'</span> ';
                 newhtml += '<button type="button" class="small text-subdued btn btn-xs btn-default change-pickup-'+data.hold_id+'" onclick="edit_pickup_loc('+data.hold_id+','+data.record_id+',\''+data.hold_status+'\')">change</button>';

@@ -3,7 +3,7 @@
 	<% if search.loc && search.loc != 22 %>
 		at <%= location_map(search.loc, @location_options)  %>
 	<% end %>
-    <small><a class="navi" href="<%= mock_search_path %>">Start a new search <span class="glyphicon glyphicon-menu-right"></span></a></small>
+    <small><a class="navi" href="<%= main_search_path %>">Start a new search <span class="glyphicon glyphicon-menu-right"></span></a></small>
 </h3>
 <%= bootstrap_form_tag url: 'search', :html => { :method => 'get', :class => 'form' } do |f| %>
     <div id="searchOptions">
