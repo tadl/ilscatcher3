@@ -87,7 +87,7 @@ class Item
       return marc_record
     end
 
-    def grid_available_pannel
+    def grid_available_panel
         if self.loc_copies_available > 0
             return "panel-success"
         elsif self.eresource != nil

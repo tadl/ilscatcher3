@@ -1,4 +1,4 @@
-<div class="panel <%= item.grid_available_pannel %>">
+<div class="panel <%= item.grid_available_panel %>">
     <div class="panel-heading">
         <%= link_to 'details.js', data:{params: item.create_params}, :method=> :post, :remote => true do %>
             <span class="glyphicon <%= format_icon(item.format_type, @format_icons) %>" title="<%= item.format_type %>"></span> <%= item.title %>
