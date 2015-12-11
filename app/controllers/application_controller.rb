@@ -9,7 +9,7 @@ class ApplicationController < ActionController::Base
         headers['Access-Control-Allow-Origin'] = '*'      
     end  
 
-    def shared_mock_variables
+    def shared_main_variables
         @logo = 'http://www.tadl.org/sites/all/themes/converge_custom/logo.png'
         @query_options = [['Keyword', 'keyword'], ['Author / Group / Actor', 'author'],['Title', 'title'],['Subject', 'subject'], ['Series', 'series'], ['Genre', 'single_genre']]
     	@format_options = [['All Formats', 'all'], ['Books', 'a'],['Movies / TV', 'g'],['Music', 'j']]
