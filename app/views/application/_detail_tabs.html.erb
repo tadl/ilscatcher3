@@ -10,6 +10,9 @@
     <% if item.series && item.series.size > 0 %>
     	<li role="presentation" class=""><a href="#item_series" aria-controls="item_series" role="tab" data-toggle="tab">Series</a></li>
     <% end %>
+    <% if item.author_other && item.author_other.size > 0 %>
+        <li role="presentation" class=""><a href="#item_authors" aria-controls="item_authors" role="tab" data-toggle="tab">Other Authors / Cast / Groups</a></li>
+    <% end %>
 </ul>
 
 
@@ -28,5 +31,8 @@
     </div>
     <div role="tabpanel" class="tab-pane" id="item_series">
        <%= render 'item_facets', item: item, facets: item.series, type: 'series' %>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="item_authors">
+       <%= render 'item_facets', item: item, facets: item.author_other, type: 'author' %>
     </div>
 </div>
