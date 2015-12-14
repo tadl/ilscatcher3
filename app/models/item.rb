@@ -104,9 +104,9 @@ class Item
             else
               location_text = "at your location"
             end
-            return "<span class='text-success'><strong>" + self.loc_copies_available.to_s + " " + location_text  + "</strong></span>"
+            return "<strong>" + self.loc_copies_available.to_s + " available " + location_text  + "</strong>"
         elsif self.eresource != nil
-            return "<span class='text-success'><strong>On Demand E-Resource</strong></span>"
+            return "<strong>On Demand E-Resource</strong>"
         else
             return ""
         end

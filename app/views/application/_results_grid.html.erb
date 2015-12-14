@@ -8,7 +8,11 @@
         <%= link_to 'details.js', data:{params: item.create_params}, :method=> :post, :remote => true do %>
             <img src='https://catalog.tadl.org/opac/extras/ac/jacket/large/r/<%= item.id %>' class="grid-item" 
                 onerror="this.src='<%= asset_path("logo-clock-only.png") %>?id=<%= item.id %>'" />
+        <% if item.loc_copies_available > 0 %>
+            <div class="panel-overlay">
+                <%= item.grid_available_text.html_safe %>
+            </div>
         <% end %>
-        <%= item.grid_available_text.html_safe %>
+        <% end %>
     </div><!-- /.panel-body -->
 </div><!-- /.panel -->
