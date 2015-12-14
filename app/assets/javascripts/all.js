@@ -51,6 +51,10 @@ ready = function() {
         $('#_loc option[value=23]').prop('selected', true);
     })
 
+    $('#acctreg').on('click', function() {
+        window.open('https://www.tadl.org/register');
+    })
+
     hold_management_binds();
     checkout_management_binds();
     item_loading_binds();
