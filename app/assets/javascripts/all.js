@@ -55,6 +55,10 @@ ready = function() {
         window.open('https://www.tadl.org/register');
     })
 
+    $('a.navi').on('click', function() {
+        showLoading();
+    });
+
     hold_management_binds();
     checkout_management_binds();
     item_loading_binds();
