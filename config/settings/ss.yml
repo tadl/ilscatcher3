@@ -1,3 +1,33 @@
 shelf_lock:
   shelves: [982,983,682,684,808,517,583,985,521,586,800,987,801,772,989,774,991,588,580,773,821,686,687,781,997,993,671,674,994,556,557,788,617,778,779,995,814,777,996]
   location: '23'
+lists: 
+  - name: 'music_list'
+    fancy_name: 'Music' 
+    loc: '23'
+    shelving_locations: ['686']
+    searches: 
+      - name: "New Music"
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=686&layout=grid&search_title=New%20Music' 
+      - name: "Hot Tunes"
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=684&layout=grid&search_title=Hot%20Tunes'
+  - name: 'movie_list'
+    fancy_name: 'Movies'  
+    loc: '23'
+    shelving_locations: ['682','687','814']
+    searches:
+      - name: "Hot DVDs"
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=682&layout=grid&search_title=Hot DVDs'
+      - name: "New DVDs"
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=687&layout=grid&search_title=New DVDs'
+      - name: "TC Film Festival"
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=778&layout=grid&search_title=TC Film Festival'
+  - name: 'game_list'
+    fancy_name: 'Games'  
+    loc: '23'
+    shelving_locations: ['777']
+    searches:
+      - name: "Nintendo Wii U"
+        url: '/main/search?query=&qtype=genre&sort=pubdateDESC&loc=23&genres[]=Nintendo Wii U video games.&layout=grid&search_title=Nintendo Wii U&genre_lock=Nintendo Wii U video games.'
+      - name: "Xbox 360"
+        url: '/main/search?query=&qtype=genre&sort=pubdateDESC&loc=23&genres[]=Xbox 360 video games.&layout=grid&search_title=Xbox 360&genre_lock=Xbox 360 video games.'

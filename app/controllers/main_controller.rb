@@ -4,6 +4,7 @@ class MainController < ApplicationController
     respond_to :html, :json, :js
 
   def index
+    @lists = Settings.lists
     @music_list = Rails.cache.read("music_list")
     @movie_list = Rails.cache.read('movie_list')
     @games_list = Rails.cache.read('game_list')

@@ -1,0 +1,12 @@
+<div class="dropdown pull-right" style="margin-top:15px;">
+    <button class="btn btn-default dropdown-toggle" type="button" id="explore_<%= list['name'] %>" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Explore <span class="caret"></span>
+    </button>
+    <ul class="dropdown-menu smartdrop" aria-labelledby="explore_<%= list['name'] %>">
+        <% list['searches'].each do |c| %>
+            <li>
+                <%= link_to c['url'], :remote => false, :class => 'item-link' do %><%= c['name'] %><% end %>
+            </li>
+        <% end %>
+    </ul>
+</div>

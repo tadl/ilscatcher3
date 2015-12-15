@@ -3,11 +3,7 @@ task :generate_sliders => :environment do
 	require 'open-uri'
 	require 'mini_magick'	
 	
-	lists = [
-		{'name' => 'music_list', 'loc' => '23', 'shelving_locations' => ['686']},
-		{'name' => 'movie_list', 'loc' => '23', 'shelving_locations' => ['682','687','814']},
-		{'name' => 'game_list', 'loc' => '23', 'shelving_locations' => ['777']},
-	]
+	lists = Settings.lists
 
 	lists.each do |l|
 		query = {"sort" => "pubdateDESC",  "loc" => l['loc'], "qtype" => "shelf", "shelving_location" => l['shelving_locations'], "availability" => "on"}
