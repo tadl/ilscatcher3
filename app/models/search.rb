@@ -17,7 +17,7 @@ class Search
         end
       end
       if !args["loc"]
-        instance_variable_set("@loc", ENV['SHELF_LOCK_LOC'])
+        instance_variable_set("@loc", Settings.shelf_lock.location)
       end
     end
 
@@ -234,11 +234,11 @@ class Search
           url = url + '&shelving_location[]=' +  s
         end
       elsif self.shelf_lock == 'on'
-        shelf_locks = ENV['SHELF_LOCK'].split(',')
+        shelf_locks = Settings.shelf_lock.shelves
         shelf_locks.each do |s|
-          url = url + '&shelving_location[]=' +  s
+          url = url + '&shelving_location[]=' +  s.to_s
         end
-        self.loc = ENV['SHELF_LOCK_LOC']
+        self.loc = Settings.shelf_lock.location
       end
       url = url + '&location_code=' + self.loc unless  self.loc.nil?
       request = JSON.parse(open(url).read) rescue nil

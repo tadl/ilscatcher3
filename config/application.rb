@@ -25,5 +25,7 @@ module Ilscatcher3
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :de
     config.exceptions_app = self.routes
+    Settings.add_source!("#{Rails.root}/config/settings/" + ENV['CONFIG_FILE'])
+    Settings.reload!
   end
 end
