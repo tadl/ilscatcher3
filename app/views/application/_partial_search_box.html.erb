@@ -10,7 +10,9 @@
                 <input type="hidden" name="qtype" value="keyword">
                 <input type="hidden" name="sort" value="relevance">
                 <input type="hidden" name="loc" value="23">
-                <input type="hidden" name="shelf_lock" value="on">
+                <% if Settings.shelf_lock && Settings.shelf_lock.default_activated == true %>
+                    <input type="hidden" name="shelf_lock" value="on">
+                <% end %>
                 <span class="input-group-btn">
                     <button type="submit" name="commit" class="btn btn-primary" id="search-button"><span class="glyphicon glyphicon-search"></span></button>
                 </span>

@@ -83,21 +83,23 @@
                 </div>
             </div>
             <div class="col-lg-4 col-md-5 col-sm-6 col-xs-12">
-                <div class="form-group">
-                <% if search.shelf_lock == 'on' || !search.shelf_lock.nil? || @blank_search == true %>
-                    <input type="checkbox" <% if !search.query.blank? %>class="autoload" <% end %>name="shelf_lock" id="shelf_lock" checked="checked">                 
-                <% else %>
-                     <input type="checkbox" <% if !search.query.blank? %>class="autoload" <% end %>name="shelf_lock" id="shelf_lock" > 
+                <% if Settings.shelf_lock %>
+                    <div class="form-group">
+                    <% if search.shelf_lock == 'on' || !search.shelf_lock.nil? || @blank_search == true %>
+                        <input type="checkbox" <% if !search.query.blank? %>class="autoload" <% end %>name="shelf_lock" id="shelf_lock" checked="checked">                 
+                    <% else %>
+                         <input type="checkbox" <% if !search.query.blank? %>class="autoload" <% end %>name="shelf_lock" id="shelf_lock" > 
+                    <% end %>
+                    <div class="btn-group">
+                        <label for="shelf_lock" class="btn btn-default">
+                            <span class="glyphicon glyphicon-ok"></span>
+                            <span></span>
+                        </label>
+                        <label for="shelf_lock" class="btn btn-default">
+                            <%= Settings.shelf_lock.text %>
+                        </label>
+                    </div>
                 <% end %>
-                <div class="btn-group">
-                    <label for="shelf_lock" class="btn btn-default">
-                        <span class="glyphicon glyphicon-ok"></span>
-                        <span></span>
-                    </label>
-                    <label for="shelf_lock" class="btn btn-default">
-                        Limit to Sight &amp; Sound items
-                    </label>
-                </div>
             </div>
             <% if !search.query.blank? %>
                 <a class="btn btn-default" role="button" data-toggle="collapse" href="#facets" aria-expanded="false" aria-controls="facets">Filters <span class="caret"></span></a>

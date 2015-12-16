@@ -16,7 +16,7 @@ class Search
           instance_variable_set("@search_title", args["search_title"])
         end
       end
-      if !args["loc"]
+      if !args["loc"] && Settings.shelf_lock
         instance_variable_set("@loc", Settings.shelf_lock.location)
       end
     end
