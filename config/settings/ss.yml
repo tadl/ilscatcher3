@@ -3,7 +3,38 @@ shelf_lock:
   location: '23'
   default_activated: true
   text: 'Limit to Sight & Sound items'
-lists: 
+lists:
+  - name: 'movie_list'
+    fancy_name: 'Movies'  
+    loc: '23'
+    shelving_locations: ['682','687','814']
+    searches:
+      - name: "Hot DVDs"
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=682&layout=grid&search_title=Hot DVDs'
+      - name: "New DVDs"
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=687&layout=grid&search_title=New DVDs'
+      - name: "TC Film Festival"
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=778&layout=grid&search_title=TC Film Festival'
+      - name: 'Animation'
+        url: '/main/search?query=&qtype=genre&sort=pubdateDESC&loc=23&fmt=g&genres[]=Animation&layout=grid&search_title=Animation&genre_lock=Animation' 
+      - name: 'Family'
+        url: '/main/search?query=&qtype=genre&sort=pubdateDESC&loc=23&fmt=g&genres[]=Family&layout=grid&search_title=Family&genre_lock=Family'
+      - name: 'Comedy'
+        url: '/main/search?query=&qtype=genre&sort=pubdateDESC&loc=23&fmt=g&genres[]=Comedy&layout=grid&search_title=Comedy&genre_lock=Comedy'
+      - name: 'Documentary'
+        url: '/main/search?query=&qtype=genre&sort=pubdateDESC&loc=23&fmt=g&genres[]=Documentary&layout=grid&search_title=Documentary&genre_lock=Documentary'
+      - name: 'Horror'
+        url: '/main/search?query=&qtype=genre&sort=pubdateDESC&loc=23&fmt=g&genres[]=Horror&layout=grid&search_title=Horror&genre_lock=Horror'
+      - name: 'Music'
+        url: '/main/search?query=&qtype=genre&sort=pubdateDESC&loc=23&fmt=g&genres[]=Music&layout=grid&search_title=Music&genre_lock=Music'
+      - name: 'Romance'
+        url: '/main/search?query=&qtype=genre&sort=pubdateDESC&loc=23&fmt=g&genres[]=Romance&layout=grid&search_title=Romance&genre_lock=Romance'
+      - name: 'Science Fiction'
+        url: '/main/search?query=&qtype=genre&sort=pubdateDESC&loc=23&fmt=g&genres[]=Science%20Fiction&layout=grid&search_title=Science%20Fiction&genre_lock=Science%20Fiction'
+      - name: 'TV'
+        url: '/main/search?query=&qtype=genre&sort=pubdateDESC&loc=23&fmt=g&genres[]=TV&layout=grid&search_title=TV&genre_lock=TV'
+      - name: 'Western'
+        url: '/main/search?query=&qtype=genre&sort=pubdateDESC&loc=23&fmt=g&genres[]=Western&layout=grid&search_title=Western&genre_lock=Western' 
   - name: 'music_list'
     fancy_name: 'Music' 
     loc: '23'
@@ -53,37 +84,6 @@ lists:
         url: '/main/search?query=&qtype=genre&sort=pubdateDESC&loc=23&fmt=j&genres[]=Rhythm and Blues&layout=grid&search_title=Rhythm and Blues&genre_lock=Rhythm and Blues'
       - name: 'Vocal'
         url: '/main/search?query=&qtype=genre&sort=pubdateDESC&loc=23&fmt=j&genres[]=Vocal&layout=grid&search_title=Vocal&genre_lock=Vocal'
-  - name: 'movie_list'
-    fancy_name: 'Movies'  
-    loc: '23'
-    shelving_locations: ['682','687','814']
-    searches:
-      - name: "Hot DVDs"
-        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=682&layout=grid&search_title=Hot DVDs'
-      - name: "New DVDs"
-        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=687&layout=grid&search_title=New DVDs'
-      - name: "TC Film Festival"
-        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=778&layout=grid&search_title=TC Film Festival'
-      - name: 'Animation'
-        url: '/main/search?query=&qtype=genre&sort=pubdateDESC&loc=23&fmt=g&genres[]=Animation&layout=grid&search_title=Animation&genre_lock=Animation' 
-      - name: 'Family'
-        url: '/main/search?query=&qtype=genre&sort=pubdateDESC&loc=23&fmt=g&genres[]=Family&layout=grid&search_title=Family&genre_lock=Family'
-      - name: 'Comedy'
-        url: '/main/search?query=&qtype=genre&sort=pubdateDESC&loc=23&fmt=g&genres[]=Comedy&layout=grid&search_title=Comedy&genre_lock=Comedy'
-      - name: 'Documentary'
-        url: '/main/search?query=&qtype=genre&sort=pubdateDESC&loc=23&fmt=g&genres[]=Documentary&layout=grid&search_title=Documentary&genre_lock=Documentary'
-      - name: 'Horror'
-        url: '/main/search?query=&qtype=genre&sort=pubdateDESC&loc=23&fmt=g&genres[]=Horror&layout=grid&search_title=Horror&genre_lock=Horror'
-      - name: 'Music'
-        url: '/main/search?query=&qtype=genre&sort=pubdateDESC&loc=23&fmt=g&genres[]=Music&layout=grid&search_title=Music&genre_lock=Music'
-      - name: 'Romance'
-        url: '/main/search?query=&qtype=genre&sort=pubdateDESC&loc=23&fmt=g&genres[]=Romance&layout=grid&search_title=Romance&genre_lock=Romance'
-      - name: 'Science Fiction'
-        url: '/main/search?query=&qtype=genre&sort=pubdateDESC&loc=23&fmt=g&genres[]=Science%20Fiction&layout=grid&search_title=Science%20Fiction&genre_lock=Science%20Fiction'
-      - name: 'TV'
-        url: '/main/search?query=&qtype=genre&sort=pubdateDESC&loc=23&fmt=g&genres[]=TV&layout=grid&search_title=TV&genre_lock=TV'
-      - name: 'Western'
-        url: '/main/search?query=&qtype=genre&sort=pubdateDESC&loc=23&fmt=g&genres[]=Western&layout=grid&search_title=Western&genre_lock=Western'
   - name: 'game_list'
     fancy_name: 'Games'  
     loc: '23'
