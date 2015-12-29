@@ -4,6 +4,7 @@ shelf_lock:
   default_activated: true
   text: 'Limit to Sight & Sound items'
 stylesheet: 'ss.css'
+logo: 'logo-clock-only.png'
 lists:
   - name: 'movie_list'
     fancy_name: 'Movies'  
