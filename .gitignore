@@ -15,8 +15,15 @@
 /log/*.log
 /tmp
 /.env
-/public/assets
 
+# ignore config files that don't actually exist
 config/settings.local.yml
 config/settings/*.local.yml
 config/environments/*.local.yml
+
+public/assets/*.css
+public/assets/*.gz
+public/assets/*.js
+public/assets/*.png
+public/assets/*.json
+public/assets/bootstrap
