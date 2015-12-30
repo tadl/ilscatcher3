@@ -33,5 +33,6 @@ class FeaturedListBuilder < ApplicationController
         Rails.cache.write(l['name'], results_with_images)
       end
   end
+  time_now = Time.now
   Rails.cache.write('last_updated', time_now)
 end
