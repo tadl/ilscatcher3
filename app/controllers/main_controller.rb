@@ -8,6 +8,12 @@ class MainController < ApplicationController
     @music_list = Rails.cache.read("music_list")
     @movie_list = Rails.cache.read('movie_list')
     @games_list = Rails.cache.read('game_list')
+    @time_now = Rails.cache.read('last_updated')
+
+    respond_to do |format|
+      format.html
+      format.json { render :json =>{ :last_updated => @time_now, :music_list => @music_list}}
+    end
   end
 
 
