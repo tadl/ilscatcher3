@@ -2,22 +2,35 @@ class FeaturedListBuilder < ApplicationController
   include Sidekiq::Worker
   include Sidetiq::Schedulable
 
-  recurrence {minutely(10)}
+  require 'open-uri'
+  require 'mini_magick' 
+
+  recurrence {minutely(5)}
 
   def perform()
-  	  puts "getting list"
-  	  music_list_raw = JSON.parse(open('https://www.tadl.org/mobile/export/items/31/json').read)['nodes'].map {|i| i['node']}
-      movie_list_raw = JSON.parse(open('https://www.tadl.org/mobile/export/items/32/json').read)['nodes'].map {|i| i['node']}
-      book_list_raw = JSON.parse(open('https://www.tadl.org/mobile/export/items/68/json').read)['nodes'].map {|i| i['node']}
-      game_list_raw = JSON.parse(open('https://www.tadl.org/mobile/export/items/505/json').read)['nodes'].map {|i| i['node']}
-      movie_list = Dish(movie_list_raw)
-      music_list = Dish(music_list_raw)
-      book_list = Dish(book_list_raw)
-      game_list = Dish(game_list_raw)
-      Rails.cache.write('music_list', music_list)
-      Rails.cache.write('movie_list', movie_list)
-      Rails.cache.write('book_list', book_list)
-      Rails.cache.write('game_list', game_list)
+    lists = Settings.lists
+    lists.each do |l|
+      query = {"sort" => "pubdateDESC",  "loc" => l['loc'], "qtype" => "shelf", "shelving_location" => l['shelving_locations'], "availability" => "on"}
+      fetch = Search.new query
+        results = fetch.results
+        list = results[0]
+        results_with_images = Array.new
+      puts 'processing ' + l['name']
+      list.each do |i|
+          url = 'https://catalog.tadl.org/opac/extras/ac/jacket/large/r/' + i.id.to_s
+          image = MiniMagick::Image.open(url) rescue nil
+          if image != nil 
+            if image.width > 2
+              puts i.title + ' was a good one'
+              results_with_images.push(i)
+            else
+              puts i.title + ' was a bad one because one pixel'
+            end
+          else
+            puts i.title + ' was a bad one because 404'
+          end
+        end
+        Rails.cache.write(l['name'], results_with_images)
+      end
   end
-
 end
