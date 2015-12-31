@@ -5,14 +5,18 @@ class MainController < ApplicationController
 
   def index
     @lists = Settings.lists
-    @music_list = Rails.cache.read("music_list")
-    @movie_list = Rails.cache.read('movie_list')
-    @games_list = Rails.cache.read('game_list')
     @time_now = Rails.cache.read('last_updated')
+    @featured_items = Array.new
+    @lists.each do |l|
+      list = Hash.new
+      list["title"] = l["name"]
+      list["items"] = Rails.cache.read(l["name"])
+      @featured_items = @featured_items.push(list)
+    end
 
     respond_to do |format|
       format.html
-      format.json { render :json =>{ :last_updated => @time_now, :movie_list => @movie_list}}
+      format.json { render :json =>{ :last_updated => @time_now, :featured_items => @featured_items}}
     end
   end
 
