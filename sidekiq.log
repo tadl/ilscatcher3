@@ -280,3 +280,87 @@
 2015-12-28T21:53:12.100Z 20861 TID-pmu8k INFO: [Sidetiq] Sidetiq::Actor::Handler id: 43066500 shutting down ...
 2015-12-28T21:53:12.101Z 20861 TID-pnbn8 INFO: [Sidetiq] Sidetiq::Actor::Clock id: 43080960 shutting down ...
 2015-12-28T21:53:12.103Z 20861 TID-pmp94 INFO: [Sidetiq] Sidetiq::Actor::Handler id: 43052020 shutting down ...
+2015-12-31T16:56:41.303Z 23789 TID-axg24 INFO: [Sidetiq] Sidetiq v0.6.1 - Copyright (c) 2012-2013, Tobias Svensson <tob@tobiassvensson.co.uk>
+2015-12-31T16:56:41.327Z 23789 TID-axg24 INFO: [Sidetiq] Sidetiq is covered by the 3-clause BSD license.
+2015-12-31T16:56:41.327Z 23789 TID-axg24 INFO: [Sidetiq] See LICENSE and http://opensource.org/licenses/BSD-3-Clause for licensing details.
+2015-12-31T16:56:41.328Z 23789 TID-axg24 INFO: [Sidetiq] Sidetiq::Supervisor start
+2015-12-31T16:56:41.330Z 23789 TID-reve4 INFO: [Sidetiq] Sidetiq::Actor::Clock id: 46045640 initialize
+2015-12-31T16:56:41.332Z 23789 TID-redw4 INFO: [Sidetiq] Sidetiq::Actor::Handler id: 46034540 initialize
+2015-12-31T16:56:41.334Z 23789 TID-re9dc INFO: [Sidetiq] Sidetiq::Actor::Handler id: 46017180 initialize
+2015-12-31T16:56:43.380Z 23789 TID-redw4 INFO: Booting Sidekiq 3.3.0 with redis options {}
+2015-12-31T16:56:44.032Z 23789 TID-axg24 INFO: Running in ruby 2.2.0p0 (2014-12-25 revision 49005) [x86_64-linux]
+2015-12-31T16:56:44.032Z 23789 TID-axg24 INFO: See LICENSE and the LGPL-3.0 for licensing details.
+2015-12-31T16:56:44.032Z 23789 TID-axg24 INFO: Upgrade to Sidekiq Pro for more features and support: http://sidekiq.org/pro
+2015-12-31T16:56:44.032Z 23789 TID-axg24 INFO: Starting processing, hit Ctrl-C to stop
+2015-12-31T16:56:44.342Z 23789 TID-re9dc INFO: [Sidetiq] Enqueue: FeaturedListBuilder (at: 1451581200.0) (last: -1.0)
+2015-12-31T17:00:00.423Z 23789 TID-re9dc INFO: [Sidetiq] Enqueue: FeaturedListBuilder (at: 1451581500.0) (last: 1451581200.0)
+2015-12-31T17:00:02.603Z 23789 TID-rftf4 FeaturedListBuilder JID-7ca17a3c2cab5447a433c93a INFO: start
+2015-12-31T17:00:02.637Z 23789 TID-rftf4 FeaturedListBuilder JID-7ca17a3c2cab5447a433c93a INFO: fail: 0.033 sec
+2015-12-31T17:00:02.672Z 23789 TID-rftf4 WARN: {"retry"=>true, "queue"=>"default", "class"=>"FeaturedListBuilder", "args"=>[], "jid"=>"7ca17a3c2cab5447a433c93a", "enqueued_at"=>1451581004.3429508, "error_message"=>"uninitialized constant FeaturedListBuilder::ILSCATCHER3", "error_class"=>"NameError", "failed_at"=>1451581202.6360025, "retry_count"=>0}
+2015-12-31T17:00:02.673Z 23789 TID-rftf4 WARN: uninitialized constant FeaturedListBuilder::ILSCATCHER3
+2015-12-31T17:00:02.673Z 23789 TID-rftf4 WARN: /home/itsatrap/ilscatcher3/app/workers/featured_list_builder.rb:13:in `perform'
+/home/itsatrap/.rvm/gems/ruby-2.2.0/gems/sidekiq-3.3.0/lib/sidekiq/processor.rb:75:in `execute_job'
+/home/itsatrap/.rvm/gems/ruby-2.2.0/gems/sidekiq-3.3.0/lib/sidekiq/processor.rb:52:in `block (2 levels) in process'
+/home/itsatrap/.rvm/gems/ruby-2.2.0/gems/sidekiq-3.3.0/lib/sidekiq/middleware/chain.rb:127:in `call'
+/home/itsatrap/.rvm/gems/ruby-2.2.0/gems/sidekiq-3.3.0/lib/sidekiq/middleware/chain.rb:127:in `block in invoke'
+/home/itsatrap/.rvm/gems/ruby-2.2.0/gems/sidetiq-0.6.1/lib/sidetiq/middleware/history.rb:17:in `call_with_sidetiq_history'
+/home/itsatrap/.rvm/gems/ruby-2.2.0/gems/sidetiq-0.6.1/lib/sidetiq/middleware/history.rb:6:in `call'
+/home/itsatrap/.rvm/gems/ruby-2.2.0/gems/sidekiq-3.3.0/lib/sidekiq/middleware/chain.rb:129:in `block in invoke'
+/home/itsatrap/.rvm/gems/ruby-2.2.0/gems/sidekiq-3.3.0/lib/sidekiq/middleware/server/retry_jobs.rb:74:in `call'
+/home/itsatrap/.rvm/gems/ruby-2.2.0/gems/sidekiq-3.3.0/lib/sidekiq/middleware/chain.rb:129:in `block in invoke'
+/home/itsatrap/.rvm/gems/ruby-2.2.0/gems/sidekiq-3.3.0/lib/sidekiq/middleware/server/logging.rb:11:in `block in call'
+/home/itsatrap/.rvm/gems/ruby-2.2.0/gems/sidekiq-3.3.0/lib/sidekiq/logging.rb:22:in `with_context'
+/home/itsatrap/.rvm/gems/ruby-2.2.0/gems/sidekiq-3.3.0/lib/sidekiq/middleware/server/logging.rb:7:in `call'
+/home/itsatrap/.rvm/gems/ruby-2.2.0/gems/sidekiq-3.3.0/lib/sidekiq/middleware/chain.rb:129:in `block in invoke'
+/home/itsatrap/.rvm/gems/ruby-2.2.0/gems/sidekiq-3.3.0/lib/sidekiq/middleware/chain.rb:132:in `call'
+/home/itsatrap/.rvm/gems/ruby-2.2.0/gems/sidekiq-3.3.0/lib/sidekiq/middleware/chain.rb:132:in `invoke'
+/home/itsatrap/.rvm/gems/ruby-2.2.0/gems/sidekiq-3.3.0/lib/sidekiq/processor.rb:51:in `block in process'
+/home/itsatrap/.rvm/gems/ruby-2.2.0/gems/sidekiq-3.3.0/lib/sidekiq/processor.rb:98:in `stats'
+/home/itsatrap/.rvm/gems/ruby-2.2.0/gems/sidekiq-3.3.0/lib/sidekiq/processor.rb:50:in `process'
+/home/itsatrap/.rvm/gems/ruby-2.2.0/gems/celluloid-0.16.0/lib/celluloid/calls.rb:26:in `public_send'
+/home/itsatrap/.rvm/gems/ruby-2.2.0/gems/celluloid-0.16.0/lib/celluloid/calls.rb:26:in `dispatch'
+/home/itsatrap/.rvm/gems/ruby-2.2.0/gems/celluloid-0.16.0/lib/celluloid/calls.rb:122:in `dispatch'
+/home/itsatrap/.rvm/gems/ruby-2.2.0/gems/celluloid-0.16.0/lib/celluloid/cell.rb:60:in `block in invoke'
+/home/itsatrap/.rvm/gems/ruby-2.2.0/gems/celluloid-0.16.0/lib/celluloid/cell.rb:71:in `block in task'
+/home/itsatrap/.rvm/gems/ruby-2.2.0/gems/celluloid-0.16.0/lib/celluloid/actor.rb:357:in `block in task'
+/home/itsatrap/.rvm/gems/ruby-2.2.0/gems/celluloid-0.16.0/lib/celluloid/tasks.rb:57:in `block in initialize'
+/home/itsatrap/.rvm/gems/ruby-2.2.0/gems/celluloid-0.16.0/lib/celluloid/tasks/task_fiber.rb:15:in `block in create'
+2015-12-31T17:01:39.648Z 23789 TID-axg24 INFO: Shutting down
+2015-12-31T17:01:40.074Z 23789 TID-pt0jc INFO: Shutting down 25 quiet workers
+2015-12-31T17:01:40.083Z 23789 TID-re9dc INFO: [Sidetiq] Sidetiq::Actor::Handler id: 46017180 shutting down ...
+2015-12-31T17:01:40.084Z 23789 TID-redw4 INFO: [Sidetiq] Sidetiq::Actor::Handler id: 46034540 shutting down ...
+2015-12-31T17:01:40.084Z 23789 TID-reve4 INFO: [Sidetiq] Sidetiq::Actor::Clock id: 46045640 shutting down ...
+2015-12-31T17:01:49.945Z 23990 TID-72178 INFO: [Sidetiq] Sidetiq v0.6.1 - Copyright (c) 2012-2013, Tobias Svensson <tob@tobiassvensson.co.uk>
+2015-12-31T17:01:49.945Z 23990 TID-72178 INFO: [Sidetiq] Sidetiq is covered by the 3-clause BSD license.
+2015-12-31T17:01:49.945Z 23990 TID-72178 INFO: [Sidetiq] See LICENSE and http://opensource.org/licenses/BSD-3-Clause for licensing details.
+2015-12-31T17:01:49.945Z 23990 TID-72178 INFO: [Sidetiq] Sidetiq::Supervisor start
+2015-12-31T17:01:49.947Z 23990 TID-njg5w INFO: [Sidetiq] Sidetiq::Actor::Clock id: 39540740 initialize
+2015-12-31T17:01:49.949Z 23990 TID-niynw INFO: [Sidetiq] Sidetiq::Actor::Handler id: 39518080 initialize
+2015-12-31T17:01:49.950Z 23990 TID-niu54 INFO: [Sidetiq] Sidetiq::Actor::Handler id: 39512240 initialize
+2015-12-31T17:01:51.642Z 23990 TID-72178 INFO: Booting Sidekiq 3.3.0 with redis options {}
+2015-12-31T17:01:52.092Z 23990 TID-72178 INFO: Running in ruby 2.2.0p0 (2014-12-25 revision 49005) [x86_64-linux]
+2015-12-31T17:01:52.092Z 23990 TID-72178 INFO: See LICENSE and the LGPL-3.0 for licensing details.
+2015-12-31T17:01:52.092Z 23990 TID-72178 INFO: Upgrade to Sidekiq Pro for more features and support: http://sidekiq.org/pro
+2015-12-31T17:01:52.092Z 23990 TID-72178 INFO: Starting processing, hit Ctrl-C to stop
+2015-12-31T17:02:13.335Z 23990 TID-72178 INFO: Shutting down
+2015-12-31T17:02:14.080Z 23990 TID-lvstg INFO: Shutting down 25 quiet workers
+2015-12-31T17:02:14.092Z 23990 TID-niynw INFO: [Sidetiq] Sidetiq::Actor::Handler id: 39518080 shutting down ...
+2015-12-31T17:02:14.093Z 23990 TID-niu54 INFO: [Sidetiq] Sidetiq::Actor::Handler id: 39512240 shutting down ...
+2015-12-31T17:02:14.094Z 23990 TID-njg5w INFO: [Sidetiq] Sidetiq::Actor::Clock id: 39540740 shutting down ...
+2015-12-31T17:02:17.350Z 24050 TID-aip3o INFO: [Sidetiq] Sidetiq v0.6.1 - Copyright (c) 2012-2013, Tobias Svensson <tob@tobiassvensson.co.uk>
+2015-12-31T17:02:17.350Z 24050 TID-aip3o INFO: [Sidetiq] Sidetiq is covered by the 3-clause BSD license.
+2015-12-31T17:02:17.350Z 24050 TID-aip3o INFO: [Sidetiq] See LICENSE and http://opensource.org/licenses/BSD-3-Clause for licensing details.
+2015-12-31T17:02:17.350Z 24050 TID-aip3o INFO: [Sidetiq] Sidetiq::Supervisor start
+2015-12-31T17:02:17.351Z 24050 TID-qzxxs INFO: [Sidetiq] Sidetiq::Actor::Clock id: 45349340 initialize
+2015-12-31T17:02:17.352Z 24050 TID-qzgjo INFO: [Sidetiq] Sidetiq::Actor::Handler id: 45334960 initialize
+2015-12-31T17:02:17.352Z 24050 TID-qzcwk INFO: [Sidetiq] Sidetiq::Actor::Handler id: 45320420 initialize
+2015-12-31T17:02:17.760Z 24050 TID-aip3o INFO: Booting Sidekiq 3.3.0 with redis options {}
+2015-12-31T17:02:17.885Z 24050 TID-aip3o INFO: Running in ruby 2.2.0p0 (2014-12-25 revision 49005) [x86_64-linux]
+2015-12-31T17:02:17.885Z 24050 TID-aip3o INFO: See LICENSE and the LGPL-3.0 for licensing details.
+2015-12-31T17:02:17.885Z 24050 TID-aip3o INFO: Upgrade to Sidekiq Pro for more features and support: http://sidekiq.org/pro
+2015-12-31T17:02:17.885Z 24050 TID-aip3o INFO: Starting processing, hit Ctrl-C to stop
+2015-12-31T17:04:51.287Z 24050 TID-aip3o INFO: Shutting down
+2015-12-31T17:04:53.027Z 24050 TID-pfpog INFO: Shutting down 25 quiet workers
+2015-12-31T17:04:53.035Z 24050 TID-qzcwk INFO: [Sidetiq] Sidetiq::Actor::Handler id: 45320420 shutting down ...
+2015-12-31T17:04:53.035Z 24050 TID-qzgjo INFO: [Sidetiq] Sidetiq::Actor::Handler id: 45334960 shutting down ...
+2015-12-31T17:04:53.036Z 24050 TID-qzxxs INFO: [Sidetiq] Sidetiq::Actor::Clock id: 45349340 shutting down ...

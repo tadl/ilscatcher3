@@ -5,7 +5,7 @@ class MainController < ApplicationController
 
   def index
     @lists = Settings.lists
-    @time_now = Rails.cache.read('last_updated')
+    @last_updated = Rails.cache.read('last_updated')
     @featured_items = Array.new
     @lists.each do |l|
       list = Hash.new
@@ -16,7 +16,7 @@ class MainController < ApplicationController
 
     respond_to do |format|
       format.html
-      format.json { render :json =>{ :last_updated => @time_now, :featured_items => @featured_items}}
+      format.json { render :json =>{ :last_updated => @last_updated, :featured_items => @featured_items}}
     end
   end
 
