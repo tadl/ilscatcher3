@@ -12,7 +12,7 @@ class MainController < ApplicationController
 
     respond_to do |format|
       format.html
-      format.json { render :json =>{ :last_updated => @time_now, :music_list => @music_list}}
+      format.json { render :json =>{ :last_updated => @time_now, :movie_list => @movie_list}}
     end
   end
 
