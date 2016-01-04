@@ -16,7 +16,7 @@ class MainController < ApplicationController
 
     respond_to do |format|
       format.html
-      format.json { render :json =>{ :last_updated => @last_updated, :featured_items => @featured_items}}
+      format.json {render :json => {:last_updated => @last_updated, :featured_items => @featured_items}}
     end
   end
 
