@@ -17,13 +17,13 @@ task :generate_sliders => :environment do
     		image = MiniMagick::Image.open(url) rescue nil
     		if image != nil 
     			if image.width > 2
-    				puts i.title + ' was a good one'
+    				#puts i.title + ' was a good one'
     				results_with_images.push(i)
     			else
-    				puts i.title + ' was a bad one because one pixel'
+    				#puts i.title + ' was a bad one because one pixel'
     			end
     		else
-    			puts i.title + ' was a bad one because 404'
+    			#puts i.title + ' was a bad one because 404'
     		end
     	end
     	Rails.cache.write(l['name'], results_with_images)
