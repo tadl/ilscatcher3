@@ -10,7 +10,7 @@
         <tbody>
             <% item.clean_holdings.each do |h| %>
                 <% if all == true %>
-                    <% if item.loc == '22' || item.loc == '' || item.loc == nil %>
+                    <% if item.loc == 22 || item.loc == '' || item.loc == nil %>
                         <% if h['status'] == 'Reshelving' || h['status'] == 'Available' %>
                             <tr>
                                 <td><%= h['circ_lib'] %></td>

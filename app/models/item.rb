@@ -31,8 +31,9 @@ class Item
   		if fetch_trailer.nil? || !fetch_trailer['message'] || fetch_trailer['message'] == 'error'
   			trailer = nil
   		else
-  			trailer = fetch_trailer['message']
-  		end
+  			trailer_id = fetch_trailer['message']
+  		  trailer = '<div class="embed-responsive embed-responsive-16by9"><iframe src="https://www.youtube.com/embed/' + trailer_id.to_s + '?iv_load_policy=3&amp;modestbranding=1&amp;rel=0"></iframe></div>'
+      end
   		return trailer
   	end
 
