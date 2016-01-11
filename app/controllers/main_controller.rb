@@ -159,6 +159,33 @@ class MainController < ApplicationController
     end
   end
 
+  def list_hold_history
+    @user = generate_user()
+    if params[:page]
+      page = params[:page].to_i rescue 0
+    else
+      page = 0
+    end
+    if !@user.error
+      get_holds = @user.get_hold_history(page)
+      @holds = get_holds[0]
+      @more_results = get_holds[1]
+      set_cookies(@user)
+    else
+      @holds = 'bad login'
+      @more_results = 'bad login'
+      redirect_to main_index_path
+      return
+    end
+    respond_to do |format|
+      format.html
+      format.json {render :json => {:user => @user,
+        :holds => @holds, :more_results => @more_results}}
+    end
+  end
+
+
+
   def list_checkouts
     @user = generate_user()
     if !@user.error
@@ -175,6 +202,33 @@ class MainController < ApplicationController
         :checkouts => @checkouts}}
     end
   end
+
+  def list_checkout_history
+    @user = generate_user()
+    if params[:page]
+      page = params[:page].to_i rescue 0
+    else
+      page = 0
+    end
+    if !@user.error
+      get_checkouts = @user.get_checkout_history(page)
+      @checkouts = get_checkouts[0]
+      @more_results = get_checkouts[1]
+      set_cookies(@user)
+    else
+      @checkouts = 'bad login'
+      @more_results = 'bad login'
+      redirect_to main_index_path
+      return
+    end
+    respond_to do |format|
+      format.html
+      format.json {render :json => {:user => @user,
+        :checkouts => @checkouts, :more_results => @more_results}}
+    end
+  end
+
+ 
 
   def renew_checkouts
     @check_user = generate_user()

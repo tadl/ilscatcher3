@@ -391,6 +391,62 @@ class User
     return lists
   end
 
+  def get_checkout_history(page)
+    requested_page = (page.to_i * 15).to_s
+    agent = create_agent_token(self.token)
+    page = agent.get('https://mr-v2.catalog.tadl.org/eg/opac/myopac/circ_history?limit=15;offset=' + requested_page)
+    checkouts = Array.new
+    page.parser.css('#acct_checked_main_header').css('tr').each do |l|
+      checkout = Hash.new
+      checkout['title'] = l.css('td[1]/a[1]').try(:text).try(:strip)
+      checkout['author'] = l.css('td[1]/a[2]').try(:text).try(:strip)
+      checkout['record_id'] = l.at_css('td[1]/a[1]').try(:attr,'href').split('?')[0].gsub('/eg/opac/record/','') rescue nil
+      checkout['checkout_date'] = l.css('td[2]').try(:text).try(:strip)
+      checkout['due_date'] = l.css('td[3]').try(:text).try(:strip)
+      checkout['return_date'] = l.css('td[4]').try(:text).try(:strip)
+      checkout['barcode'] = l.css('td[5]').try(:text).try(:strip)
+      checkouts = checkouts.push(checkout)
+    end
+    # remove first item in array because it is blank
+    checkouts.shift()
+    # check to see if there is a next page
+    if page.parser.css('.invisible:contains("Next")').present?
+      more_results = "false"
+    else
+      more_results = "true"
+    end
+    return checkouts, more_results
+  end
+
+  def get_hold_history(page)
+    requested_page = (page.to_i * 15).to_s
+    agent = create_agent_token(self.token)
+    page = agent.get('https://mr-v2.catalog.tadl.org/eg/opac/myopac/hold_history?limit=15;offset=' + requested_page)
+    holds = Array.new
+    page.parser.css('#holds_main').css('tr').each do |l|
+      hold = Hash.new
+      hold['title'] = l.css('td[1]').try(:text).try(:strip)
+      hold['author'] = l.css('td[2]').try(:text).try(:strip)
+      hold['record_id'] = l.at_css('td[1]').css('a').try(:attr,'href').to_s.split('?')[0].gsub('/eg/opac/record/','') rescue nil
+      hold['pickup_location'] = l.css('td[4]').try(:text).try(:strip)
+      hold['active_on'] = l.css('td[5]').try(:text).try(:strip)
+      hold['active'] = l.css('td[6]').try(:text).try(:strip)
+      hold['date_fullfilled'] = l.css('td[7]').try(:text).try(:strip)
+      # format for status info a real mess in ils, just return html value and then display as html in the view
+      hold['status'] = l.css('td[8]').to_s rescue nil
+      holds = holds.push(hold)
+    end
+    # remove first item in array because it is blank
+    holds.shift()
+    # check to see if there is a next page
+    if page.parser.css('.invisible:contains("Next")').present?
+      more_results = "false"
+    else
+      more_results = "true"
+    end
+    return holds, more_results
+  end
+
   def check_for_shared_list(share_div)
     hidden = share_div.search('input[@name="action"]').try(:attr, "value").to_s
     if hidden != 'hide'
