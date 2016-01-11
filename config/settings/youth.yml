@@ -8,31 +8,31 @@ logo: 'logo-clock-only.png'
 slider_frequency: 60
 lists:
   - name: 'movie_list'
-    fancy_name: 'Video'  
+    fancy_name: 'Movies'
     loc: '23'
     shelving_locations: ['516','593','771']
     searches:
       - name: "Hot DVDs"
         url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=682&layout=grid&search_title=Hot DVDs'
-  - name: 'music_list'
-    fancy_name: 'Fiction' 
+  - name: 'fiction_list'
+    fancy_name: 'Fiction'
     loc: '23'
     shelving_locations: ['810','529','528','791','813','795','794','793','819']
-    searches: 
+    searches:
       - name: "New Music"
-        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=686&layout=grid&search_title=New%20Music' 
-  - name: 'game_list'
-    fancy_name: 'Beginning Readers'  
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=686&layout=grid&search_title=New%20Music'
+  - name: 'readers_list'
+    fancy_name: 'Beginning Readers'
     loc: '23'
     shelving_locations: ['977','978','979','980','981']
     searches:
       - name: "Pre-Reader (Orange)"
-        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=977&layout=grid&search_title=Beginning%20Readers%20-%20Pre-Reader%20(Orange)' 
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=977&layout=grid&search_title=Beginning%20Readers%20-%20Pre-Reader%20(Orange)'
       - name: "New Reader (Green)"
-        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=978&layout=grid&search_title=Beginning%20Readers%20-%20New%20Reader%20(Green)' 
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=978&layout=grid&search_title=Beginning%20Readers%20-%20New%20Reader%20(Green)'
       - name: "Rising Reader (Purple)"
-        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=979&layout=grid&search_title=Beginning%20Readers%20-%20Rising%20Reader%20(Purple)' 
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=979&layout=grid&search_title=Beginning%20Readers%20-%20Rising%20Reader%20(Purple)'
       - name: "Transitional Reader (Blue)"
-        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=980&layout=grid&search_title=Beginning%20Readers%20-%20Transitional%20Reader%20(Blue)' 
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=980&layout=grid&search_title=Beginning%20Readers%20-%20Transitional%20Reader%20(Blue)'
       - name: "Independent Reader (Red)"
-        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=981&layout=grid&search_title=Beginning%20Readers%20-%20Independent%20Reader%20(Red)' 
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=981&layout=grid&search_title=Beginning%20Readers%20-%20Independent%20Reader%20(Red)'
