@@ -5,6 +5,7 @@ shelf_lock:
   text: 'Limit to Youth items'
 stylesheet: 'youth.css'
 logo: 'logo-clock-only.png'
+slider_frequency: 60
 lists:
   - name: 'movie_list'
     fancy_name: 'Video'  

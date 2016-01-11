@@ -6,7 +6,7 @@ class FeaturedListBuilder < ApplicationController
   require 'mini_magick'
   require 'rake' 
 
-  recurrence {minutely(5)}
+  recurrence {minutely(Settings.slider_frequency)}
 
   def perform()
     Rake::Task.clear 
