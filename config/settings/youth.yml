@@ -19,8 +19,24 @@ lists:
     loc: '23'
     shelving_locations: ['810','529','528','791','813','795','794','793','819']
     searches:
-      - name: "New Music"
-        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=686&layout=grid&search_title=New%20Music'
+      - name: "JE Concept Crates"
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=810&layout=grid&search_title=JE%20Concept%20Crates'
+      - name: "Juvenile Easy"
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=529&layout=grid&search_title=Juvenile%20Easy'
+      - name: "Juvenile Easy Plus"
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=528&layout=grid&search_title=Juvenile%20Easy%20Plus'
+      - name: "Juvenile Fiction"
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=791&layout=grid&search_title=Juvenile%20Fiction'
+      - name: "Juvenile Fiction Series"
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=813&layout=grid&search_title=Juvenile%20Fiction%20Series'
+      - name: "Juvenile Paperback - Blue"
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=795&layout=grid&search_title=Juvenile%20Paperback%20-%20Blue'
+      - name: "Juvenile Paperback - Pink"
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=794&layout=grid&search_title=Juvenile%20Paperback%20-%20Pink'
+      - name: "Juvenile Paperback - Red"
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=793&layout=grid&search_title=Juvenile%20Paperback%20-%20Red'
+      - name: "Favorite Characters"
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=819&layout=grid&search_title=Favorite%20Characters'
   - name: 'readers_list'
     fancy_name: 'Beginning Readers'
     loc: '23'
