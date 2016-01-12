@@ -226,8 +226,8 @@ class Search
     end
 
   	def results
-			# url = 'https://elastic-evergreen.herokuapp.com/main/index.json?query='
-      url = 'http://cal.lib.tadl.org:4000/main/index.json?query=' 
+			url = 'https://elastic-evergreen.herokuapp.com/main/index.json?query='
+      # url = 'http://cal.lib.tadl.org:4000/main/index.json?query=' 
       url = url + URI.encode(self.query, Regexp.new("[^#{URI::PATTERN::UNRESERVED}]")) unless self.query.nil?
       url = url + '&page=' + self.page unless self.page.nil?
       url = url + '&search_type=' + self.qtype unless self.qtype.nil?
