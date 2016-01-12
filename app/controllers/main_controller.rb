@@ -184,8 +184,6 @@ class MainController < ApplicationController
     end
   end
 
-
-
   def list_checkouts
     @user = generate_user()
     if !@user.error
@@ -206,12 +204,12 @@ class MainController < ApplicationController
   def list_checkout_history
     @user = generate_user()
     if params[:page]
-      page = params[:page].to_i rescue 0
+      @page = params[:page].to_i rescue 0
     else
-      page = 0
+      @page = 0
     end
     if !@user.error
-      get_checkouts = @user.get_checkout_history(page)
+      get_checkouts = @user.get_checkout_history(@page)
       @checkouts = get_checkouts[0]
       @more_results = get_checkouts[1]
       set_cookies(@user)
@@ -223,12 +221,12 @@ class MainController < ApplicationController
     end
     respond_to do |format|
       format.html
+      format.js
       format.json {render :json => {:user => @user,
         :checkouts => @checkouts, :more_results => @more_results}}
     end
   end
 
- 
 
   def renew_checkouts
     @check_user = generate_user()

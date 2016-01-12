@@ -1,0 +1,21 @@
+<h2>Checkout History</h2>
+<table class="table table-striped">
+	<thead>
+		<tr>
+			<th>Title - Author</th>
+			<th>Checkout Date</th>
+			<th>Due Date</th>
+			<th>Return Date</th>
+		</tr>
+	</thead>
+	<tbody id="checkout_history_list">
+		<% checkouts.each do |c| %>
+			<%= render 'historical_checkout', :checkout => c %>
+		<% end %>
+	</tbody>
+</table>
+<% if more_results == 'true' %>
+	<div id="show_more_link">
+		<%= render 'show_more_checkout_history', :page => page %>
+	</div>
+<% end %>

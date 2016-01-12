@@ -1,9 +1,14 @@
+<% if @item %>
+	var content = "<div class='container' style='width: 95%; max-width: 960px;'><%= escape_javascript(render 'details', :locals => {:item => @item, :search => @search}) %></div>"
+<% else %>
+	var content = "<div class='container' style='width: 95%; max-width: 960px;'><h2>This item is no longer available or is not listed in our catalog</h2></div>" 
+<% end %>
+$.fancybox.open({ 
+    'overlayOpacity': 0.1,
+    'content' : content
+});
 
-	$.fancybox.open({ 
-	    'overlayOpacity': 0.1,
-	    'content' : "<div class='container' style='width: 95%; max-width: 960px;'><%= escape_javascript(render 'details', :locals => {:item => @item, :search => @search}) %></div>"
-	});
-	$.fancybox.update()
-    $.fancybox.reposition()
+$.fancybox.update()
+$.fancybox.reposition()
 
 $('.details-button').text('Details');

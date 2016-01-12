@@ -392,9 +392,9 @@ class User
   end
 
   def get_checkout_history(page)
-    requested_page = (page.to_i * 15).to_s
+    requested_page = (page.to_i * 30).to_s
     agent = create_agent_token(self.token)
-    page = agent.get('https://mr-v2.catalog.tadl.org/eg/opac/myopac/circ_history?limit=15;offset=' + requested_page)
+    page = agent.get('https://mr-v2.catalog.tadl.org/eg/opac/myopac/circ_history?limit=30;offset=' + requested_page)
     checkouts = Array.new
     page.parser.css('#acct_checked_main_header').css('tr').each do |l|
       checkout = Hash.new

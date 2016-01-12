@@ -1,0 +1,10 @@
+<tr>
+	<td>
+		<%= link_to main_details_path(:format => :js, :id => checkout['record_id']), :remote => true do %>
+			<%= checkout['title'] %> - <%= checkout['author'] %>
+		<% end %>
+	</td> 
+	<td><%= checkout['checkout_date'] %></td>
+	<td><%= checkout['due_date'] %></td>
+	<td><%= checkout['return_date'] %></td>
+</tr>

@@ -1,0 +1,9 @@
+<% @checkouts.each do |c| %>
+	$('#checkout_history_list').append("<%= escape_javascript(render partial: 'historical_checkout', :locals => {:checkout => c}) %>");
+<% end %>
+<% if @more_results == 'true' %>
+	$('#show_more_link').html("<%= escape_javascript(render partial: 'show_more_checkout_history', :locals => {:page => @page}) %>")
+<% else %>
+	$('#show_more_link').html("")
+<% end %>
+hideLoading()
