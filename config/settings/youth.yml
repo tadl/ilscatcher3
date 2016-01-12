@@ -12,8 +12,8 @@ lists:
     loc: '23'
     shelving_locations: ['516','593','771']
     searches:
-      - name: "Hot DVDs"
-        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=682&layout=grid&search_title=Hot DVDs'
+      - name: "Movies and Videos"
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=771&layout=grid&search_title=Movies and Videos'
   - name: 'fiction_list'
     fancy_name: 'Fiction'
     loc: '23'
