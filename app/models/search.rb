@@ -19,6 +19,27 @@ class Search
       if !args["loc"] && Settings.shelf_lock
         instance_variable_set("@loc", Settings.shelf_lock.location)
       end
+      if args["fmt"]
+        format = args["fmt"]
+        all_formats = Settings.format_options
+        all_formats.each do |f|
+            if f[2] == format && f[1] != 'fmt'
+              instance_format = '@'+f[1]
+              instance_variable_set(instance_format, f[2].split(","))
+            end
+        end
+      end
+    end
+
+    def process_format
+      format = self.fmt
+      all_formats = Settings.format_options
+      all_formats.each do |f|
+        if f[2] == format
+          instance_format = '@'+f[1]
+          instance_variable_set(instance_format, self.fmt)
+        end
+      end
     end
 
   	def availability_check
@@ -205,8 +226,8 @@ class Search
     end
 
   	def results
-			url = 'https://elastic-evergreen.herokuapp.com/main/index.json?query='
-      # url = 'http://cal.lib.tadl.org:4000/main/index.json?query=' 
+			# url = 'https://elastic-evergreen.herokuapp.com/main/index.json?query='
+      url = 'http://cal.lib.tadl.org:4000/main/index.json?query=' 
       url = url + URI.encode(self.query, Regexp.new("[^#{URI::PATTERN::UNRESERVED}]")) unless self.query.nil?
       url = url + '&page=' + self.page unless self.page.nil?
       url = url + '&search_type=' + self.qtype unless self.qtype.nil?
@@ -480,6 +501,5 @@ class Search
     end
     return code
   end
-
 
 end

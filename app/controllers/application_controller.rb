@@ -12,8 +12,8 @@ class ApplicationController < ActionController::Base
     def shared_main_variables
         @logo = 'http://www.tadl.org/sites/all/themes/converge_custom/logo.png'
         @query_options = [['Keyword', 'keyword'], ['Author / Group / Actor', 'author'],['Title', 'title'],['Subject', 'subject'], ['Series', 'series'], ['Genre', 'single_genre']]
-    	@format_options = [['All Formats', 'all'], ['Books', 'a'],['Movies / TV', 'g'],['Music', 'j']]
-    	@sort_options = [['Relevance', 'relevancy'], ['Newest to Oldest', 'pubdateDESC'],['Oldest to Newest', 'pubdateASC'],['Title A to Z', 'titleAZ'], ['Title Z to A', 'titleZA']]
+        @format_options = Settings.format_options
+        @sort_options = [['Relevance', 'relevancy'], ['Newest to Oldest', 'pubdateDESC'],['Oldest to Newest', 'pubdateASC'],['Title A to Z', 'titleAZ'], ['Title Z to A', 'titleZA']]
     	@location_options = [['Woodmere', '23'],['All Locations', '22'],['Interlochen', '24'],['Kingsley', '25'], ['Peninsula', '26'], ['East Bay', '28'], ['Fife Lake', '27']]
         @pickup_locations = [['Woodmere (Main) Branch', '23'],
                             ['Interlochen Public Library', '24'],

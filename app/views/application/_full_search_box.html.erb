@@ -19,7 +19,7 @@
                 <% unless facet.subfacets.count == 0 %>
                         <% facet.subfacets.each do |sub| %>
                             <% unless @search.genre_lock == sub %>
-                                <% if @search.active_facet(facet.type_raw, sub) %>
+                                <% if @search.active_facet(facet.type_raw, sub) && !@search.fmt.split(',').include?(sub) %>
                                     <a class="btn btn-primary btn-xs" href="<%= @search.search_path_minus_selected_facet(facet.type_raw, sub)%>"><%= sub %> <span class="badge"><span class="glyphicon glyphicon-remove removefacet"></span></span></a>
                                 <% end %>
                             <% end %>
