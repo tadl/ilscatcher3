@@ -31,17 +31,6 @@ class Search
       end
     end
 
-    def process_format
-      format = self.fmt
-      all_formats = Settings.format_options
-      all_formats.each do |f|
-        if f[2] == format
-          instance_format = '@'+f[1]
-          instance_variable_set(instance_format, self.fmt)
-        end
-      end
-    end
-
   	def availability_check
   		if self.availability == "on"
   			true
