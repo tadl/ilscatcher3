@@ -8,48 +8,50 @@ stylesheet: 'youth.css'
 logo: 'logo-clock-only.png'
 slider_frequency: 60
 lists:
-  - name: 'movie_list'
-    fancy_name: 'Movies'
-    loc: '23'
-    shelving_locations: ['516','593','771']
-    searches:
-      - name: "Movies and Videos"
-        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=771&layout=grid&search_title=Movies and Videos'
-  - name: 'fiction_list'
+  - name: 'youth_fiction_list'
     fancy_name: 'Fiction'
     loc: '23'
     shelving_locations: ['810','529','528','791','813','795','794','793','819']
     searches:
       - name: "JE Concept Crates"
-        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=810&layout=grid&search_title=JE%20Concept%20Crates'
-      - name: "Juvenile Easy"
-        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=529&layout=grid&search_title=Juvenile%20Easy'
-      - name: "Juvenile Easy Plus"
-        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=528&layout=grid&search_title=Juvenile%20Easy%20Plus'
-      - name: "Juvenile Fiction"
-        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=791&layout=grid&search_title=Juvenile%20Fiction'
-      - name: "Juvenile Fiction Series"
-        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=813&layout=grid&search_title=Juvenile%20Fiction%20Series'
-      - name: "Juvenile Paperback - Blue"
-        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=795&layout=grid&search_title=Juvenile%20Paperback%20-%20Blue'
-      - name: "Juvenile Paperback - Pink"
-        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=794&layout=grid&search_title=Juvenile%20Paperback%20-%20Pink'
-      - name: "Juvenile Paperback - Red"
-        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=793&layout=grid&search_title=Juvenile%20Paperback%20-%20Red'
-      - name: "Favorite Characters"
-        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=819&layout=grid&search_title=Favorite%20Characters'
-  - name: 'readers_list'
-    fancy_name: 'Beginning Readers'
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=810&layout=grid&search_title=JE Concept0Crates'
+      - name: "JE Favorite Characters"
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=819&layout=grid&search_title=JE Favorite Characters'
+      - name: "JBR Pre-Reader (Orange)"
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=977&layout=grid&search_title=JBR Pre-Reader (Orange)'
+      - name: "JBR New Reader (Green)"
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=978&layout=grid&search_title=JBR New Reader (Green)'
+      - name: "JBR Rising Reader (Purple)"
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=979&layout=grid&search_title=JBR Rising Reader (Purple)'
+      - name: "JBR Transitional Reader (Blue)"
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=980&layout=grid&search_title=JBR Transitional Reader (Blue)'
+      - name: "JBR Independent Reader (Red)"
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=981&layout=grid&search_title=JBR Independent Reader (Red)'
+      - name: "J Fiction"
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=791&layout=grid&search_title=J Fiction'
+      - name: "J Fiction Series"
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=813&layout=grid&search_title=J Fiction Series'
+      - name: "Holiday Books"
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=818&layout=grid&search_title=Holiday Books'
+  - name: 'youth_nonfiction_list'
+    fancy_name: 'Nonfiction'
     loc: '23'
-    shelving_locations: ['977','978','979','980','981']
+    shelving_locations: ['792']
     searches:
-      - name: "Pre-Reader (Orange)"
-        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=977&layout=grid&search_title=Beginning%20Readers%20-%20Pre-Reader%20(Orange)'
-      - name: "New Reader (Green)"
-        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=978&layout=grid&search_title=Beginning%20Readers%20-%20New%20Reader%20(Green)'
-      - name: "Rising Reader (Purple)"
-        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=979&layout=grid&search_title=Beginning%20Readers%20-%20Rising%20Reader%20(Purple)'
-      - name: "Transitional Reader (Blue)"
-        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=980&layout=grid&search_title=Beginning%20Readers%20-%20Transitional%20Reader%20(Blue)'
-      - name: "Independent Reader (Red)"
-        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=981&layout=grid&search_title=Beginning%20Readers%20-%20Independent%20Reader%20(Red)'
+      - name: "J Nonfiction"
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=792&layout=grid&search_title=J Nonfiction'
+  - name: 'youth_av_list'
+    fancy_name: 'Audio/Visual'
+    loc: '23'
+    shelving_locations: ['771','770']
+    searches:
+      - name: "J Movies & Videos"
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=771&layout=grid&search_title=J Movies and Videos'
+      - name: "J Music CDs"
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=770&layout=grid&search_title=J Music CDs'
+      - name: "J Audio Books"
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=571&layout=grid&search_title=J Audio Books'
+      - name: "MultiMedia Kits"
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=542&shelving_location[]=589&layout=grid&search_title=MultiMedia Kits'
+      - name: "Puppets"
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=549&layout=grid&search_title=Puppets'
