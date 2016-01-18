@@ -15,7 +15,7 @@
         <div class="collapse navbar-collapse" id="opac-navbar">
             <ul class="nav navbar-nav navbar-left">
                  <li<% if request.path == main_index_path %> class="active"<% end %>><a class="navi" href="<%= main_index_path %>">Home</a></li>
-                 <li<% if request.path == main_search_path %> class="active"<% end %>><a class="navi" href="<%= main_search_path %>">Search</a></li>
+                 <li<% if request.path == main_search_path %> class="active"<% end %>><a class="navi" href="<%= main_search_path %>"><%= Settings.search_menu %></a></li>
             </ul>
             <%= render 'account_box' %> 
         </div>

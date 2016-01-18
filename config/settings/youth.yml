@@ -2,10 +2,12 @@ shelf_lock:
   shelves: [571,810,529,528,791,813,795,794,793,819,809,817,818,516,593,771,589,542,770,792,549,527,815,530,531,532,977,978,979,980,981]
   location: '23'
   default_activated: true
-  text: 'Limit to Youth items'
+  text: 'Limit to Youth Services at Woodmere'
 format_options: [['Juvenile', 'shelving_location', '516,527,528,529,530,531,532,542,549,571,589,593,770,771,791,792,793,794,795,809,810,813,815,817,818,819,977,978,979,980,981'],['Nonfiction', 'shelving_location', '792'],['Fiction', 'shelving_location', '528,529,791,793,794,795,810,813,819,977,978,979,980,981'],['Audiobooks', 'shelving_location', '571'],['Foreign Language', 'shelving_location', '809'],['Graphic Novels', 'shelving_location', '817'],['Holidays', 'shelving_location', '818'],['Movies', 'shelving_location', '516,593,771'],['Music', 'shelving_location', '770'],['Multimedia Kits', 'shelving_location', '542,589'],['Puppets', 'shelving_location', '549']]
 stylesheet: 'youth.css'
 logo: 'logo-clock-only.png'
+search_text: 'Search Youth Materials'
+search_menu: 'Advanced Search'
 slider_frequency: 10
 lists:
   - name: 'youth_fiction_list'
@@ -13,12 +15,12 @@ lists:
     loc: '23'
     shelving_locations: ['810','529','528','791','813','795','794','793','819']
     searches:
-      - name: "JE Concept Crates"
-        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=810&layout=grid&search_title=JE Concept0Crates'
-      - name: "Juvenile Easy"
-        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=529&layout=grid&search_title=Juvenile Easy'
-      - name: "JE Favorite Characters"
-        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=819&layout=grid&search_title=JE Favorite Characters'
+      - name: "Concept Crates"
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=810&layout=grid&search_title=Concept Crates'
+      - name: "Picture Books"
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=529&layout=grid&search_title=Picture Books'
+      - name: "Favorite Characters"
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=819&layout=grid&search_title=Favorite Characters'
       - name: "JBR Pre-Reader (Orange)"
         url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=977&layout=grid&search_title=JBR Pre-Reader (Orange)'
       - name: "JBR New Reader (Green)"
@@ -33,8 +35,8 @@ lists:
         url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=791&layout=grid&search_title=J Fiction'
       - name: "J Fiction Series"
         url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=813&layout=grid&search_title=J Fiction Series'
-      - name: "J Graphic Novels"
-        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=817&layout=grid&search_title=J Graphic Novels'
+      - name: "Graphic Novels"
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=817&layout=grid&search_title=Graphic Novels'
       - name: "Holiday Books"
         url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=818&layout=grid&search_title=Holiday Books'
   - name: 'youth_nonfiction_list'
@@ -42,21 +44,21 @@ lists:
     loc: '23'
     shelving_locations: ['792']
     searches:
-      - name: "J Nonfiction"
-        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=792&layout=grid&search_title=J Nonfiction'
-      - name: "J Magazines"
-        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=530&layout=grid&search_title=J Magazines'
+      - name: "Nonfiction"
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=792&layout=grid&search_title=Nonfiction'
+      - name: "Magazines"
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=530&layout=grid&search_title=Magazines'
   - name: 'youth_av_list'
     fancy_name: 'Audio/Visual'
     loc: '23'
     shelving_locations: ['771','770']
     searches:
-      - name: "J Movies & Videos"
-        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=771&layout=grid&search_title=J Movies and Videos'
-      - name: "J Music CDs"
-        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=770&layout=grid&search_title=J Music CDs'
-      - name: "J Audio Books"
-        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=571&layout=grid&search_title=J Audio Books'
+      - name: "Movies & Videos"
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=771&layout=grid&search_title=Movies and Videos'
+      - name: "Music CDs"
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=770&layout=grid&search_title=Music CDs'
+      - name: "Audio Books"
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=571&layout=grid&search_title=Audio Books'
       - name: "MultiMedia Kits"
         url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=542&shelving_location[]=589&layout=grid&search_title=MultiMedia Kits'
       - name: "Puppets"
