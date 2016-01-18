@@ -15,6 +15,8 @@ lists:
     searches:
       - name: "JE Concept Crates"
         url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=810&layout=grid&search_title=JE Concept0Crates'
+      - name: "Juvenile Easy"
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=529&layout=grid&search_title=Juvenile Easy'
       - name: "JE Favorite Characters"
         url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=819&layout=grid&search_title=JE Favorite Characters'
       - name: "JBR Pre-Reader (Orange)"
