@@ -31,6 +31,8 @@ lists:
         url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=791&layout=grid&search_title=J Fiction'
       - name: "J Fiction Series"
         url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=813&layout=grid&search_title=J Fiction Series'
+      - name: "J Graphic Novels"
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=817&layout=grid&search_title=J Graphic Novels'
       - name: "Holiday Books"
         url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=818&layout=grid&search_title=Holiday Books'
   - name: 'youth_nonfiction_list'
