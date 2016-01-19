@@ -13,6 +13,7 @@ ready = function() {
         itemsTablet: [768,4],
         itemsMobile : [479,2],
         itemsScaleUp : false,
+        lazyLoad : true,
     });
     $(".square-carousel").owlCarousel({
         items : 6,
@@ -22,6 +23,7 @@ ready = function() {
         itemsTablet: [768,3],
         itemsTabletSmall: false,
         itemsMobile : [479,1],
+        lazyLoad : true,
     });
 
     /* scroll to top button */
