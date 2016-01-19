@@ -8,3 +8,7 @@ body.index {
     background-size: cover;
 }
 
+span.owl-numbers {
+    background: #000 !important;
+}
+
