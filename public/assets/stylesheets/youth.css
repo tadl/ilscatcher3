@@ -1,10 +1,13 @@
-/* specific stylesheet for sight & sound */
+/* specific stylesheet for youth services */
 
 body.index {
-    background: url('/assets/fishtank.jpg') no-repeat center center fixed;
+    background: url('/assets/youthbg.png') no-repeat center center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
 }
 
+span.owl-numbers {
+    background: #000 !important;
+}
