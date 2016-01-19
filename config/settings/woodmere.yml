@@ -1,0 +1,63 @@
+shelf_lock:
+  shelves: []
+  location: '23'
+  default_activated: false
+  text: 'Limit to Woodmere'
+format_options:  [['All Formats', 'fmt' ,'all'], ['Books', 'fmt' ,'a'],['Movies / TV', 'fmt' ,'g'],['Music', 'fmt' ,'j'],['Video Games','shelving_location', '777']]
+format_label: 'Material Type'
+stylesheet: 'woodmere.css'
+logo: 'logo-clock-only.png'
+search_text: 'Search'
+search_menu: 'Search'
+slider_frequency: 10
+lists:
+  - name: 'books_list'
+    fancy_name: 'Books'
+    loc: '23'
+    shelving_locations: ['810','529','528','791','813','795','794','793','819']
+    availability: 'on'
+    searches:
+      - name: "Graphic Novels"
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=817&layout=grid&search_title=Graphic Novels'
+  - name: 'audiovisual_list'
+    fancy_name: 'Audio/Visual'
+    loc: '23'
+    shelving_locations: ['682','687','778','686','684']
+    availability: 'on'
+    searches:
+      - name: "Hot DVDs"
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=682&layout=grid&search_title=Hot DVDs'
+      - name: "New DVDs"
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=687&layout=grid&search_title=New DVDs'
+      - name: "TC Film Festival"
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=778&layout=grid&search_title=TC Film Festival'
+      - name: "New Music"
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=686&layout=grid&search_title=New%20Music' 
+      - name: "Hot Tunes"
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=684&layout=grid&search_title=Hot%20Tunes'
+  - name: 'youth_list'
+    fancy_name: 'Youth'
+    loc: '23'
+    shelving_locations: ['810','529','528','791','813','795','794','793','819']
+    availability: 'on'
+    searches:
+      - name: "Concept Crates"
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=810&layout=grid&search_title=Concept Crates'
+      - name: "Picture Books"
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=529&layout=grid&search_title=Picture Books'
+      - name: "Favorite Characters"
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=819&layout=grid&search_title=Favorite Characters'
+      - name: "Chapter Books"
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=791&layout=grid&search_title=Chapter Books'
+      - name: "Chapter Book Series"
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=813&layout=grid&search_title=Chapter Book Series'
+      - name: "Movies & Videos"
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=771&layout=grid&search_title=Movies and Videos'
+      - name: "Music CDs"
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=770&layout=grid&search_title=Music CDs'
+      - name: "Nonfiction"
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=792&layout=grid&search_title=Nonfiction'
+      - name: "Magazines"
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=530&layout=grid&search_title=Magazines'
+      - name: "Puppets"
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=549&layout=grid&search_title=Puppets'
