@@ -4,13 +4,18 @@ shelf_lock:
   default_activated: true
   text: 'Limit to Sight & Sound items'
 format_options:  [['All Formats', 'fmt' ,'all'], ['Books', 'fmt' ,'a'],['Movies / TV', 'fmt' ,'g'],['Music', 'fmt' ,'j'],['Video Games','shelving_location', '777']]
+format_label: 'Format'
 stylesheet: 'ss.css'
 logo: 'logo-clock-only.png'
+search_text: 'Search'
+search_menu: 'Search'
+slider_frequency: 5
 lists:
   - name: 'movie_list'
     fancy_name: 'Movies'  
     loc: '23'
     shelving_locations: ['682','687','814']
+    availability: 'on'
     searches:
       - name: "Hot DVDs"
         url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=682&layout=grid&search_title=Hot DVDs'
@@ -42,6 +47,7 @@ lists:
     fancy_name: 'Music' 
     loc: '23'
     shelving_locations: ['686']
+    availability: 'on'
     searches: 
       - name: "New Music"
         url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=686&layout=grid&search_title=New%20Music' 
@@ -91,6 +97,7 @@ lists:
     fancy_name: 'Games'  
     loc: '23'
     shelving_locations: ['777']
+    availability: 'on'
     searches:
       - name: "Nintendo Wii U"
         url: '/main/search?query=&qtype=genre&sort=pubdateDESC&loc=23&genres[]=Nintendo Wii U video games.&layout=grid&search_title=Nintendo Wii U&genre_lock=Nintendo Wii U video games.'
