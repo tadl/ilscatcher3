@@ -83,7 +83,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-4 col-md-5 col-sm-6 col-xs-12">
+            <div class="col-lg-6 col-md-5 col-sm-6 col-xs-12">
                 <% if Settings.shelf_lock %>
                     <div class="form-group">
                     <% if search.shelf_lock == 'on' || (@blank_search && !search.in_progress)  %>
@@ -103,7 +103,9 @@
                 <% end %>
             </div>
             <% if !search.query.blank? %>
-                <a class="btn btn-default" role="button" data-toggle="collapse" href="#facets" aria-expanded="false" aria-controls="facets">Filters <span class="caret"></span></a>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6">
+                    <a class="btn btn-default" role="button" data-toggle="collapse" href="#facets" aria-expanded="false" aria-controls="facets">Filters <span class="caret"></span></a>
+                </div>
             <% end %>
         </div>
         <div class="pull-right padbot" style="margin-right:20px;">
