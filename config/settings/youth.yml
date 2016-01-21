@@ -10,6 +10,7 @@ format_label_unlocked: 'Format'
 stylesheet: 'youth.css'
 logo: 'logo-clock-only.png'
 search_text: 'Search Youth Materials'
+search_text_unlocked: 'Search'
 search_menu: 'Advanced Search'
 slider_frequency: 10
 lists:

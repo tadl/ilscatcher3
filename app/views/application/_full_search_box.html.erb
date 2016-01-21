@@ -2,7 +2,11 @@
     <div class="row">
         <div class="col-lg-12 col-xs-12">
             <div class="input-group input-group-lg">
-                <span class="input-group-addon"><%= Settings.search_text %></span>
+                <% if @format_options_unlocked.nil? || (search.shelf_lock == 'on' || (@blank_search && !search.in_progress))  %>
+                    <span class="input-group-addon"><%= Settings.search_text %></span>
+                <% else %>
+                    <span class="input-group-addon"><%= Settings.search_text_unlocked %></span>
+                <% end %>
                 <label class="sr-only control-label" for="query">Query</label>
                 <input class="form-control" id="query" name="query" type="search" value="<%= search.query %>">
                 <input type="hidden" name="layout" value="<%= search.layout = search.layout || 'list' %>">
@@ -38,12 +42,13 @@
             </div>
             <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
                 <div class="input-group">
-                    <span class="input-group-addon"><%= Settings.format_label %></span>
-                        <% if @format_options_unlocked.nil? || (search.shelf_lock == 'on' || (@blank_search && !search.in_progress))  %>
-                            <%= f.select :fmt,  options_for_select(@format_options, search.fmt), { hide_label: true }, { class: search.query.blank? ? "selectpicker" : "selectpicker autoload" } %>
-                        <% else %>
-                            <%= f.select :fmt,  options_for_select(@format_options_unlocked, search.fmt), { hide_label: true }, { class: search.query.blank? ? "selectpicker" : "selectpicker autoload" } %>
-                        <% end %>
+                    <% if @format_options_unlocked.nil? || (search.shelf_lock == 'on' || (@blank_search && !search.in_progress))  %>
+                        <span class="input-group-addon"><%= Settings.format_label %></span>
+                        <%= f.select :fmt,  options_for_select(@format_options, search.fmt), { hide_label: true }, { class: search.query.blank? ? "selectpicker" : "selectpicker autoload" } %>
+                    <% else %>
+                        <span class="input-group-addon"><%= Settings.format_label_unlocked %></span>
+                        <%= f.select :fmt,  options_for_select(@format_options_unlocked, search.fmt), { hide_label: true }, { class: search.query.blank? ? "selectpicker" : "selectpicker autoload" } %>
+                    <% end %>
                 </div>
             </div>
             <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
