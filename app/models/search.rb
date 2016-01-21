@@ -32,6 +32,15 @@ class Search
               instance_variable_set(instance_format, f[2].split(","))
             end
         end
+        i = 0
+        all_formats.each do |f|
+          if f[2] == format
+            i += 1
+          end 
+        end
+        if i == 0
+          instance_variable_set("@fmt", nil)
+        end
       end
     end
 
