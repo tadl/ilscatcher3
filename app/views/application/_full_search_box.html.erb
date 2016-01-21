@@ -39,11 +39,10 @@
             <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
                 <div class="input-group">
                     <span class="input-group-addon"><%= Settings.format_label %></span>
-                        <% if @format_options_unlocked && search.shelf_lock != 'on' %>
-                        <!-- this doesn't work because ?shelf_lock isn't passed to the default search page -->
-                            <%= f.select :fmt,  options_for_select(@format_options_unlocked, search.fmt), { hide_label: true }, { class: search.query.blank? ? "selectpicker" : "selectpicker autoload" } %>
-                        <% else %>
+                        <% if @format_options_unlocked.nil? || (search.shelf_lock == 'on' || (@blank_search && !search.in_progress))  %>
                             <%= f.select :fmt,  options_for_select(@format_options, search.fmt), { hide_label: true }, { class: search.query.blank? ? "selectpicker" : "selectpicker autoload" } %>
+                        <% else %>
+                            <%= f.select :fmt,  options_for_select(@format_options_unlocked, search.fmt), { hide_label: true }, { class: search.query.blank? ? "selectpicker" : "selectpicker autoload" } %>
                         <% end %>
                 </div>
             </div>
@@ -52,17 +51,9 @@
                     <span class="input-group-addon">Sort</span>
                     <%= f.select :sort, options_for_select(@sort_options, search.sort), { hide_label: true }, { class: search.query.blank? ? "selectpicker" : "selectpicker autoload" } %>
                 </div>
-            </div>
-            <% if @location_lock %>
-                <%= f.hidden_field :loc, :value => @location_lock %>
-            <% elsif search.shelf_lock == 'on' %>
-            <% elsif search.query.blank? %>
-                <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 toggleme" style="display:none;">
-                    <div class="input-group">
-                        <span class="input-group-addon">Location</span>
-                        <%= f.select :loc,  options_for_select(@location_options, search.loc), { hide_label: true }, { class: search.query.blank? ? "selectpicker" : "selectpicker autoload" } %>
-                    </div>
-                </div>
+            </div>                
+            <% if search.shelf_lock == 'on' || (@blank_search && !search.in_progress)  %>
+                <%= f.hidden_field :loc, :value => Settings.shelf_lock.location %>
             <% else %>
                 <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
                     <div class="input-group">
@@ -75,7 +66,7 @@
         <div class="row form-inline">
             <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
                 <div class="form-group">
-                    <input type="checkbox" <% if !search.query.blank? %>class="autoload" <% end %>name="availability" id="availability" <% if search.availability_check==true %>checked="checked"<% end %>>
+                    <input type="checkbox" class="autoload" name="availability" id="availability" <% if search.availability_check==true %>checked="checked"<% end %>>
                     <div class="btn-group">
                         <label for="availability" class="btn btn-default">
                             <span class="glyphicon glyphicon-ok"></span>
@@ -90,10 +81,10 @@
             <div class="col-lg-4 col-md-5 col-sm-6 col-xs-12">
                 <% if Settings.shelf_lock %>
                     <div class="form-group">
-                    <% if search.shelf_lock == 'on' || !search.shelf_lock.nil? || @blank_search == true %>
-                        <input type="checkbox" <% if !search.query.blank? %>class="autoload" <% end %>name="shelf_lock" id="shelf_lock" checked="checked">                 
+                    <% if search.shelf_lock == 'on' || (@blank_search && !search.in_progress)  %>
+                        <input type="checkbox" class="autoload" name="shelf_lock" id="shelf_lock" checked="checked">                
                     <% else %>
-                         <input type="checkbox" <% if !search.query.blank? %>class="autoload" <% end %>name="shelf_lock" id="shelf_lock" > 
+                        <input type="checkbox" class="autoload" name="shelf_lock" id="shelf_lock" >  
                     <% end %>
                     <div class="btn-group">
                         <label for="shelf_lock" class="btn btn-default">
@@ -117,4 +108,5 @@
             <% end %>
         </div>
     </div>
+    <%= f.hidden_field :in_progress, :value => true %>
 <% end %>

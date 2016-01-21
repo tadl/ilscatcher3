@@ -3,7 +3,7 @@ class Search
 	include ActiveModel::Model
 	attr_accessor :query, :sort, :qtype, :fmt, :loc, :page, :facet, :availability,
 								:layout, :shelving_location, :list_id, :subjects, :series,
-								:authors, :genres, :canned, :search_title, :shelf_lock, :genre_lock
+								:authors, :genres, :canned, :search_title, :shelf_lock, :genre_lock, :in_progress
 
 	  def initialize args
       args.each do |k,v|
@@ -12,7 +12,7 @@ class Search
       instance_variable_set("@layout", "grid") unless args["layout"]
       if args["search_title"] && args["qtype"] == 'shelf' || args["search_title"] && args["qtype"] == 'genre' 
         if valid_canned_search(args["search_title"])
-          instance_variable_set("@canned", true)
+          instance_variable_set("@canned", 'true')
           instance_variable_set("@search_title", args["search_title"])
         end
       end
@@ -21,7 +21,11 @@ class Search
       end
       if args["fmt"]
         format = args["fmt"]
-        all_formats = Settings.format_options
+        if args["shelf_lock"] != 'on' && Settings.format_options_unlocked
+          all_formats = Settings.format_options_unlocked
+        else
+          all_formats = Settings.format_options
+        end 
         all_formats.each do |f|
             if f[2] == format && f[1] != 'fmt'
               instance_format = '@'+f[1]
@@ -185,6 +189,7 @@ class Search
       next_page['list_id'] = self.list_id unless self.list_id.nil?
       next_page['sort'] = self.sort unless self.sort.nil?
       next_page['shelf_lock'] = self.shelf_lock unless self.shelf_lock.nil?
+      next_page['canned'] = self.canned unless self.canned.nil?
 
       next_page['subjects'] = Array.new
       self.subjects.each do |f|

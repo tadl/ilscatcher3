@@ -6,7 +6,7 @@ task :generate_sliders => :environment do
 	lists = Settings.lists
 
 	lists.each do |l|
-		query = {"sort" => "pubdateDESC",  "loc" => l['loc'], "qtype" => "shelf", "shelving_location" => l['shelving_locations'], "availability" => l['availability']}
+		query = {"sort" => "pubdateDESC", "canned" => 'true', "loc" => l['loc'], "qtype" => "shelf", "shelving_location" => l['shelving_locations'], "availability" => l['availability']}
 		fetch = Search.new query
     	results = fetch.results
     	list = results[0]

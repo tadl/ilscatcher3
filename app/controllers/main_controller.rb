@@ -23,7 +23,7 @@ class MainController < ApplicationController
 
   def search
     @search = Search.new params
-    if @search.query || @search.fmt || @search.shelving_location || @search.list_id
+    if (@search.query && @search.query != '') || @search.canned == 'true'
       results = @search.results
       @items = results[0]
       @facets = results[1]

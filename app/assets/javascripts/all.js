@@ -46,13 +46,6 @@ ready = function() {
         this.form.submit();
     })
 
-    $('#shelf_lock').on('click', function() {
-        $('.toggleme').toggle();
-        // this will need to be adjusted for non-woodmere locations
-        $('#_loc').val('23');
-        $('#_loc option[value=23]').prop('selected', true);
-    })
-
     $('#acctreg').on('click', function() {
         window.open('https://www.tadl.org/register');
     })
