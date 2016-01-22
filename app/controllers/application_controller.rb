@@ -15,13 +15,8 @@ class ApplicationController < ActionController::Base
         @format_options = Settings.format_options
         @format_options_unlocked = Settings.format_options_unlocked
         @sort_options = [['Relevance', 'relevancy'], ['Newest to Oldest', 'pubdateDESC'],['Oldest to Newest', 'pubdateASC'],['Title A to Z', 'titleAZ'], ['Title Z to A', 'titleZA']]
-    	@location_options = [['Woodmere', '23'],['All Locations', '22'],['Interlochen', '24'],['Kingsley', '25'], ['Peninsula', '26'], ['East Bay', '28'], ['Fife Lake', '27']]
-        @pickup_locations = [['Woodmere (Main) Branch', '23'],
-                            ['Interlochen Public Library', '24'],
-                            ['Kingsley Branch Library', '25'],
-                            ['Peninsula Community Library', '26'],
-                            ['Fife Lake Public Library', '27'],
-                            ['East Bay Branch Library', '28']]
+        @location_options = Settings.location_options
+        @pickup_locations = Settings.pickup_locations
         @truefalseicons = [['glyphicon glyphicon-ok text-success', true], ['glyphicon glyphicon-remove text-danger', false]]
     	@format_icons = [['a','glyphicon-book','text'], 
                         ['c','glyphicon-music','notated music'], 
