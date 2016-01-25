@@ -283,7 +283,7 @@ class Search
       end
       url = url + '&location_code=' + self.loc unless  self.loc.nil?
       if self.physical_check
-        url = url + '&physical=' + self.physical unless self.physical.nil?
+        url = url + '&physical=true' 
       end
       request = JSON.parse(open(url).read) rescue nil
   		results = Array.new
