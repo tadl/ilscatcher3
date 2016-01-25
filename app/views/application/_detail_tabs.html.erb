@@ -1,5 +1,5 @@
 <ul class="nav nav-tabs" role="tablist">
-    <% if item.electronic == false %>
+    <% if item.electronic != 'true' %>
         <li role="presentation" class="<% if item.all_copies_available.to_i  >= 1 %>active<% else %>disabled<% end %>"><a href="#onShelf" aria-controls="onShelf" role="tab" data-toggle="tab">Copies on Shelf</a></li>
         <li role="presentation" class="<% if item.all_copies_available.to_i == 0 %>active<% end %>"><a href="#allCopies" aria-controls="allCopies" role="tab" data-toggle="tab">All Copies <span class="badge"><%= item.all_copies_total %></span></a></li>
     <% end %>
