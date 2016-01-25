@@ -52,6 +52,14 @@ class Search
   		end
   	end
 
+    def physical_check
+        if self.physical == "on"
+            true
+        else
+            false
+        end
+    end
+
     def valid_canned_search(search_title)
       valid_canned_searches = Settings.lists.each{|key,value| value}
       valid_names = Array.new
@@ -96,15 +104,15 @@ class Search
         else
           path = '?query='
         end
-  		  path += '&qtype=' + self.qtype unless self.qtype.nil?
+  		path += '&qtype=' + self.qtype unless self.qtype.nil?
         path += '&layout=' + self.layout unless self.layout.nil?
-  		  path += '&loc=' + self.loc unless self.loc.nil?
+  		path += '&loc=' + self.loc unless self.loc.nil?
         path += '&fmt=' + self.fmt unless self.fmt.nil?
-  		  path += '&availability=' + self.availability unless self.availability.nil?
+  		path += '&availability=' + self.availability unless self.availability.nil?
         path += '&sort=' + self.sort unless self.sort.nil?
         self.shelving_location.each do |s|
           path += '&shelving_location[]=' + s
-        end unless  self.shelving_location.nil?
+        end unless self.shelving_location.nil?
         path += '&shelf_lock=' + self.shelf_lock unless self.shelf_lock.nil?
         path += '&search_title=' + self.search_title unless self.search_title.nil?
         path += '&genre_lock=' + self.genre_lock unless self.genre_lock.nil?
@@ -274,7 +282,9 @@ class Search
         self.loc = Settings.shelf_lock.location
       end
       url = url + '&location_code=' + self.loc unless  self.loc.nil?
-      url = url + '&physical=' + self.physical unless self.physical.nil?
+      if self.physical_check
+        url = url + '&physical=' + self.physical unless self.physical.nil?
+      end
       request = JSON.parse(open(url).read) rescue nil
   		results = Array.new
       genres_raw = Array.new
