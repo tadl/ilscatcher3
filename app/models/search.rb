@@ -3,7 +3,7 @@ class Search
 	include ActiveModel::Model
 	attr_accessor :query, :sort, :qtype, :fmt, :loc, :page, :facet, :availability,
 								:layout, :shelving_location, :list_id, :subjects, :series,
-								:authors, :genres, :canned, :search_title, :shelf_lock, :genre_lock, :in_progress
+								:authors, :genres, :canned, :search_title, :shelf_lock, :genre_lock, :in_progress, :physical
 
 	  def initialize args
       args.each do |k,v|
@@ -108,6 +108,7 @@ class Search
         path += '&shelf_lock=' + self.shelf_lock unless self.shelf_lock.nil?
         path += '&search_title=' + self.search_title unless self.search_title.nil?
         path += '&genre_lock=' + self.genre_lock unless self.genre_lock.nil?
+        path += '&physical' + self.physical unless self.physical.nil?
       end
       return path
   	end
@@ -199,6 +200,7 @@ class Search
       next_page['sort'] = self.sort unless self.sort.nil?
       next_page['shelf_lock'] = self.shelf_lock unless self.shelf_lock.nil?
       next_page['canned'] = self.canned unless self.canned.nil?
+      next_page['physical'] = self.physical unless self.physical.nil?
 
       next_page['subjects'] = Array.new
       self.subjects.each do |f|
@@ -229,8 +231,8 @@ class Search
     end
 
   	def results
-			url = Settings.elastic_evergreen_url
-      # url = 'http://cal.lib.tadl.org:4000/main/index.json?query=' 
+			# url = Settings.elastic_evergreen_url
+      url = 'http://cal.lib.tadl.org:4000/main/index.json?query=' 
       url = url + URI.encode(self.query, Regexp.new("[^#{URI::PATTERN::UNRESERVED}]")) unless self.query.nil?
       url = url + '&page=' + self.page unless self.page.nil?
       url = url + '&search_type=' + self.qtype unless self.qtype.nil?
@@ -272,6 +274,7 @@ class Search
         self.loc = Settings.shelf_lock.location
       end
       url = url + '&location_code=' + self.loc unless  self.loc.nil?
+      url = url + '&physical=' + self.physical unless self.physical.nil?
       request = JSON.parse(open(url).read) rescue nil
   		results = Array.new
       genres_raw = Array.new
