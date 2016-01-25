@@ -1,6 +1,8 @@
 <ul class="nav nav-tabs" role="tablist">
-    <li role="presentation" class="<% if item.all_copies_available.to_i  >= 1 %>active<% else %>disabled<% end %>"><a href="#onShelf" aria-controls="onShelf" role="tab" data-toggle="tab">Copies on Shelf</a></li>
-    <li role="presentation" class="<% if item.all_copies_available.to_i == 0 %>active<% end %>"><a href="#allCopies" aria-controls="allCopies" role="tab" data-toggle="tab">All Copies <span class="badge"><%= item.all_copies_total %></span></a></li>
+    <% if item.electronic == false %>
+        <li role="presentation" class="<% if item.all_copies_available.to_i  >= 1 %>active<% else %>disabled<% end %>"><a href="#onShelf" aria-controls="onShelf" role="tab" data-toggle="tab">Copies on Shelf</a></li>
+        <li role="presentation" class="<% if item.all_copies_available.to_i == 0 %>active<% end %>"><a href="#allCopies" aria-controls="allCopies" role="tab" data-toggle="tab">All Copies <span class="badge"><%= item.all_copies_total %></span></a></li>
+    <% end %>
     <% if item.genres && item.genres.size > 0  %>
     	<li role="presentation" class=""><a href="#item_genres" aria-controls="item_genres" role="tab" data-toggle="tab">Genres</a></li>
     <% end %>
@@ -17,12 +19,14 @@
 
 
 <div class="tab-content">
-    <div role="tabpanel" class="tab-pane<% if item.all_copies_available.to_i  >= 1 %> active<% end %>" id="onShelf">
-    	<%= render 'list_copies', item: item, all: true %>
-    </div>
-    <div role="tabpanel" class="tab-pane<% if item.all_copies_available.to_i  == 0 %> active<% end %>" id="allCopies">
-       <%= render 'list_copies', item: item, all: false %>
-    </div>
+    <% if item.electronic == false %>
+        <div role="tabpanel" class="tab-pane<% if item.all_copies_available.to_i  >= 1 %> active<% end %>" id="onShelf">
+        	<%= render 'list_copies', item: item, all: true %>
+        </div>
+        <div role="tabpanel" class="tab-pane<% if item.all_copies_available.to_i  == 0 %> active<% end %>" id="allCopies">
+           <%= render 'list_copies', item: item, all: false %>
+        </div>
+    <% end %>
     <div role="tabpanel" class="tab-pane" id="item_genres">
        <%= render 'item_facets', item: item, facets: item.genres, type: 'single_genre' %>
     </div>

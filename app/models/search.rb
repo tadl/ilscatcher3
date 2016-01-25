@@ -295,6 +295,7 @@ class Search
           :id => r["id"],
           :abstract => r["abstract"],
           :contents => r["contents"],
+          :electronic => r["electronic"],
           :eresource => process_eresource(r["links"][0]),
           :format_type => r["type_of_resource"],
           :record_year => r["sort_year"],

@@ -7,7 +7,7 @@ class Item
                 :publication_place, :isbn, :physical_description,
                 :all_copies_available, :all_copies_total, :loc_copies_total,
                 :loc_copies_available, :author_other, :subjects, :genres, :series, :holdings,
-                :search_layout, :loc
+                :search_layout, :loc, :electronic
 
   def initialize args
     args.each do |k,v|
