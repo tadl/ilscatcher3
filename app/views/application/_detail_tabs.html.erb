@@ -19,7 +19,7 @@
 
 
 <div class="tab-content">
-    <% if item.electronic = 'false' %>
+    <% if item.electronic == false %>
         <div role="tabpanel" class="tab-pane<% if item.all_copies_available.to_i  >= 1 %> active<% end %>" id="onShelf">
         	<%= render 'list_copies', item: item, all: true %>
         </div>
