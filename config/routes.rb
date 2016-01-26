@@ -6,6 +6,8 @@ Rails.application.routes.draw do
   get "/404" => "errors#not_found", as: :not_found
   get "/500" => "errors#internal_server_error", as: :internal_server_error
 
+  match "/util/youtube" => "util#youtube", via: [:get, :post]
+
   root :to => "main#index"
   get 'main/index'
   match "main/search" => "main#search", via: [:get, :post], defaults: { format: 'html' }
@@ -30,6 +32,7 @@ Rails.application.routes.draw do
   match "main/list_checkout_history" => "main#list_checkout_history", via: [:get, :post], defaults: {format: 'html'}
   match "main/list_hold_history" => "main#list_hold_history", via: [:get, :post], defaults: {format: 'json'}
   match '/:action', :controller => 'main', via: [:get, :post]
+
 
 
 
