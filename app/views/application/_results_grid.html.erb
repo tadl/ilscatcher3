@@ -1,8 +1,8 @@
 <div class="panel <%= item.grid_available_panel %>">
     <div class="panel-heading">
-        <%= link_to 'details.js', data:{params: item.create_params}, :method=> :post, :remote => true do %>
+        <a class="item_details_link" href="details?id=<%= item.id %>" onclick="item_details(<%= item.create_params.to_json %>)">
             <span class="glyphicon <%= format_icon(item.format_type, @format_icons) %>" title="<%= item.format_type %>"></span> <%= item.title %>
-        <% end %>
+        </a>
     </div><!-- /.panel-heading -->
     <div class="panel-body">
         <%= link_to 'details.js', data:{params: item.create_params}, :method=> :post, :remote => true do %>

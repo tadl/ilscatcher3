@@ -54,6 +54,12 @@ ready = function() {
         showLoading();
     });
 
+    $(document).on('click', '.item_details_link', function(e) { 
+        if(e.which == 1){
+            e.preventDefault();
+        }
+    });
+
     hold_management_binds();
     checkout_management_binds();
     item_loading_binds();
@@ -764,6 +770,11 @@ function location_map(name) {
     };
     return locations[name];
 }
+
+function item_details(item){
+  $.post("/main/details.js", item)
+}
+
 
 function validate_sms_bind() {
     var TADL_LAST_NUMBER;
