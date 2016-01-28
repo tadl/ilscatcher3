@@ -6,9 +6,9 @@
     <div class="panel-heading">
         <div class="row">
             <div class="col-lg-11 col-md-11 col-sm-11 col-xs-10">
-                <%= link_to 'details.js', data:{params: item.create_params}, :method=> :post, :remote => true do %>
+                <a class="item_details_link" href="details?id=<%= item.id %>" onclick="item_details(<%= item.create_params.to_json %>)">
                     <h4 class="panel-title"><%= item.title %></h4>
-                <% end %>
+                </a>
             </div>
             <div class="col-lg-1 col-md-1 col-sm-1 col-xs-2">
                 <h4 class="pull-right panel-title">
@@ -20,10 +20,10 @@
     <div class="panel-body">
         <div class="row">
             <div class="col-lg-3 col-sm-3 col-xs-12">
-                <%= link_to 'details.js', data:{params: item.create_params}, :method=> :post, :remote => true, :class => 'item-link' do %>
+                <a class="item_details_link" href="details?id=<%= item.id %>" onclick="item_details(<%= item.create_params.to_json %>)">
                     <img src='https://catalog.tadl.org/opac/extras/ac/jacket/large/r/<%= item.id %>'
                         onerror="this.src='<%= asset_path("logo-clock-only.png") %>'" />
-                <% end %>
+                </a>
             </div>
             <div class="col-lg-6 col-sm-5 col-xs-12">
                 <% if !item.author.nil? %>
@@ -83,9 +83,9 @@
                         <a href="<%= item.eresource %>" target="_blank" class="btn btn-success">View Online / Download</a>
                     <% end %>
                 </div>
-                <%= link_to 'details.js', data:{params: item.create_params}, :method=> :post, :remote => true, :class => 'padtop btn btn-info details-button' do %>
+                <a class="item_details_link padtop btn btn-info details-button" href="details?id=<%= item.id %>" onclick="item_details(<%= item.create_params.to_json %>)">
                     Details
-                <% end %>
+                </a>
             </div>
         </div>
     </div><!-- /.panel-body -->
