@@ -29,7 +29,8 @@ Rails.application.routes.draw do
   match "main/update_notifications" => "main#update_notifications", via: [:get, :post], defaults: { format: 'json' }
   match "main/update_search_history" => "main#update_search_history", via: [:get, :post], defaults: {format: 'json'}
   match "main/update_user_info" => "main#update_user_info", via: [:get, :post], defaults: {format: 'json'}
-  match "main/edit_hold_pickup" => "main#edit_hold_pickup", via: [:get, :post], defaults: {format: 'json'}
+  match "main/edit_hold_pickup" => "main#edit_hold_pickup", via: [:post], defaults: { format: 'js' }
+  match "main/update_hold_pickup" => "main#update_hold_pickup", via: [:get, :post], defaults: {format: 'json'}
   match "main/list_checkout_history" => "main#list_checkout_history", via: [:get, :post], defaults: {format: 'html'}
   match "main/list_hold_history" => "main#list_hold_history", via: [:get, :post], defaults: {format: 'json'}
   match '/:action', :controller => 'main', via: [:get, :post]

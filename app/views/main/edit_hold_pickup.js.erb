@@ -1,0 +1,56 @@
+var hid = <%= @hold_id %>
+var container = '.pickup-dd-'+hid;
+var originalhtml = $(container).html();
+var oldloc = location_map($('.pickup-'+hid).text())
+var holdstate = state_helper('<%= @hold_state %>');
+var locopts = '<select class="form-control form-'+hid+'" name="location-switcher">';
+<% @long_pickup_locations.each do |l| %>
+	locopts += '<option value="<%= l[1] %>"' + selected_helper(oldloc,<%= l[1] %>) + '><%= l[0] %></option>';
+<% end %>
+locopts += '</select>'
+locopts += '<a href="#" class="text-muted small cancel-loc-switch-'+hid+'">Cancel</a>';
+
+$(container).html(locopts);
+
+$('.cancel-loc-switch-'+hid).unbind('click');
+$('.cancel-loc-switch-'+hid).click(function(e) {
+    e.preventDefault();
+    $(container).html(originalhtml);
+});
+
+$('.form-'+hid).change(function() {
+    var newval = $(this).val();
+    var message = spinner+' updating...';
+    $(container).html(message);
+    $.post('/main/update_hold_pickup.json', {hold_id: hid, new_pickup: newval, hold_state: holdstate})
+    .done(function(data) {
+        var newhtml = '<span class="pickup-'+data.hold_id+'">'+data.pickup_location+'</span> ';
+            newhtml += '<button type="button" class="small text-subdued btn btn-xs btn-default change-pickup-'+data.hold_id+'" onclick="edit_pickup_loc('+data.hold_id+','+data.record_id+',\''+data.hold_status+'\')">change</button>';
+        $(container).html(newhtml);
+    });
+});
+
+function selected_helper(oid,id) {
+    if (oid == id) {
+        return ' selected';
+    } else {
+        return '';
+    }
+}
+
+function state_helper(val) {
+    var state = {
+        "Suspended": "t",
+        "Active": "f"
+    }
+    return state[val];
+}
+
+function location_map(name) {
+    var locations = {
+    	<% @long_pickup_locations.each do |l| %>
+        	"<%= l[0] %>" : <%= l[1] %>,
+        <% end %>
+    };
+    return locations[name];
+}

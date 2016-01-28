@@ -127,6 +127,14 @@ class MainController < ApplicationController
   end
 
   def edit_hold_pickup
+    @hold_id = params[:hold_id]
+    @hold_state = params[:hold_state]
+    respond_to do |format|
+      format.js
+    end
+  end
+
+  def update_hold_pickup
     check_user = generate_user()
     @hold = params[:hold_id]
     @new_pickup = params[:new_pickup]

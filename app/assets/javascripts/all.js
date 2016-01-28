@@ -649,76 +649,12 @@ function bulk_action_binds() {
 
 function edit_pickup_loc(hid,rid,state) {
     event.preventDefault();
-    var container = '.pickup-dd-'+hid;
-    var originalhtml = $(container).html();
-    var oldloc = location_map($('.pickup-'+hid).text())
-    var holdstate = state_helper(state);
-    console.log(holdstate);
-
-    var locopts = '<select class="form-control form-'+hid+'" name="location-switcher">';
-        locopts += '<option value="23"'+ selected_helper(oldloc,23) +'>Woodmere (Main) Branch</option>';
-        locopts += '<option value="24"'+ selected_helper(oldloc,24) +'>Interlochen Public Library</option>';
-        locopts += '<option value="25"'+ selected_helper(oldloc,25) +'>Kingsley Branch Library</option>';
-        locopts += '<option value="26"'+ selected_helper(oldloc,26) +'>Peninsula Community Library</option>';
-        locopts += '<option value="27"'+ selected_helper(oldloc,27) +'>Fife Lake Public Library</option>';
-        locopts += '<option value="28"'+ selected_helper(oldloc,28) +'>East Bay Branch Library</option>';
-        locopts += '</select>'
-        locopts += '<a href="#" class="text-muted small cancel-loc-switch-'+hid+'">Cancel</a>';
-
-    $(container).html(locopts);
-
-    $('.cancel-loc-switch-'+hid).unbind('click');
-    $('.cancel-loc-switch-'+hid).click(function(e) {
-        e.preventDefault();
-        $(container).html(originalhtml);
-    });
-
-    $('.form-'+hid).change(function() {
-        var newval = $(this).val();
-        console.log("selected " + newval);
-        var message = spinner+' updating...';
-        $(container).html(message);
-        $.post('/main/edit_hold_pickup.json', {hold_id: hid, new_pickup: newval, hold_state: holdstate})
-        .done(function(data) {
-            var newhtml = '<span class="pickup-'+data.hold_id+'">'+data.pickup_location+'</span> ';
-                newhtml += '<button type="button" class="small text-subdued btn btn-xs btn-default change-pickup-'+data.hold_id+'" onclick="edit_pickup_loc('+data.hold_id+','+data.record_id+',\''+data.hold_status+'\')">change</button>';
-            $(container).html(newhtml);
-        });
-    });
-}
-
-function selected_helper(oid,id) {
-    if (oid == id) {
-        return ' selected';
-    } else {
-        return '';
-    }
-}
-
-function state_helper(val) {
-    var state = {
-        "Suspended": "t",
-        "Active": "f"
-    }
-    return state[val];
-}
-
-function location_map(name) {
-    var locations = {
-        "Woodmere (Main) Branch": 23,
-        "Interlochen Public Library": 24,
-        "Kingsley Branch Library": 25,
-        "Peninsula Community Library": 26,
-        "Fife Lake Public Library": 27,
-        "East Bay Branch Library": 28
-    };
-    return locations[name];
+    $.post("/main/edit_hold_pickup.js",{'hold_id' : hid, 'hold_state' : state})
 }
 
 function item_details(item){
   $.post("/main/details.js", item)
 }
-
 
 function validate_sms_bind() {
     var TADL_LAST_NUMBER;
