@@ -1,0 +1,49 @@
+var circpanel = $('#panel-circulation-prefs').html();
+var plv = $('#pickup_library-value').text();
+var plvhtml = '<select id="plv" name="pickup_library" class="form-control">';
+<% @pickup_locations.each do |l| %>
+	plvhtml += '<option value="<%= l[1] %>"' + (plv == '<%= l[0] %>' ? ' selected' : '') + '><%= l[0] %></option>';
+<% end %>
+plvhtml += '</select>';
+$('#pickup_library-value').html(plvhtml);
+
+var chv = $('#keep_circ_history-value').text();
+var chvhtml = '<input id="chv" name="circulation_history" class="form-control" type="checkbox"' + (chv == 'true' ? ' checked' : '') + '>';
+$('#keep_circ_history-value').parent().html(chvhtml);
+
+var hhv = $('#keep_hold_history-value').text();
+var hhvhtml = '<input id="hhv" name="hold_history" class="form-control" type="checkbox"' + (hhv == 'true' ? ' checked' : '') + '>';
+$('#keep_hold_history-value').parent().html(hhvhtml);
+
+var dsv = $('#default_search-value').text();
+var dsvhtml = '<select id="dsv" name="default_search" class="form-control">';
+<% @location_options.each do |l| %>
+	dsvhtml += '<option value="<%= l[1] %>"' + (dsv == '<%= l[0] %>' ? 'selected' : '') + '><%= l[0] %></option>';
+<% end %>
+dsvhtml += '</select>';
+$('#default_search-value').html(dsvhtml);
+
+$('#circ-prefs-buttons').empty();
+$('#circ-prefs-footer').show();
+
+/* cancel button replaces the panel div with original content and rebinds edit button */
+$('.cancel-circulation-prefs').click(function(e) {
+    e.preventDefault();
+    $('#panel-circulation-prefs').html(circpanel);
+    account_prefs_binds();
+});
+
+$('.save-circulation-prefs').click(function(e) {
+    e.preventDefault();
+    var newplv = $('#plv').val();
+    var newchv = $('#chv').prop('checked');
+    var newhhv = $('#hhv').prop('checked');
+    var newdsv = $('#dsv').val();
+    $('.save-circulation-prefs').html(spinner + ' Saving...');
+    $.post("/main/update_search_history", {default_search: newdsv, pickup_library: newplv, keep_circ_history: on_off(newchv), keep_hold_history: on_off(newhhv)})
+        .done(function(data) {
+            alert_message('success', 'Settings updated.', 20000);
+            $('.save-circulation-prefs').text('Saved!');
+            location.reload();
+    });
+});

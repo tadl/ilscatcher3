@@ -23,6 +23,7 @@ Rails.application.routes.draw do
   match "main/fines" => "main#fines", via: [:get, :post], defaults: { format: 'html' }
   match "main/payments" => "main#payments", via: [:get, :post], defaults: { format: 'html' }
   match "main/account" => "main#account", via: [:get, :post], defaults: { format: 'html' }
+  match "main/edit_preferences" => "main#edit_preferences", via: [:post], defaults: { format: 'js' }
   match "main/preferences" => "main#preferences", via: [:get, :post], defaults: { format: 'html' }
   match "main/user_lists" => "main#user_lists", via: [:get, :post], defaults: { format: 'json' }
   match "main/update_notifications" => "main#update_notifications", via: [:get, :post], defaults: { format: 'json' }

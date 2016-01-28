@@ -338,6 +338,12 @@ class MainController < ApplicationController
     end
   end
 
+  def edit_preferences
+    respond_to do |format|
+      format.js
+    end
+  end
+
 # notification preferences
   def update_notifications
     @user = generate_user()

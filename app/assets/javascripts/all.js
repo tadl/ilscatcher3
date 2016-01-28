@@ -267,62 +267,7 @@ function account_prefs_binds() {
     $('.edit-circulation-prefs').unbind('click');
     $('.edit-circulation-prefs').click(function(event) {
         event.preventDefault();
-        var circpanel = $('#panel-circulation-prefs').html();
-        var plv = $('#pickup_library-value').text();
-        var plvhtml = '<select id="plv" name="pickup_library" class="form-control">';
-        plvhtml += '<option value="23"' + (plv == 'Woodmere' ? ' selected' : '') + '>Woodmere</option>';
-        plvhtml += '<option value="24"' + (plv == 'Interlochen' ? ' selected' : '') + '>Interlochen</option>';
-        plvhtml += '<option value="25"' + (plv == 'Kingsley' ? ' selected' : '') + '>Kingsley</option>';
-        plvhtml += '<option value="26"' + (plv == 'Peninsula' ? ' selected' : '') + '>Peninsula</option>';
-        plvhtml += '<option value="27"' + (plv == 'Fife Lake' ? ' selected' : '') + '>Fife Lake</option>';
-        plvhtml += '<option value="28"' + (plv == 'East Bay' ? ' selected' : '') + '>East Bay</option>';
-        plvhtml += '</select>';
-        $('#pickup_library-value').html(plvhtml);
-
-        var chv = $('#keep_circ_history-value').text();
-        var chvhtml = '<input id="chv" name="circulation_history" class="form-control" type="checkbox"' + (chv == 'true' ? ' checked' : '') + '>';
-        $('#keep_circ_history-value').parent().html(chvhtml);
-
-        var hhv = $('#keep_hold_history-value').text();
-        var hhvhtml = '<input id="hhv" name="hold_history" class="form-control" type="checkbox"' + (hhv == 'true' ? ' checked' : '') + '>';
-        $('#keep_hold_history-value').parent().html(hhvhtml);
-
-        var dsv = $('#default_search-value').text();
-        var dsvhtml = '<select id="dsv" name="default_search" class="form-control">';
-        dsvhtml += '<option value="22"' + (dsv == 'All Locations' ? 'selected' : '') + '>All Locations</option>';
-        dsvhtml += '<option value="23"' + (dsv == 'Woodmere' ? 'selected' : '') + '>Woodmere</option>';
-        dsvhtml += '<option value="24"' + (dsv == 'Interlochen' ? 'selected' : '') + '>Interlochen</option>';
-        dsvhtml += '<option value="25"' + (dsv == 'Kingsley' ? 'selected' : '') + '>Kingsley</option>';
-        dsvhtml += '<option value="26"' + (dsv == 'Peninsula' ? 'selected' : '') + '>Peninsula</option>';
-        dsvhtml += '<option value="27"' + (dsv == 'Fife Lake' ? 'selected' : '') + '>Fife Lake</option>';
-        dsvhtml += '<option value="28"' + (dsv == 'East Bay' ? 'selected' : '') + '>East Bay</option>';
-        dsvhtml += '</select>';
-        $('#default_search-value').html(dsvhtml);
-
-        $('#circ-prefs-buttons').empty();
-        $('#circ-prefs-footer').show();
-
-        /* cancel button replaces the panel div with original content and rebinds edit button */
-        $('.cancel-circulation-prefs').click(function(e) {
-            e.preventDefault();
-            $('#panel-circulation-prefs').html(circpanel);
-            account_prefs_binds();
-        });
-
-        $('.save-circulation-prefs').click(function(e) {
-            e.preventDefault();
-            var newplv = $('#plv').val();
-            var newchv = $('#chv').prop('checked');
-            var newhhv = $('#hhv').prop('checked');
-            var newdsv = $('#dsv').val();
-            $('.save-circulation-prefs').html(spinner + ' Saving...');
-            $.post("/main/update_search_history", {default_search: newdsv, pickup_library: newplv, keep_circ_history: on_off(newchv), keep_hold_history: on_off(newhhv)})
-                .done(function(data) {
-                    alert_message('success', 'Settings updated.', 20000);
-                    $('.save-circulation-prefs').text('Saved!');
-                    location.reload();
-            });
-        });
+        $.post("/main/edit_preferences.js")
     });
 
     $('.edit-user-user').unbind('click');
@@ -340,8 +285,7 @@ function account_prefs_binds() {
 
         user_prefs_cancel_bind(userpanel);
         user_username_save_bind();
-
-
+        
     });
 
     $('.edit-user-alias').unbind('click');
