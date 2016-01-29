@@ -653,7 +653,7 @@ function edit_pickup_loc(hid,rid,state) {
 }
 
 function item_details(item){
-  $.post("/main/details.js", item)
+    $.post("/main/details.js", item)
 }
 
 function validate_sms_bind() {
