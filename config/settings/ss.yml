@@ -10,6 +10,7 @@ logo: 'logo-clock-only.png'
 search_text: 'Search'
 search_menu: 'Search'
 slider_frequency: 5
+default_loc: '44'
 lists:
   - name: 'movie_list'
     fancy_name: 'Movies'  

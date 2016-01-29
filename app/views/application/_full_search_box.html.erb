@@ -57,15 +57,17 @@
                     <%= f.select :sort, options_for_select(@sort_options, search.sort), { hide_label: true }, { class: search.query.blank? ? "selectpicker" : "selectpicker autoload" } %>
                 </div>
             </div>                
-            <% if search.shelf_lock == 'on' || (@blank_search && !search.in_progress)  %>
+            <% if Settings.shelf_lock && (search.shelf_lock == 'on' || (@blank_search && !search.in_progress))  %>
                 <%= f.hidden_field :loc, :value => Settings.shelf_lock.location %>
             <% else %>
-                <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
-                    <div class="input-group">
-                        <span class="input-group-addon">Location</span>
-                        <%= f.select :loc,  options_for_select(@location_options, search.loc), { hide_label: true }, { class: search.query.blank? ? "selectpicker" : "selectpicker autoload" } %>
+                <% if @location_options.size > 1 %>
+                    <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                        <div class="input-group">
+                            <span class="input-group-addon">Location</span>
+                            <%= f.select :loc,  options_for_select(@location_options, search.loc), { hide_label: true }, { class: search.query.blank? ? "selectpicker" : "selectpicker autoload" } %>
+                        </div>
                     </div>
-                </div>
+                <% end %>    
             <% end %>
         </div>
         <div class="row form-inline">
@@ -99,18 +101,20 @@
                         </label>
                     </div>
                 <% end %>
-                <div class="form-group" style="padding-left:10px;">
-                    <input type="checkbox" class="autoload" name="physical" id="physical" <% if search.physical == 'on' %>checked="checked"<% end %>>
-                    <div class="btn-group">
-                        <label for="physical" class="btn btn-default">
-                            <span class="glyphicon glyphicon-ok"></span>
-                            <span></span>
-                        </label>
-                        <label for="physical" class="btn btn-default">
-                            Limit to physical items
-                        </label>
+                <% if Settings.has_eresources == 'true' %>
+                    <div class="form-group" style="padding-left:10px;">
+                        <input type="checkbox" class="autoload" name="physical" id="physical" <% if search.physical == 'on' %>checked="checked"<% end %>>
+                        <div class="btn-group">
+                            <label for="physical" class="btn btn-default">
+                                <span class="glyphicon glyphicon-ok"></span>
+                                <span></span>
+                            </label>
+                            <label for="physical" class="btn btn-default">
+                                Limit to physical items
+                            </label>
+                        </div>
                     </div>
-                </div>
+                <% end %>    
             </div>
         <% if !search.query.blank? %>
             <div class="form-group" style="padding-left:30px;">

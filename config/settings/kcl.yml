@@ -1,0 +1,7 @@
+elastic_evergreen_url: 'https://elastic-evergreen-kcl.devapps.tadl.org/main/index.json?query='
+pickup_locations: [['Woodmere', '44']]
+location_options: [['Kalkaska', '44']]
+long_pickup_locations: [['Kalkaska County Library', '44']]
+elastic_locations: [['KCL', '44']]
+all_locations_code: '44'
+has_eresources: 'false'

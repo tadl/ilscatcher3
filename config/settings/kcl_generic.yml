@@ -1,0 +1,30 @@
+format_options:  [['All Formats', 'fmt' ,'all'], ['Books', 'fmt' ,'a'],['Movies / TV', 'fmt' ,'g'],['Music', 'fmt' ,'j']]
+format_label: 'Material Type'
+stylesheet: 'kcl.css'
+logo: 'kcl_logo.jpg'
+search_text: 'Search'
+search_menu: 'Search'
+slider_frequency: 10
+default_loc: '44'
+lists:
+  - name: 'books_list'
+    fancy_name: 'Books'
+    loc: '44'
+    shelving_locations: ['948','970','1','957','948']
+    availability: 'on'
+    searches:
+      - name: "Adult"
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=44&shelving_location[]=948&shelving_location[]=1&layout=grid&search_title=Adult'
+      - name: "Kids"
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=44&shelving_location[]=958&shelving_location[]=957&layout=grid&search_title=Kids'
+  - name: 'audiovisual_list'
+    fancy_name: 'Audio/Visual'
+    loc: '44'
+    shelving_locations: ['962','951']
+    availability: 'on'
+    searches:
+      - name: "DVDs"
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=44&shelving_location[]=951&layout=grid&search_title=DVDs'
+      - name: "Music"
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=44&shelving_location[]=962&layout=grid&search_title=Music'
+
