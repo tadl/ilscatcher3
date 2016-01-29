@@ -1,9 +1,4 @@
-shelf_lock:
-  shelves: []
-  location: '23'
-  default_activated: false
-  text: 'Limit to Woodmere'
-format_options:  [['All Formats', 'fmt' ,'all'], ['Books', 'fmt' ,'a'],['Movies / TV', 'fmt' ,'g'],['Music', 'fmt' ,'j'],['Video Games','shelving_location', '777']]
+format_options:  [['All Formats', 'fmt' ,'all'], ['Books', 'fmt' ,'a'],['Movies / TV', 'fmt' ,'g'],['Music', 'fmt' ,'j'],['Video Games','shelving_location', '777'],['Youth', 'shelving_location', '981,978,977,979,980,516,593,527,571,770,771,529,528,791,530,792,531,795,794,793,532,542,589,549,670'],['Teen','shelving_location','786,787,572,563,564,565,566,802']]
 format_label: 'Material Type'
 stylesheet: 'woodmere.css'
 logo: 'logo-clock-only.png'
@@ -14,11 +9,19 @@ lists:
   - name: 'books_list'
     fancy_name: 'Books'
     loc: '23'
-    shelving_locations: ['810','529','528','791','813','795','794','793','819']
+    shelving_locations: ['510','511','618','619','620','976','975']
     availability: 'on'
     searches:
-      - name: "Graphic Novels"
-        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=817&layout=grid&search_title=Graphic Novels'
+      - name: "Adult"
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=510&layout=grid&search_title=Adult'
+      - name: "Non-fiction"
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=976&layout=grid&search_title=Non-fiction'
+      - name: "Magazines"
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=535&layout=grid&search_title=Magazines'
+      - name: "Audiobooks"
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=584&shelving_location[]=518&layout=grid&search_title=Audiobooks'
+      - name: "Playaways"
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=546&shelving_location[]=590&layout=grid&search_title=Playaways'
   - name: 'audiovisual_list'
     fancy_name: 'Audio/Visual'
     loc: '23'
