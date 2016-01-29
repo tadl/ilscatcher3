@@ -58,22 +58,13 @@ module ApplicationHelper
     end
 
     def location_to_code(location)
-        if location == 'TADL-WOOD'
-          location_code = '23' 
-        elsif location == 'TADL-IPL'
-          location_code = '24'
-        elsif location == 'TADL-KBL'
-          location_code = '25'
-        elsif location == 'TADL-PCL'
-          location_code = '26'
-        elsif location == 'TADL-FLPL'
-          location_code = '27'
-        elsif location == 'TADL-EBB'
-          location_code = '28'
-        else
-          location_code = '22'
+        location_code = Settings.all_locations_code
+        Settings.elastic_locations.each do |l|
+            if location == l[0]
+                location_code = l[1] 
+            end
         end
-    return location_code
-  end
+        return location_code
+    end
 
 end

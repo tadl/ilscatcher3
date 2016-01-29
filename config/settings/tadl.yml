@@ -2,3 +2,5 @@ elastic_evergreen_url: 'https://elastic-evergreen.herokuapp.com/main/index.json?
 pickup_locations: [['Woodmere', '23'],['Interlochen', '24'],['Kingsley', '25'],['Peninsula', '26'],['Fife Lake', '27'],['East Bay', '28']]
 location_options: [['Woodmere', '23'],['All Locations', '22'],['Interlochen', '24'],['Kingsley', '25'], ['Peninsula', '26'], ['East Bay', '28'], ['Fife Lake', '27']]
 long_pickup_locations: [['Woodmere (Main) Branch', '23'],['Interlochen Public Library', '24'],['Kingsley Branch Library', '25'],['Peninsula Community Library', '26'],['Fife Lake Public Library', '27'],['East Bay Branch Library', '28']]
+elastic_locations: [['TADL-WOOD', '23'],['TADL-IPL', '24'],['TADL-KBL', '25'], ['TADL-PCL', '26'], ['TADL-EBB', '28'], ['TADL-FLPL', '27']]
+all_locations_code: '22'

@@ -481,42 +481,21 @@ class Search
 
   def code_to_location(location_code)
     location = ''
-    if location_code == '22' || location == nil
-      location = ''
-    elsif location_code == '23'
-      location = 'TADL-WOOD'
-    elsif location_code == '24'
-      location = 'TADL-IPL'
-    elsif location_code == '25'
-      location = 'TADL-KBL'
-    elsif location_code == '26'
-      location = 'TADL-PCL'
-    elsif location_code == '27'
-      location = 'TADL-FLPL'
-    elsif location_code == '28'
-      location = 'TADL-EBB'
+    Settings.elastic_locations.each do |l|
+        if location_code == l[1]
+            location = l[0] 
+        end
     end
     return location
   end
 
   def location_to_code(location)
-    code = ''
-    if location == 'All' || location == nil
-      code = 22
-    elsif location == 'TADL-WOOD'
-      code = 23
-    elsif location == 'TADL-IPL'
-      code = 24
-    elsif location == 'TADL-KBL'
-      code = 25
-    elsif location == 'TADL-PCL'
-      code = 26
-    elsif location == 'TADL-FLPL'
-      code = 27
-    elsif location == 'TADL-EBB'
-      code = 28
+    location_code = Settings.all_locations_code
+    Settings.elastic_locations.each do |l|
+        if location == l[0]
+            location_code = l[1] 
+        end
     end
-    return code
+    return location_code
   end
-
 end
