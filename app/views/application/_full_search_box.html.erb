@@ -21,13 +21,13 @@
         <div class="col-xs-12">
             <% @facets.each do |facet| %>
                 <% unless facet.subfacets.count == 0 %>
-                        <% facet.subfacets.each do |sub| %>
-                            <% unless @search.genre_lock == sub %>
-                                <% if @search.active_facet(facet.type_raw, sub) && ( !@search.fmt.nil? && !@search.fmt.split(',').include?(sub)) %>
-                                    <a class="btn btn-primary btn-xs" href="<%= @search.search_path_minus_selected_facet(facet.type_raw, sub)%>"><%= sub %> <span class="badge"><span class="glyphicon glyphicon-remove removefacet"></span></span></a>
-                                <% end %>
+                    <% facet.subfacets.each do |sub| %>
+                        <% unless @search.genre_lock == sub %>
+                            <% if @search.active_facet(facet.type_raw, sub) && ( !@search.fmt.nil? && !@search.fmt.split(',').include?(sub)) %>
+                                <a class="btn btn-primary btn-xs" href="<%= @search.search_path_minus_selected_facet(facet.type_raw, sub)%>"><%= sub %> <span class="badge"><span class="glyphicon glyphicon-remove removefacet"></span></span></a>
                             <% end %>
                         <% end %>
+                    <% end %>
                 <% end %>
             <% end %>
         </div>
@@ -79,26 +79,23 @@
                             <span class="glyphicon glyphicon-ok"></span>
                             <span></span>
                         </label>
-                        <label for="availability" class="btn btn-default">
-                            Limit to available
-                        </label>
+                        <label for="availability" class="btn btn-default">Limit to available</label>
                     </div>
                 </div>
                 <% if Settings.shelf_lock %>
                     <div class="form-group" style="padding-left:10px;">
-                    <% if search.shelf_lock == 'on' || (@blank_search && !search.in_progress)  %>
-                        <input type="checkbox" class="autoload" name="shelf_lock" id="shelf_lock" checked="checked">                
-                    <% else %>
-                        <input type="checkbox" class="autoload" name="shelf_lock" id="shelf_lock" >  
-                    <% end %>
-                    <div class="btn-group">
-                        <label for="shelf_lock" class="btn btn-default">
-                            <span class="glyphicon glyphicon-ok"></span>
-                            <span></span>
-                        </label>
-                        <label for="shelf_lock" class="btn btn-default">
-                            <%= Settings.shelf_lock.text %>
-                        </label>
+                        <% if search.shelf_lock == 'on' || (@blank_search && !search.in_progress)  %>
+                            <input type="checkbox" class="autoload" name="shelf_lock" id="shelf_lock" checked="checked">                
+                        <% else %>
+                            <input type="checkbox" class="autoload" name="shelf_lock" id="shelf_lock" >  
+                        <% end %>
+                        <div class="btn-group">
+                            <label for="shelf_lock" class="btn btn-default">
+                                <span class="glyphicon glyphicon-ok"></span>
+                                <span></span>
+                            </label>
+                            <label for="shelf_lock" class="btn btn-default"><%= Settings.shelf_lock.text %></label>
+                        </div>
                     </div>
                 <% end %>
                 <% if Settings.has_eresources == 'true' %>
@@ -109,28 +106,26 @@
                                 <span class="glyphicon glyphicon-ok"></span>
                                 <span></span>
                             </label>
-                            <label for="physical" class="btn btn-default">
-                                Limit to physical items
-                            </label>
+                            <label for="physical" class="btn btn-default">Limit to physical items</label>
                         </div>
                     </div>
                 <% end %>    
+                <% if !search.query.blank? %>
+                    <div class="form-group" style="padding-left:30px;">
+                        <a class="btn btn-default" role="button" data-toggle="collapse" href="#facets" aria-expanded="false" aria-controls="facets">Filters <span class="caret"></span></a>
+                    </div>
+                    <div class="form-group" style="padding-left:30px;">
+                        <a class="btn btn-default" role="button" href="http://elibrary.mel.org/search/a?searchtype=X&searcharg=<%= search.query %>&SORT=D"><img style="height: 18px;margin:0;padding:0;" src="/assets/button-melcat-m.png" /> Search MeLCat</a>
+                    </div>
+                <% end %>
             </div>
-        <% if !search.query.blank? %>
-            <div class="form-group" style="padding-left:30px;">
-                <a class="btn btn-default" role="button" data-toggle="collapse" href="#facets" aria-expanded="false" aria-controls="facets">Filters <span class="caret"></span></a>
-            </div>
-            <div class="form-group" style="padding-left:30px;">
-                <a class="btn btn-default" role="button" href="http://elibrary.mel.org/search/a?searchtype=X&searcharg=<%= search.query %>&SORT=D"><img style="height: 18px;margin:0;padding:0;" src="/assets/button-melcat-m.png" /> Search MeLCat</a>
-            </div>
-        <% end %>
+        </div>
+        <div class="pull-right padbot" style="margin-top:-30px;margin-right:20px;">
+            <% if @search.search_path != '' && !search.query.blank? %>
+                <a href="search<%= @search.search_path_with_facets %>&layout=list"><button class="<%= @search.list_active %> btn btn-default btn-xs large glyphicon glyphicon-list"></button></a>
+                <a href="search<%= @search.search_path_with_facets %>&layout=grid"><button class="<%= @search.grid_active %> btn btn-default btn-xs large glyphicon glyphicon-th"></button></a>
+            <% end %>
+        </div>
     </div>
-    <div class="pull-right padbot" style="margin-top:-30px;margin-right:20px;">
-        <% if @search.search_path != '' && !search.query.blank? %>
-            <a href="search<%= @search.search_path_with_facets %>&layout=list"><button class="<%= @search.list_active %> btn btn-default btn-xs large glyphicon glyphicon-list"></button></a>
-            <a href="search<%= @search.search_path_with_facets %>&layout=grid"><button class="<%= @search.grid_active %> btn btn-default btn-xs large glyphicon glyphicon-th"></button></a>
-        <% end %>
-    </div>
-</div>
-<%= f.hidden_field :in_progress, :value => true %>
+    <%= f.hidden_field :in_progress, :value => true %>
 <% end %>
