@@ -1,14 +1,15 @@
-format_options:  [['All Formats', 'fmt' ,'all'], ['Books', 'fmt' ,'a'],['Movies / TV', 'fmt' ,'g'],['Music', 'fmt' ,'j'],['Video Games','shelving_location', '777']]
-format_label: 'Material Type'
+format_options:  [['All Formats', 'fmt' ,'all'], ['Books', 'fmt' ,'a'],['Movies / TV', 'fmt' ,'g'],['Music', 'fmt' ,'j']]
+format_label: 'Format'
 stylesheet: 'pcl.css'
 logo: 'pcl-notext.jpg'
 search_text: 'Search'
 search_menu: 'Search'
+default_loc: '26'
 slider_frequency: 10
 lists:
   - name: 'books_list'
     fancy_name: 'Books'
-    loc: '23'
+    loc: '26'
     shelving_locations: ['510','511','618','619','620','976','975']
     availability: 'on'
     searches:
@@ -24,7 +25,7 @@ lists:
         url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=546&shelving_location[]=590&layout=grid&search_title=Playaways'
   - name: 'audiovisual_list'
     fancy_name: 'Audio/Visual'
-    loc: '23'
+    loc: '26'
     shelving_locations: ['682','687','778','686','684']
     availability: 'on'
     searches:
@@ -40,7 +41,7 @@ lists:
         url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=684&layout=grid&search_title=Hot%20Tunes'
   - name: 'youth_list'
     fancy_name: 'Youth'
-    loc: '23'
+    loc: '26'
     shelving_locations: ['810','529','528','791','813','795','794','793','819']
     availability: 'on'
     searches:
