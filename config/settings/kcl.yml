@@ -1,5 +1,5 @@
 elastic_evergreen_url: 'https://elastic-evergreen-kcl.devapps.tadl.org/main/index.json?query='
-pickup_locations: [['Woodmere', '44']]
+pickup_locations: [['Kalkaska', '44']]
 location_options: [['Kalkaska', '44']]
 long_pickup_locations: [['Kalkaska County Library', '44']]
 elastic_locations: [['KCL', '44']]
