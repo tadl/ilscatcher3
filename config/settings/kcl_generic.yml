@@ -1,7 +1,7 @@
 format_options:  [['All Formats', 'fmt' ,'all'], ['Books', 'fmt' ,'a'],['Movies / TV', 'fmt' ,'g'],['Music', 'fmt' ,'j']]
 format_label: 'Material Type'
 stylesheet: 'kcl.css'
-logo: 'kcl_logo.jpg'
+logo: 'kcl-logo.jpg'
 search_text: 'Search'
 search_menu: 'Search'
 slider_frequency: 10
