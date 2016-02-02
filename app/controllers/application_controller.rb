@@ -34,21 +34,6 @@ class ApplicationController < ActionController::Base
                         ['r','glyphicon-inbox','three dimensional object'],
                         ['t','glyphicon-book','text']
                     ]
-        @format_names = [['Language material','a'], 
-                        ['Notated music','c'], 
-                        ['Manuscript notated music','d'], 
-                        ['Cartographic material','e'], 
-                        ['Manuscript cartographic material','f'], 
-                        ['Projected medium','g'], 
-                        ['Nonmusical sound recording','i'], 
-                        ['Musical sound recording','j'], 
-                        ['Two-dimensional nonprojectable graphic','k'], 
-                        ['Computer file','m'], 
-                        ['Kit','o'], 
-                        ['Mixed materials','p'], 
-                        ['Three-dimensional artifact or naturally occurring object','r'], 
-                        ['Manuscript language material','t'],
-                    ]
     end
 
     def generate_user()

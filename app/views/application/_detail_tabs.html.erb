@@ -1,7 +1,7 @@
 <ul class="nav nav-tabs" role="tablist">
     <% if item.electronic != 'true' %>
-        <li role="presentation" class="<% if item.all_copies_available.to_i  >= 1 %>active<% else %>disabled<% end %>"><a href="#onShelf" aria-controls="onShelf" role="tab" data-toggle="tab">Copies on Shelf</a></li>
-        <li role="presentation" class="<% if item.all_copies_available.to_i == 0 %>active<% end %>"><a href="#allCopies" aria-controls="allCopies" role="tab" data-toggle="tab">All Copies <span class="badge"><%= item.all_copies_total %></span></a></li>
+        <li role="presentation" class="<% if item.loc_copies_available.to_i  >= 1 %>active<% else %>disabled<% end %>"><a href="#onShelf" aria-controls="onShelf" role="tab" data-toggle="tab">Copies on Shelf</a></li>
+        <li role="presentation" class="<% if item.loc_copies_available.to_i == 0 %>active<% end %>"><a href="#allCopies" aria-controls="allCopies" role="tab" data-toggle="tab">All Copies <span class="badge"><%= item.all_copies_total %></span></a></li>
     <% end %>
     <% if item.genres && item.genres.size > 0  %>
     	<li role="presentation" class=""><a href="#item_genres" aria-controls="item_genres" role="tab" data-toggle="tab">Genres</a></li>
@@ -20,10 +20,10 @@
 
 <div class="tab-content">
     <% if item.electronic != 'true' %>
-        <div role="tabpanel" class="tab-pane<% if item.all_copies_available.to_i  >= 1 %> active<% end %>" id="onShelf">
+        <div role="tabpanel" class="tab-pane<% if item.loc_copies_available.to_i  >= 1 %> active<% end %>" id="onShelf">
         	<%= render 'list_copies', item: item, all: true %>
         </div>
-        <div role="tabpanel" class="tab-pane<% if item.all_copies_available.to_i  == 0 %> active<% end %>" id="allCopies">
+        <div role="tabpanel" class="tab-pane<% if item.loc_copies_available.to_i  == 0 %> active<% end %>" id="allCopies">
            <%= render 'list_copies', item: item, all: false %>
         </div>
     <% end %>
