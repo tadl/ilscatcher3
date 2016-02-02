@@ -3,7 +3,8 @@ class Search
 	include ActiveModel::Model
 	attr_accessor :query, :sort, :qtype, :fmt, :loc, :page, :facet, :availability,
 								:layout, :shelving_location, :list_id, :subjects, :series,
-								:authors, :genres, :canned, :search_title, :shelf_lock, :genre_lock, :in_progress, :physical
+								:authors, :genres, :canned, :search_title, :shelf_lock, :genre_lock, 
+                :in_progress, :physical, :min_score
 
 	  def initialize args
       args.each do |k,v|
@@ -104,11 +105,11 @@ class Search
         else
           path = '?query='
         end
-  		path += '&qtype=' + self.qtype unless self.qtype.nil?
+  		  path += '&qtype=' + self.qtype unless self.qtype.nil?
         path += '&layout=' + self.layout unless self.layout.nil?
-  		path += '&loc=' + self.loc unless self.loc.nil?
+  		  path += '&loc=' + self.loc unless self.loc.nil?
         path += '&fmt=' + self.fmt unless self.fmt.nil?
-  		path += '&availability=' + self.availability unless self.availability.nil?
+  		  path += '&availability=' + self.availability unless self.availability.nil?
         path += '&sort=' + self.sort unless self.sort.nil?
         self.shelving_location.each do |s|
           path += '&shelving_location[]=' + s
@@ -117,6 +118,7 @@ class Search
         path += '&search_title=' + self.search_title unless self.search_title.nil?
         path += '&genre_lock=' + self.genre_lock unless self.genre_lock.nil?
         path += '&physical' + self.physical unless self.physical.nil?
+        path += '&min_score' + self.min_score unless  self.min_score.nil?
       end
       return path
   	end
@@ -209,6 +211,7 @@ class Search
       next_page['shelf_lock'] = self.shelf_lock unless self.shelf_lock.nil?
       next_page['canned'] = self.canned unless self.canned.nil?
       next_page['physical'] = self.physical unless self.physical.nil?
+      next_page['min_score'] = self.min_score unless self.min_score.nil?
 
       next_page['subjects'] = Array.new
       self.subjects.each do |f|
@@ -239,8 +242,8 @@ class Search
     end
 
   	def results
-			url = Settings.elastic_evergreen_url
-      # url = 'http://cal.lib.tadl.org:4000/main/index.json?query=' 
+			# url = Settings.elastic_evergreen_url
+      url = 'http://cal.lib.tadl.org:4000/main/index.json?query=' 
       url = url + URI.encode(self.query, Regexp.new("[^#{URI::PATTERN::UNRESERVED}]")) unless self.query.nil?
       url = url + '&page=' + self.page unless self.page.nil?
       url = url + '&search_type=' + self.qtype unless self.qtype.nil?
@@ -281,10 +284,11 @@ class Search
         end
         self.loc = Settings.shelf_lock.location
       end
-      url = url + '&location_code=' + self.loc unless  self.loc.nil?
+      url = url + '&location_code=' + self.loc unless self.loc.nil?
       if self.physical_check
         url = url + '&physical=true' 
       end
+      url = url + '&min_score=' + self.min_score unless self.min_score.nil?
       request = JSON.parse(open(url).read) rescue nil
   		results = Array.new
       genres_raw = Array.new
