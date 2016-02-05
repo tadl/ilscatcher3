@@ -9,9 +9,13 @@ default_loc: '44'
 lists:
   - name: 'books_list'
     fancy_name: 'Books'
-    loc: '44'
-    shelving_locations: ['948','970','1','957','948']
-    availability: 'on'
+    search_params: {'loc' : '42',
+                    'qtype' : 'shelf',
+                    'shelving_location' : ['948','970','1','957','948'],
+                    'canned' : 'true',
+                    'availability' : 'on',
+                    'sort' : 'pubdateDESC',
+                  }
     searches:
       - name: "Adult"
         url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=44&shelving_location[]=948&shelving_location[]=1&layout=grid&search_title=Adult'
@@ -19,12 +23,15 @@ lists:
         url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=44&shelving_location[]=958&shelving_location[]=957&layout=grid&search_title=Kids'
   - name: 'audiovisual_list'
     fancy_name: 'Audio/Visual'
-    loc: '44'
-    shelving_locations: ['962','951']
-    availability: 'on'
+    search_params: {'loc' : '42',
+                    'qtype' : 'shelf',
+                    'shelving_location' : ['962','951'],
+                    'canned' : 'true',
+                    'availability' : 'on',
+                    'sort' : 'pubdateDESC',
+                  }
     searches:
       - name: "DVDs"
         url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=44&shelving_location[]=951&layout=grid&search_title=DVDs'
       - name: "Music"
         url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=44&shelving_location[]=962&layout=grid&search_title=Music'
-

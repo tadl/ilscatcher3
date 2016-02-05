@@ -6,8 +6,7 @@ task :generate_sliders => :environment do
 	lists = Settings.lists
 
 	lists.each do |l|
-		query = {"sort" => "pubdateDESC", "canned" => 'true', "loc" => l['loc'], "qtype" => "shelf", "shelving_location" => l['shelving_locations'], "availability" => l['availability']}
-		fetch = Search.new query
+		fetch = Search.new l['search_params']
     	results = fetch.results
     	list = results[0]
     	results_with_images = Array.new
@@ -17,7 +16,7 @@ task :generate_sliders => :environment do
     		image = MiniMagick::Image.open(url) rescue nil
     		if image != nil 
     			if image.width > 2
-    				#puts i.title + ' was a good one'
+    				# puts i.title + ' was a good one'
     				results_with_images.push(i)
     			else
     				#puts i.title + ' was a bad one because one pixel'
