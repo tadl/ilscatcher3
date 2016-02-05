@@ -3,7 +3,9 @@
 </div>
 <% @lists.each do |l| %>
 	<h2 class="pull-left"><%= l['fancy_name']%></h2>
-    <%= render 'dropdown_explore_generic', list: l %>
+	<% if !l['searches'].nil? %> 
+    	<%= render 'dropdown_explore_generic', list: l %>
+    <% end %>
     <div class="clearfix"></div>
 	<%= render 'featured_lists', list: Rails.cache.read(l['name']) %>
 <% end %>
