@@ -17,9 +17,12 @@ slider_frequency: 10
 lists:
   - name: 'youth_fiction_list'
     fancy_name: 'Fiction'
-    loc: '23'
-    shelving_locations: ['810','529','528','791','813','795','794','793','819']
-    availability: 'on'
+    search_params: {'loc' : '23',
+                    'qtype' : 'shelf',
+                    'shelving_location' : ['810','529','528','791','813','795','794','793','819'],
+                    'canned' : 'true',
+                    'availability' : 'on',
+                    'sort' : 'pubdateDESC'}
     searches:
       - name: "Concept Crates"
         url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=810&layout=grid&search_title=Concept Crates'
@@ -45,9 +48,12 @@ lists:
         url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=817&layout=grid&search_title=Graphic Novels'
   - name: 'youth_nonfiction_list'
     fancy_name: 'Nonfiction'
-    loc: '23'
-    shelving_locations: ['792']
-    availability: 'on'
+    search_params: {'loc' : '23',
+                    'qtype' : 'shelf',
+                    'shelving_location' : ['792'],
+                    'canned' : 'true',
+                    'availability' : 'on',
+                    'sort' : 'pubdateDESC'}
     searches:
       - name: "Nonfiction"
         url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=792&layout=grid&search_title=Nonfiction'
@@ -55,9 +61,12 @@ lists:
         url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=530&layout=grid&search_title=Magazines'
   - name: 'youth_av_list'
     fancy_name: 'Audio/Visual'
-    loc: '23'
-    shelving_locations: ['771','770']
-    availability: 'on'
+    search_params: {'loc' : '23',
+                    'qtype' : 'shelf',
+                    'shelving_location' : ['771','770'],
+                    'canned' : 'true',
+                    'availability' : 'on',
+                    'sort' : 'pubdateDESC'}
     searches:
       - name: "Movies & Videos"
         url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=771&layout=grid&search_title=Movies and Videos'
