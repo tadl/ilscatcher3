@@ -14,9 +14,12 @@ default_loc: '44'
 lists:
   - name: 'movie_list'
     fancy_name: 'Movies'  
-    loc: '23'
-    shelving_locations: ['682','687','814']
-    availability: 'on'
+    search_params: {'loc' : '23',
+                    'qtype' : 'shelf',
+                    'shelving_location' : ['682','687','814'],
+                    'canned' : 'true',
+                    'availability' : 'on',
+                    'sort' : 'pubdateDESC'}
     searches:
       - name: "Hot DVDs"
         url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=682&layout=grid&search_title=Hot DVDs'
@@ -46,9 +49,12 @@ lists:
         url: '/main/search?query=&qtype=genre&sort=pubdateDESC&loc=23&fmt=g&genres[]=Western&layout=grid&search_title=Western&genre_lock=Western' 
   - name: 'music_list'
     fancy_name: 'Music' 
-    loc: '23'
-    shelving_locations: ['686']
-    availability: 'on'
+    search_params: {'loc' : '23',
+                    'qtype' : 'shelf',
+                    'shelving_location' : ['686'],
+                    'canned' : 'true',
+                    'availability' : 'on',
+                    'sort' : 'pubdateDESC'}
     searches: 
       - name: "New Music"
         url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=686&layout=grid&search_title=New%20Music' 
@@ -96,9 +102,12 @@ lists:
         url: '/main/search?query=&qtype=genre&sort=pubdateDESC&loc=23&fmt=j&genres[]=Vocal&layout=grid&search_title=Vocal&genre_lock=Vocal'
   - name: 'game_list'
     fancy_name: 'Games'  
-    loc: '23'
-    shelving_locations: ['777']
-    availability: 'on'
+    search_params: {'loc' : '23',
+                    'qtype' : 'shelf',
+                    'shelving_location' : ['777'],
+                    'canned' : 'true',
+                    'availability' : 'on',
+                    'sort' : 'pubdateDESC'}
     searches:
       - name: "Nintendo Wii U"
         url: '/main/search?query=&qtype=genre&sort=pubdateDESC&loc=23&genres[]=Nintendo Wii U video games.&layout=grid&search_title=Nintendo Wii U&genre_lock=Nintendo Wii U video games.'
