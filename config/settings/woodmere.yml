@@ -9,9 +9,12 @@ slider_frequency: 10
 lists:
   - name: 'books_list'
     fancy_name: 'Books'
-    loc: '23'
-    shelving_locations: ['510','511','618','619','620','976','975']
-    availability: 'on'
+    search_params: {'loc' : '23',
+                    'qtype' : 'shelf',
+                    'shelving_location' : ['510','511','618','619','620','976','975'],
+                    'canned' : 'true',
+                    'availability' : 'on',
+                    'sort' : 'pubdateDESC'}
     searches:
       - name: "Adult"
         url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=510&layout=grid&search_title=Adult'
@@ -25,9 +28,12 @@ lists:
         url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=546&shelving_location[]=590&layout=grid&search_title=Playaways'
   - name: 'audiovisual_list'
     fancy_name: 'Audio/Visual'
-    loc: '23'
-    shelving_locations: ['682','687','778','686','684']
-    availability: 'on'
+    search_params: {'loc' : '23',
+                    'qtype' : 'shelf',
+                    'shelving_location' : ['682','687','778','686','684'],
+                    'canned' : 'true',
+                    'availability' : 'on',
+                    'sort' : 'pubdateDESC'}
     searches:
       - name: "Hot DVDs"
         url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=682&layout=grid&search_title=Hot DVDs'
@@ -41,9 +47,12 @@ lists:
         url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=684&layout=grid&search_title=Hot%20Tunes'
   - name: 'youth_list'
     fancy_name: 'Youth'
-    loc: '23'
-    shelving_locations: ['810','529','528','791','813','795','794','793','819']
-    availability: 'on'
+    search_params: {'loc' : '23',
+                    'qtype' : 'shelf',
+                    'shelving_location' : ['810','529','528','791','813','795','794','793','819'],
+                    'canned' : 'true',
+                    'availability' : 'on',
+                    'sort' : 'pubdateDESC'}
     searches:
       - name: "Concept Crates"
         url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=810&layout=grid&search_title=Concept Crates'
