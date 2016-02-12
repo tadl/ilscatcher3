@@ -22,7 +22,7 @@ ready = function() {
         itemsDesktopSmall : [980,3],
         itemsTablet: [768,3],
         itemsTabletSmall: false,
-        itemsMobile : [479,1],
+        itemsMobile : [479,2],
         lazyLoad : true,
     });
 
