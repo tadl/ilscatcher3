@@ -71,7 +71,7 @@
             <% end %>
         </div>
         <div class="row form-inline">
-            <div class="col-xs-12" style="text-align:center;">
+            <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
                 <div class="form-group">
                     <input type="checkbox" class="autoload" name="availability" id="availability" <% if search.availability_check==true %>checked="checked"<% end %>>
                     <div class="btn-group">
@@ -82,7 +82,9 @@
                         <label for="availability" class="btn btn-default">Limit to available</label>
                     </div>
                 </div>
-                <% if Settings.shelf_lock %>
+            </div>
+            <% if Settings.shelf_lock %>
+                <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
                     <div class="form-group">
                         <% if search.shelf_lock == 'on' || (@blank_search && !search.in_progress)  %>
                             <input type="checkbox" class="autoload" name="shelf_lock" id="shelf_lock" checked="checked">                
@@ -97,8 +99,10 @@
                             <label for="shelf_lock" class="btn btn-default"><%= Settings.shelf_lock.text %></label>
                         </div>
                     </div>
-                <% end %>
-                <% if Settings.has_eresources == 'true' %>
+                </div>
+            <% end %>
+            <% if Settings.has_eresources == 'true' %>
+                <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
                     <div class="form-group">
                         <input type="checkbox" class="autoload" name="physical" id="physical" <% if search.physical == 'on' %>checked="checked"<% end %>>
                         <div class="btn-group">
@@ -109,16 +113,20 @@
                             <label for="physical" class="btn btn-default">Limit to physical items</label>
                         </div>
                     </div>
-                <% end %>    
-                <% if !search.query.blank? %>
+                </div>
+            <% end %>    
+            <% if !search.query.blank? %>
+                <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
                     <div class="form-group">
                         <a class="btn btn-default" role="button" href="http://elibrary.mel.org/search/a?searchtype=X&searcharg=<%= search.query %>&SORT=D"><img style="height: 18px;margin:0;padding:0;" src="/assets/button-melcat-m.png" /> Search MeLCat</a>
                     </div>
+                </div>
+                <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
                     <div class="form-group">
                         <a class="btn btn-default" role="button" data-toggle="collapse" href="#facets" aria-expanded="false" aria-controls="facets">Filters <span class="caret"></span></a>
                     </div>
-                <% end %>
-            </div>
+                </div>
+            <% end %>
         </div>
         <div class="pull-right padbot" style="margin-top:-30px;margin-right:20px;">
             <% if @search.search_path != '' && !search.query.blank? %>
