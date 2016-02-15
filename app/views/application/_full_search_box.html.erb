@@ -33,14 +33,14 @@
         </div>
     </div>
     <div id="searchOptions">
-        <div class="row form-inline padtop padbot">
-            <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+        <div class="row form-inline padtop">
+            <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 padtop">
                 <div class="input-group">
                     <span class="input-group-addon">Type</span>
                     <%= f.select :qtype,  options_for_select(@query_options, search.qtype), { hide_label: true }, { class: search.query.blank? ? "selectpicker" : "selectpicker autoload" } %>
                 </div>
             </div>
-            <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+            <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 padtop">
                 <div class="input-group">
                     <% if @format_options_unlocked.nil? || (search.shelf_lock == 'on' || (@blank_search && !search.in_progress))  %>
                         <span class="input-group-addon"><%= Settings.format_label %></span>
@@ -51,7 +51,7 @@
                     <% end %>
                 </div>
             </div>
-            <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+            <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 padtop">
                 <div class="input-group">
                     <span class="input-group-addon">Sort</span>
                     <%= f.select :sort, options_for_select(@sort_options, search.sort), { hide_label: true }, { class: search.query.blank? ? "selectpicker" : "selectpicker autoload" } %>
@@ -61,7 +61,7 @@
                 <%= f.hidden_field :loc, :value => Settings.shelf_lock.location %>
             <% else %>
                 <% if @location_options.size > 1 %>
-                    <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                    <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 padtop">
                         <div class="input-group">
                             <span class="input-group-addon">Location</span>
                             <%= f.select :loc,  options_for_select(@location_options, search.loc), { hide_label: true }, { class: search.query.blank? ? "selectpicker" : "selectpicker autoload" } %>
@@ -69,9 +69,7 @@
                     </div>
                 <% end %>    
             <% end %>
-        </div>
-        <div class="row form-inline">
-            <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+            <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 padtop">
                 <div class="form-group">
                     <input type="checkbox" class="autoload" name="availability" id="availability" <% if search.availability_check==true %>checked="checked"<% end %>>
                     <div class="btn-group">
@@ -84,7 +82,7 @@
                 </div>
             </div>
             <% if Settings.shelf_lock %>
-                <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+                <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 padtop">
                     <div class="form-group">
                         <% if search.shelf_lock == 'on' || (@blank_search && !search.in_progress)  %>
                             <input type="checkbox" class="autoload" name="shelf_lock" id="shelf_lock" checked="checked">                
@@ -102,7 +100,7 @@
                 </div>
             <% end %>
             <% if Settings.has_eresources == 'true' %>
-                <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+                <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 padtop">
                     <div class="form-group">
                         <input type="checkbox" class="autoload" name="physical" id="physical" <% if search.physical == 'on' %>checked="checked"<% end %>>
                         <div class="btn-group">
@@ -116,12 +114,12 @@
                 </div>
             <% end %>    
             <% if !search.query.blank? %>
-                <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+                <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 padtop">
                     <div class="form-group">
                         <a class="btn btn-default" role="button" href="http://elibrary.mel.org/search/a?searchtype=X&searcharg=<%= search.query %>&SORT=D"><img style="height: 18px;margin:0;padding:0;" src="/assets/button-melcat-m.png" /> Search MeLCat</a>
                     </div>
                 </div>
-                <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+                <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 padtop">
                     <div class="form-group">
                         <a class="btn btn-default" role="button" data-toggle="collapse" href="#facets" aria-expanded="false" aria-controls="facets">Filters <span class="caret"></span></a>
                     </div>
