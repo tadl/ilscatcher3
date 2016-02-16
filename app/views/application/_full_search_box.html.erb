@@ -8,7 +8,7 @@
                     <span class="input-group-addon"><%= Settings.search_text_unlocked %></span>
                 <% end %>
                 <label class="sr-only control-label" for="query">Query</label>
-                <input class="form-control" id="query" name="query" type="search" value="<%= search.query %>">
+                <input class="form-control" id="query" name="query" type="search" placeholder="<%= Settings.search_placeholder %>" value="<%= search.query %>">
                 <input type="hidden" name="layout" value="<%= search.layout = search.layout || 'list' %>">
                 <span class="input-group-btn">
                     <label class="sr-only" for="commit"><%= Settings.search_text %></label>
