@@ -8,7 +8,7 @@ default_loc: '26'
 slider_frequency: 10
 lists:
   - name: 'adult_list'
-    fancy_name: 'For Adults'
+    fancy_name: 'Adults'
     search_params: {'loc' : '26',
                     'qtype' : 'shelf',
                     'shelving_location' : ['510','1'],
@@ -17,7 +17,7 @@ lists:
                     'sort' : 'pubdateDESC'}
     searches:
   - name: 'juvenile_list'
-    fancy_name: 'For Children'
+    fancy_name: 'Children'
     search_params: {'loc' : '26',
                     'qtype' : 'shelf',
                     'shelving_location' : ['527','529'],
@@ -26,7 +26,7 @@ lists:
                     'sort' : 'pubdateDESC'}
     searches:
   - name: 'dvd_list'
-    fancy_name: 'DVDs for Everyone'
+    fancy_name: 'Movies'
     search_params: {'loc' : '26',
                     'qtype' : 'shelf',
                     'shelving_location' : ['521','779','682'],
