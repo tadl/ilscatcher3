@@ -64,7 +64,7 @@
                     <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 padtop">
                         <div class="input-group">
                             <span class="input-group-addon">Location</span>
-                            <%= f.select :loc,  options_for_select(@location_options, search.loc), { hide_label: true }, { class: search.query.blank? ? "selectpicker" : "selectpicker autoload" } %>
+                            <%= f.select :loc,  options_for_select(@location_options, search.loc || Settings.default_loc), { hide_label: true }, { class: search.query.blank? ? "selectpicker" : "selectpicker autoload" } %>
                         </div>
                     </div>
                 <% end %>    
