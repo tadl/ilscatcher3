@@ -16,16 +16,6 @@ lists:
                     'availability' : 'on',
                     'sort' : 'pubdateDESC'}
     searches:
-      - name: "Adult"
-        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=26&shelving_location[]=510&layout=grid&search_title=Adult'
-      - name: "Non-fiction"
-        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=26&shelving_location[]=976&layout=grid&search_title=Non-fiction'
-      - name: "Magazines"
-        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=26&shelving_location[]=535&layout=grid&search_title=Magazines'
-      - name: "Audiobooks"
-        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=26&shelving_location[]=584&shelving_location[]=518&layout=grid&search_title=Audiobooks'
-      - name: "Playaways"
-        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=26&shelving_location[]=546&shelving_location[]=590&layout=grid&search_title=Playaways'
   - name: 'nonfic_list'
     fancy_name: 'Non-fiction'
     search_params: {'loc' : '26',
@@ -35,16 +25,6 @@ lists:
                     'availability' : 'on',
                     'sort' : 'pubdateDESC'}
     searches:
-      - name: "Hot DVDs"
-        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=26&shelving_location[]=682&layout=grid&search_title=Hot DVDs'
-      - name: "New DVDs"
-        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=26&shelving_location[]=687&layout=grid&search_title=New DVDs'
-      - name: "TC Film Festival"
-        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=26&shelving_location[]=778&layout=grid&search_title=TC Film Festival'
-      - name: "New Music"
-        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=26&shelving_location[]=686&layout=grid&search_title=New%20Music' 
-      - name: "Hot Tunes"
-        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=26&shelving_location[]=684&layout=grid&search_title=Hot%20Tunes'
   - name: 'youth_list'
     fancy_name: 'Youth'
     search_params: {'loc' : '26',
@@ -54,26 +34,6 @@ lists:
                     'availability' : 'on',
                     'sort' : 'pubdateDESC'}
     searches:
-      - name: "Concept Crates"
-        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=26&shelving_location[]=810&layout=grid&search_title=Concept Crates'
-      - name: "Picture Books"
-        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=26&shelving_location[]=529&layout=grid&search_title=Picture Books'
-      - name: "Favorite Characters"
-        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=26&shelving_location[]=819&layout=grid&search_title=Favorite Characters'
-      - name: "Chapter Books"
-        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=26&shelving_location[]=791&layout=grid&search_title=Chapter Books'
-      - name: "Chapter Book Series"
-        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=26&shelving_location[]=813&layout=grid&search_title=Chapter Book Series'
-      - name: "Movies & Videos"
-        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=26&shelving_location[]=771&layout=grid&search_title=Movies and Videos'
-      - name: "Music CDs"
-        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=26&shelving_location[]=770&layout=grid&search_title=Music CDs'
-      - name: "Nonfiction"
-        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=26&shelving_location[]=792&layout=grid&search_title=Nonfiction'
-      - name: "Magazines"
-        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=26&shelving_location[]=530&layout=grid&search_title=Magazines'
-      - name: "Puppets"
-        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=26&shelving_location[]=549&layout=grid&search_title=Puppets'
   - name: 'movies_list'
     fancy_name: 'Movies'
     search_params: {'loc' : '26',
@@ -83,16 +43,13 @@ lists:
                     'availability' : 'on',
                     'sort' : 'pubdateDESC'}
     searches:
-      - name: "Concept Crates"
-        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=26&shelving_location[]=810&layout=grid&search_title=Concept Crates'
   - name: 'seasonal_list'
-    fancy_name: 'Seasonal/Featured'
+    fancy_name: 'Star Wars'
     search_params: {'loc' : '26',
-                    'qtype' : 'shelf',
-                    'shelving_location' : ['810','529','528','791','813','795','794','793','819'],
+                    'qtype' : 'keyword',
                     'canned' : 'true',
+                    'query' : 'star wars',
                     'availability' : 'on',
-                    'sort' : 'pubdateDESC'}
+                    'sort' : 'pubdateDESC',
+                    'min_score' : '1' }
     searches:
-      - name: "Nothing"
-        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=26&shelving_location[]=810&layout=grid&search_title=Concept Crates'
