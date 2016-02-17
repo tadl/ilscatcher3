@@ -44,4 +44,3 @@ lists:
                     'availability' : 'on',
                     'min_score' : '1'
                    }
-    searches:

@@ -65,9 +65,11 @@ class Search
       valid_canned_searches = Settings.lists.each{|key,value| value}
       valid_names = Array.new
       valid_canned_searches.each do |n|
-        names = n['searches'].each{|key,value| value}
-        names.each do |t|
-          valid_names = valid_names.push(URI.decode(t['name']))
+        if n['searches']
+          names = n['searches'].each{|key,value| value}
+          names.each do |t|
+            valid_names = valid_names.push(URI.decode(t['name']))
+          end
         end
       end
       if valid_names.include?(search_title)
