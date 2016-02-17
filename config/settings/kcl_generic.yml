@@ -41,6 +41,7 @@ lists:
                     'qtype' : 'keyword',
                     'query' : 'star wars',
                     'canned' : 'true',
+                    'availability' : 'on',
                     'min_score' : '1'
                    }
     searches:
