@@ -1,3 +1,4 @@
+location_name: 'Kalkaska County Library'
 elastic_evergreen_url: 'https://elastic-evergreen-kcl.apps.tadl.org/main/index.json?query='
 pickup_locations: [['Kalkaska', '44']]
 location_options: [['Kalkaska', '44']]

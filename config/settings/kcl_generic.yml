@@ -1,5 +1,5 @@
-format_options:  [['All Formats', 'fmt' ,'all'], ['Books', 'fmt' ,'a'],['Movies / TV', 'fmt' ,'g'],['Music', 'fmt' ,'j']]
-format_label: 'Material Type'
+format_options:  [['All Formats', 'fmt' ,'all'], ['Books', 'fmt' ,'a'],['Movies / TV', 'fmt' ,'g']]
+format_label: 'Format Type'
 stylesheet: 'kcl.css'
 logo: 'kcl-logo.jpg'
 search_text: 'Search'
@@ -8,7 +8,7 @@ slider_frequency: 10
 default_loc: '44'
 lists:
   - name: 'books_list'
-    fancy_name: 'Books'
+    fancy_name: 'Featured Books'
     search_params: {'loc' : '42',
                     'qtype' : 'shelf',
                     'shelving_location' : ['948','970','1','957','948'],
@@ -22,7 +22,7 @@ lists:
       - name: "Kids"
         url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=44&shelving_location[]=958&shelving_location[]=957&layout=grid&search_title=Kids'
   - name: 'audiovisual_list'
-    fancy_name: 'Audio/Visual'
+    fancy_name: 'Featured Movies'
     search_params: {'loc' : '42',
                     'qtype' : 'shelf',
                     'shelving_location' : ['962','951'],
@@ -36,7 +36,7 @@ lists:
       - name: "Music"
         url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=44&shelving_location[]=962&layout=grid&search_title=Music'
   - name: 'star_wars'
-    fancy_name: 'Star Wars'
+    fancy_name: 'Featured Display: Star Wars'
     search_params: {'loc' : '42',
                     'qtype' : 'keyword',
                     'query' : 'star wars',
