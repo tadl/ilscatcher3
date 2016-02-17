@@ -36,7 +36,7 @@ lists:
       - name: "DVDs"
         url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=44&shelving_location[]=951&layout=grid&search_title=DVDs'
       - name: "Music CDs"
-        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=44&shelving_location[]=962&layout=grid&search_title=Music'
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=44&shelving_location[]=962&layout=grid&search_title=Music CDs'
   - name: 'star_wars'
     fancy_name: 'Featured Display: Star Wars'
     search_params: {'loc' : '44',
