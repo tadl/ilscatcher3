@@ -9,7 +9,7 @@ default_loc: '44'
 lists:
   - name: 'books_list'
     fancy_name: 'Featured Books'
-    search_params: {'loc' : '42',
+    search_params: {'loc' : '44',
                     'qtype' : 'shelf',
                     'shelving_location' : ['948','970','1','957','948'],
                     'canned' : 'true',
@@ -23,7 +23,7 @@ lists:
         url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=44&shelving_location[]=958&shelving_location[]=957&layout=grid&search_title=Kids'
   - name: 'audiovisual_list'
     fancy_name: 'Featured Movies'
-    search_params: {'loc' : '42',
+    search_params: {'loc' : '44',
                     'qtype' : 'shelf',
                     'shelving_location' : ['962','951'],
                     'canned' : 'true',
@@ -37,7 +37,7 @@ lists:
         url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=44&shelving_location[]=962&layout=grid&search_title=Music'
   - name: 'star_wars'
     fancy_name: 'Featured Display: Star Wars'
-    search_params: {'loc' : '42',
+    search_params: {'loc' : '44',
                     'qtype' : 'keyword',
                     'query' : 'star wars',
                     'canned' : 'true',
