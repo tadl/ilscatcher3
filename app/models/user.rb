@@ -434,10 +434,56 @@ class User
     page = agent.post('https://mr-v2.catalog.tadl.org/eg/opac/myopac/list/update?bbid='+ list_id,{'action' => 'del_item', 'list' => list_id, 'seleted_item' => record_id }) rescue 'bad'
     if page != 'bad'
       return 'success'
-    else
+    else 
       return 'fail'
     end
   end
+
+  def create_list(name, description, shared)
+    if shared == 'yes'
+      shared = '1'
+    else
+      shared = '0'
+    end
+    agent = create_agent_token(self.token)
+    page = agent.post('https://mr-v2.catalog.tadl.org/eg/opac/myopac/list/update', {'action' => 'create', 'name' => name, 'description' => description, 'shared' => shared}) rescue 'bad'
+    if page != 'bad'
+      return 'success'
+    else 
+      return 'fail'
+    end
+  end
+
+  def destroy_list(list_id)
+    agent = create_agent_token(self.token)
+    page = agent.post('https://mr-v2.catalog.tadl.org/eg/opac/myopac/list/update', {'action' => 'delete', 'list' => list_id}) rescue 'bad'
+    if page != 'bad'
+      return 'success'
+    else 
+      return 'fail'
+    end
+  end
+
+  def edit_list(list_id, name, description)
+    agent = create_agent_token(self.token)
+    page = agent.post('https://mr-v2.catalog.tadl.org/eg/opac/myopac/lists', {'action' => 'editmeta', 'name' => name, 'description' => description, 'bbid' => list_id}) rescue 'bad'
+    if page != 'bad'
+      return 'success'
+    else 
+      return 'fail'
+    end
+  end
+
+  def share_list(list_id, share)
+    agent = create_agent_token(self.token)
+    page = agent.post('https://mr-v2.catalog.tadl.org/eg/opac/myopac/list/update', {'action' => share, 'list' => list_id}) rescue 'bad'
+    if page != 'bad'
+      return 'success'
+    else 
+      return 'fail'
+    end
+  end
+
 
   def get_checkout_history(page)
     requested_page = (page.to_i * 30).to_s

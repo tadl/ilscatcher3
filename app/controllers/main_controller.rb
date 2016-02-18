@@ -375,7 +375,7 @@ class MainController < ApplicationController
       set_cookies(@user)
       @message = @user.remove_item_from_list(list_id, record_id)
     else
-      @list = 'bad login'
+      @message = 'bad login'
       redirect_to main_index_path
       return
     end
@@ -383,7 +383,87 @@ class MainController < ApplicationController
       format.json {render :json => {:message => @message}}
     end 
   end
-  
+
+  def create_list
+    @user = generate_user()
+    name = params[:name].to_s
+    description = params[:description] 
+    shared = params[:shared]    
+    if !@user.error && name.to_s != ''
+      set_cookies(@user)
+      @message = @user.create_list(name, description, shared)
+    elsif @user.error
+      @message = 'bad login'
+      redirect_to main_index_path
+      return
+    else
+      @message = 'invalid parameters'
+    end
+    respond_to do |format|
+      format.json {render :json => {:message => @message}}
+    end
+  end
+
+  def destroy_list
+    @user = generate_user()
+    list_id = params[:list_id].to_s  
+    if !@user.error && list_id.to_s != ''
+      set_cookies(@user)
+      @message = @user.destroy_list(list_id)
+    elsif @user.error
+      @message = 'bad login'
+      redirect_to main_index_path
+      return
+    else
+      @message = 'invalid parameters'
+    end
+    respond_to do |format|
+      format.json {render :json => {:message => @message}}
+    end
+  end
+
+  def edit_list
+    @user = generate_user()
+    name = params[:name]
+    description = params[:description] 
+    list_id = params[:list_id]    
+    if !@user.error && name.to_s != '' && list_id.to_s != '' 
+      set_cookies(@user)
+      @message = @user.edit_list(list_id, name, description)
+    elsif @user.error
+      @message = 'bad login'
+      redirect_to main_index_path
+      return
+    else
+      @message = 'invalid parameters'
+    end
+    respond_to do |format|
+      format.json {render :json => {:message => @message}}
+    end
+  end
+
+  def share_list
+    @user = generate_user()
+    #share can equal show or hide
+    share = params[:share]
+    list_id = params[:list_id]    
+    if !@user.error && share.to_s != '' && list_id.to_s != '' 
+      set_cookies(@user)
+      @message = @user.share_list(list_id, share)
+    elsif @user.error
+      @message = 'bad login'
+      redirect_to main_index_path
+      return
+    else
+      @message = 'invalid parameters'
+    end
+    respond_to do |format|
+      format.json {render :json => {:message => @message}}
+    end
+
+  end
+
+
   def preferences
     @user = generate_user()
     if !@user.error
