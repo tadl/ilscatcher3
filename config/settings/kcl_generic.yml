@@ -17,10 +17,12 @@ lists:
                     'sort' : 'pubdateDESC',
                   }
     searches:
-      - name: "Adult"
-        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=44&shelving_location[]=948&shelving_location[]=1&layout=grid&search_title=Adult'
-      - name: "Kids"
-        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=44&shelving_location[]=958&shelving_location[]=957&layout=grid&search_title=Kids'
+      - name: "Books"
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=44&shelving_location[]=948&shelving_location[]=1&layout=grid&search_title=Books'
+      - name: "Audio Books"
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=44&shelving_location[]=950&layout=grid&search_title=Audio Books'
+      - name: "Large Print"
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=44&shelving_location[]=959&layout=grid&search_title=Large Print'
   - name: 'audiovisual_list'
     fancy_name: 'Featured Movies & TV'
     search_params: {'loc' : '44',
@@ -33,8 +35,8 @@ lists:
     searches:
       - name: "DVDs"
         url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=44&shelving_location[]=951&layout=grid&search_title=DVDs'
-      - name: "Music"
-        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=44&shelving_location[]=962&layout=grid&search_title=Music'
+      - name: "Music CDs"
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=44&shelving_location[]=962&layout=grid&search_title=Music CDs'
   - name: 'star_wars'
     fancy_name: 'Featured Display: Star Wars'
     search_params: {'loc' : '44',
