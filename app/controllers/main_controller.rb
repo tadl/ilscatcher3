@@ -329,6 +329,61 @@ class MainController < ApplicationController
     end
   end
 
+  def fetch_list
+    @user = generate_user()
+    if params[:page]
+      page_number = params[:page]
+    else
+      page_number = '0'
+    end
+    list_id = params[:list_id]
+    if !@user.error
+      set_cookies(@user)
+      @list = @user.fetch_list(list_id, page_number)
+    else
+      @list = 'bad login'
+      redirect_to main_index_path
+      return
+    end
+    respond_to do |format|
+      format.json {render :json => {:user => @user, :list => @list}}
+    end
+  end
+
+  def add_item_to_list
+    @user = generate_user()
+    list_id = params[:list_id]
+    record_id = params[:record_id]
+    if !@user.error
+      set_cookies(@user)
+      @message = @user.add_item_to_list(list_id, record_id)
+    else
+      @list = 'bad login'
+      redirect_to main_index_path
+      return
+    end
+    respond_to do |format|
+      format.json {render :json => {:message => @message}}
+    end
+  end
+  
+  def remove_item_from_list
+    @user = generate_user()
+    list_id = params[:list_id]
+    record_id = params[:record_id]
+    if !@user.error
+      set_cookies(@user)
+      @message = @user.remove_item_from_list(list_id, record_id)
+    else
+      @list = 'bad login'
+      redirect_to main_index_path
+      return
+    end
+    respond_to do |format|
+      format.json {render :json => {:message => @message}}
+    end 
+  end
+  
   def preferences
     @user = generate_user()
     if !@user.error

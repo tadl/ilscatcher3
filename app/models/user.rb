@@ -391,10 +391,58 @@ class User
     return lists
   end
 
+  def fetch_list(list_id, page_number)
+    agent = create_agent_token(self.token)
+    randomizer = SecureRandom.hex(13)
+    page = agent.get('https://mr-v2.catalog.tadl.org/eg/opac/results?contains=nocontains&query='+ randomizer +'&qtype=keyword&bookbag='+ list_id +'&limit=30&page=' + page_number)    
+    list = Hash.new
+    list_items = Array.new
+    list['name'] = page.parser.css('.result-bookbag-name').text rescue nil
+    list['description'] = page.parser.css('.result-bookbag-description').text rescue nil
+    page.parser.css('.result_table_row').each do |l|
+        item_hash = Hash.new
+        item_hash['record_id'] = l.css('.search_link').attr('name').to_s.gsub('record_','') 
+        item_hash['title'] = l.css('.record_title').text.strip rescue nil
+        item_hash['author'] = l.css('.record_author').text.strip rescue nil
+        item_hash['format'] = l.css('.marc_record_type').text.strip rescue nil
+        list_items = list_items.push(item_hash)
+    end
+    list['items'] = list_items
+    if page.parser.css('.search_page_nav_link:contains("Next")').present?
+      more_results = "true"
+    else
+      more_results = "false"
+    end
+    list['more_results'] = more_results
+    list['page'] = page_number
+    return list
+  end
+
+  def add_item_to_list(list_id, record_id)
+    agent = create_agent_token(self.token)
+    page = agent.get('https://mr-v2.catalog.tadl.org/eg/opac/myopac/list/update?&record='+ record_id +'&action=add_rec&list=' + list_id) rescue 'bad'
+    if page != 'bad'
+      return 'success'
+    else
+      return 'fail'
+    end
+  end
+
+   #Doesn't work need item's list_item_id not record_id
+  def remove_item_from_list(list_id, record_id)
+    agent = create_agent_token(self.token)
+    page = agent.post('https://mr-v2.catalog.tadl.org/eg/opac/myopac/list/update?bbid='+ list_id,{'action' => 'del_item', 'list' => list_id, 'seleted_item' => record_id }) rescue 'bad'
+    if page != 'bad'
+      return 'success'
+    else
+      return 'fail'
+    end
+  end
+
   def get_checkout_history(page)
     requested_page = (page.to_i * 30).to_s
     agent = create_agent_token(self.token)
-    page = agent.get('https://mr-v2.catalog.tadl.org/eg/opac/myopac/circ_history?limit=30;offset=' + requested_page)
+    page = agent.get('https://mr-v2.catalog.tadl.org/eg/opac/myopac/circ_history?limit=500;offset=' + requested_page)
     checkouts = Array.new
     page.parser.css('#acct_checked_main_header').css('tr').each do |l|
       checkout = Hash.new
