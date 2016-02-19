@@ -370,10 +370,10 @@ class MainController < ApplicationController
   def remove_item_from_list
     @user = generate_user()
     list_id = params[:list_id]
-    record_id = params[:record_id]
+    list_item_id = params[:list_item_id]
     if !@user.error
       set_cookies(@user)
-      @message = @user.remove_item_from_list(list_id, record_id)
+      @message = @user.remove_item_from_list(list_id, list_item_id)
     else
       @message = 'bad login'
       redirect_to main_index_path

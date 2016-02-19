@@ -394,7 +394,7 @@ class User
   def fetch_list(list_id, page_number)
     agent = create_agent_token(self.token)
     randomizer = SecureRandom.hex(13)
-    page = agent.get('https://mr-v2.catalog.tadl.org/eg/opac/results?contains=nocontains&query='+ randomizer +'&qtype=keyword&bookbag='+ list_id +'&limit=30&page=' + page_number)    
+    page = agent.get('https://mr-v2.catalog.tadl.org/eg/opac/results?contains=nocontains&query='+ randomizer +'&qtype=keyword&bookbag='+ list_id +'&sort=container_date.descending&limit=30&page=' + page_number)    
     list = Hash.new
     list_items = Array.new
     list['name'] = page.parser.css('.result-bookbag-name').text rescue nil
@@ -405,6 +405,8 @@ class User
         item_hash['title'] = l.css('.record_title').text.strip rescue nil
         item_hash['author'] = l.css('.record_author').text.strip rescue nil
         item_hash['format'] = l.css('.marc_record_type').text.strip rescue nil
+        item_hash['list_item_id'] = l.css('.result-bookbag-item-id').text.strip rescue nil
+        item_hash['note'] = l.css('.result-bookbag-item-note').text.strip rescue nil
         list_items = list_items.push(item_hash)
     end
     list['items'] = list_items
@@ -428,10 +430,14 @@ class User
     end
   end
 
-   #Doesn't work need item's list_item_id not record_id
-  def remove_item_from_list(list_id, record_id)
+  def remove_item_from_list(list_id, list_item_id)
+    list_item_ids = list_item_id.split(',').reject(&:empty?)
+    post_params = '&action=del_item&list=' + list_id 
+    list_item_ids.each do |l|
+      post_params = post_params + '&selected_item=' + l
+    end
     agent = create_agent_token(self.token)
-    page = agent.post('https://mr-v2.catalog.tadl.org/eg/opac/myopac/list/update?bbid='+ list_id,{'action' => 'del_item', 'list' => list_id, 'seleted_item' => record_id }) rescue 'bad'
+    page = agent.get('https://mr-v2.catalog.tadl.org/eg/opac/myopac/list/update?bookbag='+ list_id + post_params) rescue 'bad'
     if page != 'bad'
       return 'success'
     else 
@@ -446,7 +452,7 @@ class User
       shared = '0'
     end
     agent = create_agent_token(self.token)
-    page = agent.post('https://mr-v2.catalog.tadl.org/eg/opac/myopac/list/update', {'action' => 'create', 'name' => name, 'description' => description, 'shared' => shared}) rescue 'bad'
+    page = agent.post('https://mr-v2.catalog.tadl.org/eg/opac/myopac/list/update?bbid='+ list_id, {'action' => 'create', 'name' => name, 'description' => description, 'shared' => shared}) rescue 'bad'
     if page != 'bad'
       return 'success'
     else 
@@ -456,7 +462,7 @@ class User
 
   def destroy_list(list_id)
     agent = create_agent_token(self.token)
-    page = agent.post('https://mr-v2.catalog.tadl.org/eg/opac/myopac/list/update', {'action' => 'delete', 'list' => list_id}) rescue 'bad'
+    page = agent.post('https://mr-v2.catalog.tadl.org/eg/opac/myopac/list/update?bbid='+ list_id, {'action' => 'delete', 'list' => list_id}) rescue 'bad'
     if page != 'bad'
       return 'success'
     else 
@@ -488,7 +494,7 @@ class User
   def get_checkout_history(page)
     requested_page = (page.to_i * 30).to_s
     agent = create_agent_token(self.token)
-    page = agent.get('https://mr-v2.catalog.tadl.org/eg/opac/myopac/circ_history?limit=500;offset=' + requested_page)
+    page = agent.get('https://mr-v2.catalog.tadl.org/eg/opac/myopac/circ_history?limit=30;offset=' + requested_page)
     checkouts = Array.new
     page.parser.css('#acct_checked_main_header').css('tr').each do |l|
       checkout = Hash.new
@@ -551,11 +557,11 @@ class User
   end
 
   def check_for_default_list(default_value)
-      if default_value.to_s != '' 
-        return true
-      else
-        return false
-      end
+    if default_value.to_s != '' 
+      return true
+    else
+      return false
+    end
   end
 
 
