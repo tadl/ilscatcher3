@@ -118,30 +118,30 @@ class User
 		page = agent.get('https://mr-v2.catalog.tadl.org/eg/opac/myopac/holds?limit=41')
 		holds_raw = page.parser.css('tr.acct_holds_temp').map do |h|
 			{
-        	:title =>  h.css('td[2]').css('a').text,
-        	:author => h.css('td[3]').css('a').text,
-        	:record_id => clean_record(h.css('td[2]').css('a').try(:attr, 'href').to_s),
-        	:hold_id => h.search('input[@name="hold_id"]').try(:attr, "value").to_s,
-        	:hold_status => h.css('td[8]').text.strip,
-        	:queue_status => h.css('/td[9]/div/div[1]').text.strip.gsub(/AvailableExpires/, 'Available, Expires'),
-        	:queue_state => h.css('/td[9]/div/div[2]').text.scan(/\d+/).map { |n| n.to_i },
-        	:pickup_location => h.css('td[5]').text.strip,
-          :format => h.css('.marc_record_type').try(:text),
-      		}
-      	end
-      	sorted_by_hold_id = holds_raw.sort_by {|k| k[:hold_id]}.reverse!
-    	sorted_by_hold_id.each do |h|
-      		if h[:queue_status] =~ /Available/
-        		sorted_by_hold_id.delete(h)
-        		sorted_by_hold_id.unshift(h) 
-      		end
-    	end
-    	holds = Array.new
-    	sorted_by_hold_id.each do |h|
-    		hold = Hold.new h
-    		holds = holds.push(hold)
-    	end
-    	return holds
+        :title =>  h.css('td[2]').css('a').text,
+        :author => h.css('td[3]').css('a').text,
+        :record_id => clean_record(h.css('td[2]').css('a').try(:attr, 'href').to_s),
+        :hold_id => h.search('input[@name="hold_id"]').try(:attr, "value").to_s,
+        :hold_status => h.css('td[8]').text.strip,
+        :queue_status => h.css('/td[9]/div/div[1]').text.strip.gsub(/AvailableExpires/, 'Available, Expires'),
+        :queue_state => h.css('/td[9]/div/div[2]').text.scan(/\d+/).map { |n| n.to_i },
+        :pickup_location => h.css('td[5]').text.strip,
+        :format => h.css('.marc_record_type').try(:text),
+      }
+    end
+    sorted_by_hold_id = holds_raw.sort_by {|k| k[:hold_id]}.reverse!
+    sorted_by_hold_id.each do |h|
+      if h[:queue_status] =~ /Available/
+        sorted_by_hold_id.delete(h)
+        sorted_by_hold_id.unshift(h) 
+      end
+    end
+    holds = Array.new
+    sorted_by_hold_id.each do |h|
+    	hold = Hold.new h
+    	holds = holds.push(hold)
+    end
+    return holds
 	end
 
 	def manage_hold(holds, action)
@@ -473,6 +473,27 @@ class User
   def edit_list(list_id, name, description)
     agent = create_agent_token(self.token)
     page = agent.post('https://mr-v2.catalog.tadl.org/eg/opac/myopac/lists', {'action' => 'editmeta', 'name' => name, 'description' => description, 'bbid' => list_id}) rescue 'bad'
+    if page != 'bad'
+      return 'success'
+    else 
+      return 'fail'
+    end
+  end
+
+  #adds additional notes to list but does not replace existing notes (need note_id exposed for that)
+  def add_note_to_list(list_id, list_item_id, note)
+    agent = create_agent_token(self.token)
+    page = agent.post('https://mr-v2.catalog.tadl.org/eg/opac/myopac/list/update?bbid='+ list_id +'&edit_notes='+list_id,{'list' => list_id, ('item-' + list_item_id) => note, 'save_notes' => 'Save Notes'}) 
+    if page != 'bad'
+      return 'success'
+    else 
+      return 'fail'
+    end
+  end
+
+  def make_default_list(list_id)
+    agent = create_agent_token(self.token)
+    page = agent.post('https://mr-v2.catalog.tadl.org/eg/opac/myopac/list/update', {'action' => 'make_default', 'list' => list_id}) rescue 'bad'
     if page != 'bad'
       return 'success'
     else 

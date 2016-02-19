@@ -442,6 +442,30 @@ class MainController < ApplicationController
     end
   end
 
+
+  def add_note_to_list
+    @user = generate_user()
+    note = params[:note]
+    if note.nil?
+      note = ''
+    end
+    list_item_id = params[:list_item_id] 
+    list_id = params[:list_id]    
+    if !@user.error && list_item_id.to_s != '' && list_id.to_s != '' 
+      set_cookies(@user)
+      @message = @user.add_note_to_list(list_id, list_item_id, note)
+    elsif @user.error
+      @message = 'bad login'
+      redirect_to main_index_path
+      return
+    else
+      @message = 'invalid parameters'
+    end
+    respond_to do |format|
+      format.json {render :json => {:message => @message}}
+    end
+  end
+
   def share_list
     @user = generate_user()
     #share can equal show or hide
@@ -460,9 +484,26 @@ class MainController < ApplicationController
     respond_to do |format|
       format.json {render :json => {:message => @message}}
     end
-
   end
 
+  def make_default_list
+    @user = generate_user()
+    #share can equal show or hide
+    list_id = params[:list_id]    
+    if !@user.error && list_id.to_s != '' 
+      set_cookies(@user)
+      @message = @user.make_default_list(list_id)
+    elsif @user.error
+      @message = 'bad login'
+      redirect_to main_index_path
+      return
+    else
+      @message = 'invalid parameters'
+    end
+    respond_to do |format|
+      format.json {render :json => {:message => @message}}
+    end
+  end
 
   def preferences
     @user = generate_user()
