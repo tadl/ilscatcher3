@@ -14,8 +14,8 @@ Rails.application.routes.draw do
   match "main/login" => "main#login", via: [:get, :post], defaults: { format: 'json' }
   match "main/logout" => "main#logout", via: [:get, :post], defaults: { format: 'json' }
   match "main/place_hold" => "main#place_hold", via: [:get, :post], defaults: { format: 'json' }
-  match "main/holds" => "main#list_holds", via: [:get, :post], defaults: { format: 'html' }
-  match "main/checkouts" => "main#list_checkouts", via: [:get, :post], defaults: { format: 'html' }
+  match "main/holds" => "main#holds", via: [:get, :post], defaults: { format: 'html' }
+  match "main/checkouts" => "main#checkouts", via: [:get, :post], defaults: { format: 'html' }
   match "main/details" => "main#details", via: [:get, :post], defaults: { format: 'html' }
   match "main/manage_hold" => "main#manage_hold", via: [:get, :post], defaults: { format: 'js' }
   match "main/renew_checkouts" => "main#renew_checkouts", via: [:get, :post], defaults: { format: 'js' }
@@ -40,7 +40,7 @@ Rails.application.routes.draw do
   match "main/update_user_info" => "main#update_user_info", via: [:get, :post], defaults: {format: 'json'}
   match "main/edit_hold_pickup" => "main#edit_hold_pickup", via: [:post], defaults: { format: 'js' }
   match "main/update_hold_pickup" => "main#update_hold_pickup", via: [:get, :post], defaults: {format: 'json'}
-  match "main/list_checkout_history" => "main#list_checkout_history", via: [:get, :post], defaults: {format: 'html'}
-  match "main/list_hold_history" => "main#list_hold_history", via: [:get, :post], defaults: {format: 'json'}
+  match "main/checkout_history" => "main#checkout_history", via: [:get, :post], defaults: {format: 'html'}
+  match "main/hold_history" => "main#hold_history", via: [:get, :post], defaults: {format: 'json'}
   match '/:action', :controller => 'main', via: [:get, :post]
 end

@@ -150,7 +150,7 @@ class MainController < ApplicationController
     end
   end
 
-  def list_holds
+  def holds
     @user = generate_user()
     if !@user.error
       @holds = @user.list_holds
@@ -167,7 +167,7 @@ class MainController < ApplicationController
     end
   end
 
-  def list_hold_history
+  def hold_history
     @user = generate_user()
     if params[:page]
       page = params[:page].to_i rescue 0
@@ -175,7 +175,7 @@ class MainController < ApplicationController
       page = 0
     end
     if !@user.error
-      get_holds = @user.get_hold_history(page)
+      get_holds = @user.hold_history(page)
       @holds = get_holds[0]
       @more_results = get_holds[1]
       set_cookies(@user)
@@ -192,7 +192,7 @@ class MainController < ApplicationController
     end
   end
 
-  def list_checkouts
+  def checkouts
     @user = generate_user()
     if !@user.error
       @checkouts = @user.list_checkouts
@@ -209,7 +209,7 @@ class MainController < ApplicationController
     end
   end
 
-  def list_checkout_history
+  def checkout_history
     @user = generate_user()
     if params[:page]
       @page = params[:page].to_i rescue 0
