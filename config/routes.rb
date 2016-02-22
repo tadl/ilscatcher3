@@ -33,6 +33,7 @@ Rails.application.routes.draw do
   match "main/destroy_list" => "main#destroy_list", via: [:get, :post], defaults: { format: 'json' }
   match "main/edit_list" => "main#edit_list", via: [:get, :post], defaults: { format: 'json' }
   match "main/add_note_to_list" => "main#add_note_to_list", via: [:get, :post], defaults: { format: 'json' }
+  match "main/edit_note" => "main#edit_note", via: [:get, :post], defaults: { format: 'json' }
   match "main/share_list" => "main#share_list", via: [:get, :post], defaults: { format: 'json' }
   match "main/make_default_list" => "main#make_default_list", via: [:get, :post], defaults: { format: 'json' }
   match "main/update_notifications" => "main#update_notifications", via: [:get, :post], defaults: { format: 'json' }

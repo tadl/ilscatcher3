@@ -466,6 +466,29 @@ class MainController < ApplicationController
     end
   end
 
+  def edit_note
+    @user = generate_user()
+    note = params[:note]
+    if note.nil?
+      note = ''
+    end
+    note_id = params[:note_id] 
+    list_id = params[:list_id]    
+    if !@user.error && note_id.to_s != '' && list_id.to_s != '' 
+      set_cookies(@user)
+      @message = @user.edit_note(list_id, note_id, note)
+    elsif @user.error
+      @message = 'bad login'
+      redirect_to main_index_path
+      return
+    else
+      @message = 'invalid parameters'
+    end
+    respond_to do |format|
+      format.json {render :json => {:message => @message}}
+    end
+  end
+
   def share_list
     @user = generate_user()
     #share can equal show or hide

@@ -397,6 +397,7 @@ class User
     page = agent.get('https://mr-v2.catalog.tadl.org/eg/opac/results?contains=nocontains&query='+ randomizer +'&qtype=keyword&bookbag='+ list_id +'&sort=container_date.descending&limit=30&page=' + page_number)    
     list = Hash.new
     list_items = Array.new
+
     list['name'] = page.parser.css('.result-bookbag-name').text rescue nil
     list['description'] = page.parser.css('.result-bookbag-description').text rescue nil
     page.parser.css('.result_table_row').each do |l|
@@ -406,7 +407,14 @@ class User
         item_hash['author'] = l.css('.record_author').text.strip rescue nil
         item_hash['format'] = l.css('.marc_record_type').text.strip rescue nil
         item_hash['list_item_id'] = l.css('.result-bookbag-item-id').text.strip rescue nil
-        item_hash['note'] = l.css('.result-bookbag-item-note').text.strip rescue nil
+        notes = Array.new
+        l.css('.result-bookbag-item-note-id').each do |n|
+          note = Hash.new
+          note ['note_id'] = n.text.strip rescue nil
+          note['note'] = n.next.next.text.strip rescue nil
+          notes = notes.push(note)
+        end
+        item_hash['notes'] = notes
         list_items = list_items.push(item_hash)
     end
     list['items'] = list_items
@@ -480,10 +488,19 @@ class User
     end
   end
 
-  #adds additional notes to list but does not replace existing notes (need note_id exposed for that)
   def add_note_to_list(list_id, list_item_id, note)
     agent = create_agent_token(self.token)
     page = agent.post('https://mr-v2.catalog.tadl.org/eg/opac/myopac/list/update?bbid='+ list_id +'&edit_notes='+list_id,{'list' => list_id, ('item-' + list_item_id) => note, 'save_notes' => 'Save Notes'}) 
+    if page != 'bad'
+      return 'success'
+    else 
+      return 'fail'
+    end
+  end
+
+  def edit_note(list_id,note_id, note)
+    agent = create_agent_token(self.token)
+    page = agent.post('https://mr-v2.catalog.tadl.org/eg/opac/myopac/list/update?bbid='+ list_id +'&edit_notes='+list_id,{'list' => list_id, ('note-' + note_id) => note, 'save_notes' => 'Save Notes'}) 
     if page != 'bad'
       return 'success'
     else 
