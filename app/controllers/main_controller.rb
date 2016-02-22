@@ -175,7 +175,7 @@ class MainController < ApplicationController
       page = 0
     end
     if !@user.error
-      get_holds = @user.get_hold_history(page)
+      get_holds = @user.hold_history(page)
       @holds = get_holds[0]
       @more_results = get_holds[1]
       set_cookies(@user)
@@ -336,10 +336,15 @@ class MainController < ApplicationController
     else
       page_number = '0'
     end
+    if params[:sort_by]
+      sort_by = params[:sort_by]
+    else
+      sort_by = 'container_date.descending'
+    end
     list_id = params[:list_id]
     if !@user.error
       set_cookies(@user)
-      @list = @user.fetch_list(list_id, page_number)
+      @list = @user.fetch_list(list_id, page_number, sort_by)
     else
       @list = 'bad login'
       redirect_to main_index_path
