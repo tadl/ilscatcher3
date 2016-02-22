@@ -1,7 +1,22 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Ilscatcher3</title>
+    <% if action_name == "search" %>
+        <% if !params['search_title'].blank? %>
+            <% title_slug = action_name.capitalize + ": Browsing " + params['search_title'] %>
+        <% elsif !params['query'].blank? %>
+            <% title_slug = action_name.capitalize + ": " + params['query'].to_s %>
+        <% else %>
+            <% title_slug = action_name.capitalize %>
+        <% end %>
+    <% end %>
+    <% if action_name == "details" %>
+        <% title_slug = "Item details: " + @item.title + ' - ' + @item.id.to_s %>
+    <% end %>
+    <% if action_name =~ /preferences|checkouts|holds|fines|payments|list_checkout_history/ %>
+        <% title_slug = "My Account | " + action_name.capitalize.gsub('_', ' ') %>
+    <% end %>
+  <title><% if !title_slug.blank? %><%= title_slug %> | <% end %><%= Settings.location_name %></title>
   <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no">
   <%= stylesheet_link_tag 'application', '/assets/stylesheets/'+Settings.stylesheet, media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
