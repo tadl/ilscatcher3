@@ -6,7 +6,7 @@ search_text: 'Search'
 search_menu: 'Search'
 slider_frequency: 10
 default_loc: '44'
-opac_toggle_default: 'main'
+opac_toggle_default: 'Main'
 lists:
   - name: 'books_list'
     fancy_name: 'Featured Books'

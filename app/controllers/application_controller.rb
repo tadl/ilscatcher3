@@ -18,6 +18,7 @@ class ApplicationController < ActionController::Base
         @location_options = Settings.location_options
         @pickup_locations = Settings.pickup_locations
         @long_pickup_locations = Settings.long_pickup_locations
+        @this_site = Settings.opac_toggle_default
         @truefalseicons = [['glyphicon glyphicon-ok text-success', true], ['glyphicon glyphicon-remove text-danger', false]]
     	@format_icons = [['a','glyphicon-book','text'], 
                         ['c','glyphicon-music','notated music'], 
