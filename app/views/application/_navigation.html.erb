@@ -20,7 +20,7 @@
                         <ul class="dropdown-menu">
                                 <% Settings.opac_toggle.each do |s| %>
                                     <% if s['name'] != @this_site %>
-                                        <li><a href="<%= s['url'] %>"><%= s['name'] %> Catalog</a></li>
+                                        <li><a href="<%= s['url'] + request.original_fullpath %>"><%= s['name'] %> Catalog</a></li>
                                     <% end %>
                                 <% end %>
                         </ul>
