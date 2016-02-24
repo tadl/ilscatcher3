@@ -343,6 +343,7 @@ class MainController < ApplicationController
       return
     end
     respond_to do |format|
+      format.html {render 'lists'}
       format.json {render :json => {:user => @user,
         :lists => @lists}}
     end
@@ -361,15 +362,10 @@ class MainController < ApplicationController
       sort_by = 'container_date.descending'
     end
     list_id = params[:list_id]
-    if !@user.error
-      set_cookies(@user)
-      @list = @user.fetch_list(list_id, page_number, sort_by)
-    else
-      @list = 'bad login'
-      redirect_to main_index_path
-      return
-    end
+    @list = @user.fetch_list(list_id, page_number, sort_by)
+    
     respond_to do |format|
+      format.html {render 'view_list'}
       format.json {render :json => {:user => @user, :list => @list}}
     end
   end
