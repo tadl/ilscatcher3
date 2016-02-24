@@ -1,0 +1,43 @@
+<div id="account-menu" class="col-xs-12 col-sm-3">
+    <%= render 'account_menu' %>
+</div>
+<div id="user_list" class="col-xs-12 col-sm-9">
+    <% if @list['no_items'] != '' %>
+    	<h2>Sorry the list titled, <%= @list['no_items'] %>, is empty</h2> 
+    <% elsif @list['name'] == '' && @list['items'].empty? %>
+    	<h2>Sorry this list either doesn't exsist or is private</h2> 
+    <% end %>
+    <h2><%= @list['name'] %></h2>
+    <% if @list['description'] != '' %>
+    	<p><%= @list['description'] %></p>
+    <% end %>
+    <% @list['items'].each do |i| %>
+    	<div class="row" style="padding: 10px;">
+    		<div class="col-md-2">
+    			<img src='https://catalog.tadl.org/opac/extras/ac/jacket/large/r/<%= i['record_id'] %>' class="img-responsive" 
+                onerror="this.src='<%= asset_path(Settings.logo) %>?id=<%= i['record_id'] %>'" />
+    		</div>
+    		<div class="col-md-10">	
+    			<h4>
+    				<%= i['title'] %>
+    			<% if i['author'] != '' %> - <%= i['author'] %> <% end %>
+    			</h4>
+    			<% if i['description'] != '' %>
+    				<p><b>Summary:</b> <%= truncate(i['description'], length: 200, separator: ' ', omission: '...') %></p>
+    			<% end %>
+    			<% if i['contents'] != '' %>
+    				<p><b>Contents:</b> <%= truncate(i['contents'], length: 200, separator: ' ', omission: '...') %></p>
+    			<% end %>
+    			<% if !i['e_resource'].nil? %>
+    				<h5><a href="<%= i['e_resource'] %>">View Online</a></h5>
+    			<% end %>
+    			<% if !i['notes'].empty? %>
+    				<b>Notes:</b>
+    				<% i['notes'].each do |n| %>
+    					<p><%= n['note'] %></p>
+    				<% end %>
+    			<% end %>
+    		</div>
+    	</div>
+    <% end %>   
+</div>
