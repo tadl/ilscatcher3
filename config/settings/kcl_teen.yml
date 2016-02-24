@@ -1,4 +1,4 @@
-format_options:  [['All Formats', 'fmt' ,'all'], ['Books', 'fmt' ,'a'],['Movies / TV', 'fmt' ,'g']]
+format_options:  [['All YA Materials', 'shelving_location', '970']]
 format_label: 'Format Type'
 stylesheet: 'kcl_teen.css'
 logo: 'kcl-logo.jpg'

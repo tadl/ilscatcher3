@@ -6,12 +6,14 @@
                 <label class="sr-only control-label" for="query">Query</label>
                 <input class="form-control" id="query" name="query" type="search" placeholder="<%= Settings.search_placeholder %>">
                 <input type="hidden" name="layout" value="grid">
-                <input type="hidden" name="fmt" value="all">
                 <input type="hidden" name="qtype" value="keyword">
                 <input type="hidden" name="sort" value="relevance">
                 <input type="hidden" name="loc" value="<%= Settings.default_loc %>">
                 <% if Settings.shelf_lock && Settings.shelf_lock.default_activated == true %>
+                    <input type="hidden" name="fmt" value="all">
                     <input type="hidden" name="shelf_lock" value="on">
+                <% else %>
+                    <input type="hidden" name="fmt" value="<%= @format_default %>">
                 <% end %>
                 <span class="input-group-btn">
                     <button type="submit" name="commit" class="btn btn-primary" id="search-button"><span class="glyphicon glyphicon-search"></span></button>
