@@ -130,6 +130,29 @@ function update_login() {
     $('#fine').text(fine)
 }
 
+function store_lists(){
+    $.get('/main/user_lists.json')
+        .done(function(data) {
+            if (data.lists) {
+                Cookies("lists", JSON.stringify(data.lists));
+            }
+        }
+    );
+}
+
+function add_to_list(list_id, record_id){
+    url = '/main/add_item_to_list?list_id='+ list_id+'&record_id='+record_id
+    $.get(url)
+        .done(function(data) {
+            if (data.message == 'success') {
+                alert("it worked")
+            }else{
+                alert("didn't work")
+            }
+        }
+    );
+}
+
 function login(id) {
     if (typeof id !== 'undefined') { var do_hold = id; } else { var do_hold = 0; }
     $('#statusMessage').modal('show');

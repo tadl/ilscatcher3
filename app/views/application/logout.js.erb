@@ -1,4 +1,5 @@
 Cookies.remove('login');
 Cookies.remove('user');
+Cookies.remove('lists')
 $('#account_info_box').html('<%= escape_javascript(render partial: "login_form") %>');
 window.location="/";

@@ -48,7 +48,17 @@ class MainController < ApplicationController
     elsif params['id']
       @item_search = Search.new :qtype => 'record_id', :query => params['id']
       @item = @item_search.results[0][0]
-    end 
+    end
+    if cookies[:login] && cookies[:lists]
+      lists = JSON.parse(cookies[:lists])
+      @lists = Array.new
+      lists.each do |l|
+        if l['default_list'] == true
+          @default_list = l['list_id']
+        end
+        @lists = @lists.push(l)
+      end
+    end
     respond_to do |format|
       format.html
       format.js
@@ -61,6 +71,9 @@ class MainController < ApplicationController
     if @user.token
       set_cookies(@user)
     end
+    if request.path_parameters[:format] == 'json'
+      UserListFetcher.perform_async(@user.token)
+    end
     respond_to do |format|
       format.json {render json: @user}
       format.js
@@ -68,6 +81,8 @@ class MainController < ApplicationController
   end
 
   def logout
+    @user = generate_user()
+    clear_user_list_cache(@user)
     cookies.delete :login
     cookies.delete :user
     @message = "logged out"
@@ -317,7 +332,11 @@ class MainController < ApplicationController
     @user = generate_user()
     if !@user.error
       set_cookies(@user)
-      @lists = @user.get_lists
+      key_name = 'list_' + @user.token
+      @lists = Rails.cache.read(key_name)
+      if @lists.nil?
+       @lists = @user.get_lists
+      end
     else
       @lists = 'bad login'
       redirect_to main_index_path
@@ -363,7 +382,7 @@ class MainController < ApplicationController
       set_cookies(@user)
       @message = @user.add_item_to_list(list_id, record_id)
     else
-      @list = 'bad login'
+      @message = 'bad login'
       redirect_to main_index_path
       return
     end
@@ -404,6 +423,10 @@ class MainController < ApplicationController
     else
       @message = 'invalid parameters'
     end
+    clear_user_list_cache(user)
+    if request.path_parameters[:format] == 'json'
+      UserListFetcher.perform_async(@user.token)
+    end
     respond_to do |format|
       format.json {render :json => {:message => @message}}
     end
@@ -421,6 +444,10 @@ class MainController < ApplicationController
       return
     else
       @message = 'invalid parameters'
+    end
+    clear_user_list_cache(@user)
+    if request.path_parameters[:format] == 'json'
+      UserListFetcher.perform_async(@user.token)
     end
     respond_to do |format|
       format.json {render :json => {:message => @message}}
@@ -441,6 +468,10 @@ class MainController < ApplicationController
       return
     else
       @message = 'invalid parameters'
+    end
+    clear_user_list_cache(@user)
+    if request.path_parameters[:format] == 'json'
+      UserListFetcher.perform_async(@user.token)
     end
     respond_to do |format|
       format.json {render :json => {:message => @message}}
@@ -509,6 +540,10 @@ class MainController < ApplicationController
     else
       @message = 'invalid parameters'
     end
+    clear_user_list_cache(@user)
+    if request.path_parameters[:format] == 'json'
+      UserListFetcher.perform_async(@user.token)
+    end
     respond_to do |format|
       format.json {render :json => {:message => @message}}
     end
@@ -527,6 +562,10 @@ class MainController < ApplicationController
       return
     else
       @message = 'invalid parameters'
+    end
+    clear_user_list_cache(@user)
+    if request.path_parameters[:format] == 'json'
+      UserListFetcher.perform_async(@user.token)
     end
     respond_to do |format|
       format.json {render :json => {:message => @message}}

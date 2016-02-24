@@ -2,6 +2,7 @@
 	$('#account_info_box').html("<%= escape_javascript(render partial: 'account_basics') %>");
     hideLoading();
 	update_login();
+	setTimeout(store_lists, 4000);
 <% else %>
 	$('#account_info_box').html("<%= escape_javascript(render partial: 'login_form') %>");
 <% end %>

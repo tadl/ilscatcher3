@@ -47,6 +47,12 @@ class ApplicationController < ActionController::Base
         return user
     end
 
+    def clear_user_list_cache(user)
+        key = 'list_' + user.token
+        Rails.cache.delete(key)
+    end
+
+
     def set_cookies(user)
       cookies[:login] = { :value => user.token, :expires => 2.hours.from_now }
       cookies[:user] = {:value => user.to_json, :expires => 2.hours.from_now }
