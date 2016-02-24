@@ -1,4 +1,4 @@
-format_options:  [["All Kids' Materials", "shelving_location", "970"]]
+format_options:  [["All Kids' Materials", "shelving_location", "956,957,958"]]
 format_label: 'Format Type'
 stylesheet: 'kcl_youth.css'
 logo: 'kcl-logo.jpg'
@@ -12,35 +12,24 @@ lists:
     fancy_name: 'Featured Books'
     search_params: {'loc' : '44',
                     'qtype' : 'shelf',
-                    'shelving_location' : ['948','970','1','957','948'],
+                    'shelving_location' : ['956','957','958'],
                     'canned' : 'true',
                     'availability' : 'on',
                     'sort' : 'pubdateDESC',
                   }
     searches:
-      - name: "Books"
-        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=44&shelving_location[]=948&shelving_location[]=1&layout=grid&search_title=Books'
-      - name: "Audio Books"
-        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=44&shelving_location[]=950&layout=grid&search_title=Audio Books'
-      - name: "Large Print"
-        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=44&shelving_location[]=959&layout=grid&search_title=Large Print'
-  - name: 'youth_audiovisual_list'
-    fancy_name: 'Featured Movies & TV'
-    search_params: {'loc' : '44',
-                    'qtype' : 'shelf',
-                    'shelving_location' : ['962','951'],
-                    'canned' : 'true',
-                    'availability' : 'on',
-                    'sort' : 'pubdateDESC',
-                  }
-    searches:
-      - name: "DVDs"
-        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=44&shelving_location[]=951&layout=grid&search_title=DVDs'
+      - name: "Juvenile"
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=44&shelving_location[]=956&layout=grid&search_title=Juvenile'
+      - name: "Picture Books (JE)"
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=44&shelving_location[]=957&layout=grid&search_title=Picture Books (JE)'
+      - name: "Easy Readers"
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=44&shelving_location[]=958&layout=grid&search_title=Easy Readers'
   - name: 'youth_star_wars'
     fancy_name: 'Featured Display: Star Wars'
     search_params: {'loc' : '44',
                     'qtype' : 'keyword',
                     'query' : 'star wars',
+                    'format' : '956,957,958',
                     'canned' : 'true',
                     'availability' : 'on',
                     'min_score' : '1'
