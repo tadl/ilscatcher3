@@ -29,7 +29,7 @@ lists:
     search_params: {'loc' : '44',
                     'qtype' : 'keyword',
                     'query' : 'star wars',
-                    'format' : '956,957,958',
+                    'shelving_location' : ['956','957','958'],
                     'canned' : 'true',
                     'availability' : 'on',
                     'min_score' : '1'
