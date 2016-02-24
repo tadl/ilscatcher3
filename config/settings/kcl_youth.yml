@@ -6,7 +6,7 @@ search_text: 'Search'
 search_menu: 'Search'
 slider_frequency: 10
 default_loc: '44'
-opac_toggle_default: 'Teen'
+opac_toggle_default: 'Youth'
 lists:
   - name: 'youth_books_list'
     fancy_name: 'Featured Books'
