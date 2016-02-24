@@ -1,14 +1,14 @@
-format_options:  [['All Formats', 'fmt' ,'all'], ['Books', 'fmt' ,'a'],['Movies / TV', 'fmt' ,'g']]
+format_options:  [['All YA Materials', 'shelving_location', '970']]
 format_label: 'Format Type'
-stylesheet: 'kcl.css'
+stylesheet: 'kcl_teen.css'
 logo: 'kcl-logo.jpg'
 search_text: 'Search'
 search_menu: 'Search'
 slider_frequency: 10
 default_loc: '44'
-opac_toggle_default: 'Main'
+opac_toggle_default: 'Teen'
 lists:
-  - name: 'books_list'
+  - name: 'teen_books_list'
     fancy_name: 'Featured Books'
     search_params: {'loc' : '44',
                     'qtype' : 'shelf',
@@ -24,7 +24,7 @@ lists:
         url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=44&shelving_location[]=950&layout=grid&search_title=Audio Books'
       - name: "Large Print"
         url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=44&shelving_location[]=959&layout=grid&search_title=Large Print'
-  - name: 'audiovisual_list'
+  - name: 'teen_audiovisual_list'
     fancy_name: 'Featured Movies & TV'
     search_params: {'loc' : '44',
                     'qtype' : 'shelf',
@@ -38,7 +38,7 @@ lists:
         url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=44&shelving_location[]=951&layout=grid&search_title=DVDs'
       - name: "Music CDs"
         url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=44&shelving_location[]=962&layout=grid&search_title=Music CDs'
-  - name: 'star_wars'
+  - name: 'teen_star_wars'
     fancy_name: 'Featured Display: Star Wars'
     search_params: {'loc' : '44',
                     'qtype' : 'keyword',

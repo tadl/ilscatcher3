@@ -14,10 +14,12 @@ class ApplicationController < ActionController::Base
         @query_options = [['Keyword', 'keyword'], ['Author / Group / Actor', 'author'],['Title', 'title'],['Subject', 'subject'], ['Series', 'series'], ['Genre', 'single_genre']]
         @format_options = Settings.format_options
         @format_options_unlocked = Settings.format_options_unlocked
+        @format_default = Settings.format_options[0][2]
         @sort_options = [['Relevance', 'relevancy'], ['Newest to Oldest', 'pubdateDESC'],['Oldest to Newest', 'pubdateASC'],['Title A to Z', 'titleAZ'], ['Title Z to A', 'titleZA']]
         @location_options = Settings.location_options
         @pickup_locations = Settings.pickup_locations
         @long_pickup_locations = Settings.long_pickup_locations
+        @this_site = Settings.opac_toggle_default
         @truefalseicons = [['glyphicon glyphicon-ok text-success', true], ['glyphicon glyphicon-remove text-danger', false]]
     	@format_icons = [['a','glyphicon-book','text'], 
                         ['c','glyphicon-music','notated music'], 
