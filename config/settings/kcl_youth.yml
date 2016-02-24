@@ -1,0 +1,47 @@
+format_options:  [["All Kids' Materials", "shelving_location", "970"]]
+format_label: 'Format Type'
+stylesheet: 'kcl_youth.css'
+logo: 'kcl-logo.jpg'
+search_text: 'Search'
+search_menu: 'Search'
+slider_frequency: 10
+default_loc: '44'
+opac_toggle_default: 'Teen'
+lists:
+  - name: 'youth_books_list'
+    fancy_name: 'Featured Books'
+    search_params: {'loc' : '44',
+                    'qtype' : 'shelf',
+                    'shelving_location' : ['948','970','1','957','948'],
+                    'canned' : 'true',
+                    'availability' : 'on',
+                    'sort' : 'pubdateDESC',
+                  }
+    searches:
+      - name: "Books"
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=44&shelving_location[]=948&shelving_location[]=1&layout=grid&search_title=Books'
+      - name: "Audio Books"
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=44&shelving_location[]=950&layout=grid&search_title=Audio Books'
+      - name: "Large Print"
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=44&shelving_location[]=959&layout=grid&search_title=Large Print'
+  - name: 'youth_audiovisual_list'
+    fancy_name: 'Featured Movies & TV'
+    search_params: {'loc' : '44',
+                    'qtype' : 'shelf',
+                    'shelving_location' : ['962','951'],
+                    'canned' : 'true',
+                    'availability' : 'on',
+                    'sort' : 'pubdateDESC',
+                  }
+    searches:
+      - name: "DVDs"
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=44&shelving_location[]=951&layout=grid&search_title=DVDs'
+  - name: 'youth_star_wars'
+    fancy_name: 'Featured Display: Star Wars'
+    search_params: {'loc' : '44',
+                    'qtype' : 'keyword',
+                    'query' : 'star wars',
+                    'canned' : 'true',
+                    'availability' : 'on',
+                    'min_score' : '1'
+                   }
