@@ -1,0 +1,24 @@
+<div id="account-menu" class="col-xs-12 col-sm-3">
+    <%= render 'account_menu' %>
+</div>
+<div id="user_list" class="col-xs-12 col-sm-9">
+    <h1>Lists</h1>
+    <% @lists.each do |l| %>
+    	<h3><a href="/main/fetch_list?list_id=<%= l.list_id %>"><%= l.title %></a></h3>
+    	<% if l.description && l.description != '' %>
+    		<p><%= l.description %></p>
+    	<% end %>
+    	<p><a href="#"> Edit Name and Description </a></p>
+    	<% if l.shared == true %>
+    		<p>This is a public List (<a href="#">click here to make private</a>)</p>
+    	<% else %>
+    		<p>This is a private list (<a href="#">click here to make public</a>)</p>
+    	<% end %>
+    	<% if l.default == true %>
+    		<p>This is your default list</p>
+    	<% else %>
+    		<p>(<a href="#">click here to make public</a>)</p>
+    	<% end %>
+    <% end %>   
+</div>
+<script>store_lists()</script 

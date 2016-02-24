@@ -8,7 +8,7 @@ class UserListFetcher < ApplicationController
     user = User.new args
     lists = user.get_lists
     key_name = 'list_' + user_token
-    Rails.cache.write(key_name, lists, :expires_in => 2.hours)
+    Rails.cache.write(key_name, lists, :expires_in => 10.minutes)
   end
 
 end

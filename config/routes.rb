@@ -25,8 +25,8 @@ Rails.application.routes.draw do
   match "main/account" => "main#account", via: [:get, :post], defaults: { format: 'html' }
   match "main/edit_preferences" => "main#edit_preferences", via: [:post], defaults: { format: 'js' }
   match "main/preferences" => "main#preferences", via: [:get, :post], defaults: { format: 'html' }
-  match "main/user_lists" => "main#user_lists", via: [:get, :post], defaults: { format: 'json' }
-  match "main/fetch_list" => "main#fetch_list", via: [:get, :post], defaults: { format: 'json' }
+  match "main/user_lists" => "main#user_lists", via: [:get, :post], defaults: { format: 'html' }
+  match "main/fetch_list" => "main#fetch_list", via: [:get, :post], defaults: { format: 'html' }
   match "main/add_item_to_list" => "main#add_item_to_list", via: [:get, :post], defaults: { format: 'json' }
   match "main/remove_item_from_list" => "main#remove_item_from_list", via: [:get, :post], defaults: { format: 'json' }
   match "main/create_list" => "main#create_list", via: [:get, :post], defaults: { format: 'json' }

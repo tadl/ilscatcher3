@@ -411,17 +411,22 @@ class User
   def fetch_list(list_id, page_number, sort_by)
     agent = create_agent_token(self.token)
     randomizer = SecureRandom.hex(13)
-    page = agent.get('https://mr-v2.catalog.tadl.org/eg/opac/results?contains=nocontains&query='+ randomizer +'&qtype=keyword&bookbag='+ list_id +'&sort='+ sort_by +'&limit=30&page=' + page_number)    
+    page = agent.get('https://mr-v2.catalog.tadl.org/eg/opac/results?contains=nocontains&query='+ randomizer +'&qtype=keyword&bookbag='+ list_id +'&sort='+ sort_by +'&limit=10&page=' + page_number)    
     list = Hash.new
     list_items = Array.new
 
     list['name'] = page.parser.css('.result-bookbag-name').text rescue nil
     list['description'] = page.parser.css('.result-bookbag-description').text rescue nil
+    list['no_items'] = page.parser.css('.lowhits-bookbag-name').text.strip rescue nil
     page.parser.css('.result_table_row').each do |l|
         item_hash = Hash.new
         item_hash['record_id'] = l.css('.search_link').attr('name').to_s.gsub('record_','') 
         item_hash['title'] = l.css('.record_title').text.strip rescue nil
         item_hash['author'] = l.css('.record_author').text.strip rescue nil
+        item_hash['description'] = l.css('tr[@name=bib_summary_full]').text.strip rescue nil
+        item_hash['contents'] = l.css('tr[@name=bib_contents_full]').text.strip rescue nil
+        item_hash['call_number'] = l.css('tr[@name=bib_cn_list]/td[2]').text.strip rescue nil
+        item_hash['e_resource'] = l.css('tr[@name=bib_uri_list]/td/a').attr('href').text rescue nil
         item_hash['format'] = l.css('.marc_record_type').text.strip rescue nil
         item_hash['list_item_id'] = l.css('.result-bookbag-item-id').text.strip rescue nil
         notes = Array.new
