@@ -1,5 +1,5 @@
 format_options:  [['All Formats', 'fmt' ,'all'], ['Books', 'fmt' ,'a'],['Movies / TV', 'fmt' ,'g']]
-format_label: 'Format Type'
+format_label: 'Format'
 stylesheet: 'kcl.css'
 logo: 'kcl-logo.jpg'
 search_text: 'Search'
@@ -28,16 +28,14 @@ lists:
     fancy_name: 'Featured Movies & TV'
     search_params: {'loc' : '44',
                     'qtype' : 'shelf',
-                    'shelving_location' : ['962','951'],
+                    'shelving_location' : ['951'],
                     'canned' : 'true',
                     'availability' : 'on',
                     'sort' : 'pubdateDESC',
                   }
     searches:
-      - name: "DVDs"
-        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=44&shelving_location[]=951&layout=grid&search_title=DVDs'
-      - name: "Music CDs"
-        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=44&shelving_location[]=962&layout=grid&search_title=Music CDs'
+      - name: "All Videos"
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=44&shelving_location[]=951&layout=grid&search_title=All Videos'
   - name: 'star_wars'
     fancy_name: 'Featured Display: Star Wars'
     search_params: {'loc' : '44',

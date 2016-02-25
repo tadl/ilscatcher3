@@ -1,5 +1,5 @@
 format_options:  [['All YA Materials', 'shelving_location', '970']]
-format_label: 'Format Type'
+format_label: 'Format'
 stylesheet: 'kcl_teen.css'
 logo: 'kcl-logo.jpg'
 search_text: 'Search'
@@ -12,18 +12,11 @@ lists:
     fancy_name: 'Featured Books'
     search_params: {'loc' : '44',
                     'qtype' : 'shelf',
-                    'shelving_location' : ['948','970','1','957','948'],
+                    'shelving_location' : ['970'],
                     'canned' : 'true',
                     'availability' : 'on',
                     'sort' : 'pubdateDESC',
                   }
-    searches:
-      - name: "Books"
-        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=44&shelving_location[]=948&shelving_location[]=1&layout=grid&search_title=Books'
-      - name: "Audio Books"
-        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=44&shelving_location[]=950&layout=grid&search_title=Audio Books'
-      - name: "Large Print"
-        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=44&shelving_location[]=959&layout=grid&search_title=Large Print'
   - name: 'teen_audiovisual_list'
     fancy_name: 'Featured Movies & TV'
     search_params: {'loc' : '44',
@@ -33,16 +26,12 @@ lists:
                     'availability' : 'on',
                     'sort' : 'pubdateDESC',
                   }
-    searches:
-      - name: "DVDs"
-        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=44&shelving_location[]=951&layout=grid&search_title=DVDs'
-      - name: "Music CDs"
-        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=44&shelving_location[]=962&layout=grid&search_title=Music CDs'
   - name: 'teen_star_wars'
     fancy_name: 'Featured Display: Star Wars'
     search_params: {'loc' : '44',
                     'qtype' : 'keyword',
                     'query' : 'star wars',
+                    'shelving_location' : ['970'],
                     'canned' : 'true',
                     'availability' : 'on',
                     'min_score' : '1'
