@@ -351,6 +351,7 @@ class MainController < ApplicationController
 
   def fetch_list
     @user = generate_user()
+    @list_id = params[:list_id]
     if params[:page]
       page_number = params[:page]
     else
@@ -363,7 +364,7 @@ class MainController < ApplicationController
     end
     list_id = params[:list_id]
     @list = @user.fetch_list(list_id, page_number, sort_by)
-    
+
     respond_to do |format|
       format.html {render 'view_list'}
       format.json {render :json => {:user => @user, :list => @list}}

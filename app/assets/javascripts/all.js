@@ -140,6 +140,17 @@ function store_lists(){
     );
 }
 
+function is_my_list(list_id){
+    var lists = JSON.parse(Cookies.get('lists'))
+    var return_value = false
+    $.each(lists, function(i, list){
+        if(list.list_id == list_id){
+            return_value = true
+        }
+    });
+    return return_value
+}
+
 function add_to_list(list_id, record_id){
     url = '/main/add_item_to_list?list_id='+ list_id+'&record_id='+record_id
     $.get(url)
