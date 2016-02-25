@@ -7,4 +7,4 @@ elastic_locations: [['KCL', '44']]
 all_locations_code: '44'
 has_registration: 'false'
 has_eresources: 'false'
-opac_toggle: [{'name': 'Main', 'url': 'https://test-catalog.apps.tadl.org'},{'name': 'Youth', 'url': 'https://kalkaska-youth-catalog.apps.tadl.org'},{'name': 'Teen', 'url': 'https://kalkaska-teen-catalog.apps.tadl.org'}]
+opac_toggle: [{'name': 'Main', 'url': 'https://test-catalog.apps.tadl.org/main/index'},{'name': 'Youth', 'url': 'https://kalkaska-youth-catalog.apps.tadl.org/main/index'},{'name': 'Teen', 'url': 'https://kalkaska-teen-catalog.apps.tadl.org/main/index'}]
