@@ -27,25 +27,6 @@ lists:
         url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=584&shelving_location[]=518&layout=grid&search_title=Audiobooks'
       - name: "Playaways"
         url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=546&shelving_location[]=590&layout=grid&search_title=Playaways'
-  - name: 'audiovisual_list'
-    fancy_name: 'Audio/Visual'
-    search_params: {'loc' : '23',
-                    'qtype' : 'shelf',
-                    'shelving_location' : ['682','687','778','686','684'],
-                    'canned' : 'true',
-                    'availability' : 'on',
-                    'sort' : 'pubdateDESC'}
-    searches:
-      - name: "Hot DVDs"
-        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=682&layout=grid&search_title=Hot DVDs'
-      - name: "New DVDs"
-        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=687&layout=grid&search_title=New DVDs'
-      - name: "TC Film Festival"
-        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=778&layout=grid&search_title=TC Film Festival'
-      - name: "New Music"
-        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=686&layout=grid&search_title=New%20Music' 
-      - name: "Hot Tunes"
-        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=684&layout=grid&search_title=Hot%20Tunes'
   - name: 'youth_list'
     fancy_name: 'Youth'
     search_params: {'loc' : '23',
@@ -75,3 +56,22 @@ lists:
         url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=530&layout=grid&search_title=Magazines'
       - name: "Puppets"
         url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=549&layout=grid&search_title=Puppets'
+  - name: 'audiovisual_list'
+    fancy_name: 'Audio/Visual'
+    search_params: {'loc' : '23',
+                    'qtype' : 'shelf',
+                    'shelving_location' : ['682','687','778','686','684'],
+                    'canned' : 'true',
+                    'availability' : 'on',
+                    'sort' : 'pubdateDESC'}
+    searches:
+      - name: "Hot DVDs"
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=682&layout=grid&search_title=Hot DVDs'
+      - name: "New DVDs"
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=687&layout=grid&search_title=New DVDs'
+      - name: "TC Film Festival"
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=778&layout=grid&search_title=TC Film Festival'
+      - name: "New Music"
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=686&layout=grid&search_title=New%20Music' 
+      - name: "Hot Tunes"
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=684&layout=grid&search_title=Hot%20Tunes'
