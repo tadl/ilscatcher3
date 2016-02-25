@@ -19,8 +19,9 @@
     		</div>
     		<div class="col-md-10">	
     			<h4>
+    				<span class="glyphicon <%= format_icon_2(i['format_type'], @format_icons) %>" title="<%= i['format_type'] %>"></span>
     				<%= i['title'] %>
-    			<% if i['author'] != '' %> - <%= i['author'] %> <% end %>
+    				<% if i['author'] != '' %> - <%= i['author'] %> <% end %>
     			</h4>
     			<% if i['description'] != '' %>
     				<p><b>Summary:</b> <%= truncate(i['description'], length: 200, separator: ' ', omission: '...') %></p>
@@ -37,6 +38,26 @@
     					<p><%= n['note'] %></p>
     				<% end %>
     			<% end %>
+    			<div class="edit_list_control">
+    			<% if i['notes'].empty? %>
+    				<button type="button" class="btn btn-success" onclick="show_add_note(<%= i['list_item_id'] %>)">
+                    	Add a note
+                	</button>
+                <% end %>
+                <button type="button" class="btn btn-danger" onclick="remove_from_list(<%= @list_id %>,<%= i['list_item_id'] %>)">
+                    Remove from list
+                </button>
+                </div>
+                <%= link_to main_details_path(:format => :js, :id => i['record_id']), :remote => true do %>
+    				<button type="button" class="btn btn-info" onclick="">
+                		Item Details
+                	</button>
+                <% end %>
+                <div id='new_note_<%= i['list_item_id']%>' class="new_note_form">
+    				<textarea id='new_note_text_<%= i['list_item_id']%>' rows="4" cols="40" id=""></textarea>
+    				<br>
+    				<a onclick="add_note(<%= @list_id %>, <%= i['list_item_id'] %>)">Save Note</a>
+    			</div>
     		</div>
     	</div>
     <% end %>   
@@ -45,7 +66,7 @@
 <script>
 	var test = is_my_list('<%=@list_id%>')
 	if(test == true){
-		alert('this my list')
+		$('.edit_list_control').css('display', 'inline-block');
 	}
 
 </script>
