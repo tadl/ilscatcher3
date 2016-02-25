@@ -34,16 +34,25 @@
     			<% end %>
     			<% if !i['notes'].empty? %>
     				<b>Notes:</b>
+    				<br>
     				<% i['notes'].each do |n| %>
-    					<p><%= n['note'] %></p>
+    					<p>
+    						<span id="note_<%= n['note_id'] %>">
+    							<%= n['note'] %> 
+    						</span>
+    						<a id='edit_note_link_<%= n['note_id'] %>' onclick="show_edit_note(<%= n['note_id'] %>)"> - Edit Note</a>
+    					</p>
+    					<div id="edit_note_<%= n['note_id'] %>" style="display: none;">
+    						<textarea id='edit_note_text_<%= n['note_id'] %>' rows="4" cols="40" id=""><%= n['note'] %></textarea>
+    						<br>
+    						<a onclick="save_edited_note(<%= @list_id %>, <%= n['note_id'] %>)">Save Note</a>
+    					</div>
     				<% end %>
     			<% end %>
     			<div class="edit_list_control">
-    			<% if i['notes'].empty? %>
-    				<button type="button" class="btn btn-success" onclick="show_add_note(<%= i['list_item_id'] %>)">
-                    	Add a note
-                	</button>
-                <% end %>
+    			<button type="button" class="btn btn-success" onclick="show_add_note(<%= i['list_item_id'] %>)">
+                    Add a new note
+                </button>
                 <button type="button" class="btn btn-danger" onclick="remove_from_list(<%= @list_id %>,<%= i['list_item_id'] %>)">
                     Remove from list
                 </button>
