@@ -7,6 +7,14 @@ module ApplicationHelper
         end
     end
 
+    def format_icon_2(value, option_array)
+        option_array.each do |option|
+            if value.to_s == option[0].to_s
+                return option[1]
+            end
+        end
+    end
+
     def location_map(value, option_array)
         response = nil
         option_array.each do |option|

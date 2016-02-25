@@ -164,6 +164,41 @@ function add_to_list(list_id, record_id){
     );
 }
 
+function remove_from_list(list_id, list_item_id){
+    url = '/main/remove_item_from_list?list_id='+ list_id+'&list_item_id='+list_item_id
+    $.get(url)
+        .done(function(data) {
+            if (data.message == 'success') {
+                alert("it worked")
+                location.reload();
+            }else{
+                alert("didn't work")
+            }
+        }
+    );
+}
+
+function show_add_note(list_item_id){
+   var target_div = '#new_note_' + list_item_id
+   $(target_div).css('display', 'inline-block'); 
+}
+
+function add_note(list_id, list_item_id){
+    var note_div = '#new_note_text_' + list_item_id
+    var note_content = $(note_div).val()
+    url = '/main/add_note_to_list?list_id=' + list_id + '&list_item_id=' + list_item_id + '&note=' + note_content
+    $.get(url)
+        .done(function(data) {
+            if (data.message == 'success') {
+                alert("it worked")
+                location.reload();
+            }else{
+                alert("didn't work")
+            }
+        }
+    );
+}
+
 function login(id) {
     if (typeof id !== 'undefined') { var do_hold = id; } else { var do_hold = 0; }
     $('#statusMessage').modal('show');

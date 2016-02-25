@@ -410,7 +410,7 @@ class User
         item_hash['contents'] = l.css('tr[@name=bib_contents_full]').text.strip rescue nil
         item_hash['call_number'] = l.css('tr[@name=bib_cn_list]/td[2]').text.strip rescue nil
         item_hash['e_resource'] = l.css('tr[@name=bib_uri_list]/td/a').attr('href').text rescue nil
-        item_hash['format'] = l.css('.marc_record_type').text.strip rescue nil
+        item_hash['format_type'] = l.css('.marc_record_type').text.strip rescue nil
         item_hash['list_item_id'] = l.css('.result-bookbag-item-id').text.strip rescue nil
         notes = Array.new
         l.css('.result-bookbag-item-note-id').each do |n|
