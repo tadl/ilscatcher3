@@ -24,7 +24,6 @@ task :generate_sliders => :environment do
     		else
     			#puts i.title + ' was a bad one because 404'
     		end
-            image.destroy!
     	end
     	Rails.cache.write(l['name'], results_with_images)
     end
