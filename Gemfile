@@ -24,7 +24,7 @@ gem 'jquery-turbolinks'
 gem 'rails_12factor', group: :production
 gem 'dalli', group: :production
 gem 'unicorn'
-gem 'sidekiq'
+gem 'sidekiq', '~> 4.1.0'
 gem 'sidetiq'
 gem 'redis'
 gem 'mini_magick'
