@@ -65,7 +65,7 @@ class User
 			if !basic_info['full_name'].nil?
 				basic_info['token'] = token.try(:value)
 				basic_info.each do |k,v|
-        	instance_variable_set("@#{k}", v) unless v.nil?
+          instance_variable_set("@#{k}", v) unless v.nil?
       	end
       else
       	instance_variable_set("@error", "bad token") 
@@ -380,7 +380,7 @@ class User
         :description => l.css('.bookbag-description').try(:text),
         :list_id => l.search('input[@name="list"]')[0].try(:attr, "value").to_s,
         :shared => check_for_shared_list(l.css('.bookbag-share')),
-        :default_list => check_for_default_list(l.search('input[@value="remove_default"]'))
+        :default => check_for_default_list(l.search('input[@value="remove_default"]'))
       }
     end
     lists = Array.new
@@ -394,13 +394,13 @@ class User
   def fetch_list(list_id, page_number, sort_by)
     agent = create_agent_token(self.token)
     randomizer = SecureRandom.hex(13)
-    page = agent.get('https://mr-v2.catalog.tadl.org/eg/opac/results?contains=nocontains&query='+ randomizer +'&qtype=keyword&bookbag='+ list_id +'&sort='+ sort_by +'&limit=10&page=' + page_number)    
+    page = agent.get('https://mr-v2.catalog.tadl.org/eg/opac/results?contains=nocontains&query='+ randomizer +'&qtype=keyword&bookbag='+ list_id +'&sort='+ sort_by +'&limit=5&page=' + page_number)    
     list = Hash.new
     list_items = Array.new
-
     list['name'] = page.parser.css('.result-bookbag-name').text rescue nil
     list['description'] = page.parser.css('.result-bookbag-description').text rescue nil
     list['no_items'] = page.parser.css('.lowhits-bookbag-name').text.strip rescue nil
+    list['id'] = list_id
     page.parser.css('.result_table_row').each do |l|
         item_hash = Hash.new
         item_hash['record_id'] = l.css('.search_link').attr('name').to_s.gsub('record_','') 
@@ -426,7 +426,7 @@ class User
     if page.parser.css('.search_page_nav_link:contains("Next")').present?
       more_results = "true"
     else
-      more_results = "false"
+      more_rsesults = "false"
     end
     list['more_results'] = more_results
     list['page'] = page_number
@@ -460,12 +460,12 @@ class User
 
   def create_list(name, description, shared)
     if shared == 'yes'
-      shared = '1'
+      privacy = '1'
     else
-      shared = '0'
+      privacy = '0'
     end
     agent = create_agent_token(self.token)
-    page = agent.post('https://mr-v2.catalog.tadl.org/eg/opac/myopac/list/update?bbid='+ list_id, {'action' => 'create', 'name' => name, 'description' => description, 'shared' => shared}) rescue 'bad'
+    page = agent.post('https://mr-v2.catalog.tadl.org/eg/opac/myopac/list/update', {'action' => 'create', 'name' => name, 'description' => description, 'shared' => privacy}) rescue 'bad'
     if page != 'bad'
       return 'success'
     else 

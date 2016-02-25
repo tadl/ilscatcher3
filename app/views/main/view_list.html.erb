@@ -11,6 +11,12 @@
     <% if @list['description'] != '' %>
     	<p><%= @list['description'] %></p>
     <% end %>
+    <% if @list['page'].to_i > 0 %>
+    	<a href="/main/fetch_list?list_id=<%= @list['id']%>&page=<%= (@list['page'].to_i - 1) %>">Previous Page</a>
+    <% end %>
+    <% if @list['more_results'] == "true" %>
+    	<a href="/main/fetch_list?list_id=<%= @list['id']%>&page=<%= (@list['page'].to_i + 1) %>">Next Page</a>
+    <% end %>
     <% @list['items'].each do |i| %>
     	<div class="row" style="padding: 10px;">
     		<div class="col-md-2">
@@ -40,7 +46,7 @@
     						<span id="note_<%= n['note_id'] %>">
     							<%= n['note'] %> 
     						</span>
-    						<a id='edit_note_link_<%= n['note_id'] %>' onclick="show_edit_note(<%= n['note_id'] %>)"> - Edit Note</a>
+    						<a id='edit_note_link_<%= n['note_id'] %>' class="edit_list_control" onclick="show_edit_note(<%= n['note_id'] %>)"> - Edit Note</a>
     					</p>
     					<div id="edit_note_<%= n['note_id'] %>" style="display: none;">
     						<textarea id='edit_note_text_<%= n['note_id'] %>' rows="4" cols="40" id=""><%= n['note'] %></textarea>
@@ -77,5 +83,4 @@
 	if(test == true){
 		$('.edit_list_control').css('display', 'inline-block');
 	}
-
 </script>

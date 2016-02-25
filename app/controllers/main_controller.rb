@@ -53,7 +53,7 @@ class MainController < ApplicationController
       lists = JSON.parse(cookies[:lists])
       @lists = Array.new
       lists.each do |l|
-        if l['default_list'] == true
+        if l['default'] == true
           @default_list = l['list_id']
         end
         @lists = @lists.push(l)
@@ -420,7 +420,7 @@ class MainController < ApplicationController
     else
       @message = 'invalid parameters'
     end
-    clear_user_list_cache(user)
+    clear_user_list_cache(@user)
     if request.path_parameters[:format] == 'json'
       UserListFetcher.perform_async(@user.token)
     end
@@ -548,7 +548,6 @@ class MainController < ApplicationController
 
   def make_default_list
     @user = generate_user()
-    #share can equal show or hide
     list_id = params[:list_id]    
     if !@user.error && list_id.to_s != '' 
       set_cookies(@user)
