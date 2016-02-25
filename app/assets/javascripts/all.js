@@ -149,6 +149,104 @@ function is_my_list(list_id){
     return return_value
 }
 
+function show_edit_list(list_id){
+    var show_div = '#edit_details_' + list_id
+    var hide_div = '#list_details_' + list_id
+    var hide_link = '#edit_link_' + list_id
+    $(show_div).css('display', 'inline-block');
+    $(hide_link).css('display', 'none');
+    $(hide_div).css('display', 'none');   
+}
+
+function edit_list(list_id){
+    var new_title = $('#edit_list_title_'+list_id).val()
+    var new_description = $('#edit_list_description_'+list_id).val()
+    var url = '/main/edit_list?list_id=' + list_id + '&name=' + new_title + '&description=' + new_description
+    if(new_title == ''){
+        alert("list must have title")
+    }else{
+        $.get(url)
+            .done(function(data) {
+                if (data.message == 'success') {
+                    alert("it worked")
+                    location.reload();
+                }else{
+                    alert("didn't work")
+                }
+            }
+        );
+    }
+}
+
+function create_new_list(){
+    var list_title = $('#new_list_title').val()
+    var list_description = $('#new_list_description').val()
+    var list_privacy = $('#new_list_privacy').val()
+    var url = '/main/create_list?name=' + list_title + '&description=' + list_description + '&shared=' + list_privacy
+    if(list_title == ''){
+        alert("list must have title")
+    }else{
+        $.get(url)
+            .done(function(data) {
+                if (data.message == 'success') {
+                    alert("it worked")
+                    location.reload();
+                }else{
+                    alert("didn't work")
+                }
+            }
+        );
+    }
+}
+
+
+function show_create_list(){
+    $('#new_list_form').css('display', 'inline-block');
+    $('#new_list_link').css('display', 'none');
+}
+
+function delete_list(list_id){
+    url = '/main/destroy_list?list_id=' + list_id
+    $.get(url)
+        .done(function(data) {
+            if (data.message == 'success') {
+                alert("it worked")
+                location.reload();
+            }else{
+                alert("didn't work")
+            }
+        }
+    );
+}
+
+function set_default_list(list_id){
+    url = '/main/make_default_list?list_id=' + list_id
+    $.get(url)
+        .done(function(data) {
+            if (data.message == 'success') {
+                alert("it worked")
+                location.reload();
+            }else{
+                alert("didn't work")
+            }
+        }
+    );
+}
+
+function set_list_privacy(list_id, action){
+    url = '/main/share_list?list_id='+ list_id +'&share='+ action
+    $.get(url)
+        .done(function(data) {
+            if (data.message == 'success') {
+                alert("it worked")
+                location.reload();
+            }else{
+                alert("didn't work")
+            }
+        }
+    );
+}
+
 function add_to_list(list_id, record_id){
     url = '/main/add_item_to_list?list_id='+ list_id+'&record_id='+record_id
     $.get(url)
