@@ -1,0 +1,5 @@
+<div class="pull-right" style="margin-top:15px;">
+    <% list['searches'].each do |c| %>
+        <%= link_to c['url'], :remote => false, :class => 'item-link btn btn-default', :role => 'button' do %>Explore <%=  URI.decode(c['name']) %><% end %>
+    <% end %>
+</div>
