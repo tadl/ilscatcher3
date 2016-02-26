@@ -12,7 +12,7 @@ lists:
     fancy_name: 'Featured Books'
     search_params: {'loc' : '44',
                     'qtype' : 'shelf',
-                    'shelving_location' : ['948','1','959'],
+                    'shelving_location' : ['948','1'],
                     'canned' : 'true',
                     'availability' : 'on',
                     'sort' : 'pubdateDESC',
