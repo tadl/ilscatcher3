@@ -24,6 +24,15 @@ lists:
         url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=44&shelving_location[]=950&layout=grid&search_title=Audio Books'
       - name: "Large Print"
         url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=44&shelving_location[]=959&layout=grid&search_title=Large Print'
+  - name: 'audiobooks_list'
+    fancy_name: 'Featured AudioBooks'
+    search_params: {'loc' : '44',
+                    'qtype' : 'shelf',
+                    'shelving_location' : ['950'],
+                    'canned' : 'true',
+                    'availability' : 'on',
+                    'sort' : 'pubdateDESC',
+                  }
   - name: 'audiovisual_list'
     fancy_name: 'Featured Movies & TV'
     search_params: {'loc' : '44',
@@ -36,12 +45,3 @@ lists:
     searches:
       - name: "All Videos"
         url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=44&shelving_location[]=951&layout=grid&search_title=All Videos'
-  - name: 'star_wars'
-    fancy_name: 'Featured Display: Star Wars'
-    search_params: {'loc' : '44',
-                    'qtype' : 'keyword',
-                    'query' : 'star wars',
-                    'canned' : 'true',
-                    'availability' : 'on',
-                    'min_score' : '1'
-                   }
