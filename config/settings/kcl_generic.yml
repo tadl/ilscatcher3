@@ -32,8 +32,8 @@ lists:
                     'sort' : 'pubdateDESC',
                   }
     searches:
-      - name: "Audio Books"
-        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=44&shelving_location[]=950&layout=grid&search_title=Audio Books'
+      - name: "AudioBooks"
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=44&shelving_location[]=950&layout=grid&search_title=AudioBooks'
   - name: 'audiovisual_list'
     fancy_name: 'Featured Movies & TV'
     search_params: {'loc' : '44',
