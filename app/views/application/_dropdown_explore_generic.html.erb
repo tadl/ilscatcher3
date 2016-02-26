@@ -1,4 +1,4 @@
-<div class="dropdown pull-right" style="margin-top:15px;">
+<div class="dropdown<% if Settings.explore_alignment == 'right' %> pull-right<% else %> pull-left<% end %>" style="margin-top:15px;<% if Settings.explore_alignment == 'left' %>padding-left:10px;<% end %>">
     <button class="btn btn-default dropdown-toggle" type="button" id="explore_<%= list['name'] %>" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         Explore <span class="caret"></span>
     </button>

@@ -7,3 +7,4 @@ elastic_locations: [['TADL-WOOD', '23'],['TADL-IPL', '24'],['TADL-KBL', '25'], [
 all_locations_code: '22'
 has_registration: 'true'
 has_eresources: 'true'
+explore_alignment: 'right'
