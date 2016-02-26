@@ -17,15 +17,9 @@ lists:
                     'availability' : 'on',
                     'sort' : 'pubdateDESC',
                   }
-  - name: 'teen_audiovisual_list'
-    fancy_name: 'Featured Movies & TV'
-    search_params: {'loc' : '44',
-                    'qtype' : 'shelf',
-                    'shelving_location' : ['962','951'],
-                    'canned' : 'true',
-                    'availability' : 'on',
-                    'sort' : 'pubdateDESC',
-                  }
+    searches:
+      - name: "Young Adult Books"
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=44&shelving_location[]=970&layout=grid&search_title=Young Adult Books'
   - name: 'teen_star_wars'
     fancy_name: 'Featured Display: Star Wars'
     search_params: {'loc' : '44',
