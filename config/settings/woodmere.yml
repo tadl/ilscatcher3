@@ -41,7 +41,7 @@ lists:
       - name: "New Non-fiction"
         url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=621&layout=grid&search_title=New Non-fiction'
   - name: 'audiobooks_list'
-    fancy_name: 'AudioBooks'
+    fancy_name: 'Audiobooks'
     search_params: {'loc' : '23',
                     'qtype' : 'shelf',
                     'shelving_location' : ['518','584'],

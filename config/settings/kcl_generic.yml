@@ -23,7 +23,7 @@ lists:
       - name: "Large Print"
         url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=44&shelving_location[]=959&layout=grid&search_title=Large Print'
   - name: 'audiobooks_list'
-    fancy_name: 'Featured AudioBooks'
+    fancy_name: 'Featured Audiobooks'
     search_params: {'loc' : '44',
                     'qtype' : 'shelf',
                     'shelving_location' : ['950'],
@@ -32,8 +32,8 @@ lists:
                     'sort' : 'pubdateDESC',
                   }
     searches:
-      - name: "AudioBooks"
-        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=44&shelving_location[]=950&layout=grid&search_title=AudioBooks'
+      - name: "Audiobooks"
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=44&shelving_location[]=950&layout=grid&search_title=Audiobooks'
   - name: 'audiovisual_list'
     fancy_name: 'Featured Movies & TV'
     search_params: {'loc' : '44',
