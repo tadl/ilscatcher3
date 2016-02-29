@@ -10,7 +10,7 @@ stylesheet: 'ss.css'
 logo: 'logo-clock-only.png'
 search_text: 'Search'
 search_menu: 'Search'
-slider_frequency: 5
+slider_frequency: 10
 default_loc: '44'
 lists:
   - name: 'movie_list'
