@@ -62,13 +62,30 @@ class User
         basic_info["username"] = p.at('td:contains("Username")').next.next.text rescue nil
       end
 			basic_info.delete_if { |key, value| value.blank? }
-			if !basic_info['full_name'].nil?
-				basic_info['token'] = token.try(:value)
-				basic_info.each do |k,v|
-        	instance_variable_set("@#{k}", v) unless v.nil?
-      	end
+			if Settings.system_lock
+        if Settings.system_lock.card_prefix_allow && basic_info['card'] && (Settings.system_lock.card_prefix_allow != basic_info['card'][0..4])
+          instance_variable_set("@error", "wrong catalog")
+        elsif Settings.system_lock.card_prefix_prevent && basic_info['card'] && (Settings.system_lock.card_prefix_prevent  == basic_info['card'][0..4])
+          instance_variable_set("@error", "wrong catalog")
+        else
+          if !basic_info['full_name'].nil?
+            basic_info['token'] = token.try(:value)
+            basic_info.each do |k,v|
+              instance_variable_set("@#{k}", v) unless v.nil?
+            end
+          else
+            instance_variable_set("@error", "bad token") 
+          end
+        end 
       else
-      	instance_variable_set("@error", "bad token") 
+        if !basic_info['full_name'].nil?
+				  basic_info['token'] = token.try(:value)
+				  basic_info.each do |k,v|
+        	 instance_variable_set("@#{k}", v) unless v.nil?
+      	 end
+        else
+      	 instance_variable_set("@error", "bad token") 
+        end
       end
 		else
 			instance_variable_set("@error", "bad username or password") 
