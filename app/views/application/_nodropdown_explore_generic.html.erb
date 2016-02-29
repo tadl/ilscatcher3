@@ -1,4 +1,4 @@
-<div class="<% if Settings.explore_alignment == 'right' %>pull-right<% else %>pull-left<% end %>" style="margin-top:20px;<% if Settings.explore_alignment == 'left' %>padding-left:10px;<% end %>">
+<div class="pull-right" style="margin-top:20px;">
     <% list['searches'].each do |c| %>
         <%= link_to c['url'], :remote => false, :class => 'item-link btn btn-default', :role => 'button' do %>Explore <%=  URI.decode(c['name']) %><% end %>
     <% end %>
