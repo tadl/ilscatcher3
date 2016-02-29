@@ -19,6 +19,8 @@ lists:
     searches:
       - name: "Young Adult Collection"
         url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=28&shelving_location[]=572&layout=grid&search_title=Young Adult Collection'
+      - name: "Juvenile Collection"
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=28&shelving_location[]=527&layout=grid&search_title=Juvenile Collection'
   - name: 'ebb_books_list'
     fancy_name: 'Books'
     search_params: {'loc' : '28',
