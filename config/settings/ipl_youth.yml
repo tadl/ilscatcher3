@@ -12,7 +12,7 @@ lists:
     fancy_name: 'New Fiction'
     search_params: {'loc' : '23',
                     'qtype' : 'shelf',
-                    'shelving_location' : ['619'],
+                    'shelving_location' : ['619','975'],
                     'canned' : 'true',
                     'availability' : 'on',
                     'sort' : 'pubdateDESC'}
@@ -31,15 +31,15 @@ lists:
     fancy_name: 'New Non-fiction'
     search_params: {'loc' : '23',
                     'qtype' : 'shelf',
-                    'shelving_location' : ['621'],
+                    'shelving_location' : ['976','621'],
                     'canned' : 'true',
                     'availability' : 'on',
                     'sort' : 'pubdateDESC'}
     searches:
-      - name: "New Non-fiction"
-        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=621&layout=grid&search_title=New Non-fiction'
       - name: "Non-fiction"
         url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=976&layout=grid&search_title=Non-fiction'
+      - name: "New Non-fiction"
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=621&layout=grid&search_title=New Non-fiction'
   - name: 'audiobooks_list'
     fancy_name: 'Audiobooks'
     search_params: {'loc' : '23',
