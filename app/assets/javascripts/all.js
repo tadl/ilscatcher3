@@ -68,17 +68,6 @@ ready = function() {
 
 $(document).ready(ready);
 
-
-function check_images(){
-    $("img").one("load", function() {
-        var width = this.width
-        console.log(width)
-    }).each(function() {
-        if(this.complete) $(this).load();
-    });
-}
-
-
 function showLoading() {
     $('#statusMessage').modal('show');
 }
