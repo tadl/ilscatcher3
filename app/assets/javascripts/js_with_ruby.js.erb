@@ -1,0 +1,11 @@
+
+function check_images(){
+    $("img").one("load", function() {
+        var width = this.naturalWidth
+        if(width < 2){
+          $(this).attr('src', '<%= asset_path(Settings.logo) %>');
+        }
+    }).each(function() {
+        if(this.complete) $(this).load();
+    });
+}

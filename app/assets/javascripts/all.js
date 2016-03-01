@@ -63,10 +63,20 @@ ready = function() {
     hold_management_binds();
     checkout_management_binds();
     item_loading_binds();
+    check_images();
 };
 
 $(document).ready(ready);
 
+
+function check_images(){
+    $("img").one("load", function() {
+        var width = this.width
+        console.log(width)
+    }).each(function() {
+        if(this.complete) $(this).load();
+    });
+}
 
 
 function showLoading() {
