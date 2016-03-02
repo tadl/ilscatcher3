@@ -17,8 +17,6 @@ lists:
                     'availability' : 'on',
                     'sort' : 'pubdateDESC'}
     searches:
-      - name: "Adult"
-        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=510&layout=grid&search_title=Adult'
       - name: "New Fiction"
         url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=619&layout=grid&search_title=New Fiction'
       - name: "Adult Fiction"
