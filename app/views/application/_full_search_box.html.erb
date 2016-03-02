@@ -57,7 +57,7 @@
                     <%= f.select :sort, options_for_select(@sort_options, search.sort), { hide_label: true }, { class: search.query.blank? ? "selectpicker" : "selectpicker autoload" } %>
                 </div>
             </div>                
-            <% if Settings.shelf_lock && (search.shelf_lock == 'on' || (@blank_search && !search.in_progress))  %>
+            <% if Settings.shelf_lock && (search.shelf_lock == 'on' || (@blank_search && !search.in_progress && Settings.shelf_lock.default_activated != false))  %>
                 <%= f.hidden_field :loc, :value => Settings.shelf_lock.location %>
             <% else %>
                 <% if @location_options.size > 1 %>
