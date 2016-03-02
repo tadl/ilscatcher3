@@ -40,6 +40,8 @@ lists:
         url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=621&layout=grid&search_title=New Non-fiction'
       - name: "Non-fiction"
         url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=976&layout=grid&search_title=Non-fiction'
+      - name: "Oversize"
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=544&layout=grid&search_title=Oversize'
   - name: 'audiobooks_list'
     fancy_name: 'Audiobooks'
     search_params: {'loc' : '23',
