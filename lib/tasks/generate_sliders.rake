@@ -19,7 +19,9 @@ task :generate_sliders => :environment do
                     results_with_images.push(i)
                 end
             end
-            image.destroy!
+            if !image.nil?
+              image.destroy!
+            end
         end
         Rails.cache.write(l['name'], results_with_images)
     end
