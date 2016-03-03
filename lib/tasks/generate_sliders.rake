@@ -27,4 +27,5 @@ task :generate_sliders => :environment do
     end
     time_now = Time.now
     Rails.cache.write('last_updated', time_now)
+    GC.start
 end
