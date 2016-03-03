@@ -1,0 +1,57 @@
+location_name: 'Woodmere (Main) Branch | Traverse Area District Library'
+format_options:  [['All Formats', 'fmt' ,'all'], ['Books', 'fmt' ,'a'],['Movies / TV', 'fmt' ,'g'],['Music', 'fmt' ,'j'],['Video Games','shelving_location', '777'],['Youth', 'shelving_location', '981,978,977,979,980,516,593,527,571,770,771,529,528,791,530,792,531,795,794,793,532,542,589,549,670'],['Teen','shelving_location','786,787,572,563,564,565,566,802'],['Sheet Music','shelving_location','575']]
+format_label: 'Material Type'
+stylesheet: 'woodmere.css'
+logo: 'logo-clock-only.png'
+search_text: 'Search'
+search_menu: 'Search'
+default_loc: '23'
+slider_frequency: 10
+lists:
+  - name: 'new_fic_list'
+    fancy_name: 'New Fiction'
+    search_params: {'loc' : '23',
+                    'qtype' : 'shelf',
+                    'shelving_location' : ['619','975'],
+                    'canned' : 'true',
+                    'availability' : 'on',
+                    'sort' : 'pubdateDESC'}
+    searches:
+      - name: "Adult"
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=510&layout=grid&search_title=Adult'
+      - name: "New Fiction"
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=619&layout=grid&search_title=New Fiction'
+      - name: "Adult Fiction"
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=975&layout=grid&search_title=Adult Fiction'
+      - name: "Large Print"
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=534&layout=grid&search_title=Large Print'
+      - name: "Browsing HOT Titles"
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=683&layout=grid&search_title=Browsing HOT Titles'
+  - name: 'new_nonfic_list'
+    fancy_name: 'New Non-fiction'
+    search_params: {'loc' : '23',
+                    'qtype' : 'shelf',
+                    'shelving_location' : ['976','621'],
+                    'canned' : 'true',
+                    'availability' : 'on',
+                    'sort' : 'pubdateDESC'}
+    searches:
+      - name: "Non-fiction"
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=976&layout=grid&search_title=Non-fiction'
+      - name: "New Non-fiction"
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=621&layout=grid&search_title=New Non-fiction'
+  - name: 'audiobooks_list'
+    fancy_name: 'Audiobooks'
+    search_params: {'loc' : '23',
+                    'qtype' : 'shelf',
+                    'shelving_location' : ['518','584'],
+                    'canned' : 'true',
+                    'availability' : 'on',
+                    'sort' : 'pubdateDESC'}
+    searches:
+      - name: "Audiobooks"
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=584&shelving_location[]=518&layout=grid&search_title=Audiobooks'
+      - name: "Audiobooks on MP3 CD"
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=680&layout=grid&search_title=Audiobooks on MP3 CD'
+      - name: "Playaways"
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=546&shelving_location[]=590&layout=grid&search_title=Playaways'

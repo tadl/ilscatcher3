@@ -1,0 +1,49 @@
+location_name: 'East Bay Branch | Traverse Area District Library'
+format_options:  [['All Formats', 'fmt' ,'all'], ['Books', 'fmt' ,'a'],['Movies / TV', 'fmt' ,'g'],['Music', 'fmt' ,'j']]
+format_label: 'Format'
+stylesheet: 'ebb.css'
+logo: 'logo-clock-only.png'
+search_text: 'Search'
+search_menu: 'Search'
+default_loc: '28'
+slider_frequency: 10
+lists:
+  - name: 'ebb_youth_ya_list'
+    fancy_name: 'Youth & Young Adult'
+    search_params: {'loc' : '28',
+                    'qtype' : 'shelf',
+                    'shelving_location' : ['563','527'],
+                    'canned' : 'true',
+                    'availability' : 'on',
+                    'sort' : 'pubdateDESC'}
+    searches:
+      - name: "Juvenile Collection"
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=28&shelving_location[]=527&layout=grid&search_title=Juvenile Collection'
+      - name: "Young Adult Collection"
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=28&shelving_location[]=563&layout=grid&search_title=Young Adult Collection'
+  - name: 'ebb_books_list'
+    fancy_name: 'Books'
+    search_params: {'loc' : '28',
+                    'qtype' : 'shelf',
+                    'shelving_location' : ['510'],
+                    'canned' : 'true',
+                    'availability' : 'on',
+                    'sort' : 'pubdateDESC'}
+    searches:
+      - name: "Adult"
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=28&shelving_location[]=510&layout=grid&search_title=Adult'
+      - name: "Audiobooks"
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=28&shelving_location[]=369&layout=grid&search_title=Audiobooks'
+      - name: "HOT Titles"
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=28&shelving_location[]=569&shelving_location[]=683&layout=grid&search_title=HOT Titles'
+  - name: 'ebb_dvd_list'
+    fancy_name: 'Video'
+    search_params: {'loc' : '28',
+                    'qtype' : 'shelf',
+                    'shelving_location' : ['586','521'],
+                    'canned' : 'true',
+                    'availability' : 'on',
+                    'sort' : 'pubdateDESC'}
+    searches:
+      - name: "All Videos"
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=28&shelving_location[]=586&shelving_location[]=521&layout=grid&search_title=All Videos'
