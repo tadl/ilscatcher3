@@ -24,8 +24,8 @@ gem 'jquery-turbolinks'
 gem 'rails_12factor', group: :production
 gem 'dalli', group: :production
 gem 'unicorn'
-gem 'sidetiq'
-gem 'sidekiq', '3.3.0'
+gem 'sidekiq', '4.1.0'
+gem 'sidekiq-cron', '~> 0.4.0'
 gem 'redis'
 gem 'mini_magick'
 gem 'dotenv-rails', :groups => [:development, :test]
