@@ -690,3 +690,36 @@ function validate_sms_bind() {
     });
 }
 
+function load_added_content(record_id, isbn){
+    if(isbn && isbn != ''){
+        fetch_good_reads(isbn)
+    }
+    fetch_youtube_trailer(record_id)
+}
+
+function fetch_good_reads(isbn){
+    var clean_isbn = isbn.replace(/\D/g,'')
+    var url = 'https://reviewcatcher.herokuapp.com/?isbn=' + clean_isbn 
+    $.get(url)
+        .done(function(data) {
+            if (data.gr_id) {
+                var content = '<span class="goodreads-stars"><a href="' + data.gr_link +'">'
+                content = content + data.stars_html + ' on GoodReads.com'
+                content = content + '</a></span>'
+                $('#goodreads_review').html(content)
+            }
+        }
+    );
+}
+
+function fetch_youtube_trailer(record_id){
+    var url = 'https://trailer-tank.herokuapp.com/main/get_trailer.json?id=' + record_id
+    $.get(url)
+        .done(function(data) {
+            if (data.message && data.message != 'error') {
+                var content = '<div class="embed-responsive embed-responsive-16by9"><iframe src="/util/youtube?id='+ data.message +'" width="100%" style="overflow:hidden;"></iframe></div>'
+                $('#trailer').html(content)
+            }
+        }
+    );
+}

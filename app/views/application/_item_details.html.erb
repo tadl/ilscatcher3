@@ -31,11 +31,8 @@
                         <dd><%= item.abstract %></dd>
                     </dl>
                 <% end %>
-                <% if !item.check_trailer.nil? %>
-                    <div class="embed-responsive embed-responsive-16by9">
-                        <iframe src="/util/youtube?id=<%= item.id %>" width="100%" style="overflow:hidden;"></iframe>
-                    </div>
-                <% end %>
+                <div id="trailer">
+                </div>
                 <% if !item.contents.empty? %>
                     <dl>
                         <dt>Contents</dt>
@@ -112,5 +109,5 @@
 </div>
 <div class="row clearfix padbot"></div>
 <script>
-    $('#goodreads_review').html("<%= escape_javascript(goodreads_review(item.goodreads)) %>")
+    load_added_content('<%= item.id %>','<%= item.isbn %>','<%= item.format_type %>')
 </script>

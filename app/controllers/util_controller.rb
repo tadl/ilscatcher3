@@ -7,12 +7,7 @@ class UtilController < ApplicationController
 
     def youtube
         id = params[:id]
-        fetch_trailer = JSON.parse(open('https://trailer-tank.herokuapp.com/main/get_trailer.json?id=' + id, {:read_timeout => 1}).read) rescue nil
-        if fetch_trailer.nil? || !fetch_trailer['message'] || fetch_trailer['message'] == 'error'
-            trailer = ""
-        else
-            trailer = TRAILER_TEMPLATE % fetch_trailer['message']
-        end
+        trailer = TRAILER_TEMPLATE % id
         render :template => "util/youtube", :locals => {:trailer => trailer}
     end
 
