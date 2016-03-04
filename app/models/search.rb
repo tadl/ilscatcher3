@@ -290,7 +290,7 @@ class Search
       if self.physical_check
         url = url + '&physical=true' 
       end
-      if (self.sort != 'relevance' || !self.sort.nil?) && self.min_score.nil?
+      if self.sort != 'relevancy' && !self.sort.nil? && self.min_score.nil?
         self.min_score = '1' 
       end
       url = url + '&min_score=' + self.min_score unless self.min_score.nil?
