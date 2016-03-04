@@ -290,7 +290,11 @@ class Search
       if self.physical_check
         url = url + '&physical=true' 
       end
+      if (self.sort != 'relevancy' || !self.sort.nil?) && self.min_score.nil?
+        self.min_score = '1' 
+      end
       url = url + '&min_score=' + self.min_score unless self.min_score.nil?
+
       request = JSON.parse(open(url).read) rescue nil
   		results = Array.new
       genres_raw = Array.new
