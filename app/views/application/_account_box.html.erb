@@ -4,6 +4,10 @@
     <% else %>
         <%= render partial: 'login_form' %>
     <% end %>
+    <% if !Settings.computer_reservation_url.nil? %>
+        <a role="button" class="btn btn-primary navbar-btn navbar-right" style="margin-left:10px;" href="<%= Settings.computer_reservation_url %>">Reserve a Computer</a>
+    <% end %>
+
 </ul>
 
 
