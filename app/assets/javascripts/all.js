@@ -62,7 +62,6 @@ ready = function() {
 
     hold_management_binds();
     checkout_management_binds();
-    item_loading_binds();
     check_images();
 };
 
