@@ -16,7 +16,7 @@ search_menu: 'Advanced Search'
 default_loc: '23'
 slider_frequency: 10
 lists:
-  - name: 'youth_fiction_list'
+  - name: 'wood_youth_fiction_list'
     fancy_name: 'Fiction'
     search_params: {'loc' : '23',
                     'qtype' : 'shelf',
@@ -47,7 +47,7 @@ lists:
         url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=813&layout=grid&search_title=Chapter Book Series'
       - name: "Graphic Novels"
         url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=817&layout=grid&search_title=Graphic Novels'
-  - name: 'youth_nonfiction_list'
+  - name: 'wood_youth_nonfiction_list'
     fancy_name: 'Nonfiction'
     search_params: {'loc' : '23',
                     'qtype' : 'shelf',
@@ -60,7 +60,7 @@ lists:
         url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=792&layout=grid&search_title=Nonfiction'
       - name: "Magazines"
         url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=530&layout=grid&search_title=Magazines'
-  - name: 'youth_av_list'
+  - name: 'wood_youth_av_list'
     fancy_name: 'Audio/Visual'
     search_params: {'loc' : '23',
                     'qtype' : 'shelf',

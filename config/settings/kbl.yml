@@ -8,7 +8,7 @@ search_menu: 'Search'
 default_loc: '25'
 slider_frequency: 10
 lists:
-  - name: 'adult_list'
+  - name: 'kbl_adult_list'
     fancy_name: 'Adults'
     search_params: {'loc' : '25',
                     'qtype' : 'shelf',
@@ -25,7 +25,7 @@ lists:
         url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=25&shelving_location[]=518&shelving_location[]=584&layout=grid&search_title=Audiobooks'
       - name: "Large Print"
         url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=25&shelving_location[]=534&layout=grid&search_title=Large Print'
-  - name: 'youth_ya_books_list'
+  - name: 'kbl_youth_ya_books_list'
     fancy_name: 'Youth & Teens'
     search_params: {'loc' : '25',
                     'qtype' : 'shelf',
@@ -44,7 +44,7 @@ lists:
         url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=25&shelving_location[]=792&layout=grid&search_title=Juvenile Non-fiction'
       - name: "Young Adult"
         url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=25&shelving_location[]=563&layout=grid&search_title=Young Adult'
-  - name: 'audiovisual_list'
+  - name: 'kbl_audiovisual_list'
     fancy_name: 'Audio & Video'
     search_params: {'loc' : '25',
                     'qtype' : 'shelf',

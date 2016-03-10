@@ -8,7 +8,7 @@ slider_frequency: 10
 default_loc: '44'
 opac_toggle_default: 'Teen'
 lists:
-  - name: 'teen_books_list'
+  - name: 'kcl_teen_books_list'
     fancy_name: 'Featured Books'
     search_params: {'loc' : '44',
                     'qtype' : 'shelf',
@@ -20,7 +20,7 @@ lists:
     searches:
       - name: "Young Adult Books"
         url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=44&shelving_location[]=970&layout=grid&search_title=Young Adult Books'
-  - name: 'teen_star_wars'
+  - name: 'kcl_teen_star_wars'
     fancy_name: 'Featured Display: Star Wars'
     search_params: {'loc' : '44',
                     'qtype' : 'keyword',

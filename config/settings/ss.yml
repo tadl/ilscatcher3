@@ -13,7 +13,7 @@ search_menu: 'Search'
 slider_frequency: 10
 default_loc: '44'
 lists:
-  - name: 'movie_list'
+  - name: 'wood_ss_movie_list'
     fancy_name: 'Movies'  
     search_params: {'loc' : '23',
                     'qtype' : 'shelf',
@@ -48,7 +48,7 @@ lists:
         url: '/main/search?query=&qtype=genre&sort=pubdateDESC&loc=23&fmt=g&genres[]=TV&layout=grid&search_title=TV&genre_lock=TV'
       - name: 'Western'
         url: '/main/search?query=&qtype=genre&sort=pubdateDESC&loc=23&fmt=g&genres[]=Western&layout=grid&search_title=Western&genre_lock=Western' 
-  - name: 'music_list'
+  - name: 'wood_ss_music_list'
     fancy_name: 'Music' 
     search_params: {'loc' : '23',
                     'qtype' : 'shelf',
@@ -101,7 +101,7 @@ lists:
         url: '/main/search?query=&qtype=genre&sort=pubdateDESC&loc=23&fmt=j&genres[]=Rhythm and Blues&layout=grid&search_title=Rhythm and Blues&genre_lock=Rhythm and Blues'
       - name: 'Vocal'
         url: '/main/search?query=&qtype=genre&sort=pubdateDESC&loc=23&fmt=j&genres[]=Vocal&layout=grid&search_title=Vocal&genre_lock=Vocal'
-  - name: 'game_list'
+  - name: 'wood_ss_game_list'
     fancy_name: 'Games'  
     search_params: {'loc' : '23',
                     'qtype' : 'shelf',
