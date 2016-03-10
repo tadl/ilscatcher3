@@ -1,0 +1,126 @@
+location_name: 'Sight & Sound | Woodmere (Main) Branch | Traverse Area District Library'
+shelf_lock:
+  shelves: [982,983,682,684,808,517,583,985,521,586,800,987,801,772,989,774,991,588,580,773,821,686,687,781,997,993,671,674,994,556,557,788,617,778,779,995,814,777,996]
+  location: '23'
+  default_activated: true
+  text: 'Limit to Sight & Sound items'
+format_options:  [['All Formats', 'fmt' ,'all'], ['Books', 'fmt' ,'a'],['Movies / TV', 'fmt' ,'g'],['Music', 'fmt' ,'j'],['Video Games','shelving_location', '777']]
+format_label: 'Format'
+stylesheet: 'ss.css'
+logo: 'logo-clock-only.png'
+search_text: 'Search'
+search_menu: 'Search'
+slider_frequency: 10
+default_loc: '44'
+lists:
+  - name: 'wood_ss_movie_list'
+    fancy_name: 'Movies'  
+    search_params: {'loc' : '23',
+                    'qtype' : 'shelf',
+                    'shelving_location' : ['682','687','814'],
+                    'canned' : 'true',
+                    'availability' : 'on',
+                    'sort' : 'pubdateDESC'}
+    searches:
+      - name: "Hot DVDs"
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=682&layout=grid&search_title=Hot DVDs'
+      - name: "New DVDs"
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=687&layout=grid&search_title=New DVDs'
+      - name: "TC Film Festival"
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=778&layout=grid&search_title=TC Film Festival'
+      - name: 'Animation'
+        url: '/main/search?query=&qtype=genre&sort=pubdateDESC&loc=23&fmt=g&genres[]=Animation&layout=grid&search_title=Animation&genre_lock=Animation' 
+      - name: 'Family'
+        url: '/main/search?query=&qtype=genre&sort=pubdateDESC&loc=23&fmt=g&genres[]=Family&layout=grid&search_title=Family&genre_lock=Family'
+      - name: 'Comedy'
+        url: '/main/search?query=&qtype=genre&sort=pubdateDESC&loc=23&fmt=g&genres[]=Comedy&layout=grid&search_title=Comedy&genre_lock=Comedy'
+      - name: 'Documentary'
+        url: '/main/search?query=&qtype=genre&sort=pubdateDESC&loc=23&fmt=g&genres[]=Documentary&layout=grid&search_title=Documentary&genre_lock=Documentary'
+      - name: 'Horror'
+        url: '/main/search?query=&qtype=genre&sort=pubdateDESC&loc=23&fmt=g&genres[]=Horror&layout=grid&search_title=Horror&genre_lock=Horror'
+      - name: 'Music'
+        url: '/main/search?query=&qtype=genre&sort=pubdateDESC&loc=23&fmt=g&genres[]=Music&layout=grid&search_title=Music&genre_lock=Music'
+      - name: 'Romance'
+        url: '/main/search?query=&qtype=genre&sort=pubdateDESC&loc=23&fmt=g&genres[]=Romance&layout=grid&search_title=Romance&genre_lock=Romance'
+      - name: 'Science Fiction'
+        url: '/main/search?query=&qtype=genre&sort=pubdateDESC&loc=23&fmt=g&genres[]=Science%20Fiction&layout=grid&search_title=Science%20Fiction&genre_lock=Science%20Fiction'
+      - name: 'TV'
+        url: '/main/search?query=&qtype=genre&sort=pubdateDESC&loc=23&fmt=g&genres[]=TV&layout=grid&search_title=TV&genre_lock=TV'
+      - name: 'Western'
+        url: '/main/search?query=&qtype=genre&sort=pubdateDESC&loc=23&fmt=g&genres[]=Western&layout=grid&search_title=Western&genre_lock=Western' 
+  - name: 'wood_ss_music_list'
+    fancy_name: 'Music' 
+    search_params: {'loc' : '23',
+                    'qtype' : 'shelf',
+                    'shelving_location' : ['686'],
+                    'canned' : 'true',
+                    'availability' : 'on',
+                    'sort' : 'pubdateDESC'}
+    searches: 
+      - name: "New Music"
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=686&layout=grid&search_title=New%20Music' 
+      - name: "Hot Tunes"
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=684&layout=grid&search_title=Hot%20Tunes'
+      - name: 'Avant-garde'
+        url: '/main/search?query=&qtype=genre&sort=pubdateDESC&loc=23&fmt=j&genres[]=Avant-garde&layout=grid&search_title=Avant-garde&genre_lock=Avant-garde'
+      - name: 'Blues'
+        url: '/main/search?query=&qtype=genre&sort=pubdateDESC&loc=23&fmt=j&genres[]=Blues&layout=grid&search_title=Blues&genre_lock=Blues'
+      - name: 'Classical'
+        url: '/main/search?query=&qtype=genre&sort=pubdateDESC&loc=23&fmt=j&genres[]=Classical&layout=grid&search_title=Classical&genre_lock=Classical'
+      - name: 'Comedy/Spoken'
+        url: '/main/search?query=&qtype=genre&sort=pubdateDESC&loc=23&genres[]=Comedy/Spoken&layout=grid&search_title=Comedy/Spoken&genre_lock=Comedy/Spoken'
+      - name: 'Country'
+        url: '/main/search?query=&qtype=genre&sort=pubdateDESC&loc=23&fmt=j&genres[]=Country&layout=grid&search_title=Country&genre_lock=Country'
+      - name: 'Easy Listening'
+        url: '/main/search?query=&qtype=genre&sort=pubdateDESC&loc=23&fmt=j&genres[]=Easy Listening&layout=grid&search_title=Easy Listening&genre_lock=Easy Listening'
+      - name: 'Electronic'
+        url: '/main/search?query=&qtype=genre&sort=pubdateDESC&loc=23&fmt=j&genres[]=Electronic&layout=grid&search_title=Electronic&genre_lock=Electronic'
+      - name: 'Folk'
+        url: '/main/search?query=&qtype=genre&sort=pubdateDESC&loc=23&fmt=j&genres[]=Folk&layout=grid&search_title=Folk&genre_lock=Folk'
+      - name: 'International'
+        url: '/main/search?query=&qtype=genre&sort=pubdateDESC&loc=23&fmt=j&genres[]=International&layout=grid&search_title=International&genre_lock=International'
+      - name: 'Jazz'
+        url: '/main/search?query=&qtype=genre&sort=pubdateDESC&loc=23&fmt=j&genres[]=Jazz&layout=grid&search_title=Jazz&genre_lock=Jazz'
+      - name: 'Latin'
+        url: '/main/search?query=&qtype=genre&sort=pubdateDESC&loc=23&fmt=j&genres[]=Latin&layout=grid&search_title=Latin&genre_lock=Latin'
+      - name: 'Local'
+        url: '/main/search?query=&qtype=genre&sort=pubdateDESC&loc=23&fmt=j&genres[]=Local&layout=grid&search_title=Local&genre_lock=Local'
+      - name: 'New Age'
+        url: '/main/search?query=&qtype=genre&sort=pubdateDESC&loc=23&fmt=j&genres[]=New Age&layout=grid&search_title=New Age&genre_lock=New Age'
+      - name: 'Opera'
+        url: '/main/search?query=&qtype=genre&sort=pubdateDESC&loc=23&fmt=j&genres[]=Opera&layout=grid&search_title=Opera&genre_lock=Opera'
+      - name: 'Pop/Rock'
+        url: '/main/search?query=&qtype=genre&sort=pubdateDESC&loc=23&fmt=j&genres[]=Pop/Rock&layout=grid&search_title=Pop/Rock&genre_lock=Pop/Rock'
+      - name: 'Rap'
+        url: '/main/search?query=&qtype=genre&sort=pubdateDESC&loc=23&fmt=j&genres[]=Rap&layout=grid&search_title=Rap&genre_lock=Rap'       
+      - name: 'Reggae'
+        url: '/main/search?query=&qtype=genre&sort=pubdateDESC&loc=23&fmt=j&genres[]=Reggae&layout=grid&search_title=Reggae&genre_lock=Reggae'
+      - name: 'Religious'
+        url: '/main/search?query=&qtype=genre&sort=pubdateDESC&loc=23&fmt=j&genres[]=Religious&layout=grid&search_title=Religious&genre_lock=Religious'
+      - name: 'Rhythm and Blues'
+        url: '/main/search?query=&qtype=genre&sort=pubdateDESC&loc=23&fmt=j&genres[]=Rhythm and Blues&layout=grid&search_title=Rhythm and Blues&genre_lock=Rhythm and Blues'
+      - name: 'Vocal'
+        url: '/main/search?query=&qtype=genre&sort=pubdateDESC&loc=23&fmt=j&genres[]=Vocal&layout=grid&search_title=Vocal&genre_lock=Vocal'
+  - name: 'wood_ss_game_list'
+    fancy_name: 'Games'  
+    search_params: {'loc' : '23',
+                    'qtype' : 'shelf',
+                    'shelving_location' : ['777'],
+                    'canned' : 'true',
+                    'availability' : 'on',
+                    'sort' : 'pubdateDESC'}
+    searches:
+      - name: "Nintendo Wii U"
+        url: '/main/search?query=&qtype=genre&sort=pubdateDESC&loc=23&genres[]=Nintendo Wii U video games.&layout=grid&search_title=Nintendo Wii U&genre_lock=Nintendo Wii U video games.'
+      - name: "Xbox 360"
+        url: '/main/search?query=&qtype=genre&sort=pubdateDESC&loc=23&genres[]=Xbox 360 video games.&layout=grid&search_title=Xbox 360&genre_lock=Xbox 360 video games.'
+      - name: 'PlayStation 4'
+        url: '/main/search?query=&qtype=genre&sort=pubdateDESC&loc=23&genres[]=PlayStation 4 video games.&layout=grid&search_title=PlayStation 4&genre_lock=PlayStation 4 video games.'
+      - name: 'Nintendo Wii'
+        url: '/main/search?query=&qtype=genre&sort=pubdateDESC&loc=23&genres[]=Nintendo Wii video games.&layout=grid&search_title=Nintendo Wii&genre_lock=Nintendo Wii video games.'
+      - name: 'Xbox'
+        url: '/main/search?query=&qtype=genre&sort=pubdateDESC&loc=23&genres[]=Xbox video games.&layout=grid&search_title=Xbox&genre_lock=Xbox video games.'
+      - name: 'PlayStation 3'
+        url: '/main/search?query=&qtype=genre&sort=pubdateDESC&loc=23&genres[]=PlayStation 3 video games.&layout=grid&search_title=PlayStation 3&genre_lock=PlayStation 3 video games.'
+      - name: 'PlayStation 2'
+        url: '/main/search?query=&qtype=genre&sort=pubdateDESC&loc=23&genres[]=PlayStation 2 video games.&layout=grid&search_title=PlayStation 2&genre_lock=PlayStation 2 video games.'
