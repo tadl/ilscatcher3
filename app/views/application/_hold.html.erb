@@ -1,5 +1,5 @@
 <div class="col-xs-12">
-    <div class="panel panel-default">
+    <div class="panel panel-<%= hold.queue_status =~ /^Ready/ ? 'success' : 'default' %>">
         <div class="panel-heading">
             <div class="row">
                 <div class="col-lg-11 col-md-11 col-sm-11 col-xs-10">
@@ -31,7 +31,7 @@
                         <button type="button" class="small text-subdued btn btn-xs btn-default change-pickup-<%= hold.hold_id %>" onclick="edit_pickup_loc(<%= hold.hold_id %>,<%= hold.record_id %>,'<%= hold.hold_status %>')">change</button>
                     </dd>
                     <dt>Hold Status</dt>
-                    <dd><%= hold.hold_status == "Available" ? "Ready for Pickup" : hold.hold_status %></dd>
+                    <dd><%= hold.queue_status %></dd>
                     </dl>
                 </div>
                 <div class="col-lg-3 col-sm-3 col-xs-12"><!-- suspend/activate/cancel buttons -->

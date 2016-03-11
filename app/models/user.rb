@@ -140,7 +140,7 @@ class User
         :record_id => clean_record(h.css('td[2]').css('a').try(:attr, 'href').to_s),
         :hold_id => h.search('input[@name="hold_id"]').try(:attr, "value").to_s,
         :hold_status => h.css('td[8]').text.strip,
-        :queue_status => h.css('/td[9]/div/div[1]').text.strip.gsub(/AvailableExpires/, 'Available, Expires'),
+        :queue_status => h.css('/td[9]/div/div[1]').text.strip.gsub(/AvailableExpires/, 'Ready for Pickup, Expires'),
         :queue_state => h.css('/td[9]/div/div[2]').text.scan(/\d+/).map { |n| n.to_i },
         :pickup_location => h.css('td[5]').text.strip,
         :format => h.css('.marc_record_type').try(:text),
