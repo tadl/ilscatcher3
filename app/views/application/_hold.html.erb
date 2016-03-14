@@ -31,7 +31,7 @@
                         <button type="button" class="small text-subdued btn btn-xs btn-default change-pickup-<%= hold.hold_id %>" onclick="edit_pickup_loc(<%= hold.hold_id %>,<%= hold.record_id %>,'<%= hold.hold_status %>')">change</button>
                     </dd>
                     <dt>Hold Status</dt>
-                    <dd><%= hold.queue_status %></dd>
+                    <dd><%= hold.hold_status =~ /Suspended/ ? hold.hold_status : hold.queue_status %></dd>
                     </dl>
                 </div>
                 <div class="col-lg-3 col-sm-3 col-xs-12"><!-- suspend/activate/cancel buttons -->
