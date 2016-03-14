@@ -1,4 +1,9 @@
 location_name: 'Youth Catalog | Interlochen Public Library | Traverse Area District Library'
+shelf_lock:
+  shelves: [578,981,978,977,979,980,632,516,576,594,527,571,770,599,771,529,791,813,809,817,530,792,531,532,598,597,596,630]
+  location: '24'
+  default_activated: true
+  text: 'Limit to Youth items'
 format_options:  [['All Formats', 'fmt' ,'all'], ['Books', 'fmt' ,'a'],['Movies / TV', 'fmt' ,'g'],['Music', 'fmt' ,'j']]
 format_label: 'Format'
 stylesheet: 'ipl_youth.css'
