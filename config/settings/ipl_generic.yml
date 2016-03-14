@@ -41,7 +41,7 @@ lists:
       - name: "Television Series and Box Sets"
         url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=24&shelving_location[]=779&layout=grid&search_title=Television Series and Box Sets'
   - name: 'ipl_music_list'
-    fancy_name: 'Music (unfortunately this shelving location has audiobooks too)'
+    fancy_name: 'Music'
     search_params: {'loc' : '24',
                     'qtype' : 'shelf',
                     'shelving_location' : ['517'],
