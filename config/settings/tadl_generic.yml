@@ -34,7 +34,7 @@ lists:
       - name: "Playaways"
         url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=22&shelving_location[]=546&shelving_location[]=590&layout=grid&search_title=Playaways'
   - name: 'tadl_movies_list'
-    fancy_name: 'Movies'
+    fancy_name: 'Movies & TV'
     search_params: {'loc' : '22',
                     'qtype' : 'shelf',
                     'shelving_location' : ['687','682'],
