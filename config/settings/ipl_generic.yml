@@ -2,7 +2,7 @@ location_name: 'Interlochen Public Library | Traverse Area District Library'
 format_options:  [['All Formats', 'fmt' ,'all'], ['Books', 'fmt' ,'a'],['Movies / TV', 'fmt' ,'g'],['Music', 'fmt' ,'j']]
 format_label: 'Format'
 stylesheet: 'ipl.css'
-logo: 'logo-clock-only.png'
+logo: 'ipl-tree-logo.jpg'
 search_text: 'Search'
 search_menu: 'Search'
 default_loc: '24'
