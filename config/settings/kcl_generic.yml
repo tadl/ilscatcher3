@@ -8,7 +8,7 @@ slider_frequency: 10
 default_loc: '44'
 opac_toggle_default: 'Main'
 lists:
-  - name: 'books_list'
+  - name: 'kcl_generic_books_list'
     fancy_name: 'Featured Books'
     search_params: {'loc' : '44',
                     'qtype' : 'shelf',
@@ -22,7 +22,7 @@ lists:
         url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=44&shelving_location[]=948&shelving_location[]=1&layout=grid&search_title=Books'
       - name: "Large Print"
         url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=44&shelving_location[]=959&layout=grid&search_title=Large Print'
-  - name: 'audiobooks_list'
+  - name: 'kcl_generic_audiobooks_list'
     fancy_name: 'Featured Audiobooks'
     search_params: {'loc' : '44',
                     'qtype' : 'shelf',
@@ -34,7 +34,7 @@ lists:
     searches:
       - name: "Audiobooks"
         url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=44&shelving_location[]=950&layout=grid&search_title=Audiobooks'
-  - name: 'audiovisual_list'
+  - name: 'kcl_generic_audiovisual_list'
     fancy_name: 'Featured Movies & TV'
     search_params: {'loc' : '44',
                     'qtype' : 'shelf',

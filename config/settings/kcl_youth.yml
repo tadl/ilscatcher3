@@ -8,7 +8,7 @@ slider_frequency: 10
 default_loc: '44'
 opac_toggle_default: 'Youth'
 lists:
-  - name: 'youth_books_list'
+  - name: 'kcl_youth_books_list'
     fancy_name: 'Featured Books'
     search_params: {'loc' : '44',
                     'qtype' : 'shelf',
@@ -24,7 +24,7 @@ lists:
         url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=44&shelving_location[]=957&layout=grid&search_title=Picture Books (JE)'
       - name: "Easy Readers"
         url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=44&shelving_location[]=958&layout=grid&search_title=Easy Readers'
-  - name: 'youth_star_wars'
+  - name: 'kcl_youth_star_wars'
     fancy_name: 'Featured Display: Star Wars'
     search_params: {'loc' : '44',
                     'qtype' : 'keyword',

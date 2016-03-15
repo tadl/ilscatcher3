@@ -13,8 +13,8 @@ search_menu: 'Search'
 slider_frequency: 10
 default_loc: '44'
 lists:
-  - name: 'movie_list'
-    fancy_name: 'Movies'  
+  - name: 'wood_ss_movie_list'
+    fancy_name: 'Movies'
     search_params: {'loc' : '23',
                     'qtype' : 'shelf',
                     'shelving_location' : ['682','687','814'],
@@ -29,7 +29,7 @@ lists:
       - name: "TC Film Festival"
         url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=778&layout=grid&search_title=TC Film Festival'
       - name: 'Animation'
-        url: '/main/search?query=&qtype=genre&sort=pubdateDESC&loc=23&fmt=g&genres[]=Animation&layout=grid&search_title=Animation&genre_lock=Animation' 
+        url: '/main/search?query=&qtype=genre&sort=pubdateDESC&loc=23&fmt=g&genres[]=Animation&layout=grid&search_title=Animation&genre_lock=Animation'
       - name: 'Family'
         url: '/main/search?query=&qtype=genre&sort=pubdateDESC&loc=23&fmt=g&genres[]=Family&layout=grid&search_title=Family&genre_lock=Family'
       - name: 'Comedy'
@@ -47,18 +47,18 @@ lists:
       - name: 'TV'
         url: '/main/search?query=&qtype=genre&sort=pubdateDESC&loc=23&fmt=g&genres[]=TV&layout=grid&search_title=TV&genre_lock=TV'
       - name: 'Western'
-        url: '/main/search?query=&qtype=genre&sort=pubdateDESC&loc=23&fmt=g&genres[]=Western&layout=grid&search_title=Western&genre_lock=Western' 
-  - name: 'music_list'
-    fancy_name: 'Music' 
+        url: '/main/search?query=&qtype=genre&sort=pubdateDESC&loc=23&fmt=g&genres[]=Western&layout=grid&search_title=Western&genre_lock=Western'
+  - name: 'wood_ss_music_list'
+    fancy_name: 'Music'
     search_params: {'loc' : '23',
                     'qtype' : 'shelf',
                     'shelving_location' : ['686'],
                     'canned' : 'true',
                     'availability' : 'on',
                     'sort' : 'pubdateDESC'}
-    searches: 
+    searches:
       - name: "New Music"
-        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=686&layout=grid&search_title=New%20Music' 
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=686&layout=grid&search_title=New%20Music'
       - name: "Hot Tunes"
         url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=684&layout=grid&search_title=Hot%20Tunes'
       - name: 'Avant-garde'
@@ -92,7 +92,7 @@ lists:
       - name: 'Pop/Rock'
         url: '/main/search?query=&qtype=genre&sort=pubdateDESC&loc=23&fmt=j&genres[]=Pop/Rock&layout=grid&search_title=Pop/Rock&genre_lock=Pop/Rock'
       - name: 'Rap'
-        url: '/main/search?query=&qtype=genre&sort=pubdateDESC&loc=23&fmt=j&genres[]=Rap&layout=grid&search_title=Rap&genre_lock=Rap'       
+        url: '/main/search?query=&qtype=genre&sort=pubdateDESC&loc=23&fmt=j&genres[]=Rap&layout=grid&search_title=Rap&genre_lock=Rap'
       - name: 'Reggae'
         url: '/main/search?query=&qtype=genre&sort=pubdateDESC&loc=23&fmt=j&genres[]=Reggae&layout=grid&search_title=Reggae&genre_lock=Reggae'
       - name: 'Religious'
@@ -101,8 +101,8 @@ lists:
         url: '/main/search?query=&qtype=genre&sort=pubdateDESC&loc=23&fmt=j&genres[]=Rhythm and Blues&layout=grid&search_title=Rhythm and Blues&genre_lock=Rhythm and Blues'
       - name: 'Vocal'
         url: '/main/search?query=&qtype=genre&sort=pubdateDESC&loc=23&fmt=j&genres[]=Vocal&layout=grid&search_title=Vocal&genre_lock=Vocal'
-  - name: 'game_list'
-    fancy_name: 'Games'  
+  - name: 'wood_ss_game_list'
+    fancy_name: 'Games'
     search_params: {'loc' : '23',
                     'qtype' : 'shelf',
                     'shelving_location' : ['777'],
