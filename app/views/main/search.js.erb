@@ -11,7 +11,7 @@
 <% if @search.list_active == 'active' %>
 	<% @items.each do |i| %>
 		$('#list').append("<%= escape_javascript(render partial: 'results_list', :locals => {:item => i}) %>");
-		$('#hidden_list').append('<li id="<%= i.id %>"><a class="hidden_link" onclick="item_details(<%= i.create_params.to_json %>)"><%= i.id %></a></li>');
+		$('#hidden_list').append('<li id="<%= i.id %>"><a class="hidden_link" onclick="item_details(<%= escape_javascript(i.create_params.to_json) %>)"><%= i.id %></a></li>');
 	<% end %>
 <% end %>
 
