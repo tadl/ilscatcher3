@@ -217,7 +217,7 @@ function hide_create_list() {
 
 function delete_list(list_id) {
     var button = '#delete_button_' + list_id;
-    $(button).removeClass('btn-default').addClass('btn-danger').html('Confirm Delete').attr("onclick","actually_delete_list(" + list_id + ")");
+    $(button).removeClass('btn-default').addClass('btn-danger').html('Confirm').attr("onclick","actually_delete_list(" + list_id + ")");
 }
 
 function actually_delete_list(list_id) {
