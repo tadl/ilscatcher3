@@ -1,7 +1,7 @@
 <% if item.loc_copies_available.to_i > 0 %>
-    <div class="panel panel-default"><!-- available -->
+    <div id="item_<%=item.id%>" class="panel panel-default"><!-- available -->
 <% else %>
-    <div class="panel panel-default"><!-- not available -->
+    <div id="item_<%=item.id%>" class="panel panel-default"><!-- not available -->
 <% end %>
     <div class="panel-heading">
         <div class="row">
