@@ -1,2 +1,10 @@
+
+<a id='previous_link' style='display: none; float: left' onclick='load_previous(<%= @item.id %>, "<%= @list_name %>")'>
+	<span class='glyphicon glyphicon-backward'></span> 
+</a>
+<a id='next_link' style='display: none; float: right;' onclick='load_next(<%= @item.id %>, "<%= @list_name %>")'>
+	<span class='glyphicon glyphicon-forward'></span>
+</a>
+<div style='clear: both'></div>
 <%= render 'item_details', item: @item, search: @search %>
 <%= render 'detail_tabs', item: @item %>

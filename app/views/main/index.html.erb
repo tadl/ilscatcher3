@@ -11,5 +11,5 @@
         <% end %>
     <% end %>
     <div class="clearfix"></div>
-	<%= render 'featured_lists', list: Rails.cache.read(l['name']) %>
+	<%= render 'featured_lists', list: Rails.cache.read(l['name']).shuffle, name: l['name'] %>
 <% end %>

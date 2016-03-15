@@ -1,4 +1,4 @@
-<div class="panel <%= item.grid_available_panel %>">
+<div id="item_<%=item.id%>" class="panel <%= item.grid_available_panel %>">
     <div class="panel-heading">
         <a class="item_details_link" href="details?id=<%= item.id %>" onclick="item_details(<%= item.create_params.to_json %>)">
             <span class="glyphicon <%= format_icon(item.format_type, @format_icons) %>" title="<%= item.format_type %>"></span> <%= item.title %>

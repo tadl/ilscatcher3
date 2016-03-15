@@ -21,6 +21,14 @@
         <% end %>
     </div>    
 </div>
+<div>
+<ul id="hidden_list" style="display: none">
+<% @items.each do |i| %>
+    <li id="<%= i.id %>"><a class="hidden_link" onclick="item_details(<%= i.create_params.to_json %>)"><%= i.id %></a></li>
+<% end %>
+</ul>
+</div>
+
 
 <%= render 'more_results_link' %>
 

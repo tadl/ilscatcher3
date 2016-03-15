@@ -651,8 +651,13 @@ function edit_pickup_loc(hid,rid,state) {
     $.post("/main/edit_hold_pickup.js",{'hold_id' : hid, 'hold_state' : state})
 }
 
-function item_details(item){
-    $.post("/main/details.js", item)
+function item_details(item, name){
+    if(!name){
+        $.post("/main/details.js", item)
+    }else{
+        item.list_name =  name;
+        $.post("/main/details.js", item)
+    }
 }
 
 function validate_sms_bind() {
@@ -722,4 +727,58 @@ function fetch_youtube_trailer(record_id){
             }
         }
     );
+}
+
+function load_next(id, list_name){
+    if(list_name != ''){
+        var target_name = '#' + id + '_' + list_name
+        var next_id = $(target_name).next('li').text()
+        var next_link = '#' + next_id + '_' + list_name + ':first a'
+        var owl = $('#slider_' + list_name);
+        owl.trigger('owl.next');
+        $(next_link)[0].click()
+    }else{
+        var pannel_name = '#item_' + id
+        $(pannel_name)[0].scrollIntoView()
+        var target_name = '#' + id
+        var next_id = $(target_name).next('li').text()
+        var next_link = '#' + next_id + ':first a'
+        $(next_link)[0].click()
+    }
+}
+
+function load_previous(id, list_name){
+    if(list_name != ''){
+        var target_name = '#' + id + '_' + list_name
+        var prev_id = $(target_name).prev('li').text()
+        var prev_link = '#' + prev_id + '_' + list_name + ':first a'
+        var owl = $('#slider_' + list_name);
+        owl.trigger('owl.prev');
+        $(prev_link)[0].click()
+    }else{
+        var pannel_name = '#item_' + id
+        $(pannel_name)[0].scrollIntoView()
+        var target_name = '#' + id
+        var prev_id = $(target_name).prev('li').text()
+        var prev_link = '#' + prev_id + ':first a'
+        $(prev_link)[0].click()
+    }
+}
+
+
+
+function check_for_previous_and_next(id, list_name){
+    if(list_name){
+        var target = '#' + id + '_' + list_name
+    }else{
+        var target = '#' + id
+    }   
+    var check_for_next = $(target).next('li').text()
+    if(check_for_next != ''){
+        $('#next_link').css('display','block')
+    }
+    var check_for_previous = $(target).prev('li').text()
+    if(check_for_previous != ''){
+        $('#previous_link').css('display','block')
+    }
 }

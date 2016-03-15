@@ -22,7 +22,7 @@ class Item
         h.shift
       end
       holdings.push(h)
-    end
+    end rescue []
     return holdings.flatten 
   end
 
