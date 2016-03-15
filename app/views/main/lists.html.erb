@@ -1,6 +1,6 @@
 <div id="account-menu" class="col-xs-12 col-sm-3">
     <%= render 'account_menu' %>
-    <button role="button" class="btn btn-primary" id="new_list_link" onclick="show_create_list()">Create new list</button>
+    <button type="button" class="btn btn-primary" id="new_list_link" onclick="show_create_list()">Create new list</button>
     <div id="new_list_form" style="display:none;">
         <div class="form-group">
             <label for="new_list_title">Name</label>
@@ -18,15 +18,15 @@
                 <input type="radio" name="new_list_privacy" id="new_list_public" value="yes" checked> Public
             </label>
         </div>
-        <button role="button" class="btn btn-primary btn-sm navi" onclick="create_new_list()">Create</button>
-        <button role="button" class="btn btn-danger btn-sm" onclick="hide_create_list()">Cancel</button>
+        <button type="button" class="btn btn-primary btn-sm navi" onclick="create_new_list()">Create</button>
+        <button type="button" class="btn btn-danger btn-sm" onclick="hide_create_list()">Cancel</button>
     </div>
 </div>
 <div id="user_list" class="col-xs-12 col-sm-9">
-    <table class="table">
+    <div>
         <% @lists.each do |l| %>
-            <tr>
-                <td>
+            <div class="row padtop">
+                <div class="col-xs-12 col-sm-6">
                     <div id="list_details_<%= l.list_id %>">
                         <a href="/main/fetch_list?list_id=<%= l.list_id %>" class="navi lead"><%= l.title %></a> 
                         <% if l.default == true %>
@@ -48,8 +48,8 @@
                         <button type="button" class="btn btn-sm btn-success navi" onclick="edit_list(<%= l.list_id %>)">Save</button>
                         <button type="button" class="btn btn-sm btn-danger" onclick="hide_edit_list(<%= l.list_id %>)">Cancel</button>
                     </div>
-                </td>
-                <td id="link_edit_details_<%= l.list_id %>">
+                </div>
+                <div class="col-xs-12 col-sm-6" id="link_edit_details_<%= l.list_id %>">
                     <div class="btn-group" role="group">
                         <button type="button" class="btn btn-sm btn-default" onclick="show_edit_list(<%= l.list_id %>)">Edit details</button>
                         <button type="button" class="btn btn-sm btn-default" id="delete_button_<%= l.list_id %>" onclick="delete_list(<%= l.list_id %>)">Delete</button>
@@ -62,9 +62,9 @@
                             <button type="button" class="btn btn-sm btn-default" onclick="set_default_list(<%= l.list_id %>)">Make default</button>
                         <% end %>
                     </div>
-                </td>
-            </tr>
+                </div>
+            </div>
         <% end %>
-    </table>
+    </div>
 </div>
 <script>store_lists();item_loading_binds();</script>

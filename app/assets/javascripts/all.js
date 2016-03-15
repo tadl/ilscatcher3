@@ -167,13 +167,13 @@ function hide_edit_list(list_id) {
 }
 
 function edit_list(list_id) {
-    showLoading();
     var new_title = encodeURIComponent($('#edit_list_title_' + list_id).val())
     var new_description = encodeURIComponent($('#edit_list_description_' + list_id).val())
     var url = '/main/edit_list?list_id=' + list_id + '&name=' + new_title + '&description=' + new_description
     if (new_title == '') {
         alert("list must have title") //FIX
     } else {
+        showLoading();
         $.get(url)
         .done(function(data) {
             if (data.message == 'success') {
@@ -184,7 +184,6 @@ function edit_list(list_id) {
 }
 
 function create_new_list(){
-    showLoading();
     var list_title = encodeURIComponent($('#new_list_title').val())
     var list_description = encodeURIComponent($('#new_list_description').val())
     if ($("#new_list_private").prop('checked')) {
@@ -196,6 +195,7 @@ function create_new_list(){
     if (list_title == '') {
         alert("list must have title") //FIX
     } else {
+        showLoading();
         $.get(url)
         .done(function(data) {
             if (data.message == 'success') {
@@ -232,6 +232,7 @@ function actually_delete_list(list_id) {
 }
 
 function set_default_list(list_id) {
+    showLoading();
     url = '/main/make_default_list?list_id=' + list_id
     $.get(url)
     .done(function(data) {
@@ -253,6 +254,7 @@ function set_list_privacy(list_id, action) {
 }
 
 function add_to_list(list_id, record_id) {
+    showLoading();
     url = '/main/add_item_to_list?list_id=' + list_id + '&record_id=' + record_id
     $.get(url)
     .done(function(data) {
@@ -265,6 +267,7 @@ function add_to_list(list_id, record_id) {
 }
 
 function remove_from_list(list_id, list_item_id) {
+    showLoading();
     url = '/main/remove_item_from_list?list_id=' + list_id + '&list_item_id=' + list_item_id
     $.get(url)
     .done(function(data) {
@@ -283,6 +286,7 @@ function add_note(list_id, list_item_id) {
     var note_div = '#new_note_text_' + list_item_id
     var note_content = encodeURIComponent($(note_div).val());
     url = '/main/add_note_to_list?list_id=' + list_id + '&list_item_id=' + list_item_id + '&note=' + note_content
+    showLoading();
     $.get(url)
     .done(function(data) {
         if (data.message == 'success') {
@@ -301,13 +305,13 @@ function show_edit_note(note_id) {
 }
 
 function save_edited_note(list_id, note_id) {
-    showLoading();
     var note_div = '#edit_note_text_' + note_id
     var note_content = encodeURIComponent($(note_div).val());
     var replace_div = "#note_" + note_id
     var div_to_hide = '#edit_note_' + note_id
     var edit_note_link = "#edit_note_link_" + note_id 
     url = '/main/edit_note?list_id=' + list_id + '&note_id=' + note_id + '&note=' + note_content
+    showLoading();
     $.get(url)
     .done(function(data) {
         if (data.message == 'success') {
