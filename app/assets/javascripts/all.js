@@ -168,8 +168,8 @@ function hide_edit_list(list_id) {
 
 function edit_list(list_id) {
     showLoading();
-    var new_title = $('#edit_list_title_' + list_id).val()
-    var new_description = $('#edit_list_description_' + list_id).val()
+    var new_title = encodeURIComponent($('#edit_list_title_' + list_id).val())
+    var new_description = encodeURIComponent($('#edit_list_description_' + list_id).val())
     var url = '/main/edit_list?list_id=' + list_id + '&name=' + new_title + '&description=' + new_description
     if (new_title == '') {
         alert("list must have title") //FIX
