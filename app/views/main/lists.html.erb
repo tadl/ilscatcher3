@@ -1,52 +1,70 @@
 <div id="account-menu" class="col-xs-12 col-sm-3">
     <%= render 'account_menu' %>
+    <button role="button" class="btn btn-primary" id="new_list_link" onclick="show_create_list()">Create new list</button>
+    <div id="new_list_form" style="display:none;">
+        <div class="form-group">
+            <label for="new_list_title">Name</label>
+            <input type="text" class="form-control" id="new_list_title">
+        </div>
+        <div class="form-group">
+            <label for="new_list_description">Description</label>
+            <textarea class="form-control" id="new_list_description" rows="3"></textarea>
+        </div>
+        <div class="form-group">
+            <label class="radio-inline">
+                <input type="radio" name="new_list_privacy" value="no"> Private
+            </label>
+            <label class="radio-inline">
+                <input type="radio" name="new_list_privacy" value="yes" checked> Public
+            </label>
+        </div>
+        <button role="button" class="btn btn-primary btn-sm navi" onclick="create_new_list()">Create</button>
+        <button role="button" class="btn btn-danger btn-sm" onclick="hide_create_list()">Cancel</button>
+    </div>
 </div>
 <div id="user_list" class="col-xs-12 col-sm-9">
-    <h1>Lists</h1>
-    <a id="new_list_link" onclick="show_create_list()">Create a new list</a>
-    <div id="new_list_form" style="display:none">
-            <b>List title:</b> <input id="new_list_title">
-            <br>
-            <b>List description:</b>
-            <br>
-            <textarea id="new_list_description"></textarea>
-            <br>
-            <b>Set Privacy</b>
-            <select id="new_list_privacy">
-                <option value="no">Private</option>
-                <option value="yes">Public</option>
-            </select>
-            <br>
-            <a onclick="create_new_list()">Create List</a>
-    </div>
-    <% @lists.each do |l| %>
-    	<div id="list_details_<%= l.list_id %>">
-            <h3><a href="/main/fetch_list?list_id=<%= l.list_id %>"><%= l.title %></a></h3>
-    	   <% if l.description && l.description != '' %>
-    		  <p><%= l.description %></p>
-    	   <% end %>
-        </div>
-        <div id="edit_details_<%= l.list_id %>" style="display: none">
-            <b>List title:</b> <input id="edit_list_title_<%= l.list_id %>" value="<%= l.title %>">
-            <br>
-            <b>List description:</b>
-            <br>
-            <textarea id="edit_list_description_<%= l.list_id %>"><%= l.description %></textarea>
-            <br>
-            <a onclick="edit_list(<%= l.list_id %>)">Save</a>
-        </div>
-    	<p><a id="edit_link_<%= l.list_id %>" onclick="show_edit_list(<%= l.list_id %>)"> Edit Name and Description </a></p>
-    	<% if l.shared == true %>
-    		<p>This is a public List (<a onclick="set_list_privacy(<%= l.list_id %>,'hide')">click here to make private</a>)</p>
-    	<% else %>
-    		<p>This is a private list (<a onclick="set_list_privacy(<%= l.list_id %>,'show')">click here to make public</a>)</p>
-    	<% end %>
-    	<% if l.default == true %>
-    		<p>This is your default list</p>
-    	<% else %>
-    		<p><a onclick="set_default_list(<%= l.list_id %>)">Make Default List</a></p>
-            <p><a onclick="delete_list(<%= l.list_id %>)">Delete List</a></p>
-    	<% end %>
-    <% end %>   
+    <table class="table">
+        <% @lists.each do |l| %>
+            <tr>
+                <td>
+                    <div id="list_details_<%= l.list_id %>">
+                        <a href="/main/fetch_list?list_id=<%= l.list_id %>" class="navi lead"><%= l.title %></a> 
+                        <% if l.default == true %>
+                            <span class="sr-only">Default list</span><i class="glyphicon glyphicon-ok-sign text-success"></i>
+                        <% end %>
+                        <% if l.description && l.description != '' %>
+                            <div><%= l.description %></div>
+                        <% end %>
+                    </div>
+                    <div id="edit_details_<%= l.list_id %>" style="display: none">
+                        <div class="form-group">
+                            <label for="edit_list_title_<%= l.list_id %>">Name</label>
+                            <input class="form-control" id="edit_list_title_<%= l.list_id %>" value="<%= l.title %>">
+                        </div>
+                        <div class="form-group">
+                            <label for="edit_list_description_<%= l.list_id %>">Description</label>
+                            <textarea class="form-control" id="edit_list_description_<%= l.list_id %>"><%= l.description %></textarea>
+                        </div>
+                        <button type="button" class="btn btn-sm btn-success navi" onclick="edit_list(<%= l.list_id %>)">Save</button>
+                        <button type="button" class="btn btn-sm btn-danger" onclick="hide_edit_list(<%= l.list_id %>)">Cancel</button>
+                    </div>
+                </td>
+                <td id="link_edit_details_<%= l.list_id %>">
+                    <div class="btn-group" role="group">
+                        <button type="button" class="btn btn-sm btn-default" onclick="show_edit_list(<%= l.list_id %>)">Edit details</button>
+                        <button type="button" class="btn btn-sm btn-default" id="delete_button_<%= l.list_id %>" onclick="delete_list(<%= l.list_id %>)">Delete</button>
+                        <% if l.shared == true %>
+                            <button type="button" class="btn btn-sm btn-default navi" onclick="set_list_privacy(<%= l.list_id %>,'hide')">Make private</button>
+                        <% else %>
+                            <button type="button" class="btn btn-sm btn-default navi" onclick="set_list_privacy(<%= l.list_id %>,'show')">Make public</button>
+                        <% end %>
+                        <% if l.default != true %>
+                            <button type="button" class="btn btn-sm btn-default" onclick="set_default_list(<%= l.list_id %>)">Make default</button>
+                        <% end %>
+                    </div>
+                </td>
+            </tr>
+        <% end %>
+    </table>
 </div>
-<script>store_lists()</script>
+<script>store_lists();item_loading_binds();</script>

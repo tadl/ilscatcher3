@@ -128,174 +128,166 @@ function update_login() {
     $('#fine').text(fine)
 }
 
-function store_lists(){
+function store_lists() {
     $.get('/main/user_lists.json')
-        .done(function(data) {
-            if (data.lists) {
-                Cookies("lists", JSON.stringify(data.lists));
-            }
+    .done(function(data) {
+        if (data.lists) {
+            Cookies("lists", JSON.stringify(data.lists));
         }
-    );
+    });
 }
 
-function is_my_list(list_id){
+function is_my_list(list_id) {
     var lists = JSON.parse(Cookies.get('lists'))
     var return_value = false
-    $.each(lists, function(i, list){
-        if(list.list_id == list_id){
+    $.each(lists, function(i, list) {
+        if(list.list_id == list_id) {
             return_value = true
         }
     });
     return return_value
 }
 
-function show_edit_list(list_id){
+function show_edit_list(list_id) {
     var show_div = '#edit_details_' + list_id
     var hide_div = '#list_details_' + list_id
-    var hide_link = '#edit_link_' + list_id
-    $(show_div).css('display', 'inline-block');
-    $(hide_link).css('display', 'none');
-    $(hide_div).css('display', 'none');   
+    var hide_link = '#link_edit_details_' + list_id
+    $(show_div).show();
+    $(hide_div).hide();
+    $(hide_link).hide();
 }
 
-function edit_list(list_id){
-    var new_title = $('#edit_list_title_'+list_id).val()
-    var new_description = $('#edit_list_description_'+list_id).val()
+function hide_edit_list(list_id) {
+    var hide_div = '#edit_details_' + list_id
+    var show_div = '#list_details_' + list_id
+    var show_link = '#link_edit_details_' + list_id
+    $(hide_div).hide();
+    $(show_div).show();
+    $(show_link).show();
+}
+
+function edit_list(list_id) {
+    showLoading();
+    var new_title = $('#edit_list_title_' + list_id).val()
+    var new_description = $('#edit_list_description_' + list_id).val()
     var url = '/main/edit_list?list_id=' + list_id + '&name=' + new_title + '&description=' + new_description
-    if(new_title == ''){
-        alert("list must have title")
-    }else{
+    if (new_title == '') {
+        alert("list must have title") //FIX
+    } else {
         $.get(url)
-            .done(function(data) {
-                if (data.message == 'success') {
-                    alert("it worked")
-                    location.reload();
-                }else{
-                    alert("didn't work")
-                }
+        .done(function(data) {
+            if (data.message == 'success') {
+                location.reload();
             }
-        );
+        });
     }
 }
 
 function create_new_list(){
-    var list_title = $('#new_list_title').val()
-    var list_description = $('#new_list_description').val()
+    showLoading();
+    var list_title = encodeURIComponent($('#new_list_title').val())
+    var list_description = encodeURIComponent($('#new_list_description').val())
     var list_privacy = $('#new_list_privacy').val()
     var url = '/main/create_list?name=' + list_title + '&description=' + list_description + '&shared=' + list_privacy
-    if(list_title == ''){
-        alert("list must have title")
-    }else{
+    if (list_title == '') {
+        alert("list must have title") //FIX
+    } else {
         $.get(url)
-            .done(function(data) {
-                if (data.message == 'success') {
-                    alert("it worked")
-                    location.reload();
-                }else{
-                    alert("didn't work")
-                }
+        .done(function(data) {
+            if (data.message == 'success') {
+                location.reload();
             }
-        );
+        });
     }
 }
 
-
-function show_create_list(){
-    $('#new_list_form').css('display', 'inline-block');
-    $('#new_list_link').css('display', 'none');
+function show_create_list() {
+    $('#new_list_form').show();
+    $('#new_list_link').hide();
 }
 
-function delete_list(list_id){
+function hide_create_list() {
+    $('#new_list_form').hide();
+    $('#new_list_link').show();
+}
+
+function delete_list(list_id) {
+    var button = '#delete_button_' + list_id;
+    $(button).removeClass('btn-default').addClass('btn-danger').html('Confirm Delete').attr("onclick","actually_delete_list(" + list_id + ")");
+}
+
+function actually_delete_list(list_id) {
+    showLoading();
     url = '/main/destroy_list?list_id=' + list_id
     $.get(url)
-        .done(function(data) {
-            if (data.message == 'success') {
-                alert("it worked")
-                location.reload();
-            }else{
-                alert("didn't work")
-            }
+    .done(function(data) {
+        if (data.message == 'success') {
+            location.reload();
         }
-    );
+    });
 }
 
-function set_default_list(list_id){
+function set_default_list(list_id) {
     url = '/main/make_default_list?list_id=' + list_id
     $.get(url)
-        .done(function(data) {
-            if (data.message == 'success') {
-                alert("it worked")
-                location.reload();
-            }else{
-                alert("didn't work")
-            }
+    .done(function(data) {
+        if (data.message == 'success') {
+            location.reload();
         }
-    );
+    });
 }
 
-function set_list_privacy(list_id, action){
+function set_list_privacy(list_id, action) {
+    showLoading();
     url = '/main/share_list?list_id='+ list_id +'&share='+ action
     $.get(url)
-        .done(function(data) {
-            if (data.message == 'success') {
-                alert("it worked")
-                location.reload();
-            }else{
-                alert("didn't work")
-            }
+    .done(function(data) {
+        if (data.message == 'success') {
+            location.reload();
         }
-    );
+    });
 }
 
-function add_to_list(list_id, record_id){
-    url = '/main/add_item_to_list?list_id='+ list_id+'&record_id='+record_id
+function add_to_list(list_id, record_id) {
+    url = '/main/add_item_to_list?list_id=' + list_id + '&record_id=' + record_id
     $.get(url)
-        .done(function(data) {
-            if (data.message == 'success') {
-                alert("it worked")
-            }else{
-                alert("didn't work")
-            }
+    .done(function(data) {
+        if (data.message == 'success') {
+            alert("it worked") //FIX
+        }else{
+            alert("didn't work") //FIX
         }
-    );
+    });
 }
 
-function remove_from_list(list_id, list_item_id){
-    url = '/main/remove_item_from_list?list_id='+ list_id+'&list_item_id='+list_item_id
+function remove_from_list(list_id, list_item_id) {
+    url = '/main/remove_item_from_list?list_id=' + list_id + '&list_item_id=' + list_item_id
     $.get(url)
-        .done(function(data) {
-            if (data.message == 'success') {
-                alert("it worked")
-                location.reload();
-            }else{
-                alert("didn't work")
-            }
+    .done(function(data) {
+        if (data.message == 'success') {
+            location.reload();
         }
-    );
+    });
 }
 
-function show_add_note(list_item_id){
+function show_add_note(list_item_id) {
    var target_div = '#new_note_' + list_item_id
    $(target_div).css('display', 'inline-block'); 
 }
 
-function add_note(list_id, list_item_id){
+function add_note(list_id, list_item_id) {
     var note_div = '#new_note_text_' + list_item_id
-    var note_content = $(note_div).val()
+    var note_content = encodeURIComponent($(note_div).val());
     url = '/main/add_note_to_list?list_id=' + list_id + '&list_item_id=' + list_item_id + '&note=' + note_content
     $.get(url)
-        .done(function(data) {
-            if (data.message == 'success') {
-                alert("it worked")
-                location.reload();
-            }else{
-                alert("didn't work")
-            }
+    .done(function(data) {
+        if (data.message == 'success') {
+            location.reload();
         }
-    );
+    });
 }
 
-function show_edit_note(note_id){
+function show_edit_note(note_id) {
     var div_to_show = '#edit_note_' + note_id
     var div_to_hide = '#note_' + note_id
     var link_to_hide = "#edit_note_link_" + note_id 
@@ -304,30 +296,29 @@ function show_edit_note(note_id){
     $(link_to_hide).css('display', 'none');
 }
 
-function save_edited_note(list_id, note_id){
+function save_edited_note(list_id, note_id) {
+    showLoading();
     var note_div = '#edit_note_text_' + note_id
-    var note_content = $(note_div).val()
+    var note_content = encodeURIComponent($(note_div).val());
     var replace_div = "#note_" + note_id
     var div_to_hide = '#edit_note_' + note_id
     var edit_note_link = "#edit_note_link_" + note_id 
     url = '/main/edit_note?list_id=' + list_id + '&note_id=' + note_id + '&note=' + note_content
     $.get(url)
-        .done(function(data) {
-            if (data.message == 'success') {
-                alert("it worked")
-                if(note_content != ''){
-                    $(replace_div).text(note_content)
-                    $(div_to_hide).css('display', 'none');
-                    $(replace_div).css('display', 'inline-block');
-                    $(edit_note_link).css('display', 'inline-block');
-                }else{
-                   $(div_to_hide).css('display', 'none'); 
-                }
-            }else{
-                alert("didn't work")
+    .done(function(data) {
+        if (data.message == 'success') {
+            if(note_content != '') {
+                $(replace_div).text(note_content)
+                $(div_to_hide).css('display', 'none');
+                $(replace_div).css('display', 'inline-block');
+                $(edit_note_link).css('display', 'inline-block');
+            } else {
+               $(div_to_hide).css('display', 'none'); 
             }
+        } else {
+            alert("didn't work") //FIX
         }
-    );
+    });
 }
 
 
