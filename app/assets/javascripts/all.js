@@ -187,7 +187,11 @@ function create_new_list(){
     showLoading();
     var list_title = encodeURIComponent($('#new_list_title').val())
     var list_description = encodeURIComponent($('#new_list_description').val())
-    var list_privacy = $('#new_list_privacy').val()
+    if ($("#new_list_private").prop('checked')) {
+        var list_privacy = "no";
+    } else {
+        var list_privacy = "yes";
+    }
     var url = '/main/create_list?name=' + list_title + '&description=' + list_description + '&shared=' + list_privacy
     if (list_title == '') {
         alert("list must have title") //FIX
