@@ -733,9 +733,9 @@ function load_next(id, list_name){
         var target_name = '#' + id + '_' + list_name
         var next_id = $(target_name).next('li').text()
         var next_link = '#' + next_id + '_' + list_name + ':first a'
+        $(next_link)[0].click()
         var owl = $('#slider_' + list_name);
         owl.trigger('owl.next');
-        $(next_link)[0].click()
     }else{
         var pannel_name = '#item_' + id
         $(pannel_name)[0].scrollIntoView()
@@ -751,9 +751,9 @@ function load_previous(id, list_name){
         var target_name = '#' + id + '_' + list_name
         var prev_id = $(target_name).prev('li').text()
         var prev_link = '#' + prev_id + '_' + list_name + ':first a'
+        $(prev_link)[0].click()
         var owl = $('#slider_' + list_name);
         owl.trigger('owl.prev');
-        $(prev_link)[0].click()
     }else{
         var pannel_name = '#item_' + id
         $(pannel_name)[0].scrollIntoView()
