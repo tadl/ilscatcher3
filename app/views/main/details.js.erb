@@ -13,8 +13,4 @@ $.fancybox.reposition()
 
 $('.details-button').text('Details');
 
-<% if !@list_name %>
-	check_for_previous_and_next('<%= @item.id %>')
-<% else %>
-	check_for_previous_and_next('<%= @item.id %>','<%= @list_name %>')
-<% end %>
+

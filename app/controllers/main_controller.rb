@@ -46,7 +46,8 @@ class MainController < ApplicationController
     if params['title']
       @item = Item.new params
     elsif params['id']
-
+      @item_search = Search.new :qtype => 'record_id', :query => params['id']
+      @item = @item_search.results[0][0]
     end
     if params['list_name']
       @list_name = params['list_name']
