@@ -352,7 +352,7 @@ class MainController < ApplicationController
     end
   end
 
-  def fetch_list
+  def view_list
     @user = generate_user()
     @list_id = params[:list_id]
     if params[:page]
@@ -366,7 +366,7 @@ class MainController < ApplicationController
       sort_by = 'container_date.descending'
     end
     list_id = params[:list_id]
-    @list = @user.fetch_list(list_id, page_number, sort_by)
+    @list = @user.view_list(list_id, page_number, sort_by)
 
     respond_to do |format|
       format.html {render 'view_list'}

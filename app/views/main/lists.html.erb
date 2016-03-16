@@ -28,7 +28,7 @@
             <div class="row padtop">
                 <div class="col-xs-12 col-sm-6">
                     <div id="list_details_<%= l.list_id %>">
-                        <a href="/main/fetch_list?list_id=<%= l.list_id %>" class="navi lead"><%= l.title %></a> 
+                        <a href="/main/view_list?list_id=<%= l.list_id %>" class="navi lead"><%= l.title %></a> 
                         <% if l.default == true %>
                             <span class="sr-only">Default list</span><i class="glyphicon glyphicon-ok-sign text-success"></i>
                         <% end %>

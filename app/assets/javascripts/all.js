@@ -284,7 +284,7 @@ function remove_from_list(list_id, list_item_id) {
 
 function show_add_note(list_item_id) {
    var target_div = '#new_note_' + list_item_id
-   $(target_div).css('display', 'inline-block');
+   $(target_div).show();
 }
 
 function add_note(list_id, list_item_id) {
@@ -305,9 +305,9 @@ function show_edit_note(note_id) {
     var div_to_show = '#edit_note_' + note_id
     var div_to_hide = '#note_' + note_id
     var link_to_hide = "#edit_note_link_" + note_id
-    $(div_to_show).css('display', 'inline-block');
-    $(div_to_hide).css('display', 'none');
-    $(link_to_hide).css('display', 'none');
+    $(div_to_show).show();
+    $(div_to_hide).hide();
+    $(link_to_hide).hide();
 }
 
 function save_edited_note(list_id, note_id) {
@@ -323,12 +323,12 @@ function save_edited_note(list_id, note_id) {
         hideLoading();
         if (data.message == 'success') {
             if(note_content != '') {
-                $(replace_div).text(note_content)
-                $(div_to_hide).css('display', 'none');
-                $(replace_div).css('display', 'inline-block');
-                $(edit_note_link).css('display', 'inline-block');
+                $(replace_div).text(decodeURIComponent(note_content))
+                $(div_to_hide).hide();
+                $(replace_div).show();
+                $(edit_note_link).show();
             } else {
-               $(div_to_hide).css('display', 'none');
+               $(div_to_hide).hide();
             }
         } else {
             alert_message("danger","The system encountered an error. Please try again later.")
@@ -977,10 +977,10 @@ function check_for_previous_and_next(id, list_name) {
     }
     var check_for_next = $(target).next('li').text()
     if (check_for_next != '') {
-        $('#next_link').css('display','block')
+        $('#next_link').show();
     }
     var check_for_previous = $(target).prev('li').text()
     if (check_for_previous != '') {
-        $('#previous_link').css('display','block')
+        $('#previous_link').show();
     }
 }
