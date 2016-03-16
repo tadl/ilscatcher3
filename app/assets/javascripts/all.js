@@ -129,7 +129,7 @@ function update_login() {
 }
 
 function store_lists() {
-    $.get('/main/user_lists.json')
+    $.get('/main/lists.json')
     .done(function(data) {
         if (data.lists) {
             Cookies("lists", JSON.stringify(data.lists));

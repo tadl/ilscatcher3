@@ -331,7 +331,7 @@ class MainController < ApplicationController
     end
   end
 
-  def user_lists
+  def lists
     @user = generate_user()
     if !@user.error
       set_cookies(@user)
