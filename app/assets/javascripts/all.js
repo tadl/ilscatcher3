@@ -364,6 +364,37 @@ function save_edited_note(list_id, note_id) {
     });
 }
 
+function delete_edited_note(list_id, note_id) {
+    var button = '#delete_note_' + note_id
+    $(button).removeClass('btn-default').addClass('btn-danger').html('Click to Confirm').attr("onclick","actually_delete_edited_note(" + list_id + "," + note_id + ")");
+}
+
+function actually_delete_edited_note(list_id, note_id) {
+    var note_div = '#edit_note_text_' + note_id
+    var note_content = ''
+    var replace_div = "#note_" + note_id
+    var div_to_hide = '#edit_note_' + note_id
+    var edit_note_link = "#edit_note_link_" + note_id
+    url = '/main/edit_note?list_id=' + list_id + '&note_id=' + note_id + '&note=' + note_content
+    showLoading();
+    $.get(url)
+    .done(function(data) {
+        hideLoading();
+        if (data.message == 'success') {
+            if(note_content != '') {
+                $(replace_div).text(decodeURIComponent(note_content))
+                $(div_to_hide).hide();
+                $(replace_div).show();
+                $(edit_note_link).show();
+            } else {
+               $(div_to_hide).hide();
+            }
+        } else {
+            alert_message("danger","The system encountered an error. Please try again later.")
+        }
+    });
+}
+
 function login(id) {
     if (typeof id !== 'undefined') { var do_hold = id; } else { var do_hold = 0; }
     $('#statusMessage').modal('show');

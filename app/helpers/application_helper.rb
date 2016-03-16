@@ -15,6 +15,14 @@ module ApplicationHelper
         end
     end
 
+    def format_name(value, option_array)
+        option_array.each do |option|
+            if value.to_s == option[0].to_s
+                return option[2]
+            end
+        end
+    end
+
     def location_map(value, option_array)
         response = nil
         option_array.each do |option|

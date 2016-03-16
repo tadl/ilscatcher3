@@ -8,22 +8,25 @@
     <% if @list['description'] != '' %>
         <p><%= @list['description'] %></p>
     <% end %>
+    <% if @list['page'].to_i > 1 %>
+        <a type="button" class="btn btn-primary btn-xs navi" href="/main/view_list?list_id=<%= @list['id']%>"><i class="glyphicon glyphicon-fast-backward"></i></a>
+    <% end %>
     <% if @list['page'].to_i > 0 %>
-        <a type="button" class="btn btn-primary btn-xs navi pull-left" href="/main/view_list?list_id=<%= @list['id']%>&page=<%= (@list['page'].to_i - 1) %>"><i class="glyphicon glyphicon-chevron-left"></i> Previous Page</a>
+        <a type="button" class="btn btn-primary btn-xs navi" href="/main/view_list?list_id=<%= @list['id']%>&page=<%= (@list['page'].to_i - 1) %>"><i class="glyphicon glyphicon-triangle-left"></i> Previous Page</a>
     <% end %>
     <% if @list['more_results'] == "true" %>
-        <a type="button" class="btn btn-primary btn-xs navi pull-right" href="/main/view_list?list_id=<%= @list['id']%>&page=<%= (@list['page'].to_i + 1) %>">Next Page <i class="glyphicon glyphicon-chevron-right"></i></a>
+        <a type="button" class="btn btn-primary btn-xs navi pull-right" href="/main/view_list?list_id=<%= @list['id']%>&page=<%= (@list['page'].to_i + 1) %>">Next Page <i class="glyphicon glyphicon-triangle-right"></i></a>
     <% end %>
     <div class="clearfix"></div>
     <% @list['items'].each do |i| %>
         <div class="row padtop padbot">
             <div class="col-md-2">
-                <img src='<%= Settings.cover_path_med %><%= i['record_id'] %>' class="img-responsive"
+                <img src='<%= Settings.cover_path_lg %><%= i['record_id'] %>' class="img-responsive"
                 onerror="this.src='<%= asset_path(Settings.logo) %>?id=<%= i['record_id'] %>'" />
             </div>
             <div class="col-md-10">
                 <h4>
-                    <i class="glyphicon <%= format_icon_2(i['format_type'], @format_icons) %>" title="<%= i['format_type'] %>"></i>
+                    <i class="glyphicon <%= format_icon_2(i['format_type'], @format_icons) %>" title="<%= format_name(i['format_type'], @format_icons) %>"></i>
                     <%= i['title'] %>
                     <% if i['author'] != '' %> - <%= i['author'] %> <% end %>
                 </h4>
@@ -41,13 +44,14 @@
                     <% i['notes'].each do |n| %>
                         <p>
                             <span id="note_<%= n['note_id'] %>"><%= n['note'] %> </span>
-                            <button id='edit_note_link_<%= n['note_id'] %>' class="edit_list_control btn btn-xs btn-primary" type="button" onclick="show_edit_note(<%= n['note_id'] %>)">Edit Note</button>
+                            <button id='edit_note_link_<%= n['note_id'] %>' class="edit_list_control btn btn-xs btn-primary" type="button" onclick="show_edit_note(<%= n['note_id'] %>)">Edit</button>
                         </p>
-                        <div id="edit_note_<%= n['note_id'] %>" style="display: none;">
+                        <div id="edit_note_<%= n['note_id'] %>" style="display: none;" class="padtop padbot">
                             <div class="form-group">
                                 <textarea class="form-control" id="edit_note_text_<%= n['note_id'] %>" rows="4"><%= n['note'] %></textarea>
                             </div>
                             <button type="button" class="btn btn-xs btn-success" onclick="save_edited_note(<%= @list_id %>, <%= n['note_id'] %>)">Save</button>
+                            <button type="button" class="btn btn-xs btn-default" id="delete_note_<%= n['note_id'] %>" onclick="delete_edited_note(<%= @list_id %>, <%= n['note_id'] %>)">Delete</button>
                             <button type="button" class="btn btn-xs btn-danger" onclick="hide_edit_note(<%= n['note_id'] %>)">Cancel</button>
                         </div>
                     <% end %>
