@@ -10,7 +10,7 @@ class ApplicationController < ActionController::Base
     end  
 
     def shared_main_variables
-        @logo = 'http://www.tadl.org/sites/all/themes/converge_custom/logo.png'
+        @logo = Settings.logo
         @query_options = [['Keyword', 'keyword'], ['Author / Group / Actor', 'author'],['Title', 'title'],['Subject', 'subject'], ['Series', 'series'], ['Genre', 'single_genre']]
         @format_options = Settings.format_options
         @format_options_unlocked = Settings.format_options_unlocked

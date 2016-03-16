@@ -75,7 +75,7 @@
                         <p><a class="btn btn-success" href="<%= item.eresource %>">View Online</a></p>
                     <% end %>
                     <% if @default_list %>
-                        <p><a class="btn btn-success" onclick="add_to_list(<%= @default_list %>, <%= item.id %>)">Add to Default List</a></p>
+                        <p><a class="btn btn-primary" id="add-list-<%= item.id %>" onclick="add_to_list(<%= @default_list %>, <%= item.id %>)">Add to Default List</a></p>
                     <% end %>
                 </span>
             </div>

@@ -171,11 +171,12 @@ function edit_list(list_id) {
     var new_description = encodeURIComponent($('#edit_list_description_' + list_id).val())
     var url = '/main/edit_list?list_id=' + list_id + '&name=' + new_title + '&description=' + new_description
     if (new_title == '') {
-        alert("list must have title") //FIX
+        alert_message("danger","list must have title")
     } else {
         showLoading();
         $.get(url)
         .done(function(data) {
+            hideLoading();
             if (data.message == 'success') {
                 location.reload();
             }
@@ -193,11 +194,12 @@ function create_new_list() {
     }
     var url = '/main/create_list?name=' + list_title + '&description=' + list_description + '&shared=' + list_privacy
     if (list_title == '') {
-        alert("list must have title") //FIX
+        alert_message("danger","list must have title")
     } else {
         showLoading();
         $.get(url)
         .done(function(data) {
+            hideLoading();
             if (data.message == 'success') {
                 location.reload();
             }
@@ -254,14 +256,16 @@ function set_list_privacy(list_id, action) {
 }
 
 function add_to_list(list_id, record_id) {
-    showLoading();
+    var button = '#add-list-' + record_id
+    $(button).html(spinner+'Adding to list...').addClass('disabled')
     url = '/main/add_item_to_list?list_id=' + list_id + '&record_id=' + record_id
     $.get(url)
     .done(function(data) {
+        hideLoading();
         if (data.message == 'success') {
-            alert("it worked") //FIX
+            $(button).html('Added to list')
         } else {
-            alert("didn't work") //FIX
+            alert_message("danger","The system encountered an error. Please try again later.")
         }
     });
 }
@@ -271,6 +275,7 @@ function remove_from_list(list_id, list_item_id) {
     url = '/main/remove_item_from_list?list_id=' + list_id + '&list_item_id=' + list_item_id
     $.get(url)
     .done(function(data) {
+        hideLoading();
         if (data.message == 'success') {
             location.reload();
         }
@@ -289,6 +294,7 @@ function add_note(list_id, list_item_id) {
     showLoading();
     $.get(url)
     .done(function(data) {
+        hideLoading();
         if (data.message == 'success') {
             location.reload();
         }
@@ -314,6 +320,7 @@ function save_edited_note(list_id, note_id) {
     showLoading();
     $.get(url)
     .done(function(data) {
+        hideLoading();
         if (data.message == 'success') {
             if(note_content != '') {
                 $(replace_div).text(note_content)
@@ -324,7 +331,7 @@ function save_edited_note(list_id, note_id) {
                $(div_to_hide).css('display', 'none');
             }
         } else {
-            alert("didn't work") //FIX
+            alert_message("danger","The system encountered an error. Please try again later.")
         }
     });
 }
@@ -373,7 +380,7 @@ function alert_message(type, message, timeout) {
     var timestamp = Date.now();
     var iconmap = {success:"ok-sign", info:"info-sign", warning:"question-sign", danger:"remove-sign"};
     if (message == undefined) { return; }
-    if (timeout == undefined) { var timeout = 30000; }
+    if (timeout == undefined) { var timeout = 10000; }
     var contents = '<div class="alert alert-' + type + ' alert-dismissible fade in" role="alert" id="alertmessage'+timestamp+'">';
         contents += '<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>';
         contents += '<h4 class="padtop">';
