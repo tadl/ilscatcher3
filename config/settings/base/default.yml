@@ -1,2 +1,4 @@
 search_placeholder: 'Keyword, author or title'
 opac_toggle_default: 'Main'
+cover_path_med: 'https://catalog.tadl.org/opac/extras/ac/jacket/medium/r/'
+cover_path_lg: 'https://catalog.tadl.org/opac/extras/ac/jacket/large/r/'
