@@ -9,11 +9,12 @@
         <p><%= @list['description'] %></p>
     <% end %>
     <% if @list['page'].to_i > 0 %>
-        <a type="button" class="btn btn-primary btn-xs navi" href="/main/view_list?list_id=<%= @list['id']%>&page=<%= (@list['page'].to_i - 1) %>"><i class="glyphicon glyphicon-chevron-left"></i> Previous Page</a>
+        <a type="button" class="btn btn-primary btn-xs navi pull-left" href="/main/view_list?list_id=<%= @list['id']%>&page=<%= (@list['page'].to_i - 1) %>"><i class="glyphicon glyphicon-chevron-left"></i> Previous Page</a>
     <% end %>
     <% if @list['more_results'] == "true" %>
-        <a type="button" class="btn btn-primary btn-xs navi" href="/main/view_list?list_id=<%= @list['id']%>&page=<%= (@list['page'].to_i + 1) %>">Next Page <i class="glyphicon glyphicon-chevron-right"></i></a>
+        <a type="button" class="btn btn-primary btn-xs navi pull-right" href="/main/view_list?list_id=<%= @list['id']%>&page=<%= (@list['page'].to_i + 1) %>">Next Page <i class="glyphicon glyphicon-chevron-right"></i></a>
     <% end %>
+    <div class="clearfix"></div>
     <% @list['items'].each do |i| %>
         <div class="row padtop padbot">
             <div class="col-md-2">
@@ -37,30 +38,33 @@
                 <% end %>
                 <% if !i['notes'].empty? %>
                     <strong>Notes:</strong>
-                    <br>
                     <% i['notes'].each do |n| %>
                         <p>
-                            <span id="note_<%= n['note_id'] %>"><%= n['note'] %></span>
-                            <a id='edit_note_link_<%= n['note_id'] %>' class="edit_list_control" onclick="show_edit_note(<%= n['note_id'] %>)"> - Edit Note</a>
+                            <span id="note_<%= n['note_id'] %>"><%= n['note'] %> </span>
+                            <button id='edit_note_link_<%= n['note_id'] %>' class="edit_list_control btn btn-xs btn-primary" type="button" onclick="show_edit_note(<%= n['note_id'] %>)">Edit Note</button>
                         </p>
                         <div id="edit_note_<%= n['note_id'] %>" style="display: none;">
-                            <textarea id='edit_note_text_<%= n['note_id'] %>' rows="4" cols="40" id=""><%= n['note'] %></textarea>
-                            <br>
-                            <a onclick="save_edited_note(<%= @list_id %>, <%= n['note_id'] %>)">Save Note</a>
+                            <div class="form-group">
+                                <textarea class="form-control" id="edit_note_text_<%= n['note_id'] %>" rows="4"><%= n['note'] %></textarea>
+                            </div>
+                            <button type="button" class="btn btn-xs btn-success" onclick="save_edited_note(<%= @list_id %>, <%= n['note_id'] %>)">Save</button>
+                            <button type="button" class="btn btn-xs btn-danger" onclick="hide_edit_note(<%= n['note_id'] %>)">Cancel</button>
                         </div>
                     <% end %>
                 <% end %>
-                <div class="edit_list_control">
-                    <button type="button" class="btn btn-success" onclick="show_add_note(<%= i['list_item_id'] %>)">Add a new note</button>
-                    <button type="button" class="btn btn-danger" onclick="remove_from_list(<%= @list_id %>,<%= i['list_item_id'] %>)">Remove from list</button>
+                <div class="edit_list_control padtop">
+                    <button type="button" class="btn btn-primary" onclick="show_add_note(<%= i['list_item_id'] %>)">Add a Note</button>
+                    <button type="button" class="btn btn-primary" id="remove_button_<%= i['list_item_id'] %>" onclick="remove_from_list(<%= @list_id %>,<%= i['list_item_id'] %>)">Remove Item</button>
+                    <%= link_to main_details_path(:format => :js, :id => i['record_id']), :remote => true do %>
+                        <button type="button" class="btn btn-primary">Item Details</button>
+                    <% end %>
                 </div>
-                <%= link_to main_details_path(:format => :js, :id => i['record_id']), :remote => true do %>
-                    <button type="button" class="btn btn-info">Item Details</button>
-                <% end %>
                 <div id='new_note_<%= i['list_item_id']%>' class="new_note_form">
-                    <textarea id='new_note_text_<%= i['list_item_id']%>' rows="4" cols="40" id=""></textarea>
-                    <br>
-                    <a onclick="add_note(<%= @list_id %>, <%= i['list_item_id'] %>)">Save Note</a>
+                    <div class="form-group">
+                        <textarea id='new_note_text_<%= i['list_item_id']%>' rows="4" cols="40" id=""></textarea>
+                    </div>
+                    <button type="button" class="btn btn-xs btn-success" onclick="add_note(<%= @list_id %>, <%= i['list_item_id'] %>)">Save</button>
+                    <button type="button" class="btn btn-xs btn-danger" onclick="hide_add_note(<%= i['list_item_id'] %>)">Cancel</button>
                 </div>
             </div>
         </div>

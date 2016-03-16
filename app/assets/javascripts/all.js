@@ -219,7 +219,7 @@ function hide_create_list() {
 
 function delete_list(list_id) {
     var button = '#delete_button_' + list_id;
-    $(button).removeClass('btn-default').addClass('btn-danger').html('Confirm').attr("onclick","actually_delete_list(" + list_id + ")");
+    $(button).removeClass('btn-default').addClass('btn-danger').html('Click to Confirm').attr("onclick","actually_delete_list(" + list_id + ")");
 }
 
 function actually_delete_list(list_id) {
@@ -229,6 +229,8 @@ function actually_delete_list(list_id) {
     .done(function(data) {
         if (data.message == 'success') {
             location.reload();
+        } else {
+            alert_message("danger","The system encountered an error. Please try again later.")
         }
     });
 }
@@ -240,6 +242,8 @@ function set_default_list(list_id) {
     .done(function(data) {
         if (data.message == 'success') {
             location.reload();
+        } else {
+            alert_message("danger","The system encountered an error. Please try again later.")
         }
     });
 }
@@ -251,6 +255,8 @@ function set_list_privacy(list_id, action) {
     .done(function(data) {
         if (data.message == 'success') {
             location.reload();
+        } else {
+            alert_message("danger","The system encountered an error. Please try again later.")
         }
     });
 }
@@ -271,13 +277,19 @@ function add_to_list(list_id, record_id) {
 }
 
 function remove_from_list(list_id, list_item_id) {
+    var button = '#remove_button_' + list_item_id
+    $(button).removeClass('btn-primary').addClass('btn-danger').html('Click to Confirm').attr("onclick","actually_remove_from_list(" + list_id + "," + list_item_id + ")");
+}
+
+function actually_remove_from_list(list_id, list_item_id) {
     showLoading();
     url = '/main/remove_item_from_list?list_id=' + list_id + '&list_item_id=' + list_item_id
     $.get(url)
     .done(function(data) {
-        hideLoading();
         if (data.message == 'success') {
             location.reload();
+        } else {
+            alert_message("danger","The system encountered an error. Please try again later.")
         }
     });
 }
@@ -287,6 +299,11 @@ function show_add_note(list_item_id) {
    $(target_div).show();
 }
 
+function hide_add_note(list_item_id) {
+    var target_div = '#new_note_' + list_item_id
+    $(target_div).hide();
+}
+
 function add_note(list_id, list_item_id) {
     var note_div = '#new_note_text_' + list_item_id
     var note_content = encodeURIComponent($(note_div).val());
@@ -294,9 +311,11 @@ function add_note(list_id, list_item_id) {
     showLoading();
     $.get(url)
     .done(function(data) {
-        hideLoading();
         if (data.message == 'success') {
             location.reload();
+        } else {
+            hideLoading();
+            alert_message("danger","The system encountered an error. Please try again later.")
         }
     });
 }
@@ -308,6 +327,15 @@ function show_edit_note(note_id) {
     $(div_to_show).show();
     $(div_to_hide).hide();
     $(link_to_hide).hide();
+}
+
+function hide_edit_note(note_id) {
+    var div_to_hide = '#edit_note_' + note_id
+    var div_to_show = '#note_' + note_id
+    var link_to_show = "#edit_note_link_" + note_id
+    $(div_to_show).show();
+    $(div_to_hide).hide();
+    $(link_to_show).show();
 }
 
 function save_edited_note(list_id, note_id) {
