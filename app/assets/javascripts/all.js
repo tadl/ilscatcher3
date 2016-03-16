@@ -54,7 +54,7 @@ ready = function() {
         showLoading();
     });
 
-    $(document).on('click', '.item_details_link', function(e) { 
+    $(document).on('click', '.item_details_link', function(e) {
         if(e.which == 1){
             e.preventDefault();
         }
@@ -279,7 +279,7 @@ function remove_from_list(list_id, list_item_id) {
 
 function show_add_note(list_item_id) {
    var target_div = '#new_note_' + list_item_id
-   $(target_div).css('display', 'inline-block'); 
+   $(target_div).css('display', 'inline-block');
 }
 
 function add_note(list_id, list_item_id) {
@@ -298,7 +298,7 @@ function add_note(list_id, list_item_id) {
 function show_edit_note(note_id) {
     var div_to_show = '#edit_note_' + note_id
     var div_to_hide = '#note_' + note_id
-    var link_to_hide = "#edit_note_link_" + note_id 
+    var link_to_hide = "#edit_note_link_" + note_id
     $(div_to_show).css('display', 'inline-block');
     $(div_to_hide).css('display', 'none');
     $(link_to_hide).css('display', 'none');
@@ -309,7 +309,7 @@ function save_edited_note(list_id, note_id) {
     var note_content = encodeURIComponent($(note_div).val());
     var replace_div = "#note_" + note_id
     var div_to_hide = '#edit_note_' + note_id
-    var edit_note_link = "#edit_note_link_" + note_id 
+    var edit_note_link = "#edit_note_link_" + note_id
     url = '/main/edit_note?list_id=' + list_id + '&note_id=' + note_id + '&note=' + note_content
     showLoading();
     $.get(url)
@@ -321,7 +321,7 @@ function save_edited_note(list_id, note_id) {
                 $(replace_div).css('display', 'inline-block');
                 $(edit_note_link).css('display', 'inline-block');
             } else {
-               $(div_to_hide).css('display', 'none'); 
+               $(div_to_hide).css('display', 'none');
             }
         } else {
             alert("didn't work") //FIX
@@ -486,7 +486,6 @@ function account_prefs_binds() {
 
         user_prefs_cancel_bind(userpanel);
         user_username_save_bind();
-        
     });
 
     $('.edit-user-alias').unbind('click');
@@ -835,7 +834,7 @@ function bulk_action_binds() {
             alert_message('warning', 'Error: You must select at least one item before performing bulk operations.', 15000);
         }
     });
-    
+
     $('#select-all').unbind('click');
     $('#select-all').click(function(e) {
         $('.select-btn').click();
@@ -906,7 +905,7 @@ function load_added_content(record_id, isbn){
 
 function fetch_good_reads(isbn){
     var clean_isbn = isbn.replace(/\D/g,'')
-    var url = 'https://reviewcatcher.herokuapp.com/?isbn=' + clean_isbn 
+    var url = 'https://reviewcatcher.herokuapp.com/?isbn=' + clean_isbn
     $.get(url)
         .done(function(data) {
             if (data.gr_id) {
@@ -931,15 +930,15 @@ function fetch_youtube_trailer(record_id){
     );
 }
 
-function load_next(id, list_name){
-    if(list_name != ''){
+function load_next(id, list_name) {
+    if (list_name != '') {
         var target_name = '#' + id + '_' + list_name
         var next_id = $(target_name).next('li').text()
         var next_link = '#' + next_id + '_' + list_name + ':first a'
         $(next_link)[0].click()
         var owl = $('#slider_' + list_name);
         owl.trigger('owl.next');
-    }else{
+    } else {
         var pannel_name = '#item_' + id
         $(pannel_name)[0].scrollIntoView()
         var target_name = '#' + id
@@ -949,15 +948,15 @@ function load_next(id, list_name){
     }
 }
 
-function load_previous(id, list_name){
-    if(list_name != ''){
+function load_previous(id, list_name) {
+    if (list_name != '') {
         var target_name = '#' + id + '_' + list_name
         var prev_id = $(target_name).prev('li').text()
         var prev_link = '#' + prev_id + '_' + list_name + ':first a'
         $(prev_link)[0].click()
         var owl = $('#slider_' + list_name);
         owl.trigger('owl.prev');
-    }else{
+    } else {
         var pannel_name = '#item_' + id
         $(pannel_name)[0].scrollIntoView()
         var target_name = '#' + id
@@ -969,18 +968,18 @@ function load_previous(id, list_name){
 
 
 
-function check_for_previous_and_next(id, list_name){
-    if(list_name){
+function check_for_previous_and_next(id, list_name) {
+    if (list_name) {
         var target = '#' + id + '_' + list_name
-    }else{
+    } else {
         var target = '#' + id
-    }   
+    }
     var check_for_next = $(target).next('li').text()
-    if(check_for_next != ''){
+    if (check_for_next != '') {
         $('#next_link').css('display','block')
     }
     var check_for_previous = $(target).prev('li').text()
-    if(check_for_previous != ''){
+    if (check_for_previous != '') {
         $('#previous_link').css('display','block')
     }
 }

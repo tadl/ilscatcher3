@@ -51,15 +51,15 @@
                 </div>
                 <div class="col-xs-12 col-sm-6" id="link_edit_details_<%= l.list_id %>">
                     <div class="btn-group" role="group">
-                        <button type="button" class="btn btn-sm btn-default" onclick="show_edit_list(<%= l.list_id %>)">Edit details</button>
+                        <button type="button" class="btn btn-sm btn-default" onclick="show_edit_list(<%= l.list_id %>)">Edit Details</button>
                         <button type="button" class="btn btn-sm btn-default" id="delete_button_<%= l.list_id %>" onclick="delete_list(<%= l.list_id %>)">Delete</button>
                         <% if l.shared == true %>
-                            <button type="button" class="btn btn-sm btn-default navi" onclick="set_list_privacy(<%= l.list_id %>,'hide')">Make private</button>
+                            <button type="button" class="btn btn-sm btn-default navi" onclick="set_list_privacy(<%= l.list_id %>,'hide')">Make Private</button>
                         <% else %>
-                            <button type="button" class="btn btn-sm btn-default navi" onclick="set_list_privacy(<%= l.list_id %>,'show')">Make public</button>
+                            <button type="button" class="btn btn-sm btn-default navi" onclick="set_list_privacy(<%= l.list_id %>,'show')">Make Public</button>
                         <% end %>
                         <% if l.default != true %>
-                            <button type="button" class="btn btn-sm btn-default" onclick="set_default_list(<%= l.list_id %>)">Make default</button>
+                            <button type="button" class="btn btn-sm btn-default" onclick="set_default_list(<%= l.list_id %>)">Set Default</button>
                         <% end %>
                     </div>
                 </div>
