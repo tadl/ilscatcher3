@@ -16,7 +16,7 @@
             <div class="row">
                 <div class="col-lg-2 col-sm-2 col-xs-5"><!-- image -->
                     <%= link_to 'details.js?id='+checkout.record_id, :remote => true, :class => 'item-link'  do %>
-                        <img src='https://catalog.tadl.org/opac/extras/ac/jacket/large/r/<%= checkout.record_id %>' style="width:100%;"
+                        <img src='<%= Settings.cover_path_med %><%= checkout.record_id %>' style="width:100%;"
                             onerror="this.src='<%= asset_path(Settings.logo) %>?id=<%= checkout.record_id %>'" />
                     <% end %>
                 </div>

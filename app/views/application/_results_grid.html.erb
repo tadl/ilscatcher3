@@ -6,7 +6,7 @@
     </div><!-- /.panel-heading -->
     <div class="panel-body">
         <a class="item_details_link" href="details?id=<%= item.id %>" onclick="item_details(<%= item.create_params.to_json %>)">
-            <img src='https://catalog.tadl.org/opac/extras/ac/jacket/large/r/<%= item.id %>' class="grid-item" 
+            <img src='<%= Settings.cover_path_med %><%= item.id %>' class="grid-item" 
                 onerror="this.src='<%= asset_path(Settings.logo) %>?id=<%= item.id %>'" />
             <% if item.loc_copies_available > 0 %>
                 <div class="panel-overlay">

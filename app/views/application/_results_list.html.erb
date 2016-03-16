@@ -21,7 +21,7 @@
         <div class="row">
             <div class="col-lg-3 col-sm-3 col-xs-12">
                 <a class="item_details_link" href="details?id=<%= item.id %>" onclick="item_details(<%= item.create_params.to_json %>)">
-                    <img src='https://catalog.tadl.org/opac/extras/ac/jacket/large/r/<%= item.id %>'
+                    <img src='<%= Settings.cover_path_med %><%= item.id %>'
                         onerror="this.src='<%= asset_path(Settings.logo) %>'" />
                 </a>
             </div>

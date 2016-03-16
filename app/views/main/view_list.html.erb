@@ -20,7 +20,7 @@
     <% @list['items'].each do |i| %>
         <div class="row padtop padbot">
             <div class="col-md-2">
-                <img src='https://catalog.tadl.org/opac/extras/ac/jacket/medium/r/<%= i['record_id'] %>' class="img-responsive"
+                <img src='<%= Settings.cover_path_med %><%= i['record_id'] %>' class="img-responsive"
                 onerror="this.src='<%= asset_path(Settings.logo) %>?id=<%= i['record_id'] %>'" />
             </div>
             <div class="col-md-10">

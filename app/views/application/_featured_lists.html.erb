@@ -3,7 +3,7 @@
         <% list.each do |item| %>
             <div class="col-xs-6 col-md-3 col-lg-2">
                 <a class="item_details_link" href="details?id=<%= item.id %>" onclick="item_details(<%= item.create_params.to_json %>, '<%= name %>')">
-                    <img class="carousel-item lazyOwl" style="height:160px; max-width: 160px;" src="https://catalog.tadl.org/opac/extras/ac/jacket/large/r/<%= item.id.to_s %>" data-src="https://catalog.tadl.org/opac/extras/ac/jacket/large/r/<%= item.id.to_s %>" />
+                    <img class="carousel-item lazyOwl" style="height:160px; max-width: 160px;" src="<%= Settings.cover_path_med %><%= item.id.to_s %>" data-src="<%= Settings.cover_path_med %><%= item.id.to_s %>" />
                 </a>
             </div>
         <% end %>
