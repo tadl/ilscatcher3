@@ -55,7 +55,7 @@ ready = function() {
     });
 
     $(document).on('click', '.item_details_link', function(e) {
-        if(e.which == 1){
+        if (e.which == 1) {
             e.preventDefault();
         }
     });
@@ -183,7 +183,7 @@ function edit_list(list_id) {
     }
 }
 
-function create_new_list(){
+function create_new_list() {
     var list_title = encodeURIComponent($('#new_list_title').val())
     var list_description = encodeURIComponent($('#new_list_description').val())
     if ($("#new_list_private").prop('checked')) {
@@ -260,7 +260,7 @@ function add_to_list(list_id, record_id) {
     .done(function(data) {
         if (data.message == 'success') {
             alert("it worked") //FIX
-        }else{
+        } else {
             alert("didn't work") //FIX
         }
     });
@@ -328,8 +328,6 @@ function save_edited_note(list_id, note_id) {
         }
     });
 }
-
-
 
 function login(id) {
     if (typeof id !== 'undefined') { var do_hold = id; } else { var do_hold = 0; }
