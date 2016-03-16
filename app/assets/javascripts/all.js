@@ -852,10 +852,10 @@ function edit_pickup_loc(hid,rid,state) {
     $.post("/main/edit_hold_pickup.js",{'hold_id' : hid, 'hold_state' : state})
 }
 
-function item_details(item, name){
-    if(!name){
+function item_details(item, name) {
+    if (!name) {
         $.post("/main/details.js", item)
-    }else{
+    } else {
         item.list_name =  name;
         $.post("/main/details.js", item)
     }
@@ -896,38 +896,36 @@ function validate_sms_bind() {
     });
 }
 
-function load_added_content(record_id, isbn){
-    if(isbn && isbn != ''){
+function load_added_content(record_id, isbn) {
+    if (isbn && isbn != '') {
         fetch_good_reads(isbn)
     }
     fetch_youtube_trailer(record_id)
 }
 
-function fetch_good_reads(isbn){
+function fetch_good_reads(isbn) {
     var clean_isbn = isbn.replace(/\D/g,'')
     var url = 'https://reviewcatcher.herokuapp.com/?isbn=' + clean_isbn
     $.get(url)
-        .done(function(data) {
-            if (data.gr_id) {
-                var content = '<span class="goodreads-stars"><a href="' + data.gr_link +'">'
-                content = content + data.stars_html + ' on GoodReads.com'
-                content = content + '</a></span>'
-                $('#goodreads_review').html(content)
-            }
+    .done(function(data) {
+        if (data.gr_id) {
+            var content = '<span class="goodreads-stars"><a href="' + data.gr_link +'">'
+            content = content + data.stars_html + ' on GoodReads.com'
+            content = content + '</a></span>'
+            $('#goodreads_review').html(content)
         }
-    );
+    });
 }
 
-function fetch_youtube_trailer(record_id){
+function fetch_youtube_trailer(record_id) {
     var url = 'https://trailer-tank.herokuapp.com/main/get_trailer.json?id=' + record_id
     $.get(url)
-        .done(function(data) {
-            if (data.message && data.message != 'error') {
-                var content = '<div class="embed-responsive embed-responsive-16by9"><iframe src="/util/youtube?id='+ data.message +'" width="100%" style="overflow:hidden;"></iframe></div>'
-                $('#trailer').html(content)
-            }
+    .done(function(data) {
+        if (data.message && data.message != 'error') {
+            var content = '<div class="embed-responsive embed-responsive-16by9"><iframe src="/util/youtube?id='+ data.message +'" width="100%" style="overflow:hidden;"></iframe></div>'
+            $('#trailer').html(content)
         }
-    );
+    });
 }
 
 function load_next(id, list_name) {
@@ -965,8 +963,6 @@ function load_previous(id, list_name) {
         $(prev_link)[0].click()
     }
 }
-
-
 
 function check_for_previous_and_next(id, list_name) {
     if (list_name) {
