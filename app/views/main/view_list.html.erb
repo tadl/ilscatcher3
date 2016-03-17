@@ -57,13 +57,13 @@
                         </div>
                     <% end %>
                 <% end %>
-                <div class="edit_list_control padtop">
+                <span class="edit_list_control padtop">
                     <button type="button" class="btn btn-primary" onclick="show_add_note(<%= i['list_item_id'] %>)">Add a Note</button>
                     <button type="button" class="btn btn-primary" id="remove_button_<%= i['list_item_id'] %>" onclick="remove_from_list(<%= @list_id %>,<%= i['list_item_id'] %>)">Remove Item</button>
-                    <%= link_to main_details_path(:format => :js, :id => i['record_id']), :remote => true do %>
-                        <button type="button" class="btn btn-primary">Item Details</button>
-                    <% end %>
-                </div>
+                </span>
+                <%= link_to main_details_path(:format => :js, :id => i['record_id']), :remote => true do %>
+                    <button type="button" class="btn btn-primary">Item Details</button>
+                <% end %>
                 <div id='new_note_<%= i['list_item_id']%>' class="new_note_form">
                     <div class="form-group">
                         <textarea id='new_note_text_<%= i['list_item_id']%>' rows="4" cols="40" id=""></textarea>
