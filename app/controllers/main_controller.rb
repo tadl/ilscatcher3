@@ -1,6 +1,6 @@
 class MainController < ApplicationController
     include ApplicationHelper
-    before_filter :shared_main_variables, :generate_user
+    before_filter :shared_main_variables
     respond_to :html, :json, :js
 
   def index
