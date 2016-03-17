@@ -27,4 +27,6 @@ public/assets/*.gz
 public/assets/*.js
 public/assets/*.png
 public/assets/*.json
+public/assets/*.gif
+public/assets/*.jpg
 public/assets/bootstrap
