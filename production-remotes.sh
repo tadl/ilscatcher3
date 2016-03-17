@@ -14,7 +14,7 @@ git remote add kalkaska-youth dokku@apps.tadl.org:kalkaska-youth-catalog
 git remote add kingsley dokku@apps.tadl.org:kingsley-catalog
 git remote add peninsula dokku@apps.tadl.org:peninsula-catalog
 git remote add tadl dokku@apps.tadl.org:catalog
+git remote add test dokku@apps.tadl.org:test-catalog
 git remote add woodmere dokku@apps.tadl.org:woodmere-catalog
 git remote add woodmere-av dokku@apps.tadl.org:av-catalog
 git remote add woodmere-youth dokku@apps.tadl.org:youth-catalog
-
