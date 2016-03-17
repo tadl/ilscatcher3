@@ -315,7 +315,7 @@ function add_note(list_id, list_item_id) {
             location.reload();
         } else {
             hideLoading();
-            alert_message("danger","The system encountered an error. Please try again later.")
+            alert_message("danger","The system encountered an error. Please make sure you are logged in, or try again later.")
         }
     });
 }
@@ -359,7 +359,7 @@ function save_edited_note(list_id, note_id) {
                $(div_to_hide).hide();
             }
         } else {
-            alert_message("danger","The system encountered an error. Please try again later.")
+            alert_message("danger","The system encountered an error. Please make sure you are logged in, or try again later.")
         }
     });
 }
