@@ -60,10 +60,25 @@ ready = function() {
         }
     });
 
+
+    $(document).keydown(function(e){
+        if (e.which == 37 && $('#previous_link').is(':visible')){ 
+            $('#previous_link').click()
+        }
+        if (e.which == 39 && $('#next_link').is(':visible')){ 
+            $('#next_link').click()
+        }
+    });
+
+
     hold_management_binds();
     checkout_management_binds();
     check_images();
 };
+
+
+
+
 
 $(document).ready(ready);
 
