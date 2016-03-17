@@ -44,7 +44,8 @@
                     <% i['notes'].each do |n| %>
                         <p>
                             <span id="note_<%= n['note_id'] %>"><%= n['note'] %> </span>
-                            <button id='edit_note_link_<%= n['note_id'] %>' class="edit_list_control btn btn-xs btn-primary" type="button" onclick="show_edit_note(<%= n['note_id'] %>)">Edit</button>
+
+                            <button id='edit_note_link_<%= n['note_id'] %>' class="edit_list_control btn btn-xs btn-primary" style="display:none;" type="button" onclick="show_edit_note(<%= n['note_id'] %>)">Edit</button>
                         </p>
                         <div id="edit_note_<%= n['note_id'] %>" style="display: none;" class="padtop padbot">
                             <div class="form-group">
@@ -79,6 +80,6 @@
     item_loading_binds();
     var test = is_my_list('<%=@list_id%>')
     if (test == true) {
-        $('.edit_list_control').css('display', 'inline-block');
+        $('.edit_list_control').show();
     }
 </script>
