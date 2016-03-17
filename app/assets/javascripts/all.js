@@ -214,7 +214,6 @@ function create_new_list() {
         showLoading();
         $.get(url)
         .done(function(data) {
-            hideLoading();
             if (data.message == 'success') {
                 location.reload();
             }
