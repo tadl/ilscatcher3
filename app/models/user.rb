@@ -411,7 +411,7 @@ class User
   def view_list(list_id, page_number, sort_by)
     agent = create_agent_token(self.token)
     randomizer = SecureRandom.hex(13)
-    page = agent.get('https://mr-v2.catalog.tadl.org/eg/opac/results?contains=nocontains&query='+ randomizer +'&qtype=keyword&bookbag='+ list_id +'&sort='+ sort_by +'&limit=5&page=' + page_number)    
+    page = agent.get('https://mr-v2.catalog.tadl.org/eg/opac/results?contains=nocontains&query='+ randomizer +'&qtype=keyword&bookbag='+ list_id +'&sort='+ sort_by +'&limit=10&page=' + page_number)    
     list = Hash.new
     list_items = Array.new
     list['name'] = page.parser.css('.result-bookbag-name').text rescue nil
