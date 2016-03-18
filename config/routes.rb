@@ -44,4 +44,8 @@ Rails.application.routes.draw do
   match "main/checkout_history" => "main#checkout_history", via: [:get, :post], defaults: {format: 'html'}
   match "main/hold_history" => "main#hold_history", via: [:get, :post], defaults: {format: 'json'}
   match '/:action', :controller => 'main', via: [:get, :post]
+  #handle legacy item details links
+  match '/eg/opac/record/:id' => "main#details", via: [:get, :post], defaults: { format: 'html' }
+  #handle legacy searches
+  match '/eg/opac/results' => "util#rewrite_legacy_search", via: [:get, :post]
 end
