@@ -1,10 +1,5 @@
-<% if !@item.nil? %>
+<% if @item %>
 	var content = "<div class='container' style='width: 95%; max-width: 960px;'><%= escape_javascript(render 'details', :locals => {:item => @item, :search => @search}) %></div>"
-	<% if @list_name %>
-		check_for_previous_and_next('<%= @item.id %>')
-	<% else %>
-		check_for_previous_and_next('<%= @item.id %>','<%= @list_name %>')
-	<% end %>
 <% else %>
 	var content = "<div class='container' style='width: 95%; max-width: 960px;'><h2>This item is no longer available or is not listed in our catalog</h2></div>" 
 <% end %>
@@ -12,6 +7,13 @@ $.fancybox.open({
     'overlayOpacity': 0.1,
     'content' : content
 });
+
+<% if @item && !@list_name %>
+	check_for_previous_and_next('<%= @item.id %>')
+<% elsif @item %>
+	check_for_previous_and_next('<%= @item.id %>','<%= @list_name %>')
+<% end %>
+
 
 $.fancybox.update()
 $.fancybox.reposition()
