@@ -75,7 +75,18 @@
                         <p><a class="btn btn-success" href="<%= item.eresource %>">View Online</a></p>
                     <% end %>
                     <% if @default_list %>
-                        <p><a class="btn btn-primary" id="add-list-<%= item.id %>" onclick="add_to_list(<%= @default_list %>, <%= item.id %>)">Add to Default List</a></p>
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-primary" id="add-list-<%= item.id %>" onclick="add_to_list(<%= @default_list %>, <%= item.id %>)">Add to List</button>
+                            <button type="button" class="btn btn-primary dropdown-toggle" id="button-<%= item.id %>" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span class="caret"></span>
+                                <span class="sr-only">Toggle Dropdown</span>
+                            </button>
+                            <ul class="dropdown-menu dropdown-menu-right">
+                                <% @lists.each do |l| %>
+                                    <li><a class="clicky" onclick="add_to_list(<%= l['list_id'] %>,<%= item.id %>)"><%= truncate(l['title'], length: 30, separator: ' ') %><% if l['default'] == true %> <span class="sr-only">Default list</span><i class="glyphicon glyphicon-ok-sign text-success"></i><% end %></a></li>
+                                <% end %>
+                            </ul>
+                        </div>
                     <% end %>
                 </span>
             </div>
