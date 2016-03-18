@@ -75,7 +75,7 @@
                         <p><a class="btn btn-success" href="<%= item.eresource %>">View Online</a></p>
                     <% end %>
                     <% if @default_list %>
-                        <div class="btn-group">
+                        <div class="btn-group" style="min-width:120px;">
                             <button type="button" class="btn btn-primary" id="add-list-<%= item.id %>" onclick="add_to_list(<%= @default_list %>, <%= item.id %>)">Add to List</button>
                             <button type="button" class="btn btn-primary dropdown-toggle" id="button-<%= item.id %>" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="caret"></span>
