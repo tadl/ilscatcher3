@@ -17,15 +17,28 @@
             </a>
         </li>
     <% end %>
-    <li><p class="navbar-btn">
-        <%= link_to main_preferences_path, :type => 'button', :class => 'btn btn-primary navi', :style => 'margin-left:10px;' do %>
-            My Account
-        <% end %></p>
+    <li>
+        <div class="btn-group navbar-btn">
+            <%= link_to main_preferences_path, :type => 'button', :id => 'myaccountmenu', :class => 'btn btn-primary navi', :style => 'margin-left:10px;' do %>My Account<% end %>
+            <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <span class="caret"></span>
+                <span class="sr-only">Toggle Dropdown</span>
+            </button>
+            <ul class="dropdown-menu">
+                <li><a class="navi" href="/main/preferences">Account Preferences</a></li>
+                <li><a class="navi" href="/main/checkouts">Checked Out Items</a></li>
+                <li><a class="navi" href="/main/holds">Items on Hold</a></li>
+                <li><a class="navi" href="/main/lists">My Lists</a></li>
+                <li><a class="navi" href="/main/fines">Current Fines</a></li>
+                <li><a class="navi" href="/main/payments">Past Payments</a></li>
+                <li><a class="navi" href="/main/checkout_history">Checkout History</a></li>
+            </ul>
+        </div>
     </li>
-    <li><p class="navbar-btn">
-    	<%= link_to 'logout.js', :remote => true, :type => 'button', :class => 'btn btn-default', :style => 'margin-left:10px;' do %>
-    		Log out
-    	<% end %></p>
+    <li>
+        <p class="navbar-btn">
+            <%= link_to 'logout.js', :remote => true, :type => 'button', :class => 'btn btn-default', :style => 'margin-left:10px;' do %>Log out<% end %>
+        </p>
     </li>
 </ul>
 <%= render partial: 'comp_reservation' %>

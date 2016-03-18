@@ -214,7 +214,6 @@ function create_new_list() {
         showLoading();
         $.get(url)
         .done(function(data) {
-            hideLoading();
             if (data.message == 'success') {
                 location.reload();
             }
@@ -278,13 +277,15 @@ function set_list_privacy(list_id, action) {
 
 function add_to_list(list_id, record_id) {
     var button = '#add-list-' + record_id
-    $(button).html(spinner+'Adding to list...').addClass('disabled')
+    var buttondropdown = '#button-' + record_id
+    $(button).html(spinner+'Adding...').addClass('disabled')
     url = '/main/add_item_to_list?list_id=' + list_id + '&record_id=' + record_id
     $.get(url)
     .done(function(data) {
         hideLoading();
         if (data.message == 'success') {
-            $(button).html('Added to list')
+            $(button).html('Added').attr("onclick","");
+            $(buttondropdown).addClass('disabled');
         } else {
             alert_message("danger","The system encountered an error. Please try again later.")
         }
