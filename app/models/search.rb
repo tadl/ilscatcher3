@@ -295,7 +295,7 @@ class Search
       end
       url = url + '&min_score=' + self.min_score unless self.min_score.nil?
 
-      request = JSON.parse(open(url).read) rescue nil
+      request = JSON.parse(open(url).read) 
   		results = Array.new
       genres_raw = Array.new
       subjects_raw = Array.new
