@@ -16,6 +16,9 @@
     <% if action_name =~ /preferences|checkouts|holds|fines|payments|list_checkout_history/ %>
         <% title_slug = "My Account | " + action_name.capitalize.gsub('_', ' ') %>
     <% end %>
+    <% if action_name == "register" %>
+        <% title_slug = "Library Account Registration" %>
+    <% end %>
   <title><% if !title_slug.blank? %><%= title_slug %> | <% end %><%= Settings.location_name %></title>
   <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no">
   <%= stylesheet_link_tag 'application', '/assets/stylesheets/'+Settings.stylesheet, media: 'all', 'data-turbolinks-track' => true %>

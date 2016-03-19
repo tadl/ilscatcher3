@@ -35,9 +35,11 @@ body.list_checkouts {
     color: #ff6666;
     text-decoration: none;
 }
+
 .navbar-top label {
     display: none;
 }
+
 .padtop {
     padding-top: 10px;
 }
@@ -207,3 +209,8 @@ span.goodreads-stars a {
 .clicky {
     cursor: pointer;
 }
+
+#id_email_optin {
+    display: inline-block !important;
+}
+

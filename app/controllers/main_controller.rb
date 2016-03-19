@@ -20,6 +20,11 @@ class MainController < ApplicationController
     end
   end
 
+  def register
+    respond_to do |format|
+      format.html
+    end
+  end
 
   def search
     @search = Search.new params

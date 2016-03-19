@@ -10,6 +10,7 @@ Rails.application.routes.draw do
 
   root :to => "main#index"
   get 'main/index'
+  get 'main/register'
   match "main/search" => "main#search", via: [:get, :post], defaults: { format: 'html' }
   match "main/login" => "main#login", via: [:get, :post], defaults: { format: 'json' }
   match "main/logout" => "main#logout", via: [:get, :post], defaults: { format: 'json' }
