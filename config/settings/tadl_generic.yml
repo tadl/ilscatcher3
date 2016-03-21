@@ -10,7 +10,7 @@ default_loc: '22'
 slider_frequency: 10
 lists:
   - name: 'tadl_books_list'
-    fancy_name: 'Books'
+    fancy_name: 'New Books'
     search_params: {'loc' : '22',
                     'qtype' : 'shelf',
                     'shelving_location' : ['619','621'],
@@ -35,7 +35,7 @@ lists:
       - name: "Playaways"
         url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=22&shelving_location[]=546&shelving_location[]=590&layout=grid&search_title=Playaways'
   - name: 'tadl_movies_list'
-    fancy_name: 'Movies & TV'
+    fancy_name: 'New Movies & TV'
     search_params: {'loc' : '22',
                     'qtype' : 'shelf',
                     'shelving_location' : ['687','682'],
@@ -70,7 +70,7 @@ lists:
       - name: 'Western'
         url: '/main/search?query=&qtype=genre&sort=pubdateDESC&loc=22&fmt=g&genres[]=Western&layout=grid&search_title=Western&genre_lock=Western'
   - name: 'tadl_music_list'
-    fancy_name: 'Music'
+    fancy_name: 'New Music'
     search_params: {'loc' : '22',
                     'qtype' : 'shelf',
                     'shelving_location' : ['686','684'],
