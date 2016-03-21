@@ -47,7 +47,7 @@ ready = function() {
     })
 
     $('#acctreg').on('click', function() {
-        window.location = '/main/register';
+        window.location = 'https://www.tadl.org/tadleg/newuser/register/';
     })
 
     $('a.navi').on('click', function() {
