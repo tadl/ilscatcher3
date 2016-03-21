@@ -14,7 +14,7 @@
                         <% if h['status'] == 'Reshelving' || h['status'] == 'Available' %>
                             <tr>
                                 <td><%= h['circ_lib'] %></td>
-                                <td><%= h['call_number'] %> in <%= h['location'] %></td>
+                                <td><strong><%= h['call_number'] %></strong> in <strong><%= h['location'] %></strong></td>
                                 <td>
                                 <%= h['status'] %>
                                 </td>
@@ -24,7 +24,7 @@
                         <% if (h['status'] == 'Reshelving' || h['status'] == 'Available') && item.loc == location_to_code(h['circ_lib']) %>
                             <tr>
                                 <td><%= h['circ_lib'] %></td>
-                                <td><%= h['call_number'] %> in <%= h['location'] %></td>
+                                <td><strong><%= h['call_number'] %></strong> in <strong><%= h['location'] %></strong></td>
                                 <td>
                                 <%= h['status'] %>
                                 </td>
@@ -34,7 +34,7 @@
                 <% else %>
                     <tr>
                         <td><%= h['circ_lib'] %></td>
-                        <td><%= h['call_number'] %> in <%= h['location'] %></td>
+                        <td><strong><%= h['call_number'] %></strong> in <strong><%= h['location'] %></strong></td>
                         <td>
                         <%= h['status'] %>
                         </td>
