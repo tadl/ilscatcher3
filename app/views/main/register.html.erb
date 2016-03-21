@@ -137,8 +137,36 @@
                 <p>I am the parent/guardian of the above named child. I consent to my child obtaining a borrower's card through the Traverse Area District Library, and I accept full responsibility for return of library materials checked out by the above named child, as well as liability for payment for the child's overdue fines and damaged or lost materials. I understand that my child has full access to library materials, programs and services, and that his or her borrowing record is confidential to the extent required by Michigan law.</p>
                 <p>I give consent to release of child's borrowing record to myself and other parents or guardians whose names I provide to library staff in person when completing this registration.</p>
 
+                <input type="hidden" name="application_name" value="<%= Settings.application_name %>">
+
                 <!-- submit form -->
             </div>
         </form>
     </div>
 </div>
+<script>
+
+    /* source: http://stackoverflow.com/a/7884850/157515 */
+    jQuery.fn.capitalize = function() {
+        $(this[0]).keyup(function(event) {
+            var box = event.target;
+            var txt = $(this).val();
+            var start = box.selectionStart;
+            var end = box.selectionEnd;
+            $(this).val(txt.replace(/^(.)|(\s|\-)(.)/g, function($1) {
+                return $1.toUpperCase();
+            }));
+            box.setSelectionRange(start, end);
+        });
+
+        return this;
+    }
+
+    $('#id_first_given_name').capitalize();
+    $('#id_second_given_name').capitalize();
+    $('#id_family_name').capitalize();
+    $('#id_addr_street').capitalize();
+    $('#id_addr_city').capitalize();
+
+
+</script>

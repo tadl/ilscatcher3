@@ -1,3 +1,4 @@
+application_name: 'kalkaska-catalog'
 format_options:  [['All Formats', 'fmt' ,'all'], ['Books', 'fmt' ,'a'],['Movies / TV', 'fmt' ,'g']]
 format_label: 'Format'
 stylesheet: 'kcl.css'

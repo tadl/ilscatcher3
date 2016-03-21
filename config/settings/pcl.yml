@@ -1,3 +1,4 @@
+application_name: 'peninsula-catalog'
 location_name: 'Peninsula Community Library'
 format_options:  [['All Formats', 'fmt' ,'all'], ['Books', 'fmt' ,'a'],['Movies / TV', 'fmt' ,'g'],['Music', 'fmt' ,'j']]
 format_label: 'Format'
