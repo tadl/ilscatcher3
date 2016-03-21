@@ -1,6 +1,14 @@
 <%= bootstrap_form_tag url: 'search', :html => { :method => 'get', :class => 'form' } do |f| %>
     <div class="row">
-        <div class="col-lg-12 col-xs-12">
+        <% if Settings.logo_on_homepage == "true" %>
+            <div class="col-sm-3 col-xs-12">
+                <img src="<%= asset_path(Settings.homepage_logo) %>" style="width: 100%;" />
+            </div>
+            <div class="col-sm-9 col-xs-12 padtop">
+                <div class="padtop padbot"></div>
+        <% else %>
+            <div class="col-sm-12 col-xs-12">
+        <% end %>
             <div class="input-group input-group-lg">
                 <span class="input-group-addon"><%= Settings.search_text %></span>
                 <label class="sr-only control-label" for="query">Query</label>

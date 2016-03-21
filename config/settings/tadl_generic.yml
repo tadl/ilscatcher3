@@ -4,6 +4,8 @@ format_options:  [['All Formats', 'fmt' ,'all'], ['Books', 'fmt' ,'a'],['Large P
 format_label: 'Format'
 stylesheet: 'tadl.css'
 logo: 'logo-clock-only.png'
+logo_on_homepage: 'true'
+homepage_logo: 'logo.png'
 search_text: 'Search'
 search_menu: 'Search'
 default_loc: '22'
