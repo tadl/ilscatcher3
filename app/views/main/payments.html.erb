@@ -1,6 +1,11 @@
-<% if @user.error %>
-    <h2>You must be logged in to view fines</h2>
-    <script>logout();location.assign(main_index_path);</script>
+<% if @payments == "login" %>
+    <% if Settings.logo_on_homepage == "true" %>
+        <img class="col-xs-12 col-md-4 col-md-offset-4 padbot" src="<%= asset_path(Settings.homepage_logo) %>" />
+    <% end %>
+    <h2 class="col-xs-12 col-md-6 col-md-offset-3 padbot" style="text-align:center;">Please log in to access your account</h2>
+    <div class="row">
+        <%= render 'login_page' %>
+    </div>
 <% else %>
     <div class="row">
         <div id="account-menu" class="col-xs-12 col-sm-3">

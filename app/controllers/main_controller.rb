@@ -320,9 +320,7 @@ class MainController < ApplicationController
       set_cookies(@user)
       @payments = @user.payments
     else
-      @payments = 'bad login'
-      redirect_to main_index_path
-      return
+      @payments = 'login'
     end
     respond_to do |format|
       format.html
