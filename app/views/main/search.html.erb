@@ -12,6 +12,13 @@
         <% end %>
     </div>
 </div>
+<% if @average_score < 1 %>
+<!--     <div class="row padtop">
+        <div id="results" class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <h3> We may not have what your looking for. You may want to check your spelling or change your search settings. You can also check MELCat or suggest an item. </h3>
+        </div>    
+    </div> -->
+<% end %>
 <div class="row padtop">
     <div id="results" class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
         <% if @search.list_active == "active" %>

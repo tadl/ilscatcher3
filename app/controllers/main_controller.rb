@@ -33,16 +33,18 @@ class MainController < ApplicationController
       @items = results[0]
       @facets = results[1]
       @more_results = results[2]
+      @average_score = @search.average_top_score(@items)
     else
       @items = Array.new
       @facets = Array.new
       @more_results = nil
       @blank_search = true
+      @average_score = 0
     end
     respond_to do |format|
       format.html
       format.js
-      format.json {render :json => {:items => @items.first(60), :facets => @facets, :more_results => @more_results}}
+      format.json {render :json => {:items => @items.first(60), :facets => @facets, :more_results => @more_results, :average_score => @average_score}}
     end
   end
 
