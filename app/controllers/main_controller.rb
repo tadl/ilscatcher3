@@ -181,9 +181,7 @@ class MainController < ApplicationController
       @holds = @user.list_holds
       set_cookies(@user)
     else
-      @holds = 'bad login'
-      redirect_to main_index_path
-      return
+      @holds = 'login'
     end
     respond_to do |format|
       format.html
