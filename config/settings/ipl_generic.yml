@@ -42,14 +42,3 @@ lists:
         url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=24&shelving_location[]=521&layout=grid&search_title=Movies'
       - name: "Television Series and Box Sets"
         url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=24&shelving_location[]=779&layout=grid&search_title=Television Series and Box Sets'
-  - name: 'ipl_music_list'
-    fancy_name: 'Music'
-    search_params: {'loc' : '24',
-                    'qtype' : 'shelf',
-                    'shelving_location' : ['517'],
-                    'canned' : 'true',
-                    'availability' : 'on',
-                    'sort' : 'pubdateDESC'}
-    searches:
-      - name: "Music CDs"
-        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=24&shelving_location[]=517&layout=grid&search_title=Music CDs'
