@@ -190,6 +190,7 @@ class MainController < ApplicationController
     end
   end
 
+# THIS IS NOT USED FOR ANYTHING
   def hold_history
     @user = generate_user()
     if params[:page]
@@ -243,10 +244,8 @@ class MainController < ApplicationController
       @more_results = get_checkouts[1]
       set_cookies(@user)
     else
-      @checkouts = 'bad login'
-      @more_results = 'bad login'
-      redirect_to main_index_path
-      return
+      @checkouts = 'login'
+      @more_results = 'login'
     end
     respond_to do |format|
       format.html
