@@ -221,9 +221,7 @@ class MainController < ApplicationController
       @checkouts = @user.list_checkouts
       set_cookies(@user)
     else
-      @checkouts = 'bad login'
-      redirect_to main_index_path
-      return
+      @checkouts = 'login'
     end
     respond_to do |format|
       format.html
