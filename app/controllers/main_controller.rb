@@ -305,9 +305,7 @@ class MainController < ApplicationController
       set_cookies(@user)
       @fines = @user.fines
     else
-      @fines = 'bad login'
-      redirect_to main_index_path
-      return
+      @fines = 'login'
     end
     respond_to do |format|
       format.html
