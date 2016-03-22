@@ -1,4 +1,3 @@
-application_name: 'kalkaska-teen-catalog'
 format_options:  [["All Kids' Materials", "shelving_location", "956,957,958"]]
 format_label: 'Format'
 stylesheet: 'kcl_youth.css'
