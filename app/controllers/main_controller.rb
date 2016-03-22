@@ -339,9 +339,7 @@ class MainController < ApplicationController
        @lists = @user.get_lists
       end
     else
-      @lists = 'bad login'
-      redirect_to main_index_path
-      return
+      @lists = 'login'
     end
     respond_to do |format|
       format.html {render 'lists'}
@@ -575,9 +573,7 @@ class MainController < ApplicationController
       set_cookies(@user)
       @preferences = @user.preferences
     else
-      @preferences = 'bad login'
-      redirect_to main_index_path
-      return
+      @preferences = 'login'
     end
     respond_to do |format|
       format.html
