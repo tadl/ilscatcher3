@@ -1059,3 +1059,19 @@ function check_for_previous_and_next(id, list_name) {
         $('#previous_link').show();
     }
 }
+
+function show_suggest_an_item(){
+    $.post("/main/suggest_an_item")
+}
+
+function submit_suggest_an_item(){
+    var values = {};
+    $.each($('#suggest_an_item_form').serializeArray(), function(i, field) {
+        values[field.name] = field.value;
+    });
+    if(values['author'] != '' && values['title'] != '' && values['item_format'] != '' && values['patron_name'] != '' && values['patron_email'] != ''){
+        alert('good')
+    }else{
+        alert('bad')
+    }
+}

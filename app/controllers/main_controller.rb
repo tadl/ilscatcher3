@@ -1,5 +1,6 @@
 class MainController < ApplicationController
     include ApplicationHelper
+    skip_before_filter :verify_authenticity_token, :only => [:suggest_an_item]
     before_filter :shared_main_variables
     respond_to :html, :json, :js
 
@@ -659,5 +660,14 @@ class MainController < ApplicationController
     end
   end
 
-
+  def suggest_an_item
+    if params[:item]
+      @state = 'submitted'
+    else
+      @state = 'form'
+    end
+    respond_to do |format|
+      format.js
+    end
+  end
 end

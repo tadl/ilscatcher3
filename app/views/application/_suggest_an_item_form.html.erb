@@ -1,0 +1,60 @@
+<h2>Suggest an item</h2>
+<p>Please complete the following form to suggest an item. If you include your email address we will contact if we add the item to our collection. Thanks!</p>
+<form id="suggest_an_item_form" class="form-horizontal padtop" autocomplete="off">
+    <div class="form-group">
+        <label for="id_author" class="col-xs-3 control-label">Author / Artist</label>
+        <div class="col-xs-6">
+            <input type="text" class="form-control" id="author" name="author">
+        </div>
+    </div>
+    <div class="form-group"> 
+        <label for="id_title" class="col-xs-3 control-label">Title</label>
+        <div class="col-xs-6">
+            <input type="text" class="form-control" id="title" name="title">
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="id_department" class="col-xs-3 control-label">Department</label>
+        <div class="col-xs-6">
+            <select class="form-control" id="department" name="department">
+                <option value="">None</option>
+                <option value="adult">Adult</option>
+                <option value="youth">Youth</option>
+                <option value="teen">Teen</option>
+                <option value="audio-visual">Audio / Visual</option>
+        	</select>
+        </div>
+    </div>
+    <div class="form-group"> 
+        <label for="id_isbn" class="col-xs-3 control-label">ISBN</label>
+        <div class="col-xs-6">
+            <input type="text" class="form-control" id="isbn" name="isbn">
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="id_item_format" class="col-xs-3 control-label">Format</label>
+        <div class="col-xs-6">
+            <select class="form-control" id="item_format" name="item_format">
+                <option value="print">Print</option>
+                <option value="large print">Large Print</option>
+                <option value="cd">CD</option>
+                <option value="dvd">DVD</option>
+                <option value="other">Other</option>
+        	</select>
+        </div>
+    </div>
+    <div class="form-group">    
+        <label for="id_patron_name" class="col-xs-3 control-label">Your Name</label>
+        <div class="col-xs-6">
+            <input type="text" class="form-control" id="patron_name" name="patron_name">
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="id_patron_email" class="col-xs-3 control-label">Your Email</label>
+        <div class="col-xs-6">
+            <input type="text" class="form-control" id="patron_email" name="patron_email">
+        </div>
+    </div>
+    <div id="form_warning"></div>
+</form>
+<button class="btn btn-primary pull-right" onclick="submit_suggest_an_item()">Suggest This Item</button>

@@ -44,6 +44,7 @@ Rails.application.routes.draw do
   match "main/update_hold_pickup" => "main#update_hold_pickup", via: [:get, :post], defaults: {format: 'json'}
   match "main/checkout_history" => "main#checkout_history", via: [:get, :post], defaults: {format: 'html'}
   match "main/hold_history" => "main#hold_history", via: [:get, :post], defaults: {format: 'json'}
+  match "main/suggest_an_item" => "main#suggest_an_item", via: [:get, :post], defaults: {format: 'js'}
   match '/:action', :controller => 'main', via: [:get, :post]
   #handle legacy item details links
   match '/eg/opac/record/:id' => "main#details", via: [:get, :post], defaults: { format: 'html' }
