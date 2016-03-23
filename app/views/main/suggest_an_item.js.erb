@@ -1,9 +1,9 @@
 <% if @state == 'form' %>
 	var content = "<div class='container' style='width: 95%; max-width: 960px;'><%= escape_javascript(render 'suggest_an_item_form') %></div>"
+	$.fancybox.open({ 
+    	'overlayOpacity': 0.1,
+    	'content' : content
+	});
 <% else %>
-	var content = "<div class='container' style='width: 95%; max-width: 960px;'><h2>Thanks for Suggesting an Item!</h2></div>" 
+	$('#suggest_an_item').html("<div class='container' style='width: 95%; max-width: 960px;'><h2>Thanks for Suggesting an Item!</h2></div>") 
 <% end %>
-$.fancybox.open({ 
-    'overlayOpacity': 0.1,
-    'content' : content
-});

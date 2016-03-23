@@ -214,3 +214,10 @@ span.goodreads-stars a {
     display: inline-block !important;
 }
 
+.form-group.required .control-label:after {
+  content:"*";
+  color:red;
+}
+.empty_required_feild{
+    border: solid 2px red !important;
+}

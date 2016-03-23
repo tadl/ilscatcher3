@@ -1010,7 +1010,8 @@ function fetch_youtube_trailer(record_id) {
     .done(function(data) {
         if (data.message && data.message != 'error') {
             var content = '<div class="embed-responsive embed-responsive-16by9"><iframe src="/util/youtube?id='+ data.message +'" width="100%" style="overflow:hidden;"></iframe></div>'
-            $('#trailer').html(content)
+            var target_div = '#trailer_' + record_id
+            $(target_div).html(content)
         }
     });
 }
@@ -1077,8 +1078,16 @@ function submit_suggest_an_item(){
         values[field.name] = field.value;
     });
     if(values['author'] != '' && values['title'] != '' && values['item_format'] != '' && values['patron_name'] != '' && values['patron_email'] != ''){
-        alert('good')
+        var data = $('#suggest_an_item_form').serializeArray();
+        $.post("/main/suggest_an_item", data)
     }else{
-        alert('bad')
+        $('#form_warning').html("Please complete the required feilds")
+        $( "div.required" ).find('.form-control').each(function(i, form_input){
+            if($(form_input).val() == ''){
+                $(form_input).addClass('empty_required_feild')
+            }else{
+                $(form_input).removeClass('empty_required_feild')
+            } 
+        })
     }
 }

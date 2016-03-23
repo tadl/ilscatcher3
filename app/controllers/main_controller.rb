@@ -648,8 +648,9 @@ class MainController < ApplicationController
   end
 
   def suggest_an_item
-    if params[:item]
+    if params[:title]
       @state = 'submitted'
+      EmailSuggestAnItem.perform_async(params)
     else
       @state = 'form'
     end
