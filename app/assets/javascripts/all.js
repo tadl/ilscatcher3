@@ -411,24 +411,28 @@ function actually_delete_edited_note(list_id, note_id) {
     });
 }
 
-function login(id) {
+function login(id,page) {
     if (typeof id !== 'undefined') { var do_hold = id; } else { var do_hold = 0; }
+    if (typeof page !== 'undefined') { var loginpage = true; }
     $('#statusMessage').modal('show');
     if (do_hold != 0) {
-        var username = $('.holdloginuser-'+id).val()
-        var password = $('.holdloginpass-'+id).val()
+        var userdiv = '.holdloginuser-'+id;
+        var passdiv = '.holdloginpass-'+id;
+    } else if (loginpage == true) {
+        var userdiv = '#page-username';
+        var passdiv = '#page-password';
     } else {
-        var username = $('#username').val();
-        var password = $('#password').val();
+        var userdiv = '#username';
+        var passdiv = '#password';
     }
+    var username = $(userdiv).val();
+    var password = $(passdiv).val();
     $.post("login.json", {username: username, password: password})
     .done(function(data) {
         $('#statusMessage').modal('hide')
         if (data.error == 'bad username or password') {
-            $('#username').val('');
-            $('#password').val('');
-            $('.holdloginuser-'+id).val('');
-            $('.holdloginpass-'+id).val('');
+            $(userdiv).val('');
+            $(passdiv).val('');
             $('#statusMessage').modal('hide');
             alert_message('danger', 'Login failed. The username or password provided was not valid. Passwords are case-sensitive. Check your Caps-Lock key and try again or contact your local library.');
         } else {
@@ -439,6 +443,9 @@ function login(id) {
                 message = '<div class="alert alert-info">'+spinner+'Logged in, placing hold now...</div>';
                 $(target).html(message)
                 $.get("place_hold.js", {record_id: id});
+            }
+            if (loginpage == true) {
+                location.reload();
             }
         }
     });

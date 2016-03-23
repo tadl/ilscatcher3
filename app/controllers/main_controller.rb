@@ -182,9 +182,7 @@ class MainController < ApplicationController
       @holds = @user.list_holds
       set_cookies(@user)
     else
-      @holds = 'bad login'
-      redirect_to main_index_path
-      return
+      @holds = 'login'
     end
     respond_to do |format|
       format.html
@@ -193,6 +191,7 @@ class MainController < ApplicationController
     end
   end
 
+# THIS IS NOT USED FOR ANYTHING
   def hold_history
     @user = generate_user()
     if params[:page]
@@ -224,9 +223,7 @@ class MainController < ApplicationController
       @checkouts = @user.list_checkouts
       set_cookies(@user)
     else
-      @checkouts = 'bad login'
-      redirect_to main_index_path
-      return
+      @checkouts = 'login'
     end
     respond_to do |format|
       format.html
@@ -248,10 +245,8 @@ class MainController < ApplicationController
       @more_results = get_checkouts[1]
       set_cookies(@user)
     else
-      @checkouts = 'bad login'
-      @more_results = 'bad login'
-      redirect_to main_index_path
-      return
+      @checkouts = 'login'
+      @more_results = 'login'
     end
     respond_to do |format|
       format.html
@@ -311,9 +306,7 @@ class MainController < ApplicationController
       set_cookies(@user)
       @fines = @user.fines
     else
-      @fines = 'bad login'
-      redirect_to main_index_path
-      return
+      @fines = 'login'
     end
     respond_to do |format|
       format.html
@@ -328,9 +321,7 @@ class MainController < ApplicationController
       set_cookies(@user)
       @payments = @user.payments
     else
-      @payments = 'bad login'
-      redirect_to main_index_path
-      return
+      @payments = 'login'
     end
     respond_to do |format|
       format.html
@@ -349,9 +340,7 @@ class MainController < ApplicationController
        @lists = @user.get_lists
       end
     else
-      @lists = 'bad login'
-      redirect_to main_index_path
-      return
+      @lists = 'login'
     end
     respond_to do |format|
       format.html {render 'lists'}
@@ -585,9 +574,7 @@ class MainController < ApplicationController
       set_cookies(@user)
       @preferences = @user.preferences
     else
-      @preferences = 'bad login'
-      redirect_to main_index_path
-      return
+      @preferences = 'login'
     end
     respond_to do |format|
       format.html
