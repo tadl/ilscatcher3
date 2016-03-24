@@ -5,5 +5,7 @@
     	'content' : content
 	});
 <% else %>
-	$('#suggest_an_item').html("<div class='container' style='width: 95%; max-width: 960px;'><h2>Thanks for Suggesting an Item!</h2></div>") 
+	$('#suggest_an_item').html("<div class='container' style='width: 95%; max-width: 960px;'><h2>Thanks for Suggesting an Item!</h2></div>")
+	$.fancybox.update()
+	$.fancybox.reposition()
 <% end %>
