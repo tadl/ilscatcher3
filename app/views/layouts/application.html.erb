@@ -24,6 +24,7 @@
   <%= stylesheet_link_tag 'application', '/assets/stylesheets/'+Settings.stylesheet, media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
+  <%= render partial: "google_analytics_script" %>
 </head>
 
 <body class="<%= controller_name %> <%= action_name %>">
@@ -41,5 +42,6 @@
     <a href="#" class="back-to-top">
         <i class="glyphicon glyphicon-menu-up" title="back to top"></i>
     </a>
+    <%= render partial: "google_analytics_pageview" %>
 </body>
 </html>

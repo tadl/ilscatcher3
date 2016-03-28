@@ -1,5 +1,8 @@
 <% if @item %>
 	var content = "<div class='container' style='width: 95%; max-width: 960px;'><%= escape_javascript(render 'details', :locals => {:item => @item, :search => @search}) %></div>"
+	<% if Rails.env == "production" && Settings.tracked == 'true'  %>
+    	ga('send', 'pageview', '/details?id=<%= @item.id %>');
+	<% end %>
 <% else %>
 	var content = "<div class='container' style='width: 95%; max-width: 960px;'><h2>This item is no longer available or is not listed in our catalog</h2></div>" 
 <% end %>

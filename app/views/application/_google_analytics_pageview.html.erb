@@ -1,0 +1,5 @@
+<% if Rails.env == "production" && Settings.tracked == 'true'  %>
+	<script>
+    	ga('send', 'pageview', '<%= request.original_fullpath %>');
+	</script>
+<% end %>

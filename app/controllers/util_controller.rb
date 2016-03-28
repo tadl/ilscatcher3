@@ -11,6 +11,11 @@ class UtilController < ApplicationController
         render :template => "util/youtube", :locals => {:trailer => trailer}
     end
 
+    def rewrite_legacy_account
+        url = "/main/preferences"
+        redirect_to url 
+    end
+
     def rewrite_legacy_search
     	url = "/main/search?query="
     	url += params[:query] unless params[:query].nil?

@@ -47,7 +47,9 @@ Rails.application.routes.draw do
   match "main/suggest_an_item" => "main#suggest_an_item", via: [:get, :post], defaults: {format: 'js'}
   match '/:action', :controller => 'main', via: [:get, :post]
   #handle legacy item details links
-  match '/eg/opac/record/:id' => "main#details", via: [:get, :post], defaults: { format: 'html' }
+  match '/eg/opac/record/:id' => redirect('/main/details?id=%{id}'), via: [:get, :post]
   #handle legacy searches
   match '/eg/opac/results' => "util#rewrite_legacy_search", via: [:get, :post]
+  #handle legacy account stuff
+  match '/eg/opac/myopac/main' =>  "util#rewrite_legacy_account", via: [:get, :post], defaults: { format: 'html' }
 end
