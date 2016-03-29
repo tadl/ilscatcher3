@@ -47,7 +47,8 @@ ready = function() {
     })
 
     $('#acctreg').on('click', function() {
-        window.location = 'https://www.tadl.org/tadleg/newuser/register/';
+        //window.location = 'https://www.tadl.org/tadleg/newuser/register/';
+        window.location = '/main/register';
     })
 
     $('a.navi').on('click', function() {
@@ -421,6 +422,7 @@ function login(id,page) {
     } else if (loginpage == true) {
         var userdiv = '#page-username';
         var passdiv = '#page-password';
+        $('#page-login-button').html('Please Wait').addClass('disabled');
     } else {
         var userdiv = '#username';
         var passdiv = '#password';
