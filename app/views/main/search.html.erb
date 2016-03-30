@@ -15,7 +15,7 @@
 <% if @average_score < 1 && @search %>
     <div class="row padtop">
         <div id="results" class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-            <h3> We may not have what your looking for. You may want to check your spelling or change your search settings. You can also check <a href="http://elibrary.mel.org/search/a?searchtype=X&searcharg=<%= @search.query %>&SORT=D">MELCat</a> or <a onclick="show_suggest_an_item()">suggest an item</a>. </h3>
+            <h4 class="center">Unable to find any close matches. If you don't see what you're looking for, try <a href="http://elibrary.mel.org/search/a?searchtype=X&searcharg=<%= @search.query %>&SORT=D">MELCat</a> or <a onclick="show_suggest_an_item()" class="clicky">suggest an item</a>.</h4>
         </div>    
     </div>
 <% end %>
