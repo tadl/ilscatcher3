@@ -666,5 +666,4 @@ class User
           return false
       end
   end
-
 end

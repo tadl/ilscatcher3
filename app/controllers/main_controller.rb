@@ -655,4 +655,27 @@ class MainController < ApplicationController
       format.js
     end
   end
+
+  def new_password_from_reset
+    if !params[:token]
+      redirect_to('/main/index')
+    else
+      @token = params[:token]
+      respond_to do |format|
+        format.html
+      end
+    end
+  end
+
+  def confirm_password_reset
+    if !params[:token] || !params[:password_1] || !params[:password_2]
+      @confirmation = 'invalid parameters'
+    else
+      @confirmation = password_reset(params[:token], params[:password_1], params[:password_2])
+    end
+    respond_to do |format|
+      format.js
+      format.json {render :json => {:message => @confirmation}}
+    end
+  end
 end

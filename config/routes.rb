@@ -45,6 +45,8 @@ Rails.application.routes.draw do
   match "main/checkout_history" => "main#checkout_history", via: [:get, :post], defaults: {format: 'html'}
   match "main/hold_history" => "main#hold_history", via: [:get, :post], defaults: {format: 'json'}
   match "main/suggest_an_item" => "main#suggest_an_item", via: [:get, :post], defaults: {format: 'js'}
+  match "main/new_password_from_reset" => "main#new_password_from_reset", via: [:get, :post], defaults: {format: 'html'}
+  match "main/confirm_password_reset" => "main#confirm_password_reset", via: [:get, :post], defaults: {format: 'js'}
   match '/:action', :controller => 'main', via: [:get, :post]
   #handle legacy item details links
   match '/eg/opac/record/:id' => redirect('/main/details?id=%{id}'), via: [:get, :post]
@@ -52,4 +54,6 @@ Rails.application.routes.draw do
   match '/eg/opac/results' => "util#rewrite_legacy_search", via: [:get, :post]
   #handle legacy account stuff
   match '/eg/opac/myopac/main' =>  "util#rewrite_legacy_account", via: [:get, :post], defaults: { format: 'html' }
+  #handle legacy reset password
+  match '/eg/opac/password_reset/:token' => redirect('/main/new_password_from_reset?token=%{token}'), via: [:get, :post]
 end

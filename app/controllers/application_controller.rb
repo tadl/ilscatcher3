@@ -67,5 +67,16 @@ class ApplicationController < ActionController::Base
         end
     end
 
-
+    def password_reset(token, password_1, password_2)
+        agent = Mechanize.new
+        url = 'https://mr-v2.catalog.tadl.org/eg/opac/password_reset/' + token
+        page = agent.post(url, {'uuid' => token, 'pwd1' => password_1, 'pwd2' => password_2})
+        check_for_error = page.parser.css('#main-content/p.error').text
+        if check_for_error != ''
+            confirmation = check_for_error
+        else
+            confirmation = 'good'
+        end
+        return confirmation
+    end
 end

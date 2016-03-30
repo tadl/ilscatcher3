@@ -1093,3 +1093,30 @@ function submit_suggest_an_item(){
         })
     }
 }
+
+function submit_password_reset(){
+    var password_1 = $("#password_1").val()
+    var password_2 = $("#password_2").val()
+    var test_for_bad = ''
+    $('#form_warning').html("")
+    if(password_1 != password_2){
+        $('#form_warning').html("Passwords do not match")
+        return
+    }
+    if(password_1.length < 7){
+        $('#form_warning').append("<p>Password not long enough. Must be at least 7 characters</p>")
+        test_for_bad = 'bad'
+    }
+    if(!password_1.match(/\d+/g)){
+        $('#form_warning').append("<p>Password must contain at least one number</p>")
+        test_for_bad = 'bad'  
+    }
+    if(!password_1.match(/[a-zA-Z]/)){
+        $('#form_warning').append("<p>Password must contain at least one letter</p>")
+        test_for_bad = 'bad'
+    }
+    if(test_for_bad != 'bad'){
+        var token = $("#token").val()
+        $.post("/confirm_password_reset", {token: token, password_1: password_1, password_2: password_2})
+    }
+}
