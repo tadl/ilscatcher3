@@ -12,12 +12,14 @@
         <% end %>
     </div>
 </div>
-<% if @average_score < 1 && @search %>
-    <div class="row padtop">
-        <div id="results" class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-            <h3> We may not have what your looking for. You may want to check your spelling or change your search settings. You can also check <a href="http://elibrary.mel.org/search/a?searchtype=X&searcharg=<%= @search.query %>&SORT=D">MELCat</a> or <a onclick="show_suggest_an_item()">suggest an item</a>. </h3>
-        </div>    
-    </div>
+<% if @search.in_progress %>
+    <% if !@items.any? || @items[0].score < 1 %>
+        <div class="row padtop">
+            <div id="results" class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <h3> We may not have what you're looking for. You may want to check your spelling or change your search settings. You can also check <a href="http://elibrary.mel.org/search/a?searchtype=X&searcharg=<%= @search.query %>&SORT=D">MELCat</a> or <a onclick="show_suggest_an_item()">suggest an item</a>. </h3>
+            </div>    
+        </div>
+    <% end %>
 <% end %>
 <div class="row padtop">
     <div id="results" class="col-xs-12 col-sm-12 col-md-12 col-lg-12">

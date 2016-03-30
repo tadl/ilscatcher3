@@ -508,13 +508,5 @@ class Search
     end
     return location_code
   end
-
-  def average_top_score(results)
-    i = 0
-    results.first(5).each do |r|
-      i += r.score    
-    end
-
-    return (i / 5) 
-  end
+  
 end
