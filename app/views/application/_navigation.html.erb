@@ -26,8 +26,18 @@
                         </ul>
                     </li>
                 <% end %>
+                <% if !Settings.additional_nav_links_before.nil? %>
+                    <% Settings.additional_nav_links_before.each do |link| %>
+                        <li><a <% if !link['onclick'].nil? %>class="clicky" onclick="<%= link['onclick'] %>"<% else %>href="<%= link['href'] %>"<% end %>><%= link['name'] %></a></li>
+                    <% end %>
+                <% end %>
                 <li<% if request.path == main_index_path %> class="active"<% end %>><a class="navi" href="<%= main_index_path %>">Home</a></li>
                 <li<% if request.path == main_search_path %> class="active"<% end %>><a class="navi" href="<%= main_search_path %>"><%= Settings.search_menu %></a></li>
+                <% if !Settings.additional_nav_links_after.nil? %>
+                    <% Settings.additional_nav_links_after.each do |link| %>
+                        <li><a <% if !link['onclick'].nil? %>class="clicky" onclick="<%= link['onclick'] %>"<% else %>href="<%= link['href'] %>"<% end %>><%= link['name'] %></a></li>
+                    <% end %>
+                <% end %>
             </ul>
             <%= render 'account_box' %> 
         </div>
