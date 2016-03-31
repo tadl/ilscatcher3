@@ -319,7 +319,7 @@ class Search
           :abstract => r["abstract"],
           :contents => r["contents"],
           :electronic => r["electronic"],
-          :eresource => process_eresource(r["links"][0]),
+          :eresource => process_eresource(r["links"]),
           :format_type => r["type_of_resource"],
           :record_year => r["sort_year"],
           :call_number => holdings[0],
@@ -392,10 +392,18 @@ class Search
   end
 
   def process_eresource(url)
-    if url.nil? || (!url.include? 'http://via.tadl.org')
-      return nil
+    good_url = ''
+    if url.kind_of?(Array)
+      url.each do |link|
+        if (link.include? 'http://via.tadl.org') || (link.include? 'https://www.hoopladigital.com/')
+          good_url = link
+        end
+      end
+    end
+    if good_url != ''
+      return good_url
     else
-      return url
+      return nil
     end
   end
 

@@ -42,7 +42,7 @@
             </div>
             <div class="col-xs-12 col-md-4 col-lg-3">
                 <span class="pull-right">
-                    <% if item.eresource.nil? || item.eresource == '' %>
+                    <% if item.electronic != 'true' %>
                         <div class='hold-status-<%= item.id %>'>
                         </div>
                         <div class="holdlogin-<%= item.id %>" style="display: none">
