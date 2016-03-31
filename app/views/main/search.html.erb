@@ -16,7 +16,13 @@
     <% if !@items.any? || @items[0].score < 1 %>
         <div class="row padtop">
             <div id="results" class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                <h4 class="center">Unable to find any close matches. If you don't see what you're looking for, try <a href="http://elibrary.mel.org/search/a?searchtype=X&searcharg=<%= @search.query %>&SORT=D">MELCat</a> or <a onclick="show_suggest_an_item()" class="clicky">suggest an item</a>.</h4>
+                <h4 class="center">We found few or no close matches. If you don't see what you're looking for, try 
+                    <% if @search.loc != "22" || @search.fmt != "all" || @search.qtype != "keyword" || !@search.availability.blank? %>
+                        <a href="<%= main_search_path %>?utf8=✓&query=<%= @search.query %>&layout=<%= @search.layout %>&qtype=keyword&fmt=all&sort=relevancy&loc=22&in_progress=true">expanding your search</a>.
+                    <% else %>
+                        <a href="http://elibrary.mel.org/search/a?searchtype=X&searcharg=<%= @search.query %>&SORT=D">MeLCat</a> or <a onclick="show_suggest_an_item()" class="clicky">suggest an item</a>.
+                    <% end %>
+                </h4>
             </div>    
         </div>
     <% end %>
