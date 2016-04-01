@@ -17,7 +17,7 @@
         <div class="row padtop">
             <div id="results" class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                 <h4 class="center">We found few or no close matches. If you don't see what you're looking for, try 
-                    <% if @search.loc != Settings.default_loc || @search.fmt != "all" || @search.qtype != "keyword" || !@search.availability.blank? %>
+                    <% if @search.loc != Settings.default_loc.to_string || @search.fmt != "all" || @search.qtype != "keyword" || !@search.availability.blank? %>
                         <a href="<%= main_search_path %>?utf8=✓&query=<%= @search.query %>&layout=<%= @search.layout %>&qtype=keyword&fmt=all&sort=relevancy&loc=<%= Settings.default_loc %>&in_progress=true">expanding your search</a>.
                     <% else %>
                         <a href="http://elibrary.mel.org/search/a?searchtype=X&searcharg=<%= @search.query %>&SORT=D">MeLCat</a> or <a onclick="show_suggest_an_item()" class="clicky">suggest an item</a>.
