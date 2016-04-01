@@ -14,8 +14,6 @@ slider_frequency: 10
 additional_nav_links:
   - name: 'TADL Website'
     href: 'http://www.tadl.org/'
-  - name: 'Suggest an item'
-    onclick: 'show_suggest_an_item()'
 lists:
   - name: 'tadl_books_list'
     fancy_name: 'New Books'
