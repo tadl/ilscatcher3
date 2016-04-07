@@ -19,13 +19,14 @@
     <% if action_name == "register" %>
         <% title_slug = "Library Account Registration" %>
     <% end %>
-  <title><% if !title_slug.blank? %><%= title_slug %> | <% end %><%= Settings.location_name %></title>
-  <meta property="og:title" content="Online Catalog | <%= Settings.location_name %>" />
+    <% if !title_slug.blank? %><% display_title = title_slug %><% else %><% display_title = Settings.location_name %><% end %>
+  <title><%= display_title %></title>
+  <meta property="og:title" content="<%= display_title %>" />
   <meta property="og:type" content="website" />
   <meta property="og:description" content="The Traverse Area District Library Online Catalog" />
   <meta property="og:url" content="<%= request.original_url %>" />
-  <meta property="og:image" content="<% if action_name == "details" %><%= Settings.cover_path_lg %><%= @item.id.to_s %><% else %><%= request.base_url %><%= asset_path(Settings.logo) %><% end %>" />
-  <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no">
+  <meta property="og:image" content="<% if action_name == "details" %><%= Settings.cover_path_lg %><%= @item.id.to_s %><% else %><%= request.base_url %><% if !Settings.homepage_logo.nil? %><%= asset_path(Settings.homepage_logo) %><% else %><%= asset_path(Settings.logo) %><% end %><% end %>" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no" />
   <%= stylesheet_link_tag 'application', '/assets/stylesheets/'+Settings.stylesheet, media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
