@@ -661,6 +661,12 @@ class MainController < ApplicationController
     end
   end
 
+  def password_reset
+    respond_to do |format|
+      format.html
+    end
+  end
+
   def new_password_from_reset
     if !params[:token]
       redirect_to('/main/index')
