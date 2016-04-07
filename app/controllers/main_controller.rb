@@ -67,10 +67,15 @@ class MainController < ApplicationController
         @lists = @lists.push(l)
       end
     end
-    respond_to do |format|
-      format.html
-      format.js
-      format.json { render json: @item }
+    bad_item_test = @item.id rescue nil 
+    if bad_item_test != nil
+      respond_to do |format|
+        format.html
+        format.js
+        format.json { render json: @item }
+      end
+    else
+      redirect_to '/errors/not_found'
     end
   end
 
