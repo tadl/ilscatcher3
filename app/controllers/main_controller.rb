@@ -75,7 +75,7 @@ class MainController < ApplicationController
         format.json { render json: @item }
       end
     else
-      redirect_to '/errors/not_found'
+      redirect_to '/404'
     end
   end
 
