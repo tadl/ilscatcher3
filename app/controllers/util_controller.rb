@@ -26,6 +26,11 @@ class UtilController < ApplicationController
         redirect_to url
     end
 
+    def rewrite_legacy_home
+        url = "/main/index"
+        redirect_to url
+    end
+
     def rewrite_legacy_search
     	url = "/main/search?query="
     	url += params[:query] unless params[:query].nil?

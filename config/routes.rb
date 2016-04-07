@@ -52,6 +52,8 @@ Rails.application.routes.draw do
   match '/eg/opac/record/:id' => redirect('/main/details?id=%{id}'), via: [:get, :post]
   #handle legacy searches
   match '/eg/opac/results' => "util#rewrite_legacy_search", via: [:get, :post]
+  #handle legacy home
+  match '/eg/opac/home' => "util#rewrite_legacy_home", via: [:get, :post]
   #handle legacy account stuff
   match '/eg/opac/myopac/main' =>  "util#rewrite_legacy_account", via: [:get, :post], defaults: { format: 'html' }
   #handle legacy account stuff
