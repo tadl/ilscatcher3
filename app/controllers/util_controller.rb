@@ -16,6 +16,16 @@ class UtilController < ApplicationController
         redirect_to url 
     end
 
+    def rewrite_legacy_holds
+        url = "/main/holds"
+        redirect_to url
+    end
+
+    def rewrite_legacy_checkouts
+        url = "/main/checkouts"
+        redirect_to url
+    end
+
     def rewrite_legacy_search
     	url = "/main/search?query="
     	url += params[:query] unless params[:query].nil?
