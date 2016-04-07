@@ -1,3 +1,4 @@
+public_catalog: 'https://catalog.tadl.org'
 location_name: 'Traverse Area District Library'
 elastic_evergreen_url: 'https://elastic-evergreen-tadl.apps.tadl.org/main/index.json?query='
 pickup_locations: [['Woodmere', '23'],['Interlochen', '24'],['Kingsley', '25'],['Peninsula', '26'],['Fife Lake', '27'],['East Bay', '28']]
