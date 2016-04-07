@@ -58,6 +58,8 @@ Rails.application.routes.draw do
   match '/eg/opac/myopac/holds' =>  "util#rewrite_legacy_holds", via: [:get, :post], defaults: { format: 'html' }
   #handle legacy account stuff
   match '/eg/opac/myopac/circs' =>  "util#rewrite_legacy_checkouts", via: [:get, :post], defaults: { format: 'html' }
+  #handle legacy account stuff
+  match '/eg/opac/login' =>  "util#rewrite_legacy_account", via: [:get, :post], defaults: { format: 'html' }
   #handle legacy reset password
   match '/eg/opac/password_reset/:token' => redirect('/main/new_password_from_reset?token=%{token}'), via: [:get, :post]
 end
