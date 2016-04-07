@@ -21,6 +21,8 @@
     <% end %>
   <title><% if !title_slug.blank? %><%= title_slug %> | <% end %><%= Settings.location_name %></title>
   <meta property="og:title" content="Online Catalog | <%= Settings.location_name %>" />
+  <meta property="og:type" content="website" />
+  <meta property="og:description" content="The Traverse Area District Library Online Catalog" />
   <meta property="og:url" content="<%= request.original_url %>" />
   <meta property="og:image" content="<% if action_name == "details" %><%= Settings.cover_path_lg %><%= @item.id.to_s %><% else %><%= request.base_url %><%= asset_path(Settings.logo) %><% end %>" />
   <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no">
