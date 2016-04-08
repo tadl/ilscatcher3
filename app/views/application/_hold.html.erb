@@ -3,9 +3,14 @@
         <div class="panel-heading">
             <div class="row">
                 <div class="col-lg-11 col-md-11 col-sm-11 col-xs-10">
-                    <%= link_to 'details.js?id='+hold.record_id, :remote => true, :class => 'item-link' do %>
-                        <h4 class="panel-title"><%= hold.title %></h4>
-                    <% end %>
+                    <h4 class="panel-title">
+                        <%= link_to 'details.js?id='+hold.record_id, :remote => true, :class => 'item-link' do %>
+                            <%= hold.title %>
+                        <% end %>
+                        <% if hold.queue_status =~ /Ready/ %>
+                            <span> - Waiting for Pickup at <%= hold.pickup_location %> </span>
+                        <% end %>
+                    </h4>
                 </div>
                 <div class="col-lg-1 col-md-1 col-sm-1 col-xs-2">
                     <h4 class="pull-right panel-title"><span class="glyphicon <%= format_icon(hold.format, @format_icons) %>"></span></h4>
@@ -31,7 +36,7 @@
                         <button type="button" class="small text-subdued btn btn-xs btn-default change-pickup-<%= hold.hold_id %>" onclick="edit_pickup_loc(<%= hold.hold_id %>,<%= hold.record_id %>,'<%= hold.hold_status %>')">change</button>
                     </dd>
                     <dt>Hold Status</dt>
-                    <dd><%= hold.hold_status =~ /Suspended/ ? hold.hold_status : hold.queue_status %></dd>
+                    <dd><b><%= hold.hold_status =~ /Suspended/ ? hold.hold_status : hold.queue_status %></b></dd>
                     </dl>
                 </div>
                 <div class="col-lg-3 col-sm-3 col-xs-12"><!-- suspend/activate/cancel buttons -->

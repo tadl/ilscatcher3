@@ -12,7 +12,7 @@
             <%= render 'account_menu' %>
         </div>
         <div id="hold_list" class="col-xs-12 col-sm-9">
-            <%= render 'hold_list', :holds => @holds %>
+            <%= render 'hold_list', :holds => @holds, :ready => @ready %>
         </div>
     </div>
 <% end %>

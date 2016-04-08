@@ -1,7 +1,17 @@
-<% @holds.each do |hold| %>
-    <div class="row" id="hold-record-<%= hold.hold_id %>">
-        <%= render 'hold', :hold => hold %>
-    </div>
+<% if @ready != 'true' %>
+	<% @holds.each do |hold| %>
+    	<div class="row" id="hold-record-<%= hold.hold_id %>">
+        	<%= render 'hold', :hold => hold %>
+    	</div>
+	<% end %>
+<% else %>
+	<% @holds.each do |hold| %>
+		<% if hold.queue_status =~ /Ready/ %>
+    		<div class="row" id="hold-record-<%= hold.hold_id %>">
+        		<%= render 'hold', :hold => hold %>
+    		</div>
+    	<% end %>
+	<% end %>
 <% end %>
 <script>
 detect_details_click();

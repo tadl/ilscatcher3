@@ -186,6 +186,11 @@ class MainController < ApplicationController
     else
       @holds = 'login'
     end
+    if params[:ready] == 'true'
+      @ready = 'true'
+    else
+      @ready = 'false'
+    end
     respond_to do |format|
       format.html
       format.json {render :json => {:user => @user,

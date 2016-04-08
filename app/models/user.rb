@@ -148,7 +148,7 @@ class User
     end
     sorted_by_hold_id = holds_raw.sort_by {|k| k[:hold_id]}.reverse!
     sorted_by_hold_id.each do |h|
-      if h[:queue_status] =~ /Available/
+      if h[:queue_status] =~ /Ready/
         sorted_by_hold_id.delete(h)
         sorted_by_hold_id.unshift(h) 
       end
@@ -158,6 +158,8 @@ class User
     	hold = Hold.new h
     	holds = holds.push(hold)
     end
+    #[ e == 'chicken' ? 0 : e == 'beef' ? 1 : 2, e ]
+    # return holds 
     return holds
 	end
 

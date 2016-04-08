@@ -5,11 +5,18 @@
     		Checkouts <span class="badge"><span id="checkouts"><%= info['checkouts']%></span></span>
     	</a>
     </li>
-    <li<% if request.path == main_holds_path %> class="active"<% end %>>
+    <li<% if @ready && @ready == 'false' %> class="active"<% end %>>
     	<a href="<%= main_holds_path %>" class="navi">
     		Holds <span class="badge"><span id="holds"><%= info['holds']%></span></span>
     	</a>
     </li>
+    <% if info['holds_ready'].to_i > 0 %>
+        <li<% if @ready && @ready == 'true' %> class="active"<% end %>>
+            <a href="/main/holds?ready=true" class="navi">
+                Ready for Pickup <span class="badge"><span id="holds_ready"><%= info['holds_ready']%></span></span>
+            </a>
+        </li>
+    <% end %>
     <% if info['fine'].to_f > 0 %>
         <li<% if request.path == main_fines_path %> class="active"<% end %>>
             <a href="<%= main_fines_path %>" class="navi">
@@ -27,7 +34,8 @@
             <ul class="dropdown-menu">
                 <li><a class="navi" href="/main/preferences">Account Preferences</a></li>
                 <li><a class="navi" href="/main/checkouts">Checked Out Items</a></li>
-                <li><a class="navi" href="/main/holds">Items on Hold</a></li>
+                <li><a class="navi" href="/main/holds">All Items on Hold</a></li>
+                <li><a class="navi" href="/main/holds?ready=true">Holds Ready for Pickup</a></li>
                 <li><a class="navi" href="/main/lists">My Lists</a></li>
                 <li><a class="navi" href="/main/fines">Current Fines</a></li>
                 <li><a class="navi" href="/main/payments">Past Payments</a></li>
