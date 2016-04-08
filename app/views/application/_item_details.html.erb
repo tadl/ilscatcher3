@@ -87,6 +87,17 @@
                                 <% end %>
                             </ul>
                         </div>
+                    <% elsif @lists && !@lists.empty? %>
+                        <div class="btn-group" style="min-width:120px;">
+                            <button type="button" class="btn btn-primary dropdown-toggle" id="add-list-<%= item.id %>" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Add to List
+                            </button>
+                            <ul class="dropdown-menu dropdown-menu-right">
+                                <% @lists.each do |l| %>
+                                    <li><a class="clicky" onclick="add_to_list(<%= l['list_id'] %>,<%= item.id %>)"><%= truncate(l['title'], length: 30, separator: ' ') %><% if l['default'] == true %> <span class="sr-only">Default list</span><i class="glyphicon glyphicon-ok-sign text-success"></i><% end %></a></li>
+                                <% end %>
+                            </ul>
+                        </div>
                     <% end %>
                 </span>
             </div>
