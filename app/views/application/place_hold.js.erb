@@ -9,6 +9,12 @@ var pickuplocation = '<%= escape_javascript(location_map(@user.pickup_library, @
         $(target).html(message);
         hideLoading();
     <% elsif c[:need_to_force] %>
+        <% if c[:message] == 'Placing this hold could result in longer wait times.'%>
+            var force_hold_text = "All available copies are temporarily unavailable at your pickup library. Placing this hold could result in longer wait times. Place the hold anyway?"
+        <% else %>
+            var force_hold_text = "You already have this item checked out. Are you sure you want place it on hold again?"
+        <% end %>
+        $('#force_hold_message').html(force_hold_text)
         $('#hold-confirm-force').modal('show');
         force_hold_click(<%= escape_javascript(c[:record_id]) %>);
     <% else %>
