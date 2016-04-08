@@ -158,8 +158,6 @@ class User
     	hold = Hold.new h
     	holds = holds.push(hold)
     end
-    #[ e == 'chicken' ? 0 : e == 'beef' ? 1 : 2, e ]
-    # return holds 
     return holds
 	end
 
