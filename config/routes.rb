@@ -55,6 +55,8 @@ Rails.application.routes.draw do
   match 'eg/opac/password_reset' => redirect('/main/password_reset'), via: [:get, :post]
   #handle legacy searches
   match '/eg/opac/results' => "util#rewrite_legacy_search", via: [:get, :post]
+  #handle legacy advanced search
+  match '/eg/opac/advanced' => redirect('/main/search'), via: [:get, :post]
   #handle legacy home
   match '/eg/opac/home' => "util#rewrite_legacy_home", via: [:get, :post]
   #handle legacy account stuff
@@ -67,4 +69,7 @@ Rails.application.routes.draw do
   match '/eg/opac/login' =>  "util#rewrite_legacy_account", via: [:get, :post], defaults: { format: 'html' }
   #handle legacy reset password
   match '/eg/opac/password_reset/:token' => redirect('/main/new_password_from_reset?token=%{token}'), via: [:get, :post]
+  #handle unsupported links
+  match '/eg/opac/place_hold' => "util#rewrite_legacy_home", via: [:get, :post]
+  match '/eg/opac/mylist/add' => "util#rewrite_legacy_home", via: [:get, :post]
 end
