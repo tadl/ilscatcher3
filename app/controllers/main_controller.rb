@@ -687,7 +687,7 @@ class MainController < ApplicationController
     if !params[:token] || !params[:password_1] || !params[:password_2]
       @confirmation = 'invalid parameters'
     else
-      @confirmation = password_reset(params[:token], params[:password_1], params[:password_2])
+      @confirmation = fire_password_reset(params[:token], params[:password_1], params[:password_2])
     end
     respond_to do |format|
       format.js

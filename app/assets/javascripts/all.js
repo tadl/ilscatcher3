@@ -1117,6 +1117,6 @@ function submit_password_reset(){
     }
     if(test_for_bad != 'bad'){
         var token = $("#token").val()
-        $.post("/confirm_password_reset", {token: token, password_1: password_1, password_2: password_2})
+        $.post("/main/confirm_password_reset", {token: token, password_1: password_1, password_2: password_2})
     }
 }
