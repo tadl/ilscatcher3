@@ -71,7 +71,7 @@ ready = function() {
         }
     });
 
-
+    $('#login_form').submit(function(event){event.preventDefault();});
     hold_management_binds();
     checkout_management_binds();
     check_images();

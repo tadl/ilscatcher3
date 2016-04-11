@@ -59,20 +59,10 @@ body.list_checkouts {
 #grid .panel img {
     width: 100%;
 }
-@media screen and (min-width: 1px) and (max-width: 767px){
-    #grid[data-columns]::before {
-        content: '2 .col-xs-6';
-    }
-}
-@media screen and (min-width:768px) and (max-width: 1150px){
-    #grid[data-columns]::before {
-        content: '4 .col-sm-3';
-    }
-}
-@media screen and (min-width:1151px) and (max-width: 9999px){
-    #grid[data-columns]::before {
-        content: '6 .col-md-2';
-    }
+
+
+.item_details_cover{
+    width: 100%;
 }
 
 .back-to-top {
@@ -224,4 +214,25 @@ span.goodreads-stars a {
 
 .center {
     text-align: center;
+}
+
+@media screen and (min-width: 1px) and (max-width: 767px){
+    #grid[data-columns]::before {
+        content: '2 .col-xs-6';
+    }
+    .item_details_cover{
+        height: auto;
+        width: auto;
+        max-height: 200px;
+    }
+}
+@media screen and (min-width:768px) and (max-width: 1150px){
+    #grid[data-columns]::before {
+        content: '4 .col-sm-3';
+    }
+}
+@media screen and (min-width:1151px) and (max-width: 9999px){
+    #grid[data-columns]::before {
+        content: '6 .col-md-2';
+    }
 }
