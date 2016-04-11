@@ -311,14 +311,17 @@ class MainController < ApplicationController
     @user = generate_user()
     if !@user.error
       set_cookies(@user)
-      @fines = @user.fines
+      fines_and_fees = @user.fines
+      @fines = fines_and_fees[0]
+      @fees = fines_and_fees[1]
     else
       @fines = 'login'
+      @fees = 'login'
     end
     respond_to do |format|
       format.html
       format.json {render :json => {:user => @user,
-        :fines => @fines}}
+        :fines => @fines, :fees => @fees}}
     end
   end
 

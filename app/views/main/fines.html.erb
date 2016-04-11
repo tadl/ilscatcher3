@@ -12,8 +12,13 @@
             <%= render 'account_menu' %>
         </div>
         <div id="fines-summary" class="col-xs-12 col-sm-9">
-            <% if @fines.length > 0 %>
-                <%= render 'fines_list', fines: @fines %>
+            <% if @fines.length > 0 || @fees.length > 0 %>
+                <% if @fines.length > 0 %>
+                    <%= render 'fines_list', fines: @fines %>
+                <% end %>
+                <% if @fees.length > 0 %>
+                    <%= render 'fees_list', fess: @fees %>
+                <% end %>     
             <% else %>
                 <h2>No fines on your account. Hooray!</h2>
             <% end %>

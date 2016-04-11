@@ -1,17 +1,25 @@
+<h3>Fines</h3>
 <table class="table table-striped table-responsive">
     <thead>
         <tr>
-            <th>Transaction Start Date</th>
-            <th>Last Payment Date</th>
-            <th>Initial Amt Owed</th>
-            <th>Total Amt Paid</th>
-            <th>Balance Owed</th>
-            <th>Billing Type</th>
+            <th>Title</th>
+            <th>Author</th>
+            <th>Checkout / Last Renewal Date</th>
+            <th>Due Date</th>
+            <th>Return Date</th>
+            <th>Current Fine</th>
         </tr>
     </thead>
     <tbody>
         <% @fines.each do |fine| %>
-            <%= render 'fine', :fine => fine %>
+            <tr>
+                <td><%= fine[:title] %></td>
+                <td><%= fine[:author] %></td>
+                <td><%= fine[:checkout_date] %></td>
+                <td><%= fine[:due_date] %></td>
+                <td><%= fine[:return_date] %></td>
+                <td><%= fine[:balance_owed] %></td>
+            </tr>
         <% end %>
     </tbody>
 </table>

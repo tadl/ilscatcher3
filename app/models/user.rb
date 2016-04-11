@@ -362,7 +362,17 @@ class User
   def fines
   	agent = create_agent_token(self.token)
   	page = agent.get('https://mr-v2.catalog.tadl.org/eg/opac/myopac/main?limit=100')
-  	fines_list = page.parser.css('#myopac_trans_div/table/tbody/tr').map do |c|
+  	fines_list = page.parser.css('#myopac_circ_trans_row').map do |c|
+          {
+            :title => c.css('td[1]').text.try(:strip),
+            :author => c.css('td[2]').text.try(:strip),
+            :checkout_date => c.css('td[3]').text.try(:strip),
+            :due_date => c.css('td[4]').text.try(:strip),
+            :return_date => c.css('td[5]').text.try(:strip),
+            :balance_owed => c.css('td[6]').text.try(:strip),
+          }
+    end
+    other_fees_list = page.parser.css('#myopac_trans_div/table/tbody/tr').map do |c|
           {
             :transaction_start_date => c.css('td[1]').text.try(:strip),
             :last_pmt_date => c.css('td[2]').text.try(:strip),
@@ -372,7 +382,7 @@ class User
             :billing_type => c.css('td[6]').text.try(:strip),
           }
     end
-    return fines_list
+    return fines_list, other_fees_list
   end
 
   def payments
