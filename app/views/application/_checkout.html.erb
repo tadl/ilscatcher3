@@ -23,6 +23,8 @@
                 <div class="col-lg-7 col-sm-7 col-xs-7"><!-- details about item -->
                     <% if !checkout.author.nil? %><h4><%= checkout.author %></h4><% end %>
                     <dl class="dl-horizontal">
+                    <dt>Item Barcode</dt>
+                    <dd><%= checkout.barcode %></dd>
                     <dt>Renewals remaining</dt>
                     <dd><%= checkout.renew_attempts %></dd>
                     <dt>Due Date</dt>
