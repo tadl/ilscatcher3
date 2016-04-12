@@ -25,7 +25,20 @@
                 <% if !item.abstract.empty? %>
                     <dl>
                         <dt>Summary</dt>
-                        <dd><%= item.abstract %></dd>
+                        <% if item.abstract.length > 250 %>
+                            <dd>
+                                <%= truncate(item.abstract, length: 250) %>
+                                 <%= link_to 'Read more', '', class: "read-more-#{item.id}-abstract" %>
+                                <script>
+                                    $('.read-more-<%= item.id %>-abstract').on('click', function(e) {
+                                        e.preventDefault()
+                                        $(this).parent().html('<%= escape_javascript item.abstract %>')
+                                    })
+                                </script>
+                            </dd>
+                        <% else %>
+                            <dd><%= item.abstract %></dd>
+                        <% end %>
                     </dl>
                 <% end %>
                 <div id="trailer_<%= item.id %>">
@@ -33,7 +46,20 @@
                 <% if !item.contents.empty? %>
                     <dl>
                         <dt>Contents</dt>
-                        <dd><%= item.contents %></dd>
+                        <% if item.contents.length > 250 %>
+                            <dd>
+                                <%= truncate(item.contents, length: 250) %>
+                                 <%= link_to 'Read more', '', class: "read-more-#{item.id}-contents" %>
+                                <script>
+                                    $('.read-more-<%= item.id %>-contents').on('click', function(e) {
+                                        e.preventDefault()
+                                        $(this).parent().html('<%= escape_javascript item.contents %>')
+                                    })
+                                </script>
+                            </dd>
+                        <% else %>
+                            <dd><%= item.contents %></dd>
+                        <% end %>
                     </dl>
                 <% end %>
             </div>
