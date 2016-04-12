@@ -1,0 +1,75 @@
+<span class="item_buttons_div">
+    <% if item.electronic.to_s != 'true'  %>
+        <div class='hold-status-<%= item.id %>'>
+        </div>
+        <div class="holdlogin-<%= item.id %>" style="display: none">
+            <div>
+                <div class="alert alert-info">
+                    <i class="glyphicon glyphicon-user"></i> Log in to place hold
+                </div>
+            </div>
+            <label for="holdloginuser">Username or Library Card</label>
+            <input type="text" class="holdloginuser-<%= item.id %> form-control" name="holdloginuser" />
+            <label for="holdloginpass" class="padtop">Password</label>
+            <input type="password" class="holdloginpass-<%= item.id %> form-control" name="holdloginpass" />
+            <div class="padtop">
+                <button type="button" class="btn btn-success loginsubmit" onclick="login(<%= item.id %>)">
+                    Log in and Place Hold
+                </button>
+            </div>
+            <div class="padtop">
+                <button type="button" class="btn btn-danger logincancel" onclick="login_cancel(<%= item.id %>)">
+                    Cancel
+                </button>
+            </div>
+        </div>
+        <p>
+            <button class="btn btn-success holdbtn hold-<%= item.id %>" onclick="place_hold(<%= item.id %>)">
+                Place hold
+            </button>
+        </p>
+    <% else %>
+        <p><a class="btn btn-success" href="<%= item.eresource %>">View Online</a></p>
+    <% end %>
+    <% if @default_list %>
+        <div class="btn-group" style="min-width:120px;">
+            <button type="button" class="btn btn-primary" id="add-list-<%= item.id %>" onclick="add_to_list(<%= @default_list %>, <%= item.id %>)">Add to List</button>
+            <button type="button" class="btn btn-primary dropdown-toggle" id="button-<%= item.id %>" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <span class="caret"></span>
+                <span class="sr-only">Toggle Dropdown</span>
+            </button>
+            <ul class="dropdown-menu dropdown-menu-right">
+                <% @lists.each do |l| %>
+                    <li>
+                        <a class="clicky" onclick="add_to_list(<%= l['list_id'] %>,<%= item.id %>)">
+                            <%= truncate(l['title'], length: 30, separator: ' ') %>
+                            <% if l['default'] == true %> 
+                                <span class="sr-only">Default list</span>
+                                <i class="glyphicon glyphicon-ok-sign text-success"></i>
+                            <% end %>
+                        </a>
+                    </li>
+                <% end %>
+            </ul>
+        </div>
+    <% elsif @lists && !@lists.empty? %>
+        <div class="btn-group" style="min-width:120px;">
+            <button type="button" class="btn btn-primary dropdown-toggle" id="add-list-<%= item.id %>" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Add to List
+            </button>
+            <ul class="dropdown-menu dropdown-menu-right">
+                <% @lists.each do |l| %>
+                    <li>
+                        <a class="clicky" onclick="add_to_list(<%= l['list_id'] %>,<%= item.id %>)"><%= truncate(l['title'], length: 30, separator: ' ') %>
+                            <% if l['default'] == true %> 
+                                <span class="sr-only">Default list</span>
+                                <i class="glyphicon glyphicon-ok-sign text-success"></i>
+                            <% end %>
+                        </a>
+                    </li>
+                <% end %>
+            </ul>
+        </div>
+    <% end %>
+</span>
+<div style="clear: both"></div>
