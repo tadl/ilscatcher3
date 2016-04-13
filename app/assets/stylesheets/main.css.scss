@@ -220,6 +220,11 @@ span.goodreads-stars a {
     text-align: center;
 }
 
+.facet_show_link{
+    font-size: 12px;
+}
+
+
 @media screen and (min-width: 1px) and (max-width: 767px){
     #grid[data-columns]::before {
         content: '2 .col-xs-6';
@@ -245,6 +250,19 @@ span.goodreads-stars a {
     .item_buttons_div{
         float: none;
     }
+
+    .full_logo{
+        height: auto;
+        width: auto;
+        max-width: 250px;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .owl-pagination{
+        display: none;
+    }
 }
 @media screen and (min-width:768px) and (max-width: 1150px){
     #grid[data-columns]::before {
@@ -255,4 +273,19 @@ span.goodreads-stars a {
     #grid[data-columns]::before {
         content: '6 .col-md-2';
     }
+}
+
+@media screen and (min-width: 1px) and (max-width: 320px){
+    #grid[data-columns]::before {
+        content: '1 .col-xs-12';
+    }
+    #grid .panel img {
+        max-height: 200px;
+        width: auto;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+
 }

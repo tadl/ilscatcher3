@@ -1120,3 +1120,10 @@ function submit_password_reset(){
         $.post("/main/confirm_password_reset", {token: token, password_1: password_1, password_2: password_2})
     }
 }
+
+function show_facet(id, facet_type){
+    var target_div = '#'+ id + '_' + facet_type
+    var link_to_hide = '#'+ id + '_' + facet_type + '_show_link'
+    $(target_div).show()
+    $(link_to_hide).hide()
+}

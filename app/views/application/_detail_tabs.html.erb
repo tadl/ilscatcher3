@@ -1,42 +1,149 @@
-<ul class="nav nav-tabs" role="tablist">
-    <% if item.electronic != 'true' %>
-        <li role="presentation" class="<% if item.loc_copies_available.to_i  >= 1 %>active<% else %>disabled<% end %>"><a href="#onShelf" aria-controls="onShelf" role="tab" data-toggle="tab">Copies on Shelf</a></li>
-        <li role="presentation" class="<% if item.loc_copies_available.to_i == 0 %>active<% end %>"><a href="#allCopies" aria-controls="allCopies" role="tab" data-toggle="tab">All Copies <span class="badge"><%= item.all_copies_total %></span></a></li>
-    <% end %>
-    <% if item.genres && item.genres.size > 0  %>
-    	<li role="presentation" class=""><a href="#item_genres" aria-controls="item_genres" role="tab" data-toggle="tab">Genres</a></li>
-    <% end %>
-    <% if item.subjects && item.subjects.size > 0 %>
-    	<li role="presentation" class=""><a href="#item_subjects" aria-controls="item_subjects" role="tab" data-toggle="tab">Subjects</a></li>
-    <% end %>
-    <% if item.series && item.series.size > 0 %>
-    	<li role="presentation" class=""><a href="#item_series" aria-controls="item_series" role="tab" data-toggle="tab">Series</a></li>
-    <% end %>
-    <% if item.author_other && item.author_other.size > 0 %>
-        <li role="presentation" class=""><a href="#item_authors" aria-controls="item_authors" role="tab" data-toggle="tab">Other Authors / Cast / Groups</a></li>
-    <% end %>
-</ul>
-
-
-<div class="tab-content">
-    <% if item.electronic != 'true' %>
-        <div role="tabpanel" class="tab-pane<% if item.loc_copies_available.to_i  >= 1 %> active<% end %>" id="onShelf">
-        	<%= render 'list_copies', item: item, all: true %>
+<div class="hidden-xs">
+    <ul class="nav nav-tabs" role="tablist">
+        <% if item.electronic != 'true' %>
+            <li role="presentation" class="<% if item.loc_copies_available.to_i  >= 1 %>active<% else %>disabled<% end %>">
+                <a href="#onShelf" aria-controls="onShelf" role="tab" data-toggle="tab" onclick="$.fancybox.update()">
+                    Copies on Shelf
+                </a>
+            </li>
+            <li role="presentation" class="<% if item.loc_copies_available.to_i == 0 %>active<% end %>">
+                <a href="#allCopies" aria-controls="allCopies" role="tab" data-toggle="tab" onclick="$.fancybox.update()">
+                    All Copies <span class="badge"><%= item.all_copies_total %></span>
+                </a>
+            </li>
+        <% end %>
+        <% if item.genres && item.genres.size > 0  %>
+        	<li role="presentation" class="">
+                <a href="#item_genres" aria-controls="item_genres" role="tab" data-toggle="tab" onclick="$.fancybox.update()">
+                    Genres
+                </a>
+            </li>
+        <% end %>
+        <% if item.subjects && item.subjects.size > 0 %>
+        	<li role="presentation" class="">
+                <a href="#item_subjects" aria-controls="item_subjects" role="tab" data-toggle="tab" onclick="$.fancybox.update()">
+                    Subjects
+                </a>
+            </li>
+        <% end %>
+        <% if item.series && item.series.size > 0 %>
+        	<li role="presentation" class="">
+                <a href="#item_series" aria-controls="item_series" role="tab" data-toggle="tab" onclick="$.fancybox.update()">
+                    Series
+                </a>
+            </li>
+        <% end %>
+        <% if item.author_other && item.author_other.size > 0 %>
+            <li role="presentation" class="">
+                <a href="#item_authors" aria-controls="item_authors" role="tab" data-toggle="tab" onclick="$.fancybox.update()">
+                    Other Authors / Cast
+                </a>
+            </li>
+        <% end %>
+    </ul>
+    <div class="tab-content">
+        <% if item.electronic != 'true' %>
+            <div role="tabpanel" class="tab-pane<% if item.loc_copies_available.to_i  >= 1 %> active<% end %>" id="onShelf">
+            	<%= render 'list_copies', item: item, all: true %>
+            </div>
+            <div role="tabpanel" class="tab-pane<% if item.loc_copies_available.to_i  == 0 %> active<% end %>" id="allCopies">
+               <%= render 'list_copies', item: item, all: false %>
+            </div>
+        <% end %>
+        <div role="tabpanel" class="tab-pane" id="item_genres">
+           <%= render 'item_facets', item: item, facets: item.genres, type: 'single_genre' %>
         </div>
-        <div role="tabpanel" class="tab-pane<% if item.loc_copies_available.to_i  == 0 %> active<% end %>" id="allCopies">
-           <%= render 'list_copies', item: item, all: false %>
+        <div role="tabpanel" class="tab-pane" id="item_subjects">
+           <%= render 'item_facets', item: item, facets: item.subjects, type: 'subject' %>
         </div>
-    <% end %>
-    <div role="tabpanel" class="tab-pane" id="item_genres">
-       <%= render 'item_facets', item: item, facets: item.genres, type: 'single_genre' %>
-    </div>
-    <div role="tabpanel" class="tab-pane" id="item_subjects">
-       <%= render 'item_facets', item: item, facets: item.subjects, type: 'subject' %>
-    </div>
-    <div role="tabpanel" class="tab-pane" id="item_series">
-       <%= render 'item_facets', item: item, facets: item.series, type: 'series' %>
-    </div>
-    <div role="tabpanel" class="tab-pane" id="item_authors">
-       <%= render 'item_facets', item: item, facets: item.author_other, type: 'author' %>
+        <div role="tabpanel" class="tab-pane" id="item_series">
+           <%= render 'item_facets', item: item, facets: item.series, type: 'series' %>
+        </div>
+        <div role="tabpanel" class="tab-pane" id="item_authors">
+           <%= render 'item_facets', item: item, facets: item.author_other, type: 'author' %>
+        </div>
     </div>
 </div>
+<div class="visible-xs">
+    <% if item.electronic != 'true' %>
+        <div>
+            <% if item.loc_copies_available.to_i  == 0 && item.loc.nil? %>
+                <h4 style="color: red;"> No Copies Currently Available </h4>
+            <% end %>
+            <% if item.loc_copies_available.to_i  == 0 && !item.loc.nil? %>
+                <h4 style="color: red;"> No Copies Currently Available at Your Location</h4>
+            <% end %>
+            <% if item.loc_copies_available.to_i  > 0 %>
+                <div>
+                    <% if item.loc.nil? %>
+                        <h4>Available Copies</h4>
+                    <% else %>
+                        <h4>Copies Available at Your Location</h4>
+                    <% end %>
+                </div>
+                <div>
+                    <%= render 'list_copies', item: item, all: true %>
+                </div>
+            <% end %>
+        </div>
+        <div>
+            <h4>
+                All Copies
+                <a class="facet_show_link" id="<%= item.id %>_all_copies_show_link" onclick="show_facet(<%= item.id %>,'all_copies')">
+                    (Show)
+                </a>
+            </h4>
+            <div id="<%= item.id %>_all_copies" style="display: none">
+                <%= render 'list_copies', item: item, all: false %>
+            </div>
+        </div>
+    <% end %>
+    <% if !item.genres.nil? && item.genres.size > 0 %>
+        <h4>
+            Genres
+            <a class="facet_show_link" id="<%= item.id %>_genres_show_link" onclick="show_facet(<%= item.id %>,'genres')">
+                (Show)
+            </a>
+        </h4>
+        <div id="<%= item.id %>_genres" style="display: none">
+            <%= render 'item_facets', item: item, facets: item.genres, type: 'single_genre' %>
+        </div>
+    <% end %>
+    <% if !item.subjects.nil? && item.subjects.size > 0 %>
+        <h4>
+            Subjects
+            <a class="facet_show_link" id="<%= item.id %>_subjects_show_link" onclick="show_facet(<%= item.id %>,'subjects')">
+                (Show)
+            </a>
+        </h4>
+        <div id="<%= item.id %>_subjects" style="display: none">
+            <%= render 'item_facets', item: item, facets: item.subjects, type: 'subject' %>
+        </div>
+    <% end %>
+    <% if !item.series.nil? && item.series.size > 0 %>
+        <h4>
+            Series
+            <a class="facet_show_link" id="<%= item.id %>_series_show_link" onclick="show_facet(<%= item.id %>,'series')">
+                (Show)
+            </a>
+        </h4>
+        <div id="<%= item.id %>_series" style="display: none">
+            <%= render 'item_facets', item: item, facets: item.series, type: 'series' %>
+        </div>
+    <% end %>
+    <% if !item.author_other.nil? && item.author_other.size > 0  %>
+        <h4>
+            Other Authors / Cast
+            <a class="facet_show_link" id="<%= item.id %>_author_other_show_link" onclick="show_facet(<%= item.id %>,'author_other')">
+                (Show)
+            </a>
+        </h4>
+        <div id="<%= item.id %>_author_other" style="display: none">
+            <%= render 'item_facets', item: item, facets: item.author_other, type: 'author' %>
+        </div>
+    <% end %>
+</div>
+
+<% if item.loc_copies_available.to_i  == 0 %>
+    <script>show_facet(<%= item.id %>,'all_copies')</script>
+<% end %>
