@@ -76,9 +76,9 @@
             <% if item.loc_copies_available.to_i  > 0 %>
                 <div>
                     <% if item.loc.nil? %>
-                        <h4>Available Copies</h4>
+                        <h4 style="color: green;">Available Copies</h4>
                     <% else %>
-                        <h4>Copies Available at Your Location</h4>
+                        <h4 style="color: green;">Copies Available at Your Location</h4>
                     <% end %>
                 </div>
                 <div>
@@ -144,6 +144,6 @@
     <% end %>
 </div>
 
-<% if item.loc_copies_available.to_i  == 0 %>
+<% if item.loc_copies_available.to_i == 0 %>
     <script>show_facet(<%= item.id %>,'all_copies')</script>
 <% end %>
