@@ -114,18 +114,21 @@ class MainController < ApplicationController
         else
           @hold_confirmation = @check_user.force_hold(params['record_id'])[0]
         end
+          @record_id = params[:record_id] 
       else
         @hold_confirmation = 'no records submitted for holds'
+        @record_id = 'no records submitted for holds'
       end
     else
       @hold_confirmation = 'bad login'
+      @record_id = 'bad login'
     end
     @user = generate_user()
     set_cookies(@user)
     respond_to do |format|
       format.js
       format.json {render :json => {:user => @user,
-        :hold_confirmation => @hold_confirmation}}
+        :hold_confirmation => @hold_confirmation, :record_id => @record_id}}
     end
   end
 
@@ -157,6 +160,13 @@ class MainController < ApplicationController
   def edit_hold_pickup
     @hold_id = params[:hold_id]
     @hold_state = params[:hold_state]
+    if params[:from_details]
+      @from_details = params[:from_details]
+      @record_id = params[:record_id]
+    else
+      @from_details = 'false'
+      @record_id = nil
+    end
     respond_to do |format|
       format.js
     end
@@ -167,6 +177,7 @@ class MainController < ApplicationController
     @hold = params[:hold_id]
     @new_pickup = params[:new_pickup]
     @hold_state = params[:hold_state]
+    @new_pickup_pretty = location_map(@new_pickup, @location_options)
     if !check_user.error
       @hold = check_user.edit_hold(@hold, @new_pickup, @hold_state)
     else

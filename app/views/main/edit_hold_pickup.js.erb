@@ -1,8 +1,9 @@
 var hid = <%= @hold_id %>
+<% if @from_details != 'true' %>
+var holdstate = state_helper('<%= @hold_state %>');
 var container = '.pickup-dd-'+hid;
 var originalhtml = $(container).html();
 var oldloc = location_map($('.pickup-'+hid).text())
-var holdstate = state_helper('<%= @hold_state %>');
 var locopts = '<select class="form-control form-'+hid+'" name="location-switcher">';
 <% @long_pickup_locations.each do |l| %>
 	locopts += '<option value="<%= l[1] %>"' + selected_helper(oldloc,<%= l[1] %>) + '><%= l[0] %></option>';
@@ -29,6 +30,14 @@ $('.form-'+hid).change(function() {
         $(container).html(newhtml);
     });
 });
+<% else %>
+    var selected_location = ''
+    var hide_target = '.hold-status-<%= escape_javascript(@record_id) %>';
+    var show_target = '.change_pickup_<%= escape_javascript(@record_id) %>'
+    $(hide_target).hide();
+    $(show_target).show()
+<% end %>
+hideLoading();
 
 function selected_helper(oid,id) {
     if (oid == id) {
@@ -53,4 +62,28 @@ function location_map(name) {
         <% end %>
     };
     return locations[name];
+}
+
+function cancel_change(){
+   var show_target = '.hold-status-<%= escape_javascript(@record_id) %>';
+   var hide_target = '.change_pickup_<%= escape_javascript(@record_id) %>' 
+   $(show_target).show()
+   $(hide_target).hide()
+}
+
+function submitt_pickup_change(new_pickup_loc){
+    showLoading();
+    $.post('/main/update_hold_pickup.json', {hold_id: hid, new_pickup: new_pickup_loc, hold_state: 'f'})
+    .done(function(data) {
+        hideLoading();
+        var show_target = '.hold-status-<%= escape_javascript(@record_id) %>'
+        var messagesuccess = '<div class="alert alert-success" role="alert">';
+        var message = messagesuccess+'Hold placed successfully for pickup at '+ data.pickup_location
+        message += '<br><a onclick="change_hold_pickup('+ data.record_id +')">Change pick up location?</a></div></div>'
+        $(show_target).html(message)
+        var hide_target = '.change_pickup_<%= escape_javascript(@record_id) %>' 
+        $(hide_target).html()
+        $(hide_target).hide()
+        $(show_target).show()
+    });
 }

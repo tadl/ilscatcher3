@@ -75,6 +75,7 @@ ready = function() {
     hold_management_binds();
     checkout_management_binds();
     check_images();
+
 };
 
 
@@ -630,7 +631,7 @@ function account_prefs_binds() {
 
         user_prefs_cancel_bind(userpanel);
         user_password_save_bind();
-    });
+    }); 
 
     $('.edit-notification-prefs').unbind('click');
     $('.edit-notification-prefs').click(function(event) {
@@ -934,6 +935,22 @@ function bulk_action_binds() {
         $('.selected-btn').click();
     });
 }
+
+function change_hold_pickup(record_id){
+    showLoading();
+    $.get('/main/holds.json')
+    .done(function(data) {
+        if (data.holds) {
+            $.each(data.holds, function(i, hold) {
+                if(hold.record_id == record_id){
+                    var hold_id = 
+                    $.post("/main/edit_hold_pickup.js",{'record_id': record_id, 'hold_id' : hold.hold_id, 'hold_state' : "Active", 'from_details' : 'true'})
+                }
+            });
+        }
+    });
+}
+
 
 
 function edit_pickup_loc(hid,rid,state) {
