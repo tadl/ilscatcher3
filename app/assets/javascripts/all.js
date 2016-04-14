@@ -61,7 +61,6 @@ ready = function() {
         }
     });
 
-
     $(document).keydown(function(e){
         if (e.which == 37 && $('#previous_link').is(':visible')){ 
             $('#previous_link').click()
@@ -75,12 +74,7 @@ ready = function() {
     hold_management_binds();
     checkout_management_binds();
     check_images();
-
 };
-
-
-
-
 
 $(document).ready(ready);
 
@@ -950,8 +944,6 @@ function change_hold_pickup(record_id){
         }
     });
 }
-
-
 
 function edit_pickup_loc(hid,rid,state) {
     event.preventDefault();
