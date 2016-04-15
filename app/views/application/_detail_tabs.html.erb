@@ -89,7 +89,7 @@
         <div>
             <h4>
                 All Copies
-                <a class="facet_show_link" id="<%= item.id %>_all_copies_show_link" onclick="show_facet(<%= item.id %>,'all_copies')">
+                <a class="clicky facet_show_link" id="<%= item.id %>_all_copies_show_link" onclick="show_facet(<%= item.id %>,'all_copies')">
                     (Show)
                 </a>
             </h4>
@@ -101,7 +101,7 @@
     <% if !item.genres.nil? && item.genres.size > 0 %>
         <h4>
             Genres
-            <a class="facet_show_link" id="<%= item.id %>_genres_show_link" onclick="show_facet(<%= item.id %>,'genres')">
+            <a class="clicky facet_show_link" id="<%= item.id %>_genres_show_link" onclick="show_facet(<%= item.id %>,'genres')">
                 (Show)
             </a>
         </h4>
@@ -112,7 +112,7 @@
     <% if !item.subjects.nil? && item.subjects.size > 0 %>
         <h4>
             Subjects
-            <a class="facet_show_link" id="<%= item.id %>_subjects_show_link" onclick="show_facet(<%= item.id %>,'subjects')">
+            <a class="clicky facet_show_link" id="<%= item.id %>_subjects_show_link" onclick="show_facet(<%= item.id %>,'subjects')">
                 (Show)
             </a>
         </h4>
@@ -123,7 +123,7 @@
     <% if !item.series.nil? && item.series.size > 0 %>
         <h4>
             Series
-            <a class="facet_show_link" id="<%= item.id %>_series_show_link" onclick="show_facet(<%= item.id %>,'series')">
+            <a class="clicky facet_show_link" id="<%= item.id %>_series_show_link" onclick="show_facet(<%= item.id %>,'series')">
                 (Show)
             </a>
         </h4>
@@ -134,7 +134,7 @@
     <% if !item.author_other.nil? && item.author_other.size > 0  %>
         <h4>
             Other Authors / Cast
-            <a class="facet_show_link" id="<%= item.id %>_author_other_show_link" onclick="show_facet(<%= item.id %>,'author_other')">
+            <a class="clicky facet_show_link" id="<%= item.id %>_author_other_show_link" onclick="show_facet(<%= item.id %>,'author_other')">
                 (Show)
             </a>
         </h4>
