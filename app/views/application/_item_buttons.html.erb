@@ -4,13 +4,13 @@
         </div>
         <div class='change_pickup_<%= item.id %>' style="display: none">
             <div class="dropdown" style="margin-bottom: 10px;">
-                <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+                <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
                     Select New Pickup Location
                     <span class="caret"></span>
                 </button>
                 <ul class="dropdown-menu">
                     <% @long_pickup_locations.each do |l| %>
-                        <li><a onclick="submitt_pickup_change(<%= l[1] %>)"><%= l[0] %><a></li>
+                        <li><a class="clicky" onclick="submitt_pickup_change(<%= l[1] %>)"><%= l[0] %></a></li>
                     <% end %>
                 </ul>
             </div>
