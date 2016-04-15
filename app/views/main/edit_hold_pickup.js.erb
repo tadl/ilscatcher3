@@ -37,6 +37,9 @@ $('.form-'+hid).change(function() {
     $(hide_target).hide();
     $(show_target).show()
 <% end %>
+
+$.fancybox.update()
+$.fancybox.reposition()
 hideLoading();
 
 function selected_helper(oid,id) {

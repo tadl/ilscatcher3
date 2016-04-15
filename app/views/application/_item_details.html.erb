@@ -30,7 +30,7 @@
                 <% if !item.abstract.empty? %>
                     <dl>
                         <dt>Summary</dt>
-                        <% if item.abstract.length > 250 %>
+                        <% if item.abstract.length > 275 %>
                             <dd>
                                 <%= truncate(item.abstract, length: 250) %>
                                  <%= link_to 'Read more', '', class: "read-more-#{item.id}-abstract" %>
@@ -51,7 +51,7 @@
                 <% if !item.contents.empty? %>
                     <dl>
                         <dt>Contents</dt>
-                        <% if item.contents.length > 250 %>
+                        <% if item.contents.length > 275 %>
                             <dd>
                                 <%= truncate(item.contents, length: 250) %>
                                  <%= link_to 'Read more', '', class: "read-more-#{item.id}-contents" %>
