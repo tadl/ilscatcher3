@@ -422,8 +422,8 @@ function login(id,page) {
         var userdiv = '#username';
         var passdiv = '#password';
     }
-    var username = $(userdiv).val();
-    var password = $(passdiv).val();
+    var username = $(userdiv).filter(":visible").val();
+    var password = $(passdiv).filter(":visible").val();
     $.post("login.json", {username: username, password: password})
     .done(function(data) {
         $('#statusMessage').modal('hide')
