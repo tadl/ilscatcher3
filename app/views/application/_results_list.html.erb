@@ -55,6 +55,24 @@
                 <div class="padbot">
                     <% if item.eresource.nil? %>
                         <div class='hold-status-<%= item.id %>'></div>
+                        <div class='change_pickup_<%= item.id %>' style="display: none">
+                            <div class="dropdown" style="margin-bottom: 10px;">
+                                <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+                                    Select New Location
+                                    <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <% @long_pickup_locations.each do |l| %>
+                                        <li>
+                                            <a class="clicky" onclick="submitt_pickup_change(<%= l[1] %>)"><%= l[0] %></a>
+                                        </li>
+                                    <% end %>
+                                </ul>
+                            </div>
+                            <button type="button" class="btn btn-danger" onclick="cancel_change()">
+                                Cancel Change
+                            </button>
+                        </div>
                         <div class="holdlogin-<%= item.id %>" style="display: none">
                             <div>
                                 <div class="alert alert-info">
