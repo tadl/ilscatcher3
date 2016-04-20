@@ -19,29 +19,6 @@
     </div>
 <% end %>
 <div class="clearfix padtop"></div>
-<% if (request.path == main_holds_path && @holds.count > 0) || (request.path == main_checkouts_path && @checkouts.count > 0) %>
-    <div class="btn-group">
-        <button type="button" class="btn btn-default" id="select-all">Select All Items</button>
-        <button type="button" class="btn btn-default" id="select-none">Clear Selection</button>
-    </div>
-    <div class="btn-group padtop">
-        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Bulk Actions <span class="caret"></span>
-        </button>
-        <ul class="dropdown-menu">
-            <% if request.path == main_checkouts_path %>
-                <li><a href="#" id="checkout-bulk-renew">Renew</a></li>
-            <% elsif request.path == main_holds_path %>
-                <li>
-                    <a href="#" id="hold-bulk-suspend">Suspend</a>
-                </li>
-                <li><a href="#" id="hold-bulk-activate">Activate</a></li>
-                <li role="separator" class="divider"></li>
-                <li><a href="#" id="hold-bulk-cancel">Cancel</a></li>
-            <% end %>
-        </ul>
-    </div>
-<% end %>
 <% if (request.path == main_fines_path && @fines.count > 0 && Settings.has_payments == "true") %>
     <div class="btn-group">
         <form method="POST" action="<%= Settings.payment_link %>">

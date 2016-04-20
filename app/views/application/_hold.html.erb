@@ -1,5 +1,11 @@
 <div class="col-xs-12">
-    <div class="panel panel-<%= hold.queue_status =~ /^Ready/ ? 'success' : 'default' %>">
+    <% if hold.queue_status =~ /^Ready/ %>
+        <div class="panel panel-success">
+    <% elsif hold.hold_status =~ /Suspended/ %>
+        <div class="panel panel-danger">
+    <% else %>
+        <div class="panel panel-default">
+    <% end %>
         <div class="panel-heading">
             <div class="row">
                 <div class="col-lg-11 col-md-11 col-sm-11 col-xs-10">
@@ -9,6 +15,9 @@
                         <% end %>
                         <% if hold.queue_status =~ /Ready/ %>
                             <span> - Waiting for Pickup at <%= hold.pickup_location %> </span>
+                        <% end %>
+                        <% if hold.hold_status =~ /Suspended/ %>
+                            <span> - Suspended </span>
                         <% end %>
                     </h4>
                 </div>
@@ -33,7 +42,9 @@
                     <dt>Pickup Location</dt>
                     <dd class="pickup-dd-<%= hold.hold_id %>">
                         <span class="pickup-<%= hold.hold_id %>"><%= hold.pickup_location %></span>
-                        <button type="button" class="small text-subdued btn btn-xs btn-default change-pickup-<%= hold.hold_id %>" onclick="edit_pickup_loc(<%= hold.hold_id %>,<%= hold.record_id %>,'<%= hold.hold_status %>')">change</button>
+                        <% if hold.queue_status !~ /Ready/ %>
+                            <button type="button" class="small text-subdued btn btn-xs btn-default change-pickup-<%= hold.hold_id %>" onclick="edit_pickup_loc(<%= hold.hold_id %>,<%= hold.record_id %>,'<%= hold.hold_status %>')">change</button>
+                        <% end %>
                     </dd>
                     <dt>Hold Status</dt>
                     <dd><b><%= hold.hold_status =~ /Suspended/ ? hold.hold_status : hold.queue_status %></b></dd>
@@ -41,7 +52,7 @@
                 </div>
                 <div class="col-lg-3 col-sm-3 col-xs-12"><!-- suspend/activate/cancel buttons -->
                     <div>
-                        <% if hold.hold_status == 'Active' && !hold.ready %>
+                        <% if hold.hold_status == 'Active' && hold.queue_status !~ /Ready/ %>
                             <%= link_to 'manage_hold.js', :method => :post, data: {params: hold.create_params('suspend')}, remote: true, :id => 'hold-manage-suspend-'+hold.record_id, :type => 'button', :class => 'hold-suspend btn btn-block btn-warning' do %>Suspend<% end %>
                         <% elsif hold.hold_status == 'Suspended' %>
                             <%= link_to 'manage_hold.js', :method => :post, data: {params: hold.create_params('activate')}, remote: true, :id => 'hold-manage-activate-'+hold.record_id, :type => 'button', :class => 'hold-activate btn btn-block btn-success' do %>Activate<% end %>

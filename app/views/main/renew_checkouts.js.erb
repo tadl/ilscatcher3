@@ -2,11 +2,11 @@
     alert_message('success', '<%= escape_javascript(@message) %>', 5000);
 <% end %>
 <% if @errors %>
-    var message;
+    var message = '';
     <% @errors.each do |e| %>
-        message += '<%= escape_javascript(e[:title]) %> <%= escape_javascript(e[:message]) %>';
+        message += '<div style="border-bottom: 1px dotted #D46A6A; padding: 5px;"><%= escape_javascript(e[:title]) %> - <%= escape_javascript(e[:message]) %></div>';
     <% end %>
-    alert_message('warning', message, 10000);
+    alert_message('danger', message, 10000);
 <% end %>
 <% [*@targeted_records].each do |r| %>
 	<% checkout = @checkouts.find {|c| c.record_id == r} %>
