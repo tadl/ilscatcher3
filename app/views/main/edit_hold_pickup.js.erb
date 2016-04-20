@@ -74,7 +74,7 @@ function cancel_change(){
    $(hide_target).hide()
 }
 
-function submitt_pickup_change(new_pickup_loc){
+function submit_pickup_change(new_pickup_loc){
     showLoading();
     $.post('/main/update_hold_pickup.json', {hold_id: hid, new_pickup: new_pickup_loc, hold_state: 'f'})
     .done(function(data) {
