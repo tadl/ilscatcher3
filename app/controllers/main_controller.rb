@@ -84,7 +84,13 @@ class MainController < ApplicationController
     if @user.token
       set_cookies(@user)
     end
-    if request.path_parameters[:format] == 'json'
+    if params[:record_id] && params[:record_id] != "0"
+      @record_id = params[:record_id]
+    end
+    if params[:page] && params[:page] == 'true'
+      @page = 'true'
+    end 
+    if !@user.error
       UserListFetcher.perform_async(@user.token)
     end
     respond_to do |format|

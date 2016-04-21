@@ -1,6 +1,8 @@
 <div class="row">
     <% unless @search.canned == 'true' %>
-        <%= render 'full_search_box', search: @search %>
+        <div style="padding: 5px;">
+            <%= render 'full_search_box', search: @search %>
+        </div>
     <% else %>
         <%= render 'canned_header', search: @search %>
     <% end %>

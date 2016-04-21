@@ -1,7 +1,7 @@
 class User
 	include ActiveModel::Model
 	require 'open-uri'
-	attr_accessor :full_name, :checkouts, :holds, :holds_ready, :fine, :token, :card, :error, :default_search, :pickup_library, :username
+	attr_accessor :full_name, :checkouts, :holds, :holds_ready, :fine, :token, :card, :error, :default_search, :pickup_library, :username, :temp_password, :temp_code
 
 	def initialize args
     if args['full_name']
@@ -12,7 +12,11 @@ class User
 		  if args['token'] 
 			  agent = create_agent_token(args['token'])
 			  basic_info = basic_info(agent)
-		  elsif args['username'] && args['password'] 
+		  elsif args['username'] && args['password']
+        if args['password'].length <= 4
+          instance_variable_set("@temp_code", args['password']) 
+          instance_variable_set("@temp_password", "true")
+        end
 			  agent_page = create_agent_username_password(args['username'], args['password'])
 			  basic_info = basic_info(agent_page[0], agent_page[1])
 		  else

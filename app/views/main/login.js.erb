@@ -1,9 +1,43 @@
 <% if !@user.error %>
-	$('#account_info_box').html("<%= escape_javascript(render partial: 'account_basics') %>");
-    hideLoading();
-	update_login();
-    item_loading_binds();
-	setTimeout(store_lists, 4000);
+	hideLoading();
+	<% if @page %>
+		<% if @user.temp_password == 'true' %>
+			show_temp_reset()
+			$('#page-login-button').html('Sign in').removeClass('disabled');
+			$('#login_form').submit(function(event){event.preventDefault();});
+		<% else %>
+			location.reload()
+		<% end %>
+	<% else %>
+		$('#account_info_box').html("<%= escape_javascript(render partial: 'account_basics') %>");
+		update_login();
+    	item_loading_binds();
+		<% if @record_id %>
+			<% if @user.temp_password == 'true' %>
+				show_temp_reset()
+			<% else %>
+				var id = "<%=escape_javascript(@record_id)%>"
+				$('.holdlogin-'+id).hide();
+    			target = '.hold-status-' + id;
+    			message = '<div class="alert alert-info">'+spinner+'Logged in, placing hold now...</div>';
+    			$(target).html(message)
+    			$.get("place_hold.js", {record_id: id});
+    		<% end %>
+		<% elsif  @user.temp_password == 'true' %>
+			show_temp_reset()
+		<% end %>
+	<% end %>
 <% else %>
+	$('#statusMessage').modal('hide')
+	alert_message('danger', 'Login failed. The username or password provided was not valid. Passwords are case-sensitive. Check your Caps-Lock key and try again or contact your local library.');
 	$('#account_info_box').html("<%= escape_javascript(render partial: 'login_form') %>");
+	$('#login_form').submit(function(event){event.preventDefault();});
 <% end %>
+
+function show_temp_reset(){
+	var content = "<div class='container' style='width: 95%; max-width: 960px;'><%= escape_javascript(render 'new_password_form') %></div>"
+	$.fancybox.open({ 
+    	'overlayOpacity': 0.1,
+    	'content' : content
+	});
+}

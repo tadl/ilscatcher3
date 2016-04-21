@@ -13,6 +13,9 @@
         </div>
         <div id="checkout_list" class="col-xs-12 col-sm-9">
             <%= render 'checkout_list', :checkouts => @checkouts %>
+            <script>
+                setTimeout(store_lists, 3000);
+            </script>
         </div>
     </div>
 <% end %>

@@ -408,10 +408,10 @@ function actually_delete_edited_note(list_id, note_id) {
 }
 
 function login(id,page) {
-    if (typeof id !== 'undefined') { var do_hold = id; } else { var do_hold = 0; }
+    if (typeof id !== 'undefined') { var do_hold = id; }
     if (typeof page !== 'undefined') { var loginpage = true; }
     $('#statusMessage').modal('show');
-    if (do_hold != 0) {
+    if (do_hold) {
         var userdiv = '.holdloginuser-'+id;
         var passdiv = '.holdloginpass-'+id;
     } else if (loginpage == true) {
@@ -424,28 +424,7 @@ function login(id,page) {
     }
     var username = $(userdiv).filter(":visible").val();
     var password = $(passdiv).filter(":visible").val();
-    $.post("login.json", {username: username, password: password})
-    .done(function(data) {
-        $('#statusMessage').modal('hide')
-        if (data.error == 'bad username or password') {
-            $(userdiv).val('');
-            $(passdiv).val('');
-            $('#statusMessage').modal('hide');
-            alert_message('danger', 'Login failed. The username or password provided was not valid. Passwords are case-sensitive. Check your Caps-Lock key and try again or contact your local library.');
-        } else {
-            $.post("login.js", {username: username, password: password});
-            if (do_hold != 0) {
-                $('.holdlogin-'+id).hide();
-                target = '.hold-status-' + id;
-                message = '<div class="alert alert-info">'+spinner+'Logged in, placing hold now...</div>';
-                $(target).html(message)
-                $.get("place_hold.js", {record_id: id});
-            }
-            if (loginpage == true) {
-                location.reload();
-            }
-        }
-    });
+    $.post("login.js", {username: username, password: password, record_id: id, page: page });
 }
 
 function login_cancel(id) {
@@ -1103,7 +1082,7 @@ function submit_suggest_an_item(){
     }
 }
 
-function submit_password_reset(){
+function submit_password_reset(type_of_reset){
     var password_1 = $("#password_1").val()
     var password_2 = $("#password_2").val()
     var test_for_bad = ''
@@ -1125,10 +1104,23 @@ function submit_password_reset(){
         test_for_bad = 'bad'
     }
     if(test_for_bad != 'bad'){
-        var token = $("#token").val()
-        $.post("/main/confirm_password_reset", {token: token, password_1: password_1, password_2: password_2})
+        if(type_of_reset != 'temp_password'){
+            var token = $("#token").val()
+            $.post("/main/confirm_password_reset", {token: token, password_1: password_1, password_2: password_2})
+        }
+        if(type_of_reset == 'temp_password'){
+            var temp_password = $("#temp_password").val()
+            $.post("/main/update_user_info.json", {password: temp_password, new_password: password_1}).done(function(data) {
+                if(data.message == 'success'){
+                    $("#password_reset").html("<h3 style='color: green;'>Your password has been sucessfully reset!</h3>")
+                }else{
+                    $('#password_reset').html("<h3 style='color: red;'>Sorry. Something went wrong.</h3><p>Please try again later or contact your local library.</p>")
+                }
+            });
+        }
     }
 }
+
 
 function show_facet(id, facet_type){
     var target_div = '#'+ id + '_' + facet_type
