@@ -27,6 +27,11 @@ class MainController < ApplicationController
   end
 
   def search
+    if !params[:layout] && cookies[:layout]
+      params[:layout] = cookies[:layout]
+    elsif params[:layout]
+      cookies[:layout] = {:value => params[:layout]}
+    end
     @search = Search.new params
     if (@search.query && @search.query != '') || @search.canned == 'true'
       results = @search.results
@@ -48,10 +53,13 @@ class MainController < ApplicationController
 
 
   def details
+    if cookies[:layout]
+      params[:layout] = cookies[:layout]
+    end
     if params['title']
       @item = Item.new params
     elsif params['id']
-      @item_search = Search.new :qtype => 'record_id', :query => params['id']
+      @item_search = Search.new :qtype => 'record_id', :query => params['id'], :layout => cookies[:layout]
       @item = @item_search.results[0][0]
     end
     if params['list_name']

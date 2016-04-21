@@ -108,7 +108,6 @@ class Search
           path = '?query='
         end
   		  path += '&qtype=' + self.qtype unless self.qtype.nil?
-        path += '&layout=' + self.layout unless self.layout.nil?
   		  path += '&loc=' + self.loc unless self.loc.nil?
         path += '&fmt=' + self.fmt unless self.fmt.nil?
   		  path += '&availability=' + self.availability unless self.availability.nil?
@@ -157,8 +156,6 @@ class Search
         path = path + '&series[]=' +  facet
       elsif facet_type == 'authors'
         path = path + '&authors[]=' +  facet
-      elsif facet_type == 'layout'
-        path = path + '&layout=' + facet
       end
       return path
     end
@@ -188,7 +185,6 @@ class Search
 
     def search_path_with_layout
       path = search_path_with_facets
-      path += '&layout=' + self.layout unless self.layout.nil?
       return path
     end
 
