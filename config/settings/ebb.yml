@@ -18,11 +18,11 @@ lists:
                     'sort' : 'pubdateDESC'}
     searches:
       - name: "Juvenile Collection"
-        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=28&shelving_location[]=527&layout=grid&search_title=Juvenile Collection'
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=28&shelving_location[]=527&search_title=Juvenile Collection'
       - name: "Juvenile Easy"
-        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=28&shelving_location[]=529&layout=grid&search_title=Juvenile Easy'
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=28&shelving_location[]=529&search_title=Juvenile Easy'
       - name: "Young Adult Collection"
-        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=28&shelving_location[]=563&layout=grid&search_title=Young Adult Collection'
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=28&shelving_location[]=563&search_title=Young Adult Collection'
   - name: 'ebb_books_list'
     fancy_name: 'Books'
     search_params: {'loc' : '28',
@@ -33,13 +33,13 @@ lists:
                     'sort' : 'pubdateDESC'}
     searches:
       - name: "Adult"
-        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=28&shelving_location[]=510&layout=grid&search_title=Adult'
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=28&shelving_location[]=510&search_title=Adult'
       - name: "Audiobooks"
-        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=28&shelving_location[]=518&shelving_location[]=584&layout=grid&search_title=Audiobooks'
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=28&shelving_location[]=518&shelving_location[]=584&search_title=Audiobooks'
       - name: "HOT Titles"
-        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=28&shelving_location[]=569&shelving_location[]=683&layout=grid&search_title=HOT Titles'
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=28&shelving_location[]=569&shelving_location[]=683&search_title=HOT Titles'
       - name: "Oversize"
-        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=28&shelving_location[]=544&layout=grid&search_title=Oversize'
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=28&shelving_location[]=544&search_title=Oversize'
   - name: 'ebb_dvd_list'
     fancy_name: 'Video'
     search_params: {'loc' : '28',
@@ -50,4 +50,4 @@ lists:
                     'sort' : 'pubdateDESC'}
     searches:
       - name: "All Videos"
-        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=28&shelving_location[]=586&shelving_location[]=521&layout=grid&search_title=All Videos'
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=28&shelving_location[]=586&shelving_location[]=521&search_title=All Videos'

@@ -18,11 +18,11 @@ lists:
                     'sort' : 'pubdateDESC'}
     searches:
       - name: "Books"
-        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=27&shelving_location[]=510&layout=grid&search_title=Books'
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=27&shelving_location[]=510&search_title=Books'
       - name: "Audiobooks"
-        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=27&shelving_location[]=518&layout=grid&search_title=Audiobooks'
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=27&shelving_location[]=518&search_title=Audiobooks'
       - name: "Large Print"
-        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=27&shelving_location[]=534&layout=grid&search_title=Large Print'
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=27&shelving_location[]=534&search_title=Large Print'
   - name: 'flpl_youth_list'
     fancy_name: "Children's Books"
     search_params: {'loc' : '27',
@@ -33,11 +33,11 @@ lists:
                     'sort' : 'pubdateDESC'}
     searches:
       - name: "Juvenile"
-        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=27&shelving_location[]=527&layout=grid&search_title=Juvenile'
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=27&shelving_location[]=527&search_title=Juvenile'
       - name: "J Series"
-        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=27&shelving_location[]=805&layout=grid&search_title=J Series'
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=27&shelving_location[]=805&search_title=J Series'
       - name: "J Easy"
-        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=27&shelving_location[]=529&layout=grid&search_title=J Easy'
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=27&shelving_location[]=529&search_title=J Easy'
   - name: 'flpl_dvd_list'
     fancy_name: 'Video'
     search_params: {'loc' : '27',
@@ -48,6 +48,6 @@ lists:
                     'sort' : 'pubdateDESC'}
     searches:
       - name: "All Video"
-        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=27&shelving_location[]=682&shelving_location[]=521&layout=grid&search_title=All Video'
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=27&shelving_location[]=682&shelving_location[]=521&search_title=All Video'
       - name: "Browsing Hot DVDs"
-        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=27&shelving_location[]=682&layout=grid&search_title=Browsing Hot DVDs'
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=27&shelving_location[]=682&search_title=Browsing Hot DVDs'

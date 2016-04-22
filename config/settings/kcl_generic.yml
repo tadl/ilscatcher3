@@ -19,9 +19,9 @@ lists:
                   }
     searches:
       - name: "Books"
-        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=44&shelving_location[]=948&shelving_location[]=1&layout=grid&search_title=Books'
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=44&shelving_location[]=948&shelving_location[]=1&search_title=Books'
       - name: "Large Print"
-        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=44&shelving_location[]=959&layout=grid&search_title=Large Print'
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=44&shelving_location[]=959&search_title=Large Print'
   - name: 'kcl_generic_audiobooks_list'
     fancy_name: 'Featured Audiobooks'
     search_params: {'loc' : '44',
@@ -33,7 +33,7 @@ lists:
                   }
     searches:
       - name: "Audiobooks"
-        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=44&shelving_location[]=950&layout=grid&search_title=Audiobooks'
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=44&shelving_location[]=950&search_title=Audiobooks'
   - name: 'kcl_generic_audiovisual_list'
     fancy_name: 'Featured Movies & TV'
     search_params: {'loc' : '44',
@@ -45,4 +45,4 @@ lists:
                   }
     searches:
       - name: "All Videos"
-        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=44&shelving_location[]=951&layout=grid&search_title=All Videos'
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=44&shelving_location[]=951&search_title=All Videos'
