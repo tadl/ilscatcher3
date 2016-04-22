@@ -27,13 +27,13 @@ lists:
                     'sort' : 'pubdateDESC'}
     searches:
       - name: "New Fiction"
-        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=619&layout=grid&search_title=New Fiction'
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=619&search_title=New Fiction'
       - name: "Adult Fiction"
-        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=975&layout=grid&search_title=Adult Fiction'
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=975&search_title=Adult Fiction'
       - name: "Large Print"
-        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=534&layout=grid&search_title=Large Print'
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=534&search_title=Large Print'
       - name: "Browsing HOT Titles"
-        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=683&layout=grid&search_title=Browsing HOT Titles'
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=683&search_title=Browsing HOT Titles'
   - name: 'wood_new_nonfic_list'
     fancy_name: 'New Non-fiction'
     search_params: {'loc' : '23',
@@ -44,11 +44,11 @@ lists:
                     'sort' : 'pubdateDESC'}
     searches:
       - name: "New Non-fiction"
-        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=621&layout=grid&search_title=New Non-fiction'
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=621&search_title=New Non-fiction'
       - name: "Non-fiction"
-        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=976&layout=grid&search_title=Non-fiction'
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=976&search_title=Non-fiction'
       - name: "Oversize"
-        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=544&layout=grid&search_title=Oversize'
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=544&search_title=Oversize'
   - name: 'wood_audiobooks_list'
     fancy_name: 'Audiobooks'
     search_params: {'loc' : '23',
@@ -59,8 +59,8 @@ lists:
                     'sort' : 'pubdateDESC'}
     searches:
       - name: "Audiobooks"
-        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=584&shelving_location[]=518&layout=grid&search_title=Audiobooks'
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=584&shelving_location[]=518&search_title=Audiobooks'
       - name: "Audiobooks on MP3 CD"
-        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=680&layout=grid&search_title=Audiobooks on MP3 CD'
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=680&search_title=Audiobooks on MP3 CD'
       - name: "Playaways"
-        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=546&shelving_location[]=590&layout=grid&search_title=Playaways'
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=546&shelving_location[]=590&search_title=Playaways'

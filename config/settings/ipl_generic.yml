@@ -20,15 +20,15 @@ lists:
                     'sort' : 'pubdateDESC'}
     searches:
       - name: "Adult"
-        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=24&shelving_location[]=510&layout=grid&search_title=Adult'
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=24&shelving_location[]=510&search_title=Adult'
       - name: "Audiobooks"
-        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=24&shelving_location[]=518&layout=grid&search_title=Audiobooks'
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=24&shelving_location[]=518&search_title=Audiobooks'
       - name: "MP3 CD Audiobooks"
-        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=24&shelving_location[]=680&layout=grid&search_title=MP3 CD Audiobooks'
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=24&shelving_location[]=680&search_title=MP3 CD Audiobooks'
       - name: "Large Print"
-        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=24&shelving_location[]=534&layout=grid&search_title=Large Print'
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=24&shelving_location[]=534&search_title=Large Print'
       - name: "Mass-Market Paperbacks"
-        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=24&shelving_location[]=537&layout=grid&search_title=Mass-Market Paperbacks'
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=24&shelving_location[]=537&search_title=Mass-Market Paperbacks'
   - name: 'ipl_video_list'
     fancy_name: 'Movies'
     search_params: {'loc' : '24',
@@ -39,6 +39,6 @@ lists:
                     'sort' : 'pubdateDESC'}
     searches:
       - name: "Movies"
-        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=24&shelving_location[]=521&layout=grid&search_title=Movies'
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=24&shelving_location[]=521&search_title=Movies'
       - name: "Television Series and Box Sets"
-        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=24&shelving_location[]=779&layout=grid&search_title=Television Series and Box Sets'
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=24&shelving_location[]=779&search_title=Television Series and Box Sets'

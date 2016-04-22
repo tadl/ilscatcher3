@@ -18,13 +18,13 @@ lists:
                     'sort' : 'pubdateDESC'}
     searches:
       - name: "New Fiction"
-        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=25&shelving_location[]=689&layout=grid&search_title=New Fiction'
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=25&shelving_location[]=689&search_title=New Fiction'
       - name: "New Non-fiction"
-        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=25&shelving_location[]=690&layout=grid&search_title=New Non-fiction'
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=25&shelving_location[]=690&search_title=New Non-fiction'
       - name: "Audiobooks"
-        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=25&shelving_location[]=518&shelving_location[]=584&layout=grid&search_title=Audiobooks'
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=25&shelving_location[]=518&shelving_location[]=584&search_title=Audiobooks'
       - name: "Large Print"
-        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=25&shelving_location[]=534&layout=grid&search_title=Large Print'
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=25&shelving_location[]=534&search_title=Large Print'
   - name: 'kbl_youth_ya_books_list'
     fancy_name: 'Youth & Teens'
     search_params: {'loc' : '25',
@@ -35,15 +35,15 @@ lists:
                     'sort' : 'pubdateDESC'}
     searches:
       - name: "Juvenile"
-        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=25&shelving_location[]=527&layout=grid&search_title=Juvenile'
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=25&shelving_location[]=527&search_title=Juvenile'
       - name: "Juvenile Easy"
-        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=25&shelving_location[]=529&layout=grid&search_title=Juvenile Easy'
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=25&shelving_location[]=529&search_title=Juvenile Easy'
       - name: "Juvenile Fiction"
-        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=25&shelving_location[]=791&layout=grid&search_title=Juvenile Fiction'
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=25&shelving_location[]=791&search_title=Juvenile Fiction'
       - name: "Juvenile Non-fiction"
-        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=25&shelving_location[]=792&layout=grid&search_title=Juvenile Non-fiction'
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=25&shelving_location[]=792&search_title=Juvenile Non-fiction'
       - name: "Young Adult"
-        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=25&shelving_location[]=563&layout=grid&search_title=Young Adult'
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=25&shelving_location[]=563&search_title=Young Adult'
   - name: 'kbl_audiovisual_list'
     fancy_name: 'Audio & Video'
     search_params: {'loc' : '25',
@@ -54,10 +54,10 @@ lists:
                     'sort' : 'pubdateDESC'}
     searches:
       - name: "Browsing Hot DVDs"
-        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=25&shelving_location[]=521&shelving_location[]=586&layout=grid&search_title=Browsing Hot DVDs'
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=25&shelving_location[]=521&shelving_location[]=586&search_title=Browsing Hot DVDs'
       - name: "All DVDs"
-        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=25&shelving_location[]=521&shelving_location[]=586&layout=grid&search_title=DVDs'
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=25&shelving_location[]=521&shelving_location[]=586&search_title=DVDs'
       - name: "Children's Videos"
-        url: "/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=25&shelving_location[]=516&layout=grid&search_title=Children's Videos"
+        url: "/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=25&shelving_location[]=516&search_title=Children's Videos"
       - name: "Music CDs"
-        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=25&shelving_location[]=517&shelving_location[]=583&layout=grid&search_title=Music CDs'
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=25&shelving_location[]=517&shelving_location[]=583&search_title=Music CDs'

@@ -19,11 +19,11 @@ lists:
                   }
     searches:
       - name: "Juvenile"
-        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=44&shelving_location[]=956&layout=grid&search_title=Juvenile'
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=44&shelving_location[]=956&search_title=Juvenile'
       - name: "Picture Books (JE)"
-        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=44&shelving_location[]=957&layout=grid&search_title=Picture Books (JE)'
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=44&shelving_location[]=957&search_title=Picture Books (JE)'
       - name: "Easy Readers"
-        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=44&shelving_location[]=958&layout=grid&search_title=Easy Readers'
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=44&shelving_location[]=958&search_title=Easy Readers'
   - name: 'kcl_youth_star_wars'
     fancy_name: 'Featured Display: Star Wars'
     search_params: {'loc' : '44',

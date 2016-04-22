@@ -25,27 +25,27 @@ lists:
                     'sort' : 'pubdateDESC'}
     searches:
       - name: "Board Books"
-        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=24&shelving_location[]=632&layout=grid&search_title=Board Books'
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=24&shelving_location[]=632&search_title=Board Books'
       - name: "JBR Pre-Readers (Orange)"
-        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=24&shelving_location[]=977&layout=grid&search_title=JBR Pre-Readers (Orange)'
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=24&shelving_location[]=977&search_title=JBR Pre-Readers (Orange)'
       - name: "JBR New Readers (Green)"
-        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=24&shelving_location[]=978&layout=grid&search_title=JBR New Readers (Green)'
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=24&shelving_location[]=978&search_title=JBR New Readers (Green)'
       - name: "JBR Rising Readers (Purple)"
-        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=24&shelving_location[]=979&layout=grid&search_title=JBR Rising Readers (Purple)'
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=24&shelving_location[]=979&search_title=JBR Rising Readers (Purple)'
       - name: "JBR Transitional Readers (Blue)"
-        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=24&shelving_location[]=980&layout=grid&search_title=JBR Transitional Readers (Blue)'
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=24&shelving_location[]=980&search_title=JBR Transitional Readers (Blue)'
       - name: "JBR Independent Readers (Red)"
-        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=24&shelving_location[]=981&layout=grid&search_title=JBR Independent Readers (Red)'
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=24&shelving_location[]=981&search_title=JBR Independent Readers (Red)'
       - name: "Juvenile Collection"
-        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=24&shelving_location[]=527&layout=grid&search_title=Juvenile Collection'
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=24&shelving_location[]=527&search_title=Juvenile Collection'
       - name: "Juvenile Easy"
-        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=24&shelving_location[]=529&layout=grid&search_title=Juvenile Easy'
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=24&shelving_location[]=529&search_title=Juvenile Easy'
       - name: "Early Learners"
-        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=24&shelving_location[]=576&layout=grid&search_title=Early Learners'
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=24&shelving_location[]=576&search_title=Early Learners'
       - name: "Juvenile Series"
-        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=24&shelving_location[]=630&layout=grid&search_title=Juvenile Series'
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=24&shelving_location[]=630&search_title=Juvenile Series'
       - name: "Juvenile Audiobooks"
-        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=24&shelving_location[]=571&shelving_location[]=579&layout=grid&search_title=Juvenile Audiobooks'
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=24&shelving_location[]=571&shelving_location[]=579&search_title=Juvenile Audiobooks'
   - name: 'ipl_youth_video_list'
     fancy_name: 'Video'
     search_params: {'loc' : '24',
@@ -56,8 +56,8 @@ lists:
                     'sort' : 'pubdateDESC'}
     searches:
       - name: "Juvenile DVD"
-        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=24&shelving_location[]=599&layout=grid&search_title=Juvenile DVD'
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=24&shelving_location[]=599&search_title=Juvenile DVD'
       - name: "Juvenile Digital Video Disc"
-        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=24&shelving_location[]=771&layout=grid&search_title=Juvenile Digital Video Disc'
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=24&shelving_location[]=771&search_title=Juvenile Digital Video Disc'
       - name: "Children's Videos"
-        url: "/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=24&shelving_location[]=516&layout=grid&search_title=Children's Videos"
+        url: "/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=24&shelving_location[]=516&search_title=Children's Videos"
