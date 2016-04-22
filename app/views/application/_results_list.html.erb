@@ -1,5 +1,5 @@
 <% if item.loc_copies_available.to_i > 0 %>
-    <div id="item_<%=item.id%>" class="panel panel-default"><!-- available -->
+    <div id="item_<%=item.id%>" class="panel panel-success"><!-- available -->
 <% else %>
     <div id="item_<%=item.id%>" class="panel panel-default"><!-- not available -->
 <% end %>
@@ -7,104 +7,79 @@
         <div class="row">
             <div class="col-lg-11 col-md-11 col-sm-11 col-xs-10">
                 <a class="item_details_link" href="details?id=<%= item.id %>" onclick="item_details(<%= item.create_params.to_json %>)">
-                    <h4 class="panel-title"><%= item.title %></h4>
+                    <h4 class="panel-title">
+                        <span class="glyphicon <%= format_icon(item.format_type, @format_icons) %>" title="<%= item.format_type %>"></span>
+                        <%= item.title %>
+                    </h4>
                 </a>
-            </div>
-            <div class="col-lg-1 col-md-1 col-sm-1 col-xs-2">
-                <h4 class="pull-right panel-title">
-                    <span class="glyphicon <%= format_icon(item.format_type, @format_icons) %>" title="<%= item.format_type %>"></span>
-                </h4>
             </div>
         </div>
     </div><!-- /.panel-heading -->
     <div class="panel-body">
         <div class="row">
-            <div class="col-lg-3 col-sm-3 col-xs-12">
+            <div class="col-sm-3 col-xs-12">
                 <a class="item_details_link" href="details?id=<%= item.id %>" onclick="item_details(<%= item.create_params.to_json %>)">
-                    <img src='<%= Settings.cover_path_med %><%= item.id %>'
-                        onerror="this.src='<%= asset_path(Settings.logo) %>'" />
+                    <img src='<%= Settings.cover_path_med %><%= item.id %>' onerror="this.src='<%= asset_path(Settings.logo) %>'" />
                 </a>
             </div>
-            <div class="col-lg-6 col-sm-5 col-xs-12">
-                <% if !item.author.nil? %>
-                    <h4>
-                        <a href="<%= related_search_link(item.author, item, 'author') %>">
-                            <%= item.author %>
-                        </a>
-                    </h4>
-                <% end %>
-                <% if !item.abstract.blank?  %>
-                    <p><%= truncate(item.abstract, length: 400, separator: ' ') %></p>
-                <% elsif !item.contents.blank? %>
-                    <p><%= truncate(item.contents, length: 400, separator: ' ') %></p>
-                <% end %>
-                    <% if !item.eresource && item.loc_copies_available >= 1 %>
-                        <p><%= render 'list_holdings', holdings: item.availability, location: @search.loc %></p>
-                    <% else %>
-                        <% if item.all_copies_available >= 1 %>
-                            <h4>Sorry, no copies available at <%= location_map(@search.loc, @location_options) %></h4> 
-                            We have <%= item.all_copies_total %> in the district. <a href="#" onclick="event.preventDefault();place_hold(<%= item.id %>)">Place a hold</a> to request one.
+            <div class="col-sm-9 col-xs-12">
+                <div class="row">
+                    <div class="col-sm-9 col-xs-12">
+                        <% if !item.author.nil? %>
+                            <h4>
+                                <a href="<%= related_search_link(item.author, item, 'author') %>">
+                                    <%= item.author %>
+                                </a>
+                            </h4>
                         <% end %>
-                        <% if item.all_copies_available < 1 && !item.eresource %>
-                            <h4>Sorry, no copies available</h4> 
-                            <a href="#" onclick="event.preventDefault();place_hold(<%= item.id %>)">Place a hold</a> to request this item.
-                        <% end %>
-                    <% end %>
-            </div>
-            <div class="col-lg-3 col-sm-4 col-xs-12">
-                <div class="padbot">
-                    <% if item.eresource.nil? %>
-                        <div class='hold-status-<%= item.id %>'></div>
-                        <div class='change_pickup_<%= item.id %>' style="display: none">
-                            <div class="dropdown" style="margin-bottom: 10px;">
-                                <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
-                                    Select New Location
-                                    <span class="caret"></span>
-                                </button>
-                                <ul class="dropdown-menu">
-                                    <% @long_pickup_locations.each do |l| %>
-                                        <li>
-                                            <a class="clicky" onclick="submit_pickup_change(<%= l[1] %>)"><%= l[0] %></a>
-                                        </li>
-                                    <% end %>
-                                </ul>
-                            </div>
-                            <button type="button" class="btn btn-danger" onclick="cancel_change()">
-                                Cancel Change
-                            </button>
-                        </div>
-                        <div class="holdlogin-<%= item.id %>" style="display: none">
-                            <div>
-                                <div class="alert alert-info">
-                                    <i class="glyphicon glyphicon-user"></i> Log in to place hold
+                        <div class="visible-xs">
+                            <span class="item_buttons_div">  
+                                <div class="btn-group" style="min-width:120px; padding-bottom: 10px;">
+                                    <a class="item_details_link padtop btn btn-info details-button" href="details?id=<%= item.id %>" onclick="item_details(<%= item.create_params.to_json %>)">
+                                        Details
+                                    </a>
                                 </div>
+                            </span>
+                            <div style="clear: both"></div>
+                            <%= render 'item_buttons', item: item %>
+                        </div>  
+                        <% if !item.abstract.blank?  %>
+                            <p><%= truncate(item.abstract, length: 400, separator: ' ') %></p>
+                        <% elsif !item.contents.blank? %>
+                            <p><%= truncate(item.contents, length: 400, separator: ' ') %></p>
+                        <% end %>
+                    </div>
+                    <div class="col-sm-3 hidden-xs">
+                        <span class="item_buttons_div">  
+                            <div class="btn-group" style="min-width:120px; padding-bottom: 10px;">
+                                <a class="item_details_link padtop btn btn-info details-button" href="details?id=<%= item.id %>" onclick="item_details(<%= item.create_params.to_json %>)">
+                                    Details
+                                </a>
                             </div>
-                            <label for="holdloginuser">Username or Library Card</label>
-                            <input type="text" class="holdloginuser-<%= item.id %> form-control" name="holdloginuser" />
-                            <label for="holdloginpass" class="padtop">Password</label>
-                            <input type="password" class="holdloginpass-<%= item.id %> form-control" name="holdloginpass" />
-                            <div class="padtop">
-                                <button type="button" class="btn btn-success loginsubmit" onclick="login(<%= item.id %>)">
-                                    Log in and Place Hold
-                                </button>
-                            </div>
-                            <div class="padtop">
-                                <button type="button" class="btn btn-danger logincancel" onclick="login_cancel(<%= item.id %>)">
-                                    Cancel
-                                </button>
-                            </div>
-                        </div>
-                        <button class="btn btn-success holdbtn hold-<%= item.id %>" onclick="place_hold(<%= item.id %>)">
-                            Place hold
-                        </button>
-                    <% else %>
-                        <a href="<%= item.eresource %>" target="_blank" class="btn btn-success">View Online / Download</a>
-                    <% end %>
+                        </span>
+                        <div style="clear: both"></div>
+                        <%= render 'item_buttons', item: item %>
+                    </div>
                 </div>
-                <a class="item_details_link padtop btn btn-info details-button" href="details?id=<%= item.id %>" onclick="item_details(<%= item.create_params.to_json %>)">
-                    Details
-                </a>
+                <div class="row">
+                    <div class="col-sm-9 col-xs-12">
+                        <% if !item.eresource && item.loc_copies_available >= 1 %>
+                            <p>
+                                <%= render 'list_holdings', holdings: item.availability, location: @search.loc %>
+                            </p>
+                        <% else %>
+                            <% if item.all_copies_available >= 1 %>
+                                <h4>Sorry, no copies available at <%= location_map(@search.loc, @location_options) %></h4> 
+                                We have <%= item.all_copies_total %> in the district. <a href="#" onclick="event.preventDefault();place_hold(<%= item.id %>)">Place a holdings</a> to request one.
+                            <% end %>
+                            <% if item.all_copies_available < 1 && !item.eresource %>
+                                <h4>Sorry, no copies available</h4> 
+                                <a href="#" onclick="event.preventDefault();place_hold(<%= item.id %>)">Place a hold</a> to request this item.
+                            <% end %>
+                        <% end %>
+                    </div>
+                </div>
             </div>
         </div>
     </div><!-- /.panel-body -->
-</div><!-- /.panel -->
+</div>

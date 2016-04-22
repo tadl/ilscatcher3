@@ -44,6 +44,16 @@ class MainController < ApplicationController
       @more_results = nil
       @blank_search = true
     end
+    if cookies[:login] && cookies[:lists] && cookies[:lists] != '"login"'
+      lists = JSON.parse(cookies[:lists])
+      @lists = Array.new
+      lists.each do |l|
+        if l['default'] == true
+          @default_list = l['list_id']
+        end
+        @lists = @lists.push(l)
+      end
+    end
     respond_to do |format|
       format.html
       format.js
