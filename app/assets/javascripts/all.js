@@ -272,8 +272,8 @@ function set_list_privacy(list_id, action) {
 }
 
 function add_to_list(list_id, record_id) {
-    var button = '#add-list-' + record_id
-    var buttondropdown = '#button-' + record_id
+    var button = '.add-list-' + record_id
+    var buttondropdown = '.button-' + record_id
     $(button).html(spinner+'Adding...').addClass('disabled')
     url = '/main/add_item_to_list?list_id=' + list_id + '&record_id=' + record_id
     $.get(url)

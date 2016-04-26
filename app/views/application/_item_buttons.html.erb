@@ -49,8 +49,8 @@
     <% end %>
     <% if @default_list %>
         <div class="btn-group" style="min-width:120px;">
-            <button type="button" class="btn btn-primary" id="add-list-<%= item.id %>" onclick="add_to_list(<%= @default_list %>, <%= item.id %>)">Add to List</button>
-            <button type="button" class="btn btn-primary dropdown-toggle" id="button-<%= item.id %>" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <button type="button" class="btn btn-primary add-list-<%= item.id %>" onclick="add_to_list(<%= @default_list %>, <%= item.id %>)">Add to List</button>
+            <button type="button" class="btn btn-primary dropdown-toggle button-<%= item.id %>" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <span class="caret"></span>
                 <span class="sr-only">Toggle Dropdown</span>
             </button>
@@ -70,7 +70,7 @@
         </div>
     <% elsif @lists && !@lists.empty? %>
         <div class="btn-group" style="min-width:120px;">
-            <button type="button" class="btn btn-primary dropdown-toggle" id="add-list-<%= item.id %>" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <button type="button" class="btn btn-primary dropdown-toggle add-list-<%= item.id %>" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Add to List
             </button>
             <ul class="dropdown-menu dropdown-menu-right">
