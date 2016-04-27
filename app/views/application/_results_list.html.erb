@@ -34,7 +34,7 @@
                         <% end %>
                         <div class="visible-xs">
                             <span class="item_buttons_div">  
-                                <div class="btn-group" style="min-width:120px; padding-bottom: 10px;">
+                                <div class="btn-group" style="min-width:120px;">
                                     <a class="item_details_link padtop btn btn-info details-button" href="details?id=<%= item.id %>" onclick="item_details(<%= item.create_params.to_json %>)">
                                         Details
                                     </a>
@@ -48,21 +48,6 @@
                         <% elsif !item.contents.blank? %>
                             <p><%= truncate(item.contents, length: 400, separator: ' ') %></p>
                         <% end %>
-                    </div>
-                    <div class="col-sm-3 hidden-xs">
-                        <span class="item_buttons_div">  
-                            <div class="btn-group" style="min-width:120px; padding-bottom: 10px;">
-                                <a class="item_details_link padtop btn btn-info details-button" href="details?id=<%= item.id %>" onclick="item_details(<%= item.create_params.to_json %>)">
-                                    Details
-                                </a>
-                            </div>
-                        </span>
-                        <div style="clear: both"></div>
-                        <%= render 'item_buttons', item: item %>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-9 col-xs-12">
                         <% if !item.eresource && item.loc_copies_available >= 1 %>
                             <p>
                                 <%= render 'list_holdings', holdings: item.availability, location: @search.loc %>
@@ -77,6 +62,17 @@
                                 <a href="#" onclick="event.preventDefault();place_hold(<%= item.id %>)">Place a hold</a> to request this item.
                             <% end %>
                         <% end %>
+                    </div>
+                    <div class="col-sm-3 hidden-xs">
+                        <span class="item_buttons_div">  
+                            <div class="btn-group" style="min-width:120px;">
+                                <a class="item_details_link padtop btn btn-info details-button" href="details?id=<%= item.id %>" onclick="item_details(<%= item.create_params.to_json %>)">
+                                    Details
+                                </a>
+                            </div>
+                        </span>
+                        <div style="clear: both"></div>
+                        <%= render 'item_buttons', item: item %>
                     </div>
                 </div>
             </div>

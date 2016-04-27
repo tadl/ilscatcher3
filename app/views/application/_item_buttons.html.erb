@@ -29,9 +29,11 @@
             <label for="holdloginpass" class="padtop">Password</label>
             <input type="password" class="holdloginpass-<%= item.id %> form-control" name="holdloginpass" />
             <div class="padtop">
-                <button type="button" class="btn btn-success loginsubmit" onclick="login(<%= item.id %>)">
-                    Log in and Place Hold
-                </button>
+                <div class="btn-group" style="min-width:120px;">
+                    <button type="button" class="btn btn-success loginsubmit" onclick="login(<%= item.id %>)">
+                        Log in and Place Hold
+                    </button>
+                </div>
             </div>
             <div class="padtop">
                 <button type="button" class="btn btn-danger logincancel" onclick="login_cancel(<%= item.id %>)">
@@ -40,12 +42,18 @@
             </div>
         </div>
         <p>
-            <button class="btn btn-success holdbtn hold-<%= item.id %>" onclick="place_hold(<%= item.id %>)">
-                Place hold
-            </button>
+            <div class="btn-group" style="min-width:120px;">
+                <button class="btn btn-success holdbtn hold-<%= item.id %>" onclick="place_hold(<%= item.id %>)">
+                    Place hold
+                </button>
+            </div>
         </p>
     <% else %>
-        <p><a class="btn btn-success" href="<%= item.eresource %>">View Online</a></p>
+        <p>
+            <div class="btn-group" style="min-width:120px;">
+                <a class="btn btn-success" href="<%= item.eresource %>">View Online</a>
+            </div>
+        </p>
     <% end %>
     <% if @default_list %>
         <div class="btn-group" style="min-width:120px;">
