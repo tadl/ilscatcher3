@@ -311,6 +311,7 @@ class Search
           :all_copies_total => holdings[2],
           :loc_copies_available => holdings[3],
           :loc_copies_total => holdings[4],
+          :holds => r["hold_count"],
           :id => r["id"],
           :abstract => r["abstract"],
           :contents => r["contents"],
