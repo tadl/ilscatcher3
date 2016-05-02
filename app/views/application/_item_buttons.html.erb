@@ -48,6 +48,11 @@
                 </button>
             </div>
         </p>
+        <% if !item.holds.nil? && item.holds.to_i > 0 %>
+            <p>
+                <%= pluralize(item.holds, 'hold') %> on <%= pluralize(item.all_copies_total, 'copy') %> 
+            </p>
+        <% end %>
     <% else %>
         <p>
             <div class="btn-group" style="min-width:120px;">
