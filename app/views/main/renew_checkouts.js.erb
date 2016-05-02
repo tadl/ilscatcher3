@@ -1,7 +1,7 @@
 <% if @message %>
     alert_message('success', '<%= escape_javascript(@message) %>', 5000);
 <% end %>
-<% if @errors %>
+<% if @errors && !@errors.empty? %>
     var message = '';
     <% @errors.each do |e| %>
         message += '<div style="border-bottom: 1px dotted #D46A6A; padding: 5px;"><%= escape_javascript(e[:title]) %> - <%= escape_javascript(e[:message]) %></div>';
