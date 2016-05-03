@@ -108,9 +108,6 @@ class MainController < ApplicationController
     if params[:page] && params[:page] == 'true'
       @page = 'true'
     end 
-    if !@user.error
-      UserListFetcher.perform_async(@user.token)
-    end
     respond_to do |format|
       format.json {render json: @user}
       format.js
@@ -119,9 +116,9 @@ class MainController < ApplicationController
 
   def logout
     @user = generate_user()
-    clear_user_list_cache(@user)
     cookies.delete :login
     cookies.delete :user
+    cookies.delete :lists
     @message = "logged out"
     respond_to do |format|
       format.json {render json: @message}
@@ -464,10 +461,7 @@ class MainController < ApplicationController
     else
       @message = 'invalid parameters'
     end
-    clear_user_list_cache(@user)
-    if request.path_parameters[:format] == 'json'
-      UserListFetcher.perform_async(@user.token)
-    end
+
     respond_to do |format|
       format.json {render :json => {:message => @message}}
     end
@@ -485,10 +479,6 @@ class MainController < ApplicationController
       return
     else
       @message = 'invalid parameters'
-    end
-    clear_user_list_cache(@user)
-    if request.path_parameters[:format] == 'json'
-      UserListFetcher.perform_async(@user.token)
     end
     respond_to do |format|
       format.json {render :json => {:message => @message}}
@@ -509,10 +499,6 @@ class MainController < ApplicationController
       return
     else
       @message = 'invalid parameters'
-    end
-    clear_user_list_cache(@user)
-    if request.path_parameters[:format] == 'json'
-      UserListFetcher.perform_async(@user.token)
     end
     respond_to do |format|
       format.json {render :json => {:message => @message}}
@@ -581,10 +567,6 @@ class MainController < ApplicationController
     else
       @message = 'invalid parameters'
     end
-    clear_user_list_cache(@user)
-    if request.path_parameters[:format] == 'json'
-      UserListFetcher.perform_async(@user.token)
-    end
     respond_to do |format|
       format.json {render :json => {:message => @message}}
     end
@@ -602,10 +584,6 @@ class MainController < ApplicationController
       return
     else
       @message = 'invalid parameters'
-    end
-    clear_user_list_cache(@user)
-    if request.path_parameters[:format] == 'json'
-      UserListFetcher.perform_async(@user.token)
     end
     respond_to do |format|
       format.json {render :json => {:message => @message}}

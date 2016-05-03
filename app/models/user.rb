@@ -1,7 +1,7 @@
 class User
 	include ActiveModel::Model
 	require 'open-uri'
-	attr_accessor :full_name, :checkouts, :holds, :holds_ready, :fine, :token, :card, :error, :default_search, :pickup_library, :username, :temp_password, :temp_code
+	attr_accessor :full_name, :checkouts, :holds, :holds_ready, :fine, :token, :card, :error, :default_search, :pickup_library, :username, :temp_password, :temp_code, :lists
 
 	def initialize args
     if args['full_name']
@@ -64,6 +64,7 @@ class User
 			  basic_info['default_search'] = p.css('select[@name="opac.default_search_location"] option[@selected="selected"]').attr('value').text rescue nil
         basic_info['pickup_library'] = p.css('select[@name="opac.default_pickup_location"] option[@selected="selected"]').attr('value').text rescue nil
         basic_info["username"] = p.at('td:contains("Username")').next.next.text rescue nil
+        basic_info["lists"] = process_lists(p.css('#bookbag_list'))
       end
 			basic_info.delete_if { |key, value| value.blank? }
 			if Settings.system_lock
@@ -400,6 +401,25 @@ class User
           }
     end
     return payment_list
+  end
+
+  def process_lists(list_div)
+    lists = list_div.css('.bookbag_entry').map do |l|
+      {
+        :title => l.css('.bookbag_name').try(:text),
+        :list_id => l.css('.bookbag_id').try(:text),
+        :default => test_for_default_list(l.css('.bookbag_default').text)
+      }
+    end
+    return lists
+  end
+
+  def test_for_default_list(value)
+    if value == "DEFAULT"
+      return true
+    else
+      return false
+    end
   end
 
   def get_lists

@@ -139,15 +139,6 @@ function update_login() {
     $('#fine').text(fine)
 }
 
-function store_lists() {
-    $.get('/main/lists.json')
-    .done(function(data) {
-        if (data.lists) {
-            Cookies("lists", JSON.stringify(data.lists));
-        }
-    });
-}
-
 function is_my_list(list_id) {
     var lists = JSON.parse(Cookies.get('lists'))
     var return_value = false

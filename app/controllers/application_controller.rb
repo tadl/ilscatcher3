@@ -46,12 +46,12 @@ class ApplicationController < ActionController::Base
         else
             user = User.new params
         end
+        if user.lists
+            cookies[:lists] = {:value => user.lists.to_json}
+        else
+            cookies.delete :lists
+        end
         return user
-    end
-
-    def clear_user_list_cache(user)
-        key = 'list_' + user.token
-        Rails.cache.delete(key)
     end
 
 
