@@ -28,26 +28,44 @@ lists:
         url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=687&search_title=New DVDs'
       - name: "TC Film Festival"
         url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=778&search_title=TC Film Festival'
-      - name: 'Animation'
-        url: '/main/search?query=&qtype=genre&sort=pubdateDESC&loc=23&fmt=g&genres[]=Animation&search_title=Animation&genre_lock=Animation'
-      - name: 'Family'
-        url: '/main/search?query=&qtype=genre&sort=pubdateDESC&loc=23&fmt=g&genres[]=Family&search_title=Family&genre_lock=Family'
-      - name: 'Comedy'
-        url: '/main/search?query=&qtype=genre&sort=pubdateDESC&loc=23&fmt=g&genres[]=Comedy&search_title=Comedy&genre_lock=Comedy'
-      - name: 'Documentary'
-        url: '/main/search?query=&qtype=genre&sort=pubdateDESC&loc=23&fmt=g&genres[]=Documentary&search_title=Documentary&genre_lock=Documentary'
-      - name: 'Horror'
-        url: '/main/search?query=&qtype=genre&sort=pubdateDESC&loc=23&fmt=g&genres[]=Horror&search_title=Horror&genre_lock=Horror'
-      - name: 'Music'
-        url: '/main/search?query=&qtype=genre&sort=pubdateDESC&loc=23&fmt=g&genres[]=Music&search_title=Music&genre_lock=Music'
-      - name: 'Romance'
-        url: '/main/search?query=&qtype=genre&sort=pubdateDESC&loc=23&fmt=g&genres[]=Romance&search_title=Romance&genre_lock=Romance'
-      - name: 'Science Fiction'
-        url: '/main/search?query=&qtype=genre&sort=pubdateDESC&loc=23&fmt=g&genres[]=Science%20Fiction&search_title=Science%20Fiction&genre_lock=Science%20Fiction'
-      - name: 'TV'
-        url: '/main/search?query=&qtype=genre&sort=pubdateDESC&loc=23&fmt=g&genres[]=TV&search_title=TV&genre_lock=TV'
-      - name: 'Western'
-        url: '/main/search?query=&qtype=genre&sort=pubdateDESC&loc=23&fmt=g&genres[]=Western&search_title=Western&genre_lock=Western'
+      - name: "Educational Television"
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=801&search_title=Educational Television'
+      - name: "Action/Adventure"
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=982&search_title=Action/Adventure'
+      - name: "Comedy"
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=808&search_title=Comedy'
+      - name: "Crime/Mystery"
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=985&search_title=Crime/Mystery'
+      - name: "Documentary"
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=800&search_title=Documentary'
+      - name: "Drama"
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=987&search_title=Drama'
+      - name: "Avant-Garde"
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=983&search_title=Avant-Garde'
+      - name: "Family"
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=772&search_title=Family'
+      - name: "Fantasy"
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=989&search_title=Fantasy'
+      - name: "Foreign"
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=774&search_title=Foreign'
+      - name: "Horror"
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=991&search_title=Horror'
+      - name: "Music"
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=773&search_title=Music'
+      - name: "Musicals"
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=821&search_title=Musicals'
+      - name: "Performing Arts"
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=997&search_title=Performing Arts'
+      - name: "Romance"
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=993&search_title=Romance'
+      - name: "Science Fiction"
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=994&search_title=Science Fiction'
+      - name: "TV"
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=779&search_title=TV'
+      - name: "Thriller"
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=995&search_title=Thriller'
+      - name: "Western"
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=996&search_title=Western'
   - name: 'wood_ss_music_list'
     fancy_name: 'Music'
     search_params: {'loc' : '23',
