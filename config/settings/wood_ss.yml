@@ -54,8 +54,6 @@ lists:
         url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=773&search_title=Music'
       - name: "Musicals"
         url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=821&search_title=Musicals'
-      - name: "Performing Arts"
-        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=997&search_title=Performing Arts'
       - name: "Romance"
         url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=993&search_title=Romance'
       - name: "Science Fiction"
