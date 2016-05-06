@@ -9,7 +9,7 @@ var pickuplocation = '<%= escape_javascript(location_map(@user.pickup_library, @
         message += '<br><a class="clicky" onclick="change_hold_pickup(<%= escape_javascript(c[:record_id]) %>)">Change pick up location?</a></div>' +messageclose;
         $(target).html(message);
         hideLoading();
-        <% if Settings.tracked == 'true'  %>
+        <% if Rails.env == "production" && Settings.tracked == 'true'  %>
             ga('send', 'pageview', '/place_hold?id=<%= c[:record_id] %>');
         <% end %>
     <% elsif c[:need_to_force] %>
