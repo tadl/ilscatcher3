@@ -9,6 +9,9 @@ var pickuplocation = '<%= escape_javascript(location_map(@user.pickup_library, @
         message += '<br><a class="clicky" onclick="change_hold_pickup(<%= escape_javascript(c[:record_id]) %>)">Change pick up location?</a></div>' +messageclose;
         $(target).html(message);
         hideLoading();
+        <% if Settings.tracked == 'true'  %>
+            ga('send', 'pageview', '/place_hold?id=<%= c[:record_id] %>');
+        <% end %>
     <% elsif c[:need_to_force] %>
         <% if c[:message].include? "Placing this hold could result in longer wait times." %>
             var force_hold_text = "All available copies are temporarily unavailable at your pickup library. Placing this hold could result in longer wait times. Place the hold anyway?"
@@ -25,3 +28,4 @@ var pickuplocation = '<%= escape_javascript(location_map(@user.pickup_library, @
     <% end %>
 <% end %> 
 update_login();
+
