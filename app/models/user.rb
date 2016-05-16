@@ -64,8 +64,9 @@ class User
 			  basic_info['default_search'] = p.css('select[@name="opac.default_search_location"] option[@selected="selected"]').attr('value').text rescue nil
         basic_info['pickup_library'] = p.css('select[@name="opac.default_pickup_location"] option[@selected="selected"]').attr('value').text rescue nil
         basic_info["username"] = p.at('td:contains("Username")').next.next.text rescue nil
-        basic_info["lists"] = process_lists(p.css('#bookbag_list'))
+        process_lists(p.css('#bookbag_list'), token)
       end
+
 			basic_info.delete_if { |key, value| value.blank? }
 			if Settings.system_lock
         if Settings.system_lock.card_prefix_allow && basic_info['card'] && (Settings.system_lock.card_prefix_allow != basic_info['card'][0..4])
@@ -403,19 +404,37 @@ class User
     return payment_list
   end
 
-  def process_lists(list_div)
-    lists = list_div.css('.bookbag_entry').map do |l|
+  def process_lists(list_div, token)
+    raw_lists = list_div.css('.bookbag_entry').map do |l|
       {
         :title => l.css('.bookbag_name').try(:text),
         :list_id => l.css('.bookbag_id').try(:text),
-        :default => test_for_default_list(l.css('.bookbag_default').text)
+        :description => l.css('.bookbag_description').try(:text),
+        :default => test_for_default_list(l.css('.bookbag_default').text),
+        :shared => test_for_shared_list(l.css('.bookbag_pub').text),
       }
     end
-    return lists
+    lists = Array.new
+    raw_lists.each do |l|
+        list = List.new l
+        lists = lists.push(list)
+    end
+    if token
+      list_name = 'list_' + token.value 
+      Rails.cache.write(list_name, lists, :expires_in => 2.hours)
+    end
   end
 
   def test_for_default_list(value)
     if value == "DEFAULT"
+      return true
+    else
+      return false
+    end
+  end
+
+  def test_for_shared_list(value)
+    if value == "t"
       return true
     else
       return false
@@ -434,12 +453,7 @@ class User
         :default => check_for_default_list(l.search('input[@value="remove_default"]'))
       }
     end
-    lists = Array.new
-      list_list.each do |l|
-        list = List.new l
-        lists = lists.push(list)
-      end
-    return lists
+
   end
 
   def view_list(list_id, page_number, sort_by)

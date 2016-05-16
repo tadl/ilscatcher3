@@ -44,14 +44,13 @@ class MainController < ApplicationController
       @more_results = nil
       @blank_search = true
     end
-    if cookies[:login] && cookies[:lists] && cookies[:lists] != '"login"'
-      lists = JSON.parse(cookies[:lists])
-      @lists = Array.new
-      lists.each do |l|
-        if l['default'] == true
-          @default_list = l['list_id']
+    if cookies[:login]
+      key_name = 'list_' + cookies[:login]
+      @lists = Rails.cache.read(key_name)
+      @lists.each do |l|
+        if l.default == true
+          @default_list = l.list_id
         end
-        @lists = @lists.push(l)
       end
     end
     respond_to do |format|
@@ -75,14 +74,13 @@ class MainController < ApplicationController
     if params['list_name']
       @list_name = params['list_name']
     end 
-    if cookies[:login] && cookies[:lists]
-      lists = JSON.parse(cookies[:lists])
-      @lists = Array.new
-      lists.each do |l|
-        if l['default'] == true
-          @default_list = l['list_id']
+    if cookies[:login]
+      key_name = 'list_' + cookies[:login]
+      @lists = Rails.cache.read(key_name)
+      @lists.each do |l|
+        if l.default == true
+          @default_list = l.list_id
         end
-        @lists = @lists.push(l)
       end
     end
     bad_item_test = @item.id rescue nil 
@@ -377,9 +375,6 @@ class MainController < ApplicationController
       set_cookies(@user)
       key_name = 'list_' + @user.token
       @lists = Rails.cache.read(key_name)
-      if @lists.nil?
-       @lists = @user.get_lists
-      end
     else
       @lists = 'login'
     end
@@ -405,7 +400,15 @@ class MainController < ApplicationController
     end
     list_id = params[:list_id]
     @list = @user.view_list(list_id, page_number, sort_by)
-
+    if cookies[:login]
+      key_name = 'list_' + cookies[:login]
+      @lists = Rails.cache.read(key_name)
+      @lists.each do |l|
+        if l.list_id = @list_id
+          @my_list = true
+        end
+      end
+    end
     respond_to do |format|
       format.html {render 'view_list'}
       format.json {render :json => {:user => @user, :list => @list}}

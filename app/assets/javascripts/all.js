@@ -139,17 +139,6 @@ function update_login() {
     $('#fine').text(fine)
 }
 
-function is_my_list(list_id) {
-    var lists = JSON.parse(Cookies.get('lists'))
-    var return_value = false
-    $.each(lists, function(i, list) {
-        if(list.list_id == list_id) {
-            return_value = true
-        }
-    });
-    return return_value
-}
-
 function show_edit_list(list_id) {
     var show_div = '#edit_details_' + list_id
     var hide_div = '#list_details_' + list_id

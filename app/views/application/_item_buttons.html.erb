@@ -70,9 +70,9 @@
             <ul class="dropdown-menu dropdown-menu-right">
                 <% @lists.each do |l| %>
                     <li>
-                        <a class="clicky" onclick="add_to_list(<%= l['list_id'] %>,<%= item.id %>)">
-                            <%= truncate(l['title'], length: 30, separator: ' ') %>
-                            <% if l['default'] == true %> 
+                        <a class="clicky" onclick="add_to_list(<%= l.list_id %>,<%= item.id %>)">
+                            <%= truncate(l.title, length: 30, separator: ' ') %>
+                            <% if l.default == true %> 
                                 <span class="sr-only">Default list</span>
                                 <i class="glyphicon glyphicon-ok-sign text-success"></i>
                             <% end %>
@@ -89,8 +89,8 @@
             <ul class="dropdown-menu dropdown-menu-right">
                 <% @lists.each do |l| %>
                     <li>
-                        <a class="clicky" onclick="add_to_list(<%= l['list_id'] %>,<%= item.id %>)"><%= truncate(l['title'], length: 30, separator: ' ') %>
-                            <% if l['default'] == true %> 
+                        <a class="clicky" onclick="add_to_list(<%= l.list_id %>,<%= item.id %>)"><%= truncate(l.title, length: 30, separator: ' ') %>
+                            <% if l.default == true %> 
                                 <span class="sr-only">Default list</span>
                                 <i class="glyphicon glyphicon-ok-sign text-success"></i>
                             <% end %>
