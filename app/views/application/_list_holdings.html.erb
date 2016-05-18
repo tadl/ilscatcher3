@@ -1,31 +1,25 @@
-<div class="list-group">
-    <% if location == '22' || location == nil || location == '' %>
-        <% holdings.each do |h| %>
-            <div class="list-group-item">
-                <h4 class="list-group-item-heading"><%= location_map(h['code'], @location_options)  %></h4>
-                <% h['copies'].each do |c| %>
-                    <div class="list-group-item-text">
-                        <%= c['count'] %> available in <strong><%= c['shelf_location'] %></strong><% c['call_numbers'].each do |n| %>
-                            <p class="lead">Call number: <strong><%= n %></strong></p>
-                        <% end %>
-                    </div>
-                <% end%>
-            </div>
-        <% end %>
-    <% else %>
-        <% holdings.each do |h| %>
-            <% if h['code'].to_s == location %>
-                <div class="list-group-item">
-                <h4 class="list-group-item-heading"><%= location_map(h['code'], @location_options)  %></h4>
-                <% h['copies'].each do |c| %>
-                    <div class="list-group-item-text">
-                        <%= c['count'] %> available in <strong><%= c['shelf_location'] %></strong><% c['call_numbers'].each do |n| %>
-                            <p class="lead">Call number: <strong><%= n %></strong></p>
-                        <% end %>
-                    </div>
-                <% end%>
-                </div>
-            <% end %>
+<% if location == '22' || location == nil || location == '' %>
+    <% holdings.each do |h| %>
+            <h4><b>Copies Available at <%= location_map(h['code'], @location_options)  %></b></h4>
+            <% h['copies'].each do |c| %>
+                    <%= c['count'] %> available in <strong><%= c['shelf_location'] %>,</strong>
+                    <% c['call_numbers'].each do |n| %>
+                        Call number: <strong><%= n %></strong>
+                    <% end %>
+                    <br>
+            <% end%>
+    <% end %>
+<% else %>
+    <% holdings.each do |h| %>
+        <% if h['code'].to_s == location %>
+            <h4><b>Copies Available at <%= location_map(h['code'], @location_options)  %></b></h4>
+            <% h['copies'].each do |c| %>
+                    <%= c['count'] %> available in <strong><%= c['shelf_location'] %>,</strong>
+                    <% c['call_numbers'].each do |n| %>
+                        Call number: <strong><%= n %></strong>
+                    <% end %>
+                    <br>
+            <% end%>
         <% end %>
     <% end %>
-</div>
+<% end %>

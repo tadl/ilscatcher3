@@ -11,7 +11,7 @@ class ApplicationController < ActionController::Base
 
     def shared_main_variables
         @logo = Settings.logo
-        @query_options = [['Keyword', 'keyword'], ['Author / Group / Actor', 'author'],['Title', 'title'],['Subject', 'subject'], ['Series', 'series'], ['Genre', 'single_genre']]
+        @query_options = [['Keyword', 'keyword'], ['Author / Group / Actor', 'author'],['Title', 'title'],['Subject', 'subject'], ['Series', 'series'], ['Genre', 'single_genre'], ['Call Number', 'call_number']]
         @format_options = Settings.format_options
         @format_options_unlocked = Settings.format_options_unlocked
         @format_default = Settings.format_options[0][2]
