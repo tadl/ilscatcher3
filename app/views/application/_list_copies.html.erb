@@ -16,7 +16,11 @@
                                 <td><%= h['circ_lib'] %></td>
                                 <td><strong><%= h['call_number'] %></strong> in <strong><%= h['location'] %></strong></td>
                                 <td>
-                                <%= h['status'] %>
+                                    <% if h['status'] == 'Checked out' %>
+                                        <%= h['status'] %> (Due: <%= h['due_date'] %>)
+                                    <% else %>
+                                        <%= h['status'] %>
+                                    <% end %>
                                 </td>
                             </tr>
                         <% end %>
@@ -26,7 +30,11 @@
                                 <td><%= h['circ_lib'] %></td>
                                 <td><strong><%= h['call_number'] %></strong> in <strong><%= h['location'] %></strong></td>
                                 <td>
-                                <%= h['status'] %>
+                                    <% if h['status'] == 'Checked out' %>
+                                        <%= h['status'] %> (Due: <%= h['due_date'] %>)
+                                    <% else %>
+                                        <%= h['status'] %>
+                                    <% end %>
                                 </td>
                             </tr>
                         <% end %>
@@ -36,7 +44,11 @@
                         <td><%= h['circ_lib'] %></td>
                         <td><strong><%= h['call_number'] %></strong> in <strong><%= h['location'] %></strong></td>
                         <td>
-                        <%= h['status'] %>
+                            <% if h['status'] == 'Checked out' %>
+                                <%= h['status'] %> (Due: <%= h['due_date'] %>)
+                            <% else %>
+                                <%= h['status'] %>
+                            <% end %>
                         </td>
                     </tr>
                 <% end %>

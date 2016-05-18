@@ -44,9 +44,12 @@
                             <%= render 'item_buttons', item: item %>
                         </div>  
                         <% if !item.abstract.blank?  %>
-                            <p><%= truncate(item.abstract, length: 400, separator: ' ') %></p>
+                            <p><b>Summary:</b> <%= truncate(item.abstract, length: 400, separator: ' ') %></p>
                         <% elsif !item.contents.blank? %>
-                            <p><%= truncate(item.contents, length: 400, separator: ' ') %></p>
+                            <p><b>Contents:</b> <%= truncate(item.contents, length: 400, separator: ' ') %></p>
+                        <% end %>
+                        <% if !item.publisher.blank? || !item.record_year.blank? %>
+                        <span><b>Publisher / Publication Date:</b> <%= item.publisher %> <%= item.record_year %><span>
                         <% end %>
                         <% if !item.eresource && item.loc_copies_available >= 1 %>
                             <p>

@@ -10,7 +10,11 @@ class Search
       args.each do |k,v|
         instance_variable_set("@#{k}", v) unless v.nil?
       end
-      instance_variable_set("@layout", "grid") unless args["layout"]
+      if Settings.default_search_display
+        instance_variable_set("@layout", Settings.default_search_display) unless args["layout"]
+      else
+        instance_variable_set("@layout", "grid") unless args["layout"]
+      end
       if args["search_title"] && args["qtype"] == 'shelf' || args["search_title"] && args["qtype"] == 'genre' 
         if valid_canned_search(args["search_title"])
           instance_variable_set("@canned", 'true')
