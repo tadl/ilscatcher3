@@ -1,10 +1,13 @@
 <% if location == '22' || location == nil || location == '' %>
     <% holdings.each do |h| %>
-            <h4><b>Copies Available at <%= location_map(h['code'], @location_options)  %></b></h4>
+            <h4 style="color: green;"><b>Copies Available at <%= location_map(h['code'], @location_options)  %></b></h4>
             <% h['copies'].each do |c| %>
-                    <%= c['count'] %> available in <strong><%= c['shelf_location'] %>,</strong>
+                    <b><%= c['count'] %></b> available in <strong><%= c['shelf_location'] %>,</strong>
                     <% c['call_numbers'].each do |n| %>
                         Call number: <strong><%= n %></strong>
+                        <% if(n != c['call_numbers'].last) %>
+                            <br>
+                        <% end %>
                     <% end %>
                     <br>
             <% end%>
@@ -12,13 +15,15 @@
 <% else %>
     <% holdings.each do |h| %>
         <% if h['code'].to_s == location %>
-            <h4><b>Copies Available at <%= location_map(h['code'], @location_options)  %></b></h4>
+            <h4 style="color: green;"><b>Copies Available at <%= location_map(h['code'], @location_options)  %></b></h4>
             <% h['copies'].each do |c| %>
-                    <%= c['count'] %> available in <strong><%= c['shelf_location'] %>,</strong>
+                    <b><%= c['count'] %></b> available in <strong><%= c['shelf_location'] %>,</strong>
                     <% c['call_numbers'].each do |n| %>
                         Call number: <strong><%= n %></strong>
+                        <% if(n != c['call_numbers'].last) %>
+                            <br>
+                        <% end %>
                     <% end %>
-                    <br>
             <% end%>
         <% end %>
     <% end %>

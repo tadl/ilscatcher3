@@ -321,6 +321,7 @@ class Search
           :contents => r["contents"],
           :electronic => r["electronic"],
           :eresource => process_eresource(r["links"]),
+          :source => r["source"],
           :format_type => r["type_of_resource"],
           :record_year => r["sort_year"],
           :call_number => holdings[0],
@@ -353,7 +354,7 @@ class Search
       genre_facets = process_facets('genres', genres_raw)
       series_facets = process_facets('series', series_raw)
       author_facets = process_facets('authors', author_raw)
-      facets = [subject_facets, series_facets, genre_facets, author_facets]
+      facets = [subject_facets, author_facets, series_facets, genre_facets]
       if results.size > 24
         more_resulsts = true
       else

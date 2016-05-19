@@ -50,7 +50,7 @@
         </p>
         <% if !item.holds.nil? && item.holds.to_i > 0 %>
             <p>
-                <%= pluralize(item.holds, 'hold') %> on <%= pluralize(item.all_copies_total, 'copy') %> 
+                <b><%= pluralize(item.holds, 'hold') %> on <%= pluralize(item.all_copies_total, 'copy') %></b> 
             </p>
         <% end %>
     <% else %>

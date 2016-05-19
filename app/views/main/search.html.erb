@@ -10,7 +10,7 @@
 <div class="row">
     <div class="collapse" id="facets">
         <% @facets.each do |facet| %>
-            <%= render 'facets', facet: facet %>
+            <%= render 'facets', facet: facet, full_size: 'false' %>
         <% end %>
     </div>
 </div>
@@ -30,13 +30,21 @@
     <% end %>
 <% end %>
 <div class="row padtop">
-    <div id="results" class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-        <% if @search.list_active == "active" %>
+    <% if @search.list_active == "active" %>
+        <div id="full_facets" class="visible-lg col-lg-3 ">
+            <% @facets.each do |facet| %>
+                <%= render 'facets', facet: facet, full_size: 'true' %>
+                <div style="clear: both"></div>
+            <% end %>
+        </div>
+        <div id="results" class="col-xs-12 col-sm-12 col-md-12 col-lg-9">
             <%= render 'search_list', items: @items %>
-        <% else %>
+        </div>
+    <% else %>
+        <div id="results" class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
             <%= render 'search_grid', items: @items %>
-        <% end %>
-    </div>    
+        </div>
+    <% end %>
 </div>
 <div>
 <ul id="hidden_list" style="display: none">
@@ -52,12 +60,6 @@
 <script>
 bind_more_results();
 item_loading_binds();
-document.addEventListener('page:change', function() {
-    $('#results').addClass('animated fadeInUp');
-});
-document.addEventListener('page:fetch', function() {
-    $('results').addClass('animated fadeOutDown');
-})
 
 $(document).on("submit", "form[data-turboform]", function(e) {
     Turbolinks.visit(this.action+(this.action.indexOf('?') == -1 ? '?' : '&')+$(this).serialize());
