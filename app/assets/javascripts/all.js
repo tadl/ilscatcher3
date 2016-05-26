@@ -112,11 +112,11 @@ function place_hold(id,force) {
     target_div = '.hold-status-' + id;
     login_div = '.holdlogin-' + id;
     if (logged_in == null) {
-        $(login_div).show();
+        $(login_div).last().show();
         $(target_button).hide();
     } else {
         $(target_button).hide();
-        $(target_div).html('<div class="alert alert-info">'+spinner+'Placing hold...</div>');
+        $(target_div).last().html('<div class="alert alert-info">'+spinner+'Placing hold...</div>');
         if (force_hold == true) {
             $.get("place_hold.js", {record_id: id, force: "true"});
         } else {
@@ -402,8 +402,8 @@ function login(id,page) {
         var userdiv = '#username';
         var passdiv = '#password';
     }
-    var username = $(userdiv).filter(":visible").val();
-    var password = $(passdiv).filter(":visible").val();
+    var username = $(userdiv).last().filter(":visible").val();
+    var password = $(passdiv).last().filter(":visible").val();
     $.post("login.js", {username: username, password: password, record_id: id, page: page });
 }
 
