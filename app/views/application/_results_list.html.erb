@@ -8,7 +8,7 @@
             <div class="col-lg-11 col-md-11 col-sm-11 col-xs-10">
                 <a class="item_details_link" href="details?id=<%= item.id %>" onclick="item_details(<%= item.create_params.to_json %>)">
                     <h4 class="panel-title">
-                        <span class="glyphicon <%= format_icon(item.format_type, @format_icons) %>" title="<%= item.format_type %>"></span>
+                        <span class="glyphicon <%= format_icon(item, @format_icons) %>" title="<%= item.format_type %>"></span>
                         <%= item.title %>
                     </h4>
                 </a>

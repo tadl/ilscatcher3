@@ -1,8 +1,14 @@
 module ApplicationHelper
-    def format_icon(value, option_array)
-        option_array.each do |option|
-            if value.to_s == option[2].to_s
-                return option[1]
+    def format_icon(item, option_array)
+        if item.format_type == 'text' && item.electronic.to_s == 'true' 
+            return "glyphicon-phone"
+        elsif item.format_type == 'sound recording-nonmusical' && item.electronic.to_s == 'true'
+            return "glyphicon-headphones"
+        else
+            option_array.each do |option|
+                if item.format_type.to_s == option[2].to_s
+                    return option[1]
+                end
             end
         end
     end
