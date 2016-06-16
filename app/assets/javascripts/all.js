@@ -1108,3 +1108,8 @@ function show_facet(id, facet_type){
     $(target_div).show()
     $(link_to_hide).hide()
 }
+
+function report_summer_reading(){
+    var session = Cookies.get('login');
+    $.redirect("https://www.tadl.org/summer-redirect/summer-redirect.cgi", {m: 'jwt', ses: session });
+}
