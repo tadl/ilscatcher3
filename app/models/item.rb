@@ -23,7 +23,7 @@ class Item
       end
       holdings.push(h)
     end rescue []
-    return holdings.flatten 
+    return holdings.flatten
   end
 
   	def check_trailer

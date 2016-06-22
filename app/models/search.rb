@@ -302,14 +302,15 @@ class Search
       series_raw = Array.new
       author_raw = Array.new
       request.each do |r|
+        sorted_holdings = r['holdings'].sort_by {|h| h['call_number']}
         location = self.loc rescue ''
-        holdings = process_holdings(r['holdings'], location)
-        availability_details = process_availability(r['holdings'], location)
+        holdings = process_holdings(sorted_holdings, location)
+        availability_details = process_availability(sorted_holdings, location)
         item_raw ={
           :title => r["title_display"],
           :author => r["author"],
           :author_other => r["author_other"],
-          :holdings => r['holdings'],
+          :holdings => sorted_holdings,
           :availability => availability_details,
           :all_copies_available => holdings[1],
           :all_copies_total => holdings[2],
