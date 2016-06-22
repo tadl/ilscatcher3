@@ -1,15 +1,4 @@
-<div class="row">
-    <% if Settings.summer_reading == 'true' && (Date.parse('2016-6-5') < Date.today)  %>
-        <div id="summer_reading_wrapper">
-            <div class="summer_reading">
-                <a class="summer_reading_link" href="https://summer.tadl.org">Register for Summer Reading Club</a>
-            </div>
-            <% if Settings.summer_reading == 'true' && cookies[:user] && (Date.parse('2016-6-19') < Date.today) %>
-                <%= render 'report_summer_reading' %>
-            <% end %>
-        </div>
-    <% end %>
-</div>
+<%= render 'summer_reading' %>
 <div class="row">
     <%= render 'partial_search_box', search: @search %>
 </div>
