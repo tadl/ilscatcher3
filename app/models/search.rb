@@ -4,7 +4,7 @@ class Search
 	attr_accessor :query, :sort, :qtype, :fmt, :loc, :page, :facet, :availability,
 								:layout, :shelving_location, :list_id, :subjects, :series,
 								:authors, :genres, :canned, :search_title, :shelf_lock, :genre_lock, 
-                :in_progress, :physical, :min_score
+                :in_progress, :physical, :min_score, :fiction
 
 	  def initialize args
       args.each do |k,v|
@@ -122,8 +122,9 @@ class Search
         path += '&shelf_lock=' + self.shelf_lock unless self.shelf_lock.nil?
         path += '&search_title=' + self.search_title unless self.search_title.nil?
         path += '&genre_lock=' + self.genre_lock unless self.genre_lock.nil?
-        path += '&physical' + self.physical unless self.physical.nil?
-        path += '&min_score' + self.min_score unless  self.min_score.nil?
+        path += '&physical=' + self.physical unless self.physical.nil?
+        path += '&min_score=' + self.min_score unless  self.min_score.nil?
+        path += '&fiction=' + self.fiction unless  self.min_score.nil?
       end
       return path
   	end
@@ -214,6 +215,7 @@ class Search
       next_page['canned'] = self.canned unless self.canned.nil?
       next_page['physical'] = self.physical unless self.physical.nil?
       next_page['min_score'] = self.min_score unless self.min_score.nil?
+      next_page['fiction'] = self.fiction unless self.fiction.nil?
 
       next_page['subjects'] = Array.new
       self.subjects.each do |f|
@@ -294,6 +296,7 @@ class Search
         self.min_score = '1' 
       end
       url = url + '&min_score=' + self.min_score unless self.min_score.nil?
+      url = url + '&fiction=' + self.fiction unless self.fiction.nil?
 
       request = JSON.parse(open(url).read) 
   		results = Array.new

@@ -12,6 +12,9 @@ body.list_checkouts {
     padding-bottom: 200px;
 }
 
+body a:link:after, body a:visited:after {    
+  content: "";
+}
 
 .dropdown-menu,
 .dropdown-menu li,
