@@ -124,7 +124,7 @@ class Search
         path += '&genre_lock=' + self.genre_lock unless self.genre_lock.nil?
         path += '&physical=' + self.physical unless self.physical.nil?
         path += '&min_score=' + self.min_score unless  self.min_score.nil?
-        path += '&fiction=' + self.fiction unless  self.min_score.nil?
+        path += '&fiction=' + self.fiction unless  self.fiction.nil?
       end
       return path
   	end
