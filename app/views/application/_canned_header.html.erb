@@ -43,6 +43,11 @@
     </div>
         <div class="row">
             <div class="col-xs-12 padtop">
+                            <% if @search.fiction == 'true' %>
+                <a class="btn btn-primary btn-xs" href="<%= @search.search_path_with_facets_minus_fiction%>">Fiction <span class="badge"><span class="glyphicon glyphicon-remove removefacet"></span></span></a>
+            <% elsif @search.fiction == 'false' %>
+                    <a class="btn btn-primary btn-xs" href="<%= @search.search_path_with_facets_minus_fiction%>">Non-fiction <span class="badge"><span class="glyphicon glyphicon-remove removefacet"></span></span></a>
+            <% end %>
                 <% @facets.each do |facet| %>
                     <% unless facet.subfacets.count == 0 %>
                             <% facet.subfacets.each do |sub| %>

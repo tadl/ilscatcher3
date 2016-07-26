@@ -1,0 +1,25 @@
+<% if full_size == "true" %>
+<div>
+<% else %>
+<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+<% end %>   
+	<div class="list-group">
+	    <h4 class="list-group-item list-group-item-info active">Filter By Fiction/Non-fiction</h4>
+	    <% if @search.fiction == 'true' %>
+	    	<a class="list-group-item" href="<%= @search.search_path_with_facets_minus_fiction %>">
+	    		Fiction
+	    		<span class="closebutton glyphicon glyphicon-remove"></span>
+	    	</a>
+	    <% else %>
+			<a class="list-group-item" href="<%= @search.search_path + '&fiction=true' %>">Fiction</a>
+		<% end %>
+		<% if @search.fiction == 'false' %>
+	    	<a class="list-group-item" href="<%= @search.search_path_with_facets_minus_fiction %>">
+	    		Non-fiction
+	    		<span class="closebutton glyphicon glyphicon-remove"></span>
+	    	</a>
+	    <% else %>
+			<a class="list-group-item" href="<%= @search.search_path + '&fiction=false' %>">Non-fiction</a>
+		<% end %>
+	</div>
+</div>

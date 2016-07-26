@@ -124,12 +124,33 @@ class Search
         path += '&genre_lock=' + self.genre_lock unless self.genre_lock.nil?
         path += '&physical=' + self.physical unless self.physical.nil?
         path += '&min_score=' + self.min_score unless  self.min_score.nil?
-        path += '&fiction=' + self.fiction unless  self.fiction.nil?
       end
       return path
   	end
 
     def search_path_with_facets
+      path = self.search_path
+      path += '&fiction=' + self.fiction unless  self.fiction.nil?
+      self.subjects.each do |f|
+        f = URI::encode(f, Regexp.new("[^#{URI::PATTERN::UNRESERVED}]"))
+        path += '&subjects[]=' + f
+      end unless self.subjects.nil?
+      self.genres.each do |f|
+        f = URI::encode(f, Regexp.new("[^#{URI::PATTERN::UNRESERVED}]"))
+        path += '&genres[]=' + f
+      end unless self.genres.nil?
+      self.series.each do |f|
+        f = URI::encode(f, Regexp.new("[^#{URI::PATTERN::UNRESERVED}]"))
+        path += '&series[]=' + f
+      end unless self.series.nil?
+      self.authors.each do |f|
+        f = URI::encode(f, Regexp.new("[^#{URI::PATTERN::UNRESERVED}]"))
+        path += '&authors[]=' + f
+      end unless self.authors.nil?
+      return path
+    end
+
+    def search_path_with_facets_minus_fiction
       path = self.search_path
       self.subjects.each do |f|
         f = URI::encode(f, Regexp.new("[^#{URI::PATTERN::UNRESERVED}]"))
@@ -149,6 +170,7 @@ class Search
       end unless self.authors.nil?
       return path
     end
+
 
     def search_path_with_new_facet(facet_type, facet)
 			facet = URI.encode(facet, Regexp.new("[^#{URI::PATTERN::UNRESERVED}]"))
@@ -246,8 +268,8 @@ class Search
     end
 
   	def results
-			url = Settings.elastic_evergreen_url
-      # url = 'http://cal.lib.tadl.org:4000/main/index.json?query=' 
+			# url = Settings.elastic_evergreen_url
+      url = 'http://cal.lib.tadl.org:4000/main/index.json?query=' 
       url = url + URI.encode(self.query, Regexp.new("[^#{URI::PATTERN::UNRESERVED}]")) unless self.query.nil?
       url = url + '&page=' + self.page unless self.page.nil?
       url = url + '&search_type=' + self.qtype unless self.qtype.nil?
@@ -337,7 +359,8 @@ class Search
           :subjects => r["subjects"],
           :genres => r["genres"],
           :series => r["series"],
-          :score => r["score"]
+          :score => r["score"],
+          :fiction => r["fiction"]
         }
         item = Item.new item_raw
         results = results.push(item)
