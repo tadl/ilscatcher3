@@ -22,6 +22,11 @@ body a:link:after, body a:visited:after {
     z-index: 1000;
 }
 
+/* fix image alignment on main index */
+div.owl-item {
+    text-align: center;
+}
+
 .input-group > .input-group-btn:first-child > .selectpicker {
     border-top-left-radius: 5px;
     border-bottom-left-radius: 5px;
