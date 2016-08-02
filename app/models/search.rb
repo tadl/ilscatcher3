@@ -444,11 +444,11 @@ class Search
       location_total = 0
       availability.each do |a|
 				all_total = all_total + 1
-        if a["status"] == "Available" || a["status"] == "Reshelving"
+        if a["status"] == "Available" || a["status"] == "Reshelving" || a["status"] == "New Serial"
           all_available = all_available + 1
         end
         if location_code != ''
-          if (a["status"] == "Available" || a["status"] == "Reshelving") && a["circ_lib"] == location_code
+          if (a["status"] == "Available" || a["status"] == "Reshelving" || a["status"] == "New Serial") && a["circ_lib"] == location_code
             location_available = location_available + 1
           end
           if a["circ_lib"] == location_code
@@ -474,7 +474,7 @@ class Search
   def process_availability(availability, location)
     #only look at available holdings
     holdings = Array.new
-    only_available = availability.reject {|k| k['status'] != "Available" && k['status'] != "Reshelving"}
+    only_available = availability.reject {|k| k['status'] != "Available" && k['status'] != "Reshelving" && k['status'] != "New Serial"}
     #create array of locations with available copies
     locations = Array.new
     only_available.each do |l|
