@@ -11,7 +11,7 @@
             <% item.clean_holdings.each do |h| %>
                 <% if all == true %>
                     <% if item.loc == '22' || item.loc == '' || item.loc == nil %>
-                        <% if h['status'] == 'Reshelving' || h['status'] == 'Available' || h.['status'] == 'New Serial' %>
+                        <% if h['status'] == 'Reshelving' || h['status'] == 'Available' || h['status'] == 'New Serial' %>
                             <tr>
                                 <td><%= h['circ_lib'] %></td>
                                 <td><strong><%= h['call_number'] %></strong> in <strong><%= h['location'] %></strong></td>
