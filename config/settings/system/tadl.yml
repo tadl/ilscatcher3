@@ -10,5 +10,5 @@ has_registration: 'true'
 has_payments: 'true'
 payment_link: 'https://www.tadl.org/pay/pay.cgi'
 has_eresources: 'true'
-system_lock:
-  card_prefix_prevent: '90247'
+# system_lock:
+#   card_prefix_prevent: '90247'
