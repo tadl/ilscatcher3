@@ -196,7 +196,7 @@ class MainController < ApplicationController
     end
     respond_to do |format|
       format.js
-      format.json {render :json => @hold}
+      format.json {render :json => {:message => @hold}}
     end
   end
 
