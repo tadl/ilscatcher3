@@ -353,6 +353,7 @@ class User
                       ["opac.default_pickup_location", args['pickup_library']],
                       ["history.circ.retention_start", args['keep_circ_history']],
                       ["history.hold.retention_start", args['keep_hold_history']],
+                      ["history_delete_confirmed", 1],
                       ["opac.hits_per_page", '10']
                     ]
       agent.post(url, post_params)
