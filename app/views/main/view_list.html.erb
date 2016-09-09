@@ -74,6 +74,16 @@
             </div>
         </div>
     <% end %>
+    <% if @list['page'].to_i > 1 %>
+        <a type="button" class="btn btn-primary btn-xs navi" href="/main/view_list?list_id=<%= @list['id']%>"><i class="glyphicon glyphicon-fast-backward"></i></a>
+    <% end %>
+    <% if @list['page'].to_i > 0 %>
+        <a type="button" class="btn btn-primary btn-xs navi" href="/main/view_list?list_id=<%= @list['id']%>&page=<%= (@list['page'].to_i - 1) %>"><i class="glyphicon glyphicon-triangle-left"></i> Previous Page</a>
+    <% end %>
+    <% if @list['more_results'] == "true" %>
+        <a type="button" class="btn btn-primary btn-xs navi pull-right" href="/main/view_list?list_id=<%= @list['id']%>&page=<%= (@list['page'].to_i + 1) %>">Next Page <i class="glyphicon glyphicon-triangle-right"></i></a>
+    <% end %>
+    <div class="clearfix"></div>
 </div>
 <script>
     item_loading_binds();

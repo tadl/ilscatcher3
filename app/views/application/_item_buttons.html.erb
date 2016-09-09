@@ -67,7 +67,7 @@
                 <span class="caret"></span>
                 <span class="sr-only">Toggle Dropdown</span>
             </button>
-            <ul class="dropdown-menu dropdown-menu-right">
+            <ul class="smartdrop dropdown-menu dropdown-menu-right">
                 <% @lists.each do |l| %>
                     <li>
                         <a class="clicky" onclick="add_to_list(<%= l.list_id %>,<%= item.id %>)">
@@ -86,7 +86,7 @@
             <button type="button" class="btn btn-primary dropdown-toggle add-list-<%= item.id %>" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Add to List
             </button>
-            <ul class="dropdown-menu dropdown-menu-right">
+            <ul class="smartdrop dropdown-menu dropdown-menu-right">
                 <% @lists.each do |l| %>
                     <li>
                         <a class="clicky" onclick="add_to_list(<%= l.list_id %>,<%= item.id %>)"><%= truncate(l.title, length: 30, separator: ' ') %>

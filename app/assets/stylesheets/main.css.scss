@@ -4,7 +4,6 @@
 
 html,
 body {
-    overflow-x: hidden;
     min-height: 800px;
 }
 body.list_holds,
@@ -61,7 +60,7 @@ div.owl-item {
     max-height: 180px;
 }
 #main-container{
-    overflow: hidden;
+
 }
 
 /* results grid */
