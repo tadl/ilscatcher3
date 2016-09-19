@@ -60,7 +60,7 @@ module ApplicationHelper
 
     def related_search_link(query, item, type)
         if query && query != ''
-            path = request.protocol + request.host_with_port + '/search?query=' + URI.encode(query, Regexp.new("[^#{URI::PATTERN::UNRESERVED}]"))
+            path = '/search?query=' + URI.encode(query, Regexp.new("[^#{URI::PATTERN::UNRESERVED}]"))
             path += '&qtype=' + type 
             path += '&loc=' + item.loc unless item.loc.nil?
             path += '&layout=' + item.search_layout unless item.search_layout.nil?
