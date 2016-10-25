@@ -54,7 +54,7 @@
                                 <label for="edit_list_description_<%= l.list_id %>">Description</label>
                                 <textarea class="form-control" id="edit_list_description_<%= l.list_id %>"><%= l.description %></textarea>
                             </div>
-                            <button type="button" class="btn btn-sm btn-success navi" onclick="edit_list(<%= l.list_id %>)">Save</button>
+                            <button type="button" class="btn btn-sm btn-success navi" onclick="edit_list(<%= l.list_id %>,<%= l.offset%>)">Save</button>
                             <button type="button" class="btn btn-sm btn-danger" onclick="hide_edit_list(<%= l.list_id %>)">Cancel</button>
                         </div>
                     </div>

@@ -406,14 +406,18 @@ class User
   end
 
   def process_lists(list_div, token)
-    raw_lists = list_div.css('.bookbag_entry').map do |l|
-      {
-        :title => l.css('.bookbag_name').try(:text),
-        :list_id => l.css('.bookbag_id').try(:text),
-        :description => l.css('.bookbag_description').try(:text),
-        :default => test_for_default_list(l.css('.bookbag_default').text),
-        :shared => test_for_shared_list(l.css('.bookbag_pub').text),
-      }
+    raw_lists = Array.new
+    i = 0
+    list_div.css('.bookbag_entry').each do |l|
+      list = Hash.new
+      list['title'] = l.css('.bookbag_name').try(:text)
+      list['list_id'] = l.css('.bookbag_id').try(:text)
+      list['description'] = l.css('.bookbag_description').try(:text)
+      list['default'] = test_for_default_list(l.css('.bookbag_default').text)
+      list['shared'] = test_for_shared_list(l.css('.bookbag_pub').text)
+      list['offset'] = (i / 10.0).floor * 10
+      i += 1
+      raw_lists = raw_lists.push(list)
     end
     lists = Array.new
     raw_lists.each do |l|
@@ -549,9 +553,9 @@ class User
     end
   end
 
-  def edit_list(list_id, name, description)
+  def edit_list(list_id, name, description, offset)
     agent = create_agent_token(self.token)
-    page = agent.post('https://mr-v2.catalog.tadl.org/eg/opac/myopac/lists', {'action' => 'editmeta', 'name' => name, 'description' => description, 'bbid' => list_id}) rescue 'bad'
+    page = agent.post('https://mr-v2.catalog.tadl.org/eg/opac/myopac/lists', {'offset' => offset, 'action' => 'editmeta', 'name' => name, 'description' => description, 'bbid' => list_id}) rescue 'bad'
     if page != 'bad'
       return 'success'
     else 

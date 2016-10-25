@@ -485,10 +485,11 @@ class MainController < ApplicationController
     @user = generate_user()
     name = params[:name]
     description = params[:description] 
+    offset = params[:offset]
     list_id = params[:list_id]    
     if !@user.error && name.to_s != '' && list_id.to_s != '' 
       set_cookies(@user)
-      @message = @user.edit_list(list_id, name, description)
+      @message = @user.edit_list(list_id, name, description, offset)
     elsif @user.error
       @message = 'bad login'
       redirect_to main_index_path

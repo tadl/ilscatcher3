@@ -1,6 +1,6 @@
 class List
 	include ActiveModel::Model
-	attr_accessor :list_id, :title, :description, :shared, :default
+	attr_accessor :list_id, :title, :description, :shared, :default, :offset
 
 	def initialize args
     args.each do |k,v|
