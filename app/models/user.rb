@@ -685,14 +685,17 @@ class User
   end 
 
 	def clean_record(string)
-  	record_id = string.split('?') 
-  	record_id = record_id[0].gsub('/eg/opac/record/','') 
-  	return record_id
+  	record_id = string.split('?') rescue '-1'
+    if record_id != '-1'
+  	 record_id = record_id[0].gsub('/eg/opac/record/','') 
+  	end
+    return record_id
   end
 
   def scrape_checkouts(page)
   	checkouts_raw = page.parser.css('table#acct_checked_main_header').css('tr').drop(1).reject{|r| r.search('span[@class="failure-text"]').present?}.map do |c|
 		  {
+      :title_and_author => c.search('td[@name="author"]').try(:text).try(:gsub!, /\n/," ").try(:squeeze, " ").try(:strip),
       :title => c.search('td[@name="author"]').css('a')[0].try(:text),
       :author => c.search('td[@name="author"]').css('a')[1].try(:text),
       :format => c.css('.marc_record_type').try(:text),
@@ -706,6 +709,9 @@ class User
     end
     checkouts = Array.new
   	checkouts_raw.each do |c|
+      if c[:record_id] == '-1'
+        c[:title] = c[:title_and_author]
+      end
   		checkout = Checkout.new c
   		checkouts = checkouts.push(checkout)
   	end

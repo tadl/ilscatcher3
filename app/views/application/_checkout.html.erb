@@ -17,7 +17,11 @@
         <div class="panel-heading">
             <div class="row">
                 <div class="col-lg-11 col-md-11 col-sm-11 col-xs-10">
-                    <%= link_to 'details.js?id='+checkout.record_id, :remote => true, :class => 'item-link'  do %>
+                    <% if checkout.record_id != '-1' %>
+                        <%= link_to 'details.js?id='+checkout.record_id, :remote => true, :class => 'item-link'  do %>
+                            <h4 class="panel-title"><%= checkout.title %></h4>
+                        <% end %>
+                    <% else %>
                         <h4 class="panel-title"><%= checkout.title %></h4>
                     <% end %>
                 </div>
@@ -53,8 +57,10 @@
                         <% else %>
                             <button type="button" class="btn btn-block btn-warn disabled">Renew</button>
                         <% end %>
-                        <%= link_to 'details.js?id='+checkout.record_id, :remote => true, :type => 'button', :class => 'btn btn-block btn-info details-button' do %>Details<% end %>
-                        <button type="button" class="btn btn-default btn-block select-btn select-<%= checkout.record_id %>" onclick="checkout_select(<%= checkout.checkout_id %>,<%= checkout.record_id %>)">Select</button>
+                        <% if checkout.record_id != '-1' %>
+                            <%= link_to 'details.js?id='+checkout.record_id, :remote => true, :type => 'button', :class => 'btn btn-block btn-info details-button' do %>Details<% end %>
+                        <% end %>
+                        <button type="button" class="btn btn-default btn-block select-btn select-<%= checkout.checkout_id %>" onclick="checkout_select(<%= checkout.checkout_id %>,<%= checkout.record_id %>)">Select</button>
                     </div>
                 </div>
             </div>

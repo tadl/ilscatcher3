@@ -796,7 +796,7 @@ function checkout_select(cid,rid) {
     if (typeof rids !== 'object') rids = [];
     var cindex = $.inArray(cid, cids);
     var rindex = $.inArray(rid, rids);
-    var element = $('.select-'+rid);
+    var element = $('.select-'+cid);
     var selectedText = '<span class="glyphicon glyphicon-ok"></span> Selected';
     var deselectedText = 'Select';
     if ((cindex == -1) && (rindex == -1)) {
