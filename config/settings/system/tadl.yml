@@ -1,3 +1,4 @@
+machine_readable: 'mr-v2.catalog.tadl.org'
 public_catalog: 'https://catalog.tadl.org'
 location_name: 'Traverse Area District Library'
 elastic_evergreen_url: 'https://elastic-evergreen-tadl.apps.tadl.org/main/index.json?query='

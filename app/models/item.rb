@@ -81,7 +81,7 @@ class Item
   	end
 
     def marc
-      url = 'https://mr-v2.catalog.tadl.org/eg/opac/record/' + self.id + '?expand=marchtml#marchtml'
+      url = 'https://' + Settings.machine_readable + '/eg/opac/record/' + self.id + '?expand=marchtml#marchtml'
       agent = Mechanize.new
       page = agent.get(url)
       marc_record = page.parser.at_css('.marc_table').to_s.gsub(/\n/,'').gsub(/\t/,'')

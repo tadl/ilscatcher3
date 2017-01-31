@@ -28,7 +28,7 @@ class User
 	def create_agent_token(token)
 		agent = Mechanize.new
 		cookie = Mechanize::Cookie.new('ses', token)
-		cookie.domain = 'mr-v2.catalog.tadl.org'
+		cookie.domain = Settings.machine_readable
 		cookie.path = '/'
 		agent.cookie_jar.add!(cookie)
 		return agent
@@ -36,7 +36,7 @@ class User
 
 	def create_agent_username_password(username, password)
 		agent = Mechanize.new
-		agent.get('https://mr-v2.catalog.tadl.org/eg/opac/myopac/prefs_notify')
+		agent.get('https://' + Settings.machine_readable + '/eg/opac/myopac/prefs_notify')
 		login_form = agent.page.forms[1]
 		login_form.field_with(:name => "username").value = username
     login_form.field_with(:name => "password").value = password
@@ -51,7 +51,7 @@ class User
 		token = agent.cookies.detect {|c| c.name == 'ses'}
 		if !token.nil?
 			if page.nil?
-				page = agent.get('https://mr-v2.catalog.tadl.org/eg/opac/myopac/prefs_notify')
+				page = agent.get('https://' + Settings.machine_readable + '/eg/opac/myopac/prefs_notify')
 			end
 			basic_info = Hash.new
 			page.parser.css('body').each do |p|
@@ -101,7 +101,7 @@ class User
 	def place_hold(record_id)
 		record_ids = record_id.split(',').reject(&:empty?).map(&:strip).map {|k| "&hold_target=#{k}" }.join
 		agent = create_agent_token(self.token)
-		agent.get('https://mr-v2.catalog.tadl.org/eg/opac/place_hold?hold_type=T' + record_ids)
+		agent.get('https://' + Settings.machine_readable + '/eg/opac/place_hold?hold_type=T' + record_ids)
 		hold_form = agent.page.forms[1]
 		agent.submit(hold_form)
     page = agent.page
@@ -138,7 +138,7 @@ class User
 
 	def list_holds
 		agent = create_agent_token(self.token)
-		page = agent.get('https://mr-v2.catalog.tadl.org/eg/opac/myopac/holds?limit=41')
+		page = agent.get('https://' + Settings.machine_readable + '/eg/opac/myopac/holds?limit=41')
 		holds_raw = page.parser.css('tr.acct_holds_temp').map do |h|
 			{
         :title =>  h.css('td[2]').css('a').text,
@@ -178,7 +178,7 @@ class User
     end
     post_params = post_params.push(["action", action]) 
 		agent = create_agent_token(self.token)
-		agent.post('https://mr-v2.catalog.tadl.org/eg/opac/myopac/holds?limit=41', post_params)
+		agent.post('https://' + Settings.machine_readable + 'eg/opac/myopac/holds?limit=41', post_params)
 		holds = self.list_holds
 		updated_details = self.basic_info(agent)
     user = User.new updated_details
@@ -194,7 +194,7 @@ class User
     post_params = post_params.push(["expire_time", ""])
     post_params = post_params.push(["frozen", hold_state])
     post_params = post_params.push(["thaw_date", ""])
-    url = 'https://mr-v2.catalog.tadl.org/eg/opac/myopac/holds/edit?id=' + hold
+    url = 'https://' + Settings.machine_readable + '/eg/opac/myopac/holds/edit?id=' + hold
     agent.post(url, post_params)
     holds = self.list_holds
     updated_hold = ""
@@ -208,13 +208,13 @@ class User
 
 	def list_checkouts
 		agent = create_agent_token(self.token)
-		page = agent.get('https://mr-v2.catalog.tadl.org/eg/opac/myopac/circs')
+		page = agent.get('https://' + Settings.machine_readable + '/eg/opac/myopac/circs')
 		checkouts = scrape_checkouts(page)
     	return checkouts
 	end
 
 	def renew_checkouts(checkouts)
-		url = 'https://mr-v2.catalog.tadl.org/eg/opac/myopac/circs?action=renew'
+		url = 'https://' + Settings.machine_readable + '/eg/opac/myopac/circs?action=renew'
 		checkouts.each do |c|
 			url += '&circ=' + c
 		end
@@ -233,7 +233,7 @@ class User
   end
 
   def preferences
-    url = 'https://mr-v2.catalog.tadl.org/eg/opac/myopac/prefs_notify'
+    url = 'https://' + Settings.machine_readable + '/eg/opac/myopac/prefs_notify'
     agent = create_agent_token(self.token)
     agent.get(url)
     page = agent.page.parser
@@ -259,16 +259,16 @@ class User
 
   def update_user_info(args)
     if args['username']
-      url = 'https://mr-v2.catalog.tadl.org/eg/opac/myopac/update_username'
+      url = 'https://' + Settings.machine_readable + '/eg/opac/myopac/update_username'
       post_params = [["current_pw", args['password']], ["username", args['username']]]
     elsif args['new_password']
-      url = 'https://mr-v2.catalog.tadl.org/eg/opac/myopac/update_password'
+      url = 'https://' + Settings.machine_readable + '/eg/opac/myopac/update_password'
       post_params = [["current_pw", args['password']], ["new_pw", args['new_password']], ["new_pw2", args['new_password']]]
     elsif args['email']
-      url = 'https://mr-v2.catalog.tadl.org/eg/opac/myopac/update_email'
+      url = 'https://' + Settings.machine_readable + '/eg/opac/myopac/update_email'
       post_params = [["current_pw", args['password']], ["email", args['email']]]
     elsif args['hold_shelf_alias']
-      url = 'https://mr-v2.catalog.tadl.org/eg/opac/myopac/update_alias'
+      url = 'https://' + Settings.machine_readable + '/eg/opac/myopac/update_alias'
       post_params = [["current_pw", args['password']], ["alias", args['hold_shelf_alias']]]
     else
       prefs = 'missing required parameters'
@@ -327,7 +327,7 @@ class User
     #make sure all the required params are passed or evergreen will process the missing as null
     if args['email_notify'] && args['phone_notify'] && args['text_notify'] && args['phone_notify_number'] && args['text_notify_number']
       agent = create_agent_token(self.token)
-      url = 'https://mr-v2.catalog.tadl.org/eg/opac/myopac/prefs_notify'
+      url = 'https://' + Settings.machine_readable + '/eg/opac/myopac/prefs_notify'
       post_params = [
                       ["opac.hold_notify.email", args['email_notify']],
                       ["opac.hold_notify.phone", args['phone_notify']],
@@ -347,7 +347,7 @@ class User
   def update_search_history_preferences(args)
     if args['keep_hold_history'] && args['keep_circ_history'] && args['pickup_library'] && args['default_search']
       agent = create_agent_token(self.token)
-      url = 'https://mr-v2.catalog.tadl.org/eg/opac/myopac/prefs_settings'
+      url = 'https://' + Settings.machine_readable + '/eg/opac/myopac/prefs_settings'
       post_params = [
                       ["opac.default_search_location", args['default_search']],
                       ["opac.default_pickup_location", args['pickup_library']],
@@ -368,7 +368,7 @@ class User
 
   def fines
   	agent = create_agent_token(self.token)
-  	page = agent.get('https://mr-v2.catalog.tadl.org/eg/opac/myopac/main?limit=100')
+  	page = agent.get('https://' + Settings.machine_readable + '/eg/opac/myopac/main?limit=100')
   	fines_list = page.parser.css('#myopac_circ_trans_row').map do |c|
           {
             :title => c.css('td[1]').text.try(:strip),
@@ -394,7 +394,7 @@ class User
 
   def payments
     agent = create_agent_token(self.token)
-    page = agent.get('https://mr-v2.catalog.tadl.org/eg/opac/myopac/main_payments?limit=100')
+    page = agent.get('https://' + Settings.machine_readable + '/eg/opac/myopac/main_payments?limit=100')
     payment_list = page.parser.css('table[@title="Payments"]/tbody/tr').map do |c|
           {
             :payment_date => c.css('td[1]').text.try(:strip),
@@ -448,7 +448,7 @@ class User
 
   def get_lists
     agent = create_agent_token(self.token)
-    page = agent.get('https://mr-v2.catalog.tadl.org/eg/opac/myopac/lists')
+    page = agent.get('https://' + Settings.machine_readable + '/eg/opac/myopac/lists')
     list_list = page.parser.css('.bookbag-controls-holder').map do |l|
       {
         :title=> l.css('.bookbag-name').try(:text) ,
@@ -464,7 +464,7 @@ class User
   def view_list(list_id, page_number, sort_by)
     agent = create_agent_token(self.token)
     randomizer = SecureRandom.hex(13)
-    page = agent.get('https://mr-v2.catalog.tadl.org/eg/opac/results?contains=nocontains&query='+ randomizer +'&qtype=keyword&bookbag='+ list_id +'&sort='+ sort_by +'&limit=10&page=' + page_number + '&loc=' + Settings.all_locations_code)    
+    page = agent.get('https://' + Settings.machine_readable + '/eg/opac/results?contains=nocontains&query='+ randomizer +'&qtype=keyword&bookbag='+ list_id +'&sort='+ sort_by +'&limit=10&page=' + page_number + '&loc=' + Settings.all_locations_code)    
     list = Hash.new
     list_items = Array.new
     list['name'] = page.parser.css('.result-bookbag-name').text rescue nil
@@ -505,7 +505,7 @@ class User
 
   def add_item_to_list(list_id, record_id)
     agent = create_agent_token(self.token)
-    page = agent.get('https://mr-v2.catalog.tadl.org/eg/opac/myopac/list/update?&record='+ record_id +'&action=add_rec&list=' + list_id) rescue 'bad'
+    page = agent.get('https://' + Settings.machine_readable + '/eg/opac/myopac/list/update?&record='+ record_id +'&action=add_rec&list=' + list_id) rescue 'bad'
     if page != 'bad'
       return 'success'
     else
@@ -520,7 +520,7 @@ class User
       post_params = post_params + '&selected_item=' + l
     end
     agent = create_agent_token(self.token)
-    page = agent.get('https://mr-v2.catalog.tadl.org/eg/opac/myopac/list/update?bookbag='+ list_id + post_params) rescue 'bad'
+    page = agent.get('https://' + Settings.machine_readable + '/eg/opac/myopac/list/update?bookbag='+ list_id + post_params) rescue 'bad'
     if page != 'bad'
       return 'success'
     else 
@@ -535,7 +535,7 @@ class User
       privacy = '0'
     end
     agent = create_agent_token(self.token)
-    page = agent.post('https://mr-v2.catalog.tadl.org/eg/opac/myopac/list/update', {'action' => 'create', 'name' => name, 'description' => description, 'shared' => privacy}) rescue 'bad'
+    page = agent.post('https://' + Settings.machine_readable + '/eg/opac/myopac/list/update', {'action' => 'create', 'name' => name, 'description' => description, 'shared' => privacy}) rescue 'bad'
     if page != 'bad'
       return 'success'
     else 
@@ -545,7 +545,7 @@ class User
 
   def destroy_list(list_id)
     agent = create_agent_token(self.token)
-    page = agent.post('https://mr-v2.catalog.tadl.org/eg/opac/myopac/list/update?bbid='+ list_id, {'action' => 'delete', 'list' => list_id}) rescue 'bad'
+    page = agent.post('https://' + Settings.machine_readable + '/eg/opac/myopac/list/update?bbid='+ list_id, {'action' => 'delete', 'list' => list_id}) rescue 'bad'
     if page != 'bad'
       return 'success'
     else 
@@ -555,7 +555,7 @@ class User
 
   def edit_list(list_id, name, description, offset)
     agent = create_agent_token(self.token)
-    page = agent.post('https://mr-v2.catalog.tadl.org/eg/opac/myopac/lists', {'offset' => offset, 'action' => 'editmeta', 'name' => name, 'description' => description, 'bbid' => list_id}) rescue 'bad'
+    page = agent.post('https://' + Settings.machine_readable + '/eg/opac/myopac/lists', {'offset' => offset, 'action' => 'editmeta', 'name' => name, 'description' => description, 'bbid' => list_id}) rescue 'bad'
     if page != 'bad'
       return 'success'
     else 
@@ -565,7 +565,7 @@ class User
 
   def add_note_to_list(list_id, list_item_id, note)
     agent = create_agent_token(self.token)
-    page = agent.post('https://mr-v2.catalog.tadl.org/eg/opac/myopac/list/update?bbid='+ list_id +'&edit_notes='+list_id,{'list' => list_id, ('item-' + list_item_id) => note, 'save_notes' => 'Save Notes'}) 
+    page = agent.post('https://' + Settings.machine_readable + '/eg/opac/myopac/list/update?bbid='+ list_id +'&edit_notes='+list_id,{'list' => list_id, ('item-' + list_item_id) => note, 'save_notes' => 'Save Notes'}) 
     if page != 'bad'
       return 'success'
     else 
@@ -575,7 +575,7 @@ class User
 
   def edit_note(list_id,note_id, note)
     agent = create_agent_token(self.token)
-    page = agent.post('https://mr-v2.catalog.tadl.org/eg/opac/myopac/list/update?bbid='+ list_id +'&edit_notes='+list_id,{'list' => list_id, ('note-' + note_id) => note, 'save_notes' => 'Save Notes'}) 
+    page = agent.post('https://' + Settings.machine_readable + '/eg/opac/myopac/list/update?bbid='+ list_id +'&edit_notes='+list_id,{'list' => list_id, ('note-' + note_id) => note, 'save_notes' => 'Save Notes'}) 
     if page != 'bad'
       return 'success'
     else 
@@ -585,7 +585,7 @@ class User
 
   def make_default_list(list_id)
     agent = create_agent_token(self.token)
-    page = agent.post('https://mr-v2.catalog.tadl.org/eg/opac/myopac/list/update', {'action' => 'make_default', 'list' => list_id}) rescue 'bad'
+    page = agent.post('https://' + Settings.machine_readable + '/eg/opac/myopac/list/update', {'action' => 'make_default', 'list' => list_id}) rescue 'bad'
     if page != 'bad'
       return 'success'
     else 
@@ -595,7 +595,7 @@ class User
 
   def share_list(list_id, share)
     agent = create_agent_token(self.token)
-    page = agent.post('https://mr-v2.catalog.tadl.org/eg/opac/myopac/list/update', {'action' => share, 'list' => list_id}) rescue 'bad'
+    page = agent.post('https://' + Settings.machine_readable + '/eg/opac/myopac/list/update', {'action' => share, 'list' => list_id}) rescue 'bad'
     if page != 'bad'
       return 'success'
     else 
@@ -607,7 +607,7 @@ class User
   def get_checkout_history(page)
     requested_page = (page.to_i * 30).to_s
     agent = create_agent_token(self.token)
-    page = agent.get('https://mr-v2.catalog.tadl.org/eg/opac/myopac/circ_history?limit=30;offset=' + requested_page)
+    page = agent.get('https://' + Settings.machine_readable + '/eg/opac/myopac/circ_history?limit=30;offset=' + requested_page)
     checkouts = Array.new
     page.parser.css('#acct_checked_main_header').css('tr').each do |l|
       checkout = Hash.new
@@ -634,7 +634,7 @@ class User
   def get_hold_history(page)
     requested_page = (page.to_i * 15).to_s
     agent = create_agent_token(self.token)
-    page = agent.get('https://mr-v2.catalog.tadl.org/eg/opac/myopac/hold_history?limit=15;offset=' + requested_page)
+    page = agent.get('https://' + Settings.machine_readable + '/eg/opac/myopac/hold_history?limit=15;offset=' + requested_page)
     holds = Array.new
     page.parser.css('#holds_main').css('tr').each do |l|
       hold = Hash.new

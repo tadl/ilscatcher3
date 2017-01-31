@@ -1,4 +1,4 @@
-machine_readable: 'mr-v2.catalog.tadl.org'
+machine_readable: 'lib1mr.tadl.net'
 public_catalog: 'https://new-catalog.kalkaskalibrary.org'
 location_name: 'Kalkaska County Library'
 elastic_evergreen_url: 'https://elastic-evergreen-kcl.apps.tadl.org/main/index.json?query='
@@ -10,6 +10,4 @@ all_locations_code: '44'
 has_payments: 'false'
 has_registration: 'false'
 has_eresources: 'false'
-opac_toggle: [{'name': 'Main', 'url': 'https://new-catalog.kalkaskalibrary.org/main/index'},{'name': 'Youth', 'url': 'https://youth-catalog.kalkaskalibrary.org/main/index'},{'name': 'Teen', 'url': 'https://teen-catalog.kalkaskalibrary.org/main/index'}]
-system_lock:
-  card_prefix_allow: '90247'
+account_only: 'true'
