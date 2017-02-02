@@ -13,4 +13,4 @@ additional_nav_links:
     href: 'http://library.interlochen.org/'
   - name: 'Search'
     href: 'http://search.ebscohost.com/login.aspx?authtype=ip,guest&profile=eds&groupid=main&custid=s8905647&direct=true&setup=1'
-lists:
+lists: []
