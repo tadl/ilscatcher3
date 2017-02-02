@@ -39,13 +39,15 @@
                     <dl class="dl-horizontal">
                     <dt>Queue Position</dt>
                     <dd><%= hold.queue_state[0] %> out of <%= hold.queue_state[1] %></dd>
-                    <dt>Pickup Location</dt>
-                    <dd class="pickup-dd-<%= hold.hold_id %>">
-                        <span class="pickup-<%= hold.hold_id %>"><%= hold.pickup_location %></span>
-                        <% if hold.queue_status !~ /Ready/ %>
-                            <button type="button" class="small text-subdued btn btn-xs btn-default change-pickup-<%= hold.hold_id %>" onclick="edit_pickup_loc(<%= hold.hold_id %>,<%= hold.record_id %>,'<%= hold.hold_status %>')">change</button>
-                        <% end %>
-                    </dd>
+                    <% if Settings.one_location != 'true' %>
+                        <dt>Pickup Location</dt>
+                        <dd class="pickup-dd-<%= hold.hold_id %>">
+                            <span class="pickup-<%= hold.hold_id %>"><%= hold.pickup_location %></span>
+                            <% if hold.queue_status !~ /Ready/ %>
+                                <button type="button" class="small text-subdued btn btn-xs btn-default change-pickup-<%= hold.hold_id %>" onclick="edit_pickup_loc(<%= hold.hold_id %>,<%= hold.record_id %>,'<%= hold.hold_status %>')">change</button>
+                            <% end %>
+                        </dd>
+                    <% end %>
                     <dt>Hold Status</dt>
                     <dd><b><%= hold.hold_status =~ /Suspended/ ? hold.hold_status : hold.queue_status %></b></dd>
                     </dl>
@@ -58,8 +60,11 @@
                             <%= link_to 'manage_hold.js', :method => :post, data: {params: hold.create_params('activate')}, remote: true, :id => 'hold-manage-activate-'+hold.record_id, :type => 'button', :class => 'hold-activate btn btn-block btn-success' do %>Activate<% end %>
                         <% end %>
                         <%= link_to 'manage_hold.js', data: {params: hold.create_params('cancel')}, remote: true, :id => 'hold-manage-cancel-'+hold.record_id, :type => 'button', :class => 'hold-manage btn btn-block padtop btn-primary' do %>Cancel<% end %>
-                        <%= link_to 'details.js?id='+hold.record_id, :remote => true, :type => 'button', :class => 'btn btn-block btn-info details-button' do %>Details<% end %>
+                        <% if Settings.account_only != 'true' %>
+                            <%= link_to 'details.js?id='+hold.record_id, :remote => true, :type => 'button', :class => 'btn btn-block btn-info details-button' do %>Details<% end %>
+                        <% end %>
                         <button type="button" class="btn btn-default btn-block select-btn select-<%= hold.hold_id %>" onclick="item_select(<%= hold.hold_id %>)">Select</button>
+
                     </div>
                 </div>
             </div>
