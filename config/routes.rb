@@ -74,5 +74,6 @@ Rails.application.routes.draw do
   else
     root :to => "main#preferences"
     match "main/index" => "main#preferences", via: [:get, :post], defaults: { format: 'html'}
+    match "login" => "main#login", via: [:get, :post], defaults: {format: 'json'}
   end
 end

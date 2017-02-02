@@ -1,8 +1,10 @@
 <%= render 'summer_reading' %>
 <div class="row">
-    <div class="col-xs-12" id="circulation">
-        <%= render 'prefs_circulation' %>
-    </div>
+	<% if Settings.account_only != 'true' %>
+    	<div class="col-xs-12" id="circulation">
+    	    <%= render 'prefs_circulation' %>
+    	</div>
+    <% end %>
     <div class="col-xs-12" id="user">
         <%= render 'prefs_user' %>
     </div>

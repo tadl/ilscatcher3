@@ -1,0 +1,14 @@
+/* specific stylesheet for kcl_youth */
+
+body.index {
+    background: url('/assets/kcl-background-youth.png') no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+span.owl-numbers {
+    background: #000 !important;
+}
+
