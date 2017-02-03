@@ -10,7 +10,11 @@
             <div class="row">
                 <div class="col-lg-11 col-md-11 col-sm-11 col-xs-10">
                     <h4 class="panel-title">
-                        <%= link_to 'details.js?id='+hold.record_id, :remote => true, :class => 'item-link' do %>
+                        <% if Settings.account_only != 'true' %>
+                            <%= link_to 'details.js?id='+hold.record_id, :remote => true, :class => 'item-link' do %>
+                                <%= hold.title %>
+                            <% end %>
+                        <% else %>
                             <%= hold.title %>
                         <% end %>
                         <% if hold.queue_status =~ /Ready/ %>
@@ -29,9 +33,12 @@
         <div class="panel-body">
             <div class="row">
                 <div class="col-lg-2 col-sm-2 col-xs-5"><!-- image -->
-                    <%= link_to 'details.js?id='+hold.record_id, :remote => true, :class => 'item-link' do %>
-                        <img src='<%= Settings.cover_path_med %><%= hold.record_id %>' style="width:100%;"
-                            onerror="this.src='<%= asset_path(Settings.logo) %>?id=<%= hold.record_id %>'" />
+                    <% if Settings.account_only != 'true' %>
+                        <%= link_to 'details.js?id='+hold.record_id, :remote => true, :class => 'item-link' do %>
+                            <img src='<%= Settings.cover_path_med %><%= hold.record_id %>' style="width:100%;" onerror="this.src='<%= asset_path(Settings.logo) %>?id=<%= hold.record_id %>'" />
+                        <% end %>
+                    <% else %>
+                        <img src='<%= Settings.cover_path_med %><%= hold.record_id %>' style="width:100%;" onerror="this.src='<%= asset_path(Settings.logo) %>?id=<%= hold.record_id %>'" />
                     <% end %>
                 </div>
                 <div class="col-lg-7 col-sm-7 col-xs-7"><!-- details about item -->
