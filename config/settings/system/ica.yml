@@ -1,5 +1,5 @@
-machine_readable: 'lib1mr.tadl.net'
-public_catalog: 'https://new-catalog.kalkaskalibrary.org'
+machine_readable: 'lib2mr.tadl.net'
+public_catalog: 'https://ica.apps.tadl.org'
 location_name: 'Interlochen Center for the Arts Library'
 has_payments: 'false'
 has_registration: 'false'
