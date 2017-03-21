@@ -1,3 +1,5 @@
+login_username_placeholder: 'Username or Card #'
+login_page_message: 'Please log in to access your account'
 search_placeholder: 'Keyword, author or title'
 opac_toggle_default: 'Main'
 cover_path_med: 'https://catalog.tadl.org/opac/extras/ac/jacket/medium/r/'

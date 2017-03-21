@@ -2,8 +2,8 @@
     <div class="col-xs-12 col-md-offset-4 col-md-4" id="login-form">
             <div class="form-group input-group">
                 <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                <label class="sr-only" for="page-username">Username or Card Number</label>
-                <input type="text" class="form-control" id="page-username" name="page-username" autocapitalize="none" autocorrect="off" placeholder="Username or Card #" required>
+                <label class="sr-only" for="page-username"><%= Settings.login_username_placeholder %></label>
+                <input type="text" class="form-control" id="page-username" name="page-username" autocapitalize="none" autocorrect="off" placeholder="<%= Settings.login_username_placeholder %>" required>
             </div>
             <div class="form-group input-group">
                 <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>

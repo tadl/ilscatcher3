@@ -1,14 +1,17 @@
-/* specific stylesheet for kcl */
+/* specific stylesheet for ica */
 
 body.index {
-    background: url('/assets/kcl-background-light.jpg') no-repeat center center fixed;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
 }
 
 span.owl-numbers {
     background: #000 !important;
 }
 
+.btn-primary {
+    background-color: #D42741;
+    border-color: #D42741;
+}
+.btn-primary:hover {
+    background-color: #D42741;
+    border-color: #D42741;
+}

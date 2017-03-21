@@ -2,7 +2,7 @@
     <% if Settings.logo_on_homepage == "true" %>
         <img class="col-xs-12 col-md-4 col-md-offset-4 padbot" src="<%= asset_path(Settings.homepage_logo) %>" />
     <% end %>
-    <h2 class="col-xs-12 col-md-6 col-md-offset-3 padbot" style="text-align:center;">Please log in to access your account</h2>
+    <h2 class="col-xs-12 col-md-6 col-md-offset-3 padbot" style="text-align:center;"><%= Settings.login_page_message %></h2>
     <div class="row">
         <%= render 'login_page' %>
     </div>
