@@ -6,6 +6,7 @@
 
 git remote add eastbay dokku@apps.tadl.org:eastbay-catalog
 git remote add fifelake dokku@apps.tadl.org:fifelake-catalog
+git remote add ica dokku@apps.tadl.org:ica
 git remote add interlochen dokku@apps.tadl.org:interlochen-catalog
 git remote add interlochen-youth dokku@apps.tadl.org:interlochen-youth-catalog
 git remote add kalkaska dokku@apps.tadl.org:kalkaska-catalog
