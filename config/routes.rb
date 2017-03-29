@@ -11,7 +11,7 @@ Rails.application.routes.draw do
     match "main/place_hold" => "main#place_hold", via: [:get, :post], defaults: { format: 'json' }
     match "main/holds" => "main#holds", via: [:get, :post], defaults: { format: 'html' }
     match "main/checkouts" => "main#checkouts", via: [:get, :post], defaults: { format: 'html' }
-    match "main/manage_hold" => "main#manage_hold", via: [:get, :post], defaults: { format: 'js' }
+    match "main/manage_hold" => "main#manage_hold", via: [:get, :post], defaults: { format: 'js'}
     match "main/renew_checkouts" => "main#renew_checkouts", via: [:get, :post], defaults: { format: 'js' }
     match "main/fines" => "main#fines", via: [:get, :post], defaults: { format: 'html' }
     match "main/payments" => "main#payments", via: [:get, :post], defaults: { format: 'html' }
