@@ -1,9 +1,11 @@
 <div class="row" style="margin-bottom: 10px; padding: 5px;">
     <button type="button" class="btn btn-default" id="select-all">Select All</button>
-    <% if @ready != 'true' %>
-        <button type="button" class="btn btn-default" id="hold-bulk-suspend">Suspend Seleted</button>
-    <% end %>    
-    <button type="button" class="btn btn-default" id="hold-bulk-activate">Activate Selected</button>           
+    <% if Settings.account_only != 'true' %>
+        <% if @ready != 'true' %>
+            <button type="button" class="btn btn-default" id="hold-bulk-suspend">Suspend Selected</button>
+        <% end %>
+        <button type="button" class="btn btn-default" id="hold-bulk-activate">Activate Selected</button>
+    <% end %>
     <button type="button" class="btn btn-default" id="hold-bulk-cancel">Cancel Selected</button>
     <button type="button" class="btn btn-default" id="select-none">Clear Selection</button>
 </div>
