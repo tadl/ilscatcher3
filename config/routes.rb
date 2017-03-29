@@ -23,13 +23,13 @@ Rails.application.routes.draw do
     match "main/confirm_password_reset" => "main#confirm_password_reset", via: [:get, :post], defaults: {format: 'js'}
     match "main/preferences" => "main#preferences", via: [:get, :post], defaults: { format: 'html' }
     match "main/update_notifications" => "main#update_notifications", via: [:get, :post], defaults: { format: 'json' }
+    match "main/details" => "main#details", via: [:get, :post], defaults: { format: 'html' }
+    match "main/marc" => "main#marc", via: [:get, :post], defaults: { format: 'js' }
   if Settings.account_only != 'true'
     root :to => "main#index"
     get 'main/index'
     get 'main/register'
     match "main/index" => "main#index", via: [:get, :post], defaults: { format: 'html'}
-    match "main/details" => "main#details", via: [:get, :post], defaults: { format: 'html' }
-    match "main/marc" => "main#marc", via: [:get, :post], defaults: { format: 'js' }
     match "main/lists" => "main#lists", via: [:get, :post], defaults: { format: 'html' }
     match "main/view_list" => "main#view_list", via: [:get, :post], defaults: { format: 'html' }
     match "main/add_item_to_list" => "main#add_item_to_list", via: [:get, :post], defaults: { format: 'json' }
@@ -69,8 +69,8 @@ Rails.application.routes.draw do
     #handle legacy reset password
     match '/eg/opac/password_reset/:token' => redirect('/main/new_password_from_reset?token=%{token}'), via: [:get, :post]
     #handle unsupported links
-    match '/eg/opac/place_hold' => "util#rewrite_legacy_home", via: [:get, :post]
     match '/eg/opac/mylist/add' => "util#rewrite_legacy_home", via: [:get, :post]
+    match '/eg/opac/place_hold' => "util#rewrite_legacy_home", via: [:get, :post]
   else
     root :to => "main#preferences"
     match "main/index" => "main#preferences", via: [:get, :post], defaults: { format: 'html'}
