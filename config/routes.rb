@@ -72,8 +72,8 @@ Rails.application.routes.draw do
     match '/eg/opac/mylist/add' => "util#rewrite_legacy_home", via: [:get, :post]
     match '/eg/opac/place_hold' => "util#rewrite_legacy_home", via: [:get, :post]
   else
-    root :to => "main#preferences"
-    match "main/index" => "main#preferences", via: [:get, :post], defaults: { format: 'html'}
+    root :to => "main#checkouts"
+    match "main/index" => "main#checkouts", via: [:get, :post], defaults: { format: 'html'}
     match "login" => "main#login", via: [:get, :post], defaults: {format: 'json'}
     match "logout" => "main#logout", via: [:get, :post], defaults: {format: 'js'}
   end
