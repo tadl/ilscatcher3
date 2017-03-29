@@ -32,7 +32,9 @@
                 <span class="sr-only">Toggle Dropdown</span>
             </button>
             <ul class="dropdown-menu">
-                <li><a class="navi" href="/main/preferences">Account Preferences</a></li>
+                <% if Settings.account_only != 'true' %>
+                    <li><a class="navi" href="/main/preferences">Account Preferences</a></li>
+                <% end %>
                 <li><a class="navi" href="/main/checkouts">Checked Out Items</a></li>
                 <li><a class="navi" href="/main/holds">All Items on Hold</a></li>
                 <li><a class="navi" href="/main/holds?ready=true">Holds Ready for Pickup</a></li>
