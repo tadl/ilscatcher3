@@ -1,7 +1,16 @@
 <% if facets && facets.size > 0 %>
     <div class="list-group">
         <% facets.each do |f| %>
-            <a class="list-group-item" href="<%= related_search_link(f, item, type) %>" data-no-turbolink="true"><%= f %></a>
+            <a class="details_search_link" href="<%= related_search_link(f, item, type) %>" data-no-turbolink="true">
+            	<span class="list-group-item">
+            		<%= f %>
+            	</span>
+            </a>
         <% end %>
     </div>
+<% end %>
+<% if Settings.account_only == 'true' %>
+	<script>
+		$('.details_search_link').contents().unwrap();
+	</script>
 <% end %>

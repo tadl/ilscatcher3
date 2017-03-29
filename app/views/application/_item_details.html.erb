@@ -15,7 +15,7 @@
             <div class="col-xs-12 col-lg-12">
                 <% if !item.author.nil? %>
                     <p>
-                        <a href="<%= related_search_link(item.author, item, 'author') %>" data-no-turbolink="true"> <%= item.author %> </a>
+                        <a class="details_search_link" href="<%= related_search_link(item.author, item, 'author') %>" data-no-turbolink="true"> <%= item.author %> </a>
                     </p>
                 <% end %>    
             </div>
@@ -104,5 +104,8 @@
 </div>
 <div class="row clearfix padbot"></div>
 <script>
+    <% if Settings.account_only == 'true' %>
+        $('.details_search_link').contents().unwrap();
+    <% end %>
     load_added_content('<%= item.id %>','<%= item.isbn %>','<%= item.format_type %>')
 </script>

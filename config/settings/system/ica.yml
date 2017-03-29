@@ -3,6 +3,7 @@ public_catalog: 'https://myaccount.ica.tadl.net'
 elastic_evergreen_url: 'https://elastic-evergreen-ica.apps.tadl.org/main/index.json?query='
 elastic_locations: [['ICA-ACADEMIC', '102'],['ICA-MUSIC', '103']]
 long_pickup_locations: [['Academic', '102'],['Music', '103']]
+location_options: [['Academic', '102']]
 location_name: 'Interlochen Center for the Arts Library'
 has_payments: 'false'
 has_registration: 'false'

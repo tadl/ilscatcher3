@@ -17,12 +17,8 @@
         <div class="panel-heading">
             <div class="row">
                 <div class="col-lg-11 col-md-11 col-sm-11 col-xs-10">
-                    <% if Settings.account_only != 'true' %>
-                        <% if checkout.record_id != '-1' %>
-                            <%= link_to 'details.js?id='+checkout.record_id, :remote => true, :class => 'item-link'  do %>
-                                <h4 class="panel-title"><%= checkout.title %></h4>
-                            <% end %>
-                        <% else %>
+                    <% if checkout.record_id != '-1' %>
+                        <%= link_to 'details.js?id='+checkout.record_id, :remote => true, :class => 'item-link'  do %>
                             <h4 class="panel-title"><%= checkout.title %></h4>
                         <% end %>
                     <% else %>
@@ -37,11 +33,7 @@
         <div class="panel-body">
             <div class="row">
                 <div class="col-lg-2 col-sm-2 col-xs-5"><!-- image -->
-                    <% if Settings.account_only != 'true' %>
-                        <%= link_to 'details.js?id='+checkout.record_id, :remote => true, :class => 'item-link'  do %>
-                            <img src='<%= Settings.cover_path_med %><%= checkout.record_id %>' style="width:100%;" onerror="this.src='<%= asset_path(Settings.logo) %>?id=<%= checkout.record_id %>'" />
-                        <% end %>
-                    <% else %>
+                    <%= link_to 'details.js?id='+checkout.record_id, :remote => true, :class => 'item-link'  do %>
                         <img src='<%= Settings.cover_path_med %><%= checkout.record_id %>' style="width:100%;" onerror="this.src='<%= asset_path(Settings.logo) %>?id=<%= checkout.record_id %>'" />
                     <% end %>
                 </div>
