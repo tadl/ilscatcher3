@@ -58,7 +58,7 @@
                         <% else %>
                             <% if item.all_copies_available >= 1 %>
                                 <h4  style="color: red">Sorry, no copies available at <%= location_map(@search.loc, @location_options) %></h4> 
-                                We have <%= item.all_copies_total %> in the district. <a href="#" onclick="event.preventDefault();place_hold(<%= item.id %>)">Place a holdings</a> to request one.
+                                We have <%= item.all_copies_total %> in the district. <a href="#" onclick="event.preventDefault();place_hold(<%= item.id %>)">Place a hold</a> to request one.
                             <% end %>
                             <% if item.all_copies_available < 1 && !item.eresource %>
                                 <h4 style="color: red">Sorry, no copies available</h4> 
