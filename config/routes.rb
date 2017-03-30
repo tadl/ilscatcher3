@@ -5,7 +5,6 @@ Rails.application.routes.draw do
     get "/404" => "errors#not_found", as: :not_found
     get "/500" => "errors#internal_server_error", as: :internal_server_error
     match "/util/youtube" => "util#youtube", via: [:get, :post]
-    match "main/search" => "main#search", via: [:get, :post], defaults: { format: 'html' }
     match "main/login" => "main#login", via: [:get, :post], defaults: { format: 'json' }
     match "main/logout" => "main#logout", via: [:get, :post], defaults: { format: 'json' }
     match "main/place_hold" => "main#place_hold", via: [:get, :post], defaults: { format: 'json' }
@@ -31,6 +30,7 @@ Rails.application.routes.draw do
     root :to => "main#index"
     get 'main/index'
     get 'main/register'
+    match "main/search" => "main#search", via: [:get, :post], defaults: { format: 'html' }
     match "main/index" => "main#index", via: [:get, :post], defaults: { format: 'html'}
     match "main/lists" => "main#lists", via: [:get, :post], defaults: { format: 'html' }
     match "main/view_list" => "main#view_list", via: [:get, :post], defaults: { format: 'html' }
