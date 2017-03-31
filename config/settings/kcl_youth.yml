@@ -1,7 +1,6 @@
 format_options:  [["All Kids' Materials", "shelving_location", "956,957,958"]]
 format_label: 'Format'
 stylesheet: 'kcl_youth.css'
-logo: 'kcl-logo.jpg'
 search_text: 'Search'
 search_menu: 'Search'
 slider_frequency: 10

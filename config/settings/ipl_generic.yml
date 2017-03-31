@@ -3,6 +3,7 @@ format_options:  [['All Formats', 'fmt' ,'all'], ['Books', 'fmt' ,'a'],['Movies 
 format_label: 'Format'
 stylesheet: 'ipl.css'
 logo: 'ipl-tree-logo.jpg'
+error_image: 'ipl-tree-logo.jpg'
 search_text: 'Search'
 search_menu: 'Search'
 default_loc: '24'

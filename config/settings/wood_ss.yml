@@ -7,7 +7,6 @@ shelf_lock:
 format_options:  [['All Formats', 'fmt' ,'all'], ['Books', 'fmt' ,'a'],['Movies / TV', 'fmt' ,'g'],['Music', 'fmt' ,'j'],['Video Games','shelving_location', '777']]
 format_label: 'Format'
 stylesheet: 'ss.css'
-logo: 'logo-clock-only.png'
 default_search_display: 'list'
 search_text: 'Search'
 search_menu: 'Search'

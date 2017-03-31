@@ -3,6 +3,7 @@ format_options:  [['All Formats', 'fmt' ,'all'], ['Books', 'fmt' ,'a'],['Movies 
 format_label: 'Format'
 stylesheet: 'pcl.css'
 logo: 'pcl-notext.jpg'
+error_image: 'pcl-notext.jpg'
 search_text: 'Search'
 search_menu: 'Search'
 default_loc: '26'

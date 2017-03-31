@@ -1,7 +1,6 @@
 format_options:  [['All Formats', 'fmt' ,'all'], ['Books', 'fmt' ,'a'],['Movies / TV', 'fmt' ,'g']]
 format_label: 'Format'
 stylesheet: 'kcl.css'
-logo: 'kcl-logo.jpg'
 search_text: 'Search'
 search_menu: 'Search'
 slider_frequency: 10
