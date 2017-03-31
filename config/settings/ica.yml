@@ -2,7 +2,7 @@ format_options:  [['All Formats', 'fmt' ,'all'], ['Books', 'fmt' ,'a'],['Movies 
 format_label: 'Format'
 stylesheet: 'ica.css'
 logo_on_homepage: 'true'
-homepage_logo: 'ica.png'
+homepage_logo: 'ica-logo.jpg'
 search_text: 'Search'
 search_menu: 'Search'
 default_loc: '101'
