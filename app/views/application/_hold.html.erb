@@ -10,7 +10,7 @@
             <div class="row">
                 <div class="col-lg-11 col-md-11 col-sm-11 col-xs-10">
                     <h4 class="panel-title">
-                        <%= link_to 'details.js?id='+hold.record_id, :remote => true, :class => 'item-link' do %>
+                        <%= link_to '/main/details.js?id='+hold.record_id, :remote => true, :class => 'item-link' do %>
                             <%= hold.title %>
                         <% end %>
                         <% if hold.queue_status =~ /Ready/ %>
@@ -29,7 +29,7 @@
         <div class="panel-body">
             <div class="row">
                 <div class="col-lg-2 col-sm-2 col-xs-5"><!-- image -->
-                    <%= link_to 'details.js?id='+hold.record_id, :remote => true, :class => 'item-link' do %>
+                    <%= link_to '/main/details.js?id='+hold.record_id, :remote => true, :class => 'item-link' do %>
                         <img src='<%= Settings.cover_path_med %><%= hold.record_id %>' style="width:100%;" onerror="this.src='<%= asset_path(Settings.logo) %>?id=<%= hold.record_id %>'" />
                     <% end %>
                 </div>
@@ -60,7 +60,7 @@
                         <% end %>
                         <%= link_to 'manage_hold.js', data: {params: hold.create_params('cancel')}, remote: true, :id => 'hold-manage-cancel-'+hold.record_id, :type => 'button', :class => 'hold-manage btn btn-block padtop btn-primary' do %>Cancel<% end %>
                     
-                        <%= link_to 'details.js?id='+hold.record_id, :remote => true, :type => 'button', :class => 'btn btn-block btn-info details-button' do %>Details<% end %>
+                        <%= link_to '/main/details.js?id='+hold.record_id, :remote => true, :type => 'button', :class => 'btn btn-block btn-info details-button' do %>Details<% end %>
 
                         <button type="button" class="btn btn-default btn-block select-btn select-<%= hold.hold_id %>" onclick="item_select(<%= hold.hold_id %>)">Select</button>
 
