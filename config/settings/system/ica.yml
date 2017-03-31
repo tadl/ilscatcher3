@@ -2,6 +2,10 @@ machine_readable: 'icamr.tadl.net'
 public_catalog: 'https://myaccount.ica.tadl.net'
 elastic_evergreen_url: 'https://elastic-evergreen-ica.apps.tadl.org/main/index.json?query='
 elastic_locations: [['ICA-ACADEMIC', '102'],['ICA-MUSIC', '103']]
+logo: 'ica.png'
+error_image: '1x1.png'
+cover_path_med: 'https://myaccount.ica.tadl.net/opac/extras/ac/jacket/medium/r/'
+cover_path_lg: 'https://myaccount.ica.tadl.net/opac/extras/ac/jacket/large/r/'
 long_pickup_locations: [['Academic', '102'],['Music', '103']]
 location_options: [['Academic', '102']]
 location_name: 'Interlochen Center for the Arts Library'

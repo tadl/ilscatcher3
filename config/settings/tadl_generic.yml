@@ -3,7 +3,6 @@ format_options:  [['All Formats', 'fmt' ,'all'], ['Books', 'fmt' ,'a'],['Large P
 format_label: 'Format'
 default_search_display: 'list'
 stylesheet: 'tadl.css'
-logo: 'logo-clock-only.png'
 logo_on_homepage: 'true'
 homepage_logo: 'large_tadl_logo.png'
 search_text: 'Search'

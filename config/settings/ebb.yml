@@ -2,7 +2,6 @@ location_name: 'East Bay Branch | Traverse Area District Library'
 format_options:  [['All Formats', 'fmt' ,'all'], ['Books', 'fmt' ,'a'],['Movies / TV', 'fmt' ,'g'],['Music', 'fmt' ,'j']]
 format_label: 'Format'
 stylesheet: 'ebb.css'
-logo: 'logo-clock-only.png'
 search_text: 'Search'
 search_menu: 'Search'
 default_loc: '28'

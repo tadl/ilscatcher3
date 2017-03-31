@@ -7,11 +7,22 @@ span.owl-numbers {
     background: #000 !important;
 }
 
+.navbar-btn.open,
 .btn-primary {
     background-color: #D42741;
     border-color: #D42741;
 }
 .btn-primary:hover {
+    background-color: #B01E33;
+    border-color: #B01E33;
+}
+a.list-group-item:hover {
+    background-color: #B01E33;
+    border-color: #B01E33;
+}
+div.list-group-item.active,
+a.list-group-item.active {
     background-color: #D42741;
     border-color: #D42741;
 }
+

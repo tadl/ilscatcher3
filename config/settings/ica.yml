@@ -1,7 +1,6 @@
 format_options:  [['All Formats', 'fmt' ,'all'], ['Books', 'fmt' ,'a'],['Movies / TV', 'fmt' ,'g']]
 format_label: 'Format'
 stylesheet: 'ica.css'
-logo: 'ica.png'
 logo_on_homepage: 'true'
 homepage_logo: 'ica.png'
 search_text: 'Search'

@@ -2,6 +2,8 @@ machine_readable: 'mr-v2.catalog.tadl.org'
 public_catalog: 'https://new-catalog.kalkaskalibrary.org'
 location_name: 'Kalkaska County Library'
 elastic_evergreen_url: 'https://elastic-evergreen-kcl.apps.tadl.org/main/index.json?query='
+logo: 'kcl-logo.png'
+error_image: 'kcl-logo.png'
 pickup_locations: [['Kalkaska', '44']]
 location_options: [['Kalkaska', '44']]
 long_pickup_locations: [['Kalkaska County Library', '44']]
