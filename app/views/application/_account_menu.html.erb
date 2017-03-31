@@ -5,7 +5,7 @@
             Account Preferences
         <% end %>
     <% end %>
-    <%= link_to main_checkouts_path, :class => "navi list-group-item #{'active' if request.path == main_checkouts_path || request.path == main_index_path}" do %>
+    <%= link_to main_checkouts_path, :class => "navi list-group-item #{'active' if request.path == main_checkouts_path || request.path == main_index_path || request.path == '/'}" do %>
         Checked Out Items
     <% end %>
     <%= link_to main_holds_path, :class => "navi list-group-item #{'active' if @ready && @ready == 'false'}" do %>
