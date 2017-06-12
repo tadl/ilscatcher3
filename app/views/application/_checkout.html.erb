@@ -18,7 +18,7 @@
             <div class="row">
                 <div class="col-lg-11 col-md-11 col-sm-11 col-xs-10">
                     <% if checkout.record_id != '-1' %>
-                        <%= link_to 'details.js?id='+checkout.record_id, :remote => true, :class => 'item-link'  do %>
+                        <%= link_to '/main/details.js?id='+checkout.record_id, :remote => true, :class => 'item-link'  do %>
                             <h4 class="panel-title"><%= checkout.title %></h4>
                         <% end %>
                     <% else %>
@@ -33,7 +33,7 @@
         <div class="panel-body">
             <div class="row">
                 <div class="col-lg-2 col-sm-2 col-xs-5"><!-- image -->
-                    <%= link_to 'details.js?id='+checkout.record_id, :remote => true, :class => 'item-link'  do %>
+                    <%= link_to '/main/details.js?id='+checkout.record_id, :remote => true, :class => 'item-link'  do %>
                         <img src='<%= Settings.cover_path_med %><%= checkout.record_id %>' style="width:100%;" onerror="this.src='<%= asset_path(Settings.logo) %>?id=<%= checkout.record_id %>'" />
                     <% end %>
                 </div>
@@ -52,12 +52,12 @@
                 <div class="col-lg-3 col-sm-3 col-xs-12">
                     <div>
                         <% if checkout.renew_attempts.to_i > 0 %>
-                            <%= link_to 'renew_checkouts.js?checkout_ids='+checkout.checkout_id+'&record_ids='+checkout.record_id, remote: true, :id => 'checkout-renew-'+checkout.record_id, :type => 'button', :class => 'checkout-renew btn btn-block btn-success' do %>Renew<% end %>
+                            <%= link_to '/main/renew_checkouts.js?checkout_ids='+checkout.checkout_id+'&record_ids='+checkout.record_id, remote: true, :id => 'checkout-renew-'+checkout.record_id, :type => 'button', :class => 'checkout-renew btn btn-block btn-success' do %>Renew<% end %>
                         <% else %>
                             <button type="button" class="btn btn-block btn-warn disabled">Renew</button>
                         <% end %>
                         <% if checkout.record_id != '-1' %>
-                            <%= link_to 'details.js?id='+checkout.record_id, :remote => true, :type => 'button', :class => 'btn btn-block btn-info details-button' do %>Details<% end %>
+                            <%= link_to '/main/details.js?id='+checkout.record_id, :remote => true, :type => 'button', :class => 'btn btn-block btn-info details-button' do %>Details<% end %>
                         <% end %>
                         <button type="button" class="btn btn-default btn-block select-btn select-<%= checkout.checkout_id %>" onclick="checkout_select(<%= checkout.checkout_id %>,<%= checkout.record_id %>)">Select</button>
                     </div>

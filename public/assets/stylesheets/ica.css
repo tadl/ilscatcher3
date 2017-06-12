@@ -7,22 +7,32 @@ span.owl-numbers {
     background: #000 !important;
 }
 
-.navbar-btn.open,
-.btn-primary {
-    background-color: #D42741;
-    border-color: #D42741;
-}
-.btn-primary:hover {
-    background-color: #B01E33;
-    border-color: #B01E33;
-}
-a.list-group-item:hover {
-    background-color: #B01E33;
-    border-color: #B01E33;
-}
-div.list-group-item.active,
-a.list-group-item.active {
+.btn-primary,
+.btn-success,
+.list-group-item.active {
     background-color: #D42741;
     border-color: #D42741;
 }
 
+.open > #myaccountmenu,
+.open > .btn-primary.dropdown-toggle,
+.btn-primary:hover,
+.btn-success:hover,
+a.list-group-item:hover,
+a.list-group-item.active:hover,
+.btn-primary:active,
+.btn-success:active,
+a.list-group-item:active,
+a.list-group-item.active:active,
+.btn-primary:focus,
+.btn-success:focus,
+a.list-group-item:focus,
+a.list-group-item.active:focus {
+    background-color: #B01E33 !important;
+    border-color: #B01E33 !important;
+    color:#fff;
+}
+div.list-group-item {
+    background-color: #D42741 !important;
+    border-color: #D42741 !important;
+}

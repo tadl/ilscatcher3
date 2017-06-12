@@ -4,9 +4,13 @@
         <%= link_to main_preferences_path, :class => "navi list-group-item #{'active' if request.path == main_preferences_path}" do %>
             Account Preferences
         <% end %>
-    <% end %>
-    <%= link_to main_checkouts_path, :class => "navi list-group-item #{'active' if request.path == main_checkouts_path || request.path == main_index_path}" do %>
-        Checked Out Items
+        <%= link_to main_checkouts_path, :class => "navi list-group-item #{'active' if request.path == main_checkouts_path}" do %>
+            Checked Out Items
+        <% end %>
+    <% else %>
+        <%= link_to main_checkouts_path, :class => "navi list-group-item #{'active' if request.path == main_checkouts_path || request.path == main_index_path || request.path == '/'}" do %>
+            Checked Out Items
+        <% end %>
     <% end %>
     <%= link_to main_holds_path, :class => "navi list-group-item #{'active' if @ready && @ready == 'false'}" do %>
         All Items on Hold

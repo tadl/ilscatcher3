@@ -26,7 +26,11 @@
     <% end %>
     <li>
         <div class="btn-group navbar-btn">
-            <%= link_to main_preferences_path, :type => 'button', :id => 'myaccountmenu', :class => 'btn btn-primary navi', :style => 'margin-left:10px;' do %>My Account<% end %>
+            <% if Settings.account_only != 'true' %>
+                <%= link_to main_preferences_path, :type => 'button', :id => 'myaccountmenu', :class => 'btn btn-primary navi', :style => 'margin-left:10px;' do %>My Account<% end %>
+            <% else %>
+                <%= link_to main_checkouts_path, :type => 'button', :id => 'myaccountmenu', :class => 'btn btn-primary navi', :style => 'margin-left:10px;' do %>My Account<% end %>
+            <% end %>
             <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <span class="caret"></span>
                 <span class="sr-only">Toggle Dropdown</span>
