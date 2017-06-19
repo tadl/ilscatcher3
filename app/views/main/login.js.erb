@@ -10,6 +10,9 @@
 		<% end %>
 	<% else %>
 		$('#account_info_box').html("<%= escape_javascript(render partial: 'account_basics') %>");
+		<% if Settings.summer_reading == 'true' && cookies[:user] && (Date.parse('2016-6-19') < Date.today) %>
+			$('#summer_reading_wrapper').append("<%= escape_javascript(render partial: 'report_summer_reading') %>");
+		<% end %>
 		update_login();
     	item_loading_binds();
 		<% if @record_id %>
