@@ -113,7 +113,13 @@ function place_hold(id,force) {
     login_div = '.holdlogin-' + id;
     if (logged_in == null) {
         $(login_div).last().show();
+        var username = $('#username').val();
+        var password = $('#password').val();
+        var username_input = 'input[id=holdloginuser-' + id +']'
+        var password_input = 'input[id=holdloginpass-' + id + ']'
         $(target_button).hide();
+        $(username_input).val(username)
+        $(password_input).val(password)
     } else {
         $(target_button).hide();
         $(target_div).last().html('<div class="alert alert-info">'+spinner+'Placing hold...</div>');
