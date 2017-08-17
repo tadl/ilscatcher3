@@ -11,10 +11,14 @@
                 <tr><th>Setting</th><th>Current Value</th></tr>
             </thead>
             <tbody>
-                <tr><td>Pickup Library</td><td id="pickup_library-value"><%= location_map(@preferences['pickup_library'], @location_options) %></td></tr>
+                <% if Settings.account_only != 'true' %>
+                    <tr><td>Pickup Library</td><td id="pickup_library-value"><%= location_map(@preferences['pickup_library'], @location_options) %></td></tr>
+                <% end %>
                 <tr><td>Keep Circulation History</td><td><span class="<%= location_map(@preferences['keep_circ_history'], @truefalseicons) %>"></span><span class="sr-only" id="keep_circ_history-value"><%= @preferences['keep_circ_history'] %></td></tr>
-                <tr><td>Keep Hold History</td><td><span class="<%= location_map(@preferences['keep_hold_history'], @truefalseicons) %>"></span><span class="sr-only" id="keep_hold_history-value"><%= @preferences['keep_hold_history'] %></span></td></tr>
-                <tr><td>Default Search Location</td><td id="default_search-value"><%= location_map(@preferences['default_search'], @location_options) %></td></tr>
+                <% if Settings.account_only != 'true' %>
+                    <tr><td>Keep Hold History</td><td><span class="<%= location_map(@preferences['keep_hold_history'], @truefalseicons) %>"></span><span class="sr-only" id="keep_hold_history-value"><%= @preferences['keep_hold_history'] %></span></td></tr>
+                    <tr><td>Default Search Location</td><td id="default_search-value"><%= location_map(@preferences['default_search'], @location_options) %></td></tr>
+                <% end %>
             </tbody>
         </table>
     </div>
