@@ -1,3 +1,4 @@
+<% if Settings.account_only != 'true' %>
 var circpanel = $('#panel-circulation-prefs').html();
 var plv = $('#pickup_library-value').text();
 var plvhtml = '<select id="plv" name="pickup_library" class="form-control">';
@@ -6,6 +7,7 @@ var plvhtml = '<select id="plv" name="pickup_library" class="form-control">';
 <% end %>
 plvhtml += '</select>';
 $('#pickup_library-value').html(plvhtml);
+<% end %>
 
 var chv = $('#keep_circ_history-value').text();
 var chvhtml = '<input id="chv" name="circulation_history" class="form-control" type="checkbox"' + (chv == 'true' ? ' checked' : '') + '>';

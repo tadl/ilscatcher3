@@ -27,6 +27,7 @@ Rails.application.routes.draw do
     match "main/edit_hold_pickup" => "main#edit_hold_pickup", via: [:post], defaults: { format: 'js' }
     match "main/update_hold_pickup" => "main#update_hold_pickup", via: [:get, :post], defaults: {format: 'json'}
     match "main/checkout_history" => "main#checkout_history", via: [:get, :post], defaults: {format: 'html'}
+    match "main/update_search_history" => "main#update_search_history", via: [:get, :post], defaults: {format: 'json'}
   if Settings.account_only != 'true'
     root :to => "main#index"
     get 'main/index'
@@ -44,7 +45,6 @@ Rails.application.routes.draw do
     match "main/edit_note" => "main#edit_note", via: [:get, :post], defaults: { format: 'json' }
     match "main/share_list" => "main#share_list", via: [:get, :post], defaults: { format: 'json' }
     match "main/make_default_list" => "main#make_default_list", via: [:get, :post], defaults: { format: 'json' }
-    match "main/update_search_history" => "main#update_search_history", via: [:get, :post], defaults: {format: 'json'}
     match "main/hold_history" => "main#hold_history", via: [:get, :post], defaults: {format: 'json'}
     match "main/suggest_an_item" => "main#suggest_an_item", via: [:get, :post], defaults: {format: 'js'}
     match '/:action', :controller => 'main', via: [:get, :post]

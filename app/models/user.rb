@@ -360,6 +360,15 @@ class User
       prefs = self.preferences
       self.default_search = args['default_search']
       self.pickup_library = args['pickup_library']
+    elsif args['keep_circ_history']
+      agent = create_agent_token(self.token)
+      url = 'https://' + Settings.machine_readable + '/eg/opac/myopac/prefs_settings'
+      post_params = [
+                      ["history.circ.retention_start", args['keep_circ_history']],
+                      ["history_delete_confirmed", 1],
+                    ]
+      agent.post(url, post_params)
+      prefs = self.preferences
     else
       prefs = 'missing required parameters'
     end

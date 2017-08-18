@@ -1,16 +1,10 @@
 <div class="list-group">
     <div class="list-group-item active"><h4>My Account</h4></div>
-    <% if Settings.account_only != 'true' %>
-        <%= link_to main_preferences_path, :class => "navi list-group-item #{'active' if request.path == main_preferences_path}" do %>
-            Account Preferences
-        <% end %>
-        <%= link_to main_checkouts_path, :class => "navi list-group-item #{'active' if request.path == main_checkouts_path}" do %>
-            Checked Out Items
-        <% end %>
-    <% else %>
-        <%= link_to main_checkouts_path, :class => "navi list-group-item #{'active' if request.path == main_checkouts_path || request.path == main_index_path || request.path == '/'}" do %>
-            Checked Out Items
-        <% end %>
+    <%= link_to main_preferences_path, :class => "navi list-group-item #{'active' if request.path == main_preferences_path}" do %>
+        Account Preferences
+    <% end %>
+    <%= link_to main_checkouts_path, :class => "navi list-group-item #{'active' if request.path == main_checkouts_path}" do %>
+        Checked Out Items
     <% end %>
     <%= link_to main_holds_path, :class => "navi list-group-item #{'active' if @ready && @ready == 'false'}" do %>
         All Items on Hold

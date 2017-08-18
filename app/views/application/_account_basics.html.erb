@@ -36,9 +36,7 @@
                 <span class="sr-only">Toggle Dropdown</span>
             </button>
             <ul class="dropdown-menu">
-                <% if Settings.account_only != 'true' %>
-                    <li><a class="navi" href="/main/preferences">Account Preferences</a></li>
-                <% end %>
+                <li><a class="navi" href="/main/preferences">Account Preferences</a></li>
                 <li><a class="navi" href="/main/checkouts">Checked Out Items</a></li>
                 <li><a class="navi" href="/main/holds">All Items on Hold</a></li>
                 <li><a class="navi" href="/main/holds?ready=true">Holds Ready for Pickup</a></li>
@@ -46,8 +44,8 @@
                     <li><a class="navi" href="/main/lists">My Lists</a></li>
                     <li><a class="navi" href="/main/fines">Current Fines</a></li>
                     <li><a class="navi" href="/main/payments">Past Payments</a></li>
-                    <li><a class="navi" href="/main/checkout_history">Checkout History</a></li>
                 <% end %>
+                <li><a class="navi" href="/main/checkout_history">Checkout History</a></li>
             </ul>
         </div>
     </li>

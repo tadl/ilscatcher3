@@ -1,16 +1,16 @@
 <%= render 'summer_reading' %>
 <div class="row">
-	<% if Settings.account_only != 'true' %>
-    	<div class="col-xs-12" id="circulation">
-    	    <%= render 'prefs_circulation' %>
-    	</div>
+    <div class="col-xs-12" id="circulation">
+    	<%= render 'prefs_circulation' %>
+    </div>
+    <% if Settings.account_only != 'true' %>
+        <div class="col-xs-12" id="user">
+            <%= render 'prefs_user' %>
+        </div>
+        <div class="col-xs-12" id="notification">
+            <%= render 'prefs_notification' %>
+        </div>
     <% end %>
-    <div class="col-xs-12" id="user">
-        <%= render 'prefs_user' %>
-    </div>
-    <div class="col-xs-12" id="notification">
-        <%= render 'prefs_notification' %>
-    </div>
 </div>
 <div style="visibility:hidden;"><span class="glyphicon glyphicon-asterisk"></span></div>
 <script>account_prefs_binds()</script>
