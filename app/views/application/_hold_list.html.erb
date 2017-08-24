@@ -17,7 +17,7 @@
 	<% end %>
 <% else %>
 	<% @holds.each do |hold| %>
-		<% if hold.queue_status =~ /Ready/ %>
+		<% if (hold.queue_status =~ /Ready/) || (hold.queue_status =~ /Available/)  %>
     		<div class="row" id="hold-record-<%= hold.hold_id %>">
         		<%= render 'hold', :hold => hold %>
     		</div>
