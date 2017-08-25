@@ -51,7 +51,7 @@
                         <% if !item.publisher.blank? || !item.record_year.blank? %>
                         <span><b>Publisher / Publication Date:</b> <%= item.publisher %> <%= item.record_year %><span>
                         <% end %>
-                        <% if !item.eresource && item.loc_copies_available >= 1 %>
+                        <% if ((item.eresource.to_s.include? 'https://goo.gl/') && item.loc_copies_available >= 1) || item.loc_copies_available >= 1 %>
                             <p>
                                 <%= render 'list_holdings', holdings: item.availability, location: @search.loc %>
                             </p>
