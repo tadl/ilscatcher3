@@ -54,7 +54,7 @@
             </p>
         <% end %>
     <% end %>
-    <% if item.eresource %>
+    <% if item.eresource.to_s != ''  %>
         <p>
             <div class="btn-group" style="min-width:120px;">
                 <% if item.eresource.include? 'https://goo.gl/' %>
