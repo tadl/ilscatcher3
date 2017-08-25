@@ -423,7 +423,7 @@ class Search
     good_url = ''
     if url.kind_of?(Array)
       url.each do |link|
-        if (link.include? 'http://via.tadl.org') || (link.include? 'https://www.hoopladigital.com/')
+        if (link.include? 'http://via.tadl.org') || (link.include? 'https://www.hoopladigital.com/') || (link.include? 'https://goo.gl/')
           good_url = link
         end
       end

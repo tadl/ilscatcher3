@@ -53,10 +53,15 @@
                 <b><%= pluralize(item.holds, 'hold') %> on <%= pluralize(item.all_copies_total, 'copy') %></b> 
             </p>
         <% end %>
-    <% else %>
+    <% end %>
+    <% if item.eresource %>
         <p>
             <div class="btn-group" style="min-width:120px;">
-                <a class="btn btn-success" href="<%= item.eresource %>">View Online</a>
+                <% if item.eresource.include? 'https://goo.gl/' %>
+                    <a class="btn btn-default" href="<%= item.eresource %>">View Manual</a>
+                <% else %>
+                    <a class="btn btn-success" href="<%= item.eresource %>">View Online</a>
+                <% end %>
             </div>
         </p>
     <% end %>
