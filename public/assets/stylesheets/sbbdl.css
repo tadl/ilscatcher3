@@ -1,11 +1,7 @@
 /* specific stylesheet for kcl */
 
 body.index {
-    background: url('/assets/kcl-background-light.jpg') no-repeat center center fixed;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
+    background: #fff;
 }
 
 span.owl-numbers {

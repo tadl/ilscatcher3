@@ -1,17 +1,18 @@
 machine_readable: 'mr-v2.catalog.tadl.org'
-public_catalog: 'https://catalog.sbbdl.org'
+public_catalog: 'https://sbbdl.appstwo.tadl.org'
 location_name: 'Suttons Bay-Bingham District Library'
-elastic_evergreen_url: 'https://elastic-evergreen-sbbdl.apps.tadl.org/main/index.json?query='
+elastic_evergreen_url: 'https://elastic-evergreen-sbbdl.appstwo.tadl.org/main/index.json?query='
 logo: 'sbbdl-logo.jpg'
 error_image: 'sbbdl-logo.jpg'
-pickup_locations: [['Suttons Bay', '44']]
-location_options: [['Suttons Bay', '44']]
-long_pickup_locations: [['Suttons Bay-Bingham District Library', '44']]
-elastic_locations: [['SBBDL', '44']]
-all_locations_code: '44'
+pickup_locations: [['Suttons Bay', '46']]
+location_options: [['Suttons Bay', '46']]
+long_pickup_locations: [['Suttons Bay-Bingham District Library', '46']]
+elastic_locations: [['SBBDL', '46']]
+all_locations_code: '46'
 has_payments: 'false'
 has_registration: 'false'
 has_eresources: 'false'
-opac_toggle: [{'name': 'Main', 'url': 'https://catalog.sbbdl.org/main/index'},{'name': 'Youth', 'url': 'https://youth-catalog.sbbdl.org/main/index'}]
+#opac_toggle: [{'name': 'Main', 'url': 'https://catalog.sbbdl.org/main/index'},{'name': 'Youth', 'url': 'https://youth-catalog.sbbdl.org/main/index'}]
+opac_toggle: [{'name': 'Main', 'url': 'https://sbbdl.appstwo.tadl.org/main/index'},{'name': 'Youth', 'url': 'https://sbbdl-youth.appstwo.tadl.org/main/index'}]
 system_lock:
-  card_prefix_allow: '90247'
+  card_prefix_allow: '90416'

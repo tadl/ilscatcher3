@@ -19,3 +19,4 @@ git remote add test dokku@apps.tadl.org:test-catalog
 git remote add woodmere dokku@apps.tadl.org:woodmere-catalog
 git remote add woodmere-av dokku@apps.tadl.org:av-catalog
 git remote add woodmere-youth dokku@apps.tadl.org:youth-catalog
+git remote add sbbdl dokku@appstwo.tadl.org:sbbdl
