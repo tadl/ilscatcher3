@@ -6,7 +6,9 @@ var pickuplocation = '<%= escape_javascript(location_map(@user.pickup_library, @
     var target = '.hold-status-<%= escape_javascript(c[:record_id]) %>';
     <% if !c[:error] %>
         var message = messagesuccess+'Hold placed successfully for pickup at '+pickuplocation
-        message += '<br><a class="clicky" onclick="change_hold_pickup(<%= escape_javascript(c[:record_id]) %>)">Change pick up location?</a></div>' +messageclose;
+        <% if Settings.pickup_locations.length > 1 %>
+            message += '<br><a class="clicky" onclick="change_hold_pickup(<%= escape_javascript(c[:record_id]) %>)">Change pick up location?</a></div>' +messageclose;
+        <% end %>
         $(target).html(message);
         hideLoading();
         <% if Rails.env == "production" && Settings.tracked == 'true'  %>

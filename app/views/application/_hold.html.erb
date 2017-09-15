@@ -42,8 +42,10 @@
                         <dt>Pickup Location</dt>
                         <dd class="pickup-dd-<%= hold.hold_id %>">
                             <span class="pickup-<%= hold.hold_id %>"><%= hold.pickup_location %></span>
-                            <% if hold.queue_status !~ /Ready/ %>
-                                <button type="button" class="small text-subdued btn btn-xs btn-default change-pickup-<%= hold.hold_id %>" onclick="edit_pickup_loc(<%= hold.hold_id %>,<%= hold.record_id %>,'<%= hold.hold_status %>')">change</button>
+                            <% if Settings.pickup_locations.length > 1 %>
+                                <% if hold.queue_status !~ /Ready/ %>
+                                    <button type="button" class="small text-subdued btn btn-xs btn-default change-pickup-<%= hold.hold_id %>" onclick="edit_pickup_loc(<%= hold.hold_id %>,<%= hold.record_id %>,'<%= hold.hold_status %>')">change</button>
+                                <% end %>
                             <% end %>
                         </dd>
                     <% end %>
