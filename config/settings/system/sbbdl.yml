@@ -1,5 +1,5 @@
 machine_readable: 'mr-v2.catalog.tadl.org'
-public_catalog: 'https://sbbdl.appstwo.tadl.org'
+public_catalog: 'https://catalog.sbbdl.org'
 location_name: 'Suttons Bay-Bingham District Library'
 elastic_evergreen_url: 'https://elastic-evergreen-sbbdl.appstwo.tadl.org/main/index.json?query='
 logo: 'sbbdl-logo.jpg'
@@ -13,6 +13,5 @@ has_payments: 'false'
 has_registration: 'false'
 has_eresources: 'false'
 #opac_toggle: [{'name': 'Main', 'url': 'https://catalog.sbbdl.org/main/index'},{'name': 'Youth', 'url': 'https://youth-catalog.sbbdl.org/main/index'}]
-opac_toggle: [{'name': 'Main', 'url': 'https://sbbdl.appstwo.tadl.org/main/index'},{'name': 'Youth', 'url': 'https://sbbdl-youth.appstwo.tadl.org/main/index'}]
 system_lock:
   card_prefix_allow: '90416'
