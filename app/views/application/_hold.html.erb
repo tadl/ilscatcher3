@@ -14,7 +14,7 @@
                             <%= hold.title %>
                         <% end %>
                         <% if hold.queue_status =~ /Ready/ %>
-                            <span> - Waiting for Pickup at <%= hold.pickup_location %> </span>
+                            <span> - Waiting for Pickup<% if Settings.pickup_locations.length > 1 %> at <%= hold.pickup_location %> <% end %></span>
                         <% end %>
                         <% if hold.hold_status =~ /Suspended/ %>
                             <span> - Suspended </span>
