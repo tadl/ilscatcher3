@@ -4,7 +4,7 @@ stylesheet: 'sbbdl.css'
 search_text: 'Search'
 search_menu: 'Search'
 slider_frequency: 10
-default_loc: '44'
+default_loc: '46'
 default_search_display: 'list'
 #opac_toggle_default: 'Main'
 lists:
