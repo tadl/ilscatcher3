@@ -6,6 +6,9 @@ search_menu: 'Search'
 slider_frequency: 10
 default_loc: '46'
 default_search_display: 'list'
+additional_nav_links:
+  - name: 'Website'
+    href: 'http://www.sbbdl.org/'
 #opac_toggle_default: 'Main'
 lists:
   - name: 'sbbdl_new_fiction'
