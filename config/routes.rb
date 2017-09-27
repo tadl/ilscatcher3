@@ -29,6 +29,7 @@ Rails.application.routes.draw do
     match "main/checkout_history" => "main#checkout_history", via: [:get, :post], defaults: {format: 'html'}
     match "main/update_search_history" => "main#update_search_history", via: [:get, :post], defaults: {format: 'json'}
     match "main/login_hash" => "main#login_hash", via: [:get, :post], defaults: {format: 'json'}
+    match "main/reset_password_request" => "main#reset_password_request", via: [:get, :post], defaults: {format: 'json'}
   if Settings.account_only != 'true'
     root :to => "main#index"
     get 'main/index'

@@ -68,6 +68,21 @@ class ApplicationController < ActionController::Base
         end
     end
 
+    def request_password_reset
+        agent = Mechanize.new
+        user = params["username"]
+        url = 'https://' + Settings.machine_readable + '/eg/opac/password_reset'
+        page = agent.get(url)
+        form = page.forms[1]
+        if (user =~ /^TADL\d{7,8}$|^90\d{5}$|^91111\d{9}$|^[a-zA-Z]\d{10}/ )
+          form.field_with(:name => "barcode").value = user
+        else
+          form.field_with(:name => "username").value = user
+        end
+        agent.submit(form)
+        return 'complete'
+    end
+
     def fire_password_reset(token, password_1, password_2)
         agent = Mechanize.new
         url = 'https://' + Settings.machine_readable + '/eg/opac/password_reset/' + token

@@ -498,7 +498,7 @@ function force_hold_click(id) {
 /* password reset function */
 function passwordReset() {
     var username = $('#passuser').val();
-    var icurl = 'https://apiv2.catalog.tadl.org/account/password_reset';
+    var icurl = '/main/reset_password_request'
     $('#passReset').modal('hide');
     showLoading();
     $.get(icurl + '?username=' + username)
