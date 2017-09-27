@@ -105,6 +105,20 @@ class MainController < ApplicationController
     end
   end
 
+  # For mobile app
+  def login_hash
+    if params[:username] && params[:hashed_password]
+      params[:token] = login_refresh_action(params[:username], params[:hashed_password])
+      @user = generate_user()
+      set_cookies(@user)
+    else
+      @user = "bad login"
+    end
+    respond_to do |format|
+      format.json {render json: @user}
+    end
+  end
+
   def logout
     @user = generate_user()
     cookies.delete :login

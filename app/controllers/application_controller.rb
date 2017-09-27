@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
     protect_from_forgery with: :exception
     require 'open-uri'
+    require 'digest/md5'
     before_filter :set_headers
     rescue_from Mechanize::Error, with: :scrape_error
     rescue_from SocketError, with: :scrape_error
@@ -78,5 +79,50 @@ class ApplicationController < ActionController::Base
             confirmation = 'good'
         end
         return confirmation
+    end
+
+    def login_refresh_action(username, pass_md5)
+      uri = URI.parse('https://' + Settings.machine_readable + "/osrf-gateway-v1")
+      http = Net::HTTP.new(uri.host, uri.port)
+      http.use_ssl = true
+      request_seed = Net::HTTP::Post.new(uri.request_uri)
+      request_seed.set_form_data({
+          "service" => "open-ils.auth",
+          "method" => "open-ils.auth.authenticate.init",
+          "param" => '"' + username + '"'
+      })
+      response = http.request(request_seed)
+      # ensure http status ok, ensure json status ok
+      if response.code == '200'
+          j_content = JSON.parse(response.body)
+          if j_content['status'] == 200
+              seed = j_content['payload'][0]
+          end
+      end
+      password = Digest::MD5.hexdigest(seed + pass_md5)
+      auth_param = {
+          "type" => "opac",
+          "password" => password
+      }
+      if ( username =~ /^TADL\d{7,8}$|^90\d{5}$|^91111\d{9}$|^[a-zA-Z]\d{10}/ )
+          auth_param["barcode"] = username
+      else
+          auth_param["username"] = username
+      end
+      request_complete = Net::HTTP::Post.new(uri.request_uri)
+      request_complete.set_form_data({
+          "service" => "open-ils.auth",
+          "method" => "open-ils.auth.authenticate.complete",
+          "param" => JSON.generate(auth_param)
+      })
+      response = http.request(request_complete)
+      if response.code == '200'
+          j_content = JSON.parse(response.body)
+          if j_content['status'] == 200
+              if j_content['payload'][0]['ilsevent'] == 0
+                  return j_content['payload'][0]['payload']['authtoken']
+              end
+          end
+      end
     end
 end

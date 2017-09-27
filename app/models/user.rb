@@ -1,6 +1,7 @@
 class User
 	include ActiveModel::Model
 	require 'open-uri'
+  require 'digest/md5'
 	attr_accessor :full_name, :checkouts, :holds, :holds_ready, :fine, :token, :card, :error, :default_search, :pickup_library, :username, :temp_password, :temp_code, :lists
 
 	def initialize args
