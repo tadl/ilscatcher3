@@ -10,6 +10,7 @@ class MainController < ApplicationController
     @lists.each do |l|
       list = Hash.new
       list["title"] = l["name"]
+      list["fancy_title"] = l["fancy_name"]
       list["items"] = Rails.cache.read(l["name"])
       @featured_items = @featured_items.push(list)
     end
