@@ -140,4 +140,19 @@ class ApplicationController < ActionController::Base
           end
       end
     end
+
+    def logout_with_token(token)
+        uri = URI.parse('https://' + Settings.machine_readable + "/osrf-gateway-v1")
+        http = Net::HTTP.new(uri.host, uri.port)
+        http.use_ssl = true
+        request = Net::HTTP::Post.new(uri.request_uri)
+        request.set_form_data({
+            "service" => "open-ils.auth",
+            "method" => "open-ils.auth.session.delete",
+            "param" => '"' + token + '"'
+        })
+        response = http.request(request)
+        return response.code
+    end
+
 end

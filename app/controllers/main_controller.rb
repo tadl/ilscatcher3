@@ -122,6 +122,11 @@ class MainController < ApplicationController
 
   def logout
     @user = generate_user()
+    if params[:token]
+      logout_with_token(params[:token])
+    else
+      logout_with_token(cookies[:login])
+    end
     cookies.delete :login
     cookies.delete :user
     cookies.delete :lists
