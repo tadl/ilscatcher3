@@ -111,7 +111,6 @@ class MainController < ApplicationController
     if params[:username] && params[:hashed_password]
       params[:token] = login_refresh_action(params[:username], params[:hashed_password])
       @user = generate_user()
-      set_cookies(@user)
     else
       @user = "bad login"
     end
