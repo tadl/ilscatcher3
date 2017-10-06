@@ -666,7 +666,9 @@ class MainController < ApplicationController
         @message = confirmation[0]
         @preferences = confirmation[1]
         @user = confirmation[2]
-        set_cookies(@user)
+        if !params[:from_mobile]
+          set_cookies(@user)
+        end
       else
         @preferences = 'bad login'
         @message = 'bad login'
