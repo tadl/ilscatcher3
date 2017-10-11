@@ -155,7 +155,9 @@ class MainController < ApplicationController
       @record_id = 'bad login'
     end
     @user = generate_user()
-    set_cookies(@user)
+    if !params[:from_mobile]
+        set_cookies(@user)
+    end
     respond_to do |format|
       format.js
       format.json {render :json => {:user => @user,
@@ -171,7 +173,9 @@ class MainController < ApplicationController
       if (params[:hold_id] && !params[:hold_id].blank?) || (params[:task] && !params[:task].blank?)
         @confirmation = check_user.manage_hold(@target_holds, @task)
         @user = @confirmation[1]
-        set_cookies(@user)
+        if !params[:from_mobile]
+            set_cookies(@user)
+        end
         @holds = @confirmation[0]
       else
         @holds = 'bad parameters'
@@ -223,7 +227,9 @@ class MainController < ApplicationController
     @user = generate_user()
     if !@user.error
       @holds = @user.list_holds
-      set_cookies(@user)
+      if !params[:from_mobile]
+        set_cookies(@user)
+      end
     else
       @holds = 'login'
     end
@@ -251,7 +257,9 @@ class MainController < ApplicationController
       get_holds = @user.get_hold_history(page)
       @holds = get_holds[0]
       @more_results = get_holds[1]
-      set_cookies(@user)
+      if !params[:from_mobile]
+        set_cookies(@user)
+      end
     else
       @holds = 'bad login'
       @more_results = 'bad login'
@@ -269,7 +277,9 @@ class MainController < ApplicationController
     @user = generate_user()
     if !@user.error
       @checkouts = @user.list_checkouts
-      set_cookies(@user)
+      if !params[:from_mobile]
+        set_cookies(@user)
+      end
     else
       @checkouts = 'login'
     end
@@ -291,7 +301,9 @@ class MainController < ApplicationController
       get_checkouts = @user.get_checkout_history(@page)
       @checkouts = get_checkouts[0]
       @more_results = get_checkouts[1]
-      set_cookies(@user)
+      if !params[:from_mobile]
+        set_cookies(@user)
+      end
     else
       @checkouts = 'login'
       @more_results = 'login'
@@ -308,7 +320,9 @@ class MainController < ApplicationController
   def renew_checkouts
     @check_user = generate_user()
     if !@check_user.error
-      set_cookies(@check_user)
+      if !params[:from_mobile]
+        set_cookies(@check_user)
+      end
       if (params[:checkout_ids])
         checkouts_raw = params[:checkout_ids].split(',')
         checkouts = Array.new
@@ -351,7 +365,9 @@ class MainController < ApplicationController
   def fines
     @user = generate_user()
     if !@user.error
-      set_cookies(@user)
+      if !params[:from_mobile]
+        set_cookies(@user)
+      end
       fines_and_fees = @user.fines
       @fines = fines_and_fees[0]
       @fees = fines_and_fees[1]
@@ -369,7 +385,9 @@ class MainController < ApplicationController
   def payments
     @user = generate_user()
     if !@user.error
-      set_cookies(@user)
+      if !params[:from_mobile]
+        set_cookies(@user)
+      end
       @payments = @user.payments
     else
       @payments = 'login'
@@ -384,7 +402,9 @@ class MainController < ApplicationController
   def lists
     @user = generate_user()
     if !@user.error
-      set_cookies(@user)
+      if !params[:from_mobile]
+        set_cookies(@user)
+      end
       key_name = 'list_' + @user.token
       @lists = Rails.cache.read(key_name)
     else
@@ -432,7 +452,9 @@ class MainController < ApplicationController
     list_id = params[:list_id]
     record_id = params[:record_id]
     if !@user.error
-      set_cookies(@user)
+      if !params[:from_mobile]
+        set_cookies(@user)
+      end
       @message = @user.add_item_to_list(list_id, record_id)
     else
       @message = 'bad login'
@@ -449,7 +471,9 @@ class MainController < ApplicationController
     list_id = params[:list_id]
     list_item_id = params[:list_item_id]
     if !@user.error
-      set_cookies(@user)
+      if !params[:from_mobile]
+        set_cookies(@user)
+      end
       @message = @user.remove_item_from_list(list_id, list_item_id)
     else
       @message = 'bad login'
@@ -467,7 +491,9 @@ class MainController < ApplicationController
     description = params[:description] 
     shared = params[:shared]    
     if !@user.error && name.to_s != ''
-      set_cookies(@user)
+      if !params[:from_mobile]
+        set_cookies(@user)
+      end
       @message = @user.create_list(name, description, shared)
     elsif @user.error
       @message = 'bad login'
@@ -486,7 +512,9 @@ class MainController < ApplicationController
     @user = generate_user()
     list_id = params[:list_id].to_s  
     if !@user.error && list_id.to_s != ''
-      set_cookies(@user)
+      if !params[:from_mobile]
+        set_cookies(@user)
+      end
       @message = @user.destroy_list(list_id)
     elsif @user.error
       @message = 'bad login'
@@ -507,7 +535,9 @@ class MainController < ApplicationController
     offset = params[:offset]
     list_id = params[:list_id]    
     if !@user.error && name.to_s != '' && list_id.to_s != '' 
-      set_cookies(@user)
+      if !params[:from_mobile]
+        set_cookies(@user)
+      end
       @message = @user.edit_list(list_id, name, description, offset)
     elsif @user.error
       @message = 'bad login'
@@ -531,7 +561,9 @@ class MainController < ApplicationController
     list_item_id = params[:list_item_id] 
     list_id = params[:list_id]    
     if !@user.error && list_item_id.to_s != '' && list_id.to_s != '' 
-      set_cookies(@user)
+      if !params[:from_mobile]
+        set_cookies(@user)
+      end
       @message = @user.add_note_to_list(list_id, list_item_id, note)
     elsif @user.error
       @message = 'bad login'
@@ -554,7 +586,9 @@ class MainController < ApplicationController
     note_id = params[:note_id] 
     list_id = params[:list_id]    
     if !@user.error && note_id.to_s != '' && list_id.to_s != '' 
-      set_cookies(@user)
+      if !params[:from_mobile]
+        set_cookies(@user)
+      end
       @message = @user.edit_note(list_id, note_id, note)
     elsif @user.error
       @message = 'bad login'
@@ -574,7 +608,9 @@ class MainController < ApplicationController
     share = params[:share]
     list_id = params[:list_id]    
     if !@user.error && share.to_s != '' && list_id.to_s != '' 
-      set_cookies(@user)
+      if !params[:from_mobile]
+        set_cookies(@user)
+      end
       @message = @user.share_list(list_id, share)
     elsif @user.error
       @message = 'bad login'
@@ -592,7 +628,9 @@ class MainController < ApplicationController
     @user = generate_user()
     list_id = params[:list_id]    
     if !@user.error && list_id.to_s != '' 
-      set_cookies(@user)
+      if !params[:from_mobile]
+        set_cookies(@user)
+      end
       @message = @user.make_default_list(list_id)
     elsif @user.error
       @message = 'bad login'
@@ -609,7 +647,9 @@ class MainController < ApplicationController
   def preferences
     @user = generate_user()
     if !@user.error
-      set_cookies(@user)
+      if !params[:from_mobile]
+        set_cookies(@user)
+      end
       @preferences = @user.preferences
     else
       @preferences = 'login'
@@ -647,7 +687,9 @@ class MainController < ApplicationController
     @user = generate_user()
     if !@user.error
       @preferences = @user.update_search_history_preferences(params)
-      set_cookies(@user)
+      if !params[:from_mobile]
+          set_cookies(@user)
+      end
     else
       @preferences = 'bad login'
     end
