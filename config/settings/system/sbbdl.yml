@@ -2,6 +2,7 @@ machine_readable: 'mr-v2.catalog.tadl.org'
 public_catalog: 'https://catalog.sbbdl.org'
 location_name: 'Suttons Bay-Bingham District Library'
 elastic_evergreen_url: 'https://elastic-evergreen-sbbdl.appstwo.tadl.org/main/index.json?query='
+password_reset_inputs: 'card'
 logo: 'sbbdl-logo.jpg'
 error_image: 'sbbdl-logo.jpg'
 pickup_locations: [['Suttons Bay', '46']]
