@@ -30,19 +30,19 @@
                 <% if !item.abstract.empty? %>
                     <dl>
                         <dt>Summary</dt>
-                        <% if item.abstract.length > 275 %>
+                        <% if item.abstract_array.map { |str| "#{str}"}.join().length > 275 %>
                             <dd>
                                 <%= truncate(item.abstract, length: 250) %>
                                  <%= link_to 'Read more', '', class: "read-more-#{item.id}-abstract" %>
                                 <script>
                                     $('.read-more-<%= item.id %>-abstract').on('click', function(e) {
                                         e.preventDefault()
-                                        $(this).parent().html('<%= escape_javascript item.abstract %>')
+                                        $(this).parent().html('<%= escape_javascript item.abstract_array.map { |str| "<p>#{str}</p>"}.join().html_safe %>')
                                     })
                                 </script>
                             </dd>
                         <% else %>
-                            <dd><%= item.abstract %></dd>
+                            <dd><%= item.abstract_array.map { |str| "<p>#{str}</p>"}.join().html_safe %></dd>
                         <% end %>
                     </dl>
                 <% end %>
@@ -51,7 +51,7 @@
                 <% if !item.contents.empty? %>
                     <dl>
                         <dt>Contents</dt>
-                        <% if item.contents.length > 275 %>
+                        <% if item.contents_array.map { |str| "#{str}"}.join().length > 275 %>
                             <dd>
                                 <%= truncate(item.contents, length: 250) %>
                                  <%= link_to 'Read more', '', class: "read-more-#{item.id}-contents" %>
