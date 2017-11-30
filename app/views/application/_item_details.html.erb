@@ -58,12 +58,13 @@
                                 <script>
                                     $('.read-more-<%= item.id %>-contents').on('click', function(e) {
                                         e.preventDefault()
-                                        $(this).parent().html('<%= escape_javascript item.contents %>')
+                                        /* $(this).parent().html('<%= escape_javascript item.contents %>') */
+                                        $(this).parent().html('<%= escape_javascript item.contents_array.map { |str| "<p>#{str}</p>"}.join() %>')
                                     })
                                 </script>
                             </dd>
                         <% else %>
-                            <dd><%= item.contents %></dd>
+                            <dd><%= item.contents_array.map { |str| "<p>#{str}</p>"}.join() %></dd>
                         <% end %>
                     </dl>
                 <% end %>
