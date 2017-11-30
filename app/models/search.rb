@@ -352,6 +352,7 @@ class Search
           :source => r["source"],
           :format_type => r["type_of_resource"],
           :record_year => r["sort_year"],
+          :holdable => r["holdable"],
           :call_number => holdings[0],
           :loc => self.loc,
           :publisher => r["publisher"],
