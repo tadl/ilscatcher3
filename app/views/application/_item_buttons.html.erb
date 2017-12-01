@@ -1,5 +1,5 @@
 <span class="item_buttons_div">
-    <% if item.electronic.to_s != 'true'  %>
+    <% if item.electronic.to_s != 'true' || item.holdable.to_s == 'true' %>
         <div class='hold-status-<%= item.id %>'>
         </div>
         <div class='change_pickup_<%= item.id %>' style="display: none">
