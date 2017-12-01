@@ -1,57 +1,59 @@
 <span class="item_buttons_div">
-    <% if item.electronic.to_s != 'true' || item.holdable.to_s == 'true' %>
-        <div class='hold-status-<%= item.id %>'>
-        </div>
-        <div class='change_pickup_<%= item.id %>' style="display: none">
-            <div class="dropdown" style="margin-bottom: 10px;">
-                <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
-                    Select New Location
-                    <span class="caret"></span>
-                </button>
-                <ul class="dropdown-menu">
-                    <% @long_pickup_locations.each do |l| %>
-                        <li><a class="clicky" onclick="submit_pickup_change(<%= l[1] %>)"><%= l[0] %></a></li>
-                    <% end %>
-                </ul>
+    <% if item.electronic == false %>
+        <% if item.holdable == true %>
+            <div class='hold-status-<%= item.id %>'>
             </div>
-            <button type="button" class="btn btn-danger" onclick="cancel_change()">
-                Cancel Change
-            </button>
-        </div>
-        <div class="holdlogin-<%= item.id %>" style="display: none">
-            <div>
-                <div class="alert alert-info">
-                    <i class="glyphicon glyphicon-user"></i> Log in to place hold
+            <div class='change_pickup_<%= item.id %>' style="display: none">
+                <div class="dropdown" style="margin-bottom: 10px;">
+                    <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+                        Select New Location
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu">
+                        <% @long_pickup_locations.each do |l| %>
+                            <li><a class="clicky" onclick="submit_pickup_change(<%= l[1] %>)"><%= l[0] %></a></li>
+                        <% end %>
+                    </ul>
                 </div>
+                <button type="button" class="btn btn-danger" onclick="cancel_change()">
+                    Cancel Change
+                </button>
             </div>
-            <label for="holdloginuser">Username or Library Card</label>
-            <input type="text" id="holdloginuser-<%= item.id %>" class="holdloginuser-<%= item.id %> form-control" name="holdloginuser" />
-            <label for="holdloginpass" class="padtop">Password</label>
-            <input type="password" id="holdloginpass-<%= item.id %>" class="holdloginpass-<%= item.id %> form-control" name="holdloginpass" />
-            <div class="padtop">
-                <div class="btn-group" style="min-width:120px;">
-                    <button type="button" class="btn btn-success loginsubmit" onclick="login(<%= item.id %>)">
-                        Log in and Place Hold
+            <div class="holdlogin-<%= item.id %>" style="display: none">
+                <div>
+                    <div class="alert alert-info">
+                        <i class="glyphicon glyphicon-user"></i> Log in to place hold
+                    </div>
+                </div>
+                <label for="holdloginuser">Username or Library Card</label>
+                <input type="text" id="holdloginuser-<%= item.id %>" class="holdloginuser-<%= item.id %> form-control" name="holdloginuser" />
+                <label for="holdloginpass" class="padtop">Password</label>
+                <input type="password" id="holdloginpass-<%= item.id %>" class="holdloginpass-<%= item.id %> form-control" name="holdloginpass" />
+                <div class="padtop">
+                    <div class="btn-group" style="min-width:120px;">
+                        <button type="button" class="btn btn-success loginsubmit" onclick="login(<%= item.id %>)">
+                            Log in and Place Hold
+                        </button>
+                    </div>
+                </div>
+                <div class="padtop">
+                    <button type="button" class="btn btn-danger logincancel" onclick="login_cancel(<%= item.id %>)">
+                        Cancel
                     </button>
                 </div>
             </div>
-            <div class="padtop">
-                <button type="button" class="btn btn-danger logincancel" onclick="login_cancel(<%= item.id %>)">
-                    Cancel
-                </button>
-            </div>
-        </div>
-        <p>
-            <div class="btn-group" style="min-width:120px;">
-                <button class="btn btn-success holdbtn hold-<%= item.id %>" onclick="place_hold(<%= item.id %>)">
-                    Place hold
-                </button>
-            </div>
-        </p>
-        <% if !item.holds.nil? && item.holds.to_i > 0 %>
             <p>
-                <b><%= pluralize(item.holds, 'hold') %> on <%= pluralize(item.all_copies_total, 'copy') %></b> 
+                <div class="btn-group" style="min-width:120px;">
+                    <button class="btn btn-success holdbtn hold-<%= item.id %>" onclick="place_hold(<%= item.id %>)">
+                        Place hold
+                    </button>
+                </div>
             </p>
+            <% if !item.holds.nil? && item.holds.to_i > 0 %>
+                <p>
+                    <b><%= pluralize(item.holds, 'hold') %> on <%= pluralize(item.all_copies_total, 'copy') %></b> 
+                </p>
+            <% end %>
         <% end %>
     <% end %>
     <% if item.eresource.to_s != ''  %>
