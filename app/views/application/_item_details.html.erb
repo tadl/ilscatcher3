@@ -42,7 +42,11 @@
                                 </script>
                             </dd>
                         <% else %>
-                            <dd><%= item.abstract_array.map { |str| "<p>#{str}</p>"}.join().html_safe %></dd>
+                            <dd>
+                                <% item.abstract_array.each do |n| %>
+                                    <p><%= n %></p>
+                                <% end %>
+                            </dd>
                         <% end %>
                     </dl>
                 <% end %>
@@ -59,12 +63,16 @@
                                     $('.read-more-<%= item.id %>-contents').on('click', function(e) {
                                         e.preventDefault()
                                         /* $(this).parent().html('<%= escape_javascript item.contents %>') */
-                                        $(this).parent().html('<%= escape_javascript item.contents_array.map { |str| "<p>#{str}</p>"}.join().html_safe %>')
+                                        $(this).parent().html('<% item.contents_array.each do |n| %><p><%= escape_javascript n %></p><% end %>')
                                     })
                                 </script>
                             </dd>
                         <% else %>
-                            <dd><%= item.contents_array.map { |str| "<p>#{str}</p>"}.join().html_safe %></dd>
+                            <dd>
+                                <% item.contents_array.each do |n| %>
+                                    <p><%= n %></p>
+                                <% end %>
+                            </dd>
                         <% end %>
                     </dl>
                 <% end %>
