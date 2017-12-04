@@ -37,7 +37,7 @@
                                 <script>
                                     $('.read-more-<%= item.id %>-abstract').on('click', function(e) {
                                         e.preventDefault()
-                                        $(this).parent().html('<% item.abstract_array.map.each do |n| %><p><%= escape_javascript n %></p><% end %>')
+                                        $(this).parent().html('<% item.abstract_array.each do |n| %><p><%= escape_javascript n %></p><% end %>')
                                     })
                                 </script>
                             </dd>
