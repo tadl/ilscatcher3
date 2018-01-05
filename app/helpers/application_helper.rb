@@ -80,4 +80,12 @@ module ApplicationHelper
         return location_code
     end
 
+    def search_link_helper
+        search_link = main_search_path
+        if Settings.shelf_lock
+            search_link << '?shelf_lock=on' 
+        end
+        return search_link
+    end
+
 end
