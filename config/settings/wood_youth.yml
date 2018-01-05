@@ -13,6 +13,9 @@ search_text: 'Search Youth Materials'
 #search_text_unlocked: 'Search'
 search_menu: 'Advanced Search'
 default_loc: '23'
+additional_nav_links:
+  - name: 'Adult Catalog'
+    href: 'http://catalog.tadl.org/'
 slider_frequency: 10
 lists:
   - name: 'wood_youth_fiction_list'
