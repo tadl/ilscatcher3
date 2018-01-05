@@ -5,12 +5,12 @@ shelf_lock:
   default_activated: true
   text: 'Limit to Youth at Woodmere'
 format_options: [['Juvenile', 'shelving_location', '516,527,528,529,530,531,532,542,549,571,589,593,770,771,791,792,793,794,795,809,810,813,815,817,818,819,977,978,979,980,981'],['Fiction', 'shelving_location', '528,529,791,793,794,795,810,813,819,977,978,979,980,981'],['Nonfiction', 'shelving_location', '792,1001'],['Audiobooks', 'shelving_location', '571'],['Foreign Language', 'shelving_location', '809'],['Graphic Novels', 'shelving_location', '817'],['Holidays', 'shelving_location', '818'],['Movies and Videos', 'shelving_location', '516,593,771'],['Music', 'shelving_location', '770'],['Multimedia Kits', 'shelving_location', '542,589'],['Puppets', 'shelving_location', '549']]
-format_options_unlocked: [['All Formats', 'fmt' ,'all'], ['Books', 'fmt' ,'a'],['Movies / TV', 'fmt' ,'g'],['Music', 'fmt' ,'j']]
+#format_options_unlocked: [['All Formats', 'fmt' ,'all'], ['Books', 'fmt' ,'a'],['Movies / TV', 'fmt' ,'g'],['Music', 'fmt' ,'j']]
 format_label: 'Material Type'
-format_label_unlocked: 'Format'
+#format_label_unlocked: 'Format'
 stylesheet: 'youth.css'
 search_text: 'Search Youth Materials'
-search_text_unlocked: 'Search'
+#search_text_unlocked: 'Search'
 search_menu: 'Advanced Search'
 default_loc: '23'
 slider_frequency: 10
