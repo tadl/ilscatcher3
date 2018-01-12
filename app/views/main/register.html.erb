@@ -1,7 +1,7 @@
 <div class="row">
     <div class="col-xs-12">
         <h2>Signing-up for a library card is easy! Please fill out the form below to get started.</h2>
-        <form class="form-horizontal padtop" autocomplete="off" method="post" action="https://www.tadl.org/tadleg/newuser/register/">
+        <form class="form-horizontal padtop" autocomplete="off" method="post" action="<%= Settings.register_form %>">
             <div class="form-group">
                 <label for="id_first_given_name" class="col-xs-3 control-label">First Name</label>
                 <div class="col-xs-6">
@@ -119,24 +119,33 @@
                     <input type="email" class="form-control" id="id_email" name="email" placeholder="E-mail Address">
                 </div>
             </div>
-            <div class="form-group">
-                <div class="col-xs-offset-3 col-xs-6">
-                    <div class="checkbox">
-                        <label>
-                            <input type="checkbox" checked="checked" name="email_optin" id="id_email_optin">Stay Connected! Receive news, events, and other email updates from your library
-                        </label>
+            <% if Settings.register_newsletter == 'true' %>
+                <div class="form-group">
+                    <div class="col-xs-offset-3 col-xs-6">
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" checked="checked" name="email_optin" id="id_email_optin">Stay Connected! Receive news, events, and other email updates from your library
+                            </label>
+                        </div>
                     </div>
                 </div>
-            </div>
+            <% end %>
             <div class="col-xs-offset-3 col-xs-6">
-                <h2>Agreement</h2>
-                <p>I agree to comply with all of the rules of the Traverse Area District Library; to return all materials in a timely fashion and in good condition; to promptly pay all fines levied against me; and to give notice of any change in my name, address or phone number.</p>
-                <p>TADL utilizes Unique Management Services to manage its delinquent accounts.</p>
-                <p>If the applicant is a minor, this agreement must be completed by a parent or guardian responsible for the minor.</p>
-                <h2>Consent by the parent or guardian of a minor child</h2>
-                <p>I am the parent/guardian of the above named child. I consent to my child obtaining a borrower's card through the Traverse Area District Library, and I accept full responsibility for return of library materials checked out by the above named child, as well as liability for payment for the child's overdue fines and damaged or lost materials. I understand that my child has full access to library materials, programs and services, and that his or her borrowing record is confidential to the extent required by Michigan law.</p>
-                <p>I give consent to release of child's borrowing record to myself and other parents or guardians whose names I provide to library staff in person when completing this registration.</p>
-
+                <% if Settings.register_agreement_text == 'tadl' %>
+                    <h2>Agreement</h2>
+                    <p>I agree to comply with all of the rules of the Traverse Area District Library; to return all materials in a timely fashion and in good condition; to promptly pay all fines levied against me; and to give notice of any change in my name, address or phone number.</p>
+                    <p>TADL utilizes Unique Management Services to manage its delinquent accounts.</p>
+                    <p>If the applicant is a minor, this agreement must be completed by a parent or guardian responsible for the minor.</p>
+                    <h2>Consent by the parent or guardian of a minor child</h2>
+                    <p>I am the parent/guardian of the above named child. I consent to my child obtaining a borrower's card through the Traverse Area District Library, and I accept full responsibility for return of library materials checked out by the above named child, as well as liability for payment for the child's overdue fines and damaged or lost materials. I understand that my child has full access to library materials, programs and services, and that his or her borrowing record is confidential to the extent required by Michigan law.</p>
+                    <p>I give consent to release of child's borrowing record to myself and other parents or guardians whose names I provide to library staff in person when completing this registration.</p>
+                <% end %>
+                <% if Settings.register_agreement_text == 'sbbdl' %>
+                    <h2>Agreement</h2>
+                    <p>I agree to comply with all of the rules of the Suttons Bay-Bingham District Library; to return all materials in a timely fashion and in good condition; to promptly pay all fines levied against me; and to give notice of any change in my name, address or phone number.</p>
+                    <p>If the applicant is a minor, this agreement must be completed by a parent or guardian responsible for the minor.</p>
+                    <p>(UPDATE THIS)</p>
+                <% end %>
                 <input type="hidden" name="application_name" value="<%= Settings.application_name %>">
 
                 <!-- submit form -->
