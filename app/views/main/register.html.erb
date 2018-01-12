@@ -141,15 +141,16 @@
                     <p>I give consent to release of child's borrowing record to myself and other parents or guardians whose names I provide to library staff in person when completing this registration.</p>
                 <% end %>
                 <% if Settings.register_agreement_text == 'sbbdl' %>
-                    <h2>Agreement</h2>
-                    <p>I agree to comply with all of the rules of the Suttons Bay-Bingham District Library; to return all materials in a timely fashion and in good condition; to promptly pay all fines levied against me; and to give notice of any change in my name, address or phone number.</p>
-                    <p>If the applicant is a minor, this agreement must be completed by a parent or guardian responsible for the minor.</p>
-                    <p>(UPDATE THIS)</p>
+                    <!-- agreement text -->
                 <% end %>
                 <input type="hidden" name="application_name" value="<%= Settings.application_name %>">
 
                 <!-- submit form -->
-                <button type="submit" class="btn btn-primary pull-right">I Agree - Register</button>
+                <% if Settings.register_location == '23' %>
+                    <button type="submit" class="btn btn-primary pull-right">I Agree - Register</button>
+                <% else %>
+                    <button type="submit" class="btn btn-primary pull-right">Register</button>
+                <% end %>
                 <div class="padtop padbot clearfix"></div>
             </div>
         </form>
