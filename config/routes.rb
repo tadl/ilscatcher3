@@ -79,4 +79,7 @@ Rails.application.routes.draw do
     match "login" => "main#login", via: [:get, :post], defaults: {format: 'json'}
     match "logout" => "main#logout", via: [:get, :post], defaults: {format: 'js'}
   end
+  if Settings.register_location == '46'
+    match "/register/sbbdl" => "main#sbbdl_register", via: [:get, :post], defaults: { format: 'html' }
+  end
 end

@@ -2,6 +2,7 @@ class ApplicationController < ActionController::Base
     protect_from_forgery with: :exception
     require 'open-uri'
     require 'digest/md5'
+    require 'time'
     before_filter :set_headers
     rescue_from Mechanize::Error, with: :scrape_error
     rescue_from SocketError, with: :scrape_error

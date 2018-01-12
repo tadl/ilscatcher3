@@ -1,6 +1,7 @@
 class MainController < ApplicationController
     include ApplicationHelper
     before_filter :shared_main_variables
+    skip_before_action :verify_authenticity_token, :only => :sbbdl_register
     respond_to :html, :json, :js
 
   def index
@@ -780,4 +781,67 @@ class MainController < ApplicationController
       format.json {render :json => {:message => @confirmation}}
     end
   end
+
+  def sbbdl_register
+    birth_date = Date.parse(params[:dob]).iso8601
+    random_pass = 4.times.map { (0..9).to_a.sample }.join
+    stgu = Hash.new
+    stgu['__c'] = 'stgu'
+    stgu['__p'] = [
+      nil,
+      nil,
+      nil, 
+      1,
+      params[:email],
+      random_pass,
+      nil,
+      params[:first_given_name],
+      params[:second_given_name],
+      params[:family_name],
+      params[:phone],
+      nil,
+      Settings.register_location,
+      birth_date
+    ]
+
+    address = [
+      nil,
+      nil,
+      nil,
+      params[:addr_street],
+      nil,
+      params[:addr_city],
+      nil,
+      params[:addr_state],
+      'US',
+      params[:addr_zip]
+    ]
+
+    stgma = Hash.new
+    stgma['__c'] = 'stgma'
+    stgma['__p'] = address
+
+    stgba = Hash.new
+    stgba['__c'] = 'stgba'
+    stgba['__p'] = address
+
+    stgu_json = stgu.to_json
+    stgma_json = stgma.to_json
+    stgba_json = stgba.to_json
+
+    register_path = 'https://catalog.tadl.org/osrf-gateway-v1?service=open-ils.actor&method=open-ils.actor.user.stage.create&param='
+    register_path << stgu_json.to_s
+    register_path << '&param=' + stgma_json.to_s
+    register_path << '&param=' + stgba_json.to_s
+
+    agent = Mechanize.new
+    response = agent.get(URI.escape(register_path))
+    
+    respond_to do |format|
+      format.html
+      format.json {render :json => {:message => response}}
+    end
+  end
+
+
 end
