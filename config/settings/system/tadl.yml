@@ -10,6 +10,10 @@ long_pickup_locations: [['Woodmere (Main) Branch', '23'],['Interlochen Public Li
 elastic_locations: [['TADL-WOOD', '23'],['TADL-IPL', '24'],['TADL-KBL', '25'], ['TADL-PCL', '26'], ['TADL-EBB', '28'], ['TADL-FLPL', '27']]
 all_locations_code: '22'
 has_registration: 'true'
+register_newsletter: 'true'
+register_form: 'https://www.tadl.org/tadleg/newuser/register/'
+register_location: '23'
+register_agreement_text: 'tadl'
 has_payments: 'true'
 payment_link: 'https://www.tadl.org/pay/pay.cgi'
 has_eresources: 'true'

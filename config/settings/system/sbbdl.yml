@@ -11,7 +11,11 @@ long_pickup_locations: [['Suttons Bay-Bingham District Library', '46']]
 elastic_locations: [['SBBDL', '46']]
 all_locations_code: '46'
 has_payments: 'false'
-has_registration: 'false'
+has_registration: 'true'
+register_newsletter: 'false'
+register_form: '/register/sbbdl'
+register_location: '46'
+register_agreement_text: 'sbbdl'
 has_eresources: 'false'
 #opac_toggle: [{'name': 'Main', 'url': 'https://catalog.sbbdl.org/main/index'},{'name': 'Youth', 'url': 'https://youth-catalog.sbbdl.org/main/index'}]
 system_lock:
