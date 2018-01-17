@@ -16,7 +16,9 @@ register_newsletter: 'false'
 register_form: '/register/sbbdl'
 register_location: '46'
 register_agreement_text: 'sbbdl'
+register_button: 'false'
 has_eresources: 'false'
+passreset_text: 'Trouble logging in?'
 #opac_toggle: [{'name': 'Main', 'url': 'https://catalog.sbbdl.org/main/index'},{'name': 'Youth', 'url': 'https://youth-catalog.sbbdl.org/main/index'}]
 system_lock:
   card_prefix_allow: '90416'

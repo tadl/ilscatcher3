@@ -13,5 +13,6 @@ has_payments: 'false'
 has_registration: 'false'
 has_eresources: 'false'
 opac_toggle: [{'name': 'Main', 'url': 'https://catalog.kalkaskalibrary.org/main/index'},{'name': 'Youth', 'url': 'https://youth-catalog.kalkaskalibrary.org/main/index'},{'name': 'Teen', 'url': 'https://teen-catalog.kalkaskalibrary.org/main/index'}]
+passreset_text: 'Forgot password?'
 system_lock:
   card_prefix_allow: '90247'
