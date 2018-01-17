@@ -49,5 +49,8 @@
         <i class="glyphicon glyphicon-menu-up" title="back to top"></i>
     </a>
     <%= render partial: "google_analytics_pageview" %>
+  <% if Settings.is_opac ==  true %>
+    <%= render partial: "opac_managment" %>
+  <% end %>
 </body>
 </html>

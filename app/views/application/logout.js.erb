@@ -2,4 +2,8 @@ Cookies.remove('login');
 Cookies.remove('user');
 Cookies.remove('lists')
 $('#account_info_box').html('<%= escape_javascript(render partial: "login_form") %>');
-window.location="/main/index";
+<% if Settings.is_opac == true %>
+	window.location="/main/index?screen_saver_on=true";
+<% else %>
+	window.location="/main/index";
+<% end %>

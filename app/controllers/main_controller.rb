@@ -8,6 +8,7 @@ class MainController < ApplicationController
     @lists = Settings.lists
     @last_updated = Rails.cache.read('last_updated')
     @featured_items = Array.new
+    @screen_saver_on = params[:screen_saver_on]
     @lists.each do |l|
       list = Hash.new
       list["title"] = l["name"]

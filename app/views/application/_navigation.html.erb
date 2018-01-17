@@ -27,7 +27,9 @@
                     </li>
                 <% end %>
                 <% if Settings.account_only != 'true' %>
-                    <li<% if request.path == main_index_path || request.path == '/' %> class="active"<% end %>><a class="navi" href="<%= main_index_path %>">Home</a></li>
+                    <li<% if request.path == main_index_path || request.path == '/' %> class="active"<% end %>>
+                        <a class="navi" href="<%= main_index_path %>">Home</a>
+                    </li>
                     <li<% if request.path == main_search_path || request.path == '/search' %> class="active"<% end %>><a class="navi" href="<%= search_link_helper %>"><%= Settings.search_menu %></a></li>
                 <% end %>
                 <% if !Settings.additional_nav_links.nil? && Settings.additional_nav_links_dropdown == true %>

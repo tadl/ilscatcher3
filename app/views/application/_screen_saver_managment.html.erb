@@ -1,0 +1,19 @@
+<div id="screen_saver">
+	<div>Press any key or move mouse to use OPAC</div>
+</div>
+<% if @screen_saver_on == 'true' %>
+	<script>
+		function show_screen_saver(){
+			var images = [<% Settings.screen_saver.each do |s| %>'<%= s['url'] %>',<% end %>]
+			var image_count = images.length
+			var image_index = 2
+			$("#screen_saver").css("background-image", 'url('+ images[1] +')')    
+			setInterval(function() {
+    			$("#screen_saver").css("background-image", 'url('+ images[image_index] +')')       
+    			image_index = (image_index + 1) % image_count;
+			}, 5000);
+			$("#screen_saver").css("display", "block")
+		}
+		show_screen_saver()
+	</script>
+<% end %>
