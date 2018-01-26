@@ -34,7 +34,9 @@
 <div class="row padtop">
     <% if @search.list_active == "active" %>
         <div id="full_facets" class="visible-lg col-lg-3 ">
-            <%= render 'fiction_facet', full_size: 'true' %>
+            <% if @new_search != 'true' %>
+                <%= render 'fiction_facet', full_size: 'true' %>
+            <% end %>
             <% @facets.each do |facet| %>
                 <%= render 'facets', facet: facet, full_size: 'true' %>
                 <div style="clear: both"></div>

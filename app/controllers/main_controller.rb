@@ -36,10 +36,17 @@ class MainController < ApplicationController
       cookies[:layout] = {:value => params[:layout]}
     end
     @search = Search.new params
-    results = @search.results
-    @items = results[0]
-    @facets = results[1]
-    @more_results = results[2]
+    @new_search = params[:new_search]
+    if @new_search != 'true'
+      results = @search.results
+      @items = results[0]
+      @facets = results[1]
+      @more_results = results[2]
+    else
+      @items = []
+      @facets = []
+      @more_results = false
+    end
     if cookies[:login]
       key_name = 'list_' + cookies[:login]
       @lists = Rails.cache.read(key_name)

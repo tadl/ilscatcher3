@@ -81,9 +81,9 @@ module ApplicationHelper
     end
 
     def search_link_helper
-        search_link = main_search_path
+        search_link = main_search_path + '?new_search=true'
         if Settings.shelf_lock
-            search_link << '?shelf_lock=on' 
+            search_link << '&shelf_lock=on' 
         end
         return search_link
     end
