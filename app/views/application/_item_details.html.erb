@@ -104,8 +104,10 @@
                 <%= link_to 'marc', data:{params: item.create_params}, :method => :post,  :remote => true, :type => 'button', :class => 'btn btn-default btn-xs padtop' do %>
                     <span class="glyphicon glyphicon-list-alt"></span> MARC
                 <% end %>
-                <%= link_to main_details_path(id: item.id), :type => 'button', :target => "_blank", :class => 'btn btn-default btn-xs padtop' do %>
-                    <span class="glyphicon glyphicon-link"></span> Permalink
+                <% if Settings.is_opac !=  true %>
+                    <%= link_to main_details_path(id: item.id), :type => 'button', :target => "_blank", :class => 'btn btn-default btn-xs padtop' do %>
+                        <span class="glyphicon glyphicon-link"></span> Permalink
+                    <% end %>
                 <% end %>
             </div>
         </div>
@@ -116,5 +118,7 @@
     <% if Settings.account_only == 'true' %>
         $('.details_search_link').contents().unwrap();
     <% end %>
-    load_added_content('<%= item.id %>','<%= item.isbn %>','<%= item.format_type %>')
+    <% if Settings.is_opac !=  true %>
+        load_added_content('<%= item.id %>','<%= item.isbn %>','<%= item.format_type %>')
+    <% end %>
 </script>

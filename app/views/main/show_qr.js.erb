@@ -1,0 +1,14 @@
+var content = '<svg><%= escape_javascript(raw generate_qr(@url)) %><svg>'
+
+$.fancybox.open({ 
+    'overlayOpacity': 0.1,
+    'content' : content
+});
+
+var svg = document.getElementsByTagName("svg")[0];
+var bbox = svg.getBBox();
+svg.setAttribute("width", bbox.x + bbox.width  + "px");
+svg.setAttribute("height",bbox.y + bbox.height + "px");
+
+$.fancybox.update()
+$.fancybox.reposition()

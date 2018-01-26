@@ -844,5 +844,12 @@ class MainController < ApplicationController
     end
   end
 
+  def show_qr
+    @url = params[:url]
+    respond_to do |format|
+      format.js
+    end
+  end
+
 
 end

@@ -88,4 +88,9 @@ module ApplicationHelper
         return search_link
     end
 
+    def generate_qr(url)
+        qr =RQRCode::QRCode.new(url)
+        svg = qr.as_svg(offset: 0, color: '000', shape_rendering: 'crispEdges', module_size: 8)
+        return svg
+    end
 end

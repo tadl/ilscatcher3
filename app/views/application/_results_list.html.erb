@@ -66,11 +66,16 @@
                                     <a href="#" onclick="event.preventDefault();place_hold(<%= item.id %>)">Place a hold</a> to request this item.
                                 <% end %>
                             <% end %>
-                            <% if item.electronic == true %>
+                            <% if item.electronic == true && Settings.is_opac !=  true %>
                                 <h4>
                                     <a style="color: green" href="<%= item.eresource %>" target="_blank">
                                         View online at <%= item.source %>
                                     </a>
+                                </h4>
+                            <% end %>
+                            <% if item.electronic == true && Settings.is_opac ==  true %>
+                                <h4 style="color: green">
+                                    Item available for download or streaming
                                 </h4>
                             <% end %>
                         <% end %>

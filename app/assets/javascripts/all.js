@@ -1119,3 +1119,8 @@ function report_summer_reading(){
     var session = Cookies.get('login');
     $.redirect("https://www.tadl.org/summer-redirect/summer-redirect.cgi", {m: 'jwt', ses: session });
 }
+
+function show_qr(url){
+    var target_url = encodeURIComponent(url)
+    $.post('/main/show_qr?url=' + target_url)
+}

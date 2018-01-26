@@ -56,13 +56,22 @@
             <% end %>
         <% end %>
     <% end %>
-    <% if item.eresource.to_s != ''  %>
+    <% if item.eresource.to_s != '' && Settings.is_opac !=  true  %>
         <p>
             <div class="btn-group" style="min-width:120px;">
                 <% if item.eresource.include? 'https://goo.gl/' %>
                     <a class="btn btn-default" href="<%= item.eresource %>">View Manual</a>
                 <% else %>
                     <a class="btn btn-success" href="<%= item.eresource %>">View Online</a>
+                <% end %>
+            </div>
+        </p>
+    <% end %>
+    <% if item.eresource.to_s != '' && Settings.is_opac ==  true  %>
+        <p>
+            <div class="btn-group" style="min-width:120px;">
+                <% if !item.eresource.include? 'https://goo.gl/' %>
+                    <a class="btn btn-success" onclick="show_qr('<%= item.eresource %>')">View QR Code</a>
                 <% end %>
             </div>
         </p>

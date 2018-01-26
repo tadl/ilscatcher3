@@ -31,3 +31,4 @@ gem 'mini_magick'
 gem 'dotenv-rails', :groups => [:development, :test]
 gem 'config'
 gem 'responders', '~> 2.0'
+gem 'rqrcode'
