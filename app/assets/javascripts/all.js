@@ -74,6 +74,10 @@ ready = function() {
     hold_management_binds();
     checkout_management_binds();
     check_images();
+    window.setTimeout(function() {
+        $('#featured_lists').show();
+    }, 150);
+
 };
 
 $(document).ready(ready);

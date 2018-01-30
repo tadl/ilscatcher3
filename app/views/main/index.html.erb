@@ -2,18 +2,20 @@
 <div class="row">
     <%= render 'partial_search_box', search: @search %>
 </div>
-<% @lists.each do |l| %>
-	<h2 class="pull-left"><%= l['fancy_name']%></h2>
-	<% if !l['searches'].nil? %>
-        <% if l['searches'].count > 1 %>
-            <%= render 'dropdown_explore_generic', list: l %>
-        <% else %>
-            <%= render 'nodropdown_explore_generic', list: l %>
+<div id="featured_lists" style ="display:none">
+    <% @lists.each do |l| %>
+    	<h2 class="pull-left"><%= l['fancy_name']%></h2>
+    	<% if !l['searches'].nil? %>
+            <% if l['searches'].count > 1 %>
+                <%= render 'dropdown_explore_generic', list: l %>
+            <% else %>
+                <%= render 'nodropdown_explore_generic', list: l %>
+            <% end %>
         <% end %>
+        <div class="clearfix"></div>
+    	<%= render 'featured_lists', list: Rails.cache.read(l['name']).shuffle, name: l['name'] %>
     <% end %>
-    <div class="clearfix"></div>
-	<%= render 'featured_lists', list: Rails.cache.read(l['name']).shuffle, name: l['name'] %>
-<% end %>
+</div>
 <% if Settings.is_opac ==  true %>    
     <%= render partial: "screen_saver_managment" %>
 <% end %>
