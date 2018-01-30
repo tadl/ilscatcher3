@@ -3,5 +3,8 @@
         <%= render partial: 'account_basics' %>
     <% else %>
         <%= render partial: 'login_form' %>
+        <% if Settings.is_opac ==  true %>
+        	<button style="margin-left: 8px;" type="button" class="btn btn-primary navbar-btn" onclick="end_session()" id="end_session">End Session</button>
+    	<% end %>
     <% end %>
 </ul>

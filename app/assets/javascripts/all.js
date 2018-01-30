@@ -1124,3 +1124,12 @@ function show_qr(url){
     var target_url = encodeURIComponent(url)
     $.post('/main/show_qr?url=' + target_url)
 }
+
+function end_session(){
+    var logged_in = Cookies.get('login');
+    if(logged_in == null){
+        window.location = '/main/index?screen_saver_on=true'
+    }else{
+        $.post('/main/logout.js')
+    }
+}

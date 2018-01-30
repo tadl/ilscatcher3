@@ -52,6 +52,10 @@
     <li>
         <p class="navbar-btn">
             <%= link_to 'logout.js', :remote => true, :type => 'button', :class => 'btn btn-default', :style => 'margin-left:10px;' do %>Log out<% end %>
+   
+            <% if Settings.is_opac ==  true %>
+                <button style="margin-left: 8px;" type="button" class="btn btn-primary" onclick="end_session()" id="end_session">End Session</button>
+            <% end %>
         </p>
     </li>
 </ul>
