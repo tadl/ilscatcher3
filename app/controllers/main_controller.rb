@@ -1,7 +1,7 @@
 class MainController < ApplicationController
     include ApplicationHelper
     before_filter :shared_main_variables
-    skip_before_action :verify_authenticity_token, :only => :sbbdl_register
+    skip_before_action :verify_authenticity_token, :only => :patron_register
     respond_to :html, :json, :js
 
   def index
@@ -790,7 +790,7 @@ class MainController < ApplicationController
     end
   end
 
-  def sbbdl_register
+  def patron_register
     birth_date = Date.parse(params[:dob]).iso8601
     random_pass = 4.times.map { (0..9).to_a.sample }.join
     stgu = Hash.new
@@ -844,6 +844,12 @@ class MainController < ApplicationController
 
     agent = Mechanize.new
     response = agent.get(URI.escape(register_path))
+
+    if Settings.register_newsletter == 'true' && params[:email_optin] == 'on'
+        agent = Mechanize.new
+        url = Settings.register_listapi_url
+        listsub = agent.post(url, {'check' => ENV["LISTAPI_KEY"], 'email' => params[:email], 'firstname' => params[:first_given_name], 'lastname' => params[:family_name], 'city' => params[:addr_city], 'state' => params[:addr_state], 'zip' => params[:addr_zip]})
+    end
     
     respond_to do |format|
       format.html
