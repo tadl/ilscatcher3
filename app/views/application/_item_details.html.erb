@@ -38,6 +38,8 @@
                                     $('.read-more-<%= item.id %>-abstract').on('click', function(e) {
                                         e.preventDefault()
                                         $(this).parent().html('<% item.abstract_array.each do |n| %><p><%= escape_javascript n %></p><% end %>')
+                                        $.fancybox.update()
+                                        $.fancybox.reposition()
                                     })
                                 </script>
                             </dd>
@@ -64,6 +66,8 @@
                                         e.preventDefault()
                                         /* $(this).parent().html('<%= escape_javascript item.contents %>') */
                                         $(this).parent().html('<% item.contents_array.each do |n| %><p><%= escape_javascript n %></p><% end %>')
+                                        $.fancybox.update()
+                                        $.fancybox.reposition()
                                     })
                                 </script>
                             </dd>
