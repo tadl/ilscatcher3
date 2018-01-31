@@ -332,7 +332,7 @@ h2.overdue {
     font-size: 35px;
 }
 
-#inactivity_warning{
+.opac_warning{
     background-color: #ccc;
     position: fixed;
     top: 50%;
@@ -340,4 +340,5 @@ h2.overdue {
     transform: translate(-50%, -50%);
     z-index: 1000;
     display: none;
+    padding: 10px;
 }
