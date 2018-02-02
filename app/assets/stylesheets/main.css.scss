@@ -300,30 +300,30 @@ h2.overdue {
     margin: 5px 0;
 }
 
-#summer_reading_wrapper{
+#summer_reading_wrapper {
     text-align: center; 
-    margin-bottom:20px;
+    margin-bottom: 20px;
 }
 
-.summer_reading{
+.summer_reading {
     display: inline-block;
 }
 
-#screen_saver{
-    background-color:#ccc;
+#screen_saver {
+    background-color: #ccc;
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-position: center; 
-    position:fixed;
-    width:100%;
-    height:100%;
-    top:0px;
-    left:0px;
-    z-index:1000;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0px;
+    left: 0px;
+    z-index: 1000;
     display: none;
 }
 
-#screen_saver div{
+#screen_saver div {
     opacity: 0.8;
     text-align: center;
     background-color: #000;
@@ -332,13 +332,15 @@ h2.overdue {
     font-size: 35px;
 }
 
-.opac_warning{
-    background-color: #ccc;
+.opac_warning {
+    background-color: #fff;
+    border: 2px solid #f20;
+    border-radius: 5px;
     position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     z-index: 1000;
     display: none;
-    padding: 10px;
+    padding: 10px 30px 20px 30px;
 }
