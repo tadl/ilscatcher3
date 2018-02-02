@@ -36,6 +36,7 @@ GEM
       minitest (~> 5.1)
       thread_safe (~> 0.3, >= 0.3.4)
       tzinfo (~> 1.1)
+    american_date (1.1.1)
     arel (6.0.4)
     autoprefixer-rails (7.2.5)
       execjs
@@ -251,6 +252,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  american_date
   bootstrap-sass (~> 3.3.5)
   bootstrap_form
   coffee-rails (~> 4.0.0)

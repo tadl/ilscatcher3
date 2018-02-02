@@ -3,6 +3,7 @@ class ApplicationController < ActionController::Base
     require 'open-uri'
     require 'digest/md5'
     require 'time'
+    require 'american_date'
     before_filter :set_headers
     rescue_from Mechanize::Error, with: :scrape_error
     rescue_from SocketError, with: :scrape_error
