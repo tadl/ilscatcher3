@@ -1,9 +1,8 @@
 is_opac: true
 screen_saver:
-  - url: 'http://opacscreensaver.lib.tadl.org/slideshow/images/OPAC_Slider_TADLWeb_EBB.jpg'
-  - url: 'http://opacscreensaver.lib.tadl.org/slideshow/images/melcat%20opac%20ebb.jpg'
-  - url: 'http://opacscreensaver.lib.tadl.org/slideshow/images/hold_eb.jpg'
-  - url: 'http://opacscreensaver.lib.tadl.org/slideshow/images/OPAC%20-%20Renewals_EBB_Adult_2017.jpg'
+  - url: 'https://www.tadl.org/wp-content/uploads/2018/02/opac_3.jpg'
+  - url: 'https://www.tadl.org/wp-content/uploads/2018/02/opac_2.jpg'
+  - url: 'https://www.tadl.org/wp-content/uploads/2018/02/opac_1.jpg'
 shelf_lock:
   shelves: [510,618,975,976,680,783,683,518,584,769,525,569,534,535,789,619,797,620,621,544,546,590,551,552,553,554,575,1,1001]
   location: '23'
