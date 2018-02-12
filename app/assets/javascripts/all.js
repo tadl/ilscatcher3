@@ -116,7 +116,7 @@ function place_hold(id,force) {
     target_div = '.hold-status-' + id;
     login_div = '.holdlogin-' + id;
     if (logged_in == null) {
-        $(login_div).last().show();
+        $(login_div).show();
         var username = $('#username').val();
         var password = $('#password').val();
         var username_input = 'input[id=holdloginuser-' + id +']'
@@ -412,8 +412,8 @@ function login(id,page) {
         var userdiv = '#username';
         var passdiv = '#password';
     }
-    var username = $(userdiv).last().filter(":visible").val();
-    var password = $(passdiv).last().filter(":visible").val();
+    var username = $(userdiv).filter(":visible").val();
+    var password = $(passdiv).filter(":visible").val();
     $.post("login.js", {username: username, password: password, record_id: id, page: page });
 }
 
