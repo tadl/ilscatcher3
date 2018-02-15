@@ -40,6 +40,8 @@ GEM
     arel (6.0.4)
     autoprefixer-rails (7.2.5)
       execjs
+    bootstrap-datepicker-rails (1.7.1.1)
+      railties (>= 3.0)
     bootstrap-sass (3.3.7)
       autoprefixer-rails (>= 5.2.1)
       sass (>= 3.3.4)
@@ -253,6 +255,7 @@ PLATFORMS
 
 DEPENDENCIES
   american_date
+  bootstrap-datepicker-rails
   bootstrap-sass (~> 3.3.5)
   bootstrap_form
   coffee-rails (~> 4.0.0)
