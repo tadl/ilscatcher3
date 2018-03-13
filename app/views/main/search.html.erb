@@ -20,11 +20,20 @@
     <% if !@items.any? || @items[0].score < 1 %>
         <div class="row padtop">
             <div id="results" class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                <h4 class="center">We found few or no close matches. If you don't see what you're looking for, try 
+                <h4 class="center">
                     <% if (@search.loc != Settings.all_locations_code && !@search.loc.blank?) || @search.fmt != "all" || @search.qtype != "keyword" || !@search.availability.blank? %>
-                        <a href="<%= main_search_path %>?utf8=✓&query=<%= @search.query %>&layout=<%= @search.layout %>&qtype=keyword&fmt=all&sort=relevancy&loc=<%= Settings.all_locations_code %>&in_progress=true">expanding your search</a>.
+                        We found few or no close matches. If you don't see what you're looking for, try
+                        <a href="<%= main_search_path %>?utf8=✓&query=<%= @search.query %>&layout=<%= @search.layout %>&qtype=keyword&fmt=all&sort=relevancy&loc=<%= Settings.all_locations_code %>&in_progress=true">
+                         expanding your search
+                        </a>.
                     <% else %>
-                        <a href="http://elibrary.mel.org/search/a?searchtype=X&searcharg=<%= @search.query %>&SORT=D">MeLCat</a> or <a onclick="show_suggest_an_item()" class="clicky">suggest an item</a>.
+                        We found few or no close matches. If you don't see what you're looking for,
+                        <% if Settings.is_opac !=  true %>
+                            try
+                            <a href="http://elibrary.mel.org/search/a?searchtype=X&searcharg=<%= @search.query %>&SORT=D">MeLCat</a> 
+                            or
+                        <% end %> 
+                        <a onclick="show_suggest_an_item()" class="clicky">suggest an item</a>.
                     <% end %>
                 </h4>
             </div>    
