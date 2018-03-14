@@ -1,4 +1,5 @@
 is_opac: true
+screen_saver_milliseconds: 15000
 screen_saver:
   - url: 'https://www.tadl.org/wp-content/uploads/2018/02/opac_3.jpg'
   - url: 'https://www.tadl.org/wp-content/uploads/2018/02/opac_2.jpg'

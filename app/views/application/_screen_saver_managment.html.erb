@@ -11,7 +11,7 @@
 			setInterval(function() {
     			$("#screen_saver").css("background-image", 'url('+ images[image_index] +')')       
     			image_index = (image_index + 1) % image_count;
-			}, 5000);
+			}, <%= Settings.screen_saver_milliseconds %>);
 			$("#screen_saver").css("display", "block")
 		}
 		show_screen_saver()
