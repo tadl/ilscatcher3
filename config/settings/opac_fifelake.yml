@@ -1,0 +1,56 @@
+is_opac: true
+screen_saver:
+  - url: 'https://www.tadl.org/wp-content/uploads/2018/02/opac_3.jpg'
+  - url: 'https://www.tadl.org/wp-content/uploads/2018/02/opac_2.jpg'
+location_name: 'Fife Lake Public Library | Traverse Area District Library'
+format_options:  [['All Formats', 'fmt' ,'all'], ['Books', 'fmt' ,'a'],['Movies / TV', 'fmt' ,'g'],['Music', 'fmt' ,'j']]
+format_label: 'Format'
+stylesheet: 'flpl.css'
+search_text: 'Search'
+search_menu: 'Search'
+default_loc: '27'
+slider_frequency: 10
+lists:
+  - name: 'flpl_books_list'
+    fancy_name: 'Books'
+    search_params: {'loc' : '27',
+                    'qtype' : 'shelf',
+                    'shelving_location' : ['510'],
+                    'canned' : 'true',
+                    'availability' : 'on',
+                    'sort' : 'pubdateDESC'}
+    searches:
+      - name: "Books"
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=27&shelving_location[]=510&search_title=Books'
+      - name: "Audiobooks"
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=27&shelving_location[]=518&search_title=Audiobooks'
+      - name: "Large Print"
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=27&shelving_location[]=534&search_title=Large Print'
+  - name: 'flpl_youth_list'
+    fancy_name: "Children's Books"
+    search_params: {'loc' : '27',
+                    'qtype' : 'shelf',
+                    'shelving_location' : ['805','527','529'],
+                    'canned' : 'true',
+                    'availability' : 'on',
+                    'sort' : 'pubdateDESC'}
+    searches:
+      - name: "Juvenile"
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=27&shelving_location[]=527&search_title=Juvenile'
+      - name: "J Series"
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=27&shelving_location[]=805&search_title=J Series'
+      - name: "J Easy"
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=27&shelving_location[]=529&search_title=J Easy'
+  - name: 'flpl_dvd_list'
+    fancy_name: 'Video'
+    search_params: {'loc' : '27',
+                    'qtype' : 'shelf',
+                    'shelving_location' : ['682','521'],
+                    'canned' : 'true',
+                    'availability' : 'on',
+                    'sort' : 'pubdateDESC'}
+    searches:
+      - name: "All Video"
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=27&shelving_location[]=682&shelving_location[]=521&search_title=All Video'
+      - name: "Browsing Hot DVDs"
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=27&shelving_location[]=682&search_title=Browsing Hot DVDs'

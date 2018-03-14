@@ -1,0 +1,49 @@
+is_opac: true
+screen_saver:
+  - url: 'https://www.tadl.org/wp-content/uploads/2018/02/opac_3.jpg'
+  - url: 'https://www.tadl.org/wp-content/uploads/2018/02/opac_2.jpg'
+location_name: 'Interlochen Public Library | Traverse Area District Library'
+format_options:  [['All Formats', 'fmt' ,'all'], ['Books', 'fmt' ,'a'],['Movies / TV', 'fmt' ,'g'],['Music', 'fmt' ,'j']]
+format_label: 'Format'
+stylesheet: 'ipl.css'
+logo: 'ipl-tree-logo.jpg'
+error_image: 'ipl-tree-logo.jpg'
+search_text: 'Search'
+search_menu: 'Search'
+default_loc: '24'
+opac_toggle: [{'name': 'Main', 'url': 'https://interlochen-catalog.apps.tadl.org/main/index'},{'name': 'Youth', 'url': 'https://interlochen-youth-catalog.apps.tadl.org/main/index'}]
+opac_toggle_default: 'Main'
+slider_frequency: 10
+lists:
+  - name: 'ipl_books_list'
+    fancy_name: 'Books'
+    search_params: {'loc' : '24',
+                    'qtype' : 'shelf',
+                    'shelving_location' : ['510','975','976','614','615','612','616','613','537'],
+                    'canned' : 'true',
+                    'availability' : 'on',
+                    'sort' : 'pubdateDESC'}
+    searches:
+      - name: "Adult"
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=24&shelving_location[]=510&search_title=Adult'
+      - name: "Audiobooks"
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=24&shelving_location[]=518&search_title=Audiobooks'
+      - name: "MP3 CD Audiobooks"
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=24&shelving_location[]=680&search_title=MP3 CD Audiobooks'
+      - name: "Large Print"
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=24&shelving_location[]=534&search_title=Large Print'
+      - name: "Mass-Market Paperbacks"
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=24&shelving_location[]=537&search_title=Mass-Market Paperbacks'
+  - name: 'ipl_video_list'
+    fancy_name: 'Movies'
+    search_params: {'loc' : '24',
+                    'qtype' : 'shelf',
+                    'shelving_location' : ['521'],
+                    'canned' : 'true',
+                    'availability' : 'on',
+                    'sort' : 'pubdateDESC'}
+    searches:
+      - name: "Movies"
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=24&shelving_location[]=521&search_title=Movies'
+      - name: "Television Series and Box Sets"
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=24&shelving_location[]=779&search_title=Television Series and Box Sets'
