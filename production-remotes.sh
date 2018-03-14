@@ -4,6 +4,10 @@
 # the dokku server. It is recommend to remove all remotes other than
 # origin before running this script.
 
+for x in $(git remote | grep -v origin); do
+    git remote remove ${x}
+done
+
 git remote add eastbay dokku@apps.tadl.org:eastbay-catalog
 git remote add fifelake dokku@apps.tadl.org:fifelake-catalog
 git remote add ica dokku@apps.tadl.org:ica
