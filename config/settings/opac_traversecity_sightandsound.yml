@@ -1,3 +1,4 @@
+elastic_evergreen_url: 'https://tadl.elastic.tadl.org/main/index.json?query='
 is_opac: true
 screen_saver_milliseconds: 15000
 screen_saver:
