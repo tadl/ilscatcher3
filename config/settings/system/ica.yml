@@ -1,6 +1,6 @@
 machine_readable: 'icamr.tadl.net'
 public_catalog: 'https://myaccount.ica.tadl.net'
-elastic_evergreen_url: 'https://elastic-evergreen-ica.apps.tadl.org/main/index.json?query='
+elastic_evergreen_url: 'https://ica.elastic.tadl.org/main/index.json?query='
 elastic_locations: [['ICA-ACADEMIC', '102'],['ICA-MUSIC', '103']]
 logo: 'ica-logo.jpg'
 error_image: '1x1.png'

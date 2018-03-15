@@ -1,7 +1,7 @@
 machine_readable: 'mr-v2.catalog.tadl.org'
 public_catalog: 'https://catalog.tadl.org'
 location_name: 'Traverse Area District Library'
-elastic_evergreen_url: 'https://elastic-evergreen-tadl.apps.tadl.org/main/index.json?query='
+elastic_evergreen_url: 'https://tadl.elastic.tadl.org/main/index.json?query='
 logo: 'logo-clock-only.png'
 error_image: 'logo-clock-only.png'
 pickup_locations: [['Woodmere', '23'],['Interlochen', '24'],['Kingsley', '25'],['Peninsula', '26'],['Fife Lake', '27'],['East Bay', '28']]
