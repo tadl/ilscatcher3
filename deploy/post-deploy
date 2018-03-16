@@ -1,4 +1,0 @@
-#!/bin/bash
-
-rake generate_sliders
-
