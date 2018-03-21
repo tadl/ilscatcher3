@@ -1120,8 +1120,14 @@ function show_facet(id, facet_type){
 }
 
 function report_summer_reading(){
-    var session = Cookies.get('login');
-    $.redirect("https://www.tadl.org/summer-redirect/summer-redirect.cgi", {m: 'jwt', ses: session });
+    var token = Cookies.get('login');
+    var request = 'http://cal.lib.tadl.org:3000/patron_show_participants?token=' + token
+    $.fancybox.open({
+        href: request,
+        type: 'iframe',
+        width: '95%',
+        maxWidth: 1300,
+    });
 }
 
 function show_qr(url){
