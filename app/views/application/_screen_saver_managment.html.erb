@@ -5,13 +5,13 @@
 	<script>
 		function show_screen_saver() {
 			var images = [<% Settings.screen_saver.each do |s| %>'<%= s['url'] %>',<% end %>];
-			var image_count = images.length;
+            var last_image = images.length - 1;
 			var image_index = 0;
 			$("#screen_saver").css("background-image", 'url('+ images[1] +')');
 			setInterval(function() {
     			$("#screen_saver").css("background-image", 'url('+ images[image_index] +')')       
                 image_index++;
-                if (image_index > image_count) {
+                if (image_index > last_image) {
                     image_index = 0;
                 }
 			}, <%= Settings.screen_saver_milliseconds %>);
