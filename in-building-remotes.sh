@@ -8,8 +8,9 @@ for x in $(git remote | grep -v origin); do
     git remote remove ${x}
 done
 
-git remote add traversecity-sightandsound dokku@opac.tadl.org:traversecity-sightandsound
 git remote add traversecity dokku@opac.tadl.org:traversecity
+git remote add traversecity-sightandsound dokku@opac.tadl.org:traversecity-sightandsound
+git remote add traversecity-teen dokku@opac.tadl.org:traversecity-teen
 git remote add traversecity-youth dokku@opac.tadl.org:traversecity-youth
 git remote add eastbay dokku@opac.tadl.org:eastbay
 git remote add fifelake dokku@opac.tadl.org:fifelake
