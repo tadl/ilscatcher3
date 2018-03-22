@@ -1150,6 +1150,7 @@ function end_session(){
                 window.location = '/main/index?screen_saver_on=true'
             }else{
                 $.post('/main/logout.js')
+                return
             }
         }
     }
