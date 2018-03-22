@@ -3,17 +3,21 @@
 </div>
 <% if @screen_saver_on == 'true' %>
 	<script>
-		function show_screen_saver(){
-			var images = [<% Settings.screen_saver.each do |s| %>'<%= s['url'] %>',<% end %>]
-			var image_count = images.length
-			var image_index = 2
-			$("#screen_saver").css("background-image", 'url('+ images[1] +')')    
+		function show_screen_saver() {
+			var images = [<% Settings.screen_saver.each do |s| %>'<%= s['url'] %>',<% end %>];
+			var image_count = images.length;
+			var image_index = 0;
+			$("#screen_saver").css("background-image", 'url('+ images[1] +')');
 			setInterval(function() {
     			$("#screen_saver").css("background-image", 'url('+ images[image_index] +')')       
-    			image_index = (image_index + 1) % image_count;
+                if (image_index > image_count) {
+                    image_index = 0;
+                } else {
+                    image_index++;
+                }
 			}, <%= Settings.screen_saver_milliseconds %>);
-			$("#screen_saver").css("display", "block")
+			$("#screen_saver").css("display", "block");
 		}
-		show_screen_saver()
+		show_screen_saver();
 	</script>
 <% end %>
