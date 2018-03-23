@@ -1,5 +1,5 @@
 <div id="screen_saver">
-	<div>Press any key or move mouse to use OPAC</div>
+	<div><%= Settings.opac_wake_message || 'Press any key or move mouse to use the catalog' %></div>
 </div>
 <% if @screen_saver_on == 'true' %>
 	<script>
