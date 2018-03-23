@@ -1130,6 +1130,17 @@ function report_summer_reading(){
     });
 }
 
+function register_summer_reading(){
+    var user_info = Cookies.get('user');
+    var request = 'http://cal.lib.tadl.org:3000/patron_register_participant?user_info=' + user_info
+    $.fancybox.open({
+        href: request,
+        type: 'iframe',
+        width: '95%',
+        maxWidth: 1300,
+    });
+}
+
 function show_qr(url){
     var target_url = encodeURIComponent(url)
     $.post('/main/show_qr?url=' + target_url)
