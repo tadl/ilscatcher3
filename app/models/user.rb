@@ -2,7 +2,7 @@ class User
 	include ActiveModel::Model
 	require 'open-uri'
   require 'digest/md5'
-	attr_accessor :full_name, :checkouts, :holds, :holds_ready, :fine, :token, :card, :error, :default_search, :pickup_library, :username, :temp_password, :temp_code, :lists, :overdue, :cards
+	attr_accessor :full_name, :checkouts, :holds, :holds_ready, :fine, :token, :card, :error, :default_search, :pickup_library, :username, :temp_password, :temp_code, :lists, :overdue, :cards, :email
 
 	def initialize args
     if args['full_name']
@@ -66,6 +66,7 @@ class User
         basic_info['pickup_library'] = p.css('select[@name="opac.default_pickup_location"] option[@selected="selected"]').attr('value').text rescue nil
         basic_info['username'] = p.at('td:contains("Username")').next.next.text rescue nil
         basic_info['overdue'] = p.at('#dash_overdue').try(:text).strip rescue nil
+        basic_info["email"] = p.at('td:contains("Email Address")').next.next.text rescue nil
         basic_info['cards'] = Array.new
         p.css('#card_list').css('.card').each do |c|
           basic_info['cards'].push(c.try(:text).strip)
