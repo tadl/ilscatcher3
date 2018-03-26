@@ -865,5 +865,12 @@ class MainController < ApplicationController
     end
   end
 
+  def melcat_frame
+    @search = Search.new params
+    respond_to do |format|
+      format.html
+    end
+  end
+
 
 end
