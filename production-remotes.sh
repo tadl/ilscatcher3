@@ -19,10 +19,12 @@ git remote add woodmere dokku@apps.tadl.org:woodmere-catalog
 git remote add woodmere-youth dokku@apps.tadl.org:youth-catalog
 
 # contract libraries
-git remote add kalkaska dokku@apps.tadl.org:kalkaska-catalog
-git remote add kalkaska-teen dokku@apps.tadl.org:kalkaska-teen-catalog
-git remote add kalkaska-youth dokku@apps.tadl.org:kalkaska-youth-catalog
+git remote add kalkaska-teen dokku@apps.tadl.org:kalkaska-teen-catalog #legacy
+git remote add kalkaska-youth dokku@apps.tadl.org:kalkaska-youth-catalog #legacy
+
 git remote add kcl dokku@appstwo.tadl.org:kalkaska-catalog
+git remote add kcl-youth dokku@appstwo.tadl.org:kalkaska-youth
+git remote add kcl-teen dokku@appstwo.tadl.org:kalkaska-teen
 git remote add sbbdl dokku@appstwo.tadl.org:sbbdl
 git remote add ica dokku@appstwo.tadl.org:ica
 
