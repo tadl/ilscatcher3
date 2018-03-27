@@ -1165,5 +1165,13 @@ function end_session(){
             }
         }
     }
+}
 
+function show_computer_reservation(url){
+    $.fancybox.open({
+        href: url,
+        type: 'iframe',
+        width: '95%',
+        maxWidth: 1300,
+    });
 }
