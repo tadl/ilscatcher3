@@ -13,11 +13,18 @@
 	    window.onkeypress = resetTimer;  //catches keyboard actions
 
 	    function logout() {
+	    	<% if Settings.registration_only %>
+	    		var reload_path = '/main/register?screen_saver_on=true'
+	    	<% else %>
+	    		var reload_path = '/main/index?screen_saver_on=true'
+	    	<% end %>
+	    	var loggout_path = '/main/logout.js?screen_saver_on=true'
 	    	var logged_in = Cookies.get('login');
 	    	if (logged_in != null) {
-	        	$.get( "/main/logout.js?screen_saver_on=true", function() {})
+	        	$.get( loggout_path, function() {})
 			}else{
-				 window.location.href = '/main/index?screen_saver_on=true'
+				 
+				 window.location.href = reload_path
 			}
 	    }
 
@@ -46,6 +53,31 @@
 	    }
 	}
 	idleTimer()
+	function end_session(){
+		<% if Settings.registration_only %>
+	    	var reload_path = '/main/register?screen_saver_on=true'
+	    <% else %>
+	    	var reload_path = '/main/index?screen_saver_on=true'
+	    <% end %>
+    	var logged_in = Cookies.get('login');
+    	var timeleft = 2
+    	$.fancybox.close()
+    	$("#end_session_warning").show()
+    	timer = setInterval(countdown, 1000);
+    	function countdown() {
+    	    if (timeleft >= 0) {
+    	        $("#end_countdown").text(timeleft)
+    	        timeleft--;
+    	    }else{
+    	        if(logged_in == null){
+    	            window.location = reload_path
+    	        }else{
+    	            $.post('/main/logout.js')
+    	            return
+    	        }
+    	    }
+    	}
+	}
 </script>
 <div id="inactivity_warning" class="opac_warning">
 	<h3>Inactivity warning: Your session will expire in <span id="countdown">30</span> seconds. Move your mouse or press any key to continue.</h3>

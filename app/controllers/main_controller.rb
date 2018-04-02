@@ -24,6 +24,7 @@ class MainController < ApplicationController
   end
 
   def register
+    @screen_saver_on = params[:screen_saver_on]
     respond_to do |format|
       format.html
     end

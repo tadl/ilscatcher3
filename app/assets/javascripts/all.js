@@ -1146,26 +1146,6 @@ function show_qr(url){
     $.post('/main/show_qr?url=' + target_url)
 }
 
-function end_session(){
-    var logged_in = Cookies.get('login');
-    var timeleft = 2
-    $.fancybox.close()
-    $("#end_session_warning").show()
-    timer = setInterval(countdown, 1000);
-    function countdown() {
-        if (timeleft >= 0) {
-            $("#end_countdown").text(timeleft)
-            timeleft--;
-        }else{
-            if(logged_in == null){
-                window.location = '/main/index?screen_saver_on=true'
-            }else{
-                $.post('/main/logout.js')
-                return
-            }
-        }
-    }
-}
 
 function show_computer_reservation(url){
     $.fancybox.open({
