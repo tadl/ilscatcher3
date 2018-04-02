@@ -19,4 +19,4 @@ git remote add sbbdl dokku@appstwo.tadl.org:sbbdl
 git remote add ica dokku@appstwo.tadl.org:ica
 
 # dev
-git remote add test dokku@apps.tadl.org:test-catalog
+git remote add test dokku@appstwo.tadl.org:test
