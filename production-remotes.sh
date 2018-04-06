@@ -1,4 +1,4 @@
-libraries#!/bin/bash
+#!/bin/bash
 
 # This script will add remotes for all currently provisioned apps on
 # the dokku server. It is recommend to remove all remotes other than
