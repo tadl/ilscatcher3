@@ -123,6 +123,6 @@
         $('.details_search_link').contents().unwrap();
     <% end %>
     <% if Settings.is_opac !=  true %>
-        load_added_content('<%= item.id %>','<%= item.isbn %>','<%= item.format_type %>')
+        load_added_content('<%= item.id %>','<%= escape_javascript(item.isbn) %>','<%= item.format_type %>')
     <% end %>
 </script>
