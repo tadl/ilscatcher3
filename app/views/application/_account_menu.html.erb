@@ -37,7 +37,7 @@
     </div>
 <% end %>
 <div class="clearfix padtop"></div>
-<% if (request.path == main_fines_path && @fines.count > 0 && Settings.has_payments == "true") %>
+<% if (request.path == main_fines_path &&  Settings.has_payments == "true"  && @fines.count > 0 && Settings.is_opac != true) %>
     <div class="btn-group">
         <form method="POST" action="<%= Settings.payment_link %>">
             <input type="hidden" name="ses" value="<%= @user.token %>">
