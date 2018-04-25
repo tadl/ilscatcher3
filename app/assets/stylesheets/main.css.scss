@@ -5,6 +5,7 @@
 html,
 body {
     min-height: 800px;
+    overflow-x: hidden;
 }
 body.list_holds,
 body.list_checkouts {
