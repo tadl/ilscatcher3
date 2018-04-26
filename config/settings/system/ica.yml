@@ -1,3 +1,4 @@
+system_name: 'ICA'
 machine_readable: 'icamr.tadl.net'
 public_catalog: 'https://myaccount.ica.tadl.net'
 elastic_evergreen_url: 'https://ica.elastic.tadl.org/main/index.json?query='
