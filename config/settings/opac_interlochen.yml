@@ -14,7 +14,7 @@ error_image: 'ipl-tree-logo.jpg'
 search_text: 'Search'
 search_menu: 'Search'
 default_loc: '24'
-opac_toggle: [{'name': 'Main', 'url': 'https://interlochen-catalog.apps.tadl.org/main/index'},{'name': 'Youth', 'url': 'https://interlochen-youth-catalog.apps.tadl.org/main/index'}]
+opac_toggle: [{'name': 'Main', 'url': 'https://interlochen.opac.tadl.org/main/index'},{'name': 'Youth', 'url': 'https://interlochen-youth.opac.tadl.org/main/index'}]
 opac_toggle_default: 'Main'
 slider_frequency: 10
 lists:
