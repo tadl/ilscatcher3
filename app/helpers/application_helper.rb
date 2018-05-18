@@ -93,4 +93,16 @@ module ApplicationHelper
         svg = qr.as_svg(offset: 0, color: '000', shape_rendering: 'crispEdges', module_size: 8)
         return svg
     end
+
+    def primary_card_helper(user)
+        if user.card && user.card.count("a-zA-Z") == 0
+            return user.card
+        else
+            if user.cards
+                only_library_cards = user.cards.select { |c| c.count("a-zA-Z") == 0}
+                only_library_cards.map {|c| c.to_i}
+                return only_library_cards.max
+            end
+        end
+    end
 end

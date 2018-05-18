@@ -35,6 +35,13 @@
             <%= @preferences['melcat_id'] %>
         </div>
     </div>
+    <div class="clearfix padtop"></div>
+    <div class="panel panel-primary">
+        <div class="panel-heading">Your Primary Library Card #</div>
+        <div class="panel-body">
+            <%= primary_card_helper(@user) %>
+        </div>
+    </div>
 <% end %>
 <div class="clearfix padtop"></div>
 <% if (request.path == main_fines_path &&  Settings.has_payments == "true"  && @fines.count > 0 && Settings.is_opac != true) %>
