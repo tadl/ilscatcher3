@@ -1137,6 +1137,8 @@ function register_summer_reading(){
         href: request,
         type: 'iframe',
         width: '95%',
+        height: '95%',
+        maxHeight: 700,
         maxWidth: 1300,
     });
 }
