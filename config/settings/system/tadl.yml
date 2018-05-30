@@ -21,7 +21,9 @@ register_listapi_url: 'https://www.tadl.org/listapi/tadl/'
 has_payments: 'true'
 payment_link: 'https://www.tadl.org/pay/pay.cgi'
 has_eresources: 'true'
-summer_reading: 'false'
 passreset_text: 'Forgot password?'
 # system_lock:
 #   card_prefix_prevent: '90247'
+summer_reading: 'true'
+summer_start_date: 4 June 2018
+summer_report_date: 18 June 2018

@@ -1,4 +1,5 @@
 is_opac: true
+summer_reading: 'false'
 opac_wake_message: 'Press any key or move mouse to search the catalog'
 screen_saver_milliseconds: 15000
 screen_saver:
