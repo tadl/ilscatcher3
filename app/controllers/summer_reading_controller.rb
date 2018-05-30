@@ -6,7 +6,7 @@ class SummerReadingController < ApplicationController
     def check_for_participant
     	user = generate_user()
     	if !user.error
-    		url = 'http://cal.lib.tadl.org:3000/patron_check_for_participants.json?secret=' + ENV['SUMMER_SECRET'] + '&cards=' + user.cards.to_s
+    		url = 'https://summer.tadl.org/patron_check_for_participants.json?secret=' + ENV['SUMMER_SECRET'] + '&cards=' + user.cards.to_s
     		response = JSON.parse(open(url).read)
     		message = response["message"]
     	else

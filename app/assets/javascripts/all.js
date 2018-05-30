@@ -1121,7 +1121,7 @@ function show_facet(id, facet_type){
 
 function report_summer_reading(){
     var token = Cookies.get('login');
-    var request = 'http://cal.lib.tadl.org:3000/patron_show_participants?token=' + token
+    var request = 'https://summer.tadl.org/patron_show_participants?token=' + token
     $.fancybox.open({
         href: request,
         type: 'iframe',
@@ -1132,7 +1132,7 @@ function report_summer_reading(){
 
 function register_summer_reading(){
     var user_info = Cookies.get('user');
-    var request = 'http://cal.lib.tadl.org:3000/patron_register_participant?user_info=' + user_info
+    var request = 'https://summer.tadl.org/patron_register_participant?user_info=' + user_info
     $.fancybox.open({
         href: request,
         type: 'iframe',

@@ -1,6 +1,6 @@
-<% if Settings.summer_reading == 'true' && (Date.parse(ENV["SUMMER_START_DATE"]) < Date.today)  %>
+<% if Settings.summer_reading == 'true' && (Date.parse(Settings.summer_start_date) <= Date.today)  %>
     <div id="summer_reading_wrapper">
-    <% if Settings.summer_reading == 'true' && cookies[:user] && (Date.parse(ENV["SUMMER_START_DATE"]) < Date.today) %>
+    <% if Settings.summer_reading == 'true' && cookies[:user] && (Date.parse(Settings.summer_report_date) <= Date.today) %>
         <%= render 'report_summer_reading' %>
     <% end %>
         <div class="summer_reading">
