@@ -7,5 +7,10 @@
     		<a class="btn btn-success btn-lg" onclick="register_summer_reading()">Register for Summer Reading Club</a>
 		</div>
 	</div>
+	<% if params[:promote] == 'src' %>
+    	<script>
+    		register_summer_reading()
+    	</script>
+	<% end %>
 <% end %>
 
