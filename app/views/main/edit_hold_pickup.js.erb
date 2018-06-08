@@ -81,8 +81,8 @@ function submit_pickup_change(new_pickup_loc){
         hideLoading();
         var show_target = '.hold-status-<%= escape_javascript(@record_id) %>'
         var messagesuccess = '<div class="alert alert-success" role="alert">';
-        var message = messagesuccess+'Hold placed successfully for pickup at '+ data.pickup_location
-        message += '<br><a onclick="change_hold_pickup('+ data.record_id +')">Change pick up location?</a></div></div>'
+        var message = messagesuccess+'Hold placed successfully for pickup at '+ data.message.pickup_location
+        message += '<br><a onclick="change_hold_pickup('+ data.message.record_id +')">Change pick up location?</a></div></div>'
         $(show_target).html(message)
         var hide_target = '.change_pickup_<%= escape_javascript(@record_id) %>' 
         $(hide_target).html()
