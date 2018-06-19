@@ -178,12 +178,24 @@
         return this;
     }
 
+    jQuery.fn.phoneify = function() {
+      $(this[0]).blur(function(event) {
+        var txt = $(this).val();
+        if (txt.length == 10) {
+          $(this).val(txt.replace(/^(\d{3})(\d{3})(\d{4})$/, '$1-$2-$3'));
+        } else if ((txt.length == 7) && (txt.substring(0, 3) != 231)) {
+          $(this).val(txt.replace(/^(\d{3})(\d{4})$/, '231-$1-$2'));
+        }
+      });
+    }
+
     $('#id_first_given_name').capitalize();
     $('#id_second_given_name').capitalize();
     $('#id_family_name').capitalize();
     $('#id_addr_street').capitalize();
     $('#id_addr_city').capitalize();
 
+    $('#id_phone').phoneify();
 
 </script>
 
