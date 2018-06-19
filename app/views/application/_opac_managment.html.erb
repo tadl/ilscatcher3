@@ -29,6 +29,7 @@
 	    }
 
 	   function resetTimer() {
+	   		// console.log('timer reset')
 	        clearTimeout(warning);
 	        clearTimeout(timer);
 	        $("#countdown").text(30)
@@ -51,6 +52,11 @@
 	    	  }
 	    	}
 	    }
+	    window.addEventListener('message', got_message)
+		function got_message(event){
+			// console.log('iframe activity detected')
+			resetTimer()
+		}
 	}
 	idleTimer()
 	function end_session(){
@@ -78,6 +84,7 @@
     	    }
     	}
 	}
+
 </script>
 <div id="inactivity_warning" class="opac_warning">
 	<h3>Inactivity warning: Your session will expire in <span id="countdown">30</span> seconds. Move your mouse or press any key to continue.</h3>
