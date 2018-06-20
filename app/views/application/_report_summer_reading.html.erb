@@ -1,11 +1,3 @@
 <div class="summer_reading">
-    <a class="btn btn-default btn-lg" id="report_summer_reading" href="#" onclick="report_summer_reading()">Report Summer Reading Experience</a>
+    <a class="btn btn-warning btn-lg" id="report_summer_reading" href="#" onclick="report_summer_reading()">Report Summer Reading Experience</a>
 </div>
-
-<script>
-		$.post("/check_for_participant.json").done(function(data){
-			if(data.message == 'true'){
-				$("#report_summer_reading").show()
-			}
-		})
-</script>

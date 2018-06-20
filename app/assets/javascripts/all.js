@@ -1120,14 +1120,18 @@ function show_facet(id, facet_type){
 }
 
 function report_summer_reading(){
-    var token = Cookies.get('login');
-    var request = 'https://summer.tadl.org/patron_show_participants?token=' + token
-    $.fancybox.open({
-        href: request,
-        type: 'iframe',
-        width: '95%',
-        maxWidth: 1300,
-    });
+    if(Cookies.get('login')){
+        var token = Cookies.get('login');
+        var request = 'https://summer.tadl.org/patron_show_participants?token=' + token
+        $.fancybox.open({
+            href: request,
+            type: 'iframe',
+            width: '95%',
+            maxWidth: 1300,
+        });
+    }else{
+        alert_message("info","Please sign in to your account to report summer reading experience")
+    }
 }
 
 function register_summer_reading(){

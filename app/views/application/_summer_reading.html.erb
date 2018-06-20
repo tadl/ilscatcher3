@@ -1,16 +1,24 @@
 <% if Settings.summer_reading == 'true' && (Date.parse(Settings.summer_start_date) <= Date.today)  %>
     <div id="summer_reading_wrapper">
-    <% if Settings.summer_reading == 'true' && (Date.parse(Settings.summer_report_date) <= Date.today) %>
-        <%= render 'report_summer_reading' %>
-    <% end %>
         <div class="summer_reading">
     		<a class="btn btn-success btn-lg" onclick="register_summer_reading()">Register for Summer Reading Club</a>
 		</div>
+        <% if Settings.summer_reading == 'true' && (Date.parse(Settings.summer_report_date) <= Date.today) %>
+            <%= render 'report_summer_reading' %>
+        <% end %>
 	</div>
 	<% if params[:promote] == 'src' %>
     	<script>
     		register_summer_reading()
     	</script>
 	<% end %>
+        <script>
+            window.addEventListener('message', show_register)
+            function show_register(e){
+                if(e.data == 'show register'){
+                    register_summer_reading()
+                }
+            }
+        </script>
 <% end %>
 
