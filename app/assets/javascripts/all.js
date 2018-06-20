@@ -1130,7 +1130,7 @@ function report_summer_reading(){
             maxWidth: 1300,
         });
     }else{
-        alert_message("info","Please sign in to your account to report summer reading experience")
+        alert_message("info","You must first sign into your account to report Summer Reading Club experience")
     }
 }
 
