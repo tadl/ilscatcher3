@@ -18,7 +18,7 @@ gem 'bootstrap-sass', '~> 3.3.5'
 gem 'dish', require: 'dish/ext'
 gem 'mechanize'
 gem 'bootstrap_form'
-gem 'owlcarousel-rails'
+gem 'owlcarousel-rails', '~> 1.1.3.3'
 gem 'fancybox2-rails', '~> 0.2.8'
 gem 'jquery-turbolinks'
 gem 'rails_12factor', group: :production
