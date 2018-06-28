@@ -972,7 +972,7 @@ function load_added_content(record_id, isbn) {
 
 function fetch_good_reads(isbn) {
     var clean_isbn = isbn.replace(/\D/g,'')
-    var url = 'https://reviewcatcher.herokuapp.com/?isbn=' + clean_isbn
+    var url = 'https://tadl-toolbox.appstwo.tadl.org/goodreads?isbn=' + clean_isbn
     $.get(url)
     .done(function(data) {
         if (data.gr_id) {
