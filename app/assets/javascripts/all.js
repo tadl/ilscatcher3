@@ -1127,9 +1127,7 @@ function report_summer_reading(){
             href: request,
             type: 'iframe',
             width: '95%',
-            height: '95%',
             maxWidth: 1300,
-            maxHeight: 700,
         });
     }else{
         alert_message("info","You must first sign into your account to report Summer Reading Club experience")
@@ -1156,8 +1154,6 @@ function register_summer_reading(){
         height: '95%',
         maxHeight: 700,
         maxWidth: 1300,
-        autoResize: true,
-        autoCenter: true,
     });
 }
 
