@@ -1,3 +1,13 @@
 <div class="summer_reading">
     <a class="btn btn-warning btn-lg" id="report_summer_reading" style="margin-top: 5px;" href="#" onclick="report_summer_reading()">Report Summer Reading Experience</a>
 </div>
+<div class="summer_reading">
+    <a class="btn btn-warning btn-lg" id="report_ios" style="margin-top: 5px; display: none;" href="#" onclick="report_summer_reading_ios()">Report Summer Reading Experience</a>
+</div>
+<script>
+	var iOS = !!navigator.platform && /iPad|iPhone|iPod/.test(navigator.platform);
+    if(iOS == true){
+        $('#report_ios').show()
+        $('#report_summer_reading').hide()
+    }
+</script>

@@ -1127,8 +1127,20 @@ function report_summer_reading(){
             href: request,
             type: 'iframe',
             width: '95%',
+            height: '95%',
             maxWidth: 1300,
+            maxHeight: 700,
         });
+    }else{
+        alert_message("info","You must first sign into your account to report Summer Reading Club experience")
+    }
+}
+
+function report_summer_reading_ios(){
+    if(Cookies.get('login')){
+        var token = Cookies.get('login');
+        var request = 'https://summer.tadl.org/patron_show_participants?token=' + token
+        window.location.href = request
     }else{
         alert_message("info","You must first sign into your account to report Summer Reading Club experience")
     }
@@ -1144,6 +1156,8 @@ function register_summer_reading(){
         height: '95%',
         maxHeight: 700,
         maxWidth: 1300,
+        autoResize: true,
+        autoCenter: true,
     });
 }
 
