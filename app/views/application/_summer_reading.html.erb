@@ -1,7 +1,6 @@
 <% if Settings.summer_reading == 'true' && (Date.parse(Settings.summer_start_date) <= Date.today)  %>
     <div id="summer_reading_wrapper">
         <div class="summer_reading">
-    		<a class="btn btn-success btn-lg" style="margin-top: 5px;" onclick="register_summer_reading()">Register for Summer Reading Club</a>
             <% if Settings.summer_reading == 'true' && (Date.parse(Settings.summer_report_date) <= Date.today) %>
                 <%= render 'report_summer_reading' %>
             <% end %>
