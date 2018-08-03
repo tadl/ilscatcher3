@@ -5,7 +5,7 @@ screen_saver:
   - url: 'https://www.tadl.org/wp-content/uploads/2018/02/opac_3.jpg'
   - url: 'https://www.tadl.org/wp-content/uploads/2018/02/opac_2.jpg'
   - url: 'https://www.tadl.org/wp-content/uploads/2018/03/TADL_OPAC_Yep_2018.jpg'
-location_name: 'Sight & Sound | Woodmere (Main) Branch | Traverse Area District Library'
+location_name: 'Sight & Sound | Traverse City Library | Traverse Area District Library'
 shelf_lock:
   shelves: [982,983,682,684,808,517,583,985,521,586,800,987,801,772,989,774,991,588,580,773,821,686,687,781,997,993,671,674,994,556,557,788,617,778,779,995,814,777,996]
   location: '23'
