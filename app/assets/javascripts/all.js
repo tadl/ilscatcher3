@@ -1102,7 +1102,7 @@ function submit_password_reset(type_of_reset){
             var temp_password = $("#temp_password").val()
             $.post("/main/update_user_info.json", {password: temp_password, new_password: password_1}).done(function(data) {
                 if(data.message == 'success'){
-                    $("#password_reset").html("<h3 style='color: green;'>Your password has been sucessfully reset!</h3>")
+                    $("#password_reset").html("<h3 style='color: green;'>Your password has been successfully reset!</h3>")
                 }else{
                     $('#password_reset').html("<h3 style='color: red;'>Sorry. Something went wrong.</h3><p>Please try again later or contact your local library.</p>")
                 }
