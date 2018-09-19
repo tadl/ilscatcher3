@@ -13,10 +13,14 @@
             <tbody>
                 <tr><td>Phone</td><td id="day_phone-value"><%= @preferences['day_phone'] %></td></tr>
                 <tr><td>Phone Notify Number</td><td id="phone_notify_number-value"><%= @preferences['phone_notify_number'] || @preferences['day_phone'] %></td></tr>
-                <tr><td>Text Notify Number</td><td id="text_notify_number-value"><%= @preferences['text_notify_number'] || @preferences['day_phone'] %></td></tr>
+                <% if Settings.sms_notify == true %>
+                    <tr><td>Text Notify Number</td><td id="text_notify_number-value"><%= @preferences['text_notify_number'] || @preferences['day_phone'] %></td></tr>
+                <% end %>
                 <tr><td>Email Notify</td><td><span class="<%= location_map(@preferences['email_notify'], @truefalseicons) %>"></span><span class="sr-only" id="email_notify-value"><%= @preferences['email_notify'] %></span></td></tr>
                 <tr><td>Phone Notify</td><td><span class="<%= location_map(@preferences['phone_notify'], @truefalseicons) %>"></span><span class="sr-only" id="phone_notify-value"><%= @preferences['phone_notify'] %></span></td></tr>
-                <tr><td>Text Notify</td><td><span class="<%= location_map(@preferences['text_notify'], @truefalseicons) %>"></span><span class="sr-only" id="text_notify-value"><%= @preferences['text_notify'] %></span></td></tr>
+                <% if Settings.sms_notify == true %>
+                    <tr><td>Text Notify</td><td><span class="<%= location_map(@preferences['text_notify'], @truefalseicons) %>"></span><span class="sr-only" id="text_notify-value"><%= @preferences['text_notify'] %></span></td></tr>
+                <% end %>
             </tbody>
         </table>
     </div>

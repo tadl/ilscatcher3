@@ -331,8 +331,25 @@ class User
   end
 
   def update_notify_preferences(args)
-    #make sure all the required params are passed or evergreen will process the missing as null
-    if args['email_notify'] && args['phone_notify'] && args['text_notify'] && args['phone_notify_number'] && args['text_notify_number']
+    if Settings.sms_notify == true
+      #make sure all the required params are passed or evergreen will process the missing as null
+      if args['email_notify'] && args['phone_notify'] && args['text_notify'] && args['phone_notify_number'] && args['text_notify_number']
+        agent = create_agent_token(self.token)
+        url = 'https://' + Settings.machine_readable + '/eg/opac/myopac/prefs_notify'
+        post_params = [
+                        ["opac.hold_notify.email", args['email_notify']],
+                        ["opac.hold_notify.phone", args['phone_notify']],
+                        ["opac.hold_notify.sms", args['text_notify']],
+                        ["opac.default_phone", args['phone_notify_number']],
+                        ["opac.default_sms_notify", args['text_notify_number']]
+                      ]
+        agent.post(url , post_params)
+        prefs = self.preferences
+        self
+      else
+        prefs = 'missing required parameters'
+      end
+    else
       agent = create_agent_token(self.token)
       url = 'https://' + Settings.machine_readable + '/eg/opac/myopac/prefs_notify'
       post_params = [
@@ -345,10 +362,8 @@ class User
       agent.post(url , post_params)
       prefs = self.preferences
       self
-    else
-      prefs = 'missing required parameters'
     end
-      return prefs
+    return prefs
   end
 
   def update_search_history_preferences(args)
