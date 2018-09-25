@@ -915,7 +915,6 @@ function change_hold_pickup(record_id){
 }
 
 function edit_pickup_loc(hid,rid,state) {
-    event.preventDefault();
     $.post("/main/edit_hold_pickup.js",{'hold_id' : hid, 'hold_state' : state})
 }
 

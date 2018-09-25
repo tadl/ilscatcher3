@@ -25,8 +25,8 @@ $('.form-'+hid).change(function() {
     $(container).html(message);
     $.post('/main/update_hold_pickup.json', {hold_id: hid, new_pickup: newval, hold_state: holdstate})
     .done(function(data) {
-        var newhtml = '<span class="pickup-'+data.hold_id+'">'+data.pickup_location+'</span> ';
-            newhtml += '<button type="button" class="small text-subdued btn btn-xs btn-default change-pickup-'+data.hold_id+'" onclick="edit_pickup_loc('+data.hold_id+','+data.record_id+',\''+data.hold_status+'\')">change</button>';
+        var newhtml = '<span class="pickup-'+data.message.hold_id+'">'+data.message.pickup_location+'</span> ';
+            newhtml += '<button type="button" class="small text-subdued btn btn-xs btn-default change-pickup-'+data.message.hold_id+'" onclick="edit_pickup_loc('+data.message.hold_id+','+data.message.record_id+',\''+data.message.hold_status+'\')">change</button>';
         $(container).html(newhtml);
     });
 });
