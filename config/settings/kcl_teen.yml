@@ -24,8 +24,8 @@ lists:
     search_params: {'loc' : '44',
                     'qtype' : 'call_number',
                     'query' : 'J GRAPHIC',
-                    'fmt' : '970',
                     'canned' : 'true',
                     'availability' : 'on',
+                    'sort' : 'pubdateDESC',
                     'min_score' : '1'
                    }
