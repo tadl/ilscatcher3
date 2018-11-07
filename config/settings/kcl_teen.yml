@@ -8,7 +8,7 @@ default_loc: '44'
 opac_toggle_default: 'Teen'
 lists:
   - name: 'kcl_teen_books_list'
-    fancy_name: 'Featured Books'
+    fancy_name: 'New Books'
     search_params: {'loc' : '44',
                     'qtype' : 'shelf',
                     'shelving_location' : ['970'],
