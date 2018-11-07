@@ -19,11 +19,11 @@ lists:
     searches:
       - name: "Young Adult Books"
         url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=44&shelving_location[]=970&search_title=Young Adult Books'
-  - name: 'kcl_teen_star_wars'
-    fancy_name: 'Featured Display: Star Wars'
+  - name: 'kcl_teen_graphic_novels'
+    fancy_name: 'New Graphic Novels'
     search_params: {'loc' : '44',
-                    'qtype' : 'keyword',
-                    'query' : 'star wars',
+                    'qtype' : 'call_number',
+                    'query' : 'J GRAPHIC',
                     'shelving_location' : ['970'],
                     'canned' : 'true',
                     'availability' : 'on',
