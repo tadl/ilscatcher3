@@ -67,6 +67,7 @@ class User
         basic_info['username'] = p.at('td:contains("Username")').next.next.text rescue nil
         basic_info['overdue'] = p.at('#dash_overdue').try(:text).strip rescue nil
         basic_info["email"] = p.at('td:contains("Email Address")').next.next.text rescue nil
+        basic_info ["melcat_id"] = p.at('td:contains("MeLCat ID")').next.next.text rescue nil
         basic_info['cards'] = Array.new
         p.css('#card_list').css('.card').each do |c|
           basic_info['cards'].push(c.try(:text).strip)
