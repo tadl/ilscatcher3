@@ -48,10 +48,10 @@
                         <% elsif !item.contents.blank? %>
                             <p><b>Contents:</b> <%= truncate(item.contents, length: 400, separator: ' ') %></p>
                         <% end %>
+                        <p><b>Format:</b> <%= format_name(item.format_type, @format_icons) %></p>
                         <% if !item.publisher.blank? || !item.record_year.blank? %>
                         <p><b>Publisher / Publication Date:</b> <%= item.publisher %> <%= item.record_year %></p>
                         <% end %>
-                        <p><b>Format:</b> <%= format_name(item, @format_icons) %></p>
                         <% if ((item.eresource.to_s.include? 'https://goo.gl/') && item.loc_copies_available >= 1) || item.loc_copies_available >= 1 %>
                             <p>
                                 <%= render 'list_holdings', holdings: item.availability, location: @search.loc %>
