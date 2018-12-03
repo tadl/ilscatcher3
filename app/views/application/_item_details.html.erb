@@ -87,7 +87,11 @@
         </div>
         <div class="row">
             <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
-                <% if !item.physical_description.nil? %>
+                <dl>
+                    <dt>Format</dt>
+                    <dd><%= item.format_type %></dd>
+                </dl>
+                <% if !item.physical_description.blank? %>
                     <dl>
                         <dt>Description</dt>
                         <dd><%= item.physical_description %></dd>
@@ -95,10 +99,6 @@
                 <% end %>
             </div>
             <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
-                <dl>
-                    <dt>Format</dt>
-                    <dd><%= item.format_type %></dd>
-                </dl>
                 <% if !item.publisher.nil? %>
                     <dl>
                         <dt>Publisher</dt>
