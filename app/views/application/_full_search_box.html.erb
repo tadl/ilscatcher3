@@ -125,10 +125,6 @@
                             <a class="btn btn-default" role="button" href="http://elibrary.mel.org/search/a?searchtype=X&searcharg=<%= search.query %>&SORT=D">
                                 <img style="height: 18px;margin:0;padding:0;" src="/assets/button-melcat-m.png" /> Search MeLCat
                             </a>
-                        <% else %>
-                            <a class="btn btn-default" role="button" href="/melcat_frame<%= @search.search_path_with_facets %>">
-                                <img style="height: 18px;margin:0;padding:0;" src="/assets/button-melcat-m.png" /> Search MeLCat
-                            </a>
                         <% end %>
                         <%if @search.layout == 'list' %>
                             <a class="btn btn-default hidden-lg" role="button" data-toggle="collapse" href="#facets" aria-expanded="false" aria-controls="facets">Filters <span class="caret"></span></a>
