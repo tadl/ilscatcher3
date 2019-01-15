@@ -37,7 +37,7 @@
                     <% if !hold.author.nil? %><h4><%= hold.author %></h4><% end %>
                     <dl class="dl-horizontal">
                     <dt>Queue Position</dt>
-                    <dd><%= hold.queue_state[0] %> out of <%= hold.queue_state[1] %></dd>
+                    <dd><%= hold.queue_state[0] %> with <%= hold.queue_state[1] %> eligible copies</dd>
                     <% if Settings.one_location != 'true' %>
                         <% if Settings.pickup_locations.length > 1 %>
                             <dt>Pickup Location</dt>
