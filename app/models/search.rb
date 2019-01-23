@@ -332,7 +332,7 @@ class Search
         holdings = process_holdings(sorted_holdings, location)
         availability_details = process_availability(sorted_holdings, location)
         item_raw = {
-          :title => r["title"],
+          :title => r["title_display"],
           :author => r["author"],
           :author_other => r["author_other"],
           :holdings => sorted_holdings,
