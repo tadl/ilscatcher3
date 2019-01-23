@@ -331,8 +331,8 @@ class Search
         location = self.loc rescue ''
         holdings = process_holdings(sorted_holdings, location)
         availability_details = process_availability(sorted_holdings, location)
-        item_raw ={
-          :title => r["title_display"],
+        item_raw = {
+          :title => r["title"],
           :author => r["author"],
           :author_other => r["author_other"],
           :holdings => sorted_holdings,
@@ -365,6 +365,9 @@ class Search
           :score => r["score"],
           :fiction => r["fiction"]
         }
+        if item_raw[:format_type] == 'sound recording-nonmusical'
+          item_raw[:title] = item_raw[:title].to_s + ' (AUDIOBOOK)' 
+        end
         item = Item.new item_raw
         results = results.push(item)
         r["genres"].each do |g|
