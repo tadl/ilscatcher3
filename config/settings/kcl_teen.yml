@@ -8,7 +8,7 @@ default_loc: '44'
 opac_toggle_default: 'Teen'
 lists:
   - name: 'kcl_teen_carousel_1'
-    fancy_name: 'Romance'
+    fancy_name: 'Valentines Day'
     search_params: {'loc' : '44',
                     'qtype' : 'keyword',
                     'query' : 'romance',

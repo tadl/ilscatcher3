@@ -8,7 +8,7 @@ default_loc: '44'
 opac_toggle_default: 'Youth'
 lists:
   - name: 'kcl_youth_slider_1'
-    fancy_name: 'Valentines Day Books'
+    fancy_name: 'Valentines Day'
     search_params: {'loc' : '44',
                     'qtype' : 'keyword',
                     'fmt' : '956,957,958',
@@ -24,7 +24,7 @@ lists:
       - name: "Easy Readers"
         url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=44&shelving_location[]=958&search_title=Easy Readers'
   - name: 'kcl_youth_slider_2'
-    fancy_name: 'Chinese'
+    fancy_name: 'Chinese New Year'
     search_params: {'loc' : '44',
                     'qtype' : 'keyword',
                     'query' : 'chinese',
