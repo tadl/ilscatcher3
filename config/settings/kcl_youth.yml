@@ -7,14 +7,14 @@ slider_frequency: 10
 default_loc: '44'
 opac_toggle_default: 'Youth'
 lists:
-  - name: 'kcl_youth_books_list'
-    fancy_name: 'New Books'
+  - name: 'kcl_youth_slider_1'
+    fancy_name: 'Valentines Day'
     search_params: {'loc' : '44',
-                    'qtype' : 'shelf',
-                    'shelving_location' : ['956','957','958'],
+                    'qtype' : 'keyword',
+                    'fmt' : '956,957,958',
+                    'query' : 'valentines day',
                     'canned' : 'true',
-                    'availability' : 'on',
-                    'sort' : 'pubdateDESC',
+                    'sort' : 'relevancy',
                   }
     searches:
       - name: "Juvenile"
@@ -23,14 +23,12 @@ lists:
         url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=44&shelving_location[]=957&search_title=Picture Books (JE)'
       - name: "Easy Readers"
         url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=44&shelving_location[]=958&search_title=Easy Readers'
-  - name: 'kcl_youth_christmas_fiction'
-    fancy_name: 'Christmas Books'
+  - name: 'kcl_youth_slider_2'
+    fancy_name: 'Chinese New Year'
     search_params: {'loc' : '44',
-                    'qtype' : 'subject',
-                    'query' : 'Christmas Fiction',
-                    'shelving_location' : ['956','957','958'],
+                    'qtype' : 'keyword',
+                    'query' : 'chinese',
+                    'fmt' : '956,957,958',
                     'canned' : 'true',
-                    'availability' : 'on',
-                    'sort' : 'pubdateDESC',
-                    'min_score' : '1'
+                    'sort' : 'relevancy',
                    }

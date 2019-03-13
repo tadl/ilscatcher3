@@ -7,26 +7,22 @@ slider_frequency: 10
 default_loc: '44'
 opac_toggle_default: 'Teen'
 lists:
-  - name: 'kcl_teen_books_list'
-    fancy_name: 'New Books'
+  - name: 'kcl_teen_carousel_1'
+    fancy_name: 'Valentines Day'
     search_params: {'loc' : '44',
-                    'qtype' : 'shelf',
-                    'shelving_location' : ['970'],
-                    'canned' : 'true',
-                    'availability' : 'on',
+                    'qtype' : 'keyword',
+                    'query' : 'romance',
+                    'fmt' : '970',
                     'sort' : 'pubdateDESC',
                   }
     searches:
       - name: "Young Adult Books"
         url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=44&shelving_location[]=970&search_title=Young Adult Books'
-  - name: 'kcl_teen_graphic_novels'
-    fancy_name: 'New Graphic Novels'
+  - name: 'kcl_teen_carouseel_2'
+    fancy_name: 'Graphic Novels'
     search_params: {'loc' : '44',
-                    'qtype' : 'call_number',
-                    'query' : 'Y GRAPHIC',
-                    'shelving_location' : ['970'],
-                    'canned' : 'true',
-                    'availability' : 'on',
+                    'qtype' : 'keyword',
+                    'query' : 'graphic novels',
+                    'fmt' : '970',
                     'sort' : 'pubdateDESC',
-                    'min_score' : '1'
                    }
