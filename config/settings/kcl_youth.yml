@@ -20,7 +20,7 @@ lists:
     fancy_name: 'Who was...?'
     search_params: {'loc' : '44',
                     'qtype' : 'keyword',
-                    'query' : 'who was',
+                    'query' : '"who was"',
                     'fmt' : '956,957,958',
                     'canned' : 'true',
                     'sort' : 'pubdateDESC',
