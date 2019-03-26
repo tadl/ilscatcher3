@@ -8,21 +8,22 @@ default_loc: '44'
 opac_toggle_default: 'Teen'
 lists:
   - name: 'kcl_teen_carousel_1'
-    fancy_name: 'Valentines Day'
+    fancy_name: 'Queens and Kingdoms'
     search_params: {'loc' : '44',
                     'qtype' : 'keyword',
-                    'query' : 'romance',
+                    'query' : '',
+                    'fiction' : 'true',
                     'fmt' : '970',
+                    'subjects' : ['Kings, queens, rulers, etc Fiction'],
                     'sort' : 'pubdateDESC',
                   }
-    searches:
-      - name: "Young Adult Books"
-        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=44&shelving_location[]=970&search_title=Young Adult Books'
-  - name: 'kcl_teen_carouseel_2'
-    fancy_name: 'Graphic Novels'
+  - name: 'kcl_teen_carousel_2'
+    fancy_name: 'Hot Topics'
     search_params: {'loc' : '44',
                     'qtype' : 'keyword',
-                    'query' : 'graphic novels',
+                    'query' : '',
                     'fmt' : '970',
+                    'min_score' : '1',
+                    'fiction' : 'false',
                     'sort' : 'pubdateDESC',
                    }

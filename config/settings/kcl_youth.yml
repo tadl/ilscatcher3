@@ -8,27 +8,38 @@ default_loc: '44'
 opac_toggle_default: 'Youth'
 lists:
   - name: 'kcl_youth_slider_1'
-    fancy_name: 'Valentines Day'
+    fancy_name: 'Magic Tree House'
     search_params: {'loc' : '44',
                     'qtype' : 'keyword',
+                    'query' : 'magic tree house',
                     'fmt' : '956,957,958',
-                    'query' : 'valentines day',
                     'canned' : 'true',
-                    'sort' : 'relevancy',
+                    'sort' : 'pubdateDESC',
                   }
-    searches:
-      - name: "Juvenile"
-        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=44&shelving_location[]=956&search_title=Juvenile'
-      - name: "Picture Books (JE)"
-        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=44&shelving_location[]=957&search_title=Picture Books (JE)'
-      - name: "Easy Readers"
-        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=44&shelving_location[]=958&search_title=Easy Readers'
   - name: 'kcl_youth_slider_2'
-    fancy_name: 'Chinese New Year'
+    fancy_name: 'Who was...?'
     search_params: {'loc' : '44',
                     'qtype' : 'keyword',
-                    'query' : 'chinese',
+                    'query' : '"who was"',
                     'fmt' : '956,957,958',
                     'canned' : 'true',
-                    'sort' : 'relevancy',
+                    'sort' : 'pubdateDESC',
+                   }
+  - name: 'kcl_youth_slider_3'
+    fancy_name: 'Spotlight on: David Henkes'
+    search_params: {'loc' : '44',
+                    'qtype' : 'keyword',
+                    'query' : 'henkes',
+                    'fmt' : '956,957,958',
+                    'canned' : 'true',
+                    'sort' : 'pubdateDESC',
+                   }
+  - name: 'kcl_youth_slider_4'
+    fancy_name: 'Celebrate Easter'
+    search_params: {'loc' : '44',
+                    'qtype' : 'keyword',
+                    'query' : 'easter',
+                    'fmt' : '956,957,958',
+                    'canned' : 'true',
+                    'sort' : 'pubdateDESC',
                    }
