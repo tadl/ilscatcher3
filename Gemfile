@@ -1,8 +1,8 @@
 source 'https://rubygems.org'
-ruby "2.2.9"
+ruby "2.4.3"
 
 #defaults
-gem 'rails', '4.2.7'
+gem 'rails', '4.2.11.1'
 gem 'sqlite3', group: :development
 gem 'sass-rails', '>= 3.2'
 gem 'uglifier', '>= 1.3.0'
@@ -14,7 +14,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'spring', group: :development
 
 #added
-gem 'bootstrap-sass', '~> 3.3.5'
+gem "bootstrap-sass", ">= 3.4.1"
 gem 'dish', require: 'dish/ext'
 gem 'mechanize'
 gem 'bootstrap_form'
@@ -33,3 +33,5 @@ gem 'config'
 gem 'responders', '~> 2.0'
 gem 'rqrcode'
 gem 'american_date'
+gem "loofah", ">= 2.2.3"
+gem "nokogiri", ">= 1.8.5"
