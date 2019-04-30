@@ -1,0 +1,28 @@
+format_options:  [['All Formats', 'fmt' ,'all'], ['Books', 'fmt' ,'a'],['Movies / TV', 'fmt' ,'g']]
+format_label: 'Format'
+stylesheet: 'kcl.css'
+search_text: 'Search'
+search_menu: 'Search'
+slider_frequency: 10
+default_loc: '44'
+opac_toggle_default: 'Main'
+lists:
+  - name: 'kcl_list_1'
+    fancy_name: 'New Amish Fiction'
+    search_params: {'loc' : '44',
+                    'qtype' : 'subject',
+                    'subject' : ['Amish Fiction'],
+                    'canned' : 'true',
+                    'query' : 'amish',
+                    'sort' : 'pubdateDESC',
+                  }
+  - name: 'kcl_list_2'
+    fancy_name: 'Our Lakes and Waters'
+    search_params: {'loc' : '44',
+                    'qtype' : 'subject',
+                    'query' : 'ecology',
+                    'canned' : 'true',
+                    'sort' : 'pubdateDESC',
+                  }
+is_opac: true
+is_opac_light: true
