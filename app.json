@@ -6,10 +6,10 @@
         "plugins": [
             {
                 "name": "redis",
-                "commands": ["redis:create redis-$APP", "redis:link redis-$APP $APP"]
+                "commands": ["redis:create redis_$APP", "redis:link redis_$APP $APP"]
             }, {
                 "name": "memcached",
-                "commands": ["memcached:create memcached-$APP", "memcached:link memcached-$APP $APP"]
+                "commands": ["memcached:create memcached_$APP", "memcached:link memcached_$APP $APP"]
             }
         ]
     },
