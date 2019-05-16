@@ -6,6 +6,7 @@ search_menu: 'Search'
 slider_frequency: 10
 default_loc: '44'
 opac_toggle_default: 'Teen'
+default_search_display: 'list'
 lists:
   - name: 'kcl_teen_carousel_1'
     fancy_name: 'Queens and Kingdoms'

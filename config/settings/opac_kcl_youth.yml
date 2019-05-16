@@ -6,6 +6,7 @@ search_menu: 'Search'
 slider_frequency: 10
 default_loc: '44'
 opac_toggle_default: 'Youth'
+default_search_display: 'list'
 lists:
   - name: 'kcl_youth_slider_1'
     fancy_name: 'Magic Tree House'
