@@ -26,3 +26,4 @@ lists:
                   }
 is_opac: true
 is_opac_light: true
+opac_toggle: [{'name': 'Main', 'url': 'https://kclopac.app.tadl.org/main/index'},{'name': 'Youth', 'url': 'https://kclyouthopac.app.tadl.org/main/index'},{'name': 'Teen', 'url': 'https://kclteenopac.app.tadl.org/main/index'}]

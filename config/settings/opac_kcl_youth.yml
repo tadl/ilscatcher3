@@ -1,0 +1,48 @@
+format_options:  [["All Kids' Materials", "shelving_location", "956,957,958"]]
+format_label: 'Format'
+stylesheet: 'kcl_youth.css'
+search_text: 'Search'
+search_menu: 'Search'
+slider_frequency: 10
+default_loc: '44'
+opac_toggle_default: 'Youth'
+lists:
+  - name: 'kcl_youth_slider_1'
+    fancy_name: 'Magic Tree House'
+    search_params: {'loc' : '44',
+                    'qtype' : 'keyword',
+                    'query' : 'magic tree house',
+                    'fmt' : '956,957,958',
+                    'canned' : 'true',
+                    'sort' : 'pubdateDESC',
+                  }
+  - name: 'kcl_youth_slider_2'
+    fancy_name: 'Who was...?'
+    search_params: {'loc' : '44',
+                    'qtype' : 'keyword',
+                    'query' : '"who was"',
+                    'fmt' : '956,957,958',
+                    'canned' : 'true',
+                    'sort' : 'pubdateDESC',
+                   }
+  - name: 'kcl_youth_slider_3'
+    fancy_name: 'Spotlight on: David Henkes'
+    search_params: {'loc' : '44',
+                    'qtype' : 'keyword',
+                    'query' : 'henkes',
+                    'fmt' : '956,957,958',
+                    'canned' : 'true',
+                    'sort' : 'pubdateDESC',
+                   }
+  - name: 'kcl_youth_slider_4'
+    fancy_name: 'Celebrate Easter'
+    search_params: {'loc' : '44',
+                    'qtype' : 'keyword',
+                    'query' : 'easter',
+                    'fmt' : '956,957,958',
+                    'canned' : 'true',
+                    'sort' : 'pubdateDESC',
+                   }
+is_opac: true
+is_opac_light: true
+opac_toggle: [{'name': 'Main', 'url': 'https://kclopac.app.tadl.org/main/index'},{'name': 'Youth', 'url': 'https://kclyouthopac.app.tadl.org/main/index'},{'name': 'Teen', 'url': 'https://kclteenopac.app.tadl.org/main/index'}]
