@@ -83,7 +83,7 @@
         <i class="glyphicon glyphicon-menu-up" title="back to top"></i>
     </a>
     <%= render partial: "google_analytics_pageview" %>
-  <% if Settings.is_opac ==  true && Settings.is_opac !=  true  %>
+  <% if Settings.is_opac ==  true && Settings.is_opac_light !=  true  %>
     <%= render partial: "opac_managment" %>
   <% end %>
 </body>

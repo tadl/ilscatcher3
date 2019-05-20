@@ -368,6 +368,10 @@ class Search
         if item_raw[:format_type] == 'sound recording-nonmusical'
           item_raw[:title] = item_raw[:title].to_s + ' (AUDIOBOOK)' 
         end
+        i = 0
+        if item_raw[:format_type] == 'sound recording-musical' && item_raw[:holdings][0] && item_raw[:holdings][0]['location_id'] == 533
+          item_raw[:title] = item_raw[:title].to_s + ' (VINYL)'
+        end 
         item = Item.new item_raw
         results = results.push(item)
         r["genres"].each do |g|
