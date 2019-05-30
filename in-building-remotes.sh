@@ -19,4 +19,7 @@ git remote add interlochen dokku@opac.tadl.org:interlochen
 git remote add interlochen-youth dokku@opac.tadl.org:interlochen-youth
 git remote add kingsley dokku@opac.tadl.org:kingsley
 git remote add peninsula dokku@opac.tadl.org:peninsula
+git remote add kclopac dokku@app.tadl.org:kclopac
+git remote add kclteenopac dokku@app.tadl.org:kclteenopac
+git remote add kclyouthopac dokku@app.tadl.org:kclyouthopac
 git remote add test dokku@opac.tadl.org:test
