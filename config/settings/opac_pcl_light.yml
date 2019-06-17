@@ -1,0 +1,58 @@
+is_opac: true
+is_opac_light: true
+summer_reading: 'false'
+opac_wake_message: 'Press any key or move mouse to search the catalog'
+screen_saver_milliseconds: 15000
+screen_saver:
+  - url: 'https://www.tadl.org/wp-content/uploads/2018/02/opac_3.jpg'
+  - url: 'https://www.tadl.org/wp-content/uploads/2018/02/opac_2.jpg'
+  - url: 'https://www.tadl.org/wp-content/uploads/2018/03/TADL_OPAC_Yep_2018.jpg'
+location_name: 'Peninsula Community Library'
+register_location_name: 'Peninsula Community Library'
+format_options:  [['All Formats', 'fmt' ,'all'], ['Books', 'fmt' ,'a'],['Movies / TV', 'fmt' ,'g'],['Music', 'fmt' ,'j']]
+format_label: 'Format'
+stylesheet: 'pcl.css'
+logo: 'pcl-notext.jpg'
+error_image: 'pcl-notext.jpg'
+search_text: 'Search'
+search_menu: 'Search'
+default_loc: '26'
+slider_frequency: 10
+lists:
+  - name: 'pcl_adult_list'
+    fancy_name: 'Adults'
+    search_params: {'loc' : '26',
+                    'qtype' : 'shelf',
+                    'shelving_location' : ['510','1'],
+                    'canned' : 'true',
+                    'availability' : 'on',
+                    'sort' : 'pubdateDESC'}
+    searches:
+  - name: 'pcl_juvenile_list'
+    fancy_name: 'Children'
+    search_params: {'loc' : '26',
+                    'qtype' : 'shelf',
+                    'shelving_location' : ['527','529'],
+                    'canned' : 'true',
+                    'availability' : 'on',
+                    'sort' : 'pubdateDESC'}
+    searches:
+  - name: 'pcl_dvd_list'
+    fancy_name: 'Movies'
+    search_params: {'loc' : '26',
+                    'qtype' : 'shelf',
+                    'shelving_location' : ['521','779','682'],
+                    'canned' : 'true',
+                    'availability' : 'on',
+                    'sort' : 'pubdateDESC'}
+    searches:
+  - name: 'pcl_custom_list'
+    fancy_name: 'Star Wars'
+    search_params: {'loc' : '26',
+                    'qtype' : 'keyword',
+                    'canned' : 'true',
+                    'query' : 'star wars',
+                    'availability' : 'on',
+                    'sort' : 'pubdateDESC',
+                    'min_score' : '1' }
+    searches:

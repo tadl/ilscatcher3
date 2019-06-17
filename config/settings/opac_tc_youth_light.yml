@@ -1,0 +1,90 @@
+is_opac: true
+is_opac_light: true
+opac_wake_message: 'Press any key or move mouse to search the catalog'
+screen_saver_milliseconds: 15000
+screen_saver:
+  - url: 'https://www.tadl.org/wp-content/uploads/2018/02/opac_3.jpg'
+  - url: 'https://www.tadl.org/wp-content/uploads/2018/02/opac_2.jpg'
+  - url: 'https://www.tadl.org/wp-content/uploads/2018/03/TADL_OPAC_Yep_2018.jpg'
+location_name: 'Youth Services | Traverse City Library | Traverse Area District Library'
+shelf_lock:
+  shelves: [571,810,529,528,791,813,795,794,793,819,809,817,818,516,593,771,589,542,770,792,549,527,815,530,531,532,977,978,979,980,981,1001]
+  location: '23'
+  default_activated: true
+  text: 'Limit to Youth at Woodmere'
+format_options: [['Juvenile', 'shelving_location', '516,527,528,529,530,531,532,542,549,571,589,593,770,771,791,792,793,794,795,809,810,813,815,817,818,819,977,978,979,980,981'],['Fiction', 'shelving_location', '528,529,791,793,794,795,810,813,819,977,978,979,980,981'],['Nonfiction', 'shelving_location', '792,1001'],['Audiobooks', 'shelving_location', '571'],['Foreign Language', 'shelving_location', '809'],['Graphic Novels', 'shelving_location', '817'],['Holidays', 'shelving_location', '818'],['Movies and Videos', 'shelving_location', '516,593,771'],['Music', 'shelving_location', '770'],['Multimedia Kits', 'shelving_location', '542,589'],['Puppets', 'shelving_location', '549']]
+format_options_unlocked: [['All Formats', 'fmt' ,'all'], ['Books', 'fmt' ,'a'],['Movies / TV', 'fmt' ,'g'],['Music', 'fmt' ,'j']]
+format_label: 'Material Type'
+format_label_unlocked: 'Format'
+stylesheet: 'youth.css'
+search_text: 'Search Youth Materials'
+search_text_unlocked: 'Search'
+search_menu: 'Advanced Search'
+default_loc: '23'
+slider_frequency: 10
+lists:
+  - name: 'wood_youth_fiction_list'
+    fancy_name: 'Fiction'
+    search_params: {'loc' : '23',
+                    'qtype' : 'shelf',
+                    'shelving_location' : ['810','529','528','791','813','795','794','793','819'],
+                    'canned' : 'true',
+                    'availability' : 'on',
+                    'sort' : 'pubdateDESC'}
+    searches:
+      - name: "Concept Crates"
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=810&search_title=Concept Crates'
+      - name: "Picture Books"
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=529&search_title=Picture Books'
+      - name: "Favorite Characters"
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=819&search_title=Favorite Characters'
+      - name: "JBR Pre-Reader (Orange)"
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=977&search_title=JBR Pre-Reader (Orange)'
+      - name: "JBR New Reader (Green)"
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=978&search_title=JBR New Reader (Green)'
+      - name: "JBR Rising Reader (Purple)"
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=979&search_title=JBR Rising Reader (Purple)'
+      - name: "JBR Transitional Reader (Blue)"
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=980&search_title=JBR Transitional Reader (Blue)'
+      - name: "JBR Independent Reader (Red)"
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=981&search_title=JBR Independent Reader (Red)'
+      - name: "Chapter Books"
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=791&search_title=Chapter Books'
+      - name: "Chapter Book Series"
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=813&search_title=Chapter Book Series'
+      - name: "Graphic Novels"
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=817&search_title=Graphic Novels'
+  - name: 'wood_youth_nonfiction_list'
+    fancy_name: 'Nonfiction'
+    search_params: {'loc' : '23',
+                    'qtype' : 'shelf',
+                    'shelving_location' : ['792','1001'],
+                    'canned' : 'true',
+                    'availability' : 'on',
+                    'sort' : 'pubdateDESC'}
+    searches:
+      - name: "Nonfiction"
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=792&search_title=Nonfiction'
+      - name: "Magazines"
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=530&search_title=Magazines'
+      - name: "Parent-Teacher Collection"
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=1001&search_title=Parent-Teacher Collection'
+  - name: 'wood_youth_av_list'
+    fancy_name: 'Audio/Visual'
+    search_params: {'loc' : '23',
+                    'qtype' : 'shelf',
+                    'shelving_location' : ['771','770'],
+                    'canned' : 'true',
+                    'availability' : 'on',
+                    'sort' : 'pubdateDESC'}
+    searches:
+      - name: "Movies & Videos"
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=771&search_title=Movies and Videos'
+      - name: "Music CDs"
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=770&search_title=Music CDs'
+      - name: "Audio Books"
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=571&search_title=Audio Books'
+      - name: "MultiMedia Kits"
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=542&shelving_location[]=589&search_title=MultiMedia Kits'
+      - name: "Puppets"
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=549&search_title=Puppets'

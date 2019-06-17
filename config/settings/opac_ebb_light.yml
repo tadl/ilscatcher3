@@ -1,0 +1,61 @@
+is_opac: true
+is_opac_light: true
+opac_wake_message: 'Press any key or move mouse to search the catalog'
+screen_saver_milliseconds: 15000
+screen_saver:
+  - url: 'https://www.tadl.org/wp-content/uploads/2018/02/opac_3.jpg'
+  - url: 'https://www.tadl.org/wp-content/uploads/2018/02/opac_2.jpg'
+  - url: 'https://www.tadl.org/wp-content/uploads/2018/03/TADL_OPAC_Yep_2018.jpg'
+location_name: 'East Bay Branch | Traverse Area District Library'
+register_location_name: 'East Bay Branch Library'
+format_options:  [['All Formats', 'fmt' ,'all'], ['Books', 'fmt' ,'a'],['Large Print', 'fmt', 'large_print'],['Audiobooks','shelving_location','515,518,546,571,572,582,584,590,597,680'],['Movies / TV', 'fmt' ,'g'],['Music', 'fmt' ,'j']]
+format_label: 'Format'
+stylesheet: 'ebb.css'
+search_text: 'Search'
+search_menu: 'Search'
+default_loc: '28'
+slider_frequency: 10
+lists:
+  - name: 'ebb_youth_ya_list'
+    fancy_name: 'Youth & Young Adult'
+    search_params: {'loc' : '28',
+                    'qtype' : 'shelf',
+                    'shelving_location' : ['563','527'],
+                    'canned' : 'true',
+                    'availability' : 'on',
+                    'sort' : 'pubdateDESC'}
+    searches:
+      - name: "Juvenile Collection"
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=28&shelving_location[]=527&search_title=Juvenile Collection'
+      - name: "Juvenile Easy"
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=28&shelving_location[]=529&search_title=Juvenile Easy'
+      - name: "Young Adult Collection"
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=28&shelving_location[]=563&search_title=Young Adult Collection'
+  - name: 'ebb_books_list'
+    fancy_name: 'Books'
+    search_params: {'loc' : '28',
+                    'qtype' : 'shelf',
+                    'shelving_location' : ['510'],
+                    'canned' : 'true',
+                    'availability' : 'on',
+                    'sort' : 'pubdateDESC'}
+    searches:
+      - name: "Adult"
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=28&shelving_location[]=510&search_title=Adult'
+      - name: "Audiobooks"
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=28&shelving_location[]=518&shelving_location[]=584&search_title=Audiobooks'
+      - name: "HOT Titles"
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=28&shelving_location[]=569&shelving_location[]=683&search_title=HOT Titles'
+      - name: "Oversize"
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=28&shelving_location[]=544&search_title=Oversize'
+  - name: 'ebb_dvd_list'
+    fancy_name: 'Video'
+    search_params: {'loc' : '28',
+                    'qtype' : 'shelf',
+                    'shelving_location' : ['586','521'],
+                    'canned' : 'true',
+                    'availability' : 'on',
+                    'sort' : 'pubdateDESC'}
+    searches:
+      - name: "All Videos"
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=28&shelving_location[]=586&shelving_location[]=521&search_title=All Videos'

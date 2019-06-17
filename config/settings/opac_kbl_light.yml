@@ -1,0 +1,71 @@
+is_opac: true
+is_opac_light: true
+opac_wake_message: 'Press any key or move mouse to search the catalog'
+screen_saver_milliseconds: 15000
+screen_saver:
+  - url: 'https://www.tadl.org/wp-content/uploads/2018/02/opac_3.jpg'
+  - url: 'https://www.tadl.org/wp-content/uploads/2018/02/opac_2.jpg'
+  - url: 'https://www.tadl.org/wp-content/uploads/2018/03/TADL_OPAC_Yep_2018.jpg'
+location_name: 'Kingsley Branch | Traverse Area District Library'
+register_location_name: 'Kingsley Branch Library'
+format_options:  [['All Formats', 'fmt' ,'all'], ['Books', 'fmt' ,'a'],['Audiobooks','shelving_location','680,518,584,515,571,572'],['Movies / TV', 'fmt' ,'g'],['Music', 'fmt' ,'j'],['Adults','shelving_location','510,689,690,518,548,534,975,976,525,535,538,619,544'],['Youth','shelving_location','981,978,977,979,980,516,699,527,571,770,771,529,791,813,817,530,792'],['Teens','shelving_location','572,563,564,565']]
+format_label: 'Format'
+stylesheet: 'kbl.css'
+search_text: 'Search'
+search_menu: 'Search'
+default_loc: '25'
+slider_frequency: 10
+lists:
+  - name: 'kbl_adult_list'
+    fancy_name: 'Adults'
+    search_params: {'loc' : '25',
+                    'qtype' : 'shelf',
+                    'shelving_location' : ['510','975','976','689','690'],
+                    'canned' : 'true',
+                    'availability' : 'on',
+                    'sort' : 'pubdateDESC'}
+    searches:
+      - name: "New Fiction"
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=25&shelving_location[]=689&search_title=New Fiction'
+      - name: "New Non-fiction"
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=25&shelving_location[]=690&search_title=New Non-fiction'
+      - name: "Audiobooks"
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=25&shelving_location[]=518&shelving_location[]=584&search_title=Audiobooks'
+      - name: "Large Print"
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=25&shelving_location[]=534&search_title=Large Print'
+  - name: 'kbl_youth_ya_books_list'
+    fancy_name: 'Youth & Teens'
+    search_params: {'loc' : '25',
+                    'qtype' : 'shelf',
+                    'shelving_location' : ['527','529','791','792','563'],
+                    'canned' : 'true',
+                    'availability' : 'on',
+                    'sort' : 'pubdateDESC'}
+    searches:
+      - name: "Juvenile"
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=25&shelving_location[]=527&search_title=Juvenile'
+      - name: "Juvenile Easy"
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=25&shelving_location[]=529&search_title=Juvenile Easy'
+      - name: "Juvenile Fiction"
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=25&shelving_location[]=791&search_title=Juvenile Fiction'
+      - name: "Juvenile Non-fiction"
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=25&shelving_location[]=792&search_title=Juvenile Non-fiction'
+      - name: "Young Adult"
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=25&shelving_location[]=563&search_title=Young Adult'
+  - name: 'kbl_audiovisual_list'
+    fancy_name: 'Audio & Video'
+    search_params: {'loc' : '25',
+                    'qtype' : 'shelf',
+                    'shelving_location' : ['517','583','521','586'],
+                    'canned' : 'true',
+                    'availability' : 'on',
+                    'sort' : 'pubdateDESC'}
+    searches:
+      - name: "Browsing Hot DVDs"
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=25&shelving_location[]=521&shelving_location[]=586&search_title=Browsing Hot DVDs'
+      - name: "All DVDs"
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=25&shelving_location[]=521&shelving_location[]=586&search_title=DVDs'
+      - name: "Children's Videos"
+        url: "/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=25&shelving_location[]=516&search_title=Children's Videos"
+      - name: "Music CDs"
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=25&shelving_location[]=517&shelving_location[]=583&search_title=Music CDs'
