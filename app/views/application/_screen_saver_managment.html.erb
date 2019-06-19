@@ -23,3 +23,16 @@
 <% if Settings.is_opac ==  true && Settings.is_opac_light !=  true %>    
   <iframe src="https://elibrary.mel.org/logout?" style="display:none" sandbox="allow-forms allow-scripts"></iframe>
 <% end %>
+
+<% if Settings.is_opac_light ==  true %>   
+  <script>
+    window.onmousemove = kill_screen_saver;
+    window.onmousedown = kill_screen_saver; 
+    window.onclick = kill_screen_saver; 
+    window.onscroll = kill_screen_saver;  
+    window.onkeypress = kill_screen_saver;
+    function kill_screen_saver(){
+      $("#screen_saver").css("display", "none")
+    }
+  </script>
+<% end %>
