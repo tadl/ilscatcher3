@@ -16,6 +16,6 @@
     	<%= render 'featured_lists', list: Rails.cache.read(l['name']).shuffle, name: l['name'] %>
     <% end %>
 </div>
-<% if Settings.is_opac ==  true && Settings.is_opac_light !=  true %>    
+<% if Settings.is_opac ==  true %>    
     <%= render partial: "screen_saver_managment" %>
 <% end %>
