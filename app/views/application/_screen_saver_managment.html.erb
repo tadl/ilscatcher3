@@ -7,28 +7,28 @@
 			var images = [<% Settings.screen_saver.each do |s| %>'<%= s['url'] %>',<% end %>];
       var last_image = images.length - 1;
 			var image_index = 0;
-			$("#screen_saver").css("background-image", 'url('+ images[1] +')');
+			$("#screen_saver").css("background-image", 'url('+ images[image_index] +')');
 			setInterval(function() {
-    			$("#screen_saver").css("background-image", 'url('+ images[image_index] +')')       
-                image_index++;
-                if (image_index > last_image) {
-                    image_index = 0;
-                }
+          image_index++;
+          if (image_index > last_image) {
+            image_index = 0;
+          }
+    			$("#screen_saver").css("background-image", 'url('+ images[image_index] +')');
 			}, <%= Settings.screen_saver_milliseconds %>);
 			$("#screen_saver").css("display", "block");
 		}
 	</script>
 <% end %>
-<% if Settings.is_opac ==  true && Settings.is_opac_light !=  true %>    
+<% if Settings.is_opac ==  true && Settings.is_opac_light !=  true %>
   <iframe src="https://elibrary.mel.org/logout?" style="display:none" sandbox="allow-forms allow-scripts"></iframe>
 <% end %>
 
-<% if Settings.is_opac_light ==  true %>   
+<% if Settings.is_opac_light ==  true %>
   <script>
     window.onmousemove = reset_timeout;
-    window.onmousedown = reset_timeout; 
+    window.onmousedown = reset_timeout;
     window.onclick = reset_timeout;
-    window.onscroll = reset_timeout; 
+    window.onscroll = reset_timeout;
     window.onkeypress = reset_timeout;
 
     function reset_timeout(){
@@ -41,7 +41,7 @@
       $("#screen_saver").css("display", "block");
     }
 
-    reset_timeout()
-    show_screen_saver() 
+    reset_timeout();
+    show_screen_saver();
   </script>
 <% end %>
