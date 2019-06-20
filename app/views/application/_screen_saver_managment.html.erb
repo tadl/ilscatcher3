@@ -5,7 +5,7 @@
 	<script>
 		function show_screen_saver() {
 			var images = [<% Settings.screen_saver.each do |s| %>'<%= s['url'] %>',<% end %>];
-            var last_image = images.length - 1;
+      var last_image = images.length - 1;
 			var image_index = 0;
 			$("#screen_saver").css("background-image", 'url('+ images[1] +')');
 			setInterval(function() {
@@ -17,7 +17,6 @@
 			}, <%= Settings.screen_saver_milliseconds %>);
 			$("#screen_saver").css("display", "block");
 		}
-		show_screen_saver();
 	</script>
 <% end %>
 <% if Settings.is_opac ==  true && Settings.is_opac_light !=  true %>    
@@ -26,13 +25,19 @@
 
 <% if Settings.is_opac_light ==  true %>   
   <script>
-    window.onmousemove = kill_screen_saver;
-    window.onmousedown = kill_screen_saver; 
-    window.onclick = kill_screen_saver; 
-    window.onscroll = kill_screen_saver;  
-    window.onkeypress = kill_screen_saver;
-    function kill_screen_saver(){
+    window.onmousemove = reset_timeout;
+    window.onmousedown = reset_timeout; 
+    window.onclick = reset_timeout;
+    window.onscroll = reset_timeout; 
+    window.onkeypress = reset_timeout;
+
+    function reset_timeout(){
+      clearTimeout(timer);
       $("#screen_saver").css("display", "none")
+      var timer = setTimeout(show_screen_saver, 120000)
     }
+
+    reset_timeout()
+    show_screen_saver() 
   </script>
 <% end %>
