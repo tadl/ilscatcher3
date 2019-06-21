@@ -3,12 +3,13 @@
 </div>
 <% if @screen_saver_on == 'true' %>
 	<script>
+    var active_screen_saver;
 		function show_screen_saver() {
 			var images = [<% Settings.screen_saver.each do |s| %>'<%= s['url'] %>',<% end %>];
       var last_image = images.length - 1;
 			var image_index = 0;
 			$("#screen_saver").css("background-image", 'url('+ images[image_index] +')');
-			var active_screen_saver = setInterval(function() {
+			active_screen_saver = setInterval(function() {
           image_index++;
           if (image_index > last_image) {
             image_index = 0;
