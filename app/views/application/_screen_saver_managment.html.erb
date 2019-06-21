@@ -8,7 +8,7 @@
       var last_image = images.length - 1;
 			var image_index = 0;
 			$("#screen_saver").css("background-image", 'url('+ images[image_index] +')');
-			setInterval(function() {
+			var active_screen_saver = setInterval(function() {
           image_index++;
           if (image_index > last_image) {
             image_index = 0;
@@ -17,6 +17,7 @@
 			}, <%= Settings.screen_saver_milliseconds %>);
 			$("#screen_saver").css("display", "block");
 		}
+
 	</script>
 <% end %>
 <% if Settings.is_opac ==  true && Settings.is_opac_light !=  true %>
@@ -31,13 +32,14 @@
     window.onscroll = reset_timeout;
     window.onkeypress = reset_timeout;
 
-    function reset_timeout(){
+    function reset_timeout() {
       clearTimeout(timer);
-      $("#screen_saver").css("display", "none")
-      var timer = setTimeout(re_show_screen_saver, 120000)
+      clearInterval(active_screen_saver);
+      $("#screen_saver").css("display", "none");
+      var timer = setTimeout(re_show_screen_saver, 120000);
     }
 
-    function re_show_screen_saver(){
+    function re_show_screen_saver() {
       $("#screen_saver").css("display", "block");
     }
 
