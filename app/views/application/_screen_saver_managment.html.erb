@@ -47,6 +47,9 @@
       window.location.href = "http://127.0.0.1/reset.php";
     }
 
-    reset_timeout();
+    if ($('#screen_saver').is(":hidden")) {
+      reset_timeout();
+    }
+
   </script>
 <% end %>
