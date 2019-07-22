@@ -1,0 +1,21 @@
+{
+    "name": "ilscatcher3",
+    "description": "Traverse Area District Library Online Public Access Catalog System",
+    "website": "https://www.tadl.org/",
+    "require": {
+        "plugins": [
+            {
+                "name": "redis",
+                "commands": ["redis:create redis-$APP", "redis:link redis-$APP $APP"]
+            }, {
+                "name": "memcached",
+                "commands": ["memcached:create memcached-$APP", "memcached:link memcached-$APP $APP"]
+            }
+        ]
+    },
+    "scripts": {
+        "dokku": {
+            "postdeploy": "rake generate_sliders"
+        }
+    }
+}
