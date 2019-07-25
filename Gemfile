@@ -1,8 +1,8 @@
 source 'https://rubygems.org'
-ruby "2.2.0"
+ruby "2.2.9"
 
 #defaults
-gem 'rails', '4.1.8'
+gem 'rails', '4.2.7'
 gem 'sqlite3', group: :development
 gem 'sass-rails', '>= 3.2'
 gem 'uglifier', '>= 1.3.0'
@@ -30,3 +30,4 @@ gem 'redis'
 gem 'mini_magick'
 gem 'dotenv-rails', :groups => [:development, :test]
 gem 'config'
+gem 'responders'
