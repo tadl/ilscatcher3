@@ -5,8 +5,12 @@ var pickuplocation = '<%= escape_javascript(location_map(@user.pickup_library, @
 <% @hold_confirmation.each do |c| %>
     var target = '.hold-status-<%= escape_javascript(c[:record_id]) %>';
     <% if !c[:error] %>
-        var message = messagesuccess+'Hold placed successfully for pickup at '+pickuplocation
-        <% if Settings.pickup_locations.length > 1 %>
+        <% if Settings.account_only == "true" %>
+          var message = messagesuccess+'Hold placed successfully.'+messageclose
+        <% else %>
+          var message = messagesuccess+'Hold placed successfully for pickup at '+pickuplocation
+        <% end %>
+        <% if Settings.pickup_locations.length > 1 && Settings.account_only != "true" %>
             message += '<br><a class="clicky" onclick="change_hold_pickup(<%= escape_javascript(c[:record_id]) %>)">Change pick up location?</a></div>' +messageclose;
         <% end %>
         $(target).html(message);
