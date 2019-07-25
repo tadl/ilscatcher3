@@ -44,7 +44,7 @@ class Item
         isbns.each do |i|
           request += i.gsub(/\D/, '') + ','
         end rescue nil
-        fetch_review = JSON.parse(open('https://tadl-toolbox.appstwo.tadl.org/goodreads?isbn=' + request, {:read_timeout => 1}).read) rescue nil
+        fetch_review = JSON.parse(open('https://toolbox.tadl.org/goodreads?isbn=' + request, {:read_timeout => 1}).read) rescue nil
         return fetch_review
       end rescue nil
   	end
