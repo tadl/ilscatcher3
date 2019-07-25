@@ -6,6 +6,7 @@ logo: 'ica-logo.jpg'
 error_image: '1x1.png'
 cover_path_med: 'https://ica.tadl.net/opac/extras/ac/jacket/medium/r/'
 cover_path_lg: 'https://ica.tadl.net/opac/extras/ac/jacket/large/r/'
+pickup_locations: [['Academic', '102'],['Music', '103']]
 long_pickup_locations: [['Academic', '102'],['Music', '103']]
 location_options: [['Academic', '102']]
 location_name: 'Interlochen Center for the Arts Library'
