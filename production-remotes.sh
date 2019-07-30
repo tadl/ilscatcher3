@@ -9,14 +9,14 @@ for x in $(git remote | grep -v origin); do
 done
 
 # tadl
-git remote add tadl dokku@appstwo.tadl.org:tadl-catalog
+git remote add tadl dokku@app.tadl.org:tadl
 
 # contract libraries
-git remote add kcl dokku@appstwo.tadl.org:kalkaska-catalog
-git remote add kcl-youth dokku@appstwo.tadl.org:kalkaska-youth
-git remote add kcl-teen dokku@appstwo.tadl.org:kalkaska-teen
-git remote add sbbdl dokku@appstwo.tadl.org:sbbdl
-git remote add ica dokku@appstwo.tadl.org:ica
+git remote add kcl dokku@app.tadl.org:kcl
+git remote add kclyouth dokku@app.tadl.org:kclyouth
+git remote add kclteen dokku@app.tadl.org:kclteen
+git remote add sbbdl dokku@app.tadl.org:sbbdl
+git remote add ica dokku@app.tadl.org:ica
 
 # dev
-git remote add test dokku@appstwo.tadl.org:test
+#git remote add test dokku@app.tadl.org:test
