@@ -1,6 +1,6 @@
 <% if location == '22' || location == nil || location == '' %>
     <% holdings.each do |h| %>
-            <h4 style="color: green;"><b>Copies Available at <%= location_map(h['code'], @location_options)  %></b></h4>
+            <h4 style="color: green;"><b>Copies Available at <%= location_map(h['code'], @location_options)  %> <% if h['code'] == '26' %> (Closed Until the End of August)<% end  %></b></h4>
             <% h['copies'].each do |c| %>
                     <b><%= c['count'] %></b> available in <strong><%= c['shelf_location'] %>,</strong>
                     <% c['call_numbers'].each do |n| %>
@@ -15,7 +15,7 @@
 <% else %>
     <% holdings.each do |h| %>
         <% if h['code'].to_s == location %>
-            <h4 style="color: green;"><b>Copies Available at <%= location_map(h['code'], @location_options)  %></b></h4>
+            <h4 style="color: green;"><b>Copies Available at <%= location_map(h['code'], @location_options)  %><% if h['code'] == '26' %> (Closed Until the End of August)<% end  %></b></h4>
             <% h['copies'].each do |c| %>
                     <b><%= c['count'] %></b> available in <strong><%= c['shelf_location'] %>,</strong>
                     <% c['call_numbers'].each do |n| %>
