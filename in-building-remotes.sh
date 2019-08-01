@@ -8,18 +8,17 @@ for x in $(git remote | grep -v origin); do
     git remote remove ${x}
 done
 
-git remote add traversecity dokku@opac.tadl.org:traversecity
-git remote add traversecity-registration dokku@opac.tadl.org:traversecity-registration
-git remote add traversecity-sightandsound dokku@opac.tadl.org:traversecity-sightandsound
-git remote add traversecity-teen dokku@opac.tadl.org:traversecity-teen
-git remote add traversecity-youth dokku@opac.tadl.org:traversecity-youth
-git remote add eastbay dokku@opac.tadl.org:eastbay
-git remote add fifelake dokku@opac.tadl.org:fifelake
-git remote add interlochen dokku@opac.tadl.org:interlochen
-git remote add interlochen-youth dokku@opac.tadl.org:interlochen-youth
-git remote add kingsley dokku@opac.tadl.org:kingsley
-git remote add peninsula dokku@opac.tadl.org:peninsula
 git remote add kclopac dokku@app.tadl.org:kclopac
 git remote add kclteenopac dokku@app.tadl.org:kclteenopac
 git remote add kclyouthopac dokku@app.tadl.org:kclyouthopac
-git remote add test dokku@opac.tadl.org:test
+git remote add ebb-light dokku@opac.tadl.org:ebb-light
+git remote add flpl-light dokku@opac.tadl.org:flpl-light
+git remote add ipl-light dokku@opac.tadl.org:ipl-light
+git remote add ipl-youth-light dokku@opac.tadl.org:ipl-youth-light
+git remote add kbl-light dokku@opac.tadl.org:kbl-light
+git remote add pcl-light dokku@opac.tadl.org:pcl-light
+git remote add tc-light dokku@opac.tadl.org:tc-light
+git remote add tc-registration-light dokku@opac.tadl.org:tc-registration-light
+git remote add tc-sightandsound-light dokku@opac.tadl.org:tc-sightandsound-light
+git remote add tc-teen-light dokku@opac.tadl.org:tc-teen-light
+git remote add tc-youth-light dokku@opac.tadl.org:tc-youth-light
