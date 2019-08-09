@@ -14,7 +14,7 @@
                         <% if h['status'] == 'Reshelving' || h['status'] == 'Available' || h['status'] == 'New Serial' %>
                             <tr>
                                 <td>
-                                  <%= h['circ_lib'] %> <%if h['circ_lib'] == 'TADL-PCL' %>(Closed Until the End of August)<% end%> 
+                                  <%= h['circ_lib'] %> <%if h['circ_lib'] == 'TADL-PCL' %>(Closed until September 7th)<% end%> 
                                 </td>
                                 <td><strong><%= h['call_number'] %></strong> in <strong><%= h['location'] %></strong></td>
                                 <td>
@@ -30,7 +30,7 @@
                         <% if (h['status'] == 'Reshelving' || h['status'] == 'Available' || h['status'] == 'New Serial') && item.loc == location_to_code(h['circ_lib']) %>
                             <tr>
                                 <td>
-                                  <%= h['circ_lib'] %> <% if h['circ_lib'] == 'TADL-PCL' %> (Closed Until the End of August)<% end %>
+                                  <%= h['circ_lib'] %> <% if h['circ_lib'] == 'TADL-PCL' %> (Closed until September 7th)<% end %>
                                 </td>
                                 <td><strong><%= h['call_number'] %></strong> in <strong><%= h['location'] %></strong></td>
                                 <td>
@@ -46,7 +46,7 @@
                 <% else %>
                     <tr>
                         <td>
-                          <%= h['circ_lib'] %> <%if h['circ_lib'] == 'TADL-PCL' %>(Closed Until the End of August)<% end%> 
+                          <%= h['circ_lib'] %> <%if h['circ_lib'] == 'TADL-PCL' %>(Closed until September 7th)<% end%> 
                         </td>
                         <td><strong><%= h['call_number'] %></strong> in <strong><%= h['location'] %></strong></td>
                         <td>
