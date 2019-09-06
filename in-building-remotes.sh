@@ -22,3 +22,6 @@ git remote add tc-registration-light dokku@opac.tadl.org:tc-registration-light
 git remote add tc-sightandsound-light dokku@opac.tadl.org:tc-sightandsound-light
 git remote add tc-teen-light dokku@opac.tadl.org:tc-teen-light
 git remote add tc-youth-light dokku@opac.tadl.org:tc-youth-light
+
+git remote add kingsley dokku@opac.tadl.org:kingsley
+git remote add fifelake dokku@opac.tadl.org:fifelake
