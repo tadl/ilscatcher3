@@ -1,5 +1,5 @@
 <div class="col-xs-12">
-    <% date_difference = (Date.today - Date.parse(checkout.iso_due_date)).to_i.to_s %>
+    <% date_difference = (Time.zone.now.to_date - Date.parse(checkout.iso_due_date)).to_i.to_s %>
     <% if date_difference.to_i == 0 %>
         <div class="panel panel-warning">
         <% due_message = 'This item is due today' %>

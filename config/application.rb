@@ -1,5 +1,4 @@
 require File.expand_path('../boot', __FILE__)
-
 # require 'rails/all'
 require "action_controller/railtie"
 require "action_mailer/railtie"
@@ -24,6 +23,7 @@ module Ilscatcher3
     # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :de
+    config.time_zone = 'Eastern Time (US & Canada)'
     config.exceptions_app = self.routes
     Settings.add_source!("#{Rails.root}/config/settings/base/default.yml")
     Settings.add_source!("#{Rails.root}/config/settings/system/" + ENV['SYSTEM_NAME'] + ".yml")
