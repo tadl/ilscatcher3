@@ -8,22 +8,34 @@ default_loc: '44'
 opac_toggle_default: 'Teen'
 lists:
   - name: 'kcl_teen_carousel_1'
-    fancy_name: 'Queens and Kingdoms'
+    fancy_name: 'Spooky Stories'
     search_params: {'loc' : '44',
                     'qtype' : 'keyword',
-                    'query' : '',
-                    'fiction' : 'true',
+                    'query' : 'horror',
                     'fmt' : '970',
-                    'subjects' : ['Kings, queens, rulers, etc Fiction'],
-                    'sort' : 'pubdateDESC',
+                    'sort' : 'relevancy',
                   }
   - name: 'kcl_teen_carousel_2'
-    fancy_name: 'Hot Topics'
+    fancy_name: ' '
     search_params: {'loc' : '44',
                     'qtype' : 'keyword',
-                    'query' : '',
+                    'query' : 'halloween',
                     'fmt' : '970',
-                    'min_score' : '1',
-                    'fiction' : 'false',
-                    'sort' : 'pubdateDESC',
+                    'sort' : 'relevancy',
+                   }
+  - name: 'kcl_teen_carousel_3'
+    fancy_name: ' '
+    search_params: {'loc' : '44',
+                    'qtype' : 'keyword',
+                    'query' : 'scary',
+                    'fmt' : '970',
+                    'sort' : 'relevancy',
+                   }
+  - name: 'kcl_teen_carousel_4'
+    fancy_name: ' '
+    search_params: {'loc' : '44',
+                    'qtype' : 'keyword',
+                    'query' : 'spooky',
+                    'fmt' : '970',
+                    'sort' : 'relevancy',
                    }
