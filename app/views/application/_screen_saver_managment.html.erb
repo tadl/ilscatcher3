@@ -33,6 +33,7 @@
     window.onclick = reset_timeout;
     window.onscroll = reset_timeout;
     window.onkeypress = reset_timeout;
+    $("input").keydown(reset_timeout);
 
     function reset_timeout() {
       clearTimeout(timer);
