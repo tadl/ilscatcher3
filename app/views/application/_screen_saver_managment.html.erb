@@ -22,18 +22,19 @@
 
 	</script>
 <% end %>
-<% if Settings.is_opac ==  true && Settings.is_opac_light !=  true %>
+<% if Settings.is_opac == true && Settings.is_opac_light != true %>
   <iframe src="https://elibrary.mel.org/logout?" style="display:none" sandbox="allow-forms allow-scripts"></iframe>
 <% end %>
 
-<% if Settings.is_opac_light ==  true %>
+<% if Settings.is_opac_light == true %>
   <script>
     window.onmousemove = reset_timeout;
     window.onmousedown = reset_timeout;
     window.onclick = reset_timeout;
     window.onscroll = reset_timeout;
     window.onkeypress = reset_timeout;
-    $("input").keydown(reset_timeout);
+
+    var timer;
 
     function reset_timeout() {
       clearTimeout(timer);
@@ -41,7 +42,7 @@
         clearInterval(active_screen_saver);
       }
       $("#screen_saver").css("display", "none");
-      var timer = setTimeout(re_show_screen_saver, 120000);
+      timer = setTimeout(re_show_screen_saver, 120000);
     }
 
     function re_show_screen_saver() {
