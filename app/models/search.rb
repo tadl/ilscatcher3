@@ -1,12 +1,12 @@
 class Search
-	require 'open-uri'
-	include ActiveModel::Model
-	attr_accessor :query, :sort, :qtype, :fmt, :loc, :page, :facet, :availability,
-								:layout, :shelving_location, :list_id, :subjects, :series,
-								:authors, :genres, :canned, :search_title, :shelf_lock, :genre_lock, 
+  require 'open-uri'
+  include ActiveModel::Model
+  attr_accessor :query, :sort, :qtype, :fmt, :loc, :page, :facet, :availability,
+                :layout, :shelving_location, :list_id, :subjects, :series,
+                :authors, :genres, :canned, :search_title, :shelf_lock, :genre_lock, 
                 :in_progress, :physical, :min_score, :fiction
 
-	  def initialize args
+    def initialize args
       args.each do |k,v|
         instance_variable_set("@#{k}", v) unless v.nil?
       end
@@ -49,13 +49,13 @@ class Search
       end
     end
 
-  	def availability_check
-  		if self.availability == "on"
-  			true
-  		else
-  			false
-  		end
-  	end
+    def availability_check
+      if self.availability == "on"
+        true
+      else
+        false
+      end
+    end
 
     def physical_check
         if self.physical == "on"
@@ -103,18 +103,18 @@ class Search
     end
 
 
-  	def search_path
+    def search_path
       path = ''
       if self
         if !self.query.nil?
-  		    path = '?query=' + self.query
+          path = '?query=' + self.query
         else
           path = '?query='
         end
-  		  path += '&qtype=' + self.qtype unless self.qtype.nil?
-  		  path += '&loc=' + self.loc unless self.loc.nil?
+        path += '&qtype=' + self.qtype unless self.qtype.nil?
+        path += '&loc=' + self.loc unless self.loc.nil?
         path += '&fmt=' + self.fmt unless self.fmt.nil?
-  		  path += '&availability=' + self.availability unless self.availability.nil?
+        path += '&availability=' + self.availability unless self.availability.nil?
         path += '&sort=' + self.sort unless self.sort.nil?
         self.shelving_location.each do |s|
           path += '&shelving_location[]=' + s
@@ -126,7 +126,7 @@ class Search
         path += '&min_score=' + self.min_score unless  self.min_score.nil?
       end
       return path
-  	end
+    end
 
     def search_path_with_facets
       path = self.search_path
@@ -173,7 +173,7 @@ class Search
 
 
     def search_path_with_new_facet(facet_type, facet)
-			facet = URI.encode(facet, Regexp.new("[^#{URI::PATTERN::UNRESERVED}]"))
+      facet = URI.encode(facet, Regexp.new("[^#{URI::PATTERN::UNRESERVED}]"))
       path = self.search_path_with_facets
       if facet_type == 'subjects'
         path = path + '&subjects[]=' +  facet
@@ -267,8 +267,8 @@ class Search
       return next_page
     end
 
-  	def results
-			url = Settings.elastic_evergreen_url
+    def results
+      url = Settings.elastic_evergreen_url
       # url = 'http://cal.lib.tadl.org:4000/main/index.json?query=' 
       url = url + URI.encode(self.query, Regexp.new("[^#{URI::PATTERN::UNRESERVED}]")) unless self.query.nil?
       url = url + '&page=' + self.page unless self.page.nil?
@@ -321,7 +321,7 @@ class Search
       url = url + '&fiction=' + self.fiction unless self.fiction.nil?
 
       request = JSON.parse(open(url).read) 
-  		results = Array.new
+      results = Array.new
       genres_raw = Array.new
       subjects_raw = Array.new
       series_raw = Array.new
@@ -398,9 +398,9 @@ class Search
         more_resulsts = false
       end
       return results.first(24), facets, more_resulsts
-  	end
+    end
 
-	def process_facets(facet_name, facet_group)
+  def process_facets(facet_name, facet_group)
     facets = Array.new
     compact_subjects = facet_group.compact.reject { |c| c.empty? }
     filtered_subjects = Hash.new
@@ -419,7 +419,7 @@ class Search
     }
     facet = Facet.new facet_raw
     return facet
-	end
+  end
 
   def active_facet(type, facet)
     if self.send(type.to_sym).include?(facet)
@@ -445,7 +445,7 @@ class Search
     end
   end
 
-	def process_holdings(availability, location)
+  def process_holdings(availability, location)
     location_code = code_to_location(location)
    if availability != nil or availability != ''
       all_available = 0
@@ -453,7 +453,7 @@ class Search
       location_available = 0
       location_total = 0
       availability.each do |a|
-				all_total = all_total + 1
+        all_total = all_total + 1
         if a["status"] == "Available" || a["status"] == "Reshelving" || a["status"] == "New Serial"
           all_available = all_available + 1
         end
@@ -479,7 +479,7 @@ class Search
       all_total = nil
     end
     return call_number, all_available, all_total, location_available, location_total
-	end
+  end
 
   def process_availability(availability, location)
     #only look at available holdings

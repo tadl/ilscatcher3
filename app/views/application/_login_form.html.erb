@@ -27,7 +27,7 @@
         </div>
     </ul>
     <% if Settings.has_registration == "true" && Settings.register_button != 'false' %>
-        <button type="button" class="btn btn-primary navbar-btn" id="acctreg">Register</button>
+        <button type="button" class="btn btn-primary navbar-btn" id="acctreg" data-reg-location="<%= Settings.register_link || '/register' %>">Register</button>
     <% end %>
 </li>
 <script>$('#the-login-form').keydown(function(event) { if (event.keyCode == 13) { login(); } });</script>
