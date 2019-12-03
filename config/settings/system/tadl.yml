@@ -12,7 +12,7 @@ elastic_locations: [['TADL-WOOD', '23'],['TADL-IPL', '24'],['TADL-KBL', '25'], [
 all_locations_code: '22'
 has_registration: 'true'
 register_newsletter: 'true'
-register_link: 'https://www.tadl.org/register'
+register_link: '/card'
 register_form: '/register/new'
 register_location: '23'
 register_agreement_text: 'tadl'

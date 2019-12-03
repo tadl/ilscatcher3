@@ -31,6 +31,7 @@ Rails.application.routes.draw do
     match "main/login_hash" => "main#login_hash", via: [:get, :post], defaults: {format: 'json'}
     match "main/reset_password_request" => "main#reset_password_request", via: [:get, :post], defaults: {format: 'json'}
     match "main/show_qr" => "main#show_qr", via: [:post], defaults: { format: 'js' }
+    match "main/card" => "main#card", via: [:get, :post], defaults: {format: 'html'}
   if Settings.account_only != 'true'
     root :to => "main#index"
     get 'main/index'

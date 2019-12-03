@@ -873,5 +873,12 @@ class MainController < ApplicationController
     end
   end
 
+  def card
+    respond_to do |format|
+      format.html
+    end
+  end
+
+
 
 end
