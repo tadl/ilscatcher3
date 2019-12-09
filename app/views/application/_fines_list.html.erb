@@ -1,25 +1,27 @@
 <h3>Fines</h3>
-<table class="table table-striped table-responsive">
-    <thead>
-        <tr>
-            <th>Title</th>
-            <th>Author</th>
-            <th>Checkout / Last Renewal Date</th>
-            <th>Due Date</th>
-            <th>Return Date</th>
-            <th>Current Fine</th>
-        </tr>
-    </thead>
-    <tbody>
-        <% @fines.each do |fine| %>
-            <tr>
-                <td><%= fine[:title] %></td>
-                <td><%= fine[:author] %></td>
-                <td><%= fine[:checkout_date] %></td>
-                <td><%= fine[:due_date] %></td>
-                <td><%= fine[:return_date] %></td>
-                <td><%= fine[:balance_owed] %></td>
-            </tr>
-        <% end %>
-    </tbody>
-</table>
+<div class="table-responsive">
+  <table class="table table-striped">
+      <thead>
+          <tr>
+              <th>Title</th>
+              <th>Author</th>
+              <th>Checkout / Last Renewal Date</th>
+              <th>Due Date</th>
+              <th>Return Date</th>
+              <th>Current Fine</th>
+          </tr>
+      </thead>
+      <tbody>
+          <% @fines.each do |fine| %>
+              <tr>
+                  <td><%= fine[:title] %></td>
+                  <td><%= fine[:author] %></td>
+                  <td><%= fine[:checkout_date] %></td>
+                  <td><%= fine[:due_date] %></td>
+                  <td><%= fine[:return_date] %></td>
+                  <td><%= fine[:balance_owed] %></td>
+              </tr>
+          <% end %>
+      </tbody>
+  </table>
+</div>

@@ -1,25 +1,27 @@
 <h3>Other Bills</h3>
-<table class="table table-striped table-responsive">
-    <thead>
-        <tr>
-            <th>Transaction Start Date</th>
-            <th>Last Payment Date</th>
-            <th>Initial Amt Owed</th>
-            <th>Total Amt Paid</th>
-            <th>Balance Owed</th>
-            <th>Billing Type</th>
-        </tr>
-    </thead>
-    <tbody>
-        <% @fees.each do |fee| %>
-            <tr>
-                <td><%= fee[:transaction_start_date] %></td>
-                <td><%= fee[:last_pmt_date] %></td>
-                <td><%= fee[:initial_amt_owed] %></td>
-                <td><%= fee[:total_amt_paid] %></td>
-                <td><%= fee[:balance_owed] %></td>
-                <td><%= fee[:billing_type] %></td>
-            </tr>
-        <% end %>
-    </tbody>
-</table>
+<div class="table-responsive">
+  <table class="table table-striped">
+      <thead>
+          <tr>
+              <th>Transaction Start Date</th>
+              <th>Last Payment Date</th>
+              <th>Initial Amt Owed</th>
+              <th>Total Amt Paid</th>
+              <th>Balance Owed</th>
+              <th>Billing Type</th>
+          </tr>
+      </thead>
+      <tbody>
+          <% @fees.each do |fee| %>
+              <tr>
+                  <td><%= fee[:transaction_start_date] %></td>
+                  <td><%= fee[:last_pmt_date] %></td>
+                  <td><%= fee[:initial_amt_owed] %></td>
+                  <td><%= fee[:total_amt_paid] %></td>
+                  <td><%= fee[:balance_owed] %></td>
+                  <td><%= fee[:billing_type] %></td>
+              </tr>
+          <% end %>
+      </tbody>
+  </table>
+</div>
