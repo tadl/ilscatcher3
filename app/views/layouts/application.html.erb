@@ -57,7 +57,7 @@
                         <div class="form-group input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
                             <label class="sr-only" for="passuser"><% if Settings.password_reset_inputs != 'card_only' %>Username or <% end %>Card Number</label>
-                            <input type="text" class="form-control" id="passuser" name="passuser" placeholder="<% if Settings.password_reset_inputs != 'card_only' %>Username or <% end %>Card #" required>
+                            <input type="text" class="form-control" id="passuser" name="passuser" autocapitalize="none" autocorrect="off" placeholder="<% if Settings.password_reset_inputs != 'card_only' %>Username or <% end %>Card #" required>
                         </div>
                     </div>
                 </div>
