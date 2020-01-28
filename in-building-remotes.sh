@@ -11,6 +11,7 @@ done
 git remote add kclopac dokku@app.tadl.org:kclopac
 git remote add kclteenopac dokku@app.tadl.org:kclteenopac
 git remote add kclyouthopac dokku@app.tadl.org:kclyouthopac
+git remote add sbbdl-light dokku@opac.tadl.org:sbbdl-light
 git remote add ebb-light dokku@opac.tadl.org:ebb-light
 git remote add flpl-light dokku@opac.tadl.org:flpl-light
 git remote add ipl-light dokku@opac.tadl.org:ipl-light
