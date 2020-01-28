@@ -1,0 +1,47 @@
+is_opac: true
+is_opac_light: true
+opac_wake_message: 'Press any key or move mouse to search the catalog'
+screen_saver_milliseconds: 15000
+screen_saver:
+  - url: 'https://www.tadl.org/wp-content/uploads/2018/02/opac_3.jpg'
+  - url: 'https://www.tadl.org/wp-content/uploads/2018/02/opac_2.jpg'
+  - url: 'https://www.tadl.org/wp-content/uploads/2018/03/TADL_OPAC_Yep_2018.jpg'
+format_options:  [['All Formats', 'fmt' ,'all'], ['Books', 'fmt' ,'a'],['Movies / TV', 'fmt' ,'g']]
+format_label: 'Format'
+stylesheet: 'sbbdl.css'
+search_text: 'Search'
+default_search_display: 'list'
+search_menu: 'Search'
+default_loc: '46'
+slider_frequency: 10
+additional_nav_links:
+  - name: 'Website'
+    href: 'http://www.sbbdl.org/'
+lists:
+  - name: 'sbbdl_new_fiction'
+    fancy_name: 'New Fiction'
+    search_params: {'loc' : '46',
+                    'qtype' : 'shelf',
+                    'shelving_location' : ['1011'],
+                    'canned' : 'true',
+                    'availability' : 'on',
+                    'sort' : 'pubdateDESC',
+                  }
+  - name: 'sbbdl_new_nonfic'
+    fancy_name: 'New Non-fiction'
+    search_params: {'loc' : '46',
+                    'qtype' : 'shelf',
+                    'shelving_location' : ['1012'],
+                    'canned' : 'true',
+                    'availability' : 'on',
+                    'sort' : 'pubdateDESC',
+                  }
+  - name: 'sbbdl_new_movies'
+    fancy_name: 'New Movies and Television'
+    search_params: {'loc' : '46',
+                    'qtype' : 'shelf',
+                    'shelving_location' : ['1020'],
+                    'canned' : 'true',
+                    'availability' : 'on',
+                    'sort' : 'pubdateDESC',
+                  }
