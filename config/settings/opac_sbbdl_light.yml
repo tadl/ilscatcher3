@@ -32,12 +32,3 @@ lists:
                     'availability' : 'on',
                     'sort' : 'pubdateDESC',
                   }
-  - name: 'sbbdl_new_movies'
-    fancy_name: 'New Movies and Television'
-    search_params: {'loc' : '46',
-                    'qtype' : 'shelf',
-                    'shelving_location' : ['1020'],
-                    'canned' : 'true',
-                    'availability' : 'on',
-                    'sort' : 'pubdateDESC',
-                  }
