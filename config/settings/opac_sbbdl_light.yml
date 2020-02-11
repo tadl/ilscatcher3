@@ -3,9 +3,8 @@ is_opac_light: true
 opac_wake_message: 'Press any key or move mouse to search the catalog'
 screen_saver_milliseconds: 15000
 screen_saver:
-  - url: 'https://www.tadl.org/wp-content/uploads/2018/02/opac_3.jpg'
-  - url: 'https://www.tadl.org/wp-content/uploads/2018/02/opac_2.jpg'
-  - url: 'https://www.tadl.org/wp-content/uploads/2018/03/TADL_OPAC_Yep_2018.jpg'
+  - url: 'https://www.sbbdl.org/wp-content/uploads/2020/02/SBBDL-Lib-Cat-Screensaver-2020.png'
+  - url: 'https://www.sbbdl.org/wp-content/uploads/2020/02/SBBDL-Get-a-Card-Screensaver-2020.png'
 format_options:  [['All Formats', 'fmt' ,'all'], ['Books', 'fmt' ,'a'],['Movies / TV', 'fmt' ,'g']]
 format_label: 'Format'
 stylesheet: 'sbbdl.css'
@@ -29,15 +28,6 @@ lists:
     search_params: {'loc' : '46',
                     'qtype' : 'shelf',
                     'shelving_location' : ['1012'],
-                    'canned' : 'true',
-                    'availability' : 'on',
-                    'sort' : 'pubdateDESC',
-                  }
-  - name: 'sbbdl_new_movies'
-    fancy_name: 'New Movies and Television'
-    search_params: {'loc' : '46',
-                    'qtype' : 'shelf',
-                    'shelving_location' : ['1020'],
                     'canned' : 'true',
                     'availability' : 'on',
                     'sort' : 'pubdateDESC',
