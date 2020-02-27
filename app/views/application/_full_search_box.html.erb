@@ -12,7 +12,7 @@
                 <input type="hidden" name="layout" value="<%= search.layout = search.layout || 'list' %>">
                 <span class="input-group-btn">
                     <label class="sr-only" for="commit"><%= Settings.search_text %></label>
-                    <button type="submit" name="commit" class="btn btn-primary" id="search-button"><span class="glyphicon glyphicon-search"></span></button>
+                    <button type="submit" name="commit" class="btn btn-primary" id="search-button"><span class="glyphicon glyphicon-search" value="Search"></span></button>
                 </span>
             </div>
         </div>
@@ -42,17 +42,17 @@
             <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 padtop">
                 <div class="input-group">
                     <span class="input-group-addon">Type</span>
-                    <%= f.select :qtype,  options_for_select(@query_options, search.qtype), { hide_label: true }, { class: search.query.blank? ? "selectpicker" : "selectpicker autoload" } %>
+                    <%= f.select :qtype,  options_for_select(@query_options, search.qtype), { hide_label: true }, { class: search.query.blank? ? "selectpicker" : "selectpicker autoload", name: 'qtype' } %>
                 </div>
             </div>
             <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 padtop">
                 <div class="input-group">
                     <% if @format_options_unlocked.nil? || (search.shelf_lock == 'on' || (@blank_search && !search.in_progress))  %>
                         <span class="input-group-addon"><%= Settings.format_label %></span>
-                        <%= f.select :fmt,  options_for_select(@format_options, search.fmt), { hide_label: true }, { class: search.query.blank? ? "selectpicker" : "selectpicker autoload" } %>
+                        <%= f.select :fmt,  options_for_select(@format_options, search.fmt), { hide_label: true }, { class: search.query.blank? ? "selectpicker" : "selectpicker autoload", name: 'fmt' } %>
                     <% else %>
                         <span class="input-group-addon"><%= Settings.format_label_unlocked %></span>
-                        <%= f.select :fmt,  options_for_select(@format_options_unlocked, search.fmt), { hide_label: true }, { class: search.query.blank? ? "selectpicker" : "selectpicker autoload" } %>
+                        <%= f.select :fmt,  options_for_select(@format_options_unlocked, search.fmt), { hide_label: true }, { class: search.query.blank? ? "selectpicker" : "selectpicker autoload", name:'fmt' } %>
                     <% end %>
                 </div>
             </div>
