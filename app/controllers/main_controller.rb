@@ -792,8 +792,7 @@ class MainController < ApplicationController
   end
 
   def patron_register
-    raw_date = params[:birth_date][:month] + '/' + params[:birth_date][:day] + '/' + params[:birth_date][:year]  
-    birth_date = Date.parse(raw_date).iso8601
+    birth_date = Date.parse(params[:dob]).iso8601  
     random_pass = 4.times.map { (0..9).to_a.sample }.join
     stgu = Hash.new
     stgu['__c'] = 'stgu'

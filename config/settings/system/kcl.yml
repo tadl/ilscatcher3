@@ -11,8 +11,10 @@ long_pickup_locations: [['Kalkaska County Library', '44']]
 elastic_locations: [['KCL', '44']]
 all_locations_code: '44'
 has_payments: 'false'
-has_registration: 'false'
+has_registration: 'true'
 has_eresources: 'false'
+register_form: '/register/new'
+register_location: '44'
 additional_nav_links:
   - name: 'Website'
     href: 'https://www.kalkaskalibrary.org/'
