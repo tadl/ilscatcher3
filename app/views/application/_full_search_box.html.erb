@@ -12,7 +12,7 @@
                 <input type="hidden" name="layout" value="<%= search.layout = search.layout || 'list' %>">
                 <span class="input-group-btn">
                     <label class="sr-only" for="commit"><%= Settings.search_text %></label>
-                    <button type="submit" name="commit" class="btn btn-primary" id="search-button"><span class="glyphicon glyphicon-search" aria-label="search"></span></button>
+                    <button type="submit" name="commit" class="btn btn-primary" id="search-button" aria-label="search"><span class="glyphicon glyphicon-search"></span></button>
                 </span>
             </div>
         </div>
@@ -42,24 +42,24 @@
             <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 padtop">
                 <div class="input-group">
                     <span class="input-group-addon">Type</span>
-                    <%= f.select :qtype,  options_for_select(@query_options, search.qtype), { hide_label: true }, { class: search.query.blank? ? "selectpicker" : "selectpicker autoload", name: 'qtype', id: 'qtype' } %>
+                    <%= f.select :qtype,  options_for_select(@query_options, search.qtype), { hide_label: true }, { class: search.query.blank? ? "selectpicker" : "selectpicker autoload", name: 'qtype', id: 'qtype'} %>
                 </div>
             </div>
             <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 padtop">
                 <div class="input-group">
                     <% if @format_options_unlocked.nil? || (search.shelf_lock == 'on' || (@blank_search && !search.in_progress))  %>
                         <span class="input-group-addon"><%= Settings.format_label %></span>
-                        <%= f.select :fmt,  options_for_select(@format_options, search.fmt), { hide_label: true }, { class: search.query.blank? ? "selectpicker" : "selectpicker autoload", name: 'fmt' } %>
+                        <%= f.select :fmt,  options_for_select(@format_options, search.fmt), { hide_label: true }, { class: search.query.blank? ? "selectpicker" : "selectpicker autoload", id: 'fmt' } %>
                     <% else %>
                         <span class="input-group-addon"><%= Settings.format_label_unlocked %></span>
-                        <%= f.select :fmt,  options_for_select(@format_options_unlocked, search.fmt), { hide_label: true }, { class: search.query.blank? ? "selectpicker" : "selectpicker autoload", name:'fmt' } %>
+                        <%= f.select :fmt,  options_for_select(@format_options_unlocked, search.fmt), { hide_label: true }, { class: search.query.blank? ? "selectpicker" : "selectpicker autoload", id:'fmt' } %>
                     <% end %>
                 </div>
             </div>
             <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 padtop">
                 <div class="input-group">
                     <span class="input-group-addon">Sort</span>
-                    <%= f.select :sort, options_for_select(@sort_options, search.sort), { hide_label: true }, { class: search.query.blank? ? "selectpicker" : "selectpicker autoload" } %>
+                    <%= f.select :sort, options_for_select(@sort_options, search.sort), { hide_label: true }, { class: search.query.blank? ? "selectpicker" : "selectpicker autoload", id:'sort' } %>
                 </div>
             </div>                
             <% if Settings.shelf_lock && (search.shelf_lock == 'on' || (@blank_search && !search.in_progress && Settings.shelf_lock.default_activated != false))  %>
@@ -69,7 +69,7 @@
                     <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 padtop">
                         <div class="input-group">
                             <span class="input-group-addon">Location</span>
-                            <%= f.select :loc,  options_for_select(@location_options, search.loc || Settings.default_loc), { hide_label: true }, { class: search.query.blank? ? "selectpicker" : "selectpicker autoload" } %>
+                            <%= f.select :loc,  options_for_select(@location_options, search.loc || Settings.default_loc), { hide_label: true }, { class: search.query.blank? ? "selectpicker" : "selectpicker autoload", id:'loc' } %>
                         </div>
                     </div>
                 <% end %>    
@@ -123,7 +123,7 @@
                     <div class="form-group">
                         <% if Settings.is_opac != true || Settings.is_opac_light ==  true %>
                             <a class="btn btn-default" role="button" href="http://elibrary.mel.org/search/a?searchtype=X&searcharg=<%= search.query %>&SORT=D">
-                                <img style="height: 18px;margin:0;padding:0;" src="/assets/button-melcat-m.png" /> Search MeLCat
+                                <img style="height: 18px;margin:0;padding:0;" src="/assets/button-melcat-m.png" alt="search MeLCat" /> Search MeLCat
                             </a>
                         <% end %>
                         <%if @search.layout == 'list' %>
