@@ -12,7 +12,7 @@
                 <input type="hidden" name="layout" value="<%= search.layout = search.layout || 'list' %>">
                 <span class="input-group-btn">
                     <label class="sr-only" for="commit"><%= Settings.search_text %></label>
-                    <button type="submit" name="commit" class="btn btn-primary" id="search-button"><span class="glyphicon glyphicon-search" value="Search"></span></button>
+                    <button type="submit" name="commit" class="btn btn-primary" id="search-button"><span class="glyphicon glyphicon-search" aria-label="search"></span></button>
                 </span>
             </div>
         </div>
@@ -42,7 +42,7 @@
             <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 padtop">
                 <div class="input-group">
                     <span class="input-group-addon">Type</span>
-                    <%= f.select :qtype,  options_for_select(@query_options, search.qtype), { hide_label: true }, { class: search.query.blank? ? "selectpicker" : "selectpicker autoload", name: 'qtype' } %>
+                    <%= f.select :qtype,  options_for_select(@query_options, search.qtype), { hide_label: true }, { class: search.query.blank? ? "selectpicker" : "selectpicker autoload", name: 'qtype', id: 'qtype' } %>
                 </div>
             </div>
             <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 padtop">
