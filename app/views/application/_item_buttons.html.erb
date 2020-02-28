@@ -25,9 +25,9 @@
                         <i class="glyphicon glyphicon-user"></i> Log in to place hold
                     </div>
                 </div>
-                <label for="holdloginuser">Username or Library Card</label>
+                <label for="holdloginuser-<%= item.id %>">Username or Library Card</label>
                 <input type="text" id="holdloginuser-<%= item.id %>" class="holdloginuser-<%= item.id %> form-control" name="holdloginuser" />
-                <label for="holdloginpass" class="padtop">Password</label>
+                <label for="holdloginpass-<%= item.id %>" class="padtop">Password</label>
                 <input type="password" id="holdloginpass-<%= item.id %>" class="holdloginpass-<%= item.id %> form-control" name="holdloginpass" />
                 <div class="padtop">
                     <div class="btn-group" style="min-width:120px;">
