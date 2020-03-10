@@ -1,7 +1,7 @@
 <div class="row clearfix">
-    <div id="slider_<%= name %>" class="square-carousel">
+    <div id="slider_<%= name %>" class="square-carousel" >
         <% list.each do |item| %>
-            <a class="item_details_link" href="details?id=<%= item.id %>" onclick="item_details(<%= item.to_json %>, '<%= name %>')">
+            <a class="item_details_link" href="details?id=<%= item.id %>" onclick="item_details(<%= item.to_json %>, '<%= name %>')" tabindex="0">
                 <img class="carousel-item lazyOwl" style="height:160px; max-width: 160px;" src="<%= Settings.cover_path_med %><%= item.id.to_s %>" data-src="<%= Settings.cover_path_med %><%= item.id.to_s %>" alt=" <%= sanitize(item.title) %>" />
             </a>
         <% end %>

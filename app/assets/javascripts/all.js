@@ -13,7 +13,8 @@ ready = function() {
         itemsTablet: [768,4],
         itemsMobile : [479,2],
         itemsScaleUp : false,
-        lazyLoad : true,
+        lazyLoad : false,
+        afterAction: accesible_carousel
     });
     $(".square-carousel").owlCarousel({
         items : 6,
@@ -23,7 +24,8 @@ ready = function() {
         itemsTablet: [768,3],
         itemsTabletSmall: false,
         itemsMobile : [479,2],
-        lazyLoad : true,
+        lazyLoad : false,
+        afterAction: accesible_carousel
     });
 
     /* scroll to top button */
@@ -81,6 +83,35 @@ ready = function() {
 };
 
 $(document).ready(ready);
+
+function accesible_carousel(){
+  $('.owl-numbers').attr("tabindex","0");
+  $('.owl-numbers').keypress(function (e) {
+    var owl = $(this).closest('.square-carousel').data('owlCarousel');
+    var key = e.which
+    if(key == 13){
+      var page_number = parseInt($(this).text())
+      if(page_number == 1){
+        var go_to_page = 1
+      }else{
+        var go_to_page = (page_number - 1) * 6
+      }
+      owl.goTo(go_to_page)
+      alert('pie')
+      alert(page_number)
+    }
+  });
+
+  $('.item_details_link').on('keydown', function(e) {
+    if( e.which == 13 ) {
+      e.preventDefault();
+      url = $(this).attr('href')
+      window.location.href = url
+    }
+  });
+
+
+}
 
 function showLoading() {
     $('#statusMessage').modal('show');

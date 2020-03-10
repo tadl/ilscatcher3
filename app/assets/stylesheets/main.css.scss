@@ -362,3 +362,17 @@ h2.overdue {
 .modal-backdrop {
     display: none;
 }
+
+a.add-focus:focus {
+  outline: 1px dotted #212121;
+  outline: 5px auto -webkit-focus-ring-color;
+}
+
+.btn{
+  font-weight: bold !important;
+  font-size: 15px !important;
+}
+
+.btn-success{
+  background-color: #0B610B !important;
+}
