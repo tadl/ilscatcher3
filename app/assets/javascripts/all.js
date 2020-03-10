@@ -97,8 +97,6 @@ function accesible_carousel(){
         var go_to_page = (page_number - 1) * 6
       }
       owl.goTo(go_to_page)
-      alert('pie')
-      alert(page_number)
     }
   });
 
