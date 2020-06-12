@@ -11,12 +11,12 @@ lists:
     fancy_name: 'New Books'
     search_params: {'loc' : '44',
                     'qtype' : 'shelf',
-                    'shelving_location[]' : '1032',
-                    'shelving_location[]' : '1044',
-                    'shelving_location[]' : '1047',
-                    'shelving_location[]' : '1048',
-                    'shelving_location[]' : '1049',
-                    'shelving_location[]' : '1050',
+                    'shelving_location' : '1032',
+                    'shelving_location' : '1044',
+                    'shelving_location' : '1047',
+                    'shelving_location' : '1048',
+                    'shelving_location' : '1049',
+                    'shelving_location' : '1050',
                     'sort' : 'pubdateDESC',
                     'search_title' : 'Books',
                   }
@@ -26,7 +26,7 @@ lists:
                     'qtype' : 'shelf',
                     'sort' : 'pubdateDESC',
                     'query' : '',
-                    'shelving_location[]' : '950',
+                    'shelving_location' : '950',
                     'search_title' : 'Audiobooks',
                   }
   - name: 'kcl_list_3'
@@ -35,6 +35,6 @@ lists:
                     'qtype' : 'shelf',
                     'sort' : 'pubdateDESC',
                     'query' : '',
-                    'shelving_location[]' : '951',
+                    'shelving_location' : '951',
                     'search_title' : 'All Videos',
                   }
