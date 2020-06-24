@@ -8,19 +8,28 @@ default_loc: '44'
 opac_toggle_default: 'Main'
 lists:
   - name: 'kcl_list_1'
-    fancy_name: 'New Amish Fiction'
+    fancy_name: 'New Books'
     search_params: {'loc' : '44',
-                    'qtype' : 'subject',
-                    'subject' : ['Amish Fiction'],
-                    'canned' : 'true',
-                    'query' : 'amish',
+                    'qtype' : 'shelf',
+                    'shelving_location' : ['1032', '1044', '1047', '1048', '1049', '1050'],
                     'sort' : 'pubdateDESC',
+                    'canned' : 'true',
                   }
   - name: 'kcl_list_2'
-    fancy_name: 'Our Lakes and Waters'
+    fancy_name: 'New Audiobooks'
     search_params: {'loc' : '44',
-                    'qtype' : 'subject',
-                    'query' : 'ecology',
-                    'canned' : 'true',
+                    'qtype' : 'shelf',
                     'sort' : 'pubdateDESC',
+                    'query' : '',
+                    'shelving_location' : ['950'],
+                    'canned' : 'true',
+                  }
+  - name: 'kcl_list_3'
+    fancy_name: 'New Videos'
+    search_params: {'loc' : '44',
+                    'qtype' : 'shelf',
+                    'sort' : 'pubdateDESC',
+                    'query' : '',
+                    'shelving_location' : ['951'],
+                    'canned' : 'true',
                   }
