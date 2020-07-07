@@ -7,35 +7,11 @@ slider_frequency: 10
 default_loc: '44'
 opac_toggle_default: 'Teen'
 lists:
-  - name: 'kcl_teen_carousel_1'
-    fancy_name: 'Spooky Stories'
+  - name: 'kcl_teen_list_1'
+    fancy_name: 'New Teen Books'
     search_params: {'loc' : '44',
-                    'qtype' : 'keyword',
-                    'query' : 'horror',
-                    'fmt' : '970',
-                    'sort' : 'relevancy',
+                    'qtype' : 'shelf',
+                    'shelving_location' : ['970'],
+                    'sort' : 'pubdateDESC',
+                    'canned' : 'true',
                   }
-  - name: 'kcl_teen_carousel_2'
-    fancy_name: ' '
-    search_params: {'loc' : '44',
-                    'qtype' : 'keyword',
-                    'query' : 'halloween',
-                    'fmt' : '970',
-                    'sort' : 'relevancy',
-                   }
-  - name: 'kcl_teen_carousel_3'
-    fancy_name: ' '
-    search_params: {'loc' : '44',
-                    'qtype' : 'keyword',
-                    'query' : 'scary',
-                    'fmt' : '970',
-                    'sort' : 'relevancy',
-                   }
-  - name: 'kcl_teen_carousel_4'
-    fancy_name: ' '
-    search_params: {'loc' : '44',
-                    'qtype' : 'keyword',
-                    'query' : 'spooky',
-                    'fmt' : '970',
-                    'sort' : 'relevancy',
-                   }

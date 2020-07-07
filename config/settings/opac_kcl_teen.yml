@@ -8,26 +8,14 @@ default_loc: '44'
 opac_toggle_default: 'Teen'
 default_search_display: 'list'
 lists:
-  - name: 'kcl_teen_carousel_1'
-    fancy_name: 'Queens and Kingdoms'
+  - name: 'kcl_teen_list_1'
+    fancy_name: 'New Teen Books'
     search_params: {'loc' : '44',
-                    'qtype' : 'keyword',
-                    'query' : '',
-                    'fiction' : 'true',
-                    'fmt' : '970',
-                    'subjects' : ['Kings, queens, rulers, etc Fiction'],
+                    'qtype' : 'shelf',
+                    'shelving_location' : ['970'],
                     'sort' : 'pubdateDESC',
+                    'canned' : 'true',
                   }
-  - name: 'kcl_teen_carousel_2'
-    fancy_name: 'Hot Topics'
-    search_params: {'loc' : '44',
-                    'qtype' : 'keyword',
-                    'query' : '',
-                    'fmt' : '970',
-                    'min_score' : '1',
-                    'fiction' : 'false',
-                    'sort' : 'pubdateDESC',
-                   }
 is_opac: true
 is_opac_light: true
 opac_toggle: [{'name': 'Main', 'url': 'https://kclopac.app.tadl.org/main/index'},{'name': 'Youth', 'url': 'https://kclyouthopac.app.tadl.org/main/index'},{'name': 'Teen', 'url': 'https://kclteenopac.app.tadl.org/main/index'}]
