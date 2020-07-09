@@ -1,5 +1,10 @@
 <% info = ActiveSupport::JSON.decode(cookies[:user]) %>
 <ul class="nav navbar-nav">
+    <% if Settings.show_ancestory == true %>
+      <li>
+        <a href="https://ancestrylibrary.proquest.com/aleweb/ale/do/login/refurl" target="blank">Ancestory.com</a>
+      </li>
+    <% end %>
     <li <% if request.path == main_checkouts_path %> class="active"<% end %>>
     	<a href="<%= main_checkouts_path %>" class="navi">
     		Checkouts <span class="badge"><span id="checkouts"><%= info['checkouts']%></span></span>

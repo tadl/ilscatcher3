@@ -22,3 +22,4 @@ opac_toggle: [{'name': 'Main', 'url': 'https://catalog.kalkaskalibrary.org/main/
 passreset_text: 'Forgot password?'
 system_lock:
   card_prefix_allow: '90247'
+show_ancestory: true
