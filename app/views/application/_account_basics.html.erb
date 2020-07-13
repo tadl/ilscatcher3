@@ -1,6 +1,6 @@
 <% info = ActiveSupport::JSON.decode(cookies[:user]) %>
 <ul class="nav navbar-nav">
-    <% if Settings.show_ancestory == true && Settings.is_opac != true %>
+    <% if Settings.show_ancestory == true && Settings.is_opac != true && request.path == main_preferences_path %>
       <li>
         <a href="https://ancestrylibrary.proquest.com/aleweb/ale/do/login/refurl" target="blank">Ancestry.com</a>
       </li>
