@@ -23,3 +23,4 @@ passreset_text: 'Forgot password?'
 system_lock:
   card_prefix_allow: '90247'
 show_ancestory: true
+home_link_text: 'Home'
