@@ -25,3 +25,4 @@ passreset_text: 'Trouble logging in?'
 #opac_toggle: [{'name': 'Main', 'url': 'https://catalog.sbbdl.org/main/index'},{'name': 'Youth', 'url': 'https://youth-catalog.sbbdl.org/main/index'}]
 system_lock:
   card_prefix_allow: '90416'
+home_link_text: 'Home'
