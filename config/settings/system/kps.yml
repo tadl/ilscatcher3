@@ -1,0 +1,21 @@
+system_name: 'KPS'
+machine_readable: 'mr-v2.catalog.tadl.org'
+public_catalog: 'https:/catalog.kalkaskalibrary.org'
+location_name: 'Kalkaska Public Schools'
+elastic_evergreen_url: 'https://kcl.elastic.tadl.org/main/index.json?query='
+logo: 'kps-logo.jpg'
+error_image: 'kps-logo.jpg'
+pickup_locations: [['Birch Street Elementary', '48'], ['Cherry Street Intermediate', '49'], ['Rapid City Elementary', '50']]
+location_options: [['Birch Street Elementary', '48'], ['Cherry Street Intermediate', '49'], ['Rapid City Elementary', '50']]
+long_pickup_locations: [['Birch Street Elementary', '48'], ['Cherry Street Intermediate', '49'], ['Rapid City Elementary', '50']]
+elastic_locations: [['KPS', '47']]
+all_locations_code: '47'
+has_payments: 'false'
+has_registration: 'false'
+has_eresources: 'false'
+register_form: '/register/new'
+register_location: '47'
+opac_toggle: [{'name': 'Birch Street Elementary', 'url': 'https://catalog.kalkaskalibrary.org/main/index'},{'name': 'Cherry Street Intermediate', 'url': 'https://youth-catalog.kalkaskalibrary.org/main/index'},{'name': 'Rapid City Elementary', 'url': 'https://teen-catalog.kalkaskalibrary.org/main/index'}]
+passreset_text: 'Forgot password?'
+show_ancestory: false
+home_link_text: 'Home'
