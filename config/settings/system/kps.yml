@@ -15,7 +15,7 @@ has_registration: 'false'
 has_eresources: 'false'
 register_form: '/register/new'
 register_location: '47'
-opac_toggle: [{'name': 'Birch Street Elementary', 'url': 'https://kps-bse-light.opac.tadl.org/main/index'},{'name': 'Cherry Street Intermediate', 'url': 'https://kps-csi-light.opac.tadl.org/main/index'},{'name': 'Rapid City Elementary', 'url': 'https://kps-rce-light.opac.tadl.org/main/index'}]
+#opac_toggle: [{'name': 'Birch Street Elementary', 'url': 'https://kps-bse-light.opac.tadl.org/main/index'},{'name': 'Cherry Street Intermediate', 'url': 'https://kps-csi-light.opac.tadl.org/main/index'},{'name': 'Rapid City Elementary', 'url': 'https://kps-rce-light.opac.tadl.org/main/index'}]
 passreset_text: ' '
 show_ancestory: false
 home_link_text: 'Home'
