@@ -19,3 +19,4 @@ register_location: '47'
 passreset_text: ' '
 show_ancestory: false
 home_link_text: 'Home'
+melcat_search: false

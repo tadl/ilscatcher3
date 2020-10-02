@@ -18,3 +18,4 @@ one_location: 'true'
 login_username_placeholder: 'Interlochen ID # or barcode'
 login_page_message: 'Please log in to access your library account'
 home_link_text: 'Home'
+melcat_search: false

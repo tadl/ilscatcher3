@@ -27,7 +27,7 @@
         Checkout History
     <% end %>
 </div>
-<% if (request.path == main_preferences_path) && Settings.account_only != 'true' %>
+<% if (request.path == main_preferences_path) && Settings.account_only != 'true' && Settings.melcat_search != false %>
     <div class="clearfix padtop"></div>
     <div class="panel panel-primary">
         <div class="panel-heading">Your MeLCat ID</div>
@@ -35,6 +35,8 @@
             <%= @preferences['melcat_id'] %>
         </div>
     </div>
+<% end %>
+<% if (request.path == main_preferences_path) && Settings.account_only != 'true' %>
     <div class="clearfix padtop"></div>
     <div class="panel panel-primary">
         <div class="panel-heading">Your Primary Library Card #</div>
