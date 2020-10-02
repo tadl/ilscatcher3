@@ -103,7 +103,7 @@ class Item
             if self.loc == "22" or self.loc == ''
               location_text = 'in district'
             else
-              location_text = "at your location"
+              location_text = "at selected location"
             end
             return "<strong>" + self.loc_copies_available.to_s + " available " + location_text  + "</strong>"
         elsif self.eresource != nil
