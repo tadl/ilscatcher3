@@ -121,7 +121,7 @@
             <% if !search.query.blank? %>
                 <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 padtop">
                     <div class="form-group">
-                        <% if Settings.is_opac != true || Settings.is_opac_light ==  true %>
+                        <% if Settings.is_opac != true || Settings.is_opac_light ==  true && Settings.melcat_search != false %>
                             <a class="btn btn-default" role="button" href="http://elibrary.mel.org/search/a?searchtype=X&searcharg=<%= search.query %>&SORT=D">
                                 <img style="height: 18px;margin:0;padding:0;" src="/assets/button-melcat-m.png" alt="search MeLCat" /> Search MeLCat
                             </a>
