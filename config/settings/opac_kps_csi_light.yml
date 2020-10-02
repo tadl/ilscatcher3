@@ -18,11 +18,20 @@ search_menu: 'Search'
 default_loc: '49'
 slider_frequency: 10
 lists:
-  - name: 'kps_list'
-    fancy_name: 'New Books'
-    search_params: {'loc' : '26',
+  - name: 'kps_csi_fic'
+    fancy_name: 'New Fiction'
+    search_params: {'loc' : '49',
                     'qtype' : 'shelf',
-                    'shelving_location' : ['510','1'],
+                    'shelving_location' : ['1075'],
+                    'canned' : 'true',
+                    'availability' : 'on',
+                    'sort' : 'pubdateDESC'}
+    searches:
+  - name: 'kps_csi_nonfic'
+    fancy_name: 'New Non-fiction'
+    search_params: {'loc' : '49',
+                    'qtype' : 'shelf',
+                    'shelving_location' : ['1076'],
                     'canned' : 'true',
                     'availability' : 'on',
                     'sort' : 'pubdateDESC'}
