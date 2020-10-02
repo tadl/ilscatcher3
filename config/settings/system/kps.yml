@@ -1,6 +1,6 @@
 system_name: 'KPS'
 machine_readable: 'mr-v2.catalog.tadl.org'
-public_catalog: 'https://kps-catalog.kalkaskalibrary.org/'
+public_catalog: 'https://kps-catalog.kalkaskalibrary.org'
 location_name: 'Kalkaska Public Schools'
 elastic_evergreen_url: 'https://kps.elastic.tadl.org/main/index.json?query='
 logo: 'kps-logo.jpg'
