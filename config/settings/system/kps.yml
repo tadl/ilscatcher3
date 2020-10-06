@@ -8,7 +8,7 @@ error_image: 'kps-logo.jpg'
 pickup_locations: [['Birch Street Elementary', '48'], ['Cherry Street Intermediate', '49'], ['Rapid City Elementary', '50']]
 location_options: [['Kalkaska Public Schools', '47'], ['Birch Street Elementary', '48'], ['Cherry Street Intermediate', '49'], ['Rapid City Elementary', '50'], ['Kalkaska County Library', '44']]
 long_pickup_locations: [['Birch Street Elementary', '48'], ['Cherry Street Intermediate', '49'], ['Rapid City Elementary', '50']]
-elastic_locations: [['KCL', '44'], ['KPS', '47'], ['KPS-BSE', '48'], ['KPS-CSI', '49'], ['KPS-RCE', '50']]
+elastic_locations: [['KCL', '44'], ['KPS-BSE', '48'], ['KPS-CSI', '49'], ['KPS-RCE', '50']]
 all_locations_code: '47'
 has_payments: 'false'
 has_registration: 'false'
