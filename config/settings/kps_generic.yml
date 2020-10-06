@@ -1,0 +1,34 @@
+location_name: 'Kalkaska Public Schools'
+format_options:  [['All Formats', 'fmt' ,'all']]
+format_label: 'Format'
+default_search_display: 'list'
+stylesheet: 'kps.css'
+logo_on_homepage: 'true'
+homepage_logo: 'kps-logo.jpg'
+search_text: 'Search'
+search_menu: 'Search'
+tracked: 'false'
+default_loc: '47'
+slider_frequency: 10
+additional_nav_links:
+  - name: 'Library Website'
+    href: 'http://www.kalkaskalibrary.org/'
+lists:
+  - name: 'kps_fic'
+    fancy_name: 'New Fiction'
+    search_params: {'loc' : '47',
+                    'qtype' : 'shelf',
+                    'shelving_location' : ['1075'],
+                    'canned' : 'true',
+                    'availability' : 'on',
+                    'sort' : 'pubdateDESC'}
+    searches:
+  - name: 'kps_nonfic'
+    fancy_name: 'New Non-fiction'
+    search_params: {'loc' : '47',
+                    'qtype' : 'shelf',
+                    'shelving_location' : ['1076'],
+                    'canned' : 'true',
+                    'availability' : 'on',
+                    'sort' : 'pubdateDESC'}
+    searches:
