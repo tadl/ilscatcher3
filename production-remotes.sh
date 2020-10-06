@@ -17,6 +17,7 @@ git remote add kclyouth dokku@app.tadl.org:kclyouth
 git remote add kclteen dokku@app.tadl.org:kclteen
 git remote add sbbdl dokku@app.tadl.org:sbbdl
 git remote add ica dokku@app.tadl.org:ica
+git remote add kps dokku@app.tadl.org:kps
 
 # dev
 #git remote add test dokku@app.tadl.org:test
