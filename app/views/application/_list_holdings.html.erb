@@ -1,4 +1,4 @@
-<% if location == '22' || location == nil || location == '' %>
+<% if location == '22' || location == nil || location == '' || location == '47' %>
     <% holdings.each do |h| %>
             <h4 style="color: green;"><b>Copies Available at <%= location_map(h['code'], @location_options)  %></b></h4>
             <% h['copies'].each do |c| %>
