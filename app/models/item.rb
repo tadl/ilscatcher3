@@ -100,7 +100,7 @@ class Item
 
     def grid_available_text
         if self.loc_copies_available > 0
-            if self.loc == "22" or self.loc == ''
+            if self.loc == "22" or self.loc == '' or self.loc == '47'
               location_text = 'in district'
             else
               location_text = "at selected location"
