@@ -25,3 +25,4 @@ system_lock:
 show_ancestory: true
 home_link_text: 'Home'
 melcat_search: true
+system_synonym: 'district'
