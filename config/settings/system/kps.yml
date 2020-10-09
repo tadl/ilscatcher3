@@ -21,3 +21,4 @@ show_ancestory: false
 home_link_text: 'Home'
 melcat_search: false
 system_synonym: 'system'
+home_library_system_lock: '47'

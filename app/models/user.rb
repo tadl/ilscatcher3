@@ -2,7 +2,7 @@ class User
 	include ActiveModel::Model
 	require 'open-uri'
   require 'digest/md5'
-	attr_accessor :full_name, :checkouts, :holds, :holds_ready, :fine, :token, :card, :error, :default_search, :pickup_library, :username, :temp_password, :temp_code, :lists, :overdue, :cards, :email
+	attr_accessor :full_name, :checkouts, :holds, :holds_ready, :fine, :token, :card, :error, :default_search, :pickup_library, :username, :temp_password, :temp_code, :lists, :overdue, :cards, :email, :home_library_system_id
 
 	def initialize args
     if args['full_name']
@@ -68,6 +68,7 @@ class User
         basic_info['overdue'] = p.at('#dash_overdue').try(:text).strip rescue nil
         basic_info["email"] = p.at('td:contains("Email Address")').next.next.text rescue nil
         basic_info ["melcat_id"] = p.at('td:contains("MeLCat ID")').next.next.text rescue nil
+        basic_info ["home_library_system_id"] = p.at('td:contains("Home Library System")').next.next.text rescue nil
         basic_info['cards'] = Array.new
         p.css('#card_list').css('.card').each do |c|
           basic_info['cards'].push(c.try(:text).strip)

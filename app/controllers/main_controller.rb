@@ -109,7 +109,13 @@ class MainController < ApplicationController
     end
     if params[:page] && params[:page] == 'true'
       @page = 'true'
-    end 
+    end
+    if Settings.home_library_system_lock && @user.error.nil?
+      if @user.home_library_system_id != Settings.home_library_system_loc
+        logout_with_token(@user.token)
+        @user.error = 'Invalid home library system'
+      end
+    end
     respond_to do |format|
       format.json {render json: @user}
       format.js
