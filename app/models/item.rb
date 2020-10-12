@@ -27,7 +27,7 @@ class Item
   end
 
   	def check_trailer
-  		fetch_trailer = JSON.parse(open('https://trailer-tank.herokuapp.com/main/get_trailer.json?id=' + self.id.to_s, {:read_timeout => 1}).read) rescue nil
+  		fetch_trailer = JSON.parse(open('https://tools.app.tadl.org/trailers/get_trailer.json?id=' + self.id.to_s, {:read_timeout => 1}).read) rescue nil
   		if fetch_trailer.nil? || !fetch_trailer['message'] || fetch_trailer['message'] == 'error'
   			trailer = nil
   		else

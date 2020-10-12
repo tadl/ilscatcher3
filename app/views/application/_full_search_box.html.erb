@@ -45,17 +45,19 @@
                     <%= f.select :qtype,  options_for_select(@query_options, search.qtype), { hide_label: true }, { class: search.query.blank? ? "selectpicker" : "selectpicker autoload", name: 'qtype', id: 'qtype'} %>
                 </div>
             </div>
-            <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 padtop">
+            <% if @format_options.count > 1 %>
+              <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 padtop">
                 <div class="input-group">
-                    <% if @format_options_unlocked.nil? || (search.shelf_lock == 'on' || (@blank_search && !search.in_progress))  %>
+                  <% if @format_options_unlocked.nil? || (search.shelf_lock == 'on' || (@blank_search && !search.in_progress)) %>
                         <span class="input-group-addon"><%= Settings.format_label %></span>
                         <%= f.select :fmt,  options_for_select(@format_options, search.fmt), { hide_label: true }, { class: search.query.blank? ? "selectpicker" : "selectpicker autoload", id: 'fmt' } %>
-                    <% else %>
-                        <span class="input-group-addon"><%= Settings.format_label_unlocked %></span>
-                        <%= f.select :fmt,  options_for_select(@format_options_unlocked, search.fmt), { hide_label: true }, { class: search.query.blank? ? "selectpicker" : "selectpicker autoload", id:'fmt' } %>
-                    <% end %>
+                  <% else %>
+                    <span class="input-group-addon"><%= Settings.format_label_unlocked %></span>
+                    <%= f.select :fmt,  options_for_select(@format_options_unlocked, search.fmt), { hide_label: true }, { class: search.query.blank? ? "selectpicker" : "selectpicker autoload", id:'fmt' } %>
+                  <% end %>
                 </div>
-            </div>
+              </div>
+            <% end %>
             <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 padtop">
                 <div class="input-group">
                     <span class="input-group-addon">Sort</span>
@@ -138,10 +140,10 @@
             <div class="form-group">
             <% if @search.search_path != '' && !search.query.blank? %>
                 <a href="search<%= @search.search_path_with_facets %>&layout=list">
-                    <button class="<%= @search.list_active %> btn btn-default"><span class="large glyphicon glyphicon-list"></span> Show as List</button>
+                    <button class="<%= @search.list_active %> btn btn-default"><span class="large glyphicon glyphicon-list"></span>Show List</button>
                 </a>
                 <a href="search<%= @search.search_path_with_facets %>&layout=grid">
-                    <button class="<%= @search.grid_active %> btn btn-default"><span class="large glyphicon glyphicon-th"></span> Show in Grid</button>
+                    <button class="<%= @search.grid_active %> btn btn-default"><span class="large glyphicon glyphicon-th"></span> Show Grid</button>
                 </a>
             <% end %>
             </div>

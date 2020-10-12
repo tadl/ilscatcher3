@@ -1013,7 +1013,7 @@ function fetch_good_reads(isbn) {
 }
 
 function fetch_youtube_trailer(record_id) {
-    var url = 'https://trailer-tank.herokuapp.com/main/get_trailer.json?id=' + record_id
+    var url = 'https://tools.app.tadl.org/trailers/get_trailer.json?id=' + record_id
     $.get(url)
     .done(function(data) {
         if (data.message && data.message != 'error') {
