@@ -111,7 +111,7 @@ class MainController < ApplicationController
       @page = 'true'
     end
     if Settings.home_library_system_lock && @user.error.nil?
-      if @user.home_library_system_id != Settings.home_library_system_loc
+      if @user.home_library_system_id != Settings.home_library_system_lock
         logout_with_token(@user.token)
         @user.error = 'Invalid home library system'
       end
