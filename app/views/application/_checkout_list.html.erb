@@ -3,6 +3,9 @@
 	<button type="button" class="btn btn-default" id="checkout-bulk-renew">Renew Selected Items</button>
 	<button type="button" class="btn btn-default" id="select-none">Clear Selection</button>
 </div>
+<% if Settings.item_quarantine == true %>
+  <div class="row">Note: Recently returned items may still appear on your account for up to 4 days.</div>
+<% end %>
 <% @checkouts.each do |checkout| %>
     <div class="row" id="checkout-record-<%= checkout.record_id %>">
         <%= render 'checkout', :checkout => checkout %>

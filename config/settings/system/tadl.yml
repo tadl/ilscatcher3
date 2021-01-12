@@ -32,3 +32,4 @@ sms_notify: true
 home_link_text: 'Catalog Home'
 melcat_search: true
 system_synonym: 'district'
+item_quarantine: true
