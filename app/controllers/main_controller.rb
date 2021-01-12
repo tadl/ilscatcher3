@@ -798,7 +798,11 @@ class MainController < ApplicationController
   end
 
   def patron_register
-    birth_date = Date.parse(params[:dob]).iso8601  
+    if params[:dob] && params[:dob] != ''
+      birth_date = Date.parse(params[:dob]).iso8601
+    else
+      birth_date = nil
+    end  
     random_pass = 4.times.map { (0..9).to_a.sample }.join
     stgu = Hash.new
     stgu['__c'] = 'stgu'
