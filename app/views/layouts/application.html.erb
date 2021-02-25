@@ -21,6 +21,9 @@
     <% end %>
     <% if !title_slug.blank? %><% display_title = title_slug %><% else %><% display_title = Settings.location_name %><% end %>
   <title><%= display_title %></title>
+  <% if action_name == "preferences" %>
+    <meta name="referrer" content="no-referrer-when-downgrade" />
+  <% end %>
   <meta property="og:title" content="<%= display_title %>" />
   <meta property="og:type" content="website" />
   <meta property="og:description" content="The <%= Settings.location_name %> Online Catalog" />
