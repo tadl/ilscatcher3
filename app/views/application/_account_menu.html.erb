@@ -42,8 +42,12 @@
         <div class="panel-heading">Your Primary Library Card #</div>
         <div class="panel-body">
             <%= primary_card_helper(@user) %>
+            <br>
+            <a onclick="show_barcode('<%= @user.card %>')" class="visible-xs">Show Barcode</a>
         </div>
     </div>
+  <div id ='barcode'>
+  </div>  
 <% end %>
 <div class="clearfix padtop"></div>
 <% if (request.path == main_fines_path &&  Settings.has_payments == "true"  && @user.fine != "0.00" && Settings.is_opac != true) %>

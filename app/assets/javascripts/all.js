@@ -1199,3 +1199,18 @@ function show_computer_reservation(url){
         maxWidth: 1300,
     });
 }
+
+function show_barcode(card){
+  var settings = {
+    barWidth: 2,
+    barHeight: 100,
+    fontSize: 10,
+    addQuietZone:false,
+
+  }; 
+  $("#barcode").barcode(
+    card, // Value barcode (dependent on the type of barcode)
+    "codabar", // type (string)
+    settings
+  ); 
+}
