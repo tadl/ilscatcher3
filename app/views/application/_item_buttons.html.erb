@@ -77,6 +77,9 @@
             </div>
         </p>
     <% end %>
+    <% if item.id == 48285653 || item.id == 48325262 %>
+        <a class="btn btn-default" href="https://www.tadl.org/policies/section-3-circulation/3-7-wifi-hotspot-lending-policy/">Lending Policy</a>
+    <% end %>
     <% if @default_list %>
         <div class="btn-group" style="min-width:120px;">
             <button type="button" class="btn btn-primary add-list-<%= item.id %>" onclick="add_to_list(<%= @default_list %>, <%= item.id %>)">Add to List</button>

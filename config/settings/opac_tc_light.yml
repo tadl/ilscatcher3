@@ -15,7 +15,7 @@ shelf_lock:
   default_activated: false
   text: 'Limit to Adult at Woodmere'
 location_name: 'Traverse City Library | Traverse Area District Library'
-format_options:  [['All Formats', 'fmt' ,'all'], ['Books', 'fmt' ,'a'],['Large Print', 'shelving_location', '534'],['Movies / TV', 'fmt' ,'g'],['Music', 'fmt' ,'j'],['Music - Vinyl','shelving_location','533'],['CD Audiobooks', 'shelving_location', '518,584'],['MP3 CD Audiobooks', 'shelving_location', '680'],['Playaway Audiobooks','shelving_location','546,590'],['Youth', 'shelving_location', '981,978,977,979,980,516,593,527,571,770,771,529,528,791,530,792,531,795,794,793,532,542,589,549,670'],['Teen','shelving_location','786,787,572,563,564,565,566,802,998,999,1000,1052,1053,1054'],['Sheet Music','shelving_location','575']]
+format_options:  [['All Formats', 'fmt' ,'all'], ['Books', 'fmt' ,'a'],['Large Print', 'shelving_location', '534'],['Movies / TV', 'fmt' ,'g'],['Music', 'fmt' ,'j'],['Music - Vinyl','shelving_location','533'],['CD Audiobooks', 'shelving_location', '518,584'],['MP3 CD Audiobooks', 'shelving_location', '680'],['Playaway Audiobooks','shelving_location','546,590'],['Youth', 'shelving_location', '981,978,977,979,980,516,593,527,571,770,771,529,528,791,530,792,531,795,794,793,532,542,589,549,670'],['Teen','shelving_location','786,787,572,563,564,565,566,802,998,999,1000,1052,1053,1054'],['Sheet Music','shelving_location','575'],['Library of Things', 'shelving_location', '1006']]
 #format_options_unlocked: [['All Formats', 'fmt' ,'all'], ['Books', 'fmt' ,'a'],['Movies / TV', 'fmt' ,'g'],['Music', 'fmt' ,'j']]
 format_label: 'Format'
 #format_label_unlocked: 'Format'
