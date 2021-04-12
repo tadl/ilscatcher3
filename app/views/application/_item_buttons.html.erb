@@ -57,27 +57,46 @@
             <% end %>
         <% end %>
     <% end %>
-    <% if item.eresource.to_s != '' && Settings.is_opac !=  true  %>
+    <% if item.eresource && !item.eresource.empty? && Settings.is_opac !=  true  %>
         <p>
             <div class="btn-group" style="min-width:120px;">
-                <% if item.eresource.include? 'https://goo.gl/' %>
-                    <a class="btn btn-default" href="<%= item.eresource %>">View Manual</a>
+                <% if (item.eresource[0].include? 'https://goo.gl/') || (item.eresource[0].include? 'https://bit.ly/') %>
+                    <% if item.id.to_s != "48325262" %>
+                        <a class="btn btn-default" href="<%= item.eresource[0]  %>">View Manual</a>
+                    <% else %>
+                        <a class="btn btn-default" href="<%= item.eresource[0]  %>">Laptop Manual</a>
+                        <br>
+                        <a class="btn btn-default" href="<%= item.eresource[1]  %>">Hotspot Manual</a>
+                    <% end %>
                 <% else %>
-                    <a class="btn btn-success" href="<%= item.eresource %>">View Online</a>
+                    <a class="btn btn-success" href="<%= item.eresource[0] %>">View Online</a>
                 <% end %>
             </div>
         </p>
     <% end %>
-    <% if item.eresource.to_s != '' && Settings.is_opac ==  true  %>
-        <p>
-            <div class="btn-group" style="min-width:120px;">
-                <% if !item.eresource.include? 'https://goo.gl/' %>
-                    <a class="btn btn-success" onclick="show_qr('<%= item.eresource %>')">View QR Code</a>
-                <% end %>
-            </div>
-        </p>
+    <% if item.eresource && !item.eresource.empty? && Settings.is_opac ==  true  %>
+        <% if item.id.to_s != "48325262" %>
+            <p>
+                <div class="btn-group" style="min-width:120px;">
+                    <% if (!item.eresource[0].include? 'https://goo.gl/') || (item.eresource[0].include? 'https://bit.ly/') %>
+                        <a class="btn btn-success" onclick="show_qr('<%= item.eresource[0] %>')">View QR Code</a>
+                    <% end %>
+                </div>
+            </p>
+        <% else %>
+            <p>
+                <div class="btn-group" style="min-width:120px;">
+                        <a class="btn btn-success" onclick="show_qr('<%= item.eresource[0] %>')">Laptop Manual</a>
+                </div>
+            </p>
+            <p>
+                <div class="btn-group" style="min-width:120px;">
+                        <a class="btn btn-success" onclick="show_qr('<%= item.eresource[1] %>')">Hotspot Manual</a>
+                </div>
+            </p>
+        <% end %>
     <% end %>
-    <% if item.id == 48285653 || item.id == 48325262 %>
+    <% if item.id.to_s == "48285653" || item.id.to_s == "48325262" %>
         <a class="btn btn-default" href="https://www.tadl.org/policies/section-3-circulation/3-7-wifi-hotspot-lending-policy/">Lending Policy</a>
     <% end %>
     <% if @default_list %>
