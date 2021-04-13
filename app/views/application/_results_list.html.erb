@@ -52,7 +52,7 @@
                         <% if !item.publisher.blank? || !item.record_year.blank? %>
                         <p><b>Publisher / Publication Date:</b> <%= item.publisher %> <%= item.record_year %></p>
                         <% end %>
-                        <% if ((item.eresource.to_s.include? 'https://goo.gl/') && item.loc_copies_available >= 1) || item.loc_copies_available >= 1 %>
+                        <% if (((item.eresource.any? { |r| r.include? 'https://goo.gl/'} )||(item.eresource.any? {|r| r.include? 'https://bit.ly/'})) && item.loc_copies_available >= 1) || item.loc_copies_available >= 1 %>
                             <p>
                                 <%= render 'list_holdings', holdings: item.availability, location: @search.loc %>
                             </p>
@@ -61,7 +61,7 @@
                                 <h4  style="color: red">Sorry, no copies available at <%= location_map(@search.loc, @location_options) %></h4> 
                                 We have <%= item.all_copies_total %> in the <%= Settings.system_synonym %>. <% if item.holdable.to_s == 'true' %><a href="#" onclick="event.preventDefault();place_hold(<%= item.id %>)">Place a hold</a> to request one. <% end %>
                             <% end %>
-                            <% if item.all_copies_available < 1 && !item.eresource %>
+                            <% if item.all_copies_available < 1 && ( item.eresource.empty? || ((item.eresource.any? { |r| r.include? 'https://goo.gl/'} )||(item.eresource.any? {|r| r.include? 'https://bit.ly/'})))  %>
                                 <h4 style="color: red">Sorry, no copies available</h4> 
                                 <% if item.holdable.to_s == 'true' %>
                                     <a href="#" onclick="event.preventDefault();place_hold(<%= item.id %>)">Place a hold</a> to request this item.
