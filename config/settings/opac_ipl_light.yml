@@ -7,6 +7,7 @@ screen_saver:
   - url: 'https://www.tadl.org/wp-content/uploads/2018/02/opac_3.jpg'
   - url: 'https://www.tadl.org/wp-content/uploads/2018/02/opac_2.jpg'
   - url: 'https://www.tadl.org/wp-content/uploads/2018/03/TADL_OPAC_Yep_2018.jpg'
+  - url: 'https://www.tadl.org/wp-content/uploads/2021/05/SRC2021_OPAC.png'
 location_name: 'Interlochen Public Library | Traverse Area District Library'
 register_location_name: 'Interlochen Public Library'
 format_options:  [['All Formats', 'fmt' ,'all'], ['Books', 'fmt' ,'a'],['Movies / TV', 'fmt' ,'g'],['Music', 'fmt' ,'j']]
