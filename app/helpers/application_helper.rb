@@ -105,4 +105,22 @@ module ApplicationHelper
             end
         end
     end
+
+    def circ_lib_helper(circ_lib)
+        if circ_lib == 'TADL-WOOD'
+            return 'Woodmere (Main Branch)'
+        elsif circ_lib == 'TADL-EBB'
+            return 'East Bay Branch Library'
+        elsif circ_lib == 'TADL-KBL'
+            return 'Kingsley Branch Library'
+        elsif circ_lib == 'TADL-PCL'
+            return 'Peninsula Community Library'
+        elsif circ_lib == 'TADL-FLPL'
+            return 'Fife Lake Public Library'
+        elsif circ_lib == 'TADL-IPL'
+            return 'Interlochen Public LIbrary'
+        else
+            return circ_lib       
+        end
+    end
 end
