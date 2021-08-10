@@ -21,19 +21,17 @@ lists:
     fancy_name: 'Youth & Young Adult'
     search_params: {'loc' : '28',
                     'qtype' : 'shelf',
-                    'shelving_location' : ['1052','1053','527','791','792'],
+                    'shelving_location' : ['529','791','792','1052','1053'],
                     'canned' : 'true',
                     'availability' : 'on',
                     'sort' : 'pubdateDESC'}
     searches:
-      - name: "Juvenile Collection"
-        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=28&shelving_location[]=527&search_title=Juvenile Collection'
+      - name: "Juvenile Easy"
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=28&shelving_location[]=529&search_title=Juvenile Easy'
       - name: "Juvenile Fiction"
         url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=28&shelving_location[]=791&search_title=Juvenile Fiction'
       - name: "Juvenile Nonfiction"
         url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=28&shelving_location[]=792&search_title=Juvenile Nonfiction'
-      - name: "Juvenile Easy"
-        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=28&shelving_location[]=529&search_title=Juvenile Easy'
       - name: "Young Adult Fiction"
         url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=28&shelving_location[]=1052&search_title=Young Adult Fiction'
       - name: "Young Adult Nonfiction"
@@ -42,27 +40,29 @@ lists:
     fancy_name: 'Books'
     search_params: {'loc' : '28',
                     'qtype' : 'shelf',
-                    'shelving_location' : ['975','976'],
+                    'shelving_location' : ['689','690'],
                     'canned' : 'true',
                     'availability' : 'on',
                     'sort' : 'pubdateDESC'}
     searches:
+      - name: "New Fiction"
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=28&shelving_location[]=689&search_title=New Fiction'
+      - name: "New Non-fiction"
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=28&shelving_location[]=690&search_title=New Non-fiction'
       - name: "Adult Fiction"
         url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=28&shelving_location[]=975&search_title=Adult Fiction'
       - name: "Adult Nonfiction"
-        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=28&shelving_location[]=976&search_title=Adult Nonfiction'
-      - name: "Audiobooks"
-        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=28&shelving_location[]=518&shelving_location[]=584&search_title=Audiobooks'
-      - name: "Large Print"
-        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=28&shelving_location[]=534&search_title=Large Print'
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=28&shelving_location[]=976&search_title=Adult Non-fiction'
   - name: 'ebb_dvd_list'
     fancy_name: 'Video'
     search_params: {'loc' : '28',
                     'qtype' : 'shelf',
-                    'shelving_location' : ['586','521'],
+                    'shelving_location' : ['521','771'],
                     'canned' : 'true',
                     'availability' : 'on',
                     'sort' : 'pubdateDESC'}
     searches:
-      - name: "All Videos"
-        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=28&shelving_location[]=586&shelving_location[]=521&search_title=All Videos'
+      - name: "DVDs"
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=28&shelving_location[]=521&search_title=DVDs'
+      - name: "Juvenile DVDs"
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=28&shelving_location[]=771&search_title=All Videos'
