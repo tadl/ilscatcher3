@@ -36,6 +36,8 @@ lists:
         url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=28&shelving_location[]=1052&search_title=Young Adult Fiction'
       - name: "Young Adult Nonfiction"
         url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=28&shelving_location[]=1053&search_title=Young Adult Nonfiction'
+      - name: "STEM Kits"
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=28&shelving_location[]=1058&search_title=STEM Kits'
   - name: 'ebb_books_list'
     fancy_name: 'New Books'
     search_params: {'loc' : '28',
