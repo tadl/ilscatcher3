@@ -74,3 +74,11 @@ lists:
         url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=680&search_title=Audiobooks on MP3 CD'
       - name: "Playaways"
         url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=546&shelving_location[]=590&search_title=Playaways'
+  - name: 'library_of_things'
+    fancy_name: 'Library of Things'
+    search_params: {'loc' : '22',
+                  'qtype' : 'shelf',
+                  'shelving_location' : ['1006','1026'],
+                  'canned' : 'true',
+                  'availability' : 'on',
+                  'sort' : 'createDESC'}

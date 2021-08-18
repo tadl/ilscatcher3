@@ -154,3 +154,11 @@ lists:
         url: '/main/search?query=&qtype=genre&sort=pubdateDESC&loc=23&genres[]=PlayStation 3 video games.&search_title=PlayStation 3&genre_lock=PlayStation 3 video games.'
       - name: 'PlayStation 2'
         url: '/main/search?query=&qtype=genre&sort=pubdateDESC&loc=23&genres[]=PlayStation 2 video games.&search_title=PlayStation 2&genre_lock=PlayStation 2 video games.'
+  - name: 'library_of_things'
+    fancy_name: 'Library of Things'
+    search_params: {'loc' : '22',
+                  'qtype' : 'shelf',
+                  'shelving_location' : ['1006','1026'],
+                  'canned' : 'true',
+                  'availability' : 'on',
+                  'sort' : 'createDESC'}
