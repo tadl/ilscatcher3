@@ -128,3 +128,11 @@ lists:
         url: '/main/search?query=&qtype=genre&sort=pubdateDESC&loc=22&fmt=j&genres[]=Rhythm and Blues&search_title=Rhythm and Blues&genre_lock=Rhythm and Blues'
       - name: 'Vocal'
         url: '/main/search?query=&qtype=genre&sort=pubdateDESC&loc=22&fmt=j&genres[]=Vocal&search_title=Vocal&genre_lock=Vocal'
+  - name: 'library_of_things'
+    fancy_name: 'Library of Things'
+    search_params: {'loc' : '22',
+                  'qtype' : 'shelf',
+                  'shelving_location' : ['1006','1026'],
+                  'canned' : 'true',
+                  'availability' : 'on',
+                  'sort' : 'createDESC'}
