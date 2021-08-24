@@ -25,7 +25,7 @@ has_eresources: 'true'
 passreset_text: 'Forgot password?'
 # system_lock:
 #   card_prefix_prevent: '90247'
-summer_reading: 'true'
+summer_reading: 'false'
 summer_start_date: 1 June 2021
 summer_report_date: 21 June 2021
 sms_notify: true
