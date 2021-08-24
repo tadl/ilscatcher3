@@ -8,7 +8,8 @@ screen_saver:
   - url: 'https://www.tadl.org/wp-content/uploads/2018/02/opac_2.jpg'
   - url: 'https://www.tadl.org/wp-content/uploads/2020/09/OPAC_sep_portal.jpg'
   - url: 'https://www.tadl.org/wp-content/uploads/2020/09/OPAC_sep_social.jpg'
-  - url: 'https://www.tadl.org/wp-content/uploads/2021/06/SRC2021_OPAC2.jpg'
+  - url: 'https://www.tadl.org/wp-content/uploads/2021/08/OPAC_bigread.png'
+  - url: 'https://www.tadl.org/wp-content/uploads/2021/08/OPAC_gmrcopper.png'
 shelf_lock:
   shelves: [510,618,975,976,680,783,683,518,584,769,525,569,534,535,789,619,797,620,621,544,546,590,551,552,553,554,575,1,1001]
   location: '23'
