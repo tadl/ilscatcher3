@@ -554,4 +554,7 @@ class Search
     end
     return location_code
   end
+
+
+
 end

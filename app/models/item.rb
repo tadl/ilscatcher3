@@ -7,7 +7,7 @@ class Item
                 :publication_place, :isbn, :physical_description, :all_copies_available,
                 :all_copies_total, :loc_copies_total, :loc_copies_available, :author_other,
                 :subjects, :genres, :series, :holdings, :search_layout, :loc, :electronic,
-                :score, :holds, :source, :fiction
+                :score, :holds, :source, :fiction, :abridged
 
   def initialize args
     args.each do |k,v|
@@ -118,5 +118,6 @@ class Item
       self.instance_variables.each {|v| hash[v.to_s.delete("@")] = self.instance_variable_get(v)}
       return hash
     end
+    
 
 end

@@ -87,6 +87,11 @@ class MainController < ApplicationController
         end
       end
     end
+    if @item.title && (@item.title.include? '(AUDIOBOOK)')
+      if check_for_abridged(@item.id.to_s) == true
+        @item.abridged = true
+      end
+    end
     bad_item_test = @item.id rescue nil 
     if bad_item_test != nil
       respond_to do |format|
@@ -885,6 +890,21 @@ class MainController < ApplicationController
   def card
     respond_to do |format|
       format.html
+    end
+  end
+
+  def check_for_abridged(record_id)
+    agent = Mechanize.new
+    page = agent.get('https://' + Settings.machine_readable + '/eg/opac/record/' + record_id)
+    test = page.parser.at('td:contains("General Note")').try(:next_element).try(:text)
+    if test
+      if (test.include? "Abridged") || (test.include? "abridged")
+        return true
+      else
+        return false
+      end
+    else
+      return false
     end
   end
 
