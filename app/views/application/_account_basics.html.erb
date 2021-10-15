@@ -5,6 +5,11 @@
         <a href="https://ancestrylibrary.proquest.com/aleweb/ale/do/login/refurl" target="blank">Ancestry.com</a>
       </li>
     <% end %>
+    <% if Settings.show_consumerreports == true && Settings.is_opac != true && request.path == main_preferences_path %>
+      <li>
+        <a href="https://search.ebscohost.com/login.aspx?profile=crcro&authtype=url,ip" class="navi" target="_blank">ConsumerReports.org <span class="badge">New!</span></a>
+      </li>
+    <% end %>
     <li <% if request.path == main_checkouts_path %> class="active"<% end %>>
     	<a href="<%= main_checkouts_path %>" class="navi">
     		Checkouts <span class="badge"><span id="checkouts"><%= info['checkouts']%></span></span>
