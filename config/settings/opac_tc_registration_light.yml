@@ -29,6 +29,7 @@ search_menu: 'Search'
 default_loc: '23'
 slider_frequency: 10
 #computer_reservation_url: 'http://pcres.lib.tadl.org/reserve.pl'
+has_kiosk: true
 lists:
   - name: 'wood_new_fic_list'
     fancy_name: 'New Fiction'

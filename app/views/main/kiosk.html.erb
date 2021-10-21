@@ -1,0 +1,21 @@
+<div class="row" style="margin-top: 50px">
+    <div class="col-xs-12">
+        <a href="/main/register">
+            <img class="img-responsive center-block" alt="get a library card" src="https://www.tadl.org/wp-content/uploads/2021/10/kiosk_cardbutton-768x292.png">
+        </a>
+    </div>
+    <div class="col-xs-6" style="margin-top: 30px">
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLSdphLC7QEBdE48PxjRjHz2mEVlXD8gj15HErjyn8csTSATMQg/viewform">
+            <img class='img-responsive' alt="volunteer" src="https://www.tadl.org/wp-content/uploads/2021/10/kiosk_volunteerbutton-768x292.png">
+        </a>
+    </div>
+    <div class="col-xs-6" style="margin-top: 30px">
+        <a href="https://www.paypal.com/donate?token=xTVU_nN4Oi7aK31WvFaSoOVpLJm_h5FgSWdUFwdlKgKwVr4Hc0gWHV1TmeDUe5Jk3Dso7_Y47Ci2SUKi">
+            <img class='img-responsive' alt="make a donation" src="https://www.tadl.org/wp-content/uploads/2021/10/kiosk_donatebutton-768x292.png">
+        </a>
+    </div>
+</div>
+
+<% if Settings.is_opac ==  true %>
+    <%= render partial: "screen_saver_managment" %>
+<% end %>

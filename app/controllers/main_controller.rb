@@ -908,6 +908,13 @@ class MainController < ApplicationController
     end
   end
 
+  def kiosk
+    @screen_saver_on = params[:screen_saver_on]
+    respond_to do |format|
+      format.html
+    end
+  end
+
 
 
 end

@@ -86,4 +86,7 @@ Rails.application.routes.draw do
   if Settings.has_registration == 'true'
     match "/register/new" => "main#patron_register", via: [:get, :post], defaults: { format: 'html' }
   end
+  if Settings.has_kiosk == true
+    get 'main/kiosk'
+  end
 end

@@ -4,7 +4,7 @@ Cookies.remove('lists')
 $('#account_info_box').html('<%= escape_javascript(render partial: "login_form") %>');
 <% if Settings.is_opac == true && Settings.is_opac_light !=  true %>
 	<% if Settings.registration_only %>
-		window.location="/main/register?screen_saver_on=true";
+		window.location="/main/kiosk?screen_saver_on=true";
 	<% else %>
 		window.location="/main/index?screen_saver_on=true";
 	<% end %>

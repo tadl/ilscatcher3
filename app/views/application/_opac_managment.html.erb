@@ -14,7 +14,7 @@
 
 	    function logout() {
 	    	<% if Settings.registration_only %>
-	    		var reload_path = '/main/register?screen_saver_on=true'
+	    		var reload_path = '/main/kiosk?screen_saver_on=true'
 	    	<% else %>
 	    		var reload_path = '/main/index?screen_saver_on=true'
 	    	<% end %>
@@ -61,7 +61,7 @@
 	idleTimer()
 	function end_session(){
 		<% if Settings.registration_only %>
-	    	var reload_path = '/main/register?screen_saver_on=true'
+	    	var reload_path = '/main/kiosk?screen_saver_on=true'
 	    <% else %>
 	    	var reload_path = '/main/index?screen_saver_on=true'
 	    <% end %>
