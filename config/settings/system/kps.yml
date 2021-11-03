@@ -5,10 +5,10 @@ location_name: 'Kalkaska Public Schools'
 elastic_evergreen_url: 'https://kps.elastic.tadl.org/main/index.json?query='
 logo: 'kps-logo.jpg'
 error_image: 'kps-logo.jpg'
-pickup_locations: [['Birch Street Elementary', '48'], ['Cherry Street Intermediate', '49'], ['Rapid City Elementary', '50']]
-location_options: [['All Locations', '47'], ['Birch Street Elementary', '48'], ['Cherry Street Intermediate', '49'], ['Rapid City Elementary', '50'], ['Kalkaska County Library', '44']]
-long_pickup_locations: [['Birch Street Elementary', '48'], ['Cherry Street Intermediate', '49'], ['Rapid City Elementary', '50']]
-elastic_locations: [['KCL', '44'], ['KPS-BSE', '48'], ['KPS-CSI', '49'], ['KPS-RCE', '50']]
+pickup_locations: [['Birch Street Elementary', '48'], ['Cherry Street Intermediate', '49'], ['Rapid City Elementary', '50'], ['Kalkaska Middle School', '51'], ['Kalkaska High School', '52']]
+location_options: [['All Locations', '47'], ['Birch Street Elementary', '48'], ['Cherry Street Intermediate', '49'], ['Rapid City Elementary', '50'], ['Kalkaska Middle School', '51'], ['Kalkaska High School', '52'], ['Kalkaska County Library', '44']]
+long_pickup_locations: [['Birch Street Elementary', '48'], ['Cherry Street Intermediate', '49'], ['Rapid City Elementary', '50'], ['Kalkaska Middle School', '51'], ['Kalkaska High School', '52']]
+elastic_locations: [['KCL', '44'], ['KPS-BSE', '48'], ['KPS-CSI', '49'], ['KPS-RCE', '50'], ['KPS-KMS', '51'], ['KPS-KHS', '52']]
 all_locations_code: '47'
 has_payments: 'false'
 has_registration: 'false'
