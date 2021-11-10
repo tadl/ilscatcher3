@@ -896,16 +896,19 @@ class MainController < ApplicationController
   def check_for_abridged(record_id)
     agent = Mechanize.new
     page = agent.get('https://' + Settings.machine_readable + '/eg/opac/record/' + record_id)
-    test = page.parser.at('td:contains("General Note")').try(:next_element).try(:text)
-    if test
-      if (test.include? "Abridged") || (test.include? "abridged")
+    test_1 = page.parser.at('td:contains("General Note")').try(:next_element).try(:text)
+    test_2 = page.parser.at('li:contains("Edition")').try(:text)
+    if test_1
+      if (test_1.scan(/\w+/).map(&:downcase).include? "abridged") || (test_1.scan(/\w+/).map(&:downcase).include? "abridged.")
         return true
-      else
-        return false
       end
-    else
-      return false
     end
+    if test_2
+      if (test_2.scan(/\w+/).map(&:downcase).include? "abridged") || (test_2.scan(/\w+/).map(&:downcase).include? "abridged.")
+        return true
+      end
+    end
+    return false
   end
 
   def kiosk
