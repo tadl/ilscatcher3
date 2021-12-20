@@ -138,14 +138,12 @@
             <% end %>
             <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 padtop">
             <div class="form-group">
-            <% if @search.search_path != '' && !search.query.blank? %>
                 <a href="search<%= @search.search_path_with_facets %>&layout=list">
                     <button class="<%= @search.list_active %> btn btn-default"><span class="large glyphicon glyphicon-list"></span>Show List</button>
                 </a>
                 <a href="search<%= @search.search_path_with_facets %>&layout=grid">
                     <button class="<%= @search.grid_active %> btn btn-default"><span class="large glyphicon glyphicon-th"></span> Show Grid</button>
                 </a>
-            <% end %>
             </div>
             </div>
         </div>   

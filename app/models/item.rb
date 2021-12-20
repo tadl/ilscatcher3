@@ -91,7 +91,7 @@ class Item
     def grid_available_panel
         if self.loc_copies_available > 0
             return "panel-success"
-        elsif self.eresource != nil
+        elsif self.electronic == true
             return "panel-success"
         else
             return "panel-default"
@@ -106,7 +106,7 @@ class Item
               location_text = "at selected location"
             end
             return "<strong>" + self.loc_copies_available.to_s + " available " + location_text  + "</strong>"
-        elsif self.eresource != nil
+        elsif self.eresource == true
             return "<strong>On Demand E-Resource</strong>"
         else
             return ""
