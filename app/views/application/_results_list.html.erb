@@ -69,7 +69,7 @@
                             <% end %>
                             <% if item.electronic == true && Settings.is_opac !=  true %>
                                 <h4>
-                                    <a style="color: green" href="<%= item.eresource %>" target="_blank">
+                                    <a style="color: green" href="<%= item.eresource[0] %>" target="_blank">
                                         View online at <%= item.source %>
                                     </a>
                                 </h4>
