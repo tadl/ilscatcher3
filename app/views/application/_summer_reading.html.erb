@@ -1,23 +1,8 @@
 <% if Settings.summer_reading == 'true' && (Date.parse(Settings.summer_start_date) <= Date.today)  %>
     <div id="summer_reading_wrapper">
         <div class="summer_reading">
-            <% if Settings.summer_reading == 'true' && (Date.parse(Settings.summer_report_date) <= Date.today) %>
-                <%= render 'report_summer_reading' %>
-            <% end %>
+            <a class="btn btn-primary btn-lg" id="register_summer_reading" style="margin-top: 5px;" href="https://tadl.beanstack.com">Register for Summer Reading Club</a>
 		</div>
 	</div>
-	<% if params[:promote] == 'src' %>
-    	<script>
-    		register_summer_reading()
-    	</script>
-	<% end %>
-        <script>
-            window.addEventListener('message', show_register)
-            function show_register(e){
-                if(e.data == 'show register'){
-                    register_summer_reading()
-                }
-            }
-        </script>
 <% end %>
 
