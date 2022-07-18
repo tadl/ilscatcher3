@@ -1,5 +1,5 @@
 location_name: 'Traverse Area District Library'
-format_options:  [['All Formats', 'fmt' ,'all'], ['Books', 'fmt' ,'a'],['Large Print', 'shelving_location', '534'],['Audiobooks','shelving_location','515,518,546,571,572,582,584,590,597,680'],['eBooks','fmt','ebooks'],['Movies / TV', 'fmt' ,'g'],['Music', 'fmt' ,'j'],['Music - Vinyl','shelving_location','533'],['Video Games','shelving_location','777'],['Board Games', 'shelving_location', '1059'],['STEM Kits', 'shelving_location', '1058'],['Library of Things', 'shelving_location', '1006,1026,514']]
+format_options:  [['All Formats', 'fmt' ,'all'], ['Books', 'fmt' ,'a'],['Large Print', 'shelving_location', '534'],['Audiobooks','shelving_location','515,518,546,571,572,582,584,590,597,680,1090'],['eBooks','fmt','ebooks'],['Movies / TV', 'fmt' ,'g'],['Music', 'fmt' ,'j'],['Music - Vinyl','shelving_location','533'],['Video Games','shelving_location','777'],['Board Games', 'shelving_location', '1059'],['STEM Kits', 'shelving_location', '1058'],['Library of Things', 'shelving_location', '1006,1026,514']]
 format_label: 'Format'
 default_search_display: 'list'
 stylesheet: 'tadl.css'
@@ -35,7 +35,7 @@ lists:
       - name: "Oversize"
         url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=22&shelving_location[]=544&search_title=Oversize'
       - name: "Audiobooks"
-        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=22&shelving_location[]=584&shelving_location[]=518&search_title=Audiobooks'
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=22&shelving_location[]=584&shelving_location[]=518&shelving_location[]=515&shelving_location[]=546&shelving_location[]=571&shelving_location[]=572&shelving_location[]=582&&shelving_location[]=590&shelving_location[]=597&&shelving_location[]=680&shelving_location[]=1090&search_title=Audiobooks'
       - name: "Audiobooks on MP3 CD"
         url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=22&shelving_location[]=680&search_title=Audiobooks on MP3 CD'
       - name: "Playaways"
