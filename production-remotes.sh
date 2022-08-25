@@ -4,9 +4,9 @@
 # the dokku server. It is recommend to remove all remotes other than
 # origin before running this script.
 
-# for x in $(git remote | grep -v origin); do
-#     git remote remove ${x}
-# done
+for x in $(git remote | grep -v origin); do
+    git remote remove ${x}
+done
 
 # tadl
 git remote add tadl dokku@apps.tadl.org:tadl
