@@ -58,7 +58,7 @@ GEM
       deep_merge (~> 1.2.1)
       dry-validation (>= 0.12.2)
     connection_pool (2.2.5)
-    crass (1.0.4)
+    crass (1.0.6)
     dalli (2.7.10)
     deep_merge (1.2.1)
     dish (0.0.6)
@@ -124,7 +124,7 @@ GEM
       turbolinks
     json (1.8.6)
     kgio (2.11.2)
-    loofah (2.2.3)
+    loofah (2.3.1)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
     mail (2.7.1)
