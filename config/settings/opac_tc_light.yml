@@ -23,6 +23,7 @@ stylesheet: 'woodmere.css'
 search_text: 'Search'
 #search_text_unlocked: 'Search'
 default_search_display: 'list'
+has_audience: 'true'
 search_menu: 'Search'
 default_loc: '23'
 slider_frequency: 10

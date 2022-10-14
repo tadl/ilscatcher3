@@ -2,7 +2,7 @@ system_name: 'TADL'
 machine_readable: 'mr-v2a.catalog.tadl.org'
 public_catalog: 'https://catalog.tadl.org'
 location_name: 'Traverse Area District Library'
-elastic_evergreen_url: 'http://cal.lib.tadl.org:4000/main/index.json?query='
+elastic_evergreen_url: 'http://cal.lib.tadl.org:3000/main/index.json?query='
 logo: 'logo-clock-only.png'
 error_image: 'logo-clock-only.png'
 pickup_locations: [['Woodmere', '23'],['Interlochen', '24'],['Kingsley', '25'],['Peninsula', '26'],['Fife Lake', '27'],['East Bay', '28']]
@@ -25,9 +25,9 @@ has_eresources: 'true'
 passreset_text: 'Forgot password?'
 # system_lock:
 #   card_prefix_prevent: '90247'
-summer_reading: 'true'
-summer_start_date: 4 June 2018
-summer_report_date: 18 June 2018
+# summer_reading: 'true'
+# summer_start_date: 4 June 2018
+# summer_report_date: 18 June 2018
 show_ancestory: true
 home_link_text: 'Catalog Home'
 melcat_search: true

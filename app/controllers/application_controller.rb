@@ -20,6 +20,7 @@ class ApplicationController < ActionController::Base
         @format_default = Settings.format_options[0][2]
         @sort_options = [['Relevance', 'relevancy'], ['Newest to Oldest', 'pubdateDESC'],['Oldest to Newest', 'pubdateASC'],['Title A to Z', 'titleAZ'], ['Title Z to A', 'titleZA']]
         @location_options = Settings.location_options
+        @audience_options = [['All', 'all'],['Adult', 'adult'],['Young Adult', 'ya'],['Juvenile', 'juv']]
         @pickup_locations = Settings.pickup_locations
         @long_pickup_locations = Settings.long_pickup_locations
         @this_site = Settings.opac_toggle_default
