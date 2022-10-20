@@ -4,7 +4,7 @@ class Search
   attr_accessor :query, :sort, :qtype, :fmt, :loc, :page, :facet, :availability,
                 :layout, :shelving_location, :list_id, :subjects, :series,
                 :authors, :genres, :canned, :search_title, :shelf_lock, :genre_lock, 
-                :in_progress, :physical, :min_score, :fiction
+                :in_progress, :physical, :min_score, :fiction, :audience
 
     def initialize args
       args.each do |k,v|
@@ -124,6 +124,7 @@ class Search
         path += '&genre_lock=' + self.genre_lock unless self.genre_lock.nil?
         path += '&physical=' + self.physical unless self.physical.nil?
         path += '&min_score=' + self.min_score unless  self.min_score.nil?
+        path += '&audience=' + self.audience unless self.audience.nil?
       end
       return path
     end
@@ -238,6 +239,7 @@ class Search
       next_page['physical'] = self.physical unless self.physical.nil?
       next_page['min_score'] = self.min_score unless self.min_score.nil?
       next_page['fiction'] = self.fiction unless self.fiction.nil?
+      next_page['audience'] = self.audience unless self.audience.nil?
 
       next_page['subjects'] = Array.new
       self.subjects.each do |f|
@@ -319,6 +321,7 @@ class Search
       end
       url = url + '&min_score=' + self.min_score unless self.min_score.nil?
       url = url + '&fiction=' + self.fiction unless self.fiction.nil?
+      url = url + '&audience=' + self.audience unless self.audience.nil?
 
       request = JSON.parse(open(url).read) 
       results = Array.new
