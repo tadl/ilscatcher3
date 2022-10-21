@@ -19,7 +19,7 @@ register_location: '46'
 register_location_name: 'Suttons Bay-Bingham District Library'
 register_agreement_text: 'sbbdl'
 register_button: 'true'
-register_listapi_url: 'https://www.tadl.org/listapi/sbbdl/'
+register_listapi_url: 'https://old.tadl.org/listapi/sbbdl/'
 has_eresources: 'false'
 passreset_text: 'Trouble logging in?'
 #opac_toggle: [{'name': 'Main', 'url': 'https://catalog.sbbdl.org/main/index'},{'name': 'Youth', 'url': 'https://youth-catalog.sbbdl.org/main/index'}]
