@@ -8,7 +8,9 @@ screen_saver:
   - url: 'https://old.tadl.org/wp-content/uploads/2018/03/TADL_OPAC_Yep_2018.jpg'
   - url: 'https://old.tadl.org/wp-content/uploads/2021/10/opac-challenges.png'
   - url: 'https://old.tadl.org/wp-content/uploads/2021/10/opac-ssp-1920-x-1080-px.png'
-  - url: 'https://old.tadl.org/wp-content/uploads/2022/08/SLC-2022-08.png'
+  - url: 'https://www.tadl.org/sites/default/files/2022-10/Website.png'
+  - url: 'https://www.tadl.org/sites/default/files/2022-10/In-Service.png'
+  - url: 'https://www.tadl.org/sites/default/files/2022-10/Book%20sale.png'
 location_name: 'East Bay Branch | Traverse Area District Library'
 register_location_name: 'East Bay Branch Library'
 format_options: [['All Formats','fmt','all'],['Books','fmt','a'],['Large Print','fmt','large_print'],['Audiobooks','shelving_location','515,518,546,571,572,582,584,590,597,680'],['Movies / TV','fmt','g'],['Music','fmt','j'],['STEM Kits','shelving_location','1058']]
