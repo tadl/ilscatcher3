@@ -11,6 +11,7 @@ screen_saver:
   - url: 'https://www.tadl.org/sites/default/files/2022-10/Website.png'
   - url: 'https://www.tadl.org/sites/default/files/2022-10/In-Service.png'
   - url: 'https://www.tadl.org/sites/default/files/2022-10/Book%20sale.png'
+  - url: 'https://www.tadl.org/sites/default/files/2022-10/OPAC_beanstack.png'
 location_name: 'Kingsley Branch | Traverse Area District Library'
 register_location_name: 'Kingsley Branch Library'
 format_options:  [['All Formats', 'fmt' ,'all'], ['Books', 'fmt' ,'a'],['Audiobooks','shelving_location','515,518,546,571,572,582,584,590,597,680,1090'],['Movies / TV', 'fmt' ,'g'],['Music', 'fmt' ,'j'],['Adults','shelving_location','510,689,690,518,548,534,975,976,525,535,538,619,544,1089'],['Youth','shelving_location','981,978,977,979,980,516,699,527,571,770,771,529,791,813,817,530,792'],['Teens','shelving_location','572,563,564,565']]
