@@ -59,7 +59,7 @@ GEM
       dry-validation (>= 0.12.2)
     connection_pool (2.2.5)
     crass (1.0.4)
-    dalli (2.7.10)
+    dalli (3.2.3)
     deep_merge (1.2.1)
     dish (0.0.6)
     domain_name (0.5.20180417)
