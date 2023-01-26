@@ -17,7 +17,7 @@ gem 'spring', group: :development
 #added
 gem "bootstrap-sass", ">= 3.4.1"
 gem 'dish', require: 'dish/ext'
-gem 'mechanize', '2.7.7'
+gem 'mechanize', '2.8.5'
 gem 'bootstrap_form'
 gem 'owlcarousel-rails', '~> 1.1.3.3'
 gem 'fancybox2-rails', '~> 0.2.8'
