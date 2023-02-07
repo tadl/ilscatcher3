@@ -23,7 +23,7 @@ gem 'owlcarousel-rails', '~> 1.1.3.3'
 gem 'fancybox2-rails', '~> 0.2.8'
 gem 'jquery-turbolinks'
 gem 'rails_12factor', group: :production
-gem 'dalli', group: :production
+gem 'dalli', '2.7.10', group: :production
 gem 'unicorn'
 gem 'sidekiq', '5.2.8'
 gem 'sidekiq-cron', '~> 0.4.0'

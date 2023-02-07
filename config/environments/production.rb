@@ -51,7 +51,7 @@ Rails.application.configure do
   # config.logger = ActiveSupport::TaggedLogging.new(SyslogLogger.new)
 
   # Use a different cache store in production.
-  config.cache_store = :dalli_cache,
+  config.cache_store = :dalli_store,
                     (ENV["MEMCACHED_URL"] || ""),
                     {:failover => true,
                      :socket_timeout => 1.5,
