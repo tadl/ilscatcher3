@@ -59,7 +59,7 @@ GEM
       dry-validation (>= 0.12.2)
     connection_pool (2.3.0)
     crass (1.0.6)
-    dalli (3.2.3)
+    dalli (2.7.10)
     deep_merge (1.2.1)
     dish (0.0.6)
     domain_name (0.5.20190701)
@@ -271,7 +271,7 @@ DEPENDENCIES
   bootstrap_form
   coffee-rails (~> 4.0.0)
   config
-  dalli
+  dalli (= 2.7.10)
   dish
   dotenv-rails
   fancybox2-rails (~> 0.2.8)
