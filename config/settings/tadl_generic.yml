@@ -14,7 +14,7 @@ default_loc: '22'
 slider_frequency: 10
 additional_nav_links:
   - name: 'TADL Website'
-    href: 'http://www.tadl.org/'
+    href: 'https://www.tadl.org/'
 lists:
   - name: 'tadl_books_list'
     fancy_name: 'New Books'
