@@ -24,4 +24,4 @@ screen_saver:
   - url: 'https://www.kalkaskalibrary.org/wp-content/uploads/2023/02/01.png'
   - url: 'https://www.kalkaskalibrary.org/wp-content/uploads/2023/02/02.png'
   - url: 'https://www.kalkaskalibrary.org/wp-content/uploads/2023/02/03.png'
-opac_toggle: [{'name': 'Main', 'url': 'https://kcl.opacs.tadl.org/main/index'},{'name': 'Youth', 'url': 'https://kcl-youth.opacs.tadl.org/main/index'},{'name': 'Teen', 'url': 'https://kcl-teen.opacs.tadl.org/main/index'}]
+opac_toggle: [{'name': 'Main', 'url': 'https://kcl-light.opacs.tadl.org/main/index'},{'name': 'Youth', 'url': 'https://kcl-youth-light.opacs.tadl.org/main/index'},{'name': 'Teen', 'url': 'https://kcl-teen-light.opacs.tadl.org/main/index'}]
