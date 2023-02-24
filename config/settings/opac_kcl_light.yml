@@ -1,0 +1,45 @@
+format_options:  [['All Formats', 'fmt' ,'all'], ['Books', 'fmt' ,'a'],['Movies / TV', 'fmt' ,'g']]
+format_label: 'Format'
+stylesheet: 'kcl.css'
+search_text: 'Search'
+search_menu: 'Search'
+slider_frequency: 10
+default_loc: '44'
+opac_toggle_default: 'Main'
+default_search_display: 'list'
+lists:
+  - name: 'kcl_list_1'
+    fancy_name: 'New Books'
+    search_params: {'loc' : '44',
+                    'qtype' : 'shelf',
+                    'shelving_location' : ['1032', '1044', '1047', '1048', '1049', '1050'],
+                    'sort' : 'pubdateDESC',
+                    'canned' : 'true',
+                  }
+  - name: 'kcl_list_2'
+    fancy_name: 'New Audiobooks'
+    search_params: {'loc' : '44',
+                    'qtype' : 'shelf',
+                    'sort' : 'pubdateDESC',
+                    'query' : '',
+                    'shelving_location' : ['950'],
+                    'canned' : 'true',
+                  }
+  - name: 'kcl_list_3'
+    fancy_name: 'New Videos'
+    search_params: {'loc' : '44',
+                    'qtype' : 'shelf',
+                    'sort' : 'pubdateDESC',
+                    'query' : '',
+                    'shelving_location' : ['951'],
+                    'canned' : 'true',
+                  }
+is_opac: true
+is_opac_light: true
+opac_wake_message: 'Press any key or move mouse to search the catalog'
+screen_saver_milliseconds: 15000
+screen_saver:
+  - url: 'https://www.kalkaskalibrary.org/wp-content/uploads/2023/02/01.png'
+  - url: 'https://www.kalkaskalibrary.org/wp-content/uploads/2023/02/02.png'
+  - url: 'https://www.kalkaskalibrary.org/wp-content/uploads/2023/02/03.png'
+opac_toggle: [{'name': 'Main', 'url': 'https://kcl.opacs.tadl.org/main/index'},{'name': 'Youth', 'url': 'https://kcl-youth.opacs.tadl.org/main/index'},{'name': 'Teen', 'url': 'https://kcl-teen.opacs.tadl.org/main/index'}]

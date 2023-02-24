@@ -1,0 +1,39 @@
+format_options:  [["All Kids' Materials", "shelving_location", "956,957,958"]]
+format_label: 'Format'
+stylesheet: 'kcl_youth.css'
+search_text: 'Search'
+search_menu: 'Search'
+slider_frequency: 10
+default_loc: '44'
+opac_toggle_default: 'Youth'
+default_search_display: 'list'
+lists:
+  - name: 'kcl_youth_list_1'
+    fancy_name: 'New Juvenile Books'
+    search_params: {'loc' : '44',
+                    'qtype' : 'shelf',
+                    'sort' : 'pubdateDESC',
+                    'query' : '',
+                    'shelving_location' : ['956'],
+                    'canned' : 'true',
+                    'sort' : 'pubdateDESC',
+                  }
+  - name: 'kcl_youth_list_2'
+    fancy_name: 'New Juvenile Picturebooks'
+    search_params: {'loc' : '44',
+                    'qtype' : 'shelf',
+                    'sort' : 'pubdateDESC',
+                    'query' : '',
+                    'shelving_location' : ['957'],
+                    'canned' : 'true',
+                    'sort' : 'pubdateDESC',
+                  }
+is_opac: true
+is_opac_light: true
+opac_wake_message: 'Press any key or move mouse to search the catalog'
+screen_saver_milliseconds: 15000
+screen_saver:
+  - url: 'https://www.kalkaskalibrary.org/wp-content/uploads/2023/02/01.png'
+  - url: 'https://www.kalkaskalibrary.org/wp-content/uploads/2023/02/02.png'
+  - url: 'https://www.kalkaskalibrary.org/wp-content/uploads/2023/02/03.png'
+opac_toggle: [{'name': 'Main', 'url': 'https://kcl.opacs.tadl.org/main/index'},{'name': 'Youth', 'url': 'https://kcl-youth.opacs.tadl.org/main/index'},{'name': 'Teen', 'url': 'https://kcl-teen.opacs.tadl.org/main/index'}]
