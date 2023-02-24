@@ -17,15 +17,15 @@ gem 'spring', group: :development
 #added
 gem "bootstrap-sass", ">= 3.4.1"
 gem 'dish', require: 'dish/ext'
-gem 'mechanize'
+gem 'mechanize', '2.7.7'
 gem 'bootstrap_form'
 gem 'owlcarousel-rails', '~> 1.1.3.3'
 gem 'fancybox2-rails', '~> 0.2.8'
 gem 'jquery-turbolinks'
 gem 'rails_12factor', group: :production
-gem 'dalli', group: :production
+gem 'dalli', '2.7.10', group: :production
 gem 'unicorn'
-gem 'sidekiq', '5.2.7'
+gem 'sidekiq', '5.2.8'
 gem 'sidekiq-cron', '~> 0.4.0'
 gem 'redis', '4.5.0'
 gem 'mini_magick'
@@ -34,5 +34,6 @@ gem 'config'
 gem 'responders', '~> 2.0'
 gem 'rqrcode'
 gem 'american_date'
-gem "loofah", ">= 2.2.3"
-gem "nokogiri", ">= 1.8.5"
+gem "loofah", "2.19.1"
+gem "nokogiri"
+gem "tzinfo", "1.2.10"
