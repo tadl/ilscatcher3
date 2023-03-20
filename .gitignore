@@ -30,3 +30,5 @@ public/assets/*.json
 public/assets/*.gif
 public/assets/*.jpg
 public/assets/bootstrap
+
+.DS_Store

@@ -1,0 +1,38 @@
+is_opac: true
+is_opac_light: true
+summer_reading: 'false'
+opac_wake_message: 'Press any key or move mouse to search the catalog'
+screen_saver_milliseconds: 15000
+screen_saver:
+  - url: 'https://www.tadl.org/wp-content/uploads/2018/02/opac_3.jpg'
+  - url: 'https://www.tadl.org/wp-content/uploads/2018/02/opac_2.jpg'
+location_name: 'Kalkaska High School | Kalkaska Public Schools'
+register_location_name: ''
+format_options:  [['All Formats', 'fmt' ,'all']]
+format_label: 'Format'
+stylesheet: 'kps-khs.css'
+logo: 'kps-logo.jpg'
+error_image: 'kps-logo.jpg'
+search_text: 'Search'
+search_menu: 'Search'
+default_loc: '52'
+slider_frequency: 10
+lists:
+  - name: 'kps_bse_fic'
+    fancy_name: 'New Fiction'
+    search_params: {'loc' : '52',
+                    'qtype' : 'shelf',
+                    'shelving_location' : ['1075'],
+                    'canned' : 'true',
+                    'availability' : 'on',
+                    'sort' : 'pubdateDESC'}
+    searches:
+  - name: 'kps_bse_nonfic'
+    fancy_name: 'New Non-fiction'
+    search_params: {'loc' : '52',
+                    'qtype' : 'shelf',
+                    'shelving_location' : ['1076'],
+                    'canned' : 'true',
+                    'availability' : 'on',
+                    'sort' : 'pubdateDESC'}
+    searches:
