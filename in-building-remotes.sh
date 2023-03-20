@@ -19,6 +19,8 @@ git remote add kcl-youth dokku@opacs.tadl.org:kcl-youth
 git remote add kps-bse dokku@opacs.tadl.org:kps-bse
 git remote add kps-csi dokku@opacs.tadl.org:kps-csi
 git remote add kps-rce dokku@opacs.tadl.org:kps-rce
+git remote add kps-kms dokku@opacs.tadl.org:kps-kms
+git remote add kps-khs dokku@opacs.tadl.org:kps-khs
 git remote add main dokku@opacs.tadl.org:main
 git remote add main-reg dokku@opacs.tadl.org:main-reg
 git remote add main-ss dokku@opacs.tadl.org:main-ss
