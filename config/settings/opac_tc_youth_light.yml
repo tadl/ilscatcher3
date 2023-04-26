@@ -3,11 +3,11 @@ is_opac_light: true
 opac_wake_message: 'Press any key or move mouse to search the catalog'
 screen_saver_milliseconds: 15000
 screen_saver:
-  - url: 'https://old.tadl.org/wp-content/uploads/2018/02/opac_3.jpg'
-  - url: 'https://old.tadl.org/wp-content/uploads/2018/02/opac_2.jpg'
-  - url: 'https://old.tadl.org/wp-content/uploads/2018/03/TADL_OPAC_Yep_2018.jpg'
-  - url: 'https://old.tadl.org/wp-content/uploads/2020/09/OPAC_sep_social.jpg'
-  - url: 'https://old.tadl.org/wp-content/uploads/2021/10/opac-challenges.png'
+  - url: 'https://www.tadl.org/sites/default/files/2023-04/opac_3.jpg'
+  - url: 'https://www.tadl.org/sites/default/files/2023-04/opac_2.jpg'
+  - url: 'https://www.tadl.org/sites/default/files/2023-04/TADL_OPAC_Yep_2018.jpg'
+  - url: 'https://www.tadl.org/sites/default/files/2023-04/OPAC_sep_social.jpg'
+  - url: 'https://www.tadl.org/sites/default/files/2023-04/opac-challenges.png'
   - url: 'https://www.tadl.org/sites/default/files/2022-10/OPAC_homework.png'
   - url: 'https://www.tadl.org/sites/default/files/2022-10/OPAC_beanstack.png'
   - url: 'https://www.tadl.org/sites/default/files/2023-03/Check%20out%20our%20STEM%20kits%21%20%282%29.png'
