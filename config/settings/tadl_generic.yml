@@ -10,6 +10,7 @@ search_menu: 'Search'
 tracked: 'true'
 has_audience: 'true'
 tracking_code: 'UA-75692003-1'
+ga4_code: 'G-EMV7N02VCF'
 default_loc: '22'
 slider_frequency: 10
 additional_nav_links:

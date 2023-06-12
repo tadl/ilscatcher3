@@ -1,0 +1,11 @@
+<% if Rails.env == "production" && Settings.tracked == 'true'  %>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=<%= Settings.ga4_code %>"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', '<%= Settings.ga4_code %>');
+</script>
+<% end %>
