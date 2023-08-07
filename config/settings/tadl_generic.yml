@@ -59,22 +59,50 @@ lists:
         url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=22&shelving_location[]=778&search_title=TC Film Festival'
       - name: 'Animation'
         url: '/main/search?query=&qtype=genre&sort=pubdateDESC&loc=22&fmt=g&genres[]=Animation&search_title=Animation&genre_lock=Animation'
+      - name: "Educational Television"
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=22&shelving_location[]=801&search_title=Educational Television'
+      - name: "Action/Adventure"
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=22&shelving_location[]=982&search_title=Action/Adventure'
       - name: 'Family'
         url: '/main/search?query=&qtype=genre&sort=pubdateDESC&loc=22&fmt=g&genres[]=Family&search_title=Family&genre_lock=Family'
       - name: 'Comedy'
         url: '/main/search?query=&qtype=genre&sort=pubdateDESC&loc=22&fmt=g&genres[]=Comedy&search_title=Comedy&genre_lock=Comedy'
+      - name: "Crime/Mystery"
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=22&shelving_location[]=985&search_title=Crime/Mystery'
       - name: 'Documentary'
         url: '/main/search?query=&qtype=genre&sort=pubdateDESC&loc=22&fmt=g&genres[]=Documentary&search_title=Documentary&genre_lock=Documentary'
+      - name: "Drama"
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=22&shelving_location[]=987&search_title=Drama'
+      - name: "Avant-Garde"
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=22&shelving_location[]=983&search_title=Avant-Garde'
+      - name: "Family"
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=22&shelving_location[]=772&search_title=Family'
+      - name: "Fantasy"
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=22&shelving_location[]=989&search_title=Fantasy'
+      - name: "Foreign"
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=22&shelving_location[]=774&search_title=Foreign'
       - name: 'Horror'
         url: '/main/search?query=&qtype=genre&sort=pubdateDESC&loc=22&fmt=g&genres[]=Horror&search_title=Horror&genre_lock=Horror'
       - name: 'Music'
         url: '/main/search?query=&qtype=genre&sort=pubdateDESC&loc=22&fmt=g&genres[]=Music&search_title=Music&genre_lock=Music'
+      - name: "Musicals"
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=22&shelving_location[]=821&search_title=Musicals'
+      - name: "Opera"
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=22&shelving_location[]=781&search_title=Opera'
+      - name: "Performing Arts"
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=22&shelving_location[]=997&search_title=Performing Arts'
       - name: 'Romance'
         url: '/main/search?query=&qtype=genre&sort=pubdateDESC&loc=22&fmt=g&genres[]=Romance&search_title=Romance&genre_lock=Romance'
       - name: 'Science Fiction'
         url: '/main/search?query=&qtype=genre&sort=pubdateDESC&loc=22&fmt=g&genres[]=Science%20Fiction&search_title=Science%20Fiction&genre_lock=Science%20Fiction'
       - name: 'TV'
         url: '/main/search?query=&qtype=genre&sort=pubdateDESC&loc=22&fmt=g&genres[]=TV&search_title=TV&genre_lock=TV'
+      - name: "British TV"
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=22&shelving_location[]=1042&search_title=British TV'
+      - name: "E-TV"
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=22&shelving_location[]=801&search_title=E-TV'
+      - name: "Thriller"
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=22&shelving_location[]=995&search_title=Thriller'
       - name: 'Western'
         url: '/main/search?query=&qtype=genre&sort=pubdateDESC&loc=22&fmt=g&genres[]=Western&search_title=Western&genre_lock=Western'
   - name: 'tadl_music_list'

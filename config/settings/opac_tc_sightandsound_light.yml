@@ -29,7 +29,7 @@ additional_nav_links:
     href: 'https://events.tadl.org/reserve-room'
 lists:
   - name: 'wood_ss_movie_list'
-    fancy_name: 'Movies'
+    fancy_name: 'Movies & TV'
     search_params: {'loc' : '23',
                     'qtype' : 'shelf',
                     'shelving_location' : ['682','687','814'],
@@ -69,12 +69,20 @@ lists:
         url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=773&search_title=Music'
       - name: "Musicals"
         url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=821&search_title=Musicals'
+      - name: "Opera"
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=781&search_title=Opera'
+      - name: "Performing Arts"
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=997&search_title=Performing Arts'
       - name: "Romance"
         url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=993&search_title=Romance'
       - name: "Science Fiction"
         url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=994&search_title=Science Fiction'
       - name: "TV"
         url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=779&search_title=TV'
+      - name: "British TV"
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=1042&search_title=British TV'
+      - name: "E-TV"
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=801&search_title=E-TV'
       - name: "Thriller"
         url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=995&search_title=Thriller'
       - name: "Western"
