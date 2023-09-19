@@ -69,9 +69,7 @@ class MainController < ApplicationController
     if cookies[:layout]
       params[:layout] = cookies[:layout]
     end
-    if params['title']
-      @item = Item.new params
-    elsif params['id']
+    if params['id']
       @item_search = Search.new :qtype => 'record_id', :query => params['id'], :layout => cookies[:layout]
       @item = @item_search.results[0][0]
     end
