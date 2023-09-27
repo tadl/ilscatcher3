@@ -1,7 +1,8 @@
 class MainController < ApplicationController
     include ApplicationHelper
     before_filter :shared_main_variables
-    skip_before_action :verify_authenticity_token, :only => :patron_register
+    before_filter :set_headers
+    skip_before_action :verify_authenticity_token, :only => [:patron_register, :suggest_an_item]
     respond_to :html, :json, :js
 
   def index

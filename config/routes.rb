@@ -53,6 +53,7 @@ Rails.application.routes.draw do
     match "main/suggest_an_item" => "main#suggest_an_item", via: [:get, :post], defaults: {format: 'js'}
     match 'check_for_participant' => "summer_reading#check_for_participant", via: [:post], defaults: {format: 'json'}
     match 'main/melcat_frame' => "main#melcat_frame", via: [:get, :post]
+    match '*path', to: 'application#preflight', via: :options
     match '/:action', :controller => 'main', via: [:get, :post]
     #handle legacy item details links
     match '/eg/opac/record/:id' => redirect('/main/details?id=%{id}'), via: [:get, :post]

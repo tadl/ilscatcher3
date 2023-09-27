@@ -1,15 +1,26 @@
 class ApplicationController < ActionController::Base
-    protect_from_forgery with: :exception
+    protect_from_forgery with: :exception, unless: -> { preflight_request? }
     require 'open-uri'
     require 'digest/md5'
     require 'time'
     require 'american_date'
+    skip_before_action :verify_authenticity_token, only: [:preflight]
     before_filter :set_headers
     rescue_from Mechanize::Error, with: :scrape_error
     rescue_from SocketError, with: :scrape_error
 
+    def preflight
+        head :ok
+    end
+
+    def preflight_request?
+        request.method == 'OPTIONS'
+    end
+
     def set_headers
-        headers['Access-Control-Allow-Origin'] = '*'      
+        headers['Access-Control-Allow-Origin'] = '*'
+        headers['Access-Control-Allow-Methods'] = 'POST, GET, OPTIONS'
+        headers['Access-Control-Allow-Headers'] = 'Content-Type, Authorization'      
     end  
 
     def shared_main_variables
