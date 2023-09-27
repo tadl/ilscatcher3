@@ -757,6 +757,7 @@ class MainController < ApplicationController
     end
     respond_to do |format|
       format.js
+      format.json {render :json => {:state => @state}}
     end
   end
 
