@@ -57,10 +57,12 @@
                         </div>
                     <% end %>
                 <% end %>
-                <span class="edit_list_control padtop">
-                    <button type="button" class="btn btn-primary" onclick="show_add_note(<%= i['list_item_id'] %>)">Add a Note</button>
-                    <button type="button" class="btn btn-primary" id="remove_button_<%= i['list_item_id'] %>" onclick="remove_from_list(<%= @list_id %>,<%= i['list_item_id'] %>)">Remove Item</button>
-                </span>
+                <% if @my_list && @my_list == true %>
+                    <span class="edit_list_control padtop">
+                        <button type="button" class="btn btn-primary" onclick="show_add_note(<%= i['list_item_id'] %>)">Add a Note</button>
+                        <button type="button" class="btn btn-primary" id="remove_button_<%= i['list_item_id'] %>" onclick="remove_from_list(<%= @list_id %>,<%= i['list_item_id'] %>)">Remove Item</button>
+                    </span>
+                <% end %>
                 <%= link_to main_details_path(:format => :js, :id => i['record_id']), :remote => true do %>
                     <button type="button" class="btn btn-primary">Item Details</button>
                 <% end %>

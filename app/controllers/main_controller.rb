@@ -456,7 +456,7 @@ class MainController < ApplicationController
       key_name = 'list_' + cookies[:login]
       @lists = Rails.cache.read(key_name)
       @lists.each do |l|
-        if l.list_id = @list_id
+        if l.list_id == @list_id
           @my_list = true
         end
       end
