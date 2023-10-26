@@ -147,7 +147,7 @@ class User
 
 	def list_holds
 		agent = create_agent_token(self.token)
-		page = agent.get('https://' + Settings.machine_readable + '/eg/opac/myopac/holds?limit=41')
+		page = agent.get('https://' + Settings.machine_readable + '/eg/opac/myopac/holds?limit=101')
 		holds_raw = page.parser.css('tr.acct_holds_temp').map do |h|
 			{
         :title =>  h.css('td[2]').css('a').text,
@@ -187,7 +187,7 @@ class User
     end
     post_params = post_params.push(["action", action]) 
 		agent = create_agent_token(self.token)
-		agent.post('https://' + Settings.machine_readable + '/eg/opac/myopac/holds?limit=41', post_params)
+		agent.post('https://' + Settings.machine_readable + '/eg/opac/myopac/holds?limit=101', post_params)
 		holds = self.list_holds
 		updated_details = self.basic_info(agent)
     user = User.new updated_details
@@ -217,7 +217,7 @@ class User
 
 	def list_checkouts
 		agent = create_agent_token(self.token)
-		page = agent.get('https://' + Settings.machine_readable + '/eg/opac/myopac/circs')
+		page = agent.get('https://' + Settings.machine_readable + '/eg/opac/myopac/circs?limit=201')
 		checkouts = scrape_checkouts(page)
     	return checkouts
 	end
