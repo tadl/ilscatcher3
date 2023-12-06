@@ -5,6 +5,10 @@ task :generate_sliders => :environment do
 
     lists = Settings.lists
 
+    if Settings.has_more_lists
+        lists = lists + Settings.more_lists
+    end
+
     lists.each do |l|
         fetch = Search.new l['search_params']
         results = fetch.results

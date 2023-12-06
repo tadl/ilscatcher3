@@ -16,6 +16,15 @@
     	<%= render 'featured_lists', list: Rails.cache.read(l['name']).shuffle, name: l['name'] %>
     <% end %>
 </div>
+<% if Settings.has_more_lists ==  true %>   
+    <div id="more_featured_items">
+        <div class="text-center">
+            <%= link_to 'load_more_featured_items.js', remote: true, :method => :get, :type => 'button', :class => 'btn btn-block btn-primary', :style => 'margin-top: 15px; margin-bottom: 10px;' do %>
+                Load More Featured Items
+            <% end %>
+        </div>
+    </div>
+<% end %>
 <% if Settings.is_opac ==  true %>    
     <%= render partial: "screen_saver_managment" %>
 <% end %>
