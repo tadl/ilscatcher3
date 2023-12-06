@@ -170,7 +170,7 @@ has_more_lists: true
 more_lists:
   - name: 'games_list'
     fancy_name: 'New Games'
-    search_params: {'loc' : '22',
+    search_params: {'loc' : '23',
                     'qtype' : 'shelf',
                     'shelving_location' : ['777'],
                     'canned' : 'true',
