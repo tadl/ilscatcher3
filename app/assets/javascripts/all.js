@@ -5,28 +5,7 @@ var ready;
 ready = function() {
     /* for front page carousels */
     $.getScript('/assets/salvattore.min.js');
-    $(".tall-carousel").owlCarousel({
-        items : 9,
-        paginationNumbers : true,
-        itemsDesktop : [1199,7],
-        itemsDesktopSmall : [980,5],
-        itemsTablet: [768,4],
-        itemsMobile : [479,2],
-        itemsScaleUp : false,
-        lazyLoad : false,
-        afterAction: accesible_carousel
-    });
-    $(".square-carousel").owlCarousel({
-        items : 6,
-        paginationNumbers : true,
-        itemsDesktop : [1199,5],
-        itemsDesktopSmall : [980,3],
-        itemsTablet: [768,3],
-        itemsTabletSmall: false,
-        itemsMobile : [479,2],
-        lazyLoad : false,
-        afterAction: accesible_carousel
-    });
+    initialize_sliders();
 
     /* scroll to top button */
     var offset = 450;
@@ -79,7 +58,6 @@ ready = function() {
     window.setTimeout(function() {
         $('#featured_lists').show();
     }, 150);
-
 };
 
 $(document).ready(ready);
@@ -1213,4 +1191,33 @@ function show_barcode(card){
     "codabar", // type (string)
     settings
   ); 
+}
+
+function initialize_sliders(){
+    $(".tall-carousel:not(.initialized)").each(function() {
+        $(this).addClass('initialized').owlCarousel({
+            items : 9,
+            paginationNumbers : true,
+            itemsDesktop : [1199,7],
+            itemsDesktopSmall : [980,5],
+            itemsTablet: [768,4],
+            itemsMobile : [479,2],
+            itemsScaleUp : false,
+            lazyLoad : false,
+            afterAction: accesible_carousel
+        });
+    });
+    $(".square-carousel:not(.initialized)").each(function() {
+        $(this).addClass('initialized').owlCarousel({
+            items : 6,
+            paginationNumbers : true,
+            itemsDesktop : [1199,5],
+            itemsDesktopSmall : [980,3],
+            itemsTablet: [768,3],
+            itemsTabletSmall: false,
+            itemsMobile : [479,2],
+            lazyLoad : false,
+            afterAction: accesible_carousel
+        });
+    });
 }

@@ -893,6 +893,12 @@ class MainController < ApplicationController
     end
   end
 
+  def load_more_featured_items
+    respond_to do |format|
+      format.js
+    end
+  end
+
   def check_for_abridged(record_id)
     agent = Mechanize.new
     page = agent.get('https://' + Settings.machine_readable + '/eg/opac/record/' + record_id)

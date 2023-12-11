@@ -151,20 +151,28 @@ lists:
                     'availability' : 'on',
                     'sort' : 'pubdateDESC'}
     searches:
+      - name: 'Nintendo Switch'
+        url: '/main/search?query=GAME SWITCH&qtype=call_number&sort=pubdateDESC&loc=23'
+      - name: 'Nintendo Wii'
+        url: '/main/search?query=&qtype=genre&sort=pubdateDESC&loc=23&genres[]=Nintendo Wii video games.&search_title=Nintendo Wii&genre_lock=Nintendo Wii video games.'  
       - name: "Nintendo Wii U"
         url: '/main/search?query=&qtype=genre&sort=pubdateDESC&loc=23&genres[]=Nintendo Wii U video games.&search_title=Nintendo Wii U&genre_lock=Nintendo Wii U video games.'
-      - name: "Xbox 360"
-        url: '/main/search?query=&qtype=genre&sort=pubdateDESC&loc=23&genres[]=Xbox 360 video games.&search_title=Xbox 360&genre_lock=Xbox 360 video games.'
+      - name: 'Nintendo 3DS'
+        url: '/main/search?query=GAME 3DS&qtype=call_number&sort=pubdateDESC&loc=23'
+      - name: 'PlayStation 5'
+        url: '/main/search?query=GAME%20PS5&qtype=call_number&sort=pubdateDESC&loc=23'
       - name: 'PlayStation 4'
         url: '/main/search?query=&qtype=genre&sort=pubdateDESC&loc=23&genres[]=PlayStation 4 video games.&search_title=PlayStation 4&genre_lock=PlayStation 4 video games.'
-      - name: 'Nintendo Wii'
-        url: '/main/search?query=&qtype=genre&sort=pubdateDESC&loc=23&genres[]=Nintendo Wii video games.&search_title=Nintendo Wii&genre_lock=Nintendo Wii video games.'
-      - name: 'Xbox'
-        url: '/main/search?query=&qtype=genre&sort=pubdateDESC&loc=23&genres[]=Xbox video games.&search_title=Xbox&genre_lock=Xbox video games.'
       - name: 'PlayStation 3'
         url: '/main/search?query=&qtype=genre&sort=pubdateDESC&loc=23&genres[]=PlayStation 3 video games.&search_title=PlayStation 3&genre_lock=PlayStation 3 video games.'
       - name: 'PlayStation 2'
         url: '/main/search?query=&qtype=genre&sort=pubdateDESC&loc=23&genres[]=PlayStation 2 video games.&search_title=PlayStation 2&genre_lock=PlayStation 2 video games.'
+      - name: 'Xbox One'
+        url: '/main/search?query=GAME XBOXONE&qtype=call_number&sort=pubdateDESC&loc=23'
+      - name: "Xbox 360"
+        url: '/main/search?query=&qtype=genre&sort=pubdateDESC&loc=23&genres[]=Xbox 360 video games.&search_title=Xbox 360&genre_lock=Xbox 360 video games.'
+      - name: 'Xbox'
+        url: '/main/search?query=&qtype=genre&sort=pubdateDESC&loc=23&genres[]=Xbox video games.&search_title=Xbox&genre_lock=Xbox video games.'
   - name: 'library_of_things'
     fancy_name: 'Library of Things'
     search_params: {'loc' : '22',
