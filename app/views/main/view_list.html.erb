@@ -9,15 +9,28 @@
         <p><%= @list['description'] %></p>
     <% end %>
     <% if @list['page'].to_i > 1 %>
-        <a type="button" class="btn btn-primary btn-xs navi" href="/main/view_list?list_id=<%= @list['id']%>"><i class="glyphicon glyphicon-fast-backward"></i></a>
+        <a type="button" class="btn btn-primary btn-xs navi" href="/main/view_list?list_id=<%= @list['id']%>&sort_by=<%= @list['sort_by']%>"><i class="glyphicon glyphicon-fast-backward"></i></a>
     <% end %>
     <% if @list['page'].to_i > 0 %>
-        <a type="button" class="btn btn-primary btn-xs navi" href="/main/view_list?list_id=<%= @list['id']%>&page=<%= (@list['page'].to_i - 1) %>"><i class="glyphicon glyphicon-triangle-left"></i> Previous Page</a>
+        <a type="button" class="btn btn-primary btn-xs navi" href="/main/view_list?list_id=<%= @list['id']%>&page=<%= (@list['page'].to_i - 1) %>&sort_by=<%= @list['sort_by']%>"><i class="glyphicon glyphicon-triangle-left"></i> Previous Page</a>
     <% end %>
     <% if @list['more_results'] == "true" %>
-        <a type="button" class="btn btn-primary btn-xs navi pull-right" href="/main/view_list?list_id=<%= @list['id']%>&page=<%= (@list['page'].to_i + 1) %>">Next Page <i class="glyphicon glyphicon-triangle-right"></i></a>
+        <a type="button" class="btn btn-primary btn-xs navi pull-right" href="/main/view_list?list_id=<%= @list['id']%>&page=<%= (@list['page'].to_i + 1) %>&sort_by=<%= @list['sort_by']%>">Next Page <i class="glyphicon glyphicon-triangle-right"></i></a>
     <% end %>
     <div class="clearfix"></div>
+    <div class="row">
+    <div class="col-md-3">
+        <label for="list_sort">Sort by:</label>
+        <select class="form-control" id="list_sort" onchange="sort_list_by('<%= @list['id']%>')">
+          <option value="container_date.descending" <% if @list['sort_by'] == 'container_date.descending' %> selected <% end %>>Date Added to List (Newest First)</option>
+          <option value="container_date" <% if @list['sort_by'] == 'container_date' %> selected <% end %>>Date Added to List (Oldest First)</option>
+          <option value="pubdate.descending" <% if @list['sort_by'] == 'pubdate.descending' %> selected <% end %>>Newest to Oldest</option>
+          <option value="pubdate" <% if @list['sort_by'] == 'pubdate' %> selected <% end %>>Oldest to Newest</option>
+          <option value="titlesort" <% if @list['sort_by'] == 'titlesort' %> selected <% end %>>Title A to Z</option>
+          <option value="titlesort.descending" <% if @list['sort_by'] == 'titlesort.descending' %> selected <% end %>>Title Z to A</option>
+        </select>
+    </div>
+    </div>
     <% @list['items'].each do |i| %>
         <div class="row padtop padbot">
             <div class="col-md-2">
@@ -77,13 +90,13 @@
         </div>
     <% end %>
     <% if @list['page'].to_i > 1 %>
-        <a type="button" class="btn btn-primary btn-xs navi" href="/main/view_list?list_id=<%= @list['id']%>"><i class="glyphicon glyphicon-fast-backward"></i></a>
+        <a type="button" class="btn btn-primary btn-xs navi" href="/main/view_list?list_id=<%= @list['id']%>&sort_by=<%= @list['sort_by']%>"><i class="glyphicon glyphicon-fast-backward"></i></a>
     <% end %>
     <% if @list['page'].to_i > 0 %>
-        <a type="button" class="btn btn-primary btn-xs navi" href="/main/view_list?list_id=<%= @list['id']%>&page=<%= (@list['page'].to_i - 1) %>"><i class="glyphicon glyphicon-triangle-left"></i> Previous Page</a>
+        <a type="button" class="btn btn-primary btn-xs navi" href="/main/view_list?list_id=<%= @list['id']%>&page=<%= (@list['page'].to_i - 1) %>&sort_by=<%= @list['sort_by']%>"><i class="glyphicon glyphicon-triangle-left"></i> Previous Page</a>
     <% end %>
     <% if @list['more_results'] == "true" %>
-        <a type="button" class="btn btn-primary btn-xs navi pull-right" href="/main/view_list?list_id=<%= @list['id']%>&page=<%= (@list['page'].to_i + 1) %>">Next Page <i class="glyphicon glyphicon-triangle-right"></i></a>
+        <a type="button" class="btn btn-primary btn-xs navi pull-right" href="/main/view_list?list_id=<%= @list['id']%>&page=<%= (@list['page'].to_i + 1) %>&sort_by=<%= @list['sort_by']%>">Next Page <i class="glyphicon glyphicon-triangle-right"></i></a>
     <% end %>
     <div class="clearfix"></div>
 </div>

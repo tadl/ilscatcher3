@@ -1221,3 +1221,9 @@ function initialize_sliders(){
         });
     });
 }
+
+function sort_list_by(list_id){
+    showLoading();
+    url="/main/view_list?list_id=" + list_id + "&sort_by=" + $('#list_sort').val();
+    window.location.replace(url);
+}

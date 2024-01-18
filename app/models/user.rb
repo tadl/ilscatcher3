@@ -533,6 +533,7 @@ class User
     end
     list['more_results'] = more_results
     list['page'] = page_number
+    list['sort_by'] = sort_by
     return list
   end
 
