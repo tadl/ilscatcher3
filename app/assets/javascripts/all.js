@@ -537,7 +537,7 @@ function account_prefs_binds() {
         var userpanel = $('#panel-user-prefs').html();
 
         var uv = $('#username-value').text();
-        var uvhtml = '<input id="uv" name="up-username" class="form-control" type="text" value="'+uv+'">';
+        var uvhtml = '<input id="uv" name="up-username" class="form-control pull-left" type="text" value="'+uv+'">';
         $('#username-value').html(uvhtml);
 
         $('#user-prefs-password').show();

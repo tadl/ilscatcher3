@@ -14,7 +14,10 @@
                 <% end %>
                 <tr><td>Email Address</td><td id="email-value"><%= @preferences['email'] %></td><td><div class="btn-group pull-right" id="user-email-prefs-buttons"><a href="#" class="btn btn-primary btn-xs edit-user-email">Edit</a></div></td></tr>
                 <tr><td>Password</td><td id="current-password-value">(hidden)</td><td><div class="btn-group pull-right" id="user-password-prefs-buttons"><a href="#" class="btn btn-primary btn-xs edit-user-password">Edit</a></div></td></tr>
-                <tr id="user-prefs-password" style="display:none;"><td><strong>Enter current password to confirm changes (required)</strong></td><td id="password-value" colspan="2"><input id="up-password" name="up-password" class="form-control" type="password" placeholder="Current Password" required></td></tr>
+                <tr id="user-prefs-password" style="display:none;"><td colspan="2"><strong>Enter current password to confirm changes (required)</strong>
+                    <br>
+                    <input id="up-password" name="up-password" class="form-control" type="password" placeholder="Current Password" required></td></tr>
+                    </td><td id="password-value" colspan="2">
             </tbody>
         </table>
     </div>
