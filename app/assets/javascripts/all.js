@@ -60,7 +60,7 @@ ready = function() {
     }, 150);
 
     $('#login_drop_down').on('hide.bs.dropdown', function () {
-        const passwordInput = document.getElementById('password');
+        var passwordInput = document.getElementById('password');
         if (passwordInput.getAttribute('type') !== 'password') {
             passwordInput.setAttribute('type', 'password');
             // Reset the toggle button icon or text if necessary

@@ -38,8 +38,8 @@
     $('#pass-reset-form').keydown(function(event) { if (event.keyCode == 13) { passwordReset(); } });
     document.getElementById('togglePassword').addEventListener('click', function (e) {
         e.stopPropagation();
-        const passwordInput = document.getElementById('password');
-        const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+        var passwordInput = document.getElementById('password');
+        var type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
         passwordInput.setAttribute('type', type);
         // Toggle the icon or button text if needed
         this.innerHTML = type === 'password' ? '<i class="glyphicon glyphicon-eye-open"></i>' : '<i class="glyphicon glyphicon-eye-close"></i>';
