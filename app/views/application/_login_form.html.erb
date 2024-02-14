@@ -1,4 +1,4 @@
-<li class="dropdown">
+<li id="login_drop_down" class="dropdown">
     <a tabindex="0"  href="#" class="navbar-nav dropdown-toggle add-focus" data-toggle="dropdown" style="">Sign in <b class="caret"></b></a>
     <ul class="dropdown-menu" style="padding: 20px; min-width: 300px;">
         <form id="login_form">
@@ -14,6 +14,9 @@
                         <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
                         <label class="sr-only" for="password">Password</label>
                         <input type="password" class="form-control" id="password" name="password" placeholder="Password" required>
+                        <span class="input-group-btn">
+                            <button id="togglePassword" class="btn btn-default" type="button"><i class="glyphicon glyphicon-eye-open"></i></button>
+                        </span>
                     </div>
                 </div>
             </div>
@@ -30,6 +33,15 @@
         <button type="button" class="btn btn-primary navbar-btn" id="acctreg" data-reg-location="<%= Settings.register_link || '/register' %>">Register</button>
     <% end %>
 </li>
-<script>$('#the-login-form').keydown(function(event) { if (event.keyCode == 13) { login(); } });</script>
-<%= render partial: 'comp_reservation' %>
-<script>$('#pass-reset-form').keydown(function(event) { if (event.keyCode == 13) { passwordReset(); } });</script>
+<script>$('#the-login-form').keydown(function(event) { if (event.keyCode == 13) { login(); } });
+    <%= render partial: 'comp_reservation' %>
+    $('#pass-reset-form').keydown(function(event) { if (event.keyCode == 13) { passwordReset(); } });
+    document.getElementById('togglePassword').addEventListener('click', function (e) {
+        e.stopPropagation();
+        const passwordInput = document.getElementById('password');
+        const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+        passwordInput.setAttribute('type', type);
+        // Toggle the icon or button text if needed
+        this.innerHTML = type === 'password' ? '<i class="glyphicon glyphicon-eye-open"></i>' : '<i class="glyphicon glyphicon-eye-close"></i>';
+    });
+</script>

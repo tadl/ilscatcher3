@@ -58,6 +58,15 @@ ready = function() {
     window.setTimeout(function() {
         $('#featured_lists').show();
     }, 150);
+
+    $('#login_drop_down').on('hide.bs.dropdown', function () {
+        const passwordInput = document.getElementById('password');
+        if (passwordInput.getAttribute('type') !== 'password') {
+            passwordInput.setAttribute('type', 'password');
+            // Reset the toggle button icon or text if necessary
+            document.getElementById('togglePassword').innerHTML = '<i class="glyphicon glyphicon-eye-open"></i>';
+        }
+    });
 };
 
 $(document).ready(ready);

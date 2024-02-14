@@ -29,6 +29,7 @@
                 <input type="text" id="holdloginuser-<%= item.id %>" class="holdloginuser-<%= item.id %> form-control" name="holdloginuser" />
                 <label for="holdloginpass-<%= item.id %>" class="padtop">Password</label>
                 <input type="password" id="holdloginpass-<%= item.id %>" class="holdloginpass-<%= item.id %> form-control" name="holdloginpass" />
+                <input type="checkbox" onclick="togglePasswordVisibility(<%= item.id %>)"> Show Password
                 <div class="padtop">
                     <div class="btn-group" style="min-width:120px;">
                         <button type="button" class="btn btn-success loginsubmit" onclick="login(<%= item.id %>)">
@@ -141,3 +142,15 @@
     <% end %>
 </span>
 <div style="clear: both"></div>
+<script>
+    function togglePasswordVisibility(itemId) {
+        var passwordInputs = document.getElementsByClassName('holdloginpass-' + itemId);  
+        Array.from(passwordInputs).forEach(function(passwordInput) {
+            if (passwordInput.type === "password") {
+                passwordInput.type = "text";
+            } else {
+                passwordInput.type = "password";
+            }
+        });
+    }
+</script>
