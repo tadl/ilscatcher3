@@ -118,6 +118,17 @@ class Item
       self.instance_variables.each {|v| hash[v.to_s.delete("@")] = self.instance_variable_get(v)}
       return hash
     end
+
+    def checkout_limit
+      self.holdings.each do |h|
+        if h['location'] == 'STEM Kits'
+          return "2 STEM kits per account"
+        elsif h['call_number'].include?("LAUNCHPAD")
+          return "2 Launchpads per account"
+        end
+      end
+      return false
+    end
     
 
 end

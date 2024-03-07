@@ -1,4 +1,12 @@
 <span class="item_buttons_div">
+    <% if item.checkout_limit != false %>
+        <div style="margin-top: 10px">
+            <b>Checkout limit: 
+            <br>
+            <%= item.checkout_limit %>
+            </b>
+        </div>
+    <% end %>
     <% if item.electronic.to_s == 'false' %>
         <% if item.holdable.to_s == 'true' %>
             <div class='hold-status-<%= item.id %>'>
