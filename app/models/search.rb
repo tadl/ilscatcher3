@@ -436,7 +436,7 @@ class Search
     good_url = []
     if url.kind_of?(Array)
       url.each do |link|
-        if (link.include? 'http://via.tadl.org') || (link.include? 'https://www.hoopladigital.com/') || (link.include? 'https://goo.gl/') || (link.include? 'https://bit.ly') || (link.include? 'https://tinyurl.com')    
+        if (link.include? 'http://via.tadl.org') || (link.include? 'https://www.hoopladigital.com/') || (link.include? 'https://goo.gl/') || (link.include? 'https://bit.ly') || (link.include? 'https://tinyurl.com') || (link.include? 'https://drive.google.com/')    
           good_url.push(link)
         end
       end
