@@ -497,6 +497,7 @@ class User
   def view_list(list_id, page_number, sort_by)
     agent = create_agent_token(self.token)
     randomizer = SecureRandom.hex(13)
+    expression_to_remove_link = %r{https?://[^\s]+\z}
     page = agent.get('https://' + Settings.machine_readable + '/eg/opac/results?contains=nocontains&query='+ randomizer +'&qtype=keyword&bookbag='+ list_id +'&sort='+ sort_by +'&limit=10&page=' + page_number + '&loc=' + Settings.all_locations_code)    
     list = Hash.new
     list_items = Array.new
@@ -508,7 +509,7 @@ class User
         item_hash = Hash.new
         item_hash['record_id'] = l.css('.search_link').attr('name').to_s.gsub('record_','') 
         item_hash['title'] = l.css('.record_title').text.strip rescue nil
-        item_hash['author'] = l.css('.record_author').text.strip rescue nil
+        item_hash['author'] = l.css('.record_author').text.strip.gsub(expression_to_remove_link, '') rescue nil
         item_hash['description'] = l.css('tr[@name=bib_summary_full]').text.strip rescue nil
         item_hash['contents'] = l.css('tr[@name=bib_contents_full]').text.strip rescue nil
         item_hash['call_number'] = l.css('tr[@name=bib_cn_list]/td[2]').text.strip rescue nil
