@@ -120,11 +120,13 @@ class Item
     end
 
     def checkout_limit
-      self.holdings.each do |h|
-        if h['location'] == 'STEM Kits'
-          return "2 STEM kits per account"
-        elsif h['call_number'].include?("LAUNCHPAD")
-          return "2 Launchpads per account"
+      if ENV['SYSTEM_NAME'] == 'tadl'
+        self.holdings.each do |h|
+          if h['location'] == 'STEM Kits'
+            return "2 STEM kits per account"
+          elsif h['call_number'].include?("LAUNCHPAD")
+            return "2 Launchpads per account"
+          end
         end
       end
       return false
