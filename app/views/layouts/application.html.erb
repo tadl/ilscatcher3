@@ -79,6 +79,18 @@
             <div class="col-xs-12 col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3" id="alert_target"></div>
         </div>
         <%= yield %>
+        <% if Settings.has_chat %>
+            <div id="chat">
+                <div class="needs-js">chat loading...</div>
+                <script type="text/javascript">
+                  (function() {
+                    var x = document.createElement("script"); x.type = "text/javascript"; x.async = true;
+                    x.src = (document.location.protocol === "https:" ? "https://" : "http://") + "libraryh3lp.com/js/libraryh3lp.js?18540";
+                    var y = document.getElementsByTagName("script")[0]; y.parentNode.insertBefore(x, y);
+                  })();
+                </script>
+            </div>
+        <% end %>
     </div>
 
     <%= render 'modal_statusmessage' %>
@@ -92,7 +104,5 @@
   <% if Settings.is_opac == true && Settings.is_opac_light != true  %>
     <%= render partial: "opac_managment" %>
   <% end %>
-  <div id="aug_25_test">
-  </div>
 </body>
 </html>
