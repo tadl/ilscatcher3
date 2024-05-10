@@ -139,3 +139,7 @@ lists:
     searches:
       - name: "All Things"
         url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=22&shelving_location[]=1006&search_title=Things'
+summer_reading: 'true'
+summer_start_date: 1 June 2023
+summer_report_date: 21 June 2021
+summer_prize: true
