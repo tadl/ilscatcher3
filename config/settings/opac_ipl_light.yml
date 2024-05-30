@@ -53,3 +53,4 @@ lists:
         url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=24&shelving_location[]=521&search_title=Movies'
       - name: "Television Series and Box Sets"
         url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=24&shelving_location[]=779&search_title=Television Series and Box Sets'
+summer_reading: 'false'
