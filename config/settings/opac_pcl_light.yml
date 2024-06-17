@@ -56,3 +56,4 @@ lists:
                     'sort' : 'pubdateDESC',
                     'min_score' : '1' }
     searches:
+summer_reading: 'false'

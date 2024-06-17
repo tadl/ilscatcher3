@@ -72,3 +72,4 @@ lists:
         url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=24&shelving_location[]=771&search_title=Juvenile Digital Video Disc'
       - name: "Children's Videos"
         url: "/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=24&shelving_location[]=516&search_title=Children's Videos"
+summer_reading: 'false'
