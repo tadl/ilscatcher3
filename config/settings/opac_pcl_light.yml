@@ -57,3 +57,4 @@ lists:
                     'min_score' : '1' }
     searches:
 summer_reading: 'false'
+parent_prize: 'false'

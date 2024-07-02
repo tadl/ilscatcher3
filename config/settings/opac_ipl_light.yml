@@ -54,3 +54,4 @@ lists:
       - name: "Television Series and Box Sets"
         url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=24&shelving_location[]=779&search_title=Television Series and Box Sets'
 summer_reading: 'false'
+parent_prize: 'false'
