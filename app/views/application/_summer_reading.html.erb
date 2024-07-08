@@ -1,9 +1,9 @@
 <% if Settings.summer_reading == 'true' && (Date.parse(Settings.summer_start_date) <= Date.today)  %>
     <div id="summer_reading_wrapper">
         <div class="summer_reading">
-            <a class="btn btn-primary btn-lg" id="register_summer_reading" style="margin-top: 5px;" href="https://tadl.beanstack.com">Sign up for Summer Library Challenge</a>
+            <a class="btn btn-primary btn-lg" id="register_summer_reading" style="margin-top: 5px;" href="https://tadl.beanstack.com">SRC Reporting</a>
             <% if Settings.parent_prize != 'false' && (Date.parse(Settings.parent_prize_date) <= Date.today) %>
-                <a class="btn btn-success btn-lg" id="prize_summer_reading" style="margin-top: 5px;" href="https://docs.google.com/forms/d/e/1FAIpQLSeOMD3vUNkUpyu7-icjN7JNsNHCZlWtbnJj5kjb_isDmcxqhQ/viewform">Parent Prize Signup</a>
+                <a class="btn btn-success btn-lg" id="prize_summer_reading" style="margin-top: 5px;" href="https://docs.google.com/forms/d/e/1FAIpQLSeOMD3vUNkUpyu7-icjN7JNsNHCZlWtbnJj5kjb_isDmcxqhQ/viewform">Parent Prize Drawing</a>
             <% end %>
         </div>
 	</div>
