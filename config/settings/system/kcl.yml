@@ -2,7 +2,7 @@ system_name: 'KCL'
 machine_readable: 'mr-v2a.catalog.tadl.org'
 public_catalog: 'https:/catalog.kalkaskalibrary.org'
 location_name: 'Kalkaska County Library'
-elastic_evergreen_url: 'https://kcl.elastic.tadl.org/main/index.json?query='
+elastic_evergreen_url: 'https://kcl-elastic.apps.tadl.org/main/index.json?query='
 logo: 'kcl-logo.jpg'
 error_image: 'kcl-logo.jpg'
 pickup_locations: [['Kalkaska', '44'],['Coldsprings', '56'],['Garfield Township', '57']]
