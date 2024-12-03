@@ -2,7 +2,7 @@ system_name: 'KPS'
 machine_readable: 'mr-v2a.catalog.tadl.org'
 public_catalog: 'https://kps-catalog.kalkaskalibrary.org'
 location_name: 'Kalkaska Public Schools'
-elastic_evergreen_url: 'https://kps.elastic.tadl.org/main/index.json?query='
+elastic_evergreen_url: 'https://kps-elastic.apps.tadl.org/main/index.json?query='
 logo: 'kps-logo.jpg'
 error_image: 'kps-logo.jpg'
 pickup_locations: [['Birch Street Elementary', '48'], ['Cherry Street Intermediate', '49'], ['Rapid City Elementary', '50'], ['Kalkaska Middle School', '51'], ['Kalkaska High School', '52']]

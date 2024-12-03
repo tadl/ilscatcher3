@@ -2,14 +2,14 @@ system_name: 'KCL'
 machine_readable: 'mr-v2a.catalog.tadl.org'
 public_catalog: 'https:/catalog.kalkaskalibrary.org'
 location_name: 'Kalkaska County Library'
-elastic_evergreen_url: 'https://kcl.elastic.tadl.org/main/index.json?query='
+elastic_evergreen_url: 'https://kcl-elastic.apps.tadl.org/main/index.json?query='
 logo: 'kcl-logo.jpg'
 error_image: 'kcl-logo.jpg'
-pickup_locations: [['Kalkaska', '44'],['Coldsprings', '56'],['Garfield Township', '57']]
-location_options: [['Kalkaska', '44']]
-long_pickup_locations: [['Kalkaska County Library', '44'],['Coldsprings Township Hall Branch Library', '56'],['Garfield Township Hall Branch Library', '57']]
-elastic_locations: [['KCL', '44']]
-all_locations_code: '44'
+pickup_locations: [['Kalkaska Main Branch', '44'],['Coldsprings', '56'],['Garfield Township', '57']]
+location_options: [['All Locations', '43'],['Kalkaska Main Branch', '44'],['Coldsprings', '56'],['Garfield Township', '57']]
+long_pickup_locations: [['Kalkaska County Library Main Branch', '44'],['Coldsprings Township Hall Branch Library', '56'],['Garfield Township Hall Branch Library', '57']]
+elastic_locations: [['KCL', '44'],['KCL-COLD', '56'],['KCL-GARF', '57']]
+all_locations_code: '43'
 has_payments: 'false'
 has_registration: 'true'
 has_eresources: 'false'
