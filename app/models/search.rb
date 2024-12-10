@@ -322,7 +322,9 @@ class Search
       url = url + '&min_score=' + self.min_score unless self.min_score.nil?
       url = url + '&fiction=' + self.fiction unless self.fiction.nil?
       url = url + '&audience=' + self.audience unless self.audience.nil?
-
+      puts '----------------------'
+      puts 'URL: ' + url
+      puts '----------------------'
       request = JSON.parse(open(url).read) 
       results = Array.new
       genres_raw = Array.new
