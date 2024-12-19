@@ -30,7 +30,7 @@
                         We found few or no close matches. If you don't see what you're looking for,
                         <% if Settings.is_opac !=  true || Settings.is_opac_light ==  true && Settings.melcat_search != false %>
                             try
-                            <a href="http://elibrary.mel.org/search/a?searchtype=X&searcharg=<%= @search.query %>&SORT=D">MeLCat</a> 
+                            <a href="https://elibrary.mel.org/search/a?searchtype=X&searcharg=<%= @search.query %>&SORT=D">MeLCat</a> 
                             or
                         <% end %> 
                         <a onclick="show_suggest_an_item()" class="clicky">suggest an item</a>.

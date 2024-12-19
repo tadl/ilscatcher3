@@ -207,7 +207,7 @@ class Search
 
     def melcat_link
       query = self.query
-      link = 'http://elibrary.mel.org/search/a?searchtype=X&searcharg='+ query +'&SORT=D'
+      link = 'https://elibrary.mel.org/search/a?searchtype=X&searcharg='+ query +'&SORT=D'
       return link
     end
 
