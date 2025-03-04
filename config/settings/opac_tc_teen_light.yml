@@ -34,6 +34,8 @@ slider_frequency: 10
 additional_nav_links:
   - name: 'Reserve a Computer'
     href: 'http://pcres.lib.tadl.org/reserve.pl'
+  - name: 'BATA Bus Schedule'
+    href: 'https://screen.transitapp.com/#/BKmlc'
 lists:
   - name: 'wood_new_fic_list'
     fancy_name: 'New Fiction'

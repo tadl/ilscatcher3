@@ -36,6 +36,8 @@ slider_frequency: 10
 additional_nav_links:
   - name: 'Book a Meeting Room'
     href: 'https://events.tadl.org/reserve-room'
+  - name: 'BATA Bus Schedule'
+    href: 'https://screen.transitapp.com/#/BKmlc'
 lists:
   - name: 'wood_new_fic_list'
     fancy_name: 'New Fiction'
