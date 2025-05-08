@@ -20,7 +20,7 @@ shelf_lock:
   location: '23'
   default_activated: true
   text: 'Limit to Sight & Sound items'
-format_options:  [['All Formats', 'fmt' ,'all'], ['Books', 'fmt' ,'a'],['Movies / TV', 'fmt' ,'g'],['Music', 'fmt' ,'j'],['Music - Vinyl','shelving_location','533'],['Video Games','shelving_location', '777'],['Library of Things', 'shelving_location', '1006,1026'],['Sheet Music','fmt','notated_music']]
+format_options:  [['All Formats', 'fmt' ,'all'], ['Books', 'fmt' ,'a'],['Movies / TV', 'fmt' ,'g'],['Music', 'fmt' ,'j'],['Music - Vinyl','shelving_location','533'],['Video Games','shelving_location', '777'],['Library of Things', 'shelving_location', '1006,1026,1112'],['Sheet Music','fmt','notated_music']]
 format_label: 'Format'
 stylesheet: 'ss.css'
 default_search_display: 'list'

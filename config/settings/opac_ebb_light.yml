@@ -16,7 +16,7 @@ screen_saver:
   - url: 'https://www.tadl.org/sites/default/files/2024-06/opac_CAC.png'
 location_name: 'East Bay Branch | Traverse Area District Library'
 register_location_name: 'East Bay Branch Library'
-format_options: [['All Formats','fmt','all'],['Books','fmt','a'],['Large Print','fmt','large_print'],['Audiobooks','shelving_location','515,518,546,571,572,582,584,590,597,680'],['Movies / TV','fmt','g'],['Music','fmt','j'],['STEM Kits','shelving_location','1058']]
+format_options: [['All Formats','fmt','all'],['Books','fmt','a'],['Large Print','fmt','large_print'],['Audiobooks','shelving_location','515,518,546,571,572,582,584,590,597,680'],['Movies / TV','fmt','g'],['Music','fmt','j'],['STEM Kits','shelving_location','1058'],['Library of Things', 'shelving_location', '1006,1026,514,1112']]
 format_label: 'Format'
 stylesheet: 'ebb.css'
 search_text: 'Search'
@@ -75,3 +75,13 @@ lists:
         url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=28&shelving_location[]=521&search_title=DVDs'
       - name: "Juvenile DVDs"
         url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=28&shelving_location[]=771&search_title=All Videos'
+  - name: 'ebb_things_list'
+    fancy_name: 'East Bay Library of Things'
+    search_params: {'loc' : '28',
+                    'qtype' : 'shelf',
+                    'shelving_location' : ['1006','1026','514','1112'],
+                    'canned' : 'true',
+                    'sort' : 'pubdateDESC'}
+    searches:
+      - name: "East Bay Library of Things"
+        url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=28&shelving_location[]=1006&shelving_location[]=1026&shelving_location[]=514&shelving_location[]=1112&search_title=East Bay Library of Things'

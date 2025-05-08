@@ -1,5 +1,5 @@
 location_name: 'Traverse Area District Library'
-format_options:  [['All Formats', 'fmt' ,'all'], ['Books', 'fmt' ,'a'],['Large Print', 'shelving_location', '534'],['Audiobooks','shelving_location','515,518,546,571,572,582,584,590,597,680,1090'],['eBooks','fmt','ebooks'],['Movies / TV', 'fmt' ,'g'],['Music', 'fmt' ,'j'],['Music - Vinyl','shelving_location','533'],['Video Games','shelving_location','777'],['Board Games', 'shelving_location', '1059'],['STEM Kits', 'shelving_location', '1058'],['Library of Things', 'shelving_location', '1006,1026,514'],['Sheet Music','fmt','notated_music']]
+format_options:  [['All Formats', 'fmt' ,'all'], ['Books', 'fmt' ,'a'],['Large Print', 'shelving_location', '534'],['Audiobooks','shelving_location','515,518,546,571,572,582,584,590,597,680,1090'],['eBooks','fmt','ebooks'],['Movies / TV', 'fmt' ,'g'],['Music', 'fmt' ,'j'],['Music - Vinyl','shelving_location','533'],['Video Games','shelving_location','777'],['Board Games', 'shelving_location', '1059'],['STEM Kits', 'shelving_location', '1058'],['Library of Things', 'shelving_location', '1006,1026,514,1112'],['Sheet Music','fmt','notated_music']]
 format_label: 'Format'
 default_search_display: 'list'
 stylesheet: 'tadl.css'
