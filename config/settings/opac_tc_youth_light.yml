@@ -34,8 +34,6 @@ search_menu: 'Advanced Search'
 default_loc: '23'
 slider_frequency: 10
 additional_nav_links:
-  - name: 'BATA Bus Schedule'
-    href: 'https://screen.transitapp.com/#/BKmlc'
 lists:
   - name: 'wood_youth_fiction_list'
     fancy_name: 'Fiction'

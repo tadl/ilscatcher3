@@ -31,8 +31,6 @@ search_menu: 'Search'
 default_loc: '23'
 slider_frequency: 10
 additional_nav_links:
-  - name: 'BATA Bus Schedule'
-    href: 'https://screen.transitapp.com/#/BKmlc'
 #computer_reservation_url: 'http://pcres.lib.tadl.org/reserve.pl'
 has_kiosk: true
 lists:
