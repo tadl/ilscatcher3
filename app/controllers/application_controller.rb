@@ -29,7 +29,7 @@ class ApplicationController < ActionController::Base
         @format_options = Settings.format_options
         @format_options_unlocked = Settings.format_options_unlocked
         @format_default = Settings.format_options[0][2]
-        @sort_options = [['Relevance', 'relevancy'], ['Newest to Oldest', 'pubdateDESC'],['Oldest to Newest', 'pubdateASC'],['Title A to Z', 'titleAZ'], ['Title Z to A', 'titleZA']]
+        @sort_options = [['Relevance', 'relevancy'], ['Newest to Oldest', 'pubdateDESC'],['Oldest to Newest', 'pubdateASC'],['Title A to Z', 'titleAZ'], ['Title Z to A', 'titleZA'],['Date Purchased','createDESC']]
         @location_options = Settings.location_options
         @audience_options = [['All', 'all'],['Adult', 'adult'],['Young Adult', 'ya'],['Juvenile', 'juv']]
         @pickup_locations = Settings.pickup_locations
