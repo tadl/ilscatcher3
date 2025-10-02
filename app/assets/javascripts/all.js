@@ -1000,7 +1000,7 @@ function fetch_good_reads(isbn) {
 }
 
 function fetch_youtube_trailer(record_id) {
-    var url = 'https://tools.app.tadl.org/trailers/get_trailer.json?id=' + record_id
+    var url = 'https://trailers.tools.tadl.org/trailers/get_trailer.json?id=' + record_id
     $.get(url)
     .done(function(data) {
         if (data.message && data.message != 'error') {
