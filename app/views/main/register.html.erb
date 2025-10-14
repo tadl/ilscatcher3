@@ -1,9 +1,24 @@
 <div class="row">
     <div class="col-xs-12">
         <h2>Signing-up for a library card is easy! Please fill out the form below to get started.</h2>
-        <p><strong>
-            NOTE: Online registrations are saved for two weeks, so please make sure to visit <%= Settings.register_location_name %> before that time; otherwise, you'll need to re-register.
-        </strong></p>
+        <% if ENV['SYSTEM_NAME'] == 'sbbdl' %>
+            <strong>
+            <p>To validate your account and pick up your library card, you'll need to visit Suttons Bay-Bingham District Library in person.</p>
+            <p>Online registrations are saved for one week only. You may re-register if needed.</p>
+            <p>When you pick up your library card you must present a valid photo ID and, if not included on your photo ID, verification of your current address. If your photo ID does not include a current address, here are some other examples you may use to verify your address:</p>
+            <ul>
+                <li>Utility bill with your name and address</li>
+                <li>Copy of your lease showing your name and address</li>
+                <li>Tax bill with your name and address</li>
+                <li>Mail delivered by the post office postmarked in the last 2 weeks showing your name and address</li>
+            </ul>
+            <p>We look forward to seeing you!</p>
+            </strong>
+        <% else %>
+            <p><strong>
+                NOTE: Online registrations are saved for two weeks, so please make sure to visit <%= Settings.register_location_name %> before that time; otherwise, you'll need to re-register.
+            </strong></p>
+        <% end %>
         <form class="form-horizontal padtop" autocomplete="off" method="post" action="<%= Settings.register_form %>">
             <div class="form-group">
                 <label for="id_first_given_name" class="col-xs-3 control-label">Chosen First Name</label>
