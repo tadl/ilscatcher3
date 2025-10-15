@@ -36,3 +36,4 @@ gem 'american_date'
 gem "loofah", "2.19.1"
 gem "nokogiri"
 gem "tzinfo", "1.2.10"
+gem 'recaptcha', require: 'recaptcha/rails'

@@ -858,15 +858,27 @@ class MainController < ApplicationController
     register_path << '&param=' + stgma_json.to_s
     register_path << '&param=' + stgba_json.to_s
 
-    agent = Mechanize.new
-    response = agent.get(URI.escape(register_path))
+    if Settings.has_captcha == true
+      check_captcha = verify_recaptcha(
+        action: 'registration_form', 
+        minimum_score: 0.3,
+        response: params[:recaptcha_token]
+      ) rescue false
+    else
+      check_captcha = true
+    end
+    if check_captcha
+      @success = true
+      agent = Mechanize.new
+      response = agent.get(URI.escape(register_path))
 
-    if Settings.register_newsletter == 'true' && params[:email_optin] == 'on'
+      if Settings.register_newsletter == 'true' && params[:email_optin] == 'on'
         agent = Mechanize.new
         url = Settings.register_listapi_url
         listsub = agent.post(url, {'check' => ENV["LISTAPI_KEY"], 'email' => params[:email], 'firstname' => params[:first_given_name], 'lastname' => params[:family_name], 'city' => params[:addr_city], 'state' => params[:addr_state], 'zip' => params[:addr_zip]})
+      end
     end
-    
+
     respond_to do |format|
       format.html
       format.json {render :json => {:message => response}}

@@ -19,7 +19,7 @@
                 NOTE: Online registrations are saved for two weeks, so please make sure to visit <%= Settings.register_location_name %> before that time; otherwise, you'll need to re-register.
             </strong></p>
         <% end %>
-        <form class="form-horizontal padtop" autocomplete="off" method="post" action="<%= Settings.register_form %>">
+        <form class="form-horizontal padtop" autocomplete="off" method="post" action="<%= Settings.register_form %>"  data-recaptcha-action='registration_form' id="registration_form">
             <div class="form-group">
                 <label for="id_first_given_name" class="col-xs-3 control-label">Chosen First Name</label>
                 <div class="col-xs-6">
@@ -168,16 +168,33 @@
                     <p>I give consent to release of child's borrowing record to myself and other parents or guardians whose names I provide to library staff in person when completing this registration.</p>
                 <% end %>
                 <input type="hidden" name="application_name" value="<%= Settings.application_name %>">
-
+                <% if Settings.has_captcha == true %>
+                    <input type="hidden" name="recaptcha_token"  id="recaptcha_token">
+                    <input type="hidden" name="recaptcha_action" id="recaptcha_action" value="contact_form">
+                <% end %>
                 <!-- submit form -->
                 <button type="submit" class="btn btn-primary pull-right">I Agree - Register</button>
                 <div class="padtop padbot clearfix"></div>
             </div>
+
         </form>
     </div>
 </div>
+<% if Settings.has_captcha == true %>
+    <script src="https://www.google.com/recaptcha/api.js?render=<%= ENV['RECAPTCHA_SITE_KEY'] %>"></script>
+    <script>
+document.getElementById('registration_form').addEventListener('submit', function(e) {
+  e.preventDefault();
+  grecaptcha.ready(function() {
+    grecaptcha.execute('<%= ENV["RECAPTCHA_SITE_KEY"] %>', {action: 'registration_form'}).then(function(token) {
+      document.getElementById('recaptcha_token').value = token;
+      e.target.submit();
+    });
+  });
+});
+</script>
+<% end %>
 <script>
-
     /* source: http://stackoverflow.com/a/7884850/157515 */
     jQuery.fn.capitalize = function() {
         $(this[0]).keyup(function(event) {
@@ -212,7 +229,6 @@
     $('#id_addr_city').capitalize();
 
     $('#id_phone').phoneify();
-
 </script>
 
 <% if Settings.is_opac ==  true %>

@@ -1,30 +1,35 @@
-<h3>Thank you!</h3>
-<% if ENV['SYSTEM_NAME'] == 'sbbdl' %>
-            <strong>
-            <p>To validate your account and pick up your library card, you'll need to visit Suttons Bay-Bingham District Library in person.</p>
-            <p>Online registrations are saved for one week only. You may re-register if needed.</p>
-            <p>When you pick up your library card you must present a valid photo ID and, if not included on your photo ID, verification of your current address. If your photo ID does not include a current address, here are some other examples you may use to verify your address:</p>
-            <ul>
-                <li>Utility bill with your name and address</li>
-                <li>Copy of your lease showing your name and address</li>
-                <li>Tax bill with your name and address</li>
-                <li>Mail delivered by the post office postmarked in the last 2 weeks showing your name and address</li>
-            </ul>
-            <p>We look forward to seeing you!</p>
-            </strong>
+<% if @success == true %>
+    <h3>Thank you!</h3>
+    <% if ENV['SYSTEM_NAME'] == 'sbbdl' %>
+                <strong>
+                <p>To validate your account and pick up your library card, you'll need to visit Suttons Bay-Bingham District Library in person.</p>
+                <p>Online registrations are saved for one week only. You may re-register if needed.</p>
+                <p>When you pick up your library card you must present a valid photo ID and, if not included on your photo ID, verification of your current address. If your photo ID does not include a current address, here are some other examples you may use to verify your address:</p>
+                <ul>
+                    <li>Utility bill with your name and address</li>
+                    <li>Copy of your lease showing your name and address</li>
+                    <li>Tax bill with your name and address</li>
+                    <li>Mail delivered by the post office postmarked in the last 2 weeks showing your name and address</li>
+                </ul>
+                <p>We look forward to seeing you!</p>
+                </strong>
 
+    <% else %>
+        <strong>To validate your account and pick up your library card, you'll need to visit <%= Settings.register_location_name %> in person. Online registrations are saved for two weeks, so please visit <%= Settings.register_location_name %> before that time; otherwise, you'll need to re-register.</strong>
+
+        <p>A photo identification and proof of residency is required for full library privileges and must be presented in order to verify an account. If your photo identification does not include a current address, here are some other examples of acceptable residency documentation:</p>
+        <ul>
+            <li>Utility bill with your name and address</li>
+            <li>Copy of your lease showing your name and address</li>
+            <li>Tax bill with your name and address</li>
+            <li>Mail delivered by the post office postmarked in the last 2 weeks showing your name and address</li>
+        </ul>
+
+        <p>We look forward to seeing you!</p>
+    <% end %>
 <% else %>
-    <strong>To validate your account and pick up your library card, you'll need to visit <%= Settings.register_location_name %> in person. Online registrations are saved for two weeks, so please visit <%= Settings.register_location_name %> before that time; otherwise, you'll need to re-register.</strong>
-
-    <p>A photo identification and proof of residency is required for full library privileges and must be presented in order to verify an account. If your photo identification does not include a current address, here are some other examples of acceptable residency documentation:</p>
-    <ul>
-        <li>Utility bill with your name and address</li>
-        <li>Copy of your lease showing your name and address</li>
-        <li>Tax bill with your name and address</li>
-        <li>Mail delivered by the post office postmarked in the last 2 weeks showing your name and address</li>
-    </ul>
-
-    <p>We look forward to seeing you!</p>
+    <h3>There was an error processing your registration</h3>
+    <p>Please try again later, or visit your local library in person to register.</p>
 <% end %>
 
 <a class="btn btn-default" role="button" href="/">Return to Main Page</a>
