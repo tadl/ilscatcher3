@@ -15,6 +15,7 @@ ga4_code: 'G-EMV7N02VCF'
 default_loc: '22'
 slider_frequency: 10
 has_captcha: true
+promote_aspen: true
 additional_nav_links:
   - name: 'TADL Website'
     href: 'https://www.tadl.org/'

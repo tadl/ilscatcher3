@@ -1,4 +1,22 @@
 <%= render 'summer_reading' %>
+<% if Settings.promote_aspen == true %>
+    <div class="row" style="margin-top: 15px; margin-bottom: 15px;">
+        <div class="col-md-12 text-center">
+            <div class="alert alert-info">
+            <br>
+            <a href="https://discover.tadl.org">
+                <button class="btn btn-lg btn-primary">
+                    Discover Our New Catalog!
+                </button>
+            </a>
+            <br>
+            <p style="margin-top: 10px;">
+            <strong>New!</strong> The library will soon be transitioning to a new online catalog. 
+            <a href="https://www.tadl.org/discover"><strong>Click here to learn more.</strong></a>
+            </p>
+        </div>
+    </div>
+<% end %>
 <div class="row">
     <%= render 'partial_search_box', search: @search %>
 </div>
