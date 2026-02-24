@@ -100,4 +100,4 @@ lists:
         url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=542&shelving_location[]=589&search_title=MultiMedia Kits'
       - name: "Puppets"
         url: '/main/search?query=&qtype=shelf&sort=pubdateDESC&loc=23&shelving_location[]=549&search_title=Puppets'
-winter_reading: 'true'
+winter_reading: 'false'
